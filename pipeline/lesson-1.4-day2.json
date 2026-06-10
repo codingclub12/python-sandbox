@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "lessonId": "1.4",
+    "lessonTitle": "AI-Based Cybersecurity Attacks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 2,
+    "los": "LO 1.4.B",
+    "anchor": "AI-Powered Cyberattacks",
+    "author": "AP CS Exam Prep",
+    "totalDays": 2
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.4 · Day 2 of 2",
+      "title": "Defending Against AI Attacks",
+      "subtitle": "AI-Based Cybersecurity Attacks: the four CB-specified protections — and the one word that defeats a perfect voice clone",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome back to Lesson 1.4, Day 2. Yesterday we cataloged the six ways adversaries use AI to augment an attack, and we ended on an uncomfortable truth: AI takes away your ability to detect the fake. Today we flip entirely to defense. The College Board names four protections in EK 1.4.B, and the beautiful thing about all four is that not one of them requires you to tell real from fake. Then we'll solve Scenario 1D — the voice scam — and take the Lesson 1.4 quiz."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Yesterday's teaser asked you to agree on a secret word with a family member. Suppose an adversary has a flawless clone of your voice and calls your relative with an emergency — but your relative asks for the secret word.",
+      "subprompt": "Write 3–5 sentences: why can't the voice clone supply the word, no matter how perfect it sounds? What does that tell you about what makes a defense work against AI?",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own. Yesterday I asked you to agree on a secret word with someone in your family. Now picture the attack: a perfect clone of your voice, your real number, a convincing emergency — and your relative simply asks, ‘What's our word?’ In three to five sentences: why can't the clone answer, no matter how good it sounds? And what does that tell you about what a good defense against AI actually needs to do? Hold it — this is EK 1.4.B.1, and it's our first defense today."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have two sections that match today’s lesson. Both are CB-required.",
+      "sections": [
+        {
+          "title": "Four Defenses Against AI Attacks",
+          "description": "Shared secret words, MFA, withholding data from AI tools, and verifying AI output (EK 1.4.B.1–B.4)."
+        },
+        {
+          "title": "Solving Scenario 1D",
+          "description": "Trace which CB-specified defense breaks each link in the voice-cloning attack chain."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 1.4 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Two sections today, both CB-required. First, the four defenses from EK 1.4.B — and as we cover each, notice that none of them asks you to detect the fake. Second, we take Scenario 1D apart and match a defense to each link in the attack chain. Keep the packet open as we go; I collect Guided Notes at the end."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how to protect against some AI-augmented cyberattacks (LO 1.4.B)"
+        }
+      ],
+      "script": "One objective today, the second for this topic: explain how to protect against some AI-augmented cyberattacks — learning objective 1.4.B. The College Board names four specific protections. By the end of class you should be able to recommend the right one for a given scenario and explain why it works even against a perfect AI fake."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Four CB Defenses",
+      "kicker": "Protecting Against AI Attacks · Learning Objective 1.4.B",
+      "script": "Section three of the lesson, and today's whole focus. Learning objective 1.4.B. Four defenses. The CB framework is specific about all four — know each one, know which attack it counters, and know that each one works without you having to detect the fake. Fifteen minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Defenses for Identity and Your Data",
+      "subheading": "EK 1.4.B.1, B.2, and B.3. Each protects something the AI attack tries to exploit — and none requires spotting the fake.",
+      "items": [
+        {
+          "ek": "EK 1.4.B.1",
+          "title": "Establish a Shared Secret Word",
+          "summary": "Agree in advance on a secret word or phrase known only to close friends and relatives, used to verify each other's identities in high-stakes situations. A cloned voice can copy how you sound, but it cannot supply a word it was never told.",
+          "ekRef": "EK 1.4.B.1"
+        },
+        {
+          "ek": "EK 1.4.B.2",
+          "title": "Enable Multifactor Authentication",
+          "summary": "Turn on MFA wherever it is available. If an adversary clones your voice to defeat voice authentication on a system, a required second factor — like a one-time code — can still block them from gaining access to the account.",
+          "ekRef": "EK 1.4.B.2"
+        },
+        {
+          "ek": "EK 1.4.B.3",
+          "title": "Don't Feed Personal Data to AI Tools",
+          "summary": "Never enter personal or sensitive data into AI-powered tools like chatbots or virtual assistants. Some tools feed your input back into the model for continuous training, and adversaries can later craft prompts to extract what users included in their prompts.",
+          "ekRef": "EK 1.4.B.3"
+        }
+      ],
+      "script": "Three defenses for identity and data. First, EK 1.4.B.1, the shared secret word — your bell ringer. It defeats a perfect voice clone because the clone copies your sound, not your secrets; it was never told the word. Second, EK 1.4.B.2, MFA. This is the answer when the attack targets voice-based authentication on a system: even a cloned voice that beats the voiceprint still hits a wall at the one-time code. Third, EK 1.4.B.3, don't feed personal or sensitive data into AI tools. Remember EK 1.4.A.3 from yesterday — models can leak what was put into them — so the defense is to not put sensitive things in. Write all three with their EK numbers."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Fourth Defense: Verify What AI Tells You",
+      "subheading": "EK 1.4.B.4 is the direct counter to the training-data poisoning you saw in EK 1.4.A.4.",
+      "left": {
+        "title": "The Risk (EK 1.4.A.4)",
+        "definition": "Why AI output can't be taken on faith",
+        "ek": "EK 1.4.A.4",
+        "examples": [
+          "Adversaries plant false information on websites to poison training data",
+          "The model later repeats that false information confidently",
+          "AI tools can also be wrong on their own, with no attacker involved",
+          "A confident tone is not evidence of accuracy"
+        ]
+      },
+      "right": {
+        "title": "The Defense (EK 1.4.B.4)",
+        "definition": "Carefully evaluate AI output",
+        "ek": "EK 1.4.B.4",
+        "examples": [
+          "Verify information from AI tools before acting on it",
+          "Check it against reputable, stable, non-AI-based sources",
+          "Treat AI output as a draft or a lead, not a final authority",
+          "Especially for anything high-stakes: money, health, security"
+        ]
+      },
+      "footer": "AP TIP: When a scenario shows an AI tool repeating false information, the defense is EK 1.4.B.4 (verify against non-AI sources) and the attack behind it is often EK 1.4.A.4 (poisoned training data). Name both.",
+      "script": "The fourth defense, EK 1.4.B.4: carefully evaluate AI output. On the left is the risk, and it has two sources. One is the poisoning attack from yesterday — EK 1.4.A.4 — where an adversary plants false information specifically so the model trains on it and repeats it. The other is simpler: AI tools are sometimes just wrong, no attacker required. Either way, a confident tone is not proof of truth. On the right is the defense: verify information from AI tools against reputable, stable, non-AI-based sources before you act, especially for anything high-stakes. Treat AI output as a lead to check, not a verdict to trust. This is the one defense that protects the integrity of what you learn, rather than your identity or your data."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘More Tech Is Always Safer’ Myth",
+      "misconception": "The best defense against an AI attack must be some advanced detection tool or app.",
+      "whyItHappens": "It feels intuitive that a high-tech attack needs a high-tech defense. Students expect a deepfake-detector app to be the answer, and assume a low-tech step like a family code word is too simple to matter.",
+      "correction": "EK 1.4.B.1's shared secret word is deliberately low-tech and it beats a flawless voice clone, because it asks for something the attacker cannot have. Detection tools chase a fake that keeps getting better; the CB defenses sidestep detection entirely by requiring a secret, a second factor, withheld data, or independent verification.",
+      "example": "A deepfake-detector might flag 90% of clones today and 40% next year as the tech improves — an arms race you can lose. A code word works at 100% regardless of how good the clone gets, because the clone was simply never told the word. Simple, attacker-proof, and exactly what the CED specifies.",
+      "script": "This is the misconception that trips up strong students, because it sounds sophisticated. The instinct is: an AI attack is high-tech, so my defense should be high-tech — a detector app, an AI that catches the other AI. But think about what you proved yesterday: detection is exactly what AI takes away, and detectors are in an arms race they can lose as clones improve. Now look at EK 1.4.B.1. A secret word is almost embarrassingly low-tech, and it wins one hundred percent of the time, because the attacker cannot produce a word they were never given. That is the deep lesson of this whole topic: the College Board's defenses don't try to out-detect the AI. They make detection unnecessary — a secret, a second factor, data you never shared, a source you check independently. Simpler, and stronger."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Solving Scenario 1D",
+      "kicker": "Apply the Defenses · Learning Objective 1.4.B",
+      "script": "Section four. Same objective, 1.4.B, now applied. Let's take Scenario 1D — the voice scam from yesterday — and break it link by link, matching a defense to each. Eight minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "Scenario 1D: Break Every Link",
+      "subheading": "The attack was a chain (EK 1.4.A.5 → A.1). A defense exists for each link — and the strongest stops it at the moment of the call.",
+      "left": {
+        "title": "The Attack Chain",
+        "definition": "How the voice scam reached the relative",
+        "ek": "Recap",
+        "examples": [
+          "Recon: adversary scrapes social media for voice samples and finds a relative (EK 1.4.A.5)",
+          "Clone: voice samples are turned into a digital avatar (EK 1.4.A.1)",
+          "Call: the relative hears the target's exact voice asking to wire bail money",
+          "The relative can't detect the fake — it sounds exactly right"
+        ]
+      },
+      "right": {
+        "title": "Where the CB Defenses Break It",
+        "definition": "Match a 1.4.B defense to the moment",
+        "ek": "EK 1.4.B",
+        "examples": [
+          "At the call: the relative asks for the shared secret word — the clone can't answer (EK 1.4.B.1)",
+          "Limit the recon: keep less voice/video public so there's less to scrape (supports EK 1.4.B)",
+          "If voice authentication is involved on any account: MFA blocks access (EK 1.4.B.2)",
+          "Verify the emergency through a second channel before sending money (EK 1.4.B.4 mindset)"
+        ]
+      },
+      "footer": "KEY SKILL: The decisive defense is EK 1.4.B.1 at the moment of the call — it works even though the relative cannot tell the voice is fake. That is the point of the whole lesson.",
+      "script": "Here is Scenario 1D solved. On the left, the chain you traced yesterday: recon scrapes the voice and finds the relative, EK 1.4.A.5; cloning turns those samples into the avatar, EK 1.4.A.1; the call delivers the perfect-sounding emergency. The relative cannot detect the fake — that's the trap. On the right, the defenses, matched to the moment. The decisive one is EK 1.4.B.1: the relative asks for the secret word and the clone goes silent, because it was never told. You can also shrink the recon surface by keeping less public, use MFA if any account voice-authentication is in play, and adopt the verify-second-channel mindset of EK 1.4.B.4 before wiring money. But circle the key skill: the winning move works even though no one ever detected the fake. That is the entire lesson in one sentence."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 1.4.B)",
+      "terms": [
+        {
+          "term": "Shared secret word",
+          "definition": "A word or phrase known only to two parties, agreed in advance, used to verify each other's identity in high-stakes situations (EK 1.4.B.1)."
+        },
+        {
+          "term": "Multifactor authentication (MFA)",
+          "definition": "Requiring a second proof of identity beyond a password or voiceprint, so a cloned voice alone cannot gain access to an account (EK 1.4.B.2)."
+        },
+        {
+          "term": "Data minimization for AI tools",
+          "definition": "Choosing not to enter personal or sensitive data into AI chatbots or assistants, since some feed input back into the model where it could be extracted (EK 1.4.B.3)."
+        },
+        {
+          "term": "AI output verification",
+          "definition": "Carefully evaluating information from AI tools and checking it against reputable, stable, non-AI-based sources before acting on it (EK 1.4.B.4)."
+        }
+      ],
+      "script": "Four terms, one per defense. Prioritize the shared secret word and MFA — those are the identity defenses the exam loves to test against the voice-clone scenario. Data minimization is the counter to prompt extraction, and AI output verification is the counter to poisoning. If a scenario hands you a cloned voice on a live call, the answer is the secret word. If it hands you account access via voice authentication, the answer is MFA. Match the defense to the attack."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 1.4.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A relative gets a call in your exact voice begging for emergency money. They cannot tell it is fake. Name the single CB-specified defense that stops this attack anyway, cite its EK number, and explain why it works without the relative ever detecting the clone.",
+        "An employee wants to paste a customer database into a public AI chatbot to ‘find patterns.’ Which EK 1.4.B defense applies, and which EK 1.4.A technique makes this dangerous? Explain the connection."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one is the heart of the lesson: the relative cannot tell the voice is fake — so name the one defense that still stops it, cite EK 1.4.B.1, and explain precisely why it works without detection. Question two connects a defense to an attack: pasting a customer database into a public chatbot is blocked by EK 1.4.B.3, and it's dangerous because of EK 1.4.A.3, prompt extraction. Explain how the input becomes the leak."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.4 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-ai-based-attacks"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Name-the-AI-technique scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Match the defense to the attack chain.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-exercise-2"
+        },
+        {
+          "label": "Lesson 1.4 quiz",
+          "tail": "Five questions across both objectives.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site. Re-run the Lesson 1.4 self-check, finish both exercises if you haven't, and the quiz is your five-question check across both objectives. If you want any of today over again at your own pace, the lesson video walks the material slide for slide. The quiz you take in class today is the same standard."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Lesson 1.4 · Day 2 of 2",
+      "heading": "End of Lesson 1.4",
+      "todayPoints": [
+        "Learned the four CB-specified defenses against AI-augmented attacks (LO 1.4.B)",
+        "Saw that every defense works WITHOUT having to detect the fake",
+        "Solved Scenario 1D — the shared secret word (EK 1.4.B.1) defeats a perfect clone",
+        "Took the Lesson 1.4 quiz"
+      ],
+      "nextPoints": [
+        "Lesson 1.5: how cyber defenders leverage AI to protect networks, applications, and data",
+        "The same technology flips sides — AI for detection, code review, and faster response",
+        "Scenario 1E: an AI-powered tool reviews application code before launch"
+      ],
+      "teaser": "If adversaries can use AI to attack (Lesson 1.4), defenders can use the same AI to protect. Tomorrow: who does AI favor — and why review by a human still matters?",
+      "script": "Lesson 1.4 is complete. You can name all six AI attack techniques and all four defenses, and you understand the one idea that ties them together: good defenses against AI don't depend on detecting the fake. Next is Lesson 1.5, where the very same technology switches sides — defenders using AI to review code, write detection rules, and respond faster, anchored on Scenario 1E. Tonight, actually set that family secret word if you haven't. It's the rare piece of homework that could matter outside this class."
+    }
+  ]
+}
