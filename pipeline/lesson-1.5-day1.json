@@ -1,0 +1,470 @@
+{
+  "meta": {
+    "lessonId": "1.5",
+    "lessonTitle": "Leveraging AI in Cyber Defense",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 1,
+    "los": "LO 1.5.A",
+    "anchor": "AI-Powered Cyber Defense",
+    "author": "AP CS Exam Prep",
+    "totalDays": 2
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.5 · Day 1 of 2",
+      "title": "Putting AI to Work on Defense",
+      "subtitle": "Leveraging AI in Cyber Defense: the three CB-specified ways defenders use AI to harden configurations, code, and detection — and why a human always signs off",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 1.5, Leveraging AI in Cyber Defense, Day 1 of 2. Yesterday's lesson, 1.4, was the bad news: adversaries point AI at you. This lesson is the good news — defenders point the exact same technology back. Today, Day 1, is learning objective 1.5.A: the three specific ways the College Board says cyber defenders use AI-powered tools to protect networks, applications, and data. Tomorrow, Day 2, is 1.5.B — how AI lets defenders detect and respond to threats faster than humans ever could, anchored on Scenario 1E. But notice the phrase that repeats in all three of today's techniques: the recommendation should always be checked by a knowledgeable human before it is implemented. That human-in-the-loop is not a footnote — it is the whole point of 1.5.A, and the exam tests it directly."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Your company is about to launch a new online ordering website. Before it goes live, you ask an AI-powered tool to review the code. It flags several spots where a customer's typed input is sent straight into the database, and it hands you ready-to-paste fixes.",
+      "subprompt": "Write 3–5 sentences: would you push the AI's fixes straight to the live site? Name one advantage of letting AI review the code, and one reason you might NOT trust the fix blindly.",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own, no notes. Read it: you're about to launch an online store, you ask an AI tool to check the code, and it finds places where a customer's input flows directly into the database — and it even writes the fix for you. Question: do you paste that fix straight into the live website? Give me one real advantage of having AI review the code, and one reason you might not just trust it blindly. Hold your answer. This is Scenario 1E from your framework, and by the end of class you'll know exactly what the College Board says should happen next — and who has to sign off before that fix ever ships."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have three sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "AI as a Security Advisor",
+          "description": "AI reviews security configurations, analyzes application code, and suggests detection rules — each checked by a human (EK 1.5.A.1, A.2, A.3)."
+        },
+        {
+          "title": "Scenario 1E: AI Reviews the Order App",
+          "description": "Trace the real CB scenario: AI flags input flowing straight into the database, recommends fixes, and the dev team reviews before launch (EK 1.5.A.2)."
+        },
+        {
+          "title": "Enrichment: Same AI, Opposite Side",
+          "description": "The same code-scanning power adversaries used to FIND vulnerabilities to exploit (EK 1.4.A.6) is what defenders use to FIND them to fix (EK 1.5.A.2).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 1.5 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three sections today, all green except the last. Section one is AI as a security advisor — three jobs: reviewing security configurations, analyzing application code, and suggesting detection rules. Section two applies it to Scenario 1E, the order-app code review from your bell ringer. Section three is a quick enrichment that ties straight back to yesterday: the same AI that helped adversaries hunt vulnerabilities to exploit is what defenders now use to hunt them to fix. Keep your pencil moving; I collect Guided Notes at the end of class."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how cyber defenders can leverage AI-powered tools to protect networks, applications, and data (LO 1.5.A)"
+        }
+      ],
+      "script": "One learning objective today: explain how cyber defenders can leverage AI-powered tools to protect networks, applications, and data — learning objective 1.5.A. The College Board names three distinct uses under it, and they map cleanly onto the three things in the objective: networks get configuration review, applications get code analysis, and detection systems get suggested rules. The verb is explain, not list. The exam will give you a scenario and ask you to identify which defensive use of AI is in play and explain why a knowledgeable human still has to approve it. By the end of today you can do that for all three."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "AI as a Security Advisor",
+      "kicker": "AI-Powered Cyber Defense · Learning Objective 1.5.A",
+      "script": "Section one. Learning objective 1.5.A. Three uses of AI on defense — reviewing configurations, analyzing code, and suggesting detection rules. As we go, watch for the human who must approve each one. Twelve minutes here."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "AI on Defense: Three CB-Specified Uses",
+      "subheading": "EK 1.5.A.1, A.2, and A.3. Each is a RECOMMENDATION that a named human expert must check before it is implemented.",
+      "items": [
+        {
+          "ek": "EK 1.5.A.1",
+          "title": "Review Security Configurations",
+          "summary": "AI tools can review current security configurations — like firewall rules and access controls — and recommend more secure options. Recommendations should always be checked by a knowledgeable security technician before being implemented.",
+          "ekRef": "EK 1.5.A.1"
+        },
+        {
+          "ek": "EK 1.5.A.2",
+          "title": "Analyze Application Code",
+          "summary": "AI-powered tools can analyze application code to identify vulnerabilities and recommend mitigations. Recommendations should always be reviewed by a knowledgeable programmer before being implemented.",
+          "ekRef": "EK 1.5.A.2"
+        },
+        {
+          "ek": "EK 1.5.A.3",
+          "title": "Suggest Detection Rules",
+          "summary": "AI-powered tools can suggest rules for automated detection systems. Detection rules should always be reviewed by a knowledgeable detection engineer before being added to a system.",
+          "ekRef": "EK 1.5.A.3"
+        }
+      ],
+      "script": "Three uses, and notice they line up with the objective — networks, applications, data. First, EK 1.5.A.1: AI reviews security configurations, the firewall rules and access controls that protect a network, and recommends tighter, more secure settings. But a knowledgeable security technician checks those recommendations before they go live. Second, EK 1.5.A.2: AI analyzes application code, finds vulnerabilities, and recommends fixes — and a knowledgeable programmer reviews them before they ship. Third, EK 1.5.A.3: AI suggests rules for automated detection systems, and a knowledgeable detection engineer reviews each rule before it is added. Hear the pattern? Review, recommend, and a human signs off — every single time. Write all three with their EK numbers, and write the human who approves each."
+    },
+    {
+      "type": "two_column",
+      "heading": "Scenario 1E: AI Reviews the Order App",
+      "subheading": "The CB anchor scenario is EK 1.5.A.2 in action — AI finds the flaw, humans approve the fix.",
+      "left": {
+        "title": "Step 1 — AI Finds It (EK 1.5.A.2)",
+        "definition": "The AI tool analyzes the code before launch",
+        "ek": "EK 1.5.A.2",
+        "examples": [
+          "A new web app lets customers order items and updates the warehouse database",
+          "Before launch, an AI tool is asked to review the code for vulnerabilities",
+          "It flags several spots where user input is fed directly into database requests",
+          "Adversaries could use those spots to read or modify the database in unintended ways"
+        ]
+      },
+      "right": {
+        "title": "Step 2 — Humans Approve It (EK 1.5.A.2)",
+        "definition": "The recommendation is reviewed before it ships",
+        "ek": "EK 1.5.A.2",
+        "examples": [
+          "The AI recommends fixes that validate and sanitize input before it reaches the database",
+          "Those recommendations are shared with the software development team",
+          "The team reviews the code changes and updates the code with the appropriate suggestions",
+          "Only then is the app pushed to a testing environment, and later deployed"
+        ]
+      },
+      "footer": "AP TIP: Scenario 1E is the model answer for EK 1.5.A.2 — AI identifies vulnerabilities and recommends mitigations, but a knowledgeable programmer reviews the changes before they are implemented. Name BOTH halves: the find AND the human review.",
+      "script": "Here is Scenario 1E end to end, and it is the cleanest illustration of EK 1.5.A.2 you'll get. Step one, the find: the company is launching a web app that takes customer orders and updates a warehouse database. Before launch, they ask an AI tool to review the code, and it flags several places where a customer's typed input is sent straight into database requests — exactly the kind of hole an adversary could use to read the inventory or modify the database. Step two, the human approval: the AI recommends fixes that validate and sanitize that input, and those recommendations go to the software development team, who review the changes and update the code appropriately. Then, and only then, the app moves to testing and later to deployment. On the exam, name both halves — AI found the vulnerability and recommended the fix, and a knowledgeable programmer reviewed it before it shipped. The review is not optional."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘Just Apply the Fix’ Myth",
+      "misconception": "If an AI security tool flags a vulnerability and writes the fix, you can just apply it automatically — the AI is the expert now.",
+      "whyItHappens": "The AI's output looks authoritative and complete: it names the flaw, explains the risk, and hands over ready-to-paste code. It is tempting to treat that as a final answer, especially under deadline pressure to launch.",
+      "correction": "All three of EK 1.5.A's uses say the same thing: the recommendation should ALWAYS be checked by a knowledgeable human — a security technician (A.1), a programmer (A.2), or a detection engineer (A.3) — before it is implemented. AI is an advisor that accelerates the expert, not a replacement for the expert's judgment.",
+      "example": "An AI fix might sanitize one input field but miss another, or break a legitimate feature, or be based on a misread of how the app actually works. In Scenario 1E the development team reviews the changes precisely because an unreviewed fix shipped to production can introduce new bugs — or a false sense of safety — that are worse than the original flaw.",
+      "script": "This is the misconception the College Board built directly into the standard, which is why it tests it. The AI hands you a finished-looking fix — it names the bug, explains the danger, gives you the code — so the instinct is to paste it and move on, especially when you're racing to launch. But read the EKs: every one of the three says the recommendation should always be checked by a knowledgeable human before it's implemented. Why? Because the AI might patch one field and miss the next, or break a feature, or misunderstand how your system really works. In Scenario 1E the dev team reviews the changes for exactly that reason. The frame to carry out of here: on defense, AI is the advisor that makes a human expert faster — it is never the expert that replaces them. That distinction is worth points."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Same Tool, Opposite Intent",
+      "subheading": "Not directly CB-required, but it connects 1.5 straight back to 1.4 — the same AI capability, pointed the other way.",
+      "track": "enrichment",
+      "left": {
+        "title": "Yesterday: AI for the Attacker",
+        "definition": "How adversaries used the same power (Lesson 1.4)",
+        "ek": "Enrichment",
+        "examples": [
+          "Adversaries use AI to find vulnerabilities in large code bases to exploit (EK 1.4.A.6)",
+          "Adversaries use AI to write or modify malicious code (EK 1.4.A.6)",
+          "The goal is to get IN before anyone notices the hole",
+          "Speed and scale favored whoever moved first"
+        ]
+      },
+      "right": {
+        "title": "Today: AI for the Defender",
+        "definition": "How defenders use the same power (Lesson 1.5)",
+        "ek": "Enrichment",
+        "examples": [
+          "Defenders use AI to find vulnerabilities in their own code to fix (EK 1.5.A.2)",
+          "Defenders use AI to recommend stronger configurations and detection rules (EK 1.5.A.1, A.3)",
+          "The goal is to close the hole BEFORE launch — like Scenario 1E",
+          "A human expert reviews every fix, which the attacker never bothers to do"
+        ]
+      },
+      "footer": "TAKEAWAY: The capability is symmetric — code analysis finds the same bug for either side. What differs is intent, and the defender's required human review. Whoever scans first and patches wins the race.",
+      "script": "Quick enrichment, because it ties the whole unit together. On the left is yesterday: EK 1.4.A.6, adversaries using AI to scan large code bases for vulnerabilities to exploit, and to write malware. On the right is today: EK 1.5.A.2, defenders using that identical capability to scan their own code for the same vulnerabilities — to fix them before launch, exactly like Scenario 1E. The tool doesn't care which side runs it; code analysis surfaces the same bug either way. Two things differ. One is intent — exploit versus patch. The other is that the defender adds a human review step the attacker never bothers with. So the practical lesson is a race: whoever scans first and closes the hole first wins. Defenders who use AI well get to find their bugs before the adversary's AI does."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 1.5.A)",
+      "terms": [
+        {
+          "term": "Security configuration review",
+          "definition": "Using AI tools to examine current settings like firewall rules and access controls and recommend more secure options, checked by a security technician before use (EK 1.5.A.1)."
+        },
+        {
+          "term": "AI code analysis",
+          "definition": "Using AI-powered tools to analyze application code, identify vulnerabilities, and recommend mitigations, reviewed by a programmer before being implemented (EK 1.5.A.2)."
+        },
+        {
+          "term": "Detection rule suggestion",
+          "definition": "Using AI-powered tools to suggest rules for automated detection systems, reviewed by a detection engineer before being added to a system (EK 1.5.A.3)."
+        },
+        {
+          "term": "Human-in-the-loop review",
+          "definition": "The required step in which a knowledgeable human expert checks an AI recommendation before it is implemented, common to all of EK 1.5.A (EK 1.5.A.1)."
+        },
+        {
+          "term": "Input validation / sanitization",
+          "definition": "Cleaning and checking user input before it reaches a database, the type of mitigation an AI tool recommended in Scenario 1E (EK 1.5.A.2)."
+        },
+        {
+          "term": "Automated detection system",
+          "definition": "A system that flags suspicious activity using rules, which AI can help write but a detection engineer must approve (EK 1.5.A.3)."
+        }
+      ],
+      "script": "Six terms, anchored on the three EKs. Prioritize the three uses for the exam: configuration review, code analysis, and detection-rule suggestion — and for each, know the human who approves it. Human-in-the-loop review is the idea that ties all three together, so make sure that term is in your notes. Input validation and sanitization is the specific fix from Scenario 1E — if a scenario describes user input going straight into a database, that's the flaw, and validating or sanitizing the input is the mitigation. Know all six by name and EK number."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 1.5.A. Complete on your Guided Notes packet.",
+      "prompts": [
+        "An AI tool reviews a company's firewall rules and recommends a more restrictive set of access controls. Name the CB-specified use of AI in play, cite its EK number, and explain who must check the recommendation before it is implemented and why.",
+        "In Scenario 1E, the AI tool both finds the vulnerability and writes the fix. Explain why the College Board still requires the software development team to review the change before it ships — and connect this to why yesterday's adversary (EK 1.4.A.6) used the same kind of tool."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: AI recommends tighter firewall access controls — name the use, that's EK 1.5.A.1, configuration review, and tell me who signs off, the security technician, and why a human has to. Question two is the heart of today: in Scenario 1E the AI found the bug and wrote the fix, so why does a human still have to review it? Tie it back to 1.4.A.6 — the same code-analysis power served the attacker yesterday, which is exactly why the defender can't treat its output as gospel. Be precise."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.5 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-leveraging-ai-cyber-defense"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Name-the-defensive-AI-use scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-5-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Trace the Scenario 1E code-review chain.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-5-exercise-2"
+        },
+        {
+          "label": "Lesson 1.5 quiz",
+          "tail": "Five questions across both objectives.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-5-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything from class is on the site, and work it in the order shown. Start on the Lesson 1.5 page and run the self-check. Then Exercise 1, where you name the defensive AI use in each scenario, and Exercise 2, where you trace the Scenario 1E review chain yourself. The quiz at the bottom is five questions across both objectives — you'll be ready after tomorrow. Write the lesson page URL down now."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Named the three CB-specified ways defenders leverage AI: review configurations, analyze code, suggest detection rules (LO 1.5.A)",
+        "Tied each use to the human who must approve it: security technician (A.1), programmer (A.2), detection engineer (A.3)",
+        "Traced Scenario 1E: AI flags input flowing into the database, the dev team reviews the fix before launch (A.2)",
+        "Saw that the same AI capability serves attacker (1.4.A.6) and defender (1.5.A.2) — intent and human review are the difference"
+      ],
+      "nextPoints": [
+        "Learn how AI enables faster, more accurate threat detection and response (LO 1.5.B)",
+        "See why humans cannot examine millions of daily events — and how AI triages them",
+        "Take the Lesson 1.5 quiz"
+      ],
+      "teaser": "Tonight, picture every click, login, and file access on a big network in a single day — millions of events. Tomorrow you'll learn how AI finds the handful that are an attack, and what it does the instant it does.",
+      "script": "Day 1 done. You can name the three defensive uses of AI and, for each, the human expert who has to approve it — that human-in-the-loop is the idea the exam tests hardest in 1.5.A. Tonight's teaser sets up tomorrow: imagine the millions of events a real network generates in one day, and the impossibility of a person reading them all. Tomorrow, EK 1.5.B — how AI sorts the harmless from the malicious, alerts or acts the moment it finds something, and lets response teams intervene fast. Then the quiz. Review your Guided Notes — be able to name all three uses, their EK numbers, and who signs off on each."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 1.5 — Leveraging AI in Cyber Defense — Quiz",
+    "instructions": "Choose the single best answer. 25 minutes, no notes. Cite EK numbers in any written justification your teacher requires.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "multi",
+        "stem": "Three uses of AI are proposed on a security team. I. An AI tool reviews the company's firewall rules and access controls and recommends more secure settings. II. An AI tool analyzes the application's code and flags places where user input flows straight into database queries. III. An AI tool rewrites the application's code and deploys it to production automatically, with no programmer review. Which reflect CB-specified ways defenders leverage AI to protect networks, applications, and data?",
+        "options": [
+          "I only",
+          "I and II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "B",
+        "ek": "EK 1.5.A.1 + EK 1.5.A.2",
+        "rationale": "Use I is EK 1.5.A.1 — AI reviewing security configurations like firewall rules and access controls and recommending more secure options. Use II is EK 1.5.A.2 — AI analyzing application code to identify vulnerabilities. Use III is excluded because every EK 1.5.A use requires that the recommendation be reviewed by a knowledgeable human before implementation; deploying AI-written code to production with no programmer review is exactly what the CED prohibits. The answer is I and II only."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "In Scenario 1E, an AI tool reviews a new order app before launch and flags several places where customer input is fed directly into database requests, then recommends fixes that validate and sanitize that input. According to the CED, what should happen next?",
+        "options": [
+          "The recommended fixes are pushed straight to the live site with no further review",
+          "The launch is cancelled, since AI found vulnerabilities in the code",
+          "The software development team reviews the recommended code changes and updates the code before it moves to testing",
+          "The AI tool is granted permission to edit and deploy the application code on its own"
+        ],
+        "answer": "C",
+        "ek": "EK 1.5.A.2",
+        "rationale": "EK 1.5.A.2 states that AI recommendations for code mitigations should always be reviewed by a knowledgeable programmer before being implemented, and Scenario 1E shows exactly that: the development team reviews the changes and updates the code before it is pushed to testing and later deployed. Option A skips the required human review. Option B overreacts — finding fixable vulnerabilities is the point of the review, not a reason to cancel. Option D hands implementation to the AI, removing the human-in-the-loop the CED requires."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "An AI tool recommends a new set of firewall and access-control settings for a network. Per the CED, why must a knowledgeable security technician check the recommendation before it is implemented?",
+        "options": [
+          "AI tools are legally prohibited from suggesting any firewall or access-control settings",
+          "Firewalls can only be configured by physical hardware, never reviewed in software",
+          "AI recommendations are always wrong and should be discarded without being read",
+          "AI recommendations can be flawed or miss context, so a knowledgeable human expert must verify them before they are implemented"
+        ],
+        "answer": "D",
+        "ek": "EK 1.5.A.1",
+        "rationale": "EK 1.5.A.1 specifies that AI recommendations about security configurations should always be checked by a knowledgeable security technician before being implemented, because an AI suggestion can be incomplete or context-blind and could weaken security if applied unverified. Option A invents a legal rule. Option B is factually wrong about how firewalls work. Option C overstates the case — the recommendations are useful, but they require expert verification, not blanket rejection."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A large network generates millions of digital events every day — logins, file accesses, connections — and some small number likely represent an adversary. Why do defenders apply AI-powered tools to this stream of events?",
+        "options": [
+          "Humans cannot carefully examine all the millions of daily events, so AI is trained to sort the likely-malicious activity from the harmless activity",
+          "AI can force the network to generate far fewer events so that humans can read every one of them",
+          "The events are unimportant, so neither humans nor AI need to review them at all",
+          "Only AI is legally permitted to view a network's event logs, so humans are not allowed to look"
+        ],
+        "answer": "A",
+        "ek": "EK 1.5.B.1 + EK 1.5.B.2",
+        "rationale": "EK 1.5.B.1 establishes that humans cannot carefully examine the millions of daily events to find the malicious ones, and EK 1.5.B.2 explains that AI-powered tools can be trained to quickly analyze those events and sort likely-malicious activity from harmless activity. Option B misstates what AI does — it triages the events, it does not reduce how many occur. Option C is false; some events do represent attacks. Option D invents a legal restriction."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "An AI-powered detection tool identifies activity on the network that is likely an adversary in progress. Per the CED, what can the tool do, and what is the benefit for the security team?",
+        "options": [
+          "It must wait for the next annual audit before any person is notified of the activity",
+          "It deletes the entire database as a precaution, with no other available response",
+          "It can alert human cybersecurity personnel or take specific corrective action, helping the response team intervene quickly to prevent loss",
+          "It quietly records the activity in a log and is designed never to notify anyone"
+        ],
+        "answer": "C",
+        "ek": "EK 1.5.B.3 + EK 1.5.B.4",
+        "rationale": "EK 1.5.B.3 states that AI-powered tools can be programmed to alert human cybersecurity personnel when likely malicious activity is detected or to take specific corrective actions based on the type of activity, and EK 1.5.B.4 explains that this enables threat-detection and response teams to catch malicious activity and intervene quickly to prevent loss, harm, damage, and destruction. Option A defeats the purpose by delaying response. Option B describes a single destructive over-reaction, not the targeted, type-appropriate response the CED describes. Option D removes the alert, which is the tool's core value."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 1.5 — Leveraging AI in Cyber Defense — Teacher Guide",
+    "subtitle": "Unit 1 · Topic 1.5 · 2 class periods · Scenario 1E",
+    "overview": [
+      "Lesson 1.5 is the defender's counterpart to Lesson 1.4: the same AI capabilities adversaries weaponize, now used to protect networks, applications, and data. Across two days students learn to explain the three CB-specified ways cyber defenders leverage AI (EK 1.5.A.1–A.3) and the four CB-specified ways AI enables faster, more accurate threat detection and response (EK 1.5.B.1–B.4). The Day 1 organizing idea is human-in-the-loop: each of the three 1.5.A uses ends with a named expert — a security technician (A.1), a programmer (A.2), or a detection engineer (A.3) — who must review the AI's recommendation before it is implemented. The Day 2 organizing idea is scale: humans cannot examine millions of daily events, so AI triages them, alerts or acts, and lets response teams intervene quickly.",
+      "Scenario 1E (AI-Powered Cyber Defense) anchors the lesson: before launching a new order-taking web app, a team asks an AI tool to review the code; it flags user input fed directly into database requests and recommends input validation and sanitization; the development team reviews the changes and updates the code before testing and deployment. The scenario is the model answer for EK 1.5.A.2 — AI finds the vulnerability and recommends the mitigation, but a knowledgeable programmer reviews it before implementation. Naming note: the CB scenario is written in the second person and names no company or individuals; none is added in this lesson."
+    ],
+    "los": [
+      "LO 1.5.A — Explain how cyber defenders can leverage AI-powered tools to protect networks, applications, and data.",
+      "LO 1.5.B — Explain how AI-powered tools are enabling faster and more accurate threat detection and response."
+    ],
+    "eks": [
+      "EK 1.5.A.1 — AI tools can review current security configurations, like firewall rules and access controls, and recommend more secure options. Recommendations should always be checked by a knowledgeable security technician before being implemented.",
+      "EK 1.5.A.2 — AI-powered tools can analyze application code to identify vulnerabilities and recommend mitigations. Recommendations should always be reviewed by a knowledgeable programmer before being implemented.",
+      "EK 1.5.A.3 — AI-powered tools can suggest rules for automated detection systems. Detection rules should always be reviewed by a knowledgeable detection engineer before being added to a system.",
+      "EK 1.5.B.1 — Of the millions of digital events that happen on networks daily, some likely represent an adversary conducting malicious activity. Humans cannot carefully examine all those events to identify the malicious activity.",
+      "EK 1.5.B.2 — AI-powered tools can be trained to quickly analyze digital events and sort the events that are likely malicious activity from those that are harmless.",
+      "EK 1.5.B.3 — AI-powered tools can be programmed to alert human cybersecurity personnel when likely malicious activity is detected or to take specific corrective actions based on the type of malicious activity detected.",
+      "EK 1.5.B.4 — AI-powered tools enable threat-detection and response teams to catch malicious activity and intervene quickly to prevent loss, harm, damage, and destruction to digital infrastructure and data."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each day.",
+      "Printed/Digital Day 1–2 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page (apcsexamprep.com/pages/ap-cybersecurity-unit-1-leveraging-ai-cyber-defense), which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 1.5 quiz (student copies) for Day 2.",
+      "Scenario 1E narrative displayed on the Day 1 and Day 2 decks (no handout needed)."
+    ],
+    "prereqs": [
+      "Lesson 1.4 (AI-based attacks). Lesson 1.5 mirrors it on defense — A.2 code analysis is the defender's version of the adversary's AI vulnerability-hunting in EK 1.4.A.6, and the human-review requirement echoes the verify-AI-output discipline of EK 1.4.B.4."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "The three ways defenders leverage AI to protect networks, apps, and data (LO 1.5.A)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.5/Q1) + bell ringer (would you ship the AI's fix?)",
+            "min": 5
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3
+          },
+          {
+            "segment": "AI as a security advisor: configs, code, detection rules (EK 1.5.A.1–A.3)",
+            "min": 12
+          },
+          {
+            "segment": "Scenario 1E as a chain: AI finds the flaw, humans approve the fix (EK 1.5.A.2)",
+            "min": 8
+          },
+          {
+            "segment": "The ‘just apply the fix’ myth + same-tool-opposite-intent enrichment",
+            "min": 7
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 7
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "AI for faster, more accurate threat detection and response + quiz (LO 1.5.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.5/Q2) + bell ringer (millions of events)",
+            "min": 5
+          },
+          {
+            "segment": "The scale problem: humans can't examine every event (EK 1.5.B.1)",
+            "min": 8
+          },
+          {
+            "segment": "AI triage, alert/act, and fast response (EK 1.5.B.2–B.4)",
+            "min": 12
+          },
+          {
+            "segment": "Solve Scenario 1E forward: detection after launch + ‘AI replaces the analyst’ myth",
+            "min": 8
+          },
+          {
+            "segment": "Stop and Think + quiz strategy",
+            "min": 6
+          },
+          {
+            "segment": "Lesson 1.5 quiz",
+            "min": 25
+          },
+          {
+            "segment": "Quiz debrief + bridge to Lesson 1.6",
+            "min": 6
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "The ‘just apply the fix’ myth",
+        "myth": "If an AI security tool flags a vulnerability and writes the fix, you can apply it automatically — the AI is the expert.",
+        "reality": "Every EK 1.5.A use requires a knowledgeable human to check the recommendation before implementation: a security technician (A.1), a programmer (A.2), or a detection engineer (A.3). AI is an advisor that accelerates the expert, not a replacement for the expert."
+      },
+      {
+        "heading": "AI replaces the analyst",
+        "myth": "AI threat detection means a security team no longer needs human cybersecurity personnel.",
+        "reality": "EK 1.5.B.3 has AI alert human personnel or take specific corrective actions, and EK 1.5.B.4 has human threat-detection and response teams intervene. AI handles the scale problem of triaging millions of events (B.1, B.2); humans still decide and respond."
+      },
+      {
+        "heading": "Finding a vulnerability is bad news",
+        "myth": "If an AI review finds vulnerabilities before launch, the project has failed and should stop.",
+        "reality": "Finding fixable flaws pre-launch is the goal, as in Scenario 1E. The team reviews and applies the mitigations, then proceeds to testing and deployment — catching the flaw early is a success, not a failure."
+      },
+      {
+        "heading": "Attack AI and defense AI are different tools",
+        "myth": "The AI adversaries use to find vulnerabilities is a different technology from the AI defenders use.",
+        "reality": "It is the same capability pointed in opposite directions: EK 1.4.A.6 (find vulnerabilities to exploit) and EK 1.5.A.2 (find vulnerabilities to fix). Intent and the defender's required human review are what differ, which is why whoever scans and patches first has the advantage."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post a three-column word bank before the Stop and Think — ‘configurations / technician (A.1)’, ‘code / programmer (A.2)’, ‘detection rules / detection engineer (A.3)’ — so students match the use to the human rather than recall both cold.",
+        "Provide a sentence frame: ‘This is EK 1.5.A.____ because AI ____, and a knowledgeable ____ must review it before it is implemented.’"
+      ],
+      "extension": [
+        "Have students pair each EK 1.5.A use with the EK 1.4.A attack it best counters (e.g., A.2 code analysis vs. A.6 AI vulnerability hunting) and defend the match.",
+        "Ask students to argue, with reasons, whether AI ultimately favors attackers or defenders over time, citing the symmetry between 1.4.A.6 and 1.5.A.2 and the defender's required human review."
+      ]
+    },
+    "discussion": [
+      "Of the three EK 1.5.A uses, which do you think is most dangerous to automate fully without a human, and why?",
+      "Scenario 1E found the flaw before launch. Why is it so much cheaper to fix a vulnerability before deployment than after?",
+      "If attackers and defenders use the same AI capabilities (1.4.A.6 vs. 1.5.A.2), what decides who comes out ahead — the technology, or how each side uses it?"
+    ],
+    "answerKeyNote": "Full per-question rationales: emit with --doc=quiz --mode=key. The summary answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}
