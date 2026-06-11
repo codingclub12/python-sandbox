@@ -1,0 +1,408 @@
+{
+  "meta": { "unitId": "Unit 4", "title": "Securing Devices", "unitLabel": "Unit 4 • Securing Devices" },
+  "timeMinutes": 60,
+  "partI": {
+    "instructions": "Choose the single best answer.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A hospital runs an MRI scanner, an IV pump, and a smart thermostat, each containing a small computer with a specific instruction set for the machine it controls. How does the CED classify the computers inside these machines?",
+        "options": [
+          "Server computers that provide DNS and DHCP services to other hosts",
+          "Personal computers designed for one person to do word processing and browsing",
+          "Embedded computers, often called Internet of Things (IoT) devices in everyday objects",
+          "Handheld computers such as tablets, smartphones, and wearable smart watches"
+        ],
+        "answer": "C",
+        "ek": "EK 4.1.A.4 + EK 4.1.A.5",
+        "rationale": "4.1.A.4 defines embedded computers as devices that are part of a machine with specific instruction sets, and 4.1.A.5 lists medical equipment like MRI scanners and IV pumps and everyday devices like thermostats as embedded computers, often called IoT devices."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "According to the CED, which statement BEST describes a server computer in an enterprise environment?",
+        "options": [
+          "A device that provides one or more services to other computers, typically with more processing power and storage",
+          "A device that is part of a machine and runs on battery with minimal storage capacity",
+          "A device designed for one person to use for web browsing and media production",
+          "A device smaller than a personal computer that runs on battery power for portability"
+        ],
+        "answer": "A",
+        "ek": "EK 4.1.A.1",
+        "rationale": "4.1.A.1 says server computers provide one or more services to other computers (e.g., DNS, DHCP, FTP), and in an enterprise environment servers typically have more processing power and storage than a personal computer."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An employee opens an email attachment that seems to be a harmless invoice, but it secretly installs code giving the attacker remote control of the machine. Which type of malware does this BEST describe?",
+        "options": [
+          "A worm that spreads from one computer to another without any human interaction",
+          "A remote access trojan (RAT) embedded in software that seems harmless",
+          "A logic bomb that triggers its effect only when specific conditions are met",
+          "Ransomware that encrypts the device's files and demands a payment to decrypt them"
+        ],
+        "answer": "B",
+        "ek": "EK 4.1.B.2",
+        "rationale": "4.1.B.2 says trojans are malware embedded in other software that seems harmless, and that remote access trojans (RATs) provide an adversary with remote access to the target system. The attachment looked harmless but gave remote control."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An analyst finds malicious code that never writes a file to disk; instead it lives in RAM and abuses legitimate programs already installed to compromise the device. Which description matches?",
+        "options": [
+          "A virus that must be activated by a user executing or opening a file",
+          "Spyware that tracks a user's actions and sends the information back to an adversary",
+          "A keylogger that logs keystrokes so the adversary can extract usernames and passwords",
+          "Fileless malware, which is malicious code that lives in RAM and uses legitimate programs"
+        ],
+        "answer": "D",
+        "ek": "EK 4.1.B.3",
+        "rationale": "4.1.B.3 says that while most malware is a file or collection of files, fileless malware is malicious code that lives in RAM and uses legitimate programs already installed on a device to compromise it."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A company laptop has no password on its BIOS/UEFI firmware. An attacker with physical access boots the machine from an external drive into a special recovery mode. What does the CED say this enables?",
+        "options": [
+          "It forces a hash collision so the attacker can deprecate the device's hash function",
+          "It lets the attacker gain higher-level privileges and alter or create user profiles, including changing passwords",
+          "It triggers a logic bomb that wipes the device's memory after a set date and time",
+          "It allows the attacker to spray one common password across many different accounts"
+        ],
+        "answer": "B",
+        "ek": "EK 4.1.C.3",
+        "rationale": "4.1.C.3 says that without BIOS or UEFI protection an adversary can boot a computer into a special mode like recovery mode that gives higher-level privileges, load their own OS from an external drive, and use tools to alter or create user profiles, including changing passwords."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "Per the CED, why are devices running unpatched software especially at risk from exploits?",
+        "options": [
+          "Unpatched software automatically enables autorun on every external drive inserted",
+          "Unpatched software stores all user passwords in plaintext rather than as hashes",
+          "Adversaries can develop exploits for known vulnerabilities and use them to crash, view, or even take control of the device",
+          "Unpatched software broadcasts the device's open ports to every nearby wireless network"
+        ],
+        "answer": "C",
+        "ek": "EK 4.1.C.1",
+        "rationale": "4.1.C.1 says adversaries can develop exploits for known vulnerabilities in software, and devices with unpatched software are vulnerable to these exploits, which could let an adversary crash a system, view user actions, or take control of the device."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A security team rates two findings: (1) a critical, known email-server vulnerability left unpatched, and (2) a laptop with only telnet port 23 open. Using the CED's risk levels, how should each be rated?",
+        "options": [
+          "Both are low risks since any single device vulnerability has little impact",
+          "The unpatched email server is a high risk and the open telnet port is a low risk",
+          "The unpatched email server is a low risk and the open telnet port is a high risk",
+          "Both are moderate risks tied to weak authentication requirements"
+        ],
+        "answer": "B",
+        "ek": "EK 4.1.D.2 + EK 4.1.D.4",
+        "rationale": "4.1.D.2 gives the unpatched critical email-server vulnerability as a high risk (compromising critical operations), and 4.1.D.4's illustrative example is an employee laptop with telnet port 23 open as a low risk with little impact."
+      },
+      {
+        "id": "Q8",
+        "kind": "recall",
+        "stem": "The CED describes a moderate risk from device vulnerabilities. Which example fits that category?",
+        "options": [
+          "An unpatched email server with a known critical vulnerability left in place",
+          "A laptop that has only the telnet port 23 left open to the network",
+          "A device whose entire drive has already been encrypted and ransomed",
+          "Pumps remotely accessible by username and password but not requiring MFA"
+        ],
+        "answer": "D",
+        "ek": "EK 4.1.D.3",
+        "rationale": "4.1.D.3 says moderate risks can arise from weak authentication requirements; its illustrative example is water-treatment pumps remotely accessible via username and password that do not require MFA."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A service stores user passwords by running each through SHA-256 and saving only the output. An adversary who steals the directory cannot immediately read the passwords. What property of cryptographic hashes makes this true?",
+        "options": [
+          "Hashes are reversible, so the stored output can be decrypted back to the password",
+          "Hashes have pre-image resistance, so given a hash it is infeasible to figure out the input",
+          "Hashes vary in length, so the adversary cannot tell where one hash ends",
+          "Hashes change every time, so the same password never produces the same output"
+        ],
+        "answer": "B",
+        "ek": "EK 4.2.A.3 + EK 4.2.A.5",
+        "rationale": "4.2.A.5 explains passwords are hashed and the hash stored so a stolen directory does not reveal passwords, and 4.2.A.3 lists pre-image resistance: given a hash it is infeasible to figure out the input that generated it."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Two employees happen to choose the exact same password, yet the stored password hashes for the two accounts are completely different. What technique explains this difference?",
+        "options": [
+          "A few random bits called salt are hashed with each user's password, and each salt is unique",
+          "The system deprecated the hash function so each user got a newer algorithm",
+          "A rainbow table assigned each user a different precomputed hash value",
+          "The maximum password age forced one of the two users to change first"
+        ],
+        "answer": "A",
+        "ek": "EK 4.2.A.6",
+        "rationale": "4.2.A.6 says that to prevent identical passwords from producing identical hashes, a few random bits called salt are hashed with a user's password; each user's salt is unique, so the hashes differ."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary obtains a stolen user:password hash database and runs hash-cracking software on their own computer, hashing millions of candidate passwords to find matches. How does the CED classify this attack, and why does account lockout not stop it?",
+        "options": [
+          "An online attack — it tries combinations in the live authentication portal where lockout applies",
+          "Password spraying — one common password is tried against many accounts at the portal",
+          "An offline attack — it runs against a captured database, bypassing any account lockout protections",
+          "Credential stuffing — default credentials are attempted directly on the target device"
+        ],
+        "answer": "C",
+        "ek": "EK 4.2.B.2 + EK 4.2.B.6",
+        "rationale": "4.2.B.2 says offline password attacks capture a user:password database and run attacks on the adversary's own computer, bypassing account lockout protections, and 4.2.B.6 describes using automated hash-cracking tools against a captured hash."
+      },
+      {
+        "id": "Q12",
+        "kind": "recall",
+        "stem": "According to the CED, what distinguishes password spraying from credential stuffing?",
+        "options": [
+          "Spraying captures a hash database offline, while stuffing tries passwords in a live portal",
+          "Spraying generates a rainbow table, while stuffing forces a collision in the hash output",
+          "Spraying salts each guess, while stuffing reuses a single salt across all accounts",
+          "Spraying tries one common password against many accounts, while stuffing uses common default or stolen credentials"
+        ],
+        "answer": "D",
+        "ek": "EK 4.2.B.4 + EK 4.2.B.5",
+        "rationale": "4.2.B.4 defines password spraying as attempting a common password against many different user accounts, and 4.2.B.5 defines credential stuffing as attempting access using common default credentials or stolen account credentials."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A building entry system reads an employee's fingerprint and also requires their access card. Which authentication factors are in use, and what is this combination called?",
+        "options": [
+          "A knowledge factor and a location factor, combined into single-factor authentication",
+          "Two knowledge factors (a PIN and a password), which is still single-factor authentication",
+          "A biometric factor and a possession factor, which together form multifactor authentication",
+          "A location factor and a possession factor, which the CED calls a knowledge challenge"
+        ],
+        "answer": "C",
+        "ek": "EK 4.2.C.4 + EK 4.2.C.3 + EK 4.2.C.6",
+        "rationale": "4.2.C.4 calls a fingerprint a biometric factor, 4.2.C.3 calls an access card a possession factor, and 4.2.C.6 says using more than one factor is multifactor authentication, which is more secure than single-factor."
+      },
+      {
+        "id": "Q14",
+        "kind": "recall",
+        "stem": "The CED describes a location factor for authentication. Which example matches that factor?",
+        "options": [
+          "A fingerprint or iris scan that measures a unique feature of the human body",
+          "An access card or authentication token that is an object unique to the user",
+          "A password, PIN, or answer to a preselected challenge question the user knows",
+          "Rules that allow or deny access using Wi-Fi, GPS, time zone, or IP address data"
+        ],
+        "answer": "D",
+        "ek": "EK 4.2.C.5",
+        "rationale": "4.2.C.5 says location factors use information about Wi-Fi signals, GPS data, time zone settings, and IP address to make determinations about location, and rules can allow or deny access based on the location factor."
+      },
+      {
+        "id": "Q15",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An administrator wants to stop an attacker from continuously trying random passwords in the live login portal of a single account. Which login setting MOST directly addresses this?",
+        "options": [
+          "Requiring a lockout period after a certain number of invalid login attempts",
+          "Requiring the system to store a number of previous password hashes to block reuse",
+          "Requiring complexity so each password uses every character set",
+          "Requiring a maximum password age so passwords are changed every 90 to 120 days"
+        ],
+        "answer": "A",
+        "ek": "EK 4.2.D.5",
+        "rationale": "4.2.D.5 says requiring a lockout period after a certain number of invalid login attempts is a configurable login setting that prevents an adversary from continuously randomly attempting wrong passwords; many organizations lock after 3-5 failed attempts."
+      },
+      {
+        "id": "Q16",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An organization wants to bar users from cycling back to a password they recently used. Which login setting accomplishes this, per the CED?",
+        "options": [
+          "Requiring a minimum password length so passwords take longer to crack",
+          "Requiring complexity so each new password includes special characters",
+          "Requiring a maximum password age so users are prompted to change passwords",
+          "Requiring the system to store a number of previous password hashes to prevent reuse"
+        ],
+        "answer": "D",
+        "ek": "EK 4.2.D.4",
+        "rationale": "4.2.D.4 says requiring the system to store a certain number of previous user passwords (many organizations store the previous 5-10 password hashes) is a login setting that prevents a user from reusing a password."
+      },
+      {
+        "id": "Q17",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A company forbids employees from installing programs themselves and instead lists approved software with a request process for anything else. Which managerial control does this describe?",
+        "options": [
+          "An acceptable use policy that prohibits visiting social media or gaming websites",
+          "A password policy that sets length, age, and construction rules for credentials",
+          "A software installation policy that limits what users may install and how to request more",
+          "A host-based firewall rule set that blocks outbound FTP to prevent file exfiltration"
+        ],
+        "answer": "C",
+        "ek": "EK 4.3.A.3",
+        "rationale": "4.3.A.3 says a software installation policy describes what software users may install, a process to request specialized software, and may include a list of approved software and a prohibition on installing software."
+      },
+      {
+        "id": "Q18",
+        "kind": "recall",
+        "stem": "How does the CED say signature-based anti-malware software detects malicious files?",
+        "options": [
+          "It encrypts each suspicious file so the malware cannot execute on the device",
+          "It blocks all inbound and outbound traffic until an analyst clears each file",
+          "It scans files and quarantines or removes any whose signature matches its database of known malware",
+          "It forces a hash collision so the malware's signature can no longer be recognized"
+        ],
+        "answer": "C",
+        "ek": "EK 4.3.B.1 + EK 4.3.B.2",
+        "rationale": "4.3.B.1 says malware contains detectable indicators called signatures, and 4.3.B.2 says anti-malware software periodically scans files, checks them against its signature database, and quarantines and removes matches."
+      },
+      {
+        "id": "Q19",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A vendor discovers a vulnerability in its operating system and releases a small fix. An administrator applies it across all company devices. What is this fix called, and why does applying it help?",
+        "options": [
+          "A patch — applying it prevents adversaries from taking advantage of a known vulnerability",
+          "A salt — applying it ensures two users never share the same password hash",
+          "A signature — applying it adds the malware to the anti-malware detection database",
+          "A factor — applying it adds a second proof of identity to every user login"
+        ],
+        "answer": "A",
+        "ek": "EK 4.3.C.1 + EK 4.3.C.2",
+        "rationale": "4.3.C.1 says a small update that fixes a found vulnerability is called a patch, and 4.3.C.2 says updating the OS and software to the most recent version prevents adversaries from taking advantage of a known vulnerability."
+      },
+      {
+        "id": "Q20",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An administrator configures a single device's firewall to block outbound FTP so that an intruder with remote access cannot exfiltrate files. Which control is this, and how do its rules apply?",
+        "options": [
+          "A host-based firewall, whose rules are applied in order, using the first rule that matches",
+          "A software installation policy, whose rules list which programs a user may install",
+          "An anti-malware scanner, whose rules compare each file to a database of signatures",
+          "A password policy, whose rules set the minimum length and maximum age of credentials"
+        ],
+        "answer": "A",
+        "ek": "EK 4.3.D.2 + EK 4.3.D.3",
+        "rationale": "4.3.D.2 says a host-based firewall runs on a device with an ordered rule set (ACL), applying the first matching rule, and 4.3.D.3 (with its illustrative example) says it can block outbound traffic such as FTP to stop exfiltration."
+      },
+      {
+        "id": "Q21",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A team must choose detection for low-powered embedded devices that lack processing power. Which choice aligns with the CED, and what trade-off comes with it?",
+        "options": [
+          "Anomaly-based detection on every device — it uses fewer resources and never raises false positives",
+          "Signature-based detection — it uses fewer resources and is faster, but is easier for adversaries to bypass",
+          "A hybrid model on all embedded devices — it is the lightest option for minimal hardware",
+          "No detection criteria apply — embedded devices are immune to host-based indicators of compromise"
+        ],
+        "answer": "B",
+        "ek": "EK 4.4.B.1 + EK 4.4.C.3",
+        "rationale": "4.4.B.1 says anomaly-based tools use more resources and signature-based detection is better for devices with weaker resources, and 4.4.C.3 says signature-based detection has a low false-positive rate but is easier for adversaries to bypass."
+      },
+      {
+        "id": "Q22",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Reviewing authentication logs, an analyst sees many different usernames each tried once with the same common password, all within seconds from one IP address. Which password attack does this IoC indicate?",
+        "options": [
+          "An offline password attack, which can be detected directly in the device's auth logs",
+          "A single user trying many wrong passwords, indicating one targeted online password attack",
+          "Password spraying — many users tried within seconds of each other from one IP address",
+          "A rainbow table attack, which appears in logs as identical salts across accounts"
+        ],
+        "answer": "C",
+        "ek": "EK 4.4.D.3 + EK 4.4.D.1",
+        "rationale": "4.4.D.3 says an indicator of password spraying is many users trying to log in within seconds of each other from one IP address or unusual IP addresses; 4.4.D.1 distinguishes this from a single user trying many wrong passwords (an online attack on one account)."
+      }
+    ]
+  },
+  "partII": {
+    "instructions": "Answer in complete sentences; cite specific malware, authentication methods, controls, or detection techniques.",
+    "questions": [
+      {
+        "id": "FR1",
+        "prompt": "A small accounting firm's office manager plugs a USB drive she found in the parking lot into her work desktop. Autorun is enabled, and within minutes every spreadsheet and document on the machine is encrypted; a full-screen message demands payment within 48 hours in exchange for a decryption key. The desktop had no anti-malware software installed and its operating system had not been updated in over a year.",
+        "parts": [
+          "(a) Identify the type of malware that ran and explain how the USB drive and autorun setting allowed it to execute.",
+          "(b) Explain TWO device weaknesses present on this desktop that increased its risk, and connect each to the harm it enabled.",
+          "(c) Recommend ONE managerial control and ONE technical control that would reduce the likelihood or impact of this attack, and justify each."
+        ],
+        "points": 8,
+        "sample": [
+          "(a) The malware is ransomware, which encrypts a device's files and prevents the user from accessing them, then presents a screen demanding payment and promising a decryption key if the user pays within a fixed amount of time (4.1.B.2). It executed because adversaries can load malware onto an external drive, and when autorun is enabled the device runs the malware automatically as soon as the drive is inserted (4.1.C.4).",
+          "(b) First, the desktop had no anti-malware software; devices lacking anti-malware are more vulnerable because adversaries often install malware to disrupt or control a device, and anti-malware would otherwise scan files and quarantine or remove matches to known signatures (4.1.C.7, 4.3.B.2). Second, the operating system had not been updated in over a year, so known vulnerabilities went unpatched; devices with unpatched software are vulnerable to exploits that can crash, view, or take control of the device (4.1.C.1, 4.3.C.2). Either weakness could let the ransomware run and spread, encrypting data and rendering the device's data inaccessible (4.1.D.1).",
+          "(c) Managerial control: an acceptable use policy that prohibits users from connecting external drives or media would have stopped the office manager from inserting the unknown USB drive in the first place (4.3.A.1). Technical control: installing anti-malware software, which has a database of malware signatures and periodically scans files to quarantine and remove matches, would help detect and remove the malicious file (4.3.B.1, 4.3.B.2). Keeping the OS patched to the most recent version is also valuable because it prevents adversaries from exploiting a known vulnerability (4.3.C.2)."
+        ],
+        "rubric": [
+          "2 pts: Part (a) identifies ransomware and correctly describes it encrypting files and demanding timed payment for a decryption key (4.1.B.2).",
+          "1 pt: Part (a) explains autorun running malware from the inserted external drive (4.1.C.4).",
+          "2 pts: Part (b) names two weaknesses (no anti-malware and unpatched OS) and ties each to its harm (4.1.C.7/4.1.C.1).",
+          "2 pts: Part (c) gives a valid managerial control with justification (acceptable use policy prohibiting external media, 4.3.A.1).",
+          "1 pt: Part (c) gives a valid technical control with justification (anti-malware 4.3.B.2 and/or patching 4.3.C.2)."
+        ],
+        "ek": "EK 4.1.B.2 + EK 4.1.C.4 + EK 4.1.C.7 + EK 4.1.C.1 + EK 4.3.A.1 + EK 4.3.B.2 + EK 4.3.C.2"
+      },
+      {
+        "id": "FR2",
+        "prompt": "A regional utility lets engineers remotely manage embedded pump controllers using only a username and password; many of the controllers still use the default administrator account that shipped with the device. A breach investigation reveals that the utility's central user:password hash database was stolen months ago and posted online, and that the stored hashes were not salted. Investigators believe an adversary recovered plaintext passwords and logged in as a legitimate engineer.",
+        "parts": [
+          "(a) Explain how the adversary could recover usable passwords from the stolen unsalted hash database, naming the specific attack technique.",
+          "(b) Identify the additional weakness created by the default administrator credentials on the controllers, and name the attack that targets it.",
+          "(c) Recommend TWO authentication or login-setting controls the utility should adopt, and justify how each reduces the risk."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) Because the database was captured, the adversary can run an offline password attack on their own computer, which bypasses any account-lockout protections (4.2.B.2). With the hashes unsalted, the adversary can use a rainbow table attack: a precomputed table pairs many candidate passwords with their hashes, sorted by hash, and an automated tool searches the table for each captured hash; a match reveals a password that logs in as the user (4.2.B.7). More generally, automated hash-cracking tools hash many candidate passwords and compare them to the captured hash until one matches (4.2.B.6). Salting would have forced unique hashes per user and defeated a shared rainbow table (4.2.A.6).",
+          "(b) The controllers still use default administrative credentials that shipped with the device, which is exactly the weakness targeted by credential stuffing: an adversary attempts access using common default credentials (or stolen credentials) against these services or devices (4.2.B.5). Once any password is compromised and MFA is not enabled, the adversary can act with all the access and rights of that user (4.2.B.1).",
+          "(c) First, the utility should require multifactor authentication, which uses more than one factor (for example, a password plus a possession factor like an authentication token) and is more secure than single-factor authentication; even a cracked password alone would not grant access (4.2.C.6, 4.2.B.1). Second, it should change every default administrator credential and enforce a password policy with a minimum length and complexity, so passwords are significantly harder to crack and default-credential attacks fail (4.2.D.1, 4.2.D.2, 4.3.A.2). Salting stored hashes and forcing a reset of all passwords in the compromised database are also warranted, since a compromised hash database means all passwords must be considered insecure (4.4.D.1)."
+        ],
+        "rubric": [
+          "2 pts: Part (a) names an offline attack and correctly explains hash-cracking or a rainbow table recovering passwords from the captured hashes (4.2.B.6/4.2.B.7).",
+          "1 pt: Part (a) connects the missing salt to why a rainbow table works / unique hashes are absent (4.2.A.6).",
+          "2 pts: Part (b) identifies the default-credentials weakness and names credential stuffing (4.2.B.5).",
+          "2 pts: Part (c) recommends MFA with justification that a second factor blocks access from a cracked password (4.2.C.6/4.2.B.1).",
+          "2 pts: Part (c) recommends a second valid control (change defaults, password policy length/complexity, or forced reset) with justification (4.2.D.1/4.2.D.2/4.4.D.1)."
+        ],
+        "ek": "EK 4.2.B.2 + EK 4.2.B.6 + EK 4.2.B.7 + EK 4.2.A.6 + EK 4.2.B.5 + EK 4.2.B.1 + EK 4.2.C.6 + EK 4.2.D.2"
+      },
+      {
+        "id": "FR3",
+        "prompt": "A university SOC analyst is triaging two devices. On a faculty laptop, the authentication log shows one account hit with hundreds of failed logins in a few minutes, followed by a successful login from an overseas IP address at 3 a.m.—a time and place this professor never logs in from. On a separate set of low-powered embedded lab sensors, the team must decide what kind of detection to deploy, given the sensors' very limited processing power and the sensitive research data some of them touch.",
+        "parts": [
+          "(a) Using the laptop's logs, identify the indicators of compromise and the password attack they suggest, and explain what the unusual login time and location indicate.",
+          "(b) Recommend a detection approach for the low-powered embedded sensors and justify it in terms of system resources and false positives.",
+          "(c) Explain why detecting and stopping an attack at the device level matters, and state one limitation of log-based detection the analyst must keep in mind."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) The hundreds of failed logins against a single account in a few minutes are a behavior-based indicator of compromise found in authentication logs—multiple failed login attempts—and a single user attempting many wrong passwords is an indicator of an online password attack (4.4.A.6, 4.4.D.1). The successful login from an overseas IP at 3 a.m. is an unusual login time and location; when an authorized user logs in from a different location or IP address than expected, or at a different time than normal, it can indicate the user's password has been compromised (4.4.A.6, 4.4.D.2). Because the database or this account may be compromised, the affected user should be forced to reset their password (4.4.D.1).",
+          "(b) For the low-powered embedded sensors, the team should use signature-based detection rather than anomaly-based detection. Anomaly-based tools use more system memory and processing power, and signature-based detection is the better option for devices with weaker system resources; many embedded devices lack the resources to run detection tools at all (4.4.B.1). Signature-based detection is also faster and has a low rate of false positives, though it is easier for adversaries to bypass (4.4.C.1, 4.4.C.3). For the sensors that touch sensitive research data, a hybrid-detection model offers maximum protection when the device's resources allow it, since sensitive or critical devices are more likely to be targeted (4.4.B.3).",
+          "(c) Detecting and stopping an attack at the device level matters because, to act on a device, adversaries must first bypass physical- and network-layer controls; catching the attack at the device can prevent them from accessing sensitive data or disrupting critical services (4.4.C.2). One limitation the analyst must remember is that offline password attacks cannot be detected in logs, because that attack takes place on the adversary's own computer rather than on the monitored system (4.4.D.5)."
+        ],
+        "rubric": [
+          "2 pts: Part (a) identifies the many failed logins as an IoC of an online password attack on one account (4.4.A.6/4.4.D.1).",
+          "1 pt: Part (a) explains the unusual time/location as an indicator the password may be compromised (4.4.D.2).",
+          "2 pts: Part (b) recommends signature-based detection for the low-resource sensors and justifies it by resource use (4.4.B.1).",
+          "1 pt: Part (b) notes the false-positive/bypass trade-off or hybrid model for sensitive devices (4.4.C.3/4.4.B.3).",
+          "2 pts: Part (c) explains the value of device-level detection in preventing access to sensitive data or disruption (4.4.C.2).",
+          "1 pt: Part (c) states that offline password attacks cannot be detected because they occur on the adversary's computer (4.4.D.5)."
+        ],
+        "ek": "EK 4.4.A.6 + EK 4.4.D.1 + EK 4.4.D.2 + EK 4.4.B.1 + EK 4.4.C.3 + EK 4.4.B.3 + EK 4.4.C.2 + EK 4.4.D.5"
+      }
+    ]
+  }
+}
