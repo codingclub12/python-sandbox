@@ -1,0 +1,376 @@
+{
+  "meta": {
+    "lessonId": "3.5",
+    "lessonTitle": "Detecting Attacks on Networks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 3: Securing Networks",
+    "day": 1,
+    "los": "LO 3.5.A, 3.5.B, 3.5.C, 3.5.D, 3.5.E",
+    "author": "AP CS Exam Prep",
+    "totalDays": 7
+  },
+  "quiz": {
+    "title": "Lesson 3.5 — Detecting Attacks on Networks — Quiz",
+    "instructions": "Choose the single best answer. 14 questions, 25 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "applied",
+        "stem": "A security team installs an automated tool on its network. The tool analyzes traffic to determine whether malicious activity is taking place, and when it detects an attack it generates an alert — but it takes no action to stop the attack. Which tool is described?",
+        "predictFirst": true,
+        "options": [
+          "A network intrusion detection system (NIDS), which analyzes data for malicious activity and raises an alert when an attack is detected",
+          "A network intrusion prevention system (NIPS), which closes ports and blocks IP or MAC addresses to halt an attack",
+          "A security information and event management (SIEM) system, which collects data from many sources to detect patterns",
+          "A baseline recorder, which captures expected data types and volumes on an uncompromised system"
+        ],
+        "answer": "A",
+        "ek": "EK 3.5.A.2",
+        "rationale": "EK 3.5.A.2 says a network intrusion detection system (NIDS) is an automated tool that analyzes data to determine if malicious activity is taking place on a network, and when an attack is detected it generates an alert — but it does not act to stop the attack. Option B describes a NIPS (EK 3.5.A.3), which can also mitigate or halt an attack. Option C describes a SIEM (EK 3.5.A.4). Option D describes anomaly-detection baselining (EK 3.5.C.2), not a detection tool category."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "After a NIDS alerts on suspicious traffic, the team wants a tool that not only detects the malicious activity but can also actively mitigate or halt the attack on its own. Which capability distinguishes a NIPS from a NIDS, per the CED?",
+        "predictFirst": true,
+        "options": [
+          "A NIPS only stores log files for later review, while a NIDS analyzes them in real time",
+          "A NIPS collects data from firewalls, NIDS, and application logs to detect patterns across sources",
+          "A NIPS can mitigate or halt an attack by closing ports, blocking specific IP or MAC addresses, or rejecting specific protocols",
+          "A NIPS reports a probability percentage indicating how likely the activity is to be malicious"
+        ],
+        "answer": "C",
+        "ek": "EK 3.5.A.3",
+        "rationale": "EK 3.5.A.3 says a NIPS, like an IDS, analyzes data to determine if malicious activity is taking place, but a NIPS can also mitigate or halt an attack by closing ports, blocking specific IP or MAC addresses, or rejecting specific protocols. Option A inverts the tools and is false. Option B describes a SIEM (EK 3.5.A.4). Option D describes AI probabilistic scoring (EK 3.5.B.3), not a NIPS."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "An analyst's dashboard shows an alert generated after a system pulled together data from the firewall, the NIDS/NIPS, device logs, and application logs and found a pattern that may indicate a cyberattack. According to EK 3.5.A.4, what should the analyst do with this alert?",
+        "options": [
+          "Automatically close all ports and block every IP address that appears in the underlying logs",
+          "Investigate the alert to determine whether it is a true threat, then follow standard operating procedures to resolve or escalate it",
+          "Discard the alert, since a SIEM only aggregates data and cannot indicate a potential attack",
+          "Lower the AI detection threshold so that fewer alerts are generated in the future"
+        ],
+        "answer": "B",
+        "ek": "EK 3.5.A.4",
+        "rationale": "EK 3.5.A.4 says a SIEM collects and analyzes data from multiple sources to detect patterns that may indicate a cyberattack and raises an alert, and that security analysts investigate the alert to determine whether it represents a true threat and follow standard operating procedures to resolve or escalate it. Option A is the automated response of a NIPS, not the analyst's SIEM workflow. Option C contradicts the EK. Option D confuses SIEM workflow with AI thresholds (EK 3.5.B.4)."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A medium-sized organization's network logs tens of millions of data points per day across firewalls, IDS, IPS, and other sensors. Leadership asks why a large human team alone cannot keep up. Per EK 3.5.B.1 and B.2, what is the CED's reasoning?",
+        "options": [
+          "The data is encrypted, so humans are legally barred from reviewing the log files at all",
+          "Humans can review the data, but only if every device first deletes its logs each night",
+          "Even a large team of humans is incapable of analyzing so much data, so teams create AI algorithms to classify the data patterns as malicious or normal",
+          "Network sensors stop logging once volume exceeds a million data points, leaving little for humans to review"
+        ],
+        "answer": "C",
+        "ek": "EK 3.5.B.1",
+        "rationale": "EK 3.5.B.1 says firewalls, IDS, IPS, and other sensors log all traffic, that a medium-sized organization logs millions or tens of millions of data points per day, and that even a large team of humans is incapable of analyzing so much data. EK 3.5.B.2 adds that threat detection teams create AI algorithms to analyze the data and classify patterns as malicious or normal. Options A, B, and D invent rules the CED does not state."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "An AI threat-detection model evaluates a connection and reports a 78% likelihood that it is malicious. The organization must decide whether this triggers an alert. Per EK 3.5.B.3 and B.4, what determines whether an alert fires?",
+        "predictFirst": true,
+        "options": [
+          "The organization's own alert threshold — the percentage of likelihood it has decided should result in an alert",
+          "A fixed industry-standard threshold of exactly 50%, which every organization must use by law",
+          "Whether a human analyst has already manually reviewed the connection before the model scores it",
+          "The number of ports the NIPS has open, since closed ports raise the malicious-likelihood score"
+        ],
+        "answer": "A",
+        "ek": "EK 3.5.B.4",
+        "rationale": "EK 3.5.B.3 says AI threat-detection models are probabilistic and report a percentage likelihood that something is malicious, and EK 3.5.B.4 says organizations determine their own thresholds for what percentage of likelihood results in an alert. Whether 78% fires an alert depends on the organization's chosen threshold. Options B, C, and D invent constraints the CED does not state."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A team sets its AI detection threshold very high so it almost never alerts, hoping to reduce noise. Per EK 3.5.B.4, what is the risk of setting the threshold too high?",
+        "options": [
+          "The security team will be overwhelmed with false alerts — every connection now triggers an alarm",
+          "The AI model will stop reporting probabilities and instead return only yes-or-no answers",
+          "Real attacks may go undetected — their likelihood scores fall below the high threshold",
+          "Signature databases will update too quickly for the network to keep pace"
+        ],
+        "answer": "C",
+        "ek": "EK 3.5.B.4",
+        "rationale": "EK 3.5.B.4 says if the threshold is set too high, real attacks may go undetected; if it is set too low, the security team will be overwhelmed with false alerts. A very high threshold lets genuine attacks slip past unalerted. Option A describes the too-low case, not too-high. Options B and D are not stated in the CED."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "An ISP must inspect an enormous, high-volume stream of network traffic as quickly as possible and is willing to maintain a constantly updated database of known indicators of compromise. Per EK 3.5.C.1, which detection method best fits, and why?",
+        "predictFirst": true,
+        "options": [
+          "Anomaly-based detection, which never needs its database of indicators updated",
+          "A hybrid approach, which is always the cheapest option for any network",
+          "Manual human review, which scales better than automated tools at high traffic volumes",
+          "Signature-based detection, which is more efficient for high-traffic networks and runs more quickly than anomaly-based detection"
+        ],
+        "answer": "D",
+        "ek": "EK 3.5.C.1",
+        "rationale": "EK 3.5.C.1 says volume of network traffic is a criterion for choosing a detection method: signature-based detection is more efficient for networks with high traffic volume, compares data to a database of known IoCs (signatures) that must be updated, and runs more quickly than anomaly-based detection. Option A misstates anomaly detection, which compares to a baseline (EK 3.5.C.2). Option B is false — hybrid is the most expensive (EK 3.5.C.3, D.2). Option C contradicts the value of automated tools."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "A network has very consistent, predictable traffic patterns, and the organization suspects adversaries may attempt brand-new attacks it has never seen before. Per EK 3.5.C.2 and C.4, which detection method is preferred when the cost of hybrid detection is prohibitive?",
+        "options": [
+          "Signature-based detection, since it is the only method that can detect a new attack",
+          "Anomaly-based detection, which compares data to a baseline and can flag novel attacks that have no existing signature",
+          "Disabling detection entirely until a signature for the new attack is published",
+          "Hybrid detection, which is always required whenever any novel attack is possible"
+        ],
+        "answer": "B",
+        "ek": "EK 3.5.C.4",
+        "rationale": "EK 3.5.C.2 says anomaly-based detection is most effective on networks with consistent traffic patterns and compares data to a baseline of recorded activity. EK 3.5.C.4 says signature-based detection cannot detect a new attack, so when novel attacks are suspected, anomaly-based detection is preferred when hybrid's cost is prohibitively high. Option A is backwards — signatures cannot catch new attacks. Option C is reckless and unstated. Option D ignores the prohibitive-cost condition."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "A hospital network handles especially sensitive and critical patient data and services, and budget is not the primary constraint. Per EK 3.5.C.3, which detection approach will such a network likely consider, and what is a trade-off?",
+        "options": [
+          "Signature-only detection, which generates more alerts than any other approach",
+          "Anomaly-only detection, which is always cheaper than signature-based detection",
+          "A hybrid approach combining signature- and anomaly-based detection — more expensive than either alone and generating more alerts",
+          "No detection at all, since sensitive networks are exempt from monitoring requirements"
+        ],
+        "answer": "C",
+        "ek": "EK 3.5.C.3",
+        "rationale": "EK 3.5.C.3 says networks with more sensitive or critical data or services will likely consider a hybrid approach that combines signature-based and anomaly-based detection, that hybrid is more expensive than either method alone, and that hybrid models generate more alerts. Option A misattributes high alert volume to signature-only. Option B is false — anomaly hardware is more expensive than signature (EK 3.5.D.2). Option D invents an exemption."
+      },
+      {
+        "id": "Q10",
+        "kind": "multi",
+        "stem": "A manager compares detection methods on the factors the CED uses to evaluate impact. I. Signature-based detection is faster than anomaly-based detection, especially on high-volume networks. II. Signature-based detection has almost no false positives. III. Signature-based systems are harder to bypass than anomaly-based or hybrid systems. Which statements are consistent with EK 3.5.D.1, D.3, and D.4?",
+        "options": [
+          "I and II only",
+          "I and III only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "A",
+        "ek": "EK 3.5.D.1",
+        "rationale": "Statement I matches EK 3.5.D.1 — signature-based detection is faster, especially on high-volume networks. Statement II matches EK 3.5.D.3 — signature-based detection has almost no false positives. Statement III is false: EK 3.5.D.4 says signature-based systems are EASIER to bypass than anomaly-based or hybrid systems, not harder. So only I and II are consistent."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "A SOC running anomaly-based detection gets so many false positives that responders start assuming new alerts are false before investigating them, and stop taking alerts seriously. Per EK 3.5.D.3, what is this condition called and what causes it?",
+        "options": [
+          "A false negative, caused by an adversary successfully bypassing the detection system",
+          "Alert fatigue, caused by a high false-positive rate that conditions responders to dismiss alerts as false before investigating",
+          "A signature mismatch, caused by an out-of-date indicator-of-compromise database",
+          "Threshold overflow, caused by setting the AI likelihood threshold far too high"
+        ],
+        "answer": "B",
+        "ek": "EK 3.5.D.3",
+        "rationale": "EK 3.5.D.3 says anomaly-based or hybrid detection has higher false-positive rates, and that alert fatigue occurs when responders get accustomed to false positives and take alerts less seriously because they assume alerts are false before investigating them. Option A defines a false negative (EK 3.5.D.4), a different concept. Options C and D are invented terms not in the CED."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "stem": "An adversary manages to bypass an organization's detection system entirely, so the attack is never flagged and goes on to cause data loss. Per EK 3.5.D.4, what is this outcome called, and which system type is easiest to bypass this way?",
+        "options": [
+          "A false positive; anomaly-based systems are the easiest to bypass",
+          "Alert fatigue; hybrid systems are the easiest to bypass",
+          "A baseline error; SIEM systems are the easiest to bypass",
+          "A false negative; signature-based detection systems are the easiest to bypass"
+        ],
+        "answer": "D",
+        "ek": "EK 3.5.D.4",
+        "rationale": "EK 3.5.D.4 says a false negative occurs when an adversary can bypass a detection system, that signature-based detection systems are easier to bypass than anomaly-based or hybrid systems, and that false negatives can result in adversaries causing loss, harm, disruption, or destruction. Option A misdefines a false positive. Option B misuses alert fatigue. Option C invents a term and the wrong system."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "stem": "While analyzing network traffic, an analyst notices duplicate-MAC-address ARP packets and decides to check the ARP table on the default gateway. Per EK 3.5.E.3, which network attack do these indicators point to?",
+        "predictFirst": true,
+        "options": [
+          "An ARP poisoning attack, detected by unusual ARP messages such as duplicate-MAC-address ARP packets and by checking the gateway's ARP table",
+          "A jamming attack, detected by scanning for electromagnetic noise in the wireless range",
+          "A smurf attack, detected by a sudden increase in ICMP requests to the broadcast address",
+          "An evil-twin attack, detected by scanning for suspicious SSIDs similar to legitimate ones"
+        ],
+        "answer": "A",
+        "ek": "EK 3.5.E.3",
+        "rationale": "EK 3.5.E.3 says ARP poisoning attacks can be detected by monitoring network traffic for unusual ARP messages — particularly duplicate-MAC-address ARP packets — and by checking the ARP table on the default gateway, exactly the indicators described. Option B is jamming (EK 3.5.E.2), Option C is a smurf attack (EK 3.5.E.6), and Option D is an evil-twin attack (EK 3.5.E.1) — each with different indicators."
+      },
+      {
+        "id": "Q14",
+        "kind": "scenario",
+        "stem": "Reviewing packet-capture files, an analyst sees connections to known malicious IP addresses, an unauthorized network scan, and traffic where the port does not match its expected application. Per EK 3.5.E.7, how are these findings best described?",
+        "options": [
+          "Baseline recordings that must be captured only on compromised systems",
+          "Proof that signature-based detection has no false positives on this network",
+          "Evidence of a jamming attack, identified by electromagnetic noise in the wireless range",
+          "Network-based indicators of compromise (IoCs) found by analyzing network traffic, such as in packet-capture files"
+        ],
+        "answer": "D",
+        "ek": "EK 3.5.E.7",
+        "rationale": "EK 3.5.E.7 says network-based IoCs are discovered when analyzing network traffic, often in packet-capture files, and can be found in source/destination IPs, ports, and protocols — including connections to known malicious IP addresses, unauthorized network scans, unusual spikes or slowdowns, and mismatched port-application traffic. Option A misstates baselining (baselines are recorded on uncompromised systems, EK 3.5.C.2). Option B is unrelated. Option D describes jamming (EK 3.5.E.2)."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 3.5 — Detecting Attacks on Networks — Teacher Guide",
+    "subtitle": "Unit 3 · Topic 3.5 · 7 class periods · Scenario 3B",
+    "overview": [
+      "Lesson 3.5 is the detection layer of Unit 3's network-security arc: after earlier topics protect and configure networks, this topic asks how an organization detects an attack on its network. Across seven days students identify the automated tools that detect network attacks — NIDS, NIPS, and SIEM (LO 3.5.A); explain how organizations leverage AI to enhance threat detection and response (LO 3.5.B); determine an appropriate network detection method from criteria such as traffic volume, pattern consistency, data sensitivity, and likelihood of novel attacks (LO 3.5.C); evaluate the impact of a detection method by speed, cost, false-positive rate, and false-negative rate (LO 3.5.D); and apply detection techniques to identify indicators of specific network attacks by analyzing log files (LO 3.5.E). The organizing idea is the trade-off triangle of detection: signature-based detection is fast, cheap, and low on false positives but cannot catch novel attacks and is easier to bypass; anomaly-based detection catches novel attacks but costs more and raises more false positives; hybrid does both at the highest cost.",
+      "Scenario 3B (Configuring a Secure Wireless Network) anchors the topic: students recommend a collection of detective controls to monitor the network and raise an alert for any potential malicious activity, and describe the impact of those detective-control recommendations — which maps directly onto LO 3.5.C (determine a method) and LO 3.5.D (evaluate its impact)."
+    ],
+    "los": [
+      "LO 3.5.A — Identify types of automated security tools used to detect network attacks.",
+      "LO 3.5.B — Explain how organizations can leverage artificial intelligence (AI) to enhance threat detection and response.",
+      "LO 3.5.C — Determine a network detection method.",
+      "LO 3.5.D — Evaluate the impact of a network detection method.",
+      "LO 3.5.E — Apply detection techniques to identify indicators of network attacks by analyzing log files."
+    ],
+    "eks": [
+      "EK 3.5.A.1 — Automated detection tools analyze data collected from an organization's network and devices, such as switches and routers, servers, firewalls, and user computers. These data are often collected in a log file.",
+      "EK 3.5.A.2 — A network intrusion detection system (NIDS) is an automated tool that analyzes data to determine if malicious activity is taking place on a network. When an attack is detected, it generates an alert.",
+      "EK 3.5.A.3 — A network intrusion prevention system (NIPS) is an automated tool that, like an IDS, analyzes data to determine if malicious activity is taking place on a network. A NIPS can also mitigate or halt an attack by closing ports, blocking specific IP or MAC addresses, or rejecting specific protocols.",
+      "EK 3.5.A.4 — A security information and event management (SIEM) system collects and analyzes data from multiple sources (including firewalls, NIDS/NIPS, device logs, and application logs) to detect patterns that may indicate a cyberattack and raises an alert if a potential attack is detected. Security analysts investigate the alert to determine whether it represents a true threat and follow standard operating procedures to resolve or escalate the alert.",
+      "EK 3.5.B.1 — Computers log every action that users take. Firewalls, IDS, IPS, and other network sensors log all the traffic passing through various points in a network. A medium-sized organization's network is logging millions (or even tens of millions) of data points per day. Even a large team of humans is incapable of analyzing so much data.",
+      "EK 3.5.B.2 — Threat detection teams are creating AI algorithms to analyze large amounts of data and classify the data patterns as malicious or normal.",
+      "EK 3.5.B.3 — AI models for threat detection are based on probabilistic calculations; they report a percentage to indicate the likelihood that something is malicious.",
+      "EK 3.5.B.4 — Organizations determine their own thresholds for what percentage of likelihood of a threat results in an alert. If the threshold is set too high, real attacks may go undetected; if the threshold is too low, the security team will be overwhelmed with false alerts.",
+      "EK 3.5.C.1 — Volume of network traffic is a criterion for determining a detection method. Signature-based detection is more efficient for networks with high traffic volume. Signature-based detection compares detection data to a database of known indicators of compromise (IoCs), called signatures. Signature databases must be updated with IoCs for the latest attacks. Signature-based detection runs more quickly than anomaly-based detection.",
+      "EK 3.5.C.2 — Consistency of network traffic patterns is a criterion for determining a detection method. Anomaly-based detection is most effective on networks with consistent traffic patterns. Anomaly-based detection compares detection data to a baseline of recorded activity. Baselines must be recorded on uncompromised systems to establish expected data types and volumes. Anomaly-based detection triggers an alert or action when data types or volumes outside of a specified tolerance range are recorded.",
+      "EK 3.5.C.3 — Degree of sensitivity or criticality of a network is a criterion for determining a detection method. Networks with more sensitive or critical data or services will likely consider a hybrid approach. Hybrid detection combines signature-based and anomaly-based detection. Hybrid detection is more expensive than using either signature- or anomaly-based detection alone, and hybrid-detection models generate more alerts.",
+      "EK 3.5.C.4 — Likelihood of novel attacks on a network is a criterion for determining a detection method. Signature-based detection cannot detect a new attack. When an organization suspects that adversaries are likely to attempt a new attack on a network, anomaly-based detection is the preferred method when the cost of hybrid detection is prohibitively high.",
+      "EK 3.5.D.1 — Speed of detection is a factor in evaluating the impact of a network detection method. Faster detection enables faster response. Signature-based detection methods are faster than anomaly-based detection methods, especially on networks with high traffic volume.",
+      "EK 3.5.D.2 — Cost is a factor in evaluating the impact of a network detection method. Detection tools and ongoing costs need to be within a budget. Anomaly-based detection systems require more expensive hardware to operate than signature based. Hybrid detection is the most expensive option because it combines both anomaly- and signature-based methods.",
+      "EK 3.5.D.3 — False positive rate is a factor in evaluating the impact of a network detection method. Signature-based detection has almost no false positives. Anomaly-based or hybrid detection will have higher false positive rates. Impacts of high false positive rates include time and resources put toward investigating nonmalicious activity, and alert fatigue — a condition that occurs when responders get accustomed to false positives and take alerts less seriously because they assume alerts are false positives before investigating them.",
+      "EK 3.5.D.4 — False negative rate is a factor in evaluating the impact of a network detection method. A false negative occurs when an adversary can bypass a detection system. Signature-based detection systems are easier to bypass than anomaly-based or hybrid systems. False negatives can result in adversaries causing loss, harm, disruption, or destruction to data and systems.",
+      "EK 3.5.E.1 — Evil-twin attacks can be detected by regularly scanning for service set identifiers (SSIDs) that look suspicious or similar to local legitimate SSIDs. Signal triangulation can be used to locate and disable an access point broadcasting an evil-twin network.",
+      "EK 3.5.E.2 — Jamming attacks can be detected by recognizing that no wireless devices in a specific physical space are able to connect to a wireless network and by scanning for electromagnetic (EM) noise in the wireless range.",
+      "EK 3.5.E.3 — ARP poisoning attacks can be detected by monitoring network traffic for unusual ARP messages (particularly duplicate MAC address ARP packets) and checking the ARP table on the default gateway.",
+      "EK 3.5.E.4 — MAC flooding attacks can be detected by monitoring network traffic for an unexpected surge of Ethernet frames with different MAC addresses and checking the MAC address table on a switch.",
+      "EK 3.5.E.5 — DNS poisoning attacks are difficult to detect. However, if an organization's website experiences an abrupt and otherwise inexplicable drop in traffic, DNS records should be examined as a potential cause.",
+      "EK 3.5.E.6 — Smurf attacks can be detected by watching network traffic for a sudden increase in ICMP requests sent to the network's broadcast address.",
+      "EK 3.5.E.7 — Network-based IoCs are discovered when analyzing network traffic, often in the form of packet capture files. Indicators can be found in source and destination IP addresses, ports, and protocols, and can include connections to known malicious IP addresses, unauthorized network scans, unusual spikes or slowdowns in network traffic, and mismatched port-application traffic."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Automated tools that detect network attacks: NIDS, NIPS, SIEM (LO 3.5.A)",
+        "segments": [
+          { "segment": "Bell ringer: which tool just alerts, which can also act?", "min": 5 },
+          { "segment": "Guided-notes preview + objectives", "min": 5 },
+          { "segment": "Log files as the raw material of detection (EK 3.5.A.1)", "min": 10 },
+          { "segment": "NIDS vs. NIPS: detect vs. detect-and-halt (EK 3.5.A.2, A.3)", "min": 12 },
+          { "segment": "SIEM: aggregating sources and the analyst workflow (EK 3.5.A.4)", "min": 10 },
+          { "segment": "Vocab + Stop and Think", "min": 5 },
+          { "segment": "Wrap and assign Your Turn", "min": 3 }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Leveraging AI for threat detection and response (LO 3.5.B)",
+        "segments": [
+          { "segment": "Bell ringer: tens of millions of log lines a day", "min": 5 },
+          { "segment": "Why humans alone can't scale; AI classification (EK 3.5.B.1, B.2)", "min": 12 },
+          { "segment": "Probabilistic scoring and likelihood percentages (EK 3.5.B.3)", "min": 10 },
+          { "segment": "Thresholds: too high vs. too low (EK 3.5.B.4)", "min": 12 },
+          { "segment": "Stop and Think + wrap", "min": 6 }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Determining a network detection method, part 1: signature vs. anomaly (LO 3.5.C)",
+        "segments": [
+          { "segment": "Bell ringer: high-traffic ISP vs. predictable office network", "min": 5 },
+          { "segment": "Traffic volume → signature-based (EK 3.5.C.1)", "min": 12 },
+          { "segment": "Pattern consistency → anomaly-based and baselines (EK 3.5.C.2)", "min": 12 },
+          { "segment": "Stop and Think + wrap", "min": 6 }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Determining a method, part 2: sensitivity, novel attacks, hybrid (LO 3.5.C)",
+        "segments": [
+          { "segment": "Bell ringer: a hospital's most sensitive systems", "min": 5 },
+          { "segment": "Sensitivity/criticality → hybrid (EK 3.5.C.3)", "min": 12 },
+          { "segment": "Novel attacks → anomaly when hybrid is too costly (EK 3.5.C.4)", "min": 12 },
+          { "segment": "Criteria-matching practice + Stop and Think", "min": 6 }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Evaluating the impact of a detection method (LO 3.5.D)",
+        "segments": [
+          { "segment": "Bell ringer: fast and cheap, but what's the catch?", "min": 5 },
+          { "segment": "Speed and cost as impact factors (EK 3.5.D.1, D.2)", "min": 12 },
+          { "segment": "False positives and alert fatigue (EK 3.5.D.3)", "min": 10 },
+          { "segment": "False negatives and bypass risk (EK 3.5.D.4)", "min": 10 },
+          { "segment": "Stop and Think + wrap", "min": 5 }
+        ]
+      },
+      {
+        "day": 6,
+        "focus": "Applying detection techniques to log files (LO 3.5.E)",
+        "segments": [
+          { "segment": "Bell ringer: read the indicator, name the attack", "min": 5 },
+          { "segment": "Wireless attacks: evil-twin and jamming (EK 3.5.E.1, E.2)", "min": 10 },
+          { "segment": "ARP poisoning, MAC flooding (EK 3.5.E.3, E.4)", "min": 10 },
+          { "segment": "DNS poisoning, smurf, network IoCs (EK 3.5.E.5, E.6, E.7)", "min": 12 },
+          { "segment": "Log-analysis Stop and Think + wrap", "min": 5 }
+        ]
+      },
+      {
+        "day": 7,
+        "focus": "Review, Scenario 3B detective-control plan, and quiz (LO 3.5.A–E)",
+        "segments": [
+          { "segment": "Bell ringer: cumulative detection scenario", "min": 5 },
+          { "segment": "Review table: every tool, method, and indicator", "min": 12 },
+          { "segment": "Scenario 3B: recommend detective controls and describe their impact", "min": 12 },
+          { "segment": "Lesson 3.5 quiz", "min": 25 },
+          { "segment": "Quiz debrief + bridge to next topic", "min": 6 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "NIDS and NIPS are the same thing",
+        "myth": "A network intrusion detection system and a network intrusion prevention system do exactly the same job.",
+        "reality": "Both analyze data for malicious activity, but EK 3.5.A.2 says a NIDS only generates an alert, while EK 3.5.A.3 says a NIPS can also mitigate or halt the attack by closing ports, blocking IP or MAC addresses, or rejecting protocols. Detection vs. detection-plus-response is the difference."
+      },
+      {
+        "heading": "A higher AI threshold is always safer",
+        "myth": "Setting the AI alert threshold very high makes the network safer because there are fewer false alarms.",
+        "reality": "EK 3.5.B.4 says a too-high threshold means real attacks may go undetected, while a too-low threshold overwhelms the team with false alerts. Tuning the threshold is a balance, not a 'higher is safer' dial."
+      },
+      {
+        "heading": "Signature-based detection is simply the best",
+        "myth": "Since signature-based detection is fast, cheap, and has almost no false positives, it is always the right choice.",
+        "reality": "EK 3.5.C.4 and D.4 note signature-based detection cannot detect a new attack and is easier to bypass (more false negatives). The right method depends on traffic volume, pattern consistency, sensitivity, and likelihood of novel attacks."
+      },
+      {
+        "heading": "False positives and false negatives are the same problem",
+        "myth": "A false positive and a false negative are basically the same kind of error.",
+        "reality": "EK 3.5.D.3 ties false positives to wasted effort and alert fatigue, while EK 3.5.D.4 says a false negative is when an adversary bypasses detection entirely and can cause real loss, harm, disruption, or destruction. They are opposite failure modes with different consequences."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post a three-column word bank — 'signature: fast / cheap / few false positives / misses novel attacks', 'anomaly: catches novel / consistent-pattern networks / costlier / more false positives', 'hybrid: both / most expensive / most alerts' — so students match a scenario to a method instead of recalling all factors cold.",
+        "Provide a sentence frame for LO 3.5.E: 'The indicator ____ points to a(n) ____ attack, detected per EK 3.5.E.____ by ____.'"
+      ],
+      "extension": [
+        "Give students a short, invented packet-capture excerpt and have them flag every network-based IoC from EK 3.5.E.7 (malicious IPs, unauthorized scans, traffic spikes, mismatched port-application traffic) and justify each.",
+        "Have students design a detection plan for two contrasting networks — a high-volume ISP and a small but highly sensitive lab — and defend their signature/anomaly/hybrid choice using the EK 3.5.C criteria and the EK 3.5.D impact factors."
+      ]
+    },
+    "discussion": [
+      "When is the inability of signature-based detection to catch novel attacks a dealbreaker, and when is it an acceptable trade for speed and cost?",
+      "Why does the CED frame AI thresholds as an organizational decision rather than a fixed technical setting?",
+      "Of the network attacks in LO 3.5.E, which are hardest to detect from log files, and why?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  }
+}
