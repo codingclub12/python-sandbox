@@ -100,13 +100,43 @@
       "track": "enrichment",
       "heading": "Hashing vs. Encryption — Don’t Confuse Them",
       "context": "The single most common mix-up in this topic. Both scramble data, but only one is reversible. The exam tests whether you know hashing is one-way and used for password storage, while encryption is two-way and used for confidentiality.",
-      "columns": ["Property", "Hashing", "Encryption", "EK"],
+      "columns": [
+        "Property",
+        "Hashing",
+        "Encryption",
+        "EK"
+      ],
       "rows": [
-        ["Reversible?", "No — pre-image resistant; given a hash you cannot recover the input. Hashes can't be reversed", "Yes — ciphertext can be decrypted back to the original plaintext with the key", "4.2.A.3, 4.2.B.6"],
-        ["Output length", "Fixed length regardless of input size", "Varies with input size", "4.2.A.3"],
-        ["Uses a key?", "No key — just the input (plus a salt for passwords)", "Yes — requires a key to encrypt and decrypt", "4.2.A.1, 4.2.A.6"],
-        ["How login uses it", "Hash the entered password, compare to the stored hash; if they match, authenticate", "Not how passwords are stored under the CED model", "4.2.A.5"],
-        ["Main purpose here", "Store passwords so a stolen database doesn't reveal them", "Protect confidentiality of data in transit or at rest", "4.2.A.5"]
+        [
+          "Reversible?",
+          "No — pre-image resistant; given a hash you cannot recover the input. Hashes can't be reversed",
+          "Yes — ciphertext can be decrypted back to the original plaintext with the key",
+          "4.2.A.3, 4.2.B.6"
+        ],
+        [
+          "Output length",
+          "Fixed length regardless of input size",
+          "Varies with input size",
+          "4.2.A.3"
+        ],
+        [
+          "Uses a key?",
+          "No key — just the input (plus a salt for passwords)",
+          "Yes — requires a key to encrypt and decrypt",
+          "4.2.A.1, 4.2.A.6"
+        ],
+        [
+          "How login uses it",
+          "Hash the entered password, compare to the stored hash; if they match, authenticate",
+          "Not how passwords are stored under the CED model",
+          "4.2.A.5"
+        ],
+        [
+          "Main purpose here",
+          "Store passwords so a stolen database doesn't reveal them",
+          "Protect confidentiality of data in transit or at rest",
+          "4.2.A.5"
+        ]
       ],
       "note": "Bottom line: a password hash is NOT an encrypted password. There is no key that turns a hash back into a password. Authentication works by hashing what the user types and comparing hashes (EK 4.2.A.5).",
       "script": "Here's the comparison the exam loves to test. Both hashing and encryption scramble data, but they are not the same thing. Hashing is one-way — pre-image resistance means you cannot recover the input, and the CED states plainly that hashes can't be reversed. Encryption is two-way — ciphertext decrypts back to plaintext with a key. Hashes are fixed length; encrypted output varies with input. Hashing uses no key, just the input plus a salt; encryption requires a key. And critically, authentication doesn't decrypt anything: it hashes the password you type and compares it to the stored hash. If you remember one thing, remember that a password hash is not an encrypted password — there is no key that turns it back."
@@ -242,11 +272,31 @@
       "type": "worked_table",
       "heading": "Offline Hash-Cracking: Brute Force, Dictionary, Rainbow Table",
       "context": "These are the offline attacks from EK 4.2.B.6–B.7. They never reverse a hash — that's impossible. Instead they hash candidate passwords and compare to the captured hash. A match reveals a usable password.",
-      "columns": ["Attack", "How it works", "Speed / storage trade-off", "EK"],
+      "columns": [
+        "Attack",
+        "How it works",
+        "Speed / storage trade-off",
+        "EK"
+      ],
       "rows": [
-        ["Brute force", "Hash and test every possible password until one matches the captured hash", "Slowest; guaranteed to find it eventually but compute-heavy", "4.2.B.6"],
-        ["Dictionary", "Hash and test a list of common passwords against the captured hash", "Faster than brute force; only finds passwords on the list", "4.2.B.6"],
-        ["Rainbow table", "Precompute a table of passwords paired with their hashes, sort it by hash, then search the sorted hashes for the captured hash", "Fast lookups by trading huge precomputed storage for speed", "4.2.B.7"]
+        [
+          "Brute force",
+          "Hash and test every possible password until one matches the captured hash",
+          "Slowest; guaranteed to find it eventually but compute-heavy",
+          "4.2.B.6"
+        ],
+        [
+          "Dictionary",
+          "Hash and test a list of common passwords against the captured hash",
+          "Faster than brute force; only finds passwords on the list",
+          "4.2.B.6"
+        ],
+        [
+          "Rainbow table",
+          "Precompute a table of passwords paired with their hashes, sort it by hash, then search the sorted hashes for the captured hash",
+          "Fast lookups by trading huge precomputed storage for speed",
+          "4.2.B.7"
+        ]
       ],
       "note": "All three are OFFLINE (EK 4.2.B.2): they run on the adversary's computer against a captured hash, so account lockout never applies. Salting raises their cost because each unique salt forces the work to be redone per user.",
       "script": "Now the offline hash-cracking attacks. None of them reverse a hash — that's impossible. They hash candidate passwords and compare to the captured hash; a match yields a usable password. Brute force, EK 4.2.B.6, tries every possible password — guaranteed but slow. A dictionary attack, also B.6, tries a list of common passwords — much faster, but only finds what's on the list. A rainbow table, EK 4.2.B.7, precomputes passwords paired with their hashes, sorts the table by hash, and searches that sorted list for the captured hash — trading enormous storage for fast lookups. All three are offline, so lockout never touches them. And here's why salt matters again: a unique salt per user forces the attacker to redo the work for every account, which wrecks a precomputed rainbow table."
@@ -333,13 +383,43 @@
       "type": "worked_table",
       "heading": "The Five Configurable Login Settings",
       "context": "These are the settings from EK 4.2.D.1–D.5 that an administrator configures in local security policy (Scenario 4B). For each, know what it enforces and which threat it addresses.",
-      "columns": ["Setting", "What it enforces", "Which threat it blunts", "EK"],
+      "columns": [
+        "Setting",
+        "What it enforces",
+        "Which threat it blunts",
+        "EK"
+      ],
       "rows": [
-        ["Complexity", "New passwords must include a character from each set (upper, lower, digits, special)", "Makes passwords significantly harder to crack (brute force / dictionary)", "4.2.D.1"],
-        ["Minimum length", "Passwords must have at least a set number of characters", "Longer passwords take far longer for a tool to crack", "4.2.D.2"],
-        ["Maximum age", "Users are prompted to change passwords (often every 90–120 days)", "Limits how long a compromised password stays usable — but some standards warn it breeds patterns like PasswordFall2028", "4.2.D.3"],
-        ["Password history", "System stores previous password hashes (often 5–10)", "Prevents a user from reusing a recent password", "4.2.D.4"],
-        ["Account lockout", "Account locks after a number of invalid attempts (often 3–5)", "Stops an adversary continuously guessing at a live portal (online attacks)", "4.2.D.5"]
+        [
+          "Complexity",
+          "New passwords must include a character from each set (upper, lower, digits, special)",
+          "Makes passwords significantly harder to crack (brute force / dictionary)",
+          "4.2.D.1"
+        ],
+        [
+          "Minimum length",
+          "Passwords must have at least a set number of characters",
+          "Longer passwords take far longer for a tool to crack",
+          "4.2.D.2"
+        ],
+        [
+          "Maximum age",
+          "Users are prompted to change passwords (often every 90–120 days)",
+          "Limits how long a compromised password stays usable — but some standards warn it breeds patterns like PasswordFall2028",
+          "4.2.D.3"
+        ],
+        [
+          "Password history",
+          "System stores previous password hashes (often 5–10)",
+          "Prevents a user from reusing a recent password",
+          "4.2.D.4"
+        ],
+        [
+          "Account lockout",
+          "Account locks after a number of invalid attempts (often 3–5)",
+          "Stops an adversary continuously guessing at a live portal (online attacks)",
+          "4.2.D.5"
+        ]
       ],
       "note": "Lockout (D.5) and maximum age (D.3) are the account-lockout and password policies configured in Scenario 4B. Remember: lockout only constrains ONLINE attacks; offline attacks (EK 4.2.B.2) ignore it.",
       "script": "Five settings, and for each one know the threat it addresses. Complexity, EK 4.2.D.1: require a character from each set — upper, lower, digit, special — which makes cracking much harder. Minimum length, EK 4.2.D.2: longer passwords take dramatically longer to crack. Maximum age, EK 4.2.D.3: prompt changes every 90 or 120 days to limit how long a stolen password works — but note the caveat, some national standards say forced changes breed predictable patterns like PasswordFall2028. Password history, EK 4.2.D.4: store the last 5 to 10 hashes to block reuse. And account lockout, EK 4.2.D.5: lock after 3 to 5 bad attempts to stop online guessing. One more time — lockout only stops online attacks; offline attacks ignore it."
@@ -577,55 +657,155 @@
         "day": 1,
         "focus": "Hashes and why passwords are stored as salted hashes (LO 4.2.A)",
         "segments": [
-          { "segment": "Bell ringer: why not just store passwords as-is?", "min": 5 },
-          { "segment": "Guided-notes preview + objectives", "min": 5 },
-          { "segment": "Cryptographic hash functions and their properties (EK 4.2.A.1, A.3)", "min": 12 },
-          { "segment": "Collisions, output count, and deprecation of MD5/SHA-1 (EK 4.2.A.2, A.4)", "min": 10 },
-          { "segment": "Hashing for storage and salting identical passwords (EK 4.2.A.5, A.6)", "min": 10 },
-          { "segment": "Vocab + Stop and Think", "min": 5 },
-          { "segment": "Wrap and assign Your Turn", "min": 3 }
+          {
+            "segment": "Bell ringer: why not just store passwords as-is?",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 5,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Cryptographic hash functions and their properties (EK 4.2.A.1, A.3)",
+            "min": 12,
+            "slides": "5"
+          },
+          {
+            "segment": "Collisions, output count, and deprecation of MD5/SHA-1 (EK 4.2.A.2, A.4)",
+            "min": 10,
+            "slides": "6"
+          },
+          {
+            "segment": "Hashing for storage and salting identical passwords (EK 4.2.A.5, A.6)",
+            "min": 10,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 5,
+            "slides": "9"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "10"
+          }
         ]
       },
       {
         "day": 2,
         "focus": "Password attacks, part 1: online vs. offline and credential reuse (LO 4.2.B)",
         "segments": [
-          { "segment": "Bell ringer: what does a stolen password unlock?", "min": 5 },
-          { "segment": "Impact of a compromised password without MFA (EK 4.2.B.1)", "min": 8 },
-          { "segment": "Online vs. offline attacks and lockout bypass (EK 4.2.B.2)", "min": 12 },
-          { "segment": "Leaked credentials, spraying, and stuffing (EK 4.2.B.3, B.4, B.5)", "min": 12 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "Bell ringer: what does a stolen password unlock?",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "Impact of a compromised password without MFA (EK 4.2.B.1)",
+            "min": 8,
+            "slides": "11"
+          },
+          {
+            "segment": "Online vs. offline attacks and lockout bypass (EK 4.2.B.2)",
+            "min": 12,
+            "slides": "12"
+          },
+          {
+            "segment": "Leaked credentials, spraying, and stuffing (EK 4.2.B.3, B.4, B.5)",
+            "min": 12,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "14"
+          }
         ]
       },
       {
         "day": 3,
         "focus": "Password attacks, part 2: offline hash cracking (LO 4.2.B)",
         "segments": [
-          { "segment": "Bell ringer: if hashes can't be reversed, how are they cracked?", "min": 5 },
-          { "segment": "Automated hash-cracking: brute force and dictionary (EK 4.2.B.6)", "min": 14 },
-          { "segment": "Rainbow tables: precompute, sort, search (EK 4.2.B.7)", "min": 14 },
-          { "segment": "Stop and Think + wrap", "min": 7 }
+          {
+            "segment": "Bell ringer: if hashes can't be reversed, how are they cracked?",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "Automated hash-cracking: brute force and dictionary (EK 4.2.B.6)",
+            "min": 14,
+            "slides": "15"
+          },
+          {
+            "segment": "Rainbow tables: precompute, sort, search (EK 4.2.B.7)",
+            "min": 14,
+            "slides": "16"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 7,
+            "slides": "17"
+          }
         ]
       },
       {
         "day": 4,
         "focus": "Authentication factors and MFA (LO 4.2.C)",
         "segments": [
-          { "segment": "Bell ringer: sort five log-in proofs into factor types", "min": 5 },
-          { "segment": "The four factor types: know, have, are, where (EK 4.2.C.1–C.5)", "min": 16 },
-          { "segment": "Multifactor authentication and why it is stronger (EK 4.2.C.6)", "min": 12 },
-          { "segment": "Factor-matching practice + Stop and Think", "min": 7 }
+          {
+            "segment": "Bell ringer: sort five log-in proofs into factor types",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "The four factor types: know, have, are, where (EK 4.2.C.1–C.5)",
+            "min": 16,
+            "slides": "18"
+          },
+          {
+            "segment": "Multifactor authentication and why it is stronger (EK 4.2.C.6)",
+            "min": 12,
+            "slides": "19"
+          },
+          {
+            "segment": "Factor-matching practice + Stop and Think",
+            "min": 7,
+            "slides": "20"
+          }
         ]
       },
       {
         "day": 5,
         "focus": "Configuring login settings, Scenario 4B, and quiz (LO 4.2.D)",
         "segments": [
-          { "segment": "Bell ringer: which setting blocks password reuse?", "min": 5 },
-          { "segment": "Complexity, length, and maximum age (EK 4.2.D.1, D.2, D.3)", "min": 10 },
-          { "segment": "Password history and account lockout (EK 4.2.D.4, D.5)", "min": 8 },
-          { "segment": "Scenario 4B: configure password and account-lockout policies", "min": 7 },
-          { "segment": "Lesson 4.2 quiz", "min": 20 }
+          {
+            "segment": "Bell ringer: which setting blocks password reuse?",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "Complexity, length, and maximum age (EK 4.2.D.1, D.2, D.3)",
+            "min": 10,
+            "slides": "21"
+          },
+          {
+            "segment": "Password history and account lockout (EK 4.2.D.4, D.5)",
+            "min": 8,
+            "slides": "22"
+          },
+          {
+            "segment": "Scenario 4B: configure password and account-lockout policies",
+            "min": 7,
+            "slides": "23"
+          },
+          {
+            "segment": "Lesson 4.2 quiz",
+            "min": 20,
+            "slides": "Handout"
+          }
         ]
       }
     ],
