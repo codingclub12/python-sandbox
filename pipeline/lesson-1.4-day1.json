@@ -291,7 +291,7 @@
   ],
   "quiz": {
     "title": "Lesson 1.4 — AI-Based Cybersecurity Attacks — Quiz",
-    "instructions": "Choose the single best answer. 25 minutes, no notes. Cite EK numbers in any written justification your teacher requires.",
+    "instructions": "Choose the single best answer. 24 questions, 45 minutes, no notes.",
     "questions": [
       {
         "id": "Q1",
@@ -362,6 +362,274 @@
         "answer": "B",
         "ek": "EK 1.4.A.3 + EK 1.4.B.3",
         "rationale": "EK 1.4.B.3 warns that some AI tools feed user input back into the model for continuous training, and EK 1.4.A.3 explains that adversaries can craft prompts to extract that sensitive information — so confidential data should never be entered into such tools. Option A invents a legal rule. Option C overstates the case; the risk is exposure, not inaccuracy. Option D describes a mechanism that does not exist."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A small business owner who speaks only English receives an email, supposedly from their bank, written in perfectly natural English with no awkward phrasing or grammar mistakes. The owner assumes it must be legitimate. Per the CED, why is that assumption now unreliable?",
+        "options": [
+          "Banks are required to send all official messages in the customer's first language",
+          "Generative AI tools let adversaries craft phishing in any language that reads as native-written",
+          "Phishing messages can no longer be delivered to English-speaking recipients at all",
+          "Email providers automatically translate every incoming message into the reader's language"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.A.2",
+        "rationale": "EK 1.4.A.2 states that adversaries can use generative AI tools like LLMs to create convincing phishing messages in any target language that read as though written by a native speaker, so the old 'unnatural language' tell no longer reliably separates phishing from legitimate mail. Option A invents a banking rule. Option C is false — polished phishing still reaches English speakers. Option D describes a feature that is not the issue."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "According to the CED, where can the secure or sensitive information that an adversary extracts from an LLM through crafted prompts originate?",
+        "options": [
+          "Only from the LLM provider's billing records",
+          "Only from publicly published news articles",
+          "From user input and the large data sets used to train the LLM",
+          "From the user's local device storage accessed by the model"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.A.3",
+        "rationale": "EK 1.4.A.3 specifies that secure or sensitive information in LLMs can come from user input and the large data sets used to train the LLMs, both of which a crafted prompt may pull back out. Options A and B name sources the CED does not list. Option D describes direct device access, which is not the mechanism EK 1.4.A.3 describes."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "An adversary creates dozens of websites that all state the same fabricated 'fact' about a company. Months later, a popular AI assistant begins confidently repeating that fabricated fact to users who ask. Which CB-specified technique does this describe?",
+        "options": [
+          "Prompt extraction of sensitive information from an LLM",
+          "A deepfake voice and video avatar of a company executive",
+          "AI-powered reconnaissance of the company's employees",
+          "Publishing false information so it is absorbed into LLM training data"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.A.4",
+        "rationale": "EK 1.4.A.4 describes adversaries publishing or modifying websites to contain false information so it is included in the training sets for LLMs, causing the models to later repeat that false information. Option A is the opposite direction — pulling data out (EK 1.4.A.3). Option B is a deepfake (EK 1.4.A.1). Option C is reconnaissance (EK 1.4.A.5), neither of which involves seeding training data."
+      },
+      {
+        "id": "Q9",
+        "kind": "multi",
+        "stem": "Two AI-related attacks are described. I. An adversary plants false information across many websites so a model later repeats it as fact. II. An adversary crafts clever prompts to make a model reveal sensitive data it was trained on. Which statement about these two CB-specified techniques is accurate?",
+        "options": [
+          "I pushes false data into the model; II pulls sensitive data out of the model",
+          "Both I and II push false information into the model's training set",
+          "Both I and II pull sensitive information out of the model through prompts",
+          "I pulls sensitive data out of the model; II pushes false data into it"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.4 + EK 1.4.A.3",
+        "rationale": "EK 1.4.A.4 (training-data poisoning) pushes false information INTO the model so it later repeats it, while EK 1.4.A.3 (prompt extraction) pulls sensitive information OUT through crafted prompts — they run in opposite directions. Options B and C wrongly treat both as the same direction, and Option D reverses the two techniques."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "A junior attacker with limited programming skill uses an AI coding assistant to generate new malware and to scan a large open-source project for exploitable flaws. Which CB-specified technique are they using, and what is its main effect?",
+        "options": [
+          "AI reconnaissance — it scrapes the developer's social-media profile",
+          "Prompt extraction — it reveals secrets stored inside the AI model",
+          "AI-assisted malicious coding — it lowers the skill and time an attack needs",
+          "Training-data poisoning — it makes the model repeat false security advice"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.A.6",
+        "rationale": "EK 1.4.A.6 states that adversaries can use AI-enhanced coding tools to write new malware, modify existing code for malicious activity, or find vulnerabilities in large code bases — lowering the skill and time an effective attack requires. Option A is reconnaissance (A.5), Option B is extraction (A.3), and Option D is poisoning (A.4), none of which describe generating malware or scanning code."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "A security team finds that an adversary modified an existing legitimate application's source code, using an AI tool, so the program now secretly exfiltrates user data while still appearing to function normally. Which CB-specified technique best matches this activity?",
+        "options": [
+          "AI-powered reconnaissance using internet-scanning tools",
+          "Native-fluent AI phishing sent to the application's users",
+          "A deepfake avatar impersonating the application's developer",
+          "AI-assisted coding that modifies existing application code maliciously"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.A.6",
+        "rationale": "EK 1.4.A.6 explicitly includes using AI-enhanced coding tools to modify existing application code to perform malicious activities, which is exactly what was done here. Option A is reconnaissance (A.5), Option B is phishing (A.2), and Option C is a deepfake (A.1) — none involve altering application code."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "stem": "An attacker wants to build a targeted profile of a victim before contacting them, gathering details the victim posted on social media and public websites without breaking into any account. Which CB-specified technique does the attacker rely on?",
+        "options": [
+          "AI-powered tools that scan the internet to gather publicly posted information",
+          "Crafting prompts that extract training data from a public LLM",
+          "Enabling multifactor authentication on the victim's accounts",
+          "Modifying websites so an LLM later repeats false information"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.5",
+        "rationale": "EK 1.4.A.5 describes performing reconnaissance on a target using AI-powered tools that scan the internet to gather information posted on social media and public websites — no account compromise required. Option B is extraction (A.3), Option C is a defense (B.2), and Option D is poisoning (A.4)."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "stem": "A company already uses voice recognition to let employees access internal systems by phone. Knowing adversaries can clone voices, which CB-specified protection most directly prevents a cloned voice alone from granting account access?",
+        "options": [
+          "Establishing a shared secret word between two family members",
+          "Verifying AI tool output against reputable non-AI sources",
+          "Requiring a second authentication factor beyond the voice",
+          "Avoiding entering personal data into AI chatbots"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.B.2",
+        "rationale": "EK 1.4.B.2 notes that if an adversary clones a target's voice to access a voice-authenticated system, requiring a second authentication factor (MFA) could prevent the adversary from gaining access. Option A verifies a person on a call, not a system login. Option B addresses poisoned output, and Option D addresses data exposure — neither blocks a cloned-voice login by itself."
+      },
+      {
+        "id": "Q14",
+        "kind": "applied",
+        "stem": "A student asks an AI assistant a factual question for a research paper and receives a confident, specific answer. Following CED guidance, what should the student do before relying on it?",
+        "options": [
+          "Accept it as final since the assistant stated it confidently",
+          "Re-ask the same assistant until it repeats the same answer",
+          "Paste the full assignment into the assistant for a second opinion",
+          "Verify it against reputable, stable, non-AI-based sources"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.B.4",
+        "rationale": "EK 1.4.B.4 directs that output from AI tools be carefully evaluated and verified using reputable, stable, non-AI-based sources. Option A trusts confidence alone, Option B just re-queries the same possibly-poisoned model, and Option C exposes data to the tool (against B.3) without independently confirming the fact."
+      },
+      {
+        "id": "Q15",
+        "kind": "multi",
+        "stem": "Consider three responses to AI-augmented threats. I. Checking an AI assistant's surprising claim against a trusted encyclopedia and a government website. II. Believing an AI answer simply because it was detailed. III. Confirming an AI-stated statistic with an established, non-AI research source. Which responses follow the CB-specified guidance for handling AI output?",
+        "options": [
+          "II only",
+          "I and III only",
+          "I and II only",
+          "II and III only"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.B.4",
+        "rationale": "EK 1.4.B.4 requires verifying AI output against reputable, stable, non-AI-based sources, which both I and III do. Response II accepts the answer on confidence alone, the exact behavior EK 1.4.B.4 warns against, so only I and III are correct."
+      },
+      {
+        "id": "Q16",
+        "kind": "scenario",
+        "stem": "An adversary wants future LLM users to receive a specific piece of misinformation as if it were true. Rather than attacking any single user, what does the CB-specified poisoning technique target?",
+        "options": [
+          "The voice-authentication system a victim uses for banking",
+          "The data the model learns from, so it later repeats the falsehood",
+          "A single login session captured during a video call",
+          "The encrypted password file stored on a target's device"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.A.4",
+        "rationale": "EK 1.4.A.4 describes publishing or modifying websites with false information so it is included in LLM training sets, causing the model to repeat the falsehood to users — the attack targets what the model learns, not one user. Options A, C, and D describe account, session, and password targets that this technique does not aim at."
+      },
+      {
+        "id": "Q17",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An organization recently switched to letting customers verify their identity over the phone using voice-recognition software alone. Per the CED, why does this design choice raise the potential impact of voice impersonation?",
+        "options": [
+          "A cloned voice can now serve as the literal key that unlocks a voice-authenticated account",
+          "Voice recognition software is unable to process any audio captured over a phone line",
+          "Customers will refuse to use any system that records and stores their spoken voice",
+          "Phone networks automatically strip the unique accent and cadence out of every call"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.1",
+        "rationale": "EK 1.4.A.1 states that as more organizations adopt voice-based authentication, the impact of voice impersonation has a larger potential impact — a cloned voice is no longer just convincing, it can be the credential itself. Option B is false, as voice systems run over phone audio. Option C invents a behavior the CED does not claim. Option D describes a technical effect that is not real and would undercut cloning."
+      },
+      {
+        "id": "Q18",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A security analyst reviews a phishing email and notes that, unlike older scams, it contains no awkward grammar — it reads exactly like a fluent native speaker wrote it. Per the CED, what does this fluency most directly indicate about the modern threat?",
+        "options": [
+          "Generative AI now lets adversaries craft native-fluent phishing, removing the old language tell",
+          "The message must be legitimate since only real institutions can write fluent text",
+          "The recipient's email client silently corrected every grammar error before delivery",
+          "Native-language fluency proves the sender is physically located in the target's country"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.2",
+        "rationale": "EK 1.4.A.2 explains that adversaries can use generative AI tools like LLMs to craft phishing in any language that reads as native-written, so unnatural language no longer reliably separates phishing from legitimate mail. Option B treats fluency as proof of legitimacy, the exact mistake the EK warns against. Options C and D invent mechanisms the CED does not describe."
+      },
+      {
+        "id": "Q19",
+        "kind": "scenario",
+        "stem": "Before contacting a victim, an adversary runs automated tools that crawl social media and public websites to assemble a detailed profile of the target's habits, relatives, and routines. No account is ever breached. Which CB-specified technique is this, and what underlying attack does it most directly feed?",
+        "options": [
+          "Training-data poisoning — it feeds false routines into a public model",
+          "Prompt extraction — it pulls the victim's secrets out of a chatbot",
+          "AI-assisted malicious coding — it writes malware tuned to the victim",
+          "AI-powered reconnaissance — it profiles the target to fuel later targeting"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.A.5",
+        "rationale": "EK 1.4.A.5 describes reconnaissance using AI-powered tools that scan the internet to gather information posted on social media and public websites, which builds the profile that fuels targeted phishing and impersonation. Option A is poisoning (A.4), Option B is extraction (A.3), and Option C is malicious coding (A.6) — none describe profiling a target from public posts."
+      },
+      {
+        "id": "Q20",
+        "kind": "applied",
+        "stem": "A penetration-testing report warns that a low-skill actor used an AI coding assistant to comb a massive open-source repository for exploitable weaknesses. Per the CED, what makes this use of AI-enhanced coding tools especially concerning?",
+        "options": [
+          "It lowers the skill and time needed to find vulnerabilities in large code bases",
+          "It guarantees the discovered flaws can never be patched by the project owners",
+          "It only works against code written in a single obscure programming language",
+          "It requires the actor to already hold administrator access to the repository"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.6",
+        "rationale": "EK 1.4.A.6 states that adversaries can use AI-enhanced coding tools to find vulnerabilities in large code bases, lowering the skill and time an effective attack requires. Option B overstates the effect, Option C falsely narrows the scope, and Option D invents a prerequisite the CED does not list."
+      },
+      {
+        "id": "Q21",
+        "kind": "scenario",
+        "stem": "Two siblings agree on a private word that only they know, planning to ask for it if either ever gets an urgent, out-of-character call. Per the CED, why does this defeat even a flawless voice clone of one sibling?",
+        "options": [
+          "A voice clone automatically reveals any secret stored on the cloned person's phone",
+          "The clone can reproduce the voice but cannot supply a word it was never given",
+          "Voice-cloning tools are legally barred from being used between family members",
+          "The secret word encrypts the phone call so the clone's audio cannot be heard"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.B.1",
+        "rationale": "EK 1.4.B.1 specifies a secret word or phrase known only to two parties to authenticate identities in high-stakes situations — the clone copies the voice but has no way to produce a word it was never told. Option A invents device access, Option C invents a legal rule, and Option D misdescribes how a spoken secret works."
+      },
+      {
+        "id": "Q22",
+        "kind": "multi",
+        "stem": "An organization protects a voice-authenticated phone system against cloned-voice attacks. I. It requires a one-time code from an authenticator app in addition to the voice match. II. It relies on the voice match alone, trusting it to catch any fake. III. It adds a hardware security key as a second factor for high-value actions. Which approaches follow the CB-specified MFA guidance?",
+        "options": [
+          "II only",
+          "I and III only",
+          "I and II only",
+          "II and III only"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.B.2",
+        "rationale": "EK 1.4.B.2 states that enabling multifactor authentication — requiring a second factor beyond the voice — could prevent an adversary with a cloned voice from gaining access. Both I (authenticator code) and III (hardware key) add a genuine second factor, while II relies on voice alone, the single point the clone defeats."
+      },
+      {
+        "id": "Q23",
+        "kind": "applied",
+        "stem": "An employee wants a public AI chatbot to draft a reply that references unreleased product specs and a customer's account number. Per the CED, what is the safest course of action?",
+        "options": [
+          "Paste everything in, since chatbots delete each conversation right after replying",
+          "Include only the account number, treating numeric data as automatically safe",
+          "Keep the personal and sensitive details out of the chatbot entirely",
+          "Submit the data and then immediately ask the chatbot to forget it"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.B.3",
+        "rationale": "EK 1.4.B.3 warns that personal or sensitive data should not be entered into AI-powered tools, since some feed user input back into the model and adversaries could later extract it. Option A assumes deletion the CED does not promise, Option B wrongly treats numbers as safe, and Option D cannot undo data already absorbed for training."
+      },
+      {
+        "id": "Q24",
+        "kind": "scenario",
+        "stem": "A researcher gets a striking statistic from an AI assistant and suspects it may have been shaped by poisoned training data. Per the CED, what is the correct way to decide whether to trust the figure?",
+        "options": [
+          "Trust the figure outright since the assistant returned it without hesitation",
+          "Ask the same assistant to grade its own statistic for accuracy and stop there",
+          "Search for other AI chatbots and accept the figure if two of them agree",
+          "Confirm the figure against reputable, stable, non-AI-based sources first"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.B.4",
+        "rationale": "EK 1.4.B.4 directs that AI output be carefully evaluated and verified using reputable, stable, non-AI-based sources, which is the only option that escapes a possibly poisoned model. Option A trusts confidence, Option B re-queries the same model, and Option C checks other AI tools that may share the same poisoned data."
       }
     ]
   },

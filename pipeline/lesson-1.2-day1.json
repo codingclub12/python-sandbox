@@ -350,7 +350,7 @@
   ],
   "quiz": {
     "title": "Lesson 1.2 — Suspicious Website Logins — Quiz",
-    "instructions": "Choose the single best answer. 25 minutes, no notes. Cite EK numbers in any written justification your teacher requires.",
+    "instructions": "Choose the single best answer. 12 questions, 25 minutes, no notes.",
     "questions": [
       {
         "id": "Q1",
@@ -421,6 +421,108 @@
         "answer": "A",
         "ek": "EK 1.2.C.3",
         "rationale": "Changing the password addresses EK 1.2.C.1/C.2 by replacing the compromised credential, but the CED lists MFA (EK 1.2.C.3) as a separate, distinct control — it blocks the adversary even if they obtain the new password. B is wrong because one control is not a complete EK 1.2.C response. Browser choice has no CB basis, and forced rotation is not an EK 1.2.C method."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "According to EK 1.2.A.1, what does an adversary attempt during an online password attack?",
+        "options": [
+          "Logging in to a device or service using common passwords, common password patterns, or stolen passwords",
+          "Intercepting network traffic to read passwords as they travel between the user and the server",
+          "Installing keylogging malware on the victim's device to record every keystroke they type",
+          "Tricking the victim into revealing a one-time code through a fraudulent phone call"
+        ],
+        "answer": "A",
+        "ek": "EK 1.2.A.1",
+        "rationale": "EK 1.2.A.1 defines an online password attack as adversaries trying to log in to a device or service using common passwords, common password patterns, or stolen passwords. The other options describe sniffing, keylogging, and vishing — real techniques, but none is the CED definition of an online password attack."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A help-desk log shows a user's account with steady, successful logins every weekday at 8 a.m. from one office laptop. Overnight, the same account logs 3,000 failed attempts in 20 minutes from an IP in another country. Which EK 1.2.A.2 sign is MOST clearly evidenced by the overnight activity?",
+        "options": [
+          "No sign is present — the daytime logins were all successful",
+          "Login attempts from a known device the owner uses daily",
+          "Many failed attempts to log in over a short duration",
+          "A password reset request sent to the owner's email inbox"
+        ],
+        "answer": "C",
+        "ek": "EK 1.2.A.2",
+        "rationale": "EK 1.2.A.2 lists 'many failed attempts to log in over a short duration' as a sign — 3,000 failures in 20 minutes is exactly that volume-plus-speed pattern. The overnight foreign IP also hints at unusual time and unknown device, but the clearest, directly-counted sign is the failed-attempt volume. The daytime success pattern is the legitimate baseline, and a password reset is not one of the three CED signs."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A user wants a password that follows EK 1.2.C.1 and EK 1.2.C.2. Which choice best satisfies both?",
+        "options": [
+          "Their dog's name followed by their birth year and an exclamation point",
+          "A short word repeated three times so it is easy to remember and retype",
+          "A long, random string generated and stored by a password manager",
+          "Their street address with the vowels replaced by matching numbers"
+        ],
+        "answer": "C",
+        "ek": "EK 1.2.C.1–C.2",
+        "rationale": "EK 1.2.C.1 says passwords should be long, random, and unique and names a password manager as the tool to generate and store them; EK 1.2.C.2 says to avoid names, dates, or other personally meaningful words. A long, random manager-generated string satisfies both. The dog-name-plus-year, the repeated word, and the street address all rely on personal or predictable information the CED tells users to avoid."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary scrolls a target's public profiles and records the names of their two children, their wedding anniversary, and their cat's name. They feed these into a tool that auto-submits combinations against the login form. Which EK best describes this method?",
+        "options": [
+          "EK 1.2.A.1 — trying stolen passwords leaked from an unrelated breach",
+          "EK 1.2.B.2 — building a dictionary from gathered personal information",
+          "EK 1.2.C.3 — enabling multifactor authentication on the account",
+          "EK 1.2.A.2 — logging in successfully from a known device"
+        ],
+        "answer": "B",
+        "ek": "EK 1.2.B.2",
+        "rationale": "EK 1.2.B.2 describes adversaries constructing a dictionary of possible passwords from personal information gathered about a target — birthdays, anniversaries, names of pets and family — and using an automated tool to submit them. That is exactly the children's names, anniversary, and cat's name being auto-submitted. EK 1.2.A.1 is stolen-password reuse, EK 1.2.C.3 is a defense, and EK 1.2.A.2 lists attack signs, not this construction method."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An account's history shows logins only from a home laptop on weekday evenings. A security review flags four new events on the same account. Per EK 1.2.A.2, which single event most clearly matches the 'login attempts from unknown devices' sign?",
+        "options": [
+          "A failed login at the user's normal evening hour from the home laptop",
+          "A successful login during the user's usual weekday evening window",
+          "A password change confirmed from the user's own registered laptop",
+          "A login from a phone and IP address the account has never used before"
+        ],
+        "answer": "D",
+        "ek": "EK 1.2.A.2",
+        "rationale": "EK 1.2.A.2 lists 'login attempts from unknown devices' as a sign of an online password attack. A device and IP the account has never used is exactly that unknown-device indicator. The other three events all originate from the user's known laptop during normal hours, so they match the legitimate baseline rather than any of the three CED-specified signs."
+      },
+      {
+        "id": "Q11",
+        "kind": "applied",
+        "stem": "EK 1.2.B.1 lists the common patterns people use when creating passwords. Which choice is NOT one of those CED-listed patterns?",
+        "options": [
+          "Including the names of family members or pets inside the password",
+          "Generating the password as a long, random string with no personal meaning",
+          "Including a personally significant date such as a birthday or anniversary",
+          "Adding a two-digit year and a special character to the end of a word"
+        ],
+        "answer": "B",
+        "ek": "EK 1.2.B.1",
+        "rationale": "EK 1.2.B.1 names three common patterns: a word plus a two-digit year plus a trailing special character, family or pet names in the password, and personally significant dates. Options A, B, and D are those three patterns. A long, random string with no personal meaning is the opposite — it follows the EK 1.2.C.1 guidance for strong passwords, so it is not an EK 1.2.B.1 pattern."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A user's password is stolen in a breach. With multifactor authentication enabled on the account, the adversary types the correct password into the login form. Per EK 1.2.C.3, what happens next?",
+        "options": [
+          "The stolen password alone grants access since it is the correct one",
+          "The account locks permanently and can never be recovered by the user",
+          "The breach is automatically reported to the adversary's email provider",
+          "The login still requires extra proof of identity, such as a one-time code"
+        ],
+        "answer": "D",
+        "ek": "EK 1.2.C.3",
+        "rationale": "EK 1.2.C.3 states that MFA requires the user to provide extra proof of identity — such as a one-time code — in addition to the password as an extra layer of security. So a correct but stolen password is not enough; the second factor is still demanded. The CED makes no claim about permanent lockout or any automatic breach report, and the whole point of MFA is that the password alone does not grant access."
       }
     ]
   },

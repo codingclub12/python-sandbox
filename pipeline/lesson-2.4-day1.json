@@ -264,7 +264,7 @@
   ],
   "quiz": {
     "title": "Lesson 2.4 — Detecting Attacks — Quiz",
-    "instructions": "Choose the single best answer. 25 minutes, no notes. Cite EK numbers in any written justification your teacher requires.",
+    "instructions": "Choose the single best answer. 12 questions, 25 minutes, no notes.",
     "questions": [
       {
         "id": "Q1",
@@ -335,6 +335,108 @@
         "answer": "B",
         "ek": "EK 2.4.A.3",
         "rationale": "EK 2.4.A.3 says a motion sensor alerts security to movement in an area — that is all it does. It does not identify who or what is moving or whether the movement is a genuine threat, so it is most effective paired with a method that can verify the cause, such as a monitored camera or a responding guard. Option A overstates the limitation — a movement alert is still valuable. Option B is wrong; a sensor cannot replace the visual record a camera provides. Option D is false — a sensor reacts to any movement, including authorized people or animals, which is why verification matters."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A security team is deciding where to mount cameras in a new lab. Per EK 2.4.B.1, which consideration should most shape the placement decision?",
+        "predictFirst": true,
+        "options": [
+          "Visual coverage, angle, and tamper-resistance, with points of ingress and egress often monitored by camera",
+          "Mounting cameras only in low-traffic closets where an adversary is least likely ever to appear",
+          "Placing every camera at floor level so its lens stays well within easy arm's reach",
+          "Choosing spots purely for tidy cabling, regardless of what the camera could capture there"
+        ],
+        "answer": "A",
+        "ek": "EK 2.4.B.1",
+        "rationale": "EK 2.4.B.1 says camera placement should consider visual coverage, angle, and the ability to be tampered with by an adversary, along with what a camera in a given area could capture and how useful that would be — and it notes that points of ingress and egress are often monitored by camera. Option B hides cameras away from where adversaries travel, defeating coverage. Option C invites tampering by putting the lens in reach. Option D ignores the captured-activity consideration the EK names."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A manager wants to mount a motion sensor in the building's busy main lobby, where dozens of people pass every minute all day. Per EK 2.4.B.2, what is the likely problem with this placement?",
+        "predictFirst": true,
+        "options": [
+          "A lobby sensor would be unable to detect any movement at all in such a wide-open space",
+          "Motion sensors are barred from public lobbies and may only be installed in server rooms",
+          "Constant traffic triggers many false alarms, so real alerts are less likely to be taken seriously",
+          "High-traffic placement makes the sensor identify each individual person far too accurately"
+        ],
+        "answer": "C",
+        "ek": "EK 2.4.B.2",
+        "rationale": "EK 2.4.B.2 says motion sensors belong where traffic is unexpected, like server rooms or areas with sensitive materials and few people — and that sensors in high-traffic areas create many false alarms, making alarms less likely to be taken seriously during a real event. Option A is false; the sensor would constantly detect movement. Option B invents a rule. Option D misstates what a sensor does — it signals movement, not identity."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A lab stores particularly sensitive systems behind one door and wants to stop adversaries from slipping in close behind an authorized person. Per EK 2.4.B.3, which placement decision best fits?",
+        "options": [
+          "Leave the door unlocked during the day so authorized staff are never slowed down at all",
+          "Rely on a sign asking visitors politely not to follow staff through the doorway",
+          "Replace the door entirely with an open archway to speed up authorized foot traffic",
+          "Lock the entry and add an access control vestibule to prevent piggybacking or tailgating"
+        ],
+        "answer": "D",
+        "ek": "EK 2.4.B.3",
+        "rationale": "EK 2.4.B.3 says locks should be placed on all entries to areas with sensitive information or systems, and for particularly sensitive areas an organization could use an access control vestibule at the entry point to prevent piggybacking or tailgating. Option A removes the lock the EK requires. Option B relies on a sign, which does not physically prevent tailgating. Option C removes the entry control entirely."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "A facility needs constant protection at its main lobby entrance, which funnels all visitor traffic, and also wants coverage that is hard for an adversary to plan around along its outdoor perimeter. Per EK 2.4.B.4, how should the guards be deployed?",
+        "predictFirst": true,
+        "options": [
+          "Patrolling guards in the lobby and a single stationary guard hidden in a back storage closet",
+          "A stationary guard at the lobby entrance and patrolling guards covering the exterior perimeter",
+          "Stationary guards on the perimeter only, leaving the funneling lobby entrance fully unwatched",
+          "Patrolling guards everywhere, since a stationary post can never protect a specific entrance well"
+        ],
+        "answer": "B",
+        "ek": "EK 2.4.B.4",
+        "rationale": "EK 2.4.B.4 says stationary guards give constant protection for a specific area or entrance and are highly effective at places that funnel traffic such as main entrances and lobbies, while patrolling guards are harder to plan around and better suited to perimeters and exterior areas. Option A inverts both roles. Option C leaves the funneling lobby unguarded. Option D denies the value of a stationary post the EK affirms."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "After a breach is detected, defenders want to follow exactly where an adversary went inside the building and to get an alert the moment an unauthorized person enters a controlled area. Per EK 2.4.C.1, what capability supports this?",
+        "options": [
+          "A motion sensor's log, which records the adversary's identity and full route through the building",
+          "Cameras paired with facial recognition for entry alerts, plus footage to track the adversary's path",
+          "A door lock's keyhole, which captures a visual record of everyone who passes through it",
+          "An employee's memory alone, which is sufficient to reconstruct the exact path without any footage"
+        ],
+        "answer": "A",
+        "ek": "EK 2.4.C.1",
+        "rationale": "EK 2.4.C.1 says cameras provide visual monitoring and a visual record, can be paired with facial recognition software that alerts when unauthorized individuals enter controlled areas, and that once a breach is detected defenders can use live and recorded footage to track an adversary's path and actions. Option A wrongly attributes identity and route tracking to a motion sensor. Option C invents a capability a lock does not have. Option D overstates unaided memory."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "A motion detector in a restricted archive fires at 3 a.m., but security cannot tell from the alert alone whether it is a real intruder or a false alarm. Per EK 2.4.C.2, what is the best way to confirm what is happening?",
+        "predictFirst": true,
+        "options": [
+          "Wait until morning and ask employees whether they remember anyone entering the archive overnight",
+          "Treat every motion alert as a confirmed breach and dispatch a full response without checking first",
+          "Use cameras covering the archive to check the space visually and verify a physical security breach",
+          "Add a second motion detector beside the first so the two sensors can identify the intruder together"
+        ],
+        "answer": "C",
+        "ek": "EK 2.4.C.2",
+        "rationale": "EK 2.4.C.2 says motion detectors work best when paired with cameras: when a motion detector raises an alert, defenders can use cameras to check the space visually and verify a physical security breach. Option A delays verification until the moment has passed. Option B treats every alert as real, ignoring false alarms. Option D adds sensors that still only signal movement, not identity."
+      },
+      {
+        "id": "Q12",
+        "kind": "applied",
+        "stem": "Employees badge in to a restricted room, and a sensor records how long each door is held open. A defender reviewing the entry logs notices one door stayed open far longer than usual. Per EK 2.4.C.3, what can this finding help detect?",
+        "options": [
+          "The exact identity of every authorized employee who used their badge on that particular door",
+          "Whether the building's overall electrical power was interrupted during the badge-in event",
+          "The precise camera angle needed to cover the doorway during the next security upgrade",
+          "Potential piggybacking or tailgating, since doors open longer than normal can signal an extra person"
+        ],
+        "answer": "D",
+        "ek": "EK 2.4.C.3",
+        "rationale": "EK 2.4.C.3 says when employees badge in to unlock a restricted door, a sensor can record how long the door was open, and reviewing entry logs can detect potential piggybacking or tailgating from doors being open longer than normal lengths of time. Option A is not what the door-open-time log reveals. Option B is unrelated to door-open duration. Option C confuses log review with camera placement."
       }
     ]
   },

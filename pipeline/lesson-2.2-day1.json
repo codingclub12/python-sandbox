@@ -271,7 +271,7 @@
   ],
   "quiz": {
     "title": "Lesson 2.2 — Physical Vulnerabilities — Quiz",
-    "instructions": "Choose the single best answer. 25 minutes, no notes. Cite EK numbers in any written justification your teacher requires.",
+    "instructions": "Choose the single best answer. 28 questions, 55 minutes, no notes.",
     "questions": [
       {
         "id": "Q1",
@@ -292,10 +292,10 @@
         "kind": "multi",
         "stem": "Consider three incidents. I. An adversary follows close behind an employee through a propped-open door without the employee ever noticing. II. An adversary watches over a user's shoulder as they type a server-room door code, then uses it later. III. An adversary goes through a company's trash bins behind the building and finds a printed network diagram. Which incidents are correctly matched to tailgating (EK 2.2.A.3)?",
         "options": [
-          "I only",
-          "I and II only",
-          "II and III only",
-          "I, II, and III"
+          "Incident I only",
+          "Incidents I and II only",
+          "Incidents II and III only",
+          "Incidents I, II, and III"
         ],
         "answer": "A",
         "ek": "EK 2.2.A.3",
@@ -342,6 +342,332 @@
         "answer": "C",
         "ek": "EK 2.2.A.1",
         "rationale": "EK 2.2.A.1 states that adversaries often use social engineering when conducting a physical attack — manipulating or exploiting the people around the target. Piggybacking manipulates a person into granting access, shoulder surfing exploits a person's inattention to their surroundings, and card cloning targets a legitimate user's credential. Option A invents a destruction requirement. Option B confuses these human attacks with natural disasters (EK 2.2.B.1). Option D is false and contradicts the value of awareness training."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "After hours, an adversary pulls discarded printouts, sticky notes, and an old org chart out of a company's curbside trash bins, hoping the papers reveal usernames or internal contacts. Which physical attack is this?",
+        "options": [
+          "Dumpster diving — the adversary goes through a target's physical trash for useful information",
+          "Shoulder surfing — the adversary watches a user access sensitive information to use later",
+          "Piggybacking — the adversary manipulates an authorized person into granting access",
+          "Card cloning — the adversary copies a user's access card to enter the building"
+        ],
+        "answer": "A",
+        "ek": "EK 2.2.A.5",
+        "rationale": "EK 2.2.A.5 defines dumpster diving as an attack where an adversary goes through a target's physical trash to look for information that could help the adversary reach their goal — exactly the printouts, sticky notes, and org chart here. Option B is shoulder surfing, which watches a live access. Options C and D describe gaining physical entry, not harvesting trash."
+      },
+      {
+        "id": "Q7",
+        "kind": "multi",
+        "stem": "The College Board says threats to physical security include more than human attackers. Which statement(s) correctly reflect EK 2.2.B.1? I. Threats include human adversaries seeking to cause harm or disruption. II. Threats include natural disasters. III. Natural disasters can cause physical damage or destruction to computers and data and disrupt digital services.",
+        "options": [
+          "I only",
+          "II only",
+          "I and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK 2.2.B.1",
+        "rationale": "EK 2.2.B.1 states that threats include human adversaries seeking to cause harm or disruption as well as natural disasters, and that natural disasters can cause physical damage or destruction to computers and data as well as disruption of digital services. All three statements match, so the answer is I, II, and III. Each individual option understates the EK by omitting a true element."
+      },
+      {
+        "id": "Q8",
+        "kind": "recall",
+        "stem": "According to EK 2.2.B.2, a vulnerability is best defined as which of the following?",
+        "options": [
+          "A control that an organization adds to reduce the chance of a compromise",
+          "A weakness or flaw that could allow an asset to be compromised",
+          "A natural disaster that destroys computers and disrupts digital services",
+          "A copy of an access card used to enter a restricted area"
+        ],
+        "answer": "B",
+        "ek": "EK 2.2.B.2",
+        "rationale": "EK 2.2.B.2 defines vulnerabilities as weaknesses or flaws that could allow an asset to be compromised. Option A describes a security control, not a vulnerability. Option C describes a threat (EK 2.2.B.1). Option D describes card cloning (EK 2.2.A.6)."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "stem": "EK 2.2.B.2 lists the common ways an asset can be compromised. Which of the following is NOT one of the compromises the College Board names?",
+        "options": [
+          "Unauthorized access to sensitive data or restricted physical spaces",
+          "Disruption of services that an asset provides",
+          "Automatic encryption of all data by the organization's own backup system",
+          "Theft or destruction of digital or physical resources"
+        ],
+        "answer": "C",
+        "ek": "EK 2.2.B.2",
+        "rationale": "EK 2.2.B.2 names unauthorized access, disruption of services, theft or destruction of resources, and unauthorized modification of data as common compromises. Options A, B, and D are all on that list. Option C describes a routine backup operation, not a compromise the CED lists."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary breaks into a building's electrical room and trips the breakers feeding the server rack, then cuts a power cable. The servers and the services they host go offline. Which EK best explains the result of this action?",
+        "options": [
+          "Disrupting power makes the device and any services it provides unavailable (EK 2.2.B.3)",
+          "Copying an access card grants the resources the user can reach (EK 2.2.A.6)",
+          "Going through physical trash reveals useful information (EK 2.2.A.5)",
+          "Watching a user access information lets the adversary reuse it (EK 2.2.A.4)"
+        ],
+        "answer": "A",
+        "ek": "EK 2.2.B.3",
+        "rationale": "EK 2.2.B.3 states that when adversaries disrupt power to a device, the device and any services it provides become unavailable, and that adversaries may damage fuses or breakers or cut electrical wiring to do so — exactly this scenario. Options B, C, and D name attacks that do not involve cutting power."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "An adversary gains entry to a records room that holds files of sensitive customer information. Without damaging anything, they photograph the documents and walk out. According to EK 2.2.B.4, what has the adversary done?",
+        "options": [
+          "Disrupted power to the device hosting the records, taking services offline",
+          "Plugged a keylogger into the device's ports to capture future keystrokes",
+          "Bypassed a technical control by following an employee in unnoticed",
+          "Stolen or copied sensitive information by gaining access to the area that holds it"
+        ],
+        "answer": "D",
+        "ek": "EK 2.2.B.4",
+        "rationale": "EK 2.2.B.4 states that when adversaries gain access to an area with sensitive information, they can steal or copy that sensitive information — photographing the files is copying it. Option A describes power disruption (EK 2.2.B.3), option B describes a port attack (EK 2.2.B.5), and option C describes tailgating (EK 2.2.A.3)."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "stem": "Having reached an unattended workstation, an adversary inserts a USB drive loaded with malware into an open port, aiming to collect the user's data or take control of the machine. Which EK describes this category of harm?",
+        "options": [
+          "EK 2.2.A.2 — manipulating an authorized person into granting access",
+          "EK 2.2.B.5 — plugging a malicious device into a port to collect data or gain control",
+          "EK 2.2.C.4 — a low-value asset that is unlikely to be exploited",
+          "EK 2.2.A.4 — watching a user enter credentials to reuse them later"
+        ],
+        "answer": "B",
+        "ek": "EK 2.2.B.5",
+        "rationale": "EK 2.2.B.5 states that with physical access to a device and its ports, adversaries can plug in a keylogger or external drive containing malware to collect data or possibly gain control of the device — precisely the malicious USB here. Options A, C, and D name unrelated attacks or risk levels."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "stem": "A teacher asks why physical destruction of a server is so damaging. Drawing on EK 2.2.B.5, what is the most complete answer?",
+        "options": [
+          "The original cardholder loses their badge, so they can no longer enter the room",
+          "The adversary must first be knowingly let through the door by an employee",
+          "Destroying the device makes the device, its stored data, and its services unavailable",
+          "The reader goes offline, which disables access control across the whole building"
+        ],
+        "answer": "C",
+        "ek": "EK 2.2.B.5",
+        "rationale": "EK 2.2.B.5 states that with direct physical access adversaries can physically destroy a device, making the device itself, any data stored on it, and any services it provides unavailable. Option A confuses this with card cloning, option B with piggybacking, and option D invents a reader outage."
+      },
+      {
+        "id": "Q14",
+        "kind": "applied",
+        "stem": "A server is protected by a strong password and sits behind a firewall, yet the security lead insists the unlocked room it sits in still matters. Which EK best supports that position?",
+        "options": [
+          "EK 2.2.C.1 — physical access to a device can let adversaries bypass many technical controls",
+          "EK 2.2.A.3 — tailgating is following an authorized person in without their awareness",
+          "EK 2.2.C.4 — low risks arise when a low-value asset is unlikely to be exploited",
+          "EK 2.2.A.1 — adversaries often use social engineering during a physical attack"
+        ],
+        "answer": "A",
+        "ek": "EK 2.2.C.1",
+        "rationale": "EK 2.2.C.1 states that physical access to devices can allow adversaries to bypass many technical controls and layers of security — so the password and firewall do not protect a machine an adversary can physically reach. Options B and D name specific attacks, and option C names a risk level, none of which states the bypass principle."
+      },
+      {
+        "id": "Q15",
+        "kind": "scenario",
+        "stem": "A server that stores customer data sits in a room with no lock, reached through an unmonitored hallway. Using the College Board's risk method, how should this vulnerability be rated?",
+        "options": [
+          "Low risk — the asset is of low value and unlikely to be exploited",
+          "Moderate risk — a noncritical area could act as a foothold to other resources",
+          "No risk — the firewall on the server already controls all access to the data",
+          "High risk — sensitive systems are exposed without sufficiently restricted, controlled access"
+        ],
+        "answer": "D",
+        "ek": "EK 2.2.C.2",
+        "rationale": "EK 2.2.C.2 states that high risks arise when sensitive information or systems are exposed in physical spaces without sufficiently restricted and controlled access, and gives this exact server-in-an-unlocked-room example. Option A misapplies the low-risk rule, option B the moderate-risk rule, and option C ignores that physical access bypasses the firewall (EK 2.2.C.1)."
+      },
+      {
+        "id": "Q16",
+        "kind": "scenario",
+        "stem": "Past a controlled reception area sits a receptionist's computer that connects to the internal wireless network and has exposed USB ports. The machine itself holds nothing sensitive. How does the College Board rate this?",
+        "options": [
+          "High risk — sensitive systems are exposed without controlled access of any kind",
+          "Moderate risk — a noncritical asset could be a foothold to gain access to other resources",
+          "Low risk — the asset is of low value and the vulnerability is unlikely to be exploited",
+          "No risk — controlled reception fully prevents any adversary from reaching the device"
+        ],
+        "answer": "B",
+        "ek": "EK 2.2.C.3",
+        "rationale": "EK 2.2.C.3 states that moderate risks arise when a noncritical or nonsensitive part of an organization is left unprotected in a way that could act as a foothold to gain initial access to other resources — the CED's own example is this receptionist computer on the internal network with exposed ports. Option A overstates it, option C understates the foothold danger, and option D is false since access is only controlled beyond reception."
+      },
+      {
+        "id": "Q17",
+        "kind": "scenario",
+        "stem": "In a badge-access office, employees leave laptops on their desks during a shared lunch. The laptops hold no sensitive data and are not cabled to the desks. Using EK 2.2.C.4, how should this be rated?",
+        "options": [
+          "High risk — sensitive systems are exposed without sufficiently controlled access",
+          "Moderate risk — the unsecured laptops are a foothold into other internal resources",
+          "Low risk — the asset is of low value and the vulnerability is unlikely to be exploited",
+          "Critical risk — any unsecured device must always be remediated before all others"
+        ],
+        "answer": "C",
+        "ek": "EK 2.2.C.4",
+        "rationale": "EK 2.2.C.4 states that low risks arise when a vulnerable asset is of low value and the vulnerability is unlikely to be exploited — the CED's own example is badge-access laptops with no sensitive data left at lunch. Options A and B overstate the risk, and option D invents a rule that all unsecured devices are critical."
+      },
+      {
+        "id": "Q18",
+        "kind": "multi",
+        "stem": "A security team is sorting three findings by the College Board's risk levels. I. An unlocked room with a customer-data server off an unmonitored hallway. II. A receptionist PC on the internal network with open USB ports past a controlled lobby. III. Badge-access laptops holding no sensitive data left out at lunch. Which pairing is correct?",
+        "options": [
+          "I is high, II is moderate, and III is low",
+          "I is moderate, II is low, and III is high",
+          "I is low, II is high, and III is moderate",
+          "I is moderate, II is high, and III is low"
+        ],
+        "answer": "A",
+        "ek": "EK 2.2.C.2, EK 2.2.C.3, EK 2.2.C.4",
+        "rationale": "EK 2.2.C.2 rates exposed sensitive systems as high (the unlocked server room), EK 2.2.C.3 rates a noncritical foothold as moderate (the receptionist PC), and EK 2.2.C.4 rates a low-value, unlikely-to-be-exploited asset as low (the laptops at lunch). Only option A matches all three to the CED's illustrative examples."
+      },
+      {
+        "id": "Q19",
+        "kind": "applied",
+        "stem": "A trainer wants the clearest one-line definition of social engineering as the College Board frames it for physical attacks. Which statement best matches EK 2.2.A.1?",
+        "options": [
+          "Adversaries copy an access card so they can reach every resource a user can reach",
+          "Adversaries often manipulate people through social engineering when conducting a physical attack",
+          "Adversaries cut electrical wiring so a device and its services become unavailable",
+          "Adversaries go through a target's discarded trash to find information they can use"
+        ],
+        "answer": "B",
+        "ek": "EK 2.2.A.1",
+        "rationale": "EK 2.2.A.1 states that adversaries often use social engineering when conducting a physical attack — manipulating people rather than defeating hardware. Option A is card cloning (EK 2.2.A.6), option C is power disruption (EK 2.2.B.3), and option D is dumpster diving (EK 2.2.A.5)."
+      },
+      {
+        "id": "Q20",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary in coveralls approaches a locked lab door, holds up a clipboard, and tells the employee badging in that they are maintenance staff who need to get inside to inspect a leaking pipe. The employee waves them through. Which attack and EK is this?",
+        "options": [
+          "Tailgating (EK 2.2.A.3) — the adversary followed in without the employee's awareness",
+          "Shoulder surfing (EK 2.2.A.4) — the adversary watched a user access sensitive information",
+          "Card cloning (EK 2.2.A.6) — the adversary copied a user's access card to get inside",
+          "Piggybacking (EK 2.2.A.2) — the adversary posed as a maintenance worker to be granted access"
+        ],
+        "answer": "D",
+        "ek": "EK 2.2.A.2",
+        "rationale": "EK 2.2.A.2 lists pretending to be a maintenance person who needs to get into an area for an inspection or repair as a named piggybacking tactic; the employee was manipulated into knowingly granting access. Option A is tailgating, which has no interaction. Options B and C describe watching an access and copying a card, neither of which happened here."
+      },
+      {
+        "id": "Q21",
+        "kind": "scenario",
+        "stem": "An adversary times their arrival to slip through a slowly closing security door a half-second behind an employee who is looking at their phone and never realizes anyone came in behind them. Which attack is this, and what distinguishes it from piggybacking?",
+        "options": [
+          "Piggybacking (EK 2.2.A.2) — the employee was manipulated into holding the door open",
+          "Tailgating (EK 2.2.A.3) — the adversary followed without the authorized person's awareness or knowledge",
+          "Card cloning (EK 2.2.A.6) — the adversary used a copied badge to open the door",
+          "Dumpster diving (EK 2.2.A.5) — the adversary harvested information from the trash"
+        ],
+        "answer": "B",
+        "ek": "EK 2.2.A.3",
+        "rationale": "EK 2.2.A.3 defines tailgating as gaining unauthorized access by following close behind an authorized individual without that individual's awareness or knowledge — the employee on their phone never noticed. Piggybacking (option A) requires the person to knowingly grant access. Options C and D name unrelated attacks."
+      },
+      {
+        "id": "Q22",
+        "kind": "multi",
+        "stem": "Which statement(s) correctly describe shoulder surfing as defined in EK 2.2.A.4? I. The adversary watches as a user accesses sensitive information so it can be used later. II. The adversary may use a camera to record the target accessing the information for later analysis. III. The adversary must physically enter the restricted area to carry it out.",
+        "options": [
+          "I only",
+          "III only",
+          "I and II only",
+          "I, II, and III"
+        ],
+        "answer": "C",
+        "ek": "EK 2.2.A.4",
+        "rationale": "EK 2.2.A.4 says shoulder surfing is watching a user access sensitive information for later use and notes adversaries sometimes record with a camera, so I and II are correct. III is false — shoulder surfing observes an exposed access and requires no entry into a restricted area. The answer is I and II only."
+      },
+      {
+        "id": "Q23",
+        "kind": "applied",
+        "stem": "A teacher contrasts dumpster diving with the door attacks. Drawing on EK 2.2.A.5, which feature best captures what makes dumpster diving distinct?",
+        "options": [
+          "The adversary manipulates an authorized person into knowingly holding a door open",
+          "The adversary follows close behind an employee through a controlled door unnoticed",
+          "The adversary copies an access card to reach all the resources a user can reach",
+          "The adversary searches a target's physical trash for information that advances their goal"
+        ],
+        "answer": "D",
+        "ek": "EK 2.2.A.5",
+        "rationale": "EK 2.2.A.5 defines dumpster diving as going through a target's physical trash to find information that could help the adversary reach their goal — no entry into a restricted area is required. Option A is piggybacking, option B is tailgating, and option C is card cloning."
+      },
+      {
+        "id": "Q24",
+        "kind": "scenario",
+        "stem": "An adversary skims the data from an employee's proximity badge in a crowded elevator and writes it to a blank card. They later use that blank card to enter every door the employee can open. Which attack is this?",
+        "options": [
+          "Card cloning (EK 2.2.A.6) — the copy grants access to all the resources the user is authorized to reach",
+          "Tailgating (EK 2.2.A.3) — the adversary followed the employee through the doors unnoticed",
+          "Shoulder surfing (EK 2.2.A.4) — the adversary watched the employee access sensitive doors",
+          "Dumpster diving (EK 2.2.A.5) — the adversary recovered the badge data from discarded trash"
+        ],
+        "answer": "A",
+        "ek": "EK 2.2.A.6",
+        "rationale": "EK 2.2.A.6 defines card cloning as making a copy of an authorized user's access card so the adversary can gain access to all the resources that user is authorized to access — exactly the duplicated badge here. Options B, C, and D describe following, watching, and trash-searching, none of which copies a card."
+      },
+      {
+        "id": "Q25",
+        "kind": "multi",
+        "stem": "According to EK 2.2.B.1, which statement(s) about threats to physical security are correct? I. Threats include human adversaries seeking to cause harm or disruption. II. Threats include natural disasters. III. Natural disasters can cause physical damage or destruction to computers and data and disrupt digital services.",
+        "options": [
+          "Statement I only",
+          "Statements I and III only",
+          "Statements II and III only",
+          "Statements I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK 2.2.B.1",
+        "rationale": "EK 2.2.B.1 states that threats include human adversaries as well as natural disasters, and that natural disasters can cause physical damage or destruction to computers and data and disrupt digital services. All three statements match, so the answer is I, II, and III."
+      },
+      {
+        "id": "Q26",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A storm topples a transformer outside a data center and an adversary later cuts the wiring feeding a backup electrical panel, taking a rack of servers and their hosted services offline. Which EK explains why disrupting power causes this outcome?",
+        "options": [
+          "Disrupting power makes a device and any services it provides unavailable (EK 2.2.B.3)",
+          "Watching a user access information lets the adversary reuse it later (EK 2.2.A.4)",
+          "Going through a target's physical trash reveals useful information (EK 2.2.A.5)",
+          "Copying an access card grants the resources the user can reach (EK 2.2.A.6)"
+        ],
+        "answer": "A",
+        "ek": "EK 2.2.B.3",
+        "rationale": "EK 2.2.B.3 states that when adversaries disrupt power, the device and any services it provides become unavailable, and that they may damage transformers or cut electrical wiring to do so — matching both the toppled transformer and the cut wiring. Options A, B, and C name attacks that do not involve cutting power."
+      },
+      {
+        "id": "Q27",
+        "kind": "applied",
+        "stem": "EK 2.2.B.4 describes what an adversary can do after reaching an area that holds sensitive information. Which action best fits that essential knowledge?",
+        "options": [
+          "They disrupt power to the device so its hosted services become unavailable",
+          "They plug a malware-loaded drive into an open port to gain control of the device",
+          "They steal or copy the sensitive information held in that area",
+          "They make a duplicate of a user's access card to reach other restricted doors"
+        ],
+        "answer": "C",
+        "ek": "EK 2.2.B.4",
+        "rationale": "EK 2.2.B.4 states that when adversaries gain access to an area with sensitive information, they can steal or copy that sensitive information. Option A is power disruption (EK 2.2.B.3), option B is a port attack (EK 2.2.B.5), and option D is card cloning (EK 2.2.A.6)."
+      },
+      {
+        "id": "Q28",
+        "kind": "scenario",
+        "stem": "A laptop in a locked office uses full-disk encryption and a strong login password, yet the security lead still treats an unlocked office door as a serious problem. Which EK best supports treating physical exposure as a threat to a digitally hardened device?",
+        "options": [
+          "Tailgating is following an authorized person in without their awareness (EK 2.2.A.3)",
+          "Low risks arise when a low-value asset is unlikely to be exploited (EK 2.2.C.4)",
+          "Adversaries often use social engineering when conducting a physical attack (EK 2.2.A.1)",
+          "Physical access to devices can let adversaries bypass many technical controls and layers of security (EK 2.2.C.1)"
+        ],
+        "answer": "D",
+        "ek": "EK 2.2.C.1",
+        "rationale": "EK 2.2.C.1 states that physical access to devices can allow adversaries to bypass many technical controls and layers of security — so encryption and a password do not protect a machine an adversary can physically reach. Option A names a specific attack, option B names a risk level, and option C names the social-engineering setup, none of which states the bypass principle."
       }
     ]
   },

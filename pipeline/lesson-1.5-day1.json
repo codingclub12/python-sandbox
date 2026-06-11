@@ -254,7 +254,7 @@
   ],
   "quiz": {
     "title": "Lesson 1.5 — Leveraging AI in Cyber Defense — Quiz",
-    "instructions": "Choose the single best answer. 25 minutes, no notes. Cite EK numbers in any written justification your teacher requires.",
+    "instructions": "Choose the single best answer. 10 questions, 20 minutes, no notes.",
     "questions": [
       {
         "id": "Q1",
@@ -325,6 +325,78 @@
         "answer": "C",
         "ek": "EK 1.5.B.3 + EK 1.5.B.4",
         "rationale": "EK 1.5.B.3 states that AI-powered tools can be programmed to alert human cybersecurity personnel when likely malicious activity is detected or to take specific corrective actions based on the type of activity, and EK 1.5.B.4 explains that this enables threat-detection and response teams to catch malicious activity and intervene quickly to prevent loss, harm, damage, and destruction. Option A defeats the purpose by delaying response. Option B describes a single destructive over-reaction, not the targeted, type-appropriate response the CED describes. Option D removes the alert, which is the tool's core value."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A security team feeds recent attack data into an AI-powered tool, and the tool produces a set of new rules for the organization's automated detection system. According to the CED, what should the team do with these AI-generated rules?",
+        "predictFirst": true,
+        "options": [
+          "Add every suggested rule to the live detection system instantly, with no human review",
+          "Have a knowledgeable detection engineer review the suggested rules before they are added",
+          "Discard the suggested rules, since AI is not permitted to write any detection rules",
+          "Forward the suggested rules to the firewall team instead of any detection engineer"
+        ],
+        "answer": "B",
+        "ek": "EK 1.5.A.3",
+        "rationale": "EK 1.5.A.3 states that AI-powered tools can suggest rules for automated detection systems, but those detection rules should always be reviewed by a knowledgeable detection engineer before being added to a system. Option A skips that required review. Option C invents a prohibition the CED does not state — AI suggesting the rules is exactly the use described. Option D sends the rules to the wrong expert; the CED names the detection engineer as the reviewer."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "Match each EK 1.5.A use of AI on defense to the knowledgeable human the CED says must review the recommendation before it is implemented.",
+        "options": [
+          "Code analysis is reviewed by a security technician; configuration review by a detection engineer",
+          "Configuration review is reviewed by a programmer; detection-rule suggestion by a security technician",
+          "All three uses are reviewed by the same general manager rather than any named expert",
+          "Configuration review by a security technician; code analysis by a programmer; detection rules by a detection engineer"
+        ],
+        "answer": "D",
+        "ek": "EK 1.5.A.1 + EK 1.5.A.2 + EK 1.5.A.3",
+        "rationale": "The CED names a specific reviewer for each use: EK 1.5.A.1 has a knowledgeable security technician check configuration recommendations, EK 1.5.A.2 has a knowledgeable programmer review code mitigations, and EK 1.5.A.3 has a knowledgeable detection engineer review suggested detection rules. Options A and B swap those experts. Option C replaces the named domain experts with a single general manager, which the CED does not describe."
+      },
+      {
+        "id": "Q8",
+        "kind": "recall",
+        "stem": "Per EK 1.5.A.1, which kinds of current security settings can AI-powered tools review to recommend more secure options?",
+        "options": [
+          "Firewall rules and access controls",
+          "Employee payroll and vacation records",
+          "Office lighting and thermostat schedules",
+          "Marketing budgets and sales forecasts"
+        ],
+        "answer": "A",
+        "ek": "EK 1.5.A.1",
+        "rationale": "EK 1.5.A.1 specifies that AI tools can review current security configurations, like firewall rules and access controls, and recommend more secure options. Options B, C, and D name business or facilities data that are not the security configurations the CED describes for this use."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "An AI-powered tool has been trained on a network's daily flood of digital events. As new events stream in, what does EK 1.5.B.2 say the tool is able to do quickly?",
+        "predictFirst": true,
+        "options": [
+          "Sort the events that are likely malicious activity from those that are harmless",
+          "Permanently erase every harmless event so that storage is never used",
+          "Replace the human response team so no analyst is ever needed again",
+          "Stop new events from being generated until an analyst logs in"
+        ],
+        "answer": "A",
+        "ek": "EK 1.5.B.2",
+        "rationale": "EK 1.5.B.2 states that AI-powered tools can be trained to quickly analyze digital events and sort the events that are likely malicious activity from those that are harmless. Option B invents a deletion behavior not in the CED. Option C contradicts EK 1.5.B.3 and B.4, where humans are alerted and intervene. Option D misstates the tool's role — it triages events, it does not stop them from occurring."
+      },
+      {
+        "id": "Q10",
+        "kind": "multi",
+        "stem": "Consider these claims about AI-powered threat detection and response. I. AI tools can be programmed to alert human cybersecurity personnel when likely malicious activity is detected. II. AI tools can take specific corrective actions based on the type of malicious activity detected. III. AI tools let response teams intervene quickly to prevent loss, harm, damage, and destruction. Which are supported by EK 1.5.B.3 and EK 1.5.B.4?",
+        "options": [
+          "I only",
+          "III only",
+          "I and II only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK 1.5.B.3 + EK 1.5.B.4",
+        "rationale": "EK 1.5.B.3 supports claims I and II — AI tools can be programmed to alert human cybersecurity personnel or to take specific corrective actions based on the type of malicious activity detected. EK 1.5.B.4 supports claim III — these tools enable threat-detection and response teams to catch malicious activity and intervene quickly to prevent loss, harm, damage, and destruction. All three are correct, so the answer is I, II, and III."
       }
     ]
   },
