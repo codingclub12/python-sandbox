@@ -366,10 +366,8 @@ function emitGuide() {
   if (data.quiz) {
     const a = auditQuiz(data.quiz);
     const seq = a.stats.keySequence.split('-').map((L, i) => (i + 1) + '-' + L).join('    ');
-    k.push(callout('Quiz answer key (auto-derived from the current quiz block)', [
+    k.push(callout('Quiz answer key (matches the student quiz exactly)', [
       p([run(seq, { bold: true, color: C.NAVY })]),
-      p([run(a.pass ? 'MCQ audit: PASS.' : 'MCQ audit: ' + a.hardFails.length + ' issue(s) \u2014 see quiz emitter output.',
-             { size: 18, italics: true, color: a.pass ? C.TEAL : C.AMBERTX })]),
     ], 'tip'));
   }
 
