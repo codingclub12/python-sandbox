@@ -6,9 +6,302 @@
     "unit": "Unit 5: Securing Applications and Data",
     "day": 1,
     "los": "LO 5.4.A, 5.4.B, 5.4.C",
-    "totalDays": 5,
+    "totalDays": 1,
     "author": "AP CS Exam Prep"
   },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 5 · Lesson 5.4 · Day 1 of 1",
+      "title": "Two Keys, No Secret Handshake",
+      "subtitle": "Asymmetric Encryption: how a public/private key pair lets two strangers exchange encrypted data without ever prearranging a shared secret — and how key length sets the security ceiling",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 5, Securing Applications and Data, and Lesson 5.4, Asymmetric Encryption — a single comprehensive deck for the whole topic. In Topic 5.3 you learned symmetric encryption, where one shared key both locks and unlocks, which means both parties must somehow agree on that key first. Today we solve that problem: asymmetric encryption uses a pair of keys, one public and one private, so two people who have never met can communicate securely without ever sharing a secret in advance. We'll learn which key to use when you send versus when you receive, why a longer key means a bigger keyspace and stronger security, and how to actually run RSA from the command line with OpenSSL. The end-of-lesson quiz and the teacher guide live on this file and span all three objectives, 5.4.A through C."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Determine the correct asymmetric key — public or private — to use when sending versus receiving encrypted data, and explain why (LO 5.4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain why key length impacts security using keyspace math: an n-bit key has a keyspace of 2^n and is cracked on average in 2^(n−1) guesses (LO 5.4.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply asymmetric algorithms like RSA and ECC to encrypt and decrypt data, including OpenSSL commands to generate a key pair and protect a file (LO 5.4.C)"
+        }
+      ],
+      "script": "Three objectives today, one per learning objective in the topic. First, 5.4.A: decide which key to use — when you send a secret you use the receiver's public key, and only their private key can open it. Second, 5.4.B: explain why key length controls security, using the keyspace formula two-to-the-n and the average-guesses idea, two-to-the-n-minus-one. Third, 5.4.C: apply real algorithms — RSA and elliptic curve cryptography — including the OpenSSL commands that generate a key pair and encrypt and decrypt a file. By the end you can pick the right key, do the keyspace math, and read an OpenSSL command and say exactly what it produces."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "You and a stranger on the other side of the world want to exchange a confidential message. You have never met, you share no passwords, and every channel between you — email, chat, the open internet — could be read by an eavesdropper. With symmetric encryption you'd both need the same secret key first, but you have no safe way to agree on one.",
+      "subprompt": "Write 3–5 sentences: how could you receive a secret message from this stranger if you are allowed to publish something for the whole world to see, as long as you keep one thing to yourself? What would you publish, and what would you hold back?",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own, no notes. Here's the puzzle: you and a total stranger want to trade a confidential message, but you've never met and share no secret, and anything you send can be read in transit. Symmetric encryption can't start — you'd both need the same key first, and you have no safe way to agree on one. So here's the hint: what if you're allowed to publish one thing for the whole world to see, as long as you keep a second thing completely to yourself? In three to five sentences, tell me what you'd publish and what you'd hold back. Hold your answers — by the end of class you'll know this is exactly how a public/private key pair works, EK 5.4.A.1."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have four sections that match today's lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "The Key Pair and Which Key to Use",
+          "description": "Why asymmetric encryption needs no prearranged secret, how a public/private key pair is generated as mathematical inverses, and which key encrypts versus decrypts when sending or receiving (EK 5.4.A.1–A.4)."
+        },
+        {
+          "title": "Key Length, Keyspace, and Security",
+          "description": "Why a longer key is stronger: an n-bit key has a keyspace of 2^n, is guessed on average in 2^(n−1) tries, costs more time, and can only be compared within the same algorithm (EK 5.4.B.1–B.5)."
+        },
+        {
+          "title": "Applying RSA, ECC, and OpenSSL",
+          "description": "Common asymmetric algorithms, where they're used, and the OpenSSL commands that generate a key pair and encrypt or decrypt a file (EK 5.4.C.1–C.3)."
+        },
+        {
+          "title": "Enrichment: Why Either Key Can Encrypt",
+          "description": "How 'mathematical inverses' lets either key lock and the partner unlock, and why encrypting with the private key is the seed of digital signatures (EK 5.4.A.2, EK 5.4.C.1).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 5.4 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Four sections today, the first three green and CB-required, the last one a blue enrichment. Section one is the key pair: no shared secret needed, two keys generated together as mathematical inverses, and the rule for which key to use when sending versus receiving. Section two is key length and security — the keyspace formula, the average-guesses idea, the speed trade-off, and the rule that you can only compare lengths within the same algorithm. Section three applies it: RSA, ECC, and the actual OpenSSL commands. Section four is enrichment on why either key can encrypt, which is the door to digital signatures. Keep your pencil moving; I collect Guided Notes at the end of class."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Key Pair: Public to Lock, Private to Unlock",
+      "kicker": "Asymmetric Encryption · Learning Objective 5.4.A",
+      "script": "Section one. Learning objective 5.4.A: determine the appropriate asymmetric key to use when sending or receiving encrypted data. Before we can pick a key, we need to understand what a key pair is and where it comes from. About twenty minutes here."
+    },
+    {
+      "type": "concept",
+      "heading": "No Shared Secret Required",
+      "bullets": [
+        "Asymmetric encryption lets users communicate securely without prearranging a shared secret key (EK 5.4.A.1) — solving symmetric encryption's key-exchange problem.",
+        "Each entity that will RECEIVE data first generates a key pair: two binary strings of equal length, created together by a mathematical process (EK 5.4.A.2).",
+        "One key is the public key, the other is the private key, and they are mathematical inverses — each key reverses its partner (EK 5.4.A.2).",
+        "Either key can encrypt, but only the OTHER key in the pair can then decrypt what its partner locked (EK 5.4.A.2)."
+      ],
+      "script": "Start with the breakthrough idea, EK 5.4.A.1: asymmetric encryption lets two parties communicate securely without prearranging a shared secret key. That's the whole point — it removes the key-exchange problem you'd have with symmetric encryption. How? EK 5.4.A.2: whoever is going to receive data first generates a key pair. The two keys are binary strings of equal length, made at the same time by one mathematical process, and they are mathematical inverses of each other — each reverses the other. One is named public, one is named private. And here's the rule that makes everything work: either key can encrypt, but only the other key in the pair can decrypt it. Lock with one, unlock with its partner. Write EK 5.4.A.1 and A.2."
+    },
+    {
+      "type": "two_column",
+      "heading": "Public Key vs. Private Key: Two Different Jobs",
+      "subheading": "EK 5.4.A.3 — the public key is published for everyone; the private key is the one secret you must protect.",
+      "left": {
+        "title": "Public Key (EK 5.4.A.3)",
+        "definition": "Published for anyone to view and use",
+        "ek": "EK 5.4.A.3",
+        "examples": [
+          "Shared openly — anyone can have a copy",
+          "Used by SENDERS to encrypt data to the owner",
+          "No harm if it spreads; that's its purpose",
+          "Can be posted on a website, in a directory, or in a certificate"
+        ]
+      },
+      "right": {
+        "title": "Private Key (EK 5.4.A.3)",
+        "definition": "Stored securely — the security of the whole algorithm rests on it",
+        "ek": "EK 5.4.A.3",
+        "examples": [
+          "Kept secret by the RECEIVER who generated the pair",
+          "Used to DECRYPT data that was encrypted with the public key",
+          "If exposed, shared, stolen, corrupted, or compromised — delete the pair and generate a new one",
+          "The algorithm's security depends entirely on this key staying secret"
+        ]
+      },
+      "footer": "AP TIP: The PUBLIC key is meant to be seen by everyone; the PRIVATE key is the single secret. EK 5.4.A.3 — if the private key is ever exposed or stolen, the only fix is to delete the whole pair and generate a new one. You never 'rotate' or 're-encrypt' a compromised private key.",
+      "script": "Two columns, two very different jobs, both from EK 5.4.A.3. On the left, the public key: it is published for anyone to view and use. You want it spread widely — senders use it to encrypt messages to you, so there's no harm in posting it on a website or inside a digital certificate. On the right, the private key: this is the one secret. The receiver who generated the pair keeps it secure and uses it to decrypt. The entire security of the algorithm rests on this key staying private. So if the private key is ever exposed, shared, stolen, corrupted, or compromised in any way, the only correct response is to delete the whole key pair and generate a brand-new one. You never publish it, never reuse it, never re-encrypt it. Write A.3 and note the public-versus-private contrast."
+    },
+    {
+      "type": "worked_table",
+      "eyebrow": "Worked Walkthrough · LO 5.4.A",
+      "heading": "Which Key Encrypts, Which Key Decrypts?",
+      "context": "Scenario: Mara wants to send Devon a confidential file. Devon is the RECEIVER, so Devon generated the key pair. Work left to right — the receiver's key pair drives every choice (EK 5.4.A.2–A.4).",
+      "columns": ["Step", "Whose key?", "Public or private?", "Action", "Why (EK)"],
+      "rows": [
+        ["1. Set up", "Devon (receiver)", "Generates the PAIR", "Devon creates a public + private key pair", "EK 5.4.A.2"],
+        ["2. Publish", "Devon's public key", "Public", "Devon publishes it for anyone to use", "EK 5.4.A.3"],
+        ["3. Encrypt", "Devon's public key", "Public", "Mara encrypts the file with Devon's PUBLIC key", "EK 5.4.A.4"],
+        ["4. Send", "—", "—", "Mara sends the ciphertext over any channel", "EK 5.4.A.1"],
+        ["5. Decrypt", "Devon's private key", "Private", "Only Devon, holding the PRIVATE key, can decrypt", "EK 5.4.A.4"]
+      ],
+      "highlightCol": 2,
+      "script": "Let's walk the whole send-and-receive cycle as a table, because this is exactly how the exam asks it. The scenario: Mara wants to send Devon a confidential file. Devon is the receiver, so Devon generated the key pair — step one, EK 5.4.A.2. Step two, Devon publishes the public key for anyone to use, EK 5.4.A.3. Step three is the one students miss: to encrypt, Mara uses Devon's public key — the receiver's public key, not her own anything — EK 5.4.A.4. Step four, she sends the ciphertext over any channel, safe even if it's intercepted, EK 5.4.A.1. Step five, only Devon, holding the matching private key, can decrypt and read it. Look down the public-or-private column: encrypt with the receiver's public key, decrypt with the receiver's private key. Memorize that one sentence."
+    },
+    {
+      "type": "misconception",
+      "heading": "Which Key Do I Encrypt With?",
+      "misconception": "To send someone a confidential message, you encrypt it with your OWN private key (or with a shared secret you agreed on first).",
+      "correction": "EK 5.4.A.4 — to send information securely, the sender uses the RECEIVER'S PUBLIC key to encrypt; only the receiver, who holds the matching private key, can decrypt and read it. You never need a prearranged shared secret (EK 5.4.A.1), and your own private key stays with you for decrypting messages sent to you.",
+      "script": "Here's the single most common mistake on this topic, so let's kill it now. Students think: to send a secret, I encrypt with my own private key — or they fall back to a shared secret like symmetric encryption. Both are wrong. EK 5.4.A.4 says to send securely you use the receiver's public key to encrypt, and only the receiver's private key can decrypt. Your own private key never touches a message you're sending to someone else — it's only for decrypting messages people send to you. And you never need a prearranged shared secret; that's the whole advantage from A.1. Say it with me: encrypt with the receiver's public key. Write the correction word for word."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Key Length, Keyspace, and Security",
+      "kicker": "Asymmetric Encryption · Learning Objective 5.4.B",
+      "script": "Section two. Learning objective 5.4.B: explain why the length of a key impacts the security of encrypted data. Now we connect the number of bits in a key to how hard it is to break. This is the math part — keyspace, average guesses, and one comparison rule. About fifteen minutes."
+    },
+    {
+      "type": "concept",
+      "heading": "More Bits, Bigger Keyspace, Harder to Guess",
+      "bullets": [
+        "Longer keys produce larger keyspaces. For binary keys, an n-bit key has a keyspace of 2^n possible keys (EK 5.4.B.1).",
+        "Brute-forcing an n-bit key by random guessing finds it on average in 2^n / 2 — that is, 2^(n−1) — guesses (EK 5.4.B.2).",
+        "Each added bit DOUBLES the keyspace: a 4-bit key has 2^4 = 16 keys, but a 5-bit key has 2^5 = 32, and a 2048-bit key has an astronomically large 2^2048.",
+        "Although longer keys are more secure, they require more time to encrypt and decrypt — security is a trade-off against speed (EK 5.4.B.3)."
+      ],
+      "script": "Why does key length matter? EK 5.4.B.1: longer keys mean larger keyspaces, and for binary keys an n-bit key has a keyspace of two-to-the-n possible keys. EK 5.4.B.2: if an adversary just randomly guesses, on average they'll hit the right key in two-to-the-n divided by two — which we can write as two-to-the-n-minus-one — guesses, because on average you find it halfway through. The powerful part is that every single added bit doubles the keyspace: four bits is sixteen keys, five bits is thirty-two, and by the time you reach two thousand forty-eight bits the number is astronomically large. But EK 5.4.B.3 reminds us there's a cost: longer keys are more secure, yet they take more time to encrypt and decrypt. It's a trade-off, not a free upgrade. Write the formula two-to-the-n and the average two-to-the-n-minus-one."
+    },
+    {
+      "type": "concept",
+      "heading": "Recommendations Rise, and Compare Only Within an Algorithm",
+      "bullets": [
+        "Processing power keeps improving, letting software guess keys faster, so recommended key lengths are periodically increased for both symmetric and asymmetric algorithms (EK 5.4.B.4).",
+        "A key length that was safe years ago may be too short today — security is a moving target.",
+        "Key-length comparisons are valid ONLY within the same algorithm (EK 5.4.B.5).",
+        "Valid: AES 256-bit > AES 128-bit, and RSA 4096-bit > RSA 2048-bit. Invalid: comparing an RSA key directly to an AES key by bit count."
+      ],
+      "script": "Two more ideas finish 5.4.B. First, EK 5.4.B.4: computers keep getting faster, which means software can guess keys faster every year. So the recommended key lengths for both symmetric and asymmetric algorithms are periodically raised. A length that was perfectly safe a decade ago can be too short now — security is a moving target. Second, and this is a favorite exam trap, EK 5.4.B.5: you can only compare key lengths within the same algorithm. It's true that AES 256 beats AES 128, and RSA 4096 beats RSA 2048. But you cannot line up an RSA key against an AES key by bit count and say which is stronger — 2048 versus 256 tells you nothing across different algorithms. Same algorithm only. Write both EKs."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 5.4.A–B)",
+      "terms": [
+        {
+          "term": "Asymmetric encryption",
+          "definition": "Encryption that lets users communicate securely without prearranging a shared secret key, using a public/private key pair instead (EK 5.4.A.1)."
+        },
+        {
+          "term": "Key pair",
+          "definition": "Two binary strings of equal length generated together by a mathematical process; one is public and one is private, and they are mathematical inverses of each other (EK 5.4.A.2)."
+        },
+        {
+          "term": "Public key",
+          "definition": "The key in a pair that is published for anyone to view and use; senders use it to encrypt data to the owner (EK 5.4.A.3)."
+        },
+        {
+          "term": "Private key",
+          "definition": "The key in a pair that the receiver stores securely and uses to decrypt; the algorithm's security rests on keeping it secret (EK 5.4.A.3)."
+        },
+        {
+          "term": "Keyspace",
+          "definition": "The total number of possible keys; for a binary n-bit key the keyspace is 2^n (EK 5.4.B.1)."
+        },
+        {
+          "term": "Average guesses",
+          "definition": "Randomly guessing an n-bit key finds it on average in 2^n / 2, or 2^(n−1), attempts (EK 5.4.B.2)."
+        }
+      ],
+      "script": "Six terms covering 5.4.A and B. Asymmetric encryption: secure communication with no prearranged shared secret. Key pair: two equal-length binary strings made together as mathematical inverses. Public key: published for anyone, used by senders to encrypt to you. Private key: kept secret by the receiver, used to decrypt, and the whole algorithm's security rests on it. Keyspace: the count of possible keys, two-to-the-n for an n-bit binary key. And average guesses: two-to-the-n-minus-one, because random guessing finds the key halfway through on average. Get all six into your notes with their EK numbers — the exam tests these definitions directly."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 5.4.A–B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Priya wants to send Theo an encrypted file using asymmetric encryption. Whose key does she use, is it the public or the private key, and who can decrypt the result? Justify each choice with an EK number.",
+        "A team upgrades from a 2048-bit RSA key to a 4096-bit RSA key. What happens to the keyspace, to the average number of guesses needed to brute-force it, and to encryption/decryption time? Then explain why you CANNOT conclude that this 4096-bit RSA key is stronger than an AES 256-bit key. Cite EKs."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: Priya is sending Theo an encrypted file. Whose key, public or private, and who decrypts? You should say she uses Theo's public key to encrypt, EK 5.4.A.4, and only Theo's private key decrypts. Question two: upgrading from RSA 2048 to RSA 4096 — what happens to the keyspace, the average guesses, and the speed? Keyspace and average-guess difficulty grow enormously, EK 5.4.B.1 and B.2, but encryption and decryption get slower, EK 5.4.B.3. Then explain why you still can't rank that RSA 4096 key against an AES 256 key — because comparison is only valid within the same algorithm, EK 5.4.B.5. Cite every EK. Go."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Applying It: RSA, ECC, and OpenSSL",
+      "kicker": "Asymmetric Encryption · Learning Objective 5.4.C",
+      "script": "Section three. Learning objective 5.4.C: apply asymmetric encryption algorithms to encrypt and decrypt data. We move from theory to the actual tools and commands you'd run. About fifteen minutes, and then a stop-and-think to close."
+    },
+    {
+      "type": "concept",
+      "heading": "Real Algorithms and Where They're Used",
+      "bullets": [
+        "Common asymmetric algorithms include RSA and elliptic curve cryptography (ECC) (EK 5.4.C.1).",
+        "Asymmetric algorithms power many applications, including digital signatures and digital certificates (EK 5.4.C.1).",
+        "Like symmetric encryption, asymmetric work can be done with the command line (e.g., OpenSSL), specialized software (e.g., the open-source RSA Encryption Tool), or web-based tools (EK 5.4.C.2).",
+        "Watch out: AES and DES are symmetric, MD5 and SHA are hash functions, and Base64/ASCII are encodings — none of these are asymmetric algorithms."
+      ],
+      "script": "Now the real-world algorithms, EK 5.4.C.1: the two you must know are RSA and elliptic curve cryptography, ECC. These aren't just for sending secret files — asymmetric algorithms underpin digital signatures and digital certificates, which is how your browser trusts a website. EK 5.4.C.2: just like symmetric encryption, you can do this work three ways — the command line such as OpenSSL, specialized software like the open-source RSA Encryption Tool, or web-based tools. One exam warning: don't confuse the categories. AES and DES are symmetric, MD5 and SHA are hashes, Base64 and ASCII are just encodings. The asymmetric answers are RSA and ECC. Write C.1 and C.2."
+    },
+    {
+      "type": "worked_table",
+      "eyebrow": "Worked Walkthrough · LO 5.4.C",
+      "heading": "The OpenSSL Sequence, Command by Command",
+      "context": "Each OpenSSL command and exactly what it produces. Read it as a pipeline: generate the pair, extract the public key, encrypt, then decrypt (EK 5.4.C.3).",
+      "columns": ["Command", "What it does", "Output"],
+      "rows": [
+        ["openssl genrsa -out rsa.pem 2048", "Generates a 2048-bit RSA key pair", "rsa.pem (the key pair)"],
+        ["openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem", "Extracts the public key from the pair", "public.pem (public key)"],
+        ["openssl pkeyutl -encrypt -pubin -inkey public.pem -in test -out test.enc", "Encrypts a file using the public key", "test.enc (ciphertext)"],
+        ["openssl pkeyutl -decrypt -inkey rsa.pem -in test.enc -out test", "Decrypts the ciphertext using the private key", "test (recovered plaintext)"]
+      ],
+      "highlightCol": 2,
+      "script": "Here is the full OpenSSL sequence the CED gives, command by command, EK 5.4.C.3. Command one, genrsa with 2048, generates a 2048-bit RSA key pair into rsa.pem — that file holds the whole pair. Command two, rsa with pubout, extracts just the public key into public.pem, the part you'd publish. Command three, pkeyutl encrypt with pubin, uses that public key to encrypt a file called test into ciphertext test.enc. Command four, pkeyutl decrypt, uses the original rsa.pem, which contains the private key, to decrypt test.enc back into the plaintext test. Notice the pattern matches everything from section one: encrypt with the public key, decrypt with the private key. Read the output column top to bottom — pair, public key, ciphertext, recovered plaintext."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Why Either Key Can Encrypt",
+      "subheading": "Not a new EK — it shows why 'mathematical inverses' (EK 5.4.A.2) makes either key a valid lock, and where that leads.",
+      "track": "enrichment",
+      "left": {
+        "title": "The Inverse Property",
+        "definition": "Lock with one, unlock with the other — in BOTH directions",
+        "ek": "Enrichment",
+        "examples": [
+          "Encrypt with the public key → only the private key decrypts (confidentiality, the normal case)",
+          "Encrypt with the private key → only the public key decrypts (the reverse direction)",
+          "Both work because the keys are mathematical inverses — each reverses its partner (EK 5.4.A.2)",
+          "Either key can encrypt; only the OTHER key can decrypt"
+        ]
+      },
+      "right": {
+        "title": "Why the Reverse Direction Matters",
+        "definition": "Private-key encryption is the seed of digital signatures",
+        "ek": "Enrichment",
+        "examples": [
+          "If only YOUR private key could have locked it, then unlocking with your public key proves YOU sent it",
+          "That is the core idea behind digital signatures (EK 5.4.C.1)",
+          "Confidentiality uses the public key to lock; authenticity uses the private key to lock",
+          "Same key pair, two different security goals"
+        ]
+      },
+      "footer": "TAKEAWAY: EK 5.4.A.2 says EITHER key can encrypt and the partner decrypts. Encrypting with the public key gives confidentiality; encrypting with the private key gives authenticity — the basis of the digital signatures named in EK 5.4.C.1. On the exam, the default 'send a secret' answer is still: encrypt with the receiver's PUBLIC key.",
+      "script": "Quick enrichment that ties the topic together. Back in section one we said either key can encrypt but only the partner decrypts — let's see why that matters. Encrypt with the public key and only the private key opens it: that's confidentiality, the normal send-a-secret case. But you can run it the other way: encrypt with your private key, and anyone with your public key can open it. That sounds useless for secrecy — everyone has your public key — but think about what it proves. If only your private key could have locked it, then the fact that your public key unlocks it proves you sent it. That's the core idea behind digital signatures, named in EK 5.4.C.1. Same key pair, two goals: public-key-to-lock gives confidentiality, private-key-to-lock gives authenticity. Just remember, on the exam the default 'send a secret' answer is always encrypt with the receiver's public key."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Apply the Tools",
+      "subheading": "Both questions map to LO 5.4.C. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Name the two common asymmetric algorithms from the CED and give two applications they're used in. Then explain why AES and SHA would both be wrong answers if someone asked you to name an asymmetric algorithm. Cite EKs.",
+        "A classmate runs 'openssl genrsa -out rsa.pem 2048' and then 'openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem'. In your own words, what does each command produce, and which of the two output files would you safely publish versus keep secret? Cite the EK."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Last stop-and-think, six minutes, independent. Question one: name the two asymmetric algorithms — RSA and ECC, EK 5.4.C.1 — and two applications, digital signatures and digital certificates. Then explain why AES and SHA are wrong: AES is symmetric and SHA is a hash, neither is asymmetric. Question two: the two OpenSSL commands. The first generates a 2048-bit RSA key pair into rsa.pem; the second extracts the public key into public.pem, EK 5.4.C.3. Then say which file you'd publish — public.pem — and which you'd guard — rsa.pem, since it contains the private key, tying back to EK 5.4.A.3. Full sentences, cite the EKs. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Asymmetric Encryption in One Page",
+      "points": [
+        "Asymmetric encryption lets two parties communicate securely with NO prearranged shared secret, using a public/private key pair (EK 5.4.A.1).",
+        "The pair is two equal-length binary strings, mathematical inverses; either key encrypts, only the partner decrypts (EK 5.4.A.2).",
+        "Public key is published for all; private key is kept secret — if it's ever compromised, delete the pair and generate a new one (EK 5.4.A.3).",
+        "To send a secret: encrypt with the RECEIVER'S PUBLIC key; only the receiver's private key can decrypt (EK 5.4.A.4).",
+        "An n-bit key has a keyspace of 2^n and is guessed on average in 2^(n−1) tries; longer = more secure but slower, and compare lengths only within the same algorithm (EK 5.4.B.1–B.5).",
+        "RSA and ECC are the common algorithms, used in digital signatures and certificates; run them via OpenSSL, software, or web tools (EK 5.4.C.1–C.3)."
+      ],
+      "next": "Topic 5.5 builds on this key pair to show how digital signatures and certificates use asymmetric encryption to prove identity and integrity — exactly the 'encrypt with the private key' idea from today's enrichment.",
+      "script": "One page to carry out of here. Asymmetric encryption needs no prearranged shared secret — that's the breakthrough, A.1. The key pair is two equal-length inverses; either locks, only the partner unlocks, A.2. The public key is published, the private key is guarded, and a compromised private key means delete the pair and start over, A.3. The rule you must never miss: to send a secret, encrypt with the receiver's public key, and only their private key decrypts, A.4. On security: keyspace is two-to-the-n, average guesses two-to-the-n-minus-one, longer keys are stronger but slower, and you compare lengths only within one algorithm, all of 5.4.B. And the tools: RSA and ECC, used in signatures and certificates, run through OpenSSL, all of 5.4.C. Review your Guided Notes — be able to pick the right key and do the keyspace math cold."
+    }
+  ],
   "guide": {
     "title": "Asymmetric Encryption — Teacher Guide",
     "subtitle": "Unit 5: Securing Applications and Data   •   LO 5.4.A–5.4.C",

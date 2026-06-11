@@ -6,9 +6,387 @@
     "unit": "Unit 4: Securing Devices",
     "day": 1,
     "los": "LO 4.3.A, 4.3.B, 4.3.C, 4.3.D",
-    "totalDays": 5,
+    "totalDays": 1,
     "author": "AP CS Exam Prep"
   },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 4 · Lesson 4.3 · Day 1 of 1",
+      "title": "Four Locks on One Machine",
+      "subtitle": "Protecting Devices: the managerial policies, anti-malware scanning, software updates, and host-based firewall rules that keep a single device secure even when the network around it is compromised",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 4, Securing Devices, and Lesson 4.3, Protecting Devices — a single comprehensive deck for the whole topic. Today we cover four learning objectives, A through D, that all answer one question: how do you protect a single machine? First the managerial controls an organization writes down — acceptable use, password, and software installation policies. Then anti-malware software that scans files against a database of signatures. Then why keeping the operating system and software updated closes known holes. And finally how a host-based firewall allows or denies traffic at one device using ordered rules. Think of it as four locks on one machine — defense in depth at the level of a single device."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the three managerial controls for device security — acceptable use, password, and software installation policies — and what each one governs (LO 4.3.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how anti-malware software uses a database of signatures to scan, quarantine, and remove malware (LO 4.3.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain why updating an operating system and software to the latest version (applying patches) prevents adversaries from exploiting known vulnerabilities (LO 4.3.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Configure a host-based firewall: order ACL rules, allow or deny by port, IP, service, protocol, or application, and block unneeded traffic (LO 4.3.D)"
+        }
+      ],
+      "script": "Four objectives today, one per learning objective. Objective 4.3.A: name and tell apart the three managerial controls — acceptable use, password, and software installation policies. Objective 4.3.B: explain how anti-malware works — a database of signatures, periodic scans, and quarantine-and-remove on a match. Objective 4.3.C: explain why patching matters — updating to the latest version blocks adversaries from exploiting a known vulnerability. And objective 4.3.D: configure a host-based firewall — order the rules, allow or deny by port, IP, service, protocol, or application, and block the ports a device doesn't need. By the end of class you can read any scenario and name which of these four controls is in play."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Think about the laptop or Chromebook your school issued you. Without looking anything up, list every rule you can think of that governs how you're allowed to use it — what sites are blocked, whether you can install your own apps, what happens with your password, whether updates are forced on you.",
+      "subprompt": "Write 3–5 sentences. For each rule you list, say whether you think the device enforces it automatically with software, or whether it's a written rule a person decided and you're expected to follow.",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own, no notes. Picture your school-issued device. List every rule that governs how you can use it — blocked websites, whether you can install apps, what your password has to look like, whether updates get pushed to you. Then, for each rule, decide: is that the computer enforcing something automatically, or is it a written policy a person wrote that you're expected to follow? Hold your answers. That distinction — written policy versus automatic software — is exactly where today's first objective begins, because the College Board calls those written rules managerial controls."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Guided Notes have four sections that match today’s four objectives. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Managerial Controls",
+          "description": "The three written policies that govern device use — acceptable use, password, and software installation policies — and the clauses each one can include (EK 4.3.A.1–A.3)."
+        },
+        {
+          "title": "Anti-Malware Software",
+          "description": "Signatures as the detectable indicators in malware, the signature database, periodic scanning, and quarantine-and-remove on a match (EK 4.3.B.1–B.2)."
+        },
+        {
+          "title": "Updates and Patching",
+          "description": "What a patch is, and why updating the OS and software to the latest version prevents adversaries from exploiting a known vulnerability (EK 4.3.C.1–C.2)."
+        },
+        {
+          "title": "Host-Based Firewalls",
+          "description": "Allowing or denying traffic at one device, ordered ACL rules (first match wins), blocking unneeded outbound traffic, and the bases a rule can use (EK 4.3.D.1–D.4)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 4.3 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Four sections today, all green and CB-required, one per objective. Section one is managerial controls — the three written policies. Section two is anti-malware — signatures, the database, scanning, and quarantine. Section three is updates and patching — what a patch is and why staying current blocks known vulnerabilities. Section four is host-based firewalls — ordered rules, first match wins, and blocking the traffic a device doesn't need. Keep your pencil moving; I collect Guided Notes at the end of class."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Managerial Controls: Rules People Write Down",
+      "kicker": "Protecting Devices · Learning Objective 4.3.A",
+      "script": "Section one. Learning objective 4.3.A, identify managerial controls related to device security. The key idea here is that a security control doesn't have to be software — it can be a written policy that people are expected to follow. Three of them: acceptable use, password, and software installation. About twenty minutes here."
+    },
+    {
+      "type": "concept",
+      "heading": "A Managerial Control Is a Written Policy, Not Software",
+      "tag": "CB",
+      "bullets": [
+        "Managerial controls are rules, policies, and procedures — not settings the computer enforces by itself",
+        "For device security the CED names three: an acceptable use policy, a password policy, and a software installation policy (EK 4.3.A.1–A.3)",
+        "Each one describes what is permissible, prohibited, or required for users on devices the organization owns",
+        "They work because users are expected to follow them — they govern people's behavior, which other controls can then help enforce"
+      ],
+      "script": "Before the three specific policies, the big idea: a managerial control is a written rule, policy, or procedure. It is not a piece of software the computer runs on its own. For device security the CED names exactly three: an acceptable use policy, a password policy, and a software installation policy. Each describes what users may do, may not do, or must do on devices the organization owns. They govern people's behavior — and yes, other controls like a firewall or anti-malware can help enforce them, but the policy itself is the managerial control. Write that distinction down, because it's a classic exam trap."
+    },
+    {
+      "type": "vocab",
+      "heading": "The Three Managerial Controls (LO 4.3.A)",
+      "terms": [
+        {
+          "term": "Acceptable use policy",
+          "definition": "Describes the range of activities permissible, prohibited, or required for users on organization-owned devices — e.g., blocking certain websites (social media, gaming), requiring software to be kept updated, allowing peripheral devices, or prohibiting external drives or media (EK 4.3.A.1)."
+        },
+        {
+          "term": "Password policy",
+          "definition": "Details the requirements for user passwords — e.g., a minimum/maximum length, a minimum/maximum time before a change, a prohibition on password reuse, construction rules like no dictionary words, and a suggestion to use a secure password manager instead of writing passwords down (EK 4.3.A.2)."
+        },
+        {
+          "term": "Software installation policy",
+          "definition": "Describes what software (if any) users may install, plus a process to request specialized software for their role — e.g., prohibiting users from installing software, a request process, and a list of approved software (EK 4.3.A.3)."
+        }
+      ],
+      "script": "Three terms, one per policy, each with its EK. The acceptable use policy, EK 4.3.A.1, describes what activities are permissible, prohibited, or required — blocking social media or gaming sites, requiring updates, allowing peripherals, prohibiting external drives. The password policy, EK 4.3.A.2, details password requirements — length, how long before a change, no reuse, construction rules like no dictionary words, and using a password manager instead of writing them down. The software installation policy, EK 4.3.A.3, describes what users may install and how to request specialized software — often prohibiting installs, providing a request process, and keeping a list of approved software. Get all three into your notes with their EK numbers; the exam gives you a clause and asks which policy it belongs to."
+    },
+    {
+      "type": "worked_table",
+      "eyebrow": "Worked Walkthrough",
+      "heading": "Sort the Clause to the Policy",
+      "context": "Each clause below comes straight from EK 4.3.A.1–A.3. Practice matching a real clause to the policy that owns it — this is exactly how the exam asks 4.3.A.",
+      "columns": ["Example clause", "Policy", "EK"],
+      "rows": [
+        ["“Social media and gaming websites are blocked.”", "Acceptable use", "EK 4.3.A.1"],
+        ["“Users must keep their software updated.”", "Acceptable use", "EK 4.3.A.1"],
+        ["“Do not connect external drives or USB media.”", "Acceptable use", "EK 4.3.A.1"],
+        ["“Passwords must be at least 12 characters, no reuse.”", "Password", "EK 4.3.A.2"],
+        ["“Use the company password manager; don’t write passwords down.”", "Password", "EK 4.3.A.2"],
+        ["“Users may not install software; request it from IT.”", "Software installation", "EK 4.3.A.3"]
+      ],
+      "note": "Watch the overlap trap: “requiring users to keep software updated” lives in the ACCEPTABLE USE policy (EK 4.3.A.1), not the software installation policy.",
+      "script": "Let's work the matching skill directly. Read each clause and name the policy. Blocking social media or gaming, requiring updates, and prohibiting external drives are all acceptable use — EK 4.3.A.1. Minimum length with no reuse, and using a password manager instead of writing passwords down, are password policy — EK 4.3.A.2. Prohibiting installs and routing requests through IT is the software installation policy — EK 4.3.A.3. Watch the trap at the bottom: the requirement to keep software updated lives in the acceptable use policy, not the software installation policy. The exam loves that one."
+    },
+    {
+      "type": "misconception",
+      "heading": "Is a Policy a Security Control?",
+      "misconception": "Acceptable use, password, and software installation policies are settings the computer enforces on its own, so they don't really count as security controls.",
+      "whyItHappens": "Students associate “security” with software — firewalls, antivirus, encryption — so a written document doesn't feel like protection.",
+      "correction": "These are managerial controls: written policies that describe what activities, passwords, and software installs are permissible, prohibited, or required for users on organization-owned devices.",
+      "example": "EK 4.3.A.1–A.3 — a password policy that forbids reuse and a software installation policy that bans self-installs are controls because they govern user behavior, even though no single program “is” the policy.",
+      "script": "Common misconception to clear up before we move on. Students think a policy only counts if the computer enforces it automatically — that real security means software. Not so. The College Board explicitly classifies these written policies as managerial controls. EK 4.3.A.1 through A.3 describe what activities, passwords, and software installs are permissible, prohibited, or required for users on organization-owned devices. A password policy that forbids reuse, or an installation policy that bans self-installs, is a security control because it governs how people behave — even though no single program is the policy. Don't let a question talk you out of calling a written policy a control."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Anti-Malware: Scanning by Signature",
+      "kicker": "Protecting Devices · Learning Objective 4.3.B",
+      "script": "Section two. Learning objective 4.3.B, explain how anti-malware software makes a device more secure. The whole mechanism rests on one word — signatures — and a simple loop: scan, match, quarantine, remove. About fifteen minutes."
+    },
+    {
+      "type": "concept",
+      "heading": "How Anti-Malware Actually Works",
+      "tag": "CB",
+      "bullets": [
+        "Anti-malware (sometimes called antivirus) software has tools to quarantine and remove malware that can corrupt, spy on, or destroy a system (EK 4.3.B.1)",
+        "Malware contains detectable indicators called signatures (EK 4.3.B.1)",
+        "The software keeps a database of malware signatures (EK 4.3.B.2)",
+        "It periodically scans the files on a device and checks each against the signatures in its database (EK 4.3.B.2)",
+        "If a file matches a signature, the software quarantines and removes the malicious file (EK 4.3.B.2)"
+      ],
+      "script": "Here is the whole anti-malware mechanism. Start with the term: malware contains detectable indicators, and those indicators are called signatures — EK 4.3.B.1. Anti-malware software, sometimes called antivirus, keeps a database of those signatures. Then it runs a loop, EK 4.3.B.2: periodically scan the files on the device, compare each file against the database, and if a file matches a known signature, quarantine it and remove it. Notice what malware does versus what anti-malware does — malware is the thing that corrupts, spies on, or destroys; anti-malware is the thing that finds it by signature and removes it. Keep those straight."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 4.3.B)",
+      "terms": [
+        {
+          "term": "Anti-malware software",
+          "definition": "Software (sometimes called antivirus) with tools to quarantine and remove malware that can corrupt, spy on, or destroy a system (EK 4.3.B.1)."
+        },
+        {
+          "term": "Signature",
+          "definition": "A detectable indicator within malware that makes it identifiable; anti-malware matches files against a database of these (EK 4.3.B.1)."
+        },
+        {
+          "term": "Signature database",
+          "definition": "The collection of malware signatures anti-malware periodically scans files against to look for a match (EK 4.3.B.2)."
+        },
+        {
+          "term": "Quarantine",
+          "definition": "Isolating a file that matches a signature so it cannot harm the system, after which the software removes the malicious file (EK 4.3.B.2)."
+        }
+      ],
+      "script": "Four terms for anti-malware. Anti-malware software, EK 4.3.B.1 — the tool that quarantines and removes malware. Signature, EK 4.3.B.1 — the detectable indicator inside malware that makes it identifiable. Signature database, EK 4.3.B.2 — the collection of those signatures the software scans files against. And quarantine, EK 4.3.B.2 — isolating a matching file before removing it. Notice these terms connect: the database is full of signatures, scanning looks for a signature match, and a match triggers quarantine and removal. Write all four."
+    },
+    {
+      "type": "misconception",
+      "heading": "What Does Anti-Malware Actually Do?",
+      "misconception": "Antivirus software protects a device only by stopping you from visiting dangerous websites.",
+      "whyItHappens": "Students conflate anti-malware with web filtering or a firewall because both are “security software” they see pop up warnings.",
+      "correction": "Anti-malware keeps a database of malware signatures, periodically scans the files on a device for matches, and quarantines and removes any matching malicious files.",
+      "example": "EK 4.3.B.1–B.2 — even malware already saved on disk gets caught: the periodic scan compares each file to the signature database and removes any match, regardless of how it arrived.",
+      "script": "Misconception to fix: students think antivirus just blocks bad websites. That's web filtering, a different thing. Anti-malware, per EK 4.3.B.1 and B.2, keeps a database of signatures, periodically scans the files already on the device, and quarantines and removes anything that matches. The point of the file scan is that it catches malware that's already on disk — it doesn't matter how the file got there, the signature match is what flags it. So if a question says anti-malware ‘only stops you from visiting dangerous sites,’ that's wrong."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Updates and Patching: Closing Known Holes",
+      "kicker": "Protecting Devices · Learning Objective 4.3.C",
+      "script": "Section three. Learning objective 4.3.C, explain why keeping the operating system and software updated makes a device more secure. Short and sharp: a patch fixes a found vulnerability, and staying current keeps adversaries from walking through a hole everyone already knows about. About fifteen minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "From Vulnerability to Patch to Protection",
+      "subheading": "EK 4.3.C.1 and C.2 — when a flaw is found, the vendor ships a fix; applying it removes the opening adversaries would use.",
+      "left": {
+        "title": "What a Patch Is (EK 4.3.C.1)",
+        "definition": "A small update that fixes a found vulnerability",
+        "ek": "EK 4.3.C.1",
+        "examples": [
+          "When a vulnerability in an OS or software is found, the vendor fixes it and sends an update",
+          "A small update is called a patch",
+          "The vendor or organization that maintains the software is the one that issues it",
+          "The patch targets the specific flaw that was discovered"
+        ]
+      },
+      "right": {
+        "title": "Why Updating Protects (EK 4.3.C.2)",
+        "definition": "Updating closes a known vulnerability",
+        "ek": "EK 4.3.C.2",
+        "examples": [
+          "Updating the OS and software to the most recent version applies those fixes",
+          "This prevents adversaries from taking advantage of a known vulnerability",
+          "Once a vulnerability is public, unpatched devices are easy, well-documented targets",
+          "Updating is the control; the patch is the fix it delivers"
+        ]
+      },
+      "footer": "AP TIP: EK 4.3.C.1 defines the WHAT (a patch is a small update that fixes a found vulnerability) and EK 4.3.C.2 the WHY (updating to the latest version prevents adversaries from exploiting a KNOWN vulnerability). The word ‘known’ is the key — patches close holes that are already public.",
+      "script": "Two columns tie patching together. On the left, EK 4.3.C.1: when a vulnerability is found, the vendor or maintainer fixes it and sends an update, and a small update is called a patch. On the right, EK 4.3.C.2: updating your operating system and software to the most recent version applies those fixes and prevents adversaries from taking advantage of a known vulnerability. Underline the word known. Once a flaw is public, every unpatched device is a documented, easy target — patching is what closes that door. The patch is the fix; updating is the control that delivers it."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 4.3.C)",
+      "terms": [
+        {
+          "term": "Patch",
+          "definition": "A small update issued by the vendor or maintainer to fix a vulnerability that has been found in an operating system or software (EK 4.3.C.1)."
+        },
+        {
+          "term": "Update (to latest version)",
+          "definition": "Applying the most recent version of an OS and software; doing so prevents adversaries from taking advantage of a known vulnerability (EK 4.3.C.2)."
+        },
+        {
+          "term": "Known vulnerability",
+          "definition": "A flaw that has been discovered and disclosed; until it is patched, adversaries can take advantage of it on unpatched devices (EK 4.3.C.1–C.2)."
+        }
+      ],
+      "script": "Three terms for patching. A patch, EK 4.3.C.1, is the small update that fixes a found vulnerability. Updating to the latest version, EK 4.3.C.2, is applying those fixes so adversaries can't exploit a known vulnerability. And a known vulnerability is a flaw that's been discovered and disclosed — dangerous precisely because it's public, until you patch it. Write all three with their EKs."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Host-Based Firewalls: Rules at One Device",
+      "kicker": "Protecting Devices · Learning Objective 4.3.D",
+      "script": "Section four. Learning objective 4.3.D, configure a host-based firewall. This is the hands-on one: a firewall that runs on a single device, follows an ordered list of rules, and blocks the traffic that device doesn't need — including outbound traffic. About twenty minutes."
+    },
+    {
+      "type": "concept",
+      "heading": "What a Host-Based Firewall Does",
+      "tag": "CB",
+      "bullets": [
+        "A host-based firewall allows or denies traffic into or out of a single device (EK 4.3.D.1)",
+        "It adds an extra layer of security even if the host is connected to a compromised network (EK 4.3.D.1)",
+        "It is software running on the device that follows a set of rules — an ACL — like a network-based firewall (EK 4.3.D.2)",
+        "Rules are implemented in order, applying the first rule that matches (EK 4.3.D.2)",
+        "It can also block specified outbound traffic, and should always block ports or services a device doesn't need (EK 4.3.D.3)"
+      ],
+      "script": "Here's what a host-based firewall is and does. EK 4.3.D.1: it allows or denies traffic into or out of a single device, giving you an extra layer of protection even when the network around it is compromised — that's the whole point of running one on the host. EK 4.3.D.2: it's software on the device that follows an ordered set of rules, an ACL, just like a network firewall, and the rules apply in order — the first rule that matches wins. EK 4.3.D.3: it can block outbound traffic too, and it should always block ports or services the device doesn't need. Write all of that down; the next slides drill the ordering and the rule criteria."
+    },
+    {
+      "type": "worked_table",
+      "eyebrow": "Worked Walkthrough",
+      "heading": "Reading an Ordered ACL: First Match Wins",
+      "context": "Rules apply top to bottom; the FIRST rule that matches a packet decides the action (EK 4.3.D.2). Trace each packet down the list until it hits a match.",
+      "columns": ["#", "Rule", "Packet", "Result"],
+      "rows": [
+        ["1", "ALLOW inbound TCP 443 from any", "Inbound HTTPS (443)", "ALLOW (rule 1)"],
+        ["2", "DENY outbound TCP 21 (FTP) to any", "Outbound FTP (21)", "DENY (rule 2)"],
+        ["3", "ALLOW outbound TCP 443 to any", "Outbound HTTPS (443)", "ALLOW (rule 3)"],
+        ["4", "DENY all (default)", "Inbound TCP 23 (Telnet)", "DENY (rule 4)"]
+      ],
+      "note": "Order matters: if a broad ALLOW sat above a specific DENY, the DENY would never fire — the first match short-circuits the rest (EK 4.3.D.2).",
+      "script": "Let's read an ACL the way the firewall does — top to bottom, first match wins. An inbound HTTPS packet on 443 hits rule one and is allowed; we never look further. An outbound FTP packet on 21 falls past rule one, matches rule two, and is denied. Outbound HTTPS matches rule three and is allowed. An inbound Telnet packet matches nothing specific and hits the default deny at rule four. The big lesson is in the note: order matters. If a broad allow sat above a specific deny, the deny would never fire, because the first match short-circuits everything below it. When you configure a host firewall, put your specific deny rules above your broad allows."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Configuring the Rules: Bases and Blocking",
+      "subheading": "EK 4.3.D.3 and D.4 — what a rule can match on, and why blocking unneeded outbound traffic stops exfiltration.",
+      "items": [
+        {
+          "ek": "EK 4.3.D.4",
+          "title": "What a Rule Can Match On",
+          "summary": "A rule can allow or deny based on source or destination port or IP address, service, protocol, or application — these are the criteria you set when configuring the firewall.",
+          "ekRef": "EK 4.3.D.4"
+        },
+        {
+          "ek": "EK 4.3.D.3",
+          "title": "Block What You Don’t Need",
+          "summary": "A host-based firewall should always block ports or services not needed for a given device, including outbound traffic — closing unused doors shrinks the attack surface.",
+          "ekRef": "EK 4.3.D.3"
+        },
+        {
+          "ek": "EK 4.3.D.3",
+          "title": "Blocking Exfiltration (Illustrative)",
+          "summary": "Configuring the firewall to block outbound FTP prevents an adversary with remote access to the host from using FTP to exfiltrate a file to the adversary's server — even after the host is compromised.",
+          "ekRef": "EK 4.3.D.3"
+        }
+      ],
+      "script": "Now the configuration details, EK 4.3.D.3 and D.4. First, what a rule can match on: source or destination port or IP address, service, protocol, or application — five bases, and the exam likes to ask which are valid. Second, the rule of thumb: always block ports or services the device doesn't need, outbound included. Closing unused doors shrinks the attack surface. Third, the CED's own illustrative example: block outbound FTP on a device that never sends FTP, and even if an adversary gets remote access to that host, they can't use FTP to exfiltrate a file out to their server. That's why blocking outbound traffic matters — it limits the damage after a compromise, not just before."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Host-Based vs. Network-Based Firewalls",
+      "subheading": "Not a new EK — it sharpens why running a firewall ON the device adds a layer a network firewall can't.",
+      "track": "enrichment",
+      "left": {
+        "title": "Network-Based Firewall",
+        "definition": "Guards the perimeter of a network",
+        "ek": "Topic 3.4 context",
+        "examples": [
+          "Sits at the edge of a network and filters traffic crossing that boundary",
+          "Protects every device behind it — until traffic is already inside",
+          "Offers no protection once a device leaves the network (e.g., a laptop taken home)",
+          "If the network itself is compromised, the perimeter no longer helps"
+        ]
+      },
+      "right": {
+        "title": "Host-Based Firewall (EK 4.3.D.1)",
+        "definition": "Runs on the single device itself",
+        "ek": "EK 4.3.D.1",
+        "examples": [
+          "Allows or denies traffic into or out of that one device",
+          "Keeps protecting the device on an untrusted or compromised network",
+          "Travels with the laptop to a home or coffee-shop Wi-Fi",
+          "Adds a distinct layer — defense in depth at the level of one machine"
+        ]
+      },
+      "footer": "TAKEAWAY: A network firewall and a host-based firewall aren't either/or. The host-based firewall is the extra layer that still protects a single device when the surrounding network is compromised (EK 4.3.D.1) — exactly the resilience idea from defense in depth.",
+      "script": "Quick enrichment that connects 4.3.D back to defense in depth. A network-based firewall, from Topic 3.4, guards the edge of a network and protects everything behind it — but only while traffic is crossing that boundary, and only while the device stays on that network. Take a laptop home, or let the network get compromised, and the perimeter stops helping. A host-based firewall, EK 4.3.D.1, runs on the device itself, allows or denies traffic into and out of that one machine, and travels with it to any network. They're not either-or — the host firewall is the extra layer that still protects a single device when the network around it is compromised. That's the resilience idea from defense in depth, applied to one machine."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 4.3.D)",
+      "terms": [
+        {
+          "term": "Host-based firewall",
+          "definition": "Software running on a single device that allows or denies traffic into or out of that device, adding a layer of security even on a compromised network (EK 4.3.D.1)."
+        },
+        {
+          "term": "ACL (access control list)",
+          "definition": "The ordered set of rules a host-based firewall follows; rules are implemented in order, applying the first rule that matches (EK 4.3.D.2)."
+        },
+        {
+          "term": "Outbound blocking",
+          "definition": "Denying specified outgoing traffic, such as outbound FTP, to block ports/services a device doesn't need and to prevent exfiltration (EK 4.3.D.3)."
+        },
+        {
+          "term": "Rule criteria",
+          "definition": "The bases a rule can match on: source or destination port or IP address, service, protocol, or application (EK 4.3.D.4)."
+        }
+      ],
+      "script": "Four terms for host-based firewalls. The host-based firewall itself, EK 4.3.D.1 — software on one device that allows or denies its traffic, even on a compromised network. The ACL, EK 4.3.D.2 — the ordered rule list, first match wins. Outbound blocking, EK 4.3.D.3 — denying outgoing traffic the device doesn't need, like FTP, to stop exfiltration. And rule criteria, EK 4.3.D.4 — the five things a rule can match on: source or destination port or IP, service, protocol, or application. Write all four."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "All four questions map to LO 4.3.A–D. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A company rule says: ‘Employees may not install any software themselves; submit a request to IT, which installs only approved programs.’ Name the managerial control and cite its EK.",
+        "Explain, in your own words, how anti-malware software decides that a file is malicious and what it does next. Use the words signature, database, scan, and quarantine, and cite the EKs.",
+        "A vulnerability in an operating system is publicly disclosed and the vendor ships a patch. Explain why installing it makes the device more secure, and cite the EK.",
+        "A workstation never sends FTP. Write a one-line host-based firewall rule that protects it from FTP-based data theft, say where it must go relative to any broad ‘allow’ rule and why, and cite the EKs."
+      ],
+      "directions": "Independent. 8 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Four questions, eight minutes, independent, full sentences — one per objective. Question one: name the managerial control for the no-self-install rule and cite the EK — that's the software installation policy, EK 4.3.A.3. Question two: explain how anti-malware flags a file and what it does, using signature, database, scan, and quarantine, with EK 4.3.B.1 and B.2. Question three: explain why installing a patch for a disclosed vulnerability helps, citing EK 4.3.C.2 and the word known. Question four: write a one-line rule to deny outbound FTP, say it must sit above any broad allow because first match wins, and cite EK 4.3.D.2 and D.3. Be precise and cite every EK. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Four Locks on One Machine",
+      "points": [
+        "Managerial controls are written policies — acceptable use, password, and software installation — that say what's permissible, prohibited, or required for users (EK 4.3.A.1–A.3)",
+        "Anti-malware keeps a database of signatures, periodically scans files for matches, and quarantines and removes anything malicious (EK 4.3.B.1–B.2)",
+        "A patch is a small update that fixes a found vulnerability; updating to the latest version blocks adversaries from exploiting a known vulnerability (EK 4.3.C.1–C.2)",
+        "A host-based firewall allows or denies traffic at one device using ordered ACL rules (first match wins), can block outbound traffic, and matches on port, IP, service, protocol, or application (EK 4.3.D.1–D.4)",
+        "Together they are defense in depth on a single machine — each layer holds even when the network around it is compromised"
+      ],
+      "next": "On the quiz, read each scenario and name which of the four controls is in play — then back it with the right EK number.",
+      "script": "Topic 4.3 in one slide — four locks on one machine. Managerial controls are written policies: acceptable use, password, and software installation, each saying what's permissible, prohibited, or required. Anti-malware keeps a signature database, scans files, and quarantines and removes matches. A patch fixes a found vulnerability, and updating to the latest version blocks exploitation of a known one. A host-based firewall allows or denies traffic at a single device with ordered rules where first match wins, can block outbound traffic, and matches on port, IP, service, protocol, or application. Put them together and you have defense in depth on one machine — every layer still holds when the network is compromised. On the quiz, read the scenario, name the control, cite the EK. You've got this."
+    }
+  ],
   "guide": {
     "title": "Protecting Devices — Teacher Guide",
     "subtitle": "Unit 4: Securing Devices   •   LO 4.3.A–4.3.D",
