@@ -1,0 +1,292 @@
+{
+  "meta": {
+    "lessonId": "4.4",
+    "lessonTitle": "Detecting Attacks on Devices",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 4: Securing Devices",
+    "day": 1,
+    "los": "LO 4.4.A, 4.4.B, 4.4.C, 4.4.D",
+    "totalDays": 7,
+    "author": "AP CS Exam Prep"
+  },
+  "guide": {
+    "title": "Detecting Attacks on Devices — Teacher Guide",
+    "subtitle": "Unit 4: Securing Devices   •   LO 4.4.A–4.4.D",
+    "overview": [
+      "Topic 4.4 is the detection topic of Unit 4: students learn how computing systems log activity, what an indicator of compromise (IoC) is, and how to read authentication, user-activity, and access logs to spot host-based, file-based, and behavior-based IoCs. It then turns to the practical question of which detection method to use, weighing performance, cost, and device sensitivity, and finishes by applying those skills to recognize password attacks in log files.",
+      "The recurring idea is that logs are the evidence trail of an attack: most device-level detection is signature-based (fast, low false positives, but easier to bypass), while anomaly-based detection catches more but costs more system resources — and offline password attacks cannot be detected at all because they happen on the adversary's own computer."
+    ],
+    "los": [
+      "LO 4.4.A — Explain how to detect attacks against devices.",
+      "LO 4.4.B — Determine controls for detecting attacks against a device.",
+      "LO 4.4.C — Evaluate the impact of a device detection method.",
+      "LO 4.4.D — Apply detection techniques to identify indicators of password attacks by analyzing log files."
+    ],
+    "eks": [
+      "EK 4.4.A.1 — System processes and settings, login attempts, file download attempts, and user actions are logged by computing systems. These logs can be used to reconstruct circumstances leading up to and during a cyber incident.",
+      "EK 4.4.A.2 — An indicator of compromise (IoC) is evidence that an adversary has compromised a device or network.",
+      "EK 4.4.A.3 — Authentication logs (or auth logs) record every attempted login on a system. Analysis of authentication logs can reveal attempted attacks.",
+      "EK 4.4.A.4 — Host-based IoCs are discovered when analyzing logs and configuration settings. Indicators found in authentication logs, user activity logs, and system configuration files include: unusual files being created or modified; unexpected processes or services; unauthorized changes to system configuration settings; unauthorized software installation or update.",
+      "EK 4.4.A.5 — File-based IoCs are discovered when analyzing files on a device. Indicators are usually found in executable files and can include: files whose hash matches known malware; file names known to be created by a certain piece of malware; file paths associated with malicious activity.",
+      "EK 4.4.A.6 — Behavior-based IoCs are discovered when analyzing logs. Indicators found in authentication logs and access logs can include: multiple failed login attempts; unusual login times or locations; unauthorized attempts to access sensitive data; attempts to elevate user privileges on a system.",
+      "EK 4.4.B.1 — Performance is a criterion for determining a detection method. Detection tools use system memory and processing power and can impact device performance. Anomaly-based detection tools use more system resources than signature-based tools; signature-based detection is a better option for devices with less powerful system resources. Many embedded devices do not have enough system resources to run any detection tools on the device.",
+      "EK 4.4.B.2 — Cost is a criterion for determining a detection method. Organizations that purchase detection software must consider the cost of enough licenses for the number of devices monitored. Some organizations purchase an endpoint detection and response (EDR) service from a third-party vendor; these services are expensive but provide a holistic, unified approach and typically include a centralized alert platform for monitoring possible attacks.",
+      "EK 4.4.B.3 — Sensitivity or criticality of the device is a criterion for determining a detection method. Devices that store or process sensitive information or provide critical services are more likely to be targeted and benefit from a hybrid-detection model to offer maximum protection, when possible.",
+      "EK 4.4.C.1 — Speed and performance are factors in evaluating the impact of a detection method. Signature-based detection is faster than anomaly-based detection in general, and that effect is compounded on devices, which often lack the processing power to effectively run anomaly-based detection tools. Implementing resource-intensive detection tools on devices can degrade device performance.",
+      "EK 4.4.C.2 — Phase of the attack is a factor in evaluating impact. To carry out actions on a device, adversaries must first bypass a combination of physical- or network-layer protective, deterrent, and detective security controls. Detecting and stopping an attack at the device level can prevent adversaries from accessing sensitive data or disrupting critical services.",
+      "EK 4.4.C.3 — False positives versus ease of bypassing detection is a factor in evaluating impact. Most device-level detection tools are signature-based, and signature-based detection has a low rate of false positives. However, signature-based detection is easier for adversaries to bypass.",
+      "EK 4.4.D.1 — Online password attacks can be detected in authentication logs. A single user attempting many wrong passwords is an indicator of an online password attack. If a user:password hash database has been compromised, all the passwords should be considered insecure and all users forced to reset their passwords.",
+      "EK 4.4.D.2 — If an authorized user is logging in from a different location or IP address than expected, or at a different time than normal, this can be an indicator that the user's password has been compromised.",
+      "EK 4.4.D.3 — An indicator of password spraying is many users trying to log in within seconds of each other from one IP address or from unusual IP addresses.",
+      "EK 4.4.D.4 — An indicator of credential stuffing is a series of default user:password combinations being attempted on a device in quick succession, often from the same IP address.",
+      "EK 4.4.D.5 — Offline password attacks can't be detected, because the attack takes place on the adversary's computer."
+    ],
+    "materials": [
+      "Projector for sample log excerpts and IoC examples",
+      "Printed Day 1 Guided Notes (student + key)",
+      "Printed Lesson 4.4 quiz (student + answer key)",
+      "Sample authentication-log handout with failed-login and unusual-IP entries to annotate"
+    ],
+    "prereqs": [
+      "Topic 4.1–4.3 understanding of devices, device threats, and protective/detective controls",
+      "Familiarity with signature-based vs. anomaly-based detection and the idea of IP addresses and login events"
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Logs and IoCs, choosing a detection method, evaluating impact, and reading logs for password attacks (4.4.A–D)",
+        "segments": [
+          { "segment": "Bell ringer — what a log could reveal about an attack", "min": 5 },
+          { "segment": "Direct instruction — logs, IoCs, and the host/file/behavior IoC types (4.4.A)", "min": 20 },
+          { "segment": "Choosing a detection method: performance, cost, sensitivity (4.4.B)", "min": 15 },
+          { "segment": "Evaluating impact: speed, attack phase, false positives vs. bypass (4.4.C)", "min": 15 },
+          { "segment": "Reading auth logs for password attacks — worked log examples (4.4.D)", "min": 20 },
+          { "segment": "Quiz and wrap-up", "min": 10 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Any IoC means an attack succeeded",
+        "myth": "Finding an indicator of compromise proves the adversary got in and stole data.",
+        "reality": "EK 4.4.A.2 — an IoC is evidence that an adversary has compromised a device or network; it is the evidence trail analysts investigate, and indicators such as failed logins (EK 4.4.A.6) can also point to attempted attacks revealed in the logs (EK 4.4.A.3)."
+      },
+      {
+        "heading": "Anomaly-based detection is always the better choice",
+        "myth": "You should always run anomaly-based detection on every device because it catches more.",
+        "reality": "EK 4.4.B.1 — anomaly-based tools use more system resources than signature-based tools, so signature-based detection is a better option for devices with less powerful resources, and many embedded devices cannot run any detection tools at all."
+      },
+      {
+        "heading": "Signature-based detection is the safest because it has few false positives",
+        "myth": "Low false positives means signature-based detection is the hardest for attackers to get past.",
+        "reality": "EK 4.4.C.3 — signature-based detection does have a low rate of false positives, but it is also easier for adversaries to bypass; the two facts are separate trade-offs."
+      },
+      {
+        "heading": "All password attacks can be caught in the logs",
+        "myth": "If you read the authentication logs carefully enough, you can detect any password attack.",
+        "reality": "EK 4.4.D.5 — offline password attacks can't be detected, because the attack takes place on the adversary's computer; only online attacks such as spraying and credential stuffing leave traces in the logs."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a three-column IoC chart (host-based, file-based, behavior-based) pre-filled with one CED example each, then have them sort additional indicators into the right column.",
+        "Walk through a short annotated auth-log sample, labeling each suspicious line as a failed-login burst, an unusual IP, or a normal entry before asking students to do their own.",
+        "Provide a sentence frame for method selection: 'For a device that is ___, I would choose ___ detection because ___ (performance / cost / sensitivity).'"
+      ],
+      "extension": [
+        "Have students compare two log excerpts — one showing many wrong passwords from one user and one showing many users from one IP — and name each attack (online password attack vs. password spraying) using EK 4.4.D.1 and D.3.",
+        "Ask students to justify a hybrid-detection model for a device that stores sensitive data using EK 4.4.B.3, then explain why the same model is impractical for an embedded sensor (EK 4.4.B.1).",
+        "Challenge students to explain why detecting an attack at the device level matters in terms of attack phase (EK 4.4.C.2) and what the adversary had to bypass to get there."
+      ]
+    },
+    "discussion": [
+      "Why are logs described as the evidence used to reconstruct what happened before and during an incident?",
+      "When would you accept the higher resource cost of anomaly-based detection, and when would signature-based be the smarter call?",
+      "Why can online password attacks be spotted in the logs while offline attacks cannot?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 4.4 — Detecting Attacks on Devices — Quiz",
+    "instructions": "Choose the single best answer. 12 questions, 25 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "According to the CED, what is an indicator of compromise (IoC)?",
+        "options": [
+          "Evidence that an adversary has compromised a device or network",
+          "A signed agreement that a vendor will repair a device after a breach",
+          "A setting that automatically encrypts a device once an attack is detected",
+          "A log entry that records every legitimate login an authorized user makes"
+        ],
+        "answer": "A",
+        "ek": "EK 4.4.A.2",
+        "rationale": "EK 4.4.A.2 — an indicator of compromise (IoC) is evidence that an adversary has compromised a device or network. The other options describe a vendor agreement, an automatic encryption setting, and a record of legitimate activity, none of which match the CED definition."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "According to the CED, what do computing-system logs record, and why are they useful after a cyber incident?",
+        "options": [
+          "Only the physical temperature of the device, used to predict hardware failures before they happen",
+          "System processes and settings, login attempts, file download attempts, and user actions, used to reconstruct the circumstances around an incident",
+          "Only outbound network packets, used to bill the organization for its monthly bandwidth usage",
+          "Only the names of installed applications, used to confirm software licenses are paid for"
+        ],
+        "answer": "B",
+        "ek": "EK 4.4.A.1",
+        "rationale": "EK 4.4.A.1 — system processes and settings, login attempts, file download attempts, and user actions are logged by computing systems, and these logs can be used to reconstruct the circumstances leading up to and during a cyber incident. The other options narrow logging to temperature, billing, or licensing, which the CED does not state."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An analyst finds that an executable file on a device has a hash that matches known malware and sits in a file path associated with malicious activity. According to the CED, which category of indicator of compromise is this?",
+        "options": [
+          "A behavior-based IoC, discovered by analyzing patterns of login and access activity in logs",
+          "A host-based IoC, discovered by reviewing system configuration settings for unauthorized changes",
+          "A file-based IoC, discovered by analyzing files on a device, usually executable files",
+          "A network-based IoC, discovered by inspecting packet headers crossing the firewall"
+        ],
+        "answer": "C",
+        "ek": "EK 4.4.A.5",
+        "rationale": "EK 4.4.A.5 — file-based IoCs are discovered when analyzing files on a device, usually executable files, and can include files whose hash matches known malware and file paths associated with malicious activity. Behavior-based and host-based IoCs come from logs and configuration analysis, and the CED does not define a 'network-based IoC' in this topic."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "Which of the following does the CED list as behavior-based IoCs found in authentication and access logs? I. Multiple failed login attempts. II. Unusual login times or locations. III. Attempts to elevate user privileges on a system. Which are included?",
+        "options": [
+          "I and II only (failed logins and unusual times or locations, but not privilege elevation)",
+          "II only (only unusual login times or locations count as behavior-based)",
+          "I and III only (failed logins and privilege elevation, but not unusual times or locations)",
+          "I, II, and III (failed logins, unusual times or locations, and privilege elevation)"
+        ],
+        "answer": "D",
+        "ek": "EK 4.4.A.6",
+        "rationale": "EK 4.4.A.6 — behavior-based IoCs found in authentication and access logs include multiple failed login attempts, unusual login times or locations, unauthorized attempts to access sensitive data, and attempts to elevate user privileges on a system. All three listed indicators are included, so the answer is I, II, and III."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A security team is choosing detection software for a fleet of small embedded sensors that have very limited memory and processing power. According to the CED, which detection approach is the better fit, and why?",
+        "options": [
+          "Anomaly-based detection, since it uses fewer system resources than signature-based detection on small devices",
+          "Signature-based detection, since it uses fewer system resources and is a better option for devices with less powerful resources",
+          "A full hybrid model on every sensor, since embedded devices always have spare resources for both methods",
+          "No detection method matters here, since detection tools have no effect on a device's performance"
+        ],
+        "answer": "B",
+        "ek": "EK 4.4.B.1",
+        "rationale": "EK 4.4.B.1 — anomaly-based tools use more system resources than signature-based tools, so signature-based detection is a better option for devices with less powerful resources, and many embedded devices cannot run any detection tools at all. The other options reverse the resource comparison, over-provision embedded devices, or deny that tools affect performance."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An organization does not want to manage detection in-house and instead buys a service from a third-party vendor that gives a holistic, unified approach with a centralized alert platform for monitoring possible attacks across its devices. According to the CED, what is this service?",
+        "options": [
+          "A signature database update, which only refreshes malware hashes on each device weekly",
+          "A stateless firewall service, which filters traffic using packet-header information at the perimeter",
+          "A backup-and-recovery service, which restores devices to a clean state after an incident",
+          "An endpoint detection and response (EDR) service, which is expensive but provides unified, centralized threat detection"
+        ],
+        "answer": "D",
+        "ek": "EK 4.4.B.2",
+        "rationale": "EK 4.4.B.2 — some organizations purchase an endpoint detection and response (EDR) service from a third-party vendor; these services are expensive but provide a holistic, unified approach and typically include a centralized alert platform for monitoring possible attacks on devices. The other options describe updates, a firewall, and backups, not EDR."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A hospital server stores highly sensitive patient data and provides a critical service, making it a likely target for adversaries. According to the CED, what detection approach offers maximum protection for this device when possible?",
+        "options": [
+          "A hybrid-detection model, since sensitive or critical devices benefit from combining detection methods",
+          "Removing detection entirely, since detection tools would slow down a critical service too much",
+          "Signature-only detection, since critical devices should minimize false positives above all else",
+          "Anomaly-only detection, since sensitive devices never have enough resources for signatures"
+        ],
+        "answer": "A",
+        "ek": "EK 4.4.B.3",
+        "rationale": "EK 4.4.B.3 — devices that store or process sensitive information or provide critical services are more likely to be targeted and benefit from a hybrid-detection model to offer maximum protection, when possible. The other options strip detection away or force a single method the CED does not prescribe for sensitive devices."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "When evaluating the impact of a detection method on a device, an analyst compares signature-based and anomaly-based detection for speed. According to the CED, what is true about their speed on devices?",
+        "options": [
+          "Anomaly-based detection is faster, and the speed gap grows on devices with limited processing power",
+          "Both methods run at identical speed, since detection speed does not depend on the device's resources",
+          "Signature-based detection is faster in general, and that effect is compounded on devices that lack processing power for anomaly-based tools",
+          "Speed is irrelevant, since resource-intensive detection tools never degrade a device's performance"
+        ],
+        "answer": "C",
+        "ek": "EK 4.4.C.1",
+        "rationale": "EK 4.4.C.1 — signature-based detection is faster than anomaly-based detection in general, and that effect is compounded on devices, which often lack the processing power to run anomaly-based tools effectively; resource-intensive tools can degrade device performance. The other options reverse the speed claim or deny any performance impact."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An analyst notes that the device-level detection in place has a very low rate of false positives but worries it is comparatively easy for a skilled adversary to evade. According to the CED, which detection type fits both observations?",
+        "options": [
+          "Anomaly-based detection, which has a high false-positive rate and is very hard to bypass",
+          "Signature-based detection, which has a low false-positive rate but is easier for adversaries to bypass",
+          "Behavior-based detection, which eliminates false positives and cannot be bypassed at all",
+          "Hybrid detection, which removes the trade-off by making bypass impossible on every device"
+        ],
+        "answer": "B",
+        "ek": "EK 4.4.C.3",
+        "rationale": "EK 4.4.C.3 — most device-level detection tools are signature-based, signature-based detection has a low rate of false positives, but it is easier for adversaries to bypass. The other options invert the false-positive trait or claim that bypass becomes impossible, which the CED does not state."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An authentication log shows a single user account submitting many wrong passwords in a short span of time on one system. According to the CED, what does this pattern indicate?",
+        "options": [
+          "Credential stuffing, in which default user:password combinations are tried across many devices",
+          "An offline password attack, which leaves this exact trail in the authentication log",
+          "Password spraying, in which many different users log in within seconds of each other",
+          "An online password attack, since one user attempting many wrong passwords is its indicator"
+        ],
+        "answer": "D",
+        "ek": "EK 4.4.D.1",
+        "rationale": "EK 4.4.D.1 — online password attacks can be detected in authentication logs, and a single user attempting many wrong passwords is an indicator of an online password attack. Credential stuffing and password spraying have different log signatures, and offline attacks leave no trail in the logs at all."
+      },
+      {
+        "id": "Q11",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An analyst reviews two log excerpts. Excerpt 1: many different users each attempt a login within seconds of one another, all from one unusual IP address. Excerpt 2: a series of default user:password combinations is tried in quick succession from a single IP address. According to the CED, which attacks do these excerpts indicate?",
+        "options": [
+          "Excerpt 1 is password spraying; Excerpt 2 is credential stuffing",
+          "Excerpt 1 is credential stuffing; Excerpt 2 is password spraying",
+          "Both excerpts indicate an offline password attack that happened on the adversary's computer",
+          "Both excerpts indicate a single user attempting many wrong passwords on one account"
+        ],
+        "answer": "A",
+        "ek": "EK 4.4.D.3 + EK 4.4.D.4",
+        "rationale": "EK 4.4.D.3 — an indicator of password spraying is many users trying to log in within seconds of each other from one or unusual IP addresses (Excerpt 1). EK 4.4.D.4 — an indicator of credential stuffing is a series of default user:password combinations attempted in quick succession, often from the same IP address (Excerpt 2). The other options swap the two or misclassify them as offline or single-user attacks."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary obtains a copy of a password hash database and runs a password-cracking tool entirely on their own computer to recover the plaintext passwords. According to the CED, why can this attack not be detected in the target's authentication logs?",
+        "options": [
+          "The logs only record file downloads, so any login-related attack is invisible to analysts",
+          "Detection tools always ignore privileged accounts, so this activity is never written to a log",
+          "Offline password attacks can't be detected, since the attack takes place on the adversary's computer",
+          "Signature-based detection deletes the relevant log entries before an analyst can review them"
+        ],
+        "answer": "C",
+        "ek": "EK 4.4.D.5",
+        "rationale": "EK 4.4.D.5 — offline password attacks can't be detected, because the attack takes place on the adversary's computer, so no login attempts reach the target's authentication logs. The other options invent log limitations, blind spots, or deletion behavior that the CED does not describe."
+      }
+    ]
+  }
+}

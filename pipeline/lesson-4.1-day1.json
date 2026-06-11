@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "lessonId": "4.1",
+    "lessonTitle": "Device Vulnerabilities",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 4: Securing Devices",
+    "day": 1,
+    "los": "LO 4.1.A, LO 4.1.B, LO 4.1.C",
+    "anchor": "Designing Secure Connected Farm Equipment",
+    "author": "AP CS Exam Prep",
+    "totalDays": 6
+  },
+  "guide": {
+    "title": "Lesson 4.1 — Device Vulnerabilities — Teacher Guide",
+    "subtitle": "Unit 4 · Topic 4.1 · 6 class periods · Anchor: Designing Secure Connected Farm Equipment",
+    "overview": [
+      "Lesson 4.1, Device Vulnerabilities, opens Unit 4 (Securing Devices) by naming the categories of computing devices, identifying the kinds of malware adversaries deploy, and explaining how adversaries exploit common device weaknesses to cause loss, damage, disruption, or destruction. It is the threat-side foundation for the device-hardening controls that the rest of the unit builds, paired with the unit scenario 4A, Designing Secure Connected Farm Equipment, in which students research how an adversary might exploit internet-connected farm equipment and assess the resulting risk.",
+      "This Day 1 file carries the lesson-level quiz and this teacher guide, which span three learning objectives in the topic's tested scope: identifying types of computing devices (4.1.A) — server, personal, handheld, embedded, and IoT; identifying the malware used in a cyberattack (4.1.B) — viruses, worms, trojans and RATs, ransomware, spyware, keyloggers, logic bombs, rootkits, and fileless malware; and explaining how adversaries exploit common device vulnerabilities (4.1.C) — unpatched software, weak authentication, missing BIOS/UEFI passwords, autorun, open ports, missing firewalls, and missing anti-malware software."
+    ],
+    "los": [
+      "LO 4.1.A — Identify types of computing devices.",
+      "LO 4.1.B — Identify the type of malware used in a cyberattack.",
+      "LO 4.1.C — Explain how adversaries can exploit common device vulnerabilities to cause loss, damage, disruption, or destruction."
+    ],
+    "eks": [
+      "EK 4.1.A.1 — Server computers are devices that provide one or more services to other computers (e.g., DNS, DHCP, FTP). Any computer can be a server, and in an enterprise environment servers typically have more processing power and storage than a personal computer.",
+      "EK 4.1.A.2 — Personal computers are devices that are designed to be used by one person for work or recreational purposes (e.g., word processing, graphic design, web browsing, and media production or viewing). These include desktop, laptop, and notebook computers.",
+      "EK 4.1.A.3 — Handheld computers (also called mobile computers or information appliances) are smaller than personal computers and run on battery power. These include tablets, smartphones, and wearable technology like smart watches.",
+      "EK 4.1.A.4 — Embedded computers are devices that are part of a machine. Embedded devices have specific instruction sets for interfacing with the specialized components of the machine they're embedded in. Embedded computers tend to be slower and cheaper than other computers and have minimal storage.",
+      "EK 4.1.A.5 — Everyday devices with embedded computers are often called Internet of Things (IoT) devices. Embedded computers are found in transportation (e.g., cars, trains, and airplanes), devices that operate critical infrastructure (e.g., operating circuit breakers at electrical substations and pumps at water treatment plants), medical equipment (e.g., IV pumps, MRI scanners, pacemakers, and insulin pumps), and everyday devices like washing machines, coffee makers, and thermostats.",
+      "EK 4.1.B.1 — Malware is malicious software that can damage or destroy a device or network, or allow an adversary access to a device and the data on the device.",
+      "EK 4.1.B.2 — Malware is often used as a tool to accomplish part of an adversary's plan to achieve their ultimate goal(s). There are many types of malware, such as: viruses are malware that must be activated by a user executing or opening a file; worms spread from one computer to another without human interaction; trojans are malware embedded in other software that seems harmless, and remote access trojans (RATs) provide an adversary with remote access to the target system; ransomware encrypts a device's files, preventing the user from accessing files and typically demanding payment for a decryption key within a fixed amount of time; spyware tracks a user's actions on a computer and sends information back to an adversary; a keylogger is software or hardware that logs the user's keystrokes and sends the information back to the adversary, from which adversaries can often extract usernames and passwords; logic bombs are set to trigger their effect only when a specific set of conditions are met; and a rootkit is sophisticated malware that gets into the target computer's operating system and can control nearly every aspect of the system, including making the rootkit itself invisible to detection.",
+      "EK 4.1.B.3 — While most malware is a file or a collection of files, fileless malware is malicious code that lives in RAM and uses legitimate programs already installed on a device to compromise it.",
+      "EK 4.1.C.1 — Adversaries can develop exploits for known vulnerabilities in software (including operating systems). Devices with unpatched software are vulnerable to these exploits, which could allow an adversary to crash a system, view user actions, enable or disable various services or components on the device (e.g., turning on a webcam or microphone), or even take control of the device to issue their own commands including commands to steal or destroy information on the device.",
+      "EK 4.1.C.2 — Adversaries can take advantage of weak authentication requirements by guessing a user's password or using social engineering to get a user to divulge their password.",
+      "EK 4.1.C.3 — When systems don't have a password on the basic input output system (BIOS) or unified extensible firmware interface (UEFI), an adversary can boot a computer into a special mode (e.g., \"recovery mode\") that gives them higher-level privileges. Without BIOS or UEFI protection, adversaries can load their own operating system onto a device from an external drive and use specialized tools to alter or create user profiles, including changing user passwords.",
+      "EK 4.1.C.4 — Adversaries can load malware onto an external drive, and if autorun is enabled, then a device will run the malware when the external drive is inserted.",
+      "EK 4.1.C.5 — Adversaries can leverage open ports to connect to a device.",
+      "EK 4.1.C.6 — Adversaries can send malicious data to devices to disrupt them or attempt to take control of them. Devices that have no firewall (or a misconfigured firewall) cannot filter out this malicious data.",
+      "EK 4.1.C.7 — Adversaries often attempt to install malware on a device to disrupt or control it. Devices lacking anti-malware software are more vulnerable to this type of attack."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each of the six days.",
+      "Printed/Digital Day 1–6 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page, which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 4.1 quiz (student copies) for the final day of the topic.",
+      "Unit scenario 4A, Designing Secure Connected Farm Equipment — students research how an adversary might take advantage of internet-connected farm equipment, assess the risk from possible vulnerabilities, and produce a report with recommendations."
+    ],
+    "prereqs": [
+      "Unit 1 vocabulary of confidentiality, integrity, and availability, and the Unit 2 ideas of adversaries, attack phases, and security controls. Learners should be comfortable with the basic terms operating system, port, firewall, and authentication before naming device-level threats against them."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Types of computing devices: server, personal, and handheld (LO 4.1.A)",
+        "segments": [
+          { "segment": "QOTD + bell ringer (which devices run the connected farm?)", "min": 5 },
+          { "segment": "Guided-notes preview + objectives", "min": 5 },
+          { "segment": "Server computers and what makes a device a server (EK 4.1.A.1)", "min": 15 },
+          { "segment": "Personal and handheld computers — desktops, laptops, tablets, smartphones, wearables (EK 4.1.A.2–A.3)", "min": 15 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Embedded computers and the Internet of Things (LO 4.1.A)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Embedded computers: part of a machine, minimal storage, specialized instruction sets (EK 4.1.A.4)", "min": 20 },
+          { "segment": "IoT devices in transportation, critical infrastructure, medical equipment, and everyday devices (EK 4.1.A.5)", "min": 15 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Malware definition and the major file-based types (LO 4.1.B)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "What malware is and how adversaries use it as a tool (EK 4.1.B.1–B.2)", "min": 18 },
+          { "segment": "Viruses, worms, trojans/RATs, and ransomware compared (EK 4.1.B.2)", "min": 17 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Spyware, keyloggers, logic bombs, rootkits, and fileless malware (LO 4.1.B)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Spyware, keyloggers, and logic bombs — surveillance and conditional triggers (EK 4.1.B.2)", "min": 17 },
+          { "segment": "Rootkits hiding in the OS and fileless malware living in RAM (EK 4.1.B.2–B.3)", "min": 18 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Exploiting software, authentication, and boot/firmware weaknesses (LO 4.1.C)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Unpatched software and known-vulnerability exploits (EK 4.1.C.1)", "min": 12 },
+          { "segment": "Weak authentication: guessing and social engineering (EK 4.1.C.2)", "min": 11 },
+          { "segment": "Missing BIOS/UEFI passwords, recovery mode, and autorun on external drives (EK 4.1.C.3–C.4)", "min": 12 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 6,
+        "focus": "Exploiting open ports, missing firewalls, and missing anti-malware (LO 4.1.C)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Open ports and connecting to a device; malicious data and missing firewalls (EK 4.1.C.5–C.6)", "min": 13 },
+          { "segment": "Devices lacking anti-malware software (EK 4.1.C.7)", "min": 13 },
+          { "segment": "Topic review + Lesson 4.1 quiz", "min": 14 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Viruses vs. worms",
+        "myth": "Viruses and worms are interchangeable terms for self-spreading malware.",
+        "reality": "EK 4.1.B.2 distinguishes them: a virus must be activated by a user executing or opening a file, while a worm spreads from one computer to another without human interaction. The defining difference is whether human action is required to spread."
+      },
+      {
+        "heading": "Fileless malware still leaves a file to scan",
+        "myth": "All malware is a file on disk, so anti-malware can always find it by scanning the drive.",
+        "reality": "EK 4.1.B.3 states that fileless malware is malicious code that lives in RAM and uses legitimate programs already installed on a device, so it is not a file sitting on the drive waiting to be scanned like most malware is."
+      },
+      {
+        "heading": "Any computer can be a server",
+        "myth": "A server is a special class of expensive hardware that is fundamentally different from a personal computer.",
+        "reality": "EK 4.1.A.1 states that any computer can be a server — a server is a device that provides one or more services to other computers (e.g., DNS, DHCP, FTP). In an enterprise environment servers typically have more processing power and storage, but that is a tendency, not what makes a device a server."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a one-page chart mapping each device category (server, personal, handheld, embedded, IoT) to a defining trait and an example from the CED, so they can sort new devices by what the device is for rather than by its size.",
+        "Build a malware matching grid with two columns — the malware name and its one-line behavior from EK 4.1.B.2 — and have students complete it before attempting any scenario item."
+      ],
+      "extension": [
+        "Have students take the scenario-4A connected farm equipment and tag each device as server, personal, handheld, embedded, or IoT, then identify which 4.1.C vulnerability each is most exposed to.",
+        "Ask students to compare unpatched software (EK 4.1.C.1) with missing anti-malware software (EK 4.1.C.7) and explain why patching closes a specific known hole while anti-malware addresses installed malware more broadly."
+      ]
+    },
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 4.1 — Device Vulnerabilities — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "On the farm network, one machine handles DNS and DHCP requests for every other computer and is built with far more processing power and storage than the staff laptops. A new technician asks what category this machine belongs to. Which type of computing device is it?",
+        "options": [
+          "A server computer — a device that provides one or more services to other computers",
+          "A handheld computer — a battery-powered device smaller than a personal computer",
+          "An embedded computer — a device that is part of a machine with minimal storage",
+          "A personal computer — a device designed to be used by one person for work or recreation"
+        ],
+        "answer": "A",
+        "ek": "EK 4.1.A.1",
+        "rationale": "EK 4.1.A.1 defines a server as a device that provides one or more services to other computers (e.g., DNS, DHCP, FTP), typically with more processing power and storage in an enterprise environment. Option B (handheld, EK 4.1.A.3) is battery-powered and smaller. Option C (embedded, EK 4.1.A.4) is part of a machine with minimal storage. Option D (personal, EK 4.1.A.2) is built for one person, not for providing services to other computers."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A field worker monitors irrigation from a battery-powered smartphone and a smart watch while away from any desk. Both devices are smaller than a laptop and run on battery power. According to the CED, what category of computing device are these?",
+        "options": [
+          "Server computers — devices that provide services such as DNS or DHCP to others",
+          "Handheld computers — battery-powered devices smaller than personal computers, including smartphones and wearables",
+          "Embedded computers — devices that are part of a machine with specialized instruction sets",
+          "Personal computers — desktop, laptop, and notebook computers used by one person"
+        ],
+        "answer": "B",
+        "ek": "EK 4.1.A.3",
+        "rationale": "EK 4.1.A.3 defines handheld computers (also called mobile computers) as smaller than personal computers and battery-powered, including tablets, smartphones, and wearable technology like smart watches. Option A (server, EK 4.1.A.1) provides services to other computers. Option C (embedded, EK 4.1.A.4) is part of a machine. Option D (personal, EK 4.1.A.2) names desktops, laptops, and notebooks — not smartphones and wearables."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A connected tractor contains a small, low-cost computer that is part of the machine itself. It has minimal storage and a specialized instruction set for interfacing with the tractor's components, and because it connects to the internet it is described as part of the Internet of Things. Which two CED terms best describe this computer?",
+        "options": [
+          "A personal computer that is also a server — a device providing services to the farm",
+          "A handheld computer that is also a server — a battery-powered device offering services",
+          "An embedded computer that is also an IoT device — part of a machine and internet-connected",
+          "A server computer that is also a handheld device — a small unit with minimal storage"
+        ],
+        "answer": "C",
+        "ek": "EK 4.1.A.4",
+        "rationale": "EK 4.1.A.4 defines embedded computers as part of a machine, with specialized instruction sets and minimal storage, and EK 4.1.A.5 notes that everyday internet-connected devices with embedded computers are often called IoT devices. Options A, B, and D each pair the device with a category it does not fit — a server provides services to other computers, a handheld is a standalone battery-powered device, and minimal storage does not make a device handheld."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary emails a farm employee an attachment that looks like an invoice. Nothing happens until the employee opens the file, which then activates malicious code that corrupts records on that computer. Which type of malware is described?",
+        "options": [
+          "A worm — it spreads from one computer to another without any human interaction",
+          "A virus — it must be activated by a user executing or opening a file",
+          "Spyware — it tracks a user's actions and sends the information back to an adversary",
+          "A logic bomb — it triggers only when a specific set of conditions is met"
+        ],
+        "answer": "B",
+        "ek": "EK 4.1.B.2",
+        "rationale": "EK 4.1.B.2 defines a virus as malware that must be activated by a user executing or opening a file, which matches the employee opening the attachment. A worm (option A) spreads without human interaction. Spyware (option C) tracks user actions. A logic bomb (option D) triggers on specific conditions such as a date, not on a user opening a file."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Malware on the farm's record-keeping computer encrypts all of its files, locks the user out, and displays a screen demanding payment within a fixed time in exchange for a decryption key. Which type of malware is this?",
+        "options": [
+          "A rootkit — it embeds in the operating system and hides itself from detection",
+          "A keylogger — it logs keystrokes and sends usernames and passwords to the adversary",
+          "Ransomware — it encrypts files and demands payment for a decryption key within a fixed time",
+          "A trojan — it is embedded in other software that seems harmless to gain access"
+        ],
+        "answer": "C",
+        "ek": "EK 4.1.B.2",
+        "rationale": "EK 4.1.B.2 defines ransomware as malware that encrypts a device's files, prevents access, and presents a screen demanding payment for a decryption key within a fixed amount of time — exactly the described behavior. A rootkit (option A) hides in the OS. A keylogger (option B) captures keystrokes. A trojan (option D) hides in seemingly harmless software."
+      },
+      {
+        "id": "Q6",
+        "kind": "multi",
+        "stem": "A malware analyst reviews three samples. I. Code that lives in RAM and uses legitimate programs already installed on the device, rather than existing as a file on disk. II. Sophisticated malware that gets into the operating system, can control nearly every aspect of it, and makes itself invisible to detection. III. Malware that spreads from one computer to another with no human interaction. Match each sample to the correct term.",
+        "options": [
+          "I = fileless malware, II = rootkit, III = worm",
+          "I = worm, II = fileless malware, III = rootkit",
+          "I = rootkit, II = worm, III = fileless malware",
+          "I = fileless malware, II = worm, III = rootkit"
+        ],
+        "answer": "A",
+        "ek": "EK 4.1.B.2 + EK 4.1.B.3",
+        "rationale": "EK 4.1.B.3 defines fileless malware as code that lives in RAM and uses legitimate installed programs — that is I. EK 4.1.B.2 defines a rootkit as malware that gets into the OS, controls nearly every aspect of it, and hides itself — that is II — and a worm as malware that spreads without human interaction — that is III. Only option A maps all three correctly; the others swap at least two terms."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "The farm's email server is missing the most recent update, which included a patch for a known critical vulnerability. An adversary develops an exploit for that vulnerability, crashes services, and ultimately issues commands to steal data from the server. Which vulnerability did the adversary exploit?",
+        "options": [
+          "Autorun was enabled, so inserting an external drive automatically ran the adversary's malware",
+          "The device ran unpatched software with a known vulnerability for which an exploit was developed",
+          "There was no firewall, so the device could not filter out malicious data sent to it",
+          "Weak authentication let the adversary guess the password or socially engineer the user"
+        ],
+        "answer": "B",
+        "ek": "EK 4.1.C.1",
+        "rationale": "EK 4.1.C.1 states adversaries can develop exploits for known vulnerabilities in software and that devices with unpatched software are vulnerable, allowing an adversary to crash a system or take control to steal or destroy information — matching the unpatched email server. Option A is autorun (EK 4.1.C.4), option C is a missing firewall (EK 4.1.C.6), and option D is weak authentication (EK 4.1.C.2), none of which involve a missing software patch."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A laptop in the farm office has no password set on its BIOS/UEFI. An adversary with brief physical access boots it into a special recovery mode that grants higher-level privileges, then loads their own operating system from an external drive to change a user's password. Which vulnerability made this possible?",
+        "options": [
+          "Anti-malware software was missing, so installed malware could disrupt or control the device",
+          "An open port let the adversary connect to the device over the network",
+          "Malicious data reached the device unfiltered — there was no firewall to block it",
+          "There was no BIOS/UEFI password, allowing a boot into recovery mode with higher privileges"
+        ],
+        "answer": "D",
+        "ek": "EK 4.1.C.3",
+        "rationale": "EK 4.1.C.3 states that without a BIOS or UEFI password an adversary can boot into a special mode such as recovery mode for higher-level privileges, load their own operating system from an external drive, and alter user profiles including passwords. Option A is missing anti-malware (EK 4.1.C.7), option B is an open port (EK 4.1.C.5), and option C is a missing firewall (EK 4.1.C.6) — none describe an unprotected boot firmware."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "stem": "A connected grain sensor has no firewall. An adversary sends crafted malicious data directly to the device, and with nothing to filter the incoming data the device is disrupted and partially taken over. Which CED vulnerability does this illustrate?",
+        "options": [
+          "A device with autorun enabled runs malware as soon as an external drive is inserted",
+          "A device with unpatched software is open to exploits for known vulnerabilities",
+          "A device with weak authentication lets an adversary guess or socially engineer the password",
+          "A device with no firewall cannot filter out malicious data sent to disrupt or control it"
+        ],
+        "answer": "D",
+        "ek": "EK 4.1.C.6",
+        "rationale": "EK 4.1.C.6 states that adversaries can send malicious data to devices to disrupt or take control of them, and that devices with no firewall (or a misconfigured one) cannot filter out this malicious data. Option B is autorun (EK 4.1.C.4), option C is unpatched software (EK 4.1.C.1), and option D is weak authentication (EK 4.1.C.2) — none concern filtering malicious data at the device."
+      }
+    ]
+  }
+}
