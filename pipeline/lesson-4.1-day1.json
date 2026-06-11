@@ -8,8 +8,393 @@
     "los": "LO 4.1.A, LO 4.1.B, LO 4.1.C",
     "anchor": "Designing Secure Connected Farm Equipment",
     "author": "AP CS Exam Prep",
-    "totalDays": 6
+    "totalDays": 1,
+    "day": 1
   },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 4 · Lesson 4.1 · Day 1 of 1",
+      "title": "Every Machine Is a Door",
+      "subtitle": "Device Vulnerabilities: the categories of computing devices, the malware adversaries deploy, the weaknesses they exploit, and how to assess and document the resulting risk",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 4, Securing Devices, and Lesson 4.1, Device Vulnerabilities. This single comprehensive deck covers the whole topic: four learning objectives that form the threat-side foundation for everything else in the unit. We start by naming the kinds of computing devices an organization runs, then the malware adversaries use as tools, then the common weaknesses they exploit, and finally how to assess and document the risk each weakness creates. Our anchor is a connected farm: every server, laptop, tablet, and embedded controller out in those fields is a potential door for an adversary. The end-of-lesson quiz and the teacher guide live on this file and span all four learning objectives, A through D."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the five types of computing devices — server, personal, handheld, embedded, and IoT — by what each one is for (LO 4.1.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Name the major types of malware — viruses, worms, trojans and RATs, ransomware, spyware, keyloggers, logic bombs, rootkits, and fileless malware — by their defining behavior (LO 4.1.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how adversaries exploit common device vulnerabilities — unpatched software, weak authentication, missing BIOS/UEFI passwords, autorun, open ports, missing firewalls, and missing anti-malware — to cause loss, damage, disruption, or destruction (LO 4.1.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Assess and document the risk from a device vulnerability as high, moderate, or low based on the device's criticality and the impact of exploitation (LO 4.1.D)"
+        }
+      ],
+      "script": "Four objectives today, one for each learning objective in the topic. First, identify the five categories of computing devices by what each is for, not just by size. Second, name the major types of malware by the one behavior that defines each. Third, explain how adversaries exploit the common device vulnerabilities the CED lists, from unpatched software to a missing firewall. Fourth, take a vulnerability and rate the risk as high, moderate, or low, then document it. By the end you can look at any device on that connected farm, name its category, predict the malware and weaknesses it faces, and assign a defensible risk level."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A modern farm runs on computers you might not think of as computers: a back-office machine that hands out network addresses to everything else, the staff's laptops, a worker's smartphone and smart watch out in the field, and a low-cost controller built into a tractor that connects to the internet to report its location.",
+      "subprompt": "Write 3–5 sentences: which of these five things are 'computers'? Group them however makes sense to you, and explain what makes the tractor's controller different from the office laptop. Don't worry about official terms yet — just describe what each device is for.",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own. Read the list: a machine that hands out addresses to the whole network, the staff laptops, a worker's phone and watch in the field, and a little controller built into a tractor that phones home over the internet. In three to five sentences, decide which of these count as computers and group them however feels natural. Tell me what makes that tractor controller different from an office laptop. Don't reach for official terms yet — by the end of objective A you'll have the College Board's five categories, and every device on this list will land in exactly one of them."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have four sections that match today's four objectives. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Five Types of Computing Devices",
+          "description": "Server, personal, handheld, embedded, and IoT — defined by purpose, with the CED examples for each (EK 4.1.A.1–A.5)."
+        },
+        {
+          "title": "The Malware Toolkit",
+          "description": "Viruses, worms, trojans/RATs, ransomware, spyware, keyloggers, logic bombs, rootkits, and fileless malware — each one's defining behavior (EK 4.1.B.1–B.3)."
+        },
+        {
+          "title": "Exploiting Common Device Weaknesses",
+          "description": "Unpatched software, weak authentication, missing BIOS/UEFI passwords, autorun, open ports, missing firewalls, and missing anti-malware (EK 4.1.C.1–C.7)."
+        },
+        {
+          "title": "Assessing and Documenting Risk",
+          "description": "Rate device-vulnerability risk as high, moderate, or low based on criticality and impact, and record it (EK 4.1.D.1–D.4)."
+        },
+        {
+          "title": "Enrichment: Fileless Malware",
+          "description": "Why malware that lives in RAM and rides legitimate programs defeats a simple drive scan (EK 4.1.B.3).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 4.1 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Four green sections plus one blue enrichment. Section one names the five device categories by purpose. Section two is the malware toolkit — nine named types, each with the one behavior that defines it. Section three is how adversaries exploit seven common weaknesses. Section four is risk: rating each vulnerability high, moderate, or low and writing it down. The enrichment digs into fileless malware, the type that doesn't sit on the drive at all. Keep your pencil moving; I collect Guided Notes at the end of class."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Five Types of Computing Devices",
+      "kicker": "Device Vulnerabilities · Learning Objective 4.1.A",
+      "script": "Section one. Learning objective 4.1.A. Before we can talk about how devices get attacked, we have to name the kinds of devices. The College Board gives five categories, and the trick is that each is defined by what the device is for, not by how big or expensive it is. Ten minutes."
+    },
+    {
+      "type": "concept",
+      "heading": "Server, Personal, and Handheld — Defined by Purpose",
+      "bullets": [
+        "Server computer — provides one or more services to OTHER computers, such as DNS, DHCP, or FTP. Any computer can be a server; in an enterprise it usually has more processing power and storage than a personal computer (EK 4.1.A.1).",
+        "Personal computer — designed to be used by one person for work or recreation: word processing, graphic design, web browsing, media. Includes desktops, laptops, and notebooks (EK 4.1.A.2).",
+        "Handheld computer (mobile computer / information appliance) — smaller than a personal computer and runs on battery power: tablets, smartphones, and wearables like smart watches (EK 4.1.A.3).",
+        "The test is purpose, not size: a machine becomes a server because it serves other computers, not because of its hardware."
+      ],
+      "script": "Three of the five categories. A server provides services to other computers — DNS, DHCP, FTP — and the key line from EK 4.1.A.1 is that any computer can be a server. In an enterprise it tends to have more power and storage, but that's a tendency, not the definition. A personal computer is built for one person doing work or recreation: desktops, laptops, notebooks, EK 4.1.A.2. A handheld is smaller than a personal computer and battery-powered — tablets, smartphones, smart watches, EK 4.1.A.3. Notice the throughline: every category is defined by what the device is for. On the farm, the address-handing-out machine is a server because of what it does, even if it's the same box as a laptop."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Embedded and IoT: The Computers Inside the Machines",
+      "context": "Embedded computers are PART of a machine (EK 4.1.A.4); when those everyday devices connect to the internet, they're called IoT devices (EK 4.1.A.5).",
+      "columns": ["Category", "Defining trait (CED)", "Examples from the CED"],
+      "rows": [
+        ["Embedded (EK 4.1.A.4)", "Part of a machine; specialized instruction set for that machine's components; slower, cheaper, minimal storage", "The controller built into a tractor, car, train, or airplane"],
+        ["IoT (EK 4.1.A.5)", "An everyday device with an embedded computer that is internet-connected", "Washing machines, coffee makers, thermostats; connected farm equipment"],
+        ["Critical infrastructure (EK 4.1.A.5)", "Embedded computers operating infrastructure", "Circuit breakers at electrical substations; pumps at water treatment plants"],
+        ["Medical (EK 4.1.A.5)", "Embedded computers in medical equipment", "IV pumps, MRI scanners, pacemakers, insulin pumps"]
+      ],
+      "note": "AP TIP: A device can wear two labels — the tractor's controller is BOTH embedded (part of the machine) AND IoT (internet-connected). Name both when both apply.",
+      "script": "The last two categories live inside other machines. An embedded computer, EK 4.1.A.4, is part of a machine: it has a specialized instruction set for that machine's components, and it tends to be slower, cheaper, and short on storage. When an everyday device with an embedded computer connects to the internet, EK 4.1.A.5 calls it an IoT device — washing machines, thermostats, and our connected farm equipment. The same EK reaches into critical infrastructure, the breakers and water-plant pumps, and into medical equipment, the IV pumps and pacemakers. The exam tip: a device can carry two labels at once. That tractor controller is both embedded and IoT, so name both."
+    },
+    {
+      "type": "misconception",
+      "heading": "Any Computer Can Be a Server",
+      "misconception": "A server is a special class of expensive hardware that is fundamentally different from a personal computer.",
+      "correction": "A server is a device that PROVIDES one or more services to other computers (DNS, DHCP, FTP). Any computer can be a server. More power and storage is a tendency in enterprises, not what makes it a server (EK 4.1.A.1).",
+      "whyItHappens": "Students picture a rack of expensive blades in a data center and assume 'server' means the hardware, so they classify by appearance instead of by the role the device plays.",
+      "example": "On the farm, an ordinary box becomes 'the server' the moment it starts handing out DNS and DHCP to the other computers — same hardware, different role.",
+      "script": "The most common slip in objective A: thinking 'server' means a particular expensive box. EK 4.1.A.1 is explicit — any computer can be a server, because a server is defined by providing services to other computers. The extra power and storage you see in enterprise servers is a tendency, not the definition. Classify by role, not by looks. On the farm, the moment a plain machine starts serving DNS and DHCP to everything else, it's the server."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Malware Toolkit",
+      "kicker": "Device Vulnerabilities · Learning Objective 4.1.B",
+      "script": "Section two. Learning objective 4.1.B. Malware is the tool adversaries use to carry out part of their plan. The College Board names nine types, and the exam asks you to match a behavior to a name. We'll take them in two grids, then lock them into vocabulary. Fifteen minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Spreading and Hiding: Virus, Worm, Trojan/RAT, Ransomware",
+      "subheading": "EK 4.1.B.1–B.2 — malware is malicious software used as a tool; these four are the headline file-based types.",
+      "items": [
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Virus",
+          "summary": "Malware that must be activated by a user executing or opening a file — it does not spread on its own; a person has to run it.",
+          "ekRef": "EK 4.1.B.2"
+        },
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Worm",
+          "summary": "Malware that spreads from one computer to another WITHOUT human interaction — no one has to click anything for it to propagate.",
+          "ekRef": "EK 4.1.B.2"
+        },
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Trojan / RAT",
+          "summary": "Malware embedded in other software that seems harmless; a remote access trojan (RAT) specifically gives an adversary remote access to the target system.",
+          "ekRef": "EK 4.1.B.2"
+        },
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Ransomware",
+          "summary": "Encrypts a device's files so the user can't access them, then demands payment for a decryption key within a fixed amount of time.",
+          "ekRef": "EK 4.1.B.2"
+        }
+      ],
+      "script": "First grid, the headline types. EK 4.1.B.1 sets the frame: malware is malicious software, a tool an adversary uses to accomplish part of their plan. Now four types from EK 4.1.B.2. A virus must be activated by a user opening or running a file — a person has to act. A worm spreads computer to computer with no human interaction at all. A trojan hides inside software that looks harmless, and a remote access trojan, a RAT, specifically hands the adversary remote control. Ransomware encrypts your files and demands payment for the decryption key on a deadline. The virus-versus-worm line — does a human have to act — is the single most tested distinction here."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Watching and Triggering: Spyware, Keylogger, Logic Bomb, Rootkit",
+      "subheading": "EK 4.1.B.2 — four more types built around surveillance, conditions, and deep concealment.",
+      "items": [
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Spyware",
+          "summary": "Tracks a user's actions on a computer and sends the information back to an adversary.",
+          "ekRef": "EK 4.1.B.2"
+        },
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Keylogger",
+          "summary": "Software or hardware that logs the user's keystrokes and sends them to the adversary, who can often extract usernames and passwords.",
+          "ekRef": "EK 4.1.B.2"
+        },
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Logic Bomb",
+          "summary": "Set to trigger its effect only when a specific set of conditions is met — for example, a particular date or event.",
+          "ekRef": "EK 4.1.B.2"
+        },
+        {
+          "ek": "EK 4.1.B.2",
+          "title": "Rootkit",
+          "summary": "Sophisticated malware that gets into the OS and can control nearly every aspect of the system, including making itself invisible to detection.",
+          "ekRef": "EK 4.1.B.2"
+        }
+      ],
+      "script": "Second grid, four more from EK 4.1.B.2. Spyware tracks what you do and reports back. A keylogger captures keystrokes — hardware or software — and that's how adversaries harvest usernames and passwords. A logic bomb waits: it only triggers when specific conditions are met, like a date or an event, which is why an insider can plant one before leaving. A rootkit burrows into the operating system, controls nearly everything, and crucially makes itself invisible to detection. Notice these four are about watching, waiting, and hiding rather than spreading. Write each name with its one-line behavior."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Fileless Malware Beats the Drive Scan",
+      "subheading": "EK 4.1.B.3 — most malware is a file, but the exception is the one that hides in plain sight.",
+      "track": "enrichment",
+      "left": {
+        "title": "What Makes It Different (EK 4.1.B.3)",
+        "definition": "Lives in RAM, not on disk",
+        "ek": "EK 4.1.B.3",
+        "examples": [
+          "Most malware is a file or a collection of files sitting on a drive",
+          "Fileless malware is malicious CODE that lives in RAM (EK 4.1.B.3)",
+          "It uses legitimate programs ALREADY installed on the device to compromise it",
+          "There is no file on the drive for a simple scan to find"
+        ]
+      },
+      "right": {
+        "title": "Why It's Hard to Catch",
+        "definition": "Nothing to scan, nothing obviously foreign",
+        "ek": "Enrichment",
+        "examples": [
+          "Drive scanners look for files; fileless malware leaves none",
+          "It rides trusted, installed tools, so it looks like normal activity",
+          "Rebooting can clear RAM-only code — but the entry point often remains",
+          "Defense shifts from 'scan the disk' to 'watch behavior of trusted programs'"
+        ]
+      },
+      "footer": "TAKEAWAY: EK 4.1.B.3 is the exception to 'malware is a file.' If a scenario says the threat lives in RAM and uses programs already on the device, it's fileless malware — and that's exactly why a plain drive scan misses it.",
+      "script": "Quick enrichment on the one type that breaks the pattern. EK 4.1.B.3 says most malware is a file or collection of files — but fileless malware is malicious code that lives in RAM and uses legitimate programs already installed on the device. Read that carefully: there's no file on the drive for a scanner to catch, and it rides trusted tools so it blends in with normal activity. That's why a plain drive scan misses it entirely, and why defense shifts toward watching how trusted programs behave. On the exam, 'lives in RAM, uses installed legitimate programs' is the tell for fileless malware."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 4.1.B)",
+      "terms": [
+        {
+          "term": "Malware",
+          "definition": "Malicious software that can damage or destroy a device or network, or allow an adversary access to a device and its data (EK 4.1.B.1)."
+        },
+        {
+          "term": "Virus",
+          "definition": "Malware that must be activated by a user executing or opening a file (EK 4.1.B.2)."
+        },
+        {
+          "term": "Worm",
+          "definition": "Malware that spreads from one computer to another without human interaction (EK 4.1.B.2)."
+        },
+        {
+          "term": "Trojan / RAT",
+          "definition": "Malware embedded in seemingly harmless software; a RAT gives an adversary remote access to the target system (EK 4.1.B.2)."
+        },
+        {
+          "term": "Ransomware",
+          "definition": "Malware that encrypts a device's files and demands payment for a decryption key within a fixed time (EK 4.1.B.2)."
+        },
+        {
+          "term": "Spyware",
+          "definition": "Malware that tracks a user's actions and sends the information back to an adversary (EK 4.1.B.2)."
+        },
+        {
+          "term": "Keylogger",
+          "definition": "Software or hardware that logs keystrokes to extract usernames and passwords (EK 4.1.B.2)."
+        },
+        {
+          "term": "Logic bomb",
+          "definition": "Malware set to trigger its effect only when a specific set of conditions is met (EK 4.1.B.2)."
+        },
+        {
+          "term": "Rootkit",
+          "definition": "Sophisticated malware that controls the OS and hides itself from detection (EK 4.1.B.2)."
+        },
+        {
+          "term": "Fileless malware",
+          "definition": "Malicious code that lives in RAM and uses legitimate installed programs rather than existing as a file on disk (EK 4.1.B.3)."
+        }
+      ],
+      "script": "Ten terms for objective B. Malware is the umbrella, EK 4.1.B.1. Then the nine types, each tied to its EK: virus needs a user to run a file; worm spreads on its own; trojan hides in harmless software and a RAT gives remote control; ransomware encrypts and demands payment; spyware watches; keylogger captures keystrokes; logic bomb waits for conditions; rootkit hides in the OS; and fileless malware lives in RAM using installed programs. Memorize these by name and behavior, because the exam gives you a behavior and asks for the name. Get all ten into your notes."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 4.1.A and 4.1.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A connected grain-moisture sensor is a low-cost computer built into the silo, with minimal storage and a specialized instruction set, and it reports readings over the internet. Name the TWO CED categories it fits and cite each EK. Then explain why it fits both.",
+        "An employee opens an emailed attachment that looks like an invoice; nothing happens until it's opened, after which it corrupts records on that one machine. Name the malware type and cite its EK. How would your answer change if the same code had spread to other machines with no one clicking anything?"
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: that grain-moisture sensor is built into the silo and reports over the internet — name both categories it fits and cite each EK. You should land on embedded, EK 4.1.A.4, and IoT, EK 4.1.A.5, and explain why both apply. Question two: the invoice attachment that only acts when opened is a virus, EK 4.1.B.2 — and if the same code spread on its own with no clicking, it would be a worm instead. That virus-versus-worm pivot is exactly how the exam tests it. Go."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Exploiting Common Device Weaknesses",
+      "kicker": "Device Vulnerabilities · Learning Objective 4.1.C",
+      "script": "Section three. Learning objective 4.1.C. Now the weaknesses adversaries exploit to cause loss, damage, disruption, or destruction. The CED lists seven. We'll group them into software-and-access weaknesses and network-and-defense weaknesses, then practice matching a scenario to the exact vulnerability. Fifteen minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "Software, Authentication, and Boot Weaknesses",
+      "subheading": "EK 4.1.C.1–C.4 — four ways in that start with software, passwords, firmware, and removable media.",
+      "left": {
+        "title": "Unpatched Software & Weak Authentication",
+        "definition": "Known holes and guessable credentials",
+        "ek": "EK 4.1.C.1–C.2",
+        "examples": [
+          "Unpatched software: adversaries develop exploits for known vulnerabilities, letting them crash a system, view user actions, toggle components (webcam/mic), or take control to steal or destroy data (EK 4.1.C.1)",
+          "Weak authentication: adversaries guess a password, or use social engineering to get the user to divulge it (EK 4.1.C.2)"
+        ]
+      },
+      "right": {
+        "title": "Missing BIOS/UEFI Password & Autorun",
+        "definition": "Physical-access and removable-media holes",
+        "ek": "EK 4.1.C.3–C.4",
+        "examples": [
+          "No BIOS/UEFI password: an adversary boots into a special mode (e.g., recovery mode) for higher privileges, can load their own OS from an external drive, and alter or create user profiles — including changing passwords (EK 4.1.C.3)",
+          "Autorun enabled: malware loaded onto an external drive runs automatically the moment the drive is inserted (EK 4.1.C.4)"
+        ]
+      },
+      "footer": "AP TIP: These four often need different access. Unpatched software (C.1) and weak auth (C.2) can be remote; a missing BIOS/UEFI password (C.3) and autorun (C.4) usually need physical access to the device.",
+      "script": "First grid of weaknesses, EK 4.1.C.1 through C.4. Unpatched software, C.1: adversaries write exploits for known holes, and an unpatched device lets them crash it, watch the user, flip a webcam or mic on, or fully take control to steal or destroy data. Weak authentication, C.2: they simply guess the password or socially engineer the user into handing it over. Missing BIOS or UEFI password, C.3: with brief physical access they boot into recovery mode for higher privileges, even load their own operating system from an external drive, and change user profiles and passwords. Autorun, C.4: malware on an inserted external drive runs automatically. Notice C.1 and C.2 can be remote, while C.3 and C.4 usually need hands on the device."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Network and Defense Weaknesses: Open Ports, No Firewall, No Anti-Malware",
+      "subheading": "EK 4.1.C.5–C.7 — three weaknesses about reaching the device and failing to filter or detect what arrives.",
+      "items": [
+        {
+          "ek": "EK 4.1.C.5",
+          "title": "Open Ports",
+          "summary": "Adversaries can leverage open ports to connect to a device — an open port is a way in over the network.",
+          "ekRef": "EK 4.1.C.5"
+        },
+        {
+          "ek": "EK 4.1.C.6",
+          "title": "Missing / Misconfigured Firewall",
+          "summary": "Adversaries send malicious data to disrupt or take control of a device; a device with no firewall (or a misconfigured one) cannot filter out that malicious data.",
+          "ekRef": "EK 4.1.C.6"
+        },
+        {
+          "ek": "EK 4.1.C.7",
+          "title": "Missing Anti-Malware",
+          "summary": "Adversaries often try to install malware to disrupt or control a device; devices lacking anti-malware software are more vulnerable to this attack.",
+          "ekRef": "EK 4.1.C.7"
+        }
+      ],
+      "script": "Second grid, EK 4.1.C.5 through C.7 — the network-and-defense weaknesses. Open ports, C.5: an open port is simply a way in, and adversaries leverage it to connect to the device. Missing or misconfigured firewall, C.6: adversaries send crafted malicious data to disrupt or take over a device, and with no firewall there's nothing to filter that data out. Missing anti-malware, C.7: adversaries try to install malware, and a device without anti-malware is far more exposed to that. Tie each to its EK. On the farm, that grain sensor with an open port and no firewall is a textbook C.5 and C.6 target."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Assessing and Documenting Risk",
+      "kicker": "Device Vulnerabilities · Learning Objective 4.1.D",
+      "script": "Section four. Learning objective 4.1.D. Naming a weakness isn't enough — you have to rate the risk and write it down. The College Board gives three levels, high, moderate, and low, keyed to how critical the device is and how bad exploitation would be. Ten minutes, and this is exactly what scenario 4A asks you to produce."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Rating Device-Vulnerability Risk: High, Moderate, Low",
+      "context": "Risk from device vulnerabilities depends on the device's criticality and the data or services it provides (EK 4.1.D.1); the level is high, moderate, or low (EK 4.1.D.2–D.4).",
+      "columns": ["Level", "What defines it (CED)", "CED illustrative example"],
+      "rows": [
+        ["High (EK 4.1.D.2)", "Potentially compromises sensitive data or critical operations", "An organization hasn't installed the latest update for its email server, which patched a known critical vulnerability"],
+        ["Moderate (EK 4.1.D.3)", "Arises from weak authentication, or vulnerabilities less likely to be exploited", "Water-treatment pump controllers reachable by username and password remotely, with no MFA"],
+        ["Low (EK 4.1.D.4)", "Vulnerabilities that, if exploited, would have little impact", "An employee's laptop has telnet port 23 open"]
+      ],
+      "note": "AP TIP: The same vulnerability can sit at different levels depending on the DEVICE. Unpatched software on a critical email server is high; the impact and the device's criticality set the level (EK 4.1.D.1).",
+      "script": "Three risk levels, straight from EK 4.1.D.2 through D.4, and EK 4.1.D.1 tells you the level depends on how critical the device is and the data or services it provides. High risk: exploitation could compromise sensitive data or critical operations — the CED's example is an unpatched email server with a known critical vulnerability. Moderate: it stems from weak authentication, or a vulnerability less likely to be exploited — the water-treatment pumps reachable by password with no MFA. Low: little real impact if exploited — a laptop with telnet port 23 open. The crucial point: the same weakness can sit at different levels depending on the device's criticality. This table is the engine of scenario 4A."
+    },
+    {
+      "type": "concept",
+      "heading": "What Goes in the Risk Documentation",
+      "bullets": [
+        "Risk from device vulnerabilities can let an adversary impersonate an authorized user, remotely control a device, encrypt a drive to ransom the data, or wipe memory — destroying data or rendering the device inoperable (EK 4.1.D.1).",
+        "The level of risk varies with the criticality of the device and the services it provides or the data it stores (EK 4.1.D.1).",
+        "Document for each risk: the vulnerable device, the vulnerability, the malware or technique an adversary would use, the likely impact, and the assigned level — high, moderate, or low (EK 4.1.D.2–D.4).",
+        "In scenario 4A you do exactly this for the connected farm: list each device's vulnerability and rate it, then recommend controls."
+      ],
+      "script": "Documenting risk is the deliverable. EK 4.1.D.1 names what's at stake — an adversary could impersonate a user, remotely control the device, ransom the drive, or wipe its memory and render it inoperable — and the level of risk varies with how critical the device is and what data or services it holds. So for each risk you write down the vulnerable device, the specific vulnerability, the malware or technique that would exploit it, the likely impact, and your assigned level: high, moderate, or low. That is precisely the report scenario 4A asks for on the connected farm — vulnerability, rating, recommendation, for every device."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 4.1.C and 4.1.D. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A connected grain sensor has no firewall, so an adversary sends crafted malicious data straight to it and partially takes it over. Name the exact CED vulnerability and cite its EK. Then explain why a missing firewall (C.6) is a different weakness from an open port (C.5).",
+        "The farm's email server is missing a patch for a known critical vulnerability that could expose sensitive customer records. Assign a CED risk level — high, moderate, or low — cite the EK, and write the one-line risk-documentation entry you'd record for it."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: the grain sensor with no firewall taking in malicious data is EK 4.1.C.6, a missing firewall that can't filter the data — and you should distinguish that from an open port, C.5, which is about reaching the device in the first place. Question two: the unpatched email server with a known critical vulnerability exposing customer records is high risk, EK 4.1.D.2, because it threatens sensitive data on a critical device — then write the documentation line: device, vulnerability, technique, impact, level. This is the scenario-4A skill. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Device Vulnerabilities, in One Slide",
+      "points": [
+        "Five device types by purpose: server serves others, personal is one-person, handheld is small and battery-powered, embedded is part of a machine, IoT is an internet-connected embedded device (EK 4.1.A.1–A.5).",
+        "Nine malware types by behavior: virus (user runs it), worm (spreads alone), trojan/RAT (hidden / remote control), ransomware (encrypt + demand), spyware (watches), keylogger (keystrokes), logic bomb (conditions), rootkit (hides in OS), fileless (lives in RAM) (EK 4.1.B.1–B.3).",
+        "Seven exploited weaknesses: unpatched software, weak authentication, missing BIOS/UEFI password, autorun, open ports, missing firewall, missing anti-malware (EK 4.1.C.1–C.7).",
+        "Three risk levels by criticality and impact: high (sensitive data / critical ops), moderate (weak auth / less likely), low (little impact) — documented per device (EK 4.1.D.1–D.4)."
+      ],
+      "next": "Apply all four objectives to the connected-farm scenario 4A — tag each device, predict its malware and weaknesses, and assign and document a risk level. Then study for the Lesson 4.1 quiz, which spans 4.1.A through D.",
+      "script": "Everything in one slide. Five device categories defined by purpose. Nine malware types defined by behavior, with the virus-versus-worm line front and center. Seven device weaknesses adversaries exploit, from unpatched software to missing anti-malware. And three risk levels — high, moderate, low — set by the device's criticality and the impact of exploitation, then written into documentation. Next you take all four to scenario 4A: tag every device on the connected farm, predict the malware and weaknesses it faces, and assign and document a risk level. Review your Guided Notes — be able to match any behavior or scenario to its EK cold, because that's exactly how the Lesson 4.1 quiz is built."
+    }
+  ],
   "guide": {
     "title": "Lesson 4.1 — Device Vulnerabilities — Teacher Guide",
     "subtitle": "Unit 4 · Topic 4.1 · 6 class periods · Anchor: Designing Secure Connected Farm Equipment",
