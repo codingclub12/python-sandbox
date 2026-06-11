@@ -5,7 +5,7 @@
     "course": "AP Cybersecurity",
     "unit": "Unit 3: Securing Networks",
     "day": 1,
-    "los": "LO 3.1.A, LO 3.1.B",
+    "los": "LO 3.1.A, LO 3.1.B, LO 3.1.C",
     "anchor": "Protecting Patient Medical Data",
     "author": "AP CS Exam Prep",
     "totalDays": 1
@@ -35,9 +35,13 @@
         {
           "tag": "CB",
           "text": "Explain how adversaries exploit network vulnerabilities — missing firewalls, lateral movement, open ports, leaking wireless signals, unauthenticated joins, and rogue access points — to steal, disrupt, or destroy communication (LO 3.1.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Assess and document the risk a network vulnerability creates — rating it high, moderate, or low from its impact on confidentiality, integrity, and availability and the likelihood of exploitation (LO 3.1.C)"
         }
       ],
-      "script": "Two learning objectives today. First, 3.1.A: identify the four common network attacks the CED names — ARP poisoning, MAC flooding, DNS poisoning, and the smurf attack — and know the category each belongs to, because the exam tests the category as much as the name. Second, 3.1.B: explain how adversaries actually exploit a network's vulnerabilities, from a missing firewall to a rogue access point. Notice the pattern that ties the whole topic together: every attack targets something specific and produces a specific harm. Get those two columns straight and the topic becomes a matching game you can win every time."
+      "script": "Three learning objectives today. First, 3.1.A: identify the four common network attacks the CED names — ARP poisoning, MAC flooding, DNS poisoning, and the smurf attack — and know the category each belongs to, because the exam tests the category as much as the name. Second, 3.1.B: explain how adversaries actually exploit a network's vulnerabilities, from a missing firewall to a rogue access point. Notice the pattern that ties the whole topic together: every attack targets something specific and produces a specific harm. Get those two columns straight and the topic becomes a matching game you can win every time. And third, 3.1.C: assess and document the risk each vulnerability creates — rate it high, moderate, or low by weighing impact against likelihood."
     },
     {
       "type": "bell_ringer",
@@ -50,7 +54,7 @@
     {
       "type": "guided_notes_preview",
       "heading": "What You’ll Be Filling In",
-      "subheading": "Your Guided Notes have three sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "subheading": "Your Guided Notes have four sections that match today’s lesson. Green = CB required. Blue = enrichment.",
       "sections": [
         {
           "title": "The Four Common Attacks (LO 3.1.A)",
@@ -61,13 +65,17 @@
           "description": "How missing firewalls, lateral movement, open data ports, leaking wireless signals, unauthenticated joins, and rogue access points let adversaries steal, disrupt, or destroy communication (EK 3.1.B.1–B.7)."
         },
         {
+          "title": "Assessing Risk: High / Moderate / Low (LO 3.1.C)",
+          "description": "Weigh a vulnerability's impact on confidentiality, integrity, and availability against the likelihood of exploitation, use automated vulnerability scanners, and rate the risk high, moderate, or low (EK 3.1.C.1–C.6)."
+        },
+        {
           "title": "Enrichment: Layer 2 vs. Layer 3 Targets",
           "description": "Why ARP poisoning and MAC flooding attack the local switch fabric while DNS poisoning and the smurf attack reach across the network — and what that means for where you defend (EK 3.1.A.1–A.4).",
           "track": "enrichment"
         }
       ],
       "note": "Fill in your Guided Notes as we go. The Lesson 3.1 page on apcsexamprep.com has every answer if you fall behind.",
-      "script": "Three sections today, the first two green and CB-required, the last one blue enrichment. Section one is learning objective 3.1.A: the four named attacks, each tied to what it targets and the category it belongs to. Section two is 3.1.B: how adversaries exploit a network's actual weaknesses, from a missing firewall to a rogue access point. Section three is enrichment — a way to organize the four attacks by where they strike, the local switch versus across the network. Keep your pencil moving; I collect Guided Notes at the end of class."
+      "script": "Four sections today, the first two green and CB-required, the last one blue enrichment. Section one is learning objective 3.1.A: the four named attacks, each tied to what it targets and the category it belongs to. Section two is 3.1.B: how adversaries exploit a network's actual weaknesses, from a missing firewall to a rogue access point. Section three is enrichment — a way to organize the four attacks by where they strike, the local switch versus across the network. Keep your pencil moving; I collect Guided Notes at the end of class."
     },
     {
       "type": "section_divider",
@@ -357,6 +365,62 @@
       "script": "Two questions, six minutes, independent. Question one: a visitor plugs into a hallway jack, reaches the LAN, and starts MAC flooding. The safeguard is port security, and the vulnerability is EK 3.1.B.3 — explain that a firewall guards the edge, not a device plugged in inside, so it wouldn't help. Question two: compare two wireless intrusions — picking up leaking signals from outside, EK 3.1.B.4, versus planting a rogue access point on an open port, EK 3.1.B.6. Describe how each works and say which one bypasses the firewall entirely — that's the rogue access point. Full sentences, cite your EKs. Go."
     },
     {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Assessing Network-Vulnerability Risks",
+      "kicker": "Network Vulnerabilities and Attacks · Learning Objective 3.1.C",
+      "script": "Section three. Learning objective 3.1.C. Naming attacks and vulnerabilities is only half the job — the CED also expects you to ASSESS the risk a vulnerability creates and document it. Risk has two ingredients: how bad the impact would be, and how likely the exploit is. By the end of this section you'll rate a vulnerability as high, moderate, or low and justify it. Five minutes."
+    },
+    {
+      "type": "concept",
+      "heading": "Risk = Impact × Likelihood",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Impact — a network vulnerability can let an adversary intercept or alter data in transit, launch a DoS, or move laterally to reach more sensitive systems, so it can threaten confidentiality, integrity, AND availability (EK 3.1.C.1)",
+        "Likelihood — successfully exploiting a vulnerability often requires advanced technical ability and knowledge; the harder it is to exploit, the lower the likelihood (EK 3.1.C.3)",
+        "Automated vulnerability scanners check networks, devices, and applications for known vulnerabilities and produce a report listing what was found, each item's severity, and mitigation recommendations (EK 3.1.C.2)",
+        "To assess risk, weigh the impact of a successful exploit against how likely that exploit is — then document the result as high, moderate, or low"
+      ],
+      "script": "Risk is impact times likelihood. Start with impact, EK 3.1.C.1: a network vulnerability can let an adversary intercept or alter data in transit, knock a service offline with a DoS, or move laterally to reach the systems that really matter — so a single weakness can put all three of confidentiality, integrity, and availability at stake. Now likelihood, EK 3.1.C.3: most real exploits take genuine technical skill, so the harder a vulnerability is to exploit, the less likely it is to happen — and that lowers the risk even when the potential impact is high. EK 3.1.C.2 gives you a tool: automated vulnerability scanners sweep networks, devices, and applications for known weaknesses and hand back a report with severity ratings and mitigation recommendations. Put it together — weigh impact against likelihood — and you can document any vulnerability as high, moderate, or low."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Rating the Risk: High, Moderate, Low",
+      "subheading": "EK 3.1.C.4–C.6 — the exam hands you a scenario and asks you to justify the rating.",
+      "items": [
+        {
+          "ek": "EK 3.1.C.4",
+          "title": "High Risk",
+          "summary": "A vulnerability that lets an adversary EASILY cause significant impact — capturing network traffic, spoofing a legitimate device, or launching a DoS. Example: one flat, unsegmented internal network reachable over weakly encrypted Wi-Fi, with a proprietary web-application server sitting on it.",
+          "ekRef": "EK 3.1.C.4"
+        },
+        {
+          "ek": "EK 3.1.C.5",
+          "title": "Moderate Risk",
+          "summary": "A vulnerability that might give an adversary the ability to gain information about systems or devices on the network, without immediate major damage. Example: an external firewall that is not configured to block inbound ICMP traffic.",
+          "ekRef": "EK 3.1.C.5"
+        },
+        {
+          "ek": "EK 3.1.C.6",
+          "title": "Low Risk",
+          "summary": "A vulnerability that would be difficult to exploit and would likely have only minimal negative impact on the organization if it were exploited.",
+          "ekRef": "EK 3.1.C.6"
+        }
+      ],
+      "script": "Three ratings, and the exam wants the justification, not just the label. EK 3.1.C.4, high risk: the adversary can easily do serious damage — capture traffic, spoof a device, or launch a DoS. The CED's own example is a flat, unsegmented network you can reach over weak Wi-Fi encryption with a proprietary web-app server right there on it; easy access plus big impact equals high. EK 3.1.C.5, moderate: the vulnerability mostly leaks information about the systems on the network rather than handing over immediate control — the CED example is an external firewall that forgot to block inbound ICMP. EK 3.1.C.6, low risk: hard to exploit and minimal impact even if someone pulls it off. When you write the rating in your notes, name the impact and the likelihood that justify it."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Rate and Justify",
+      "subheading": "Both questions map to LO 3.1.C. Complete on your Guided Notes packet.",
+      "prompts": [
+        "An organization runs one flat, unsegmented network reachable over Wi-Fi secured with outdated WEP encryption, and its customer-database server lives on that network. Rate the risk high, moderate, or low and justify it using both impact and likelihood (cite EK 3.1.C.4).",
+        "A company's external firewall allows inbound ICMP echo requests but blocks everything else sensitive. Rate the risk and explain which of confidentiality, integrity, and availability is most affected (reference EK 3.1.C.1 and EK 3.1.C.5)."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, full sentences. Question one is the CED's high-risk example almost word for word: a flat network, weak WEP Wi-Fi, a database server on it. Rate it and justify — I want both the easy access and the big impact in your answer, tied to EK 3.1.C.4. Question two is the moderate example: a firewall that lets ICMP in. Rate it, and tell me which CIA property is most at stake — mostly this leaks information, so think about confidentiality. Use the EK numbers in your written response."
+    },
+    {
       "type": "final_summary",
       "heading": "Network Vulnerabilities and Attacks, in One Slide",
       "points": [
@@ -364,10 +428,11 @@
         "Name the TARGET and the CATEGORY for each attack — that pairing is exactly what the exam tests",
         "Wired vulnerabilities (3.1.B): missing or misconfigured firewalls invite flooding, mapping, and spoofing (B.1); a single compromised device enables lateral movement across the LAN (B.2); an open data port without port security lets someone plug in and attack (B.3)",
         "Wireless vulnerabilities (3.1.B): signals leaking outside enable eavesdropping (B.4); unauthenticated networks are easy to join (B.5); a rogue access point on an open port bypasses the firewall entirely (B.6); weak encryption can be broken to steal data (B.7)",
+        "Assessing risk (3.1.C): weigh impact — a vulnerability can break confidentiality, integrity, or availability (C.1) — against likelihood, since harder exploits are less likely (C.3); automated scanners flag known weaknesses with severity (C.2); then rate it high, moderate, or low (C.4–C.6)",
         "The throughline: every vulnerability invites a specific attack, and every attack steals, disrupts, or destroys communication"
       ],
       "next": "Unit 3 turns from these threats to the controls that stop them — segmentation, firewalls, port security, and authentication that close each vulnerability you named today.",
-      "script": "Everything in one slide. Four named attacks under 3.1.A: ARP poisoning for on-path interception, MAC flooding for eavesdropping, DNS poisoning for credential harvesting, and the smurf attack for denial of service — and for each, you name the target and the category. Under 3.1.B, the vulnerabilities that make those attacks possible: on the wired side, missing firewalls, lateral movement, and open ports; on the wireless side, leaking signals, unauthenticated joins, rogue access points, and breakable encryption. The throughline is simple: every vulnerability invites a specific attack, and every attack steals, disrupts, or destroys communication. Next, Unit 3 turns to the controls that close each of these gaps. Review your Guided Notes — be able to name all four attacks and all seven vulnerabilities with their EK numbers cold."
+      "script": "Everything in one slide. Four named attacks under 3.1.A: ARP poisoning for on-path interception, MAC flooding for eavesdropping, DNS poisoning for credential harvesting, and the smurf attack for denial of service — and for each, you name the target and the category. Under 3.1.B, the vulnerabilities that make those attacks possible: on the wired side, missing firewalls, lateral movement, and open ports; on the wireless side, leaking signals, unauthenticated joins, rogue access points, and breakable encryption. The throughline is simple: every vulnerability invites a specific attack, and every attack steals, disrupts, or destroys communication. Next, Unit 3 turns to the controls that close each of these gaps. Review your Guided Notes — be able to name all four attacks, all seven vulnerabilities, and how to rate a vulnerability high, moderate, or low — with their EK numbers cold."
     }
   ],
   "guide": {
@@ -533,11 +598,15 @@
           },
           {
             "segment": "Beacon frames leaking outside the building; joining unauthenticated networks (EK 3.1.B.4–B.5)",
-            "min": 13
+            "min": 5
           },
           {
             "segment": "Rogue access points bypassing firewalls; breaking wireless encryption (EK 3.1.B.6–B.7)",
             "min": 13
+          },
+          {
+            "segment": "Assess and document vulnerability risk: high, moderate, low (EK 3.1.C.1–C.6)",
+            "min": 10
           },
           {
             "segment": "Topic review + Lesson 3.1 quiz",
