@@ -1,0 +1,54 @@
+VOICEOVER SCRIPT — Lesson 1.2
+============================================================
+
+[Slide 1]
+Today is application. Yesterday you learned the three signs of a password attack, the dictionary attack mechanism, and the three defenses. Today you are going to apply all three to Scenario 1B — the website login log from Scenario 1B, Detecting Unauthorized Logins. By the end you will have worked through a structured analysis of a real-world authorization log, identified which indicators are present — and, just as important, which one is not — and explained exactly what the adversary most likely did to get in. This is exactly the kind of task the AP exam asks you to perform.
+
+[Slide 2]
+Before we dive into Scenario 1B, I want to correct the most common misconception from Day 1. Several of you wrote that the signs only matter if the attacker got in. That is wrong. The standard defines signs of an attack in progress. The failed attempts are the evidence. The AP exam will give you a log with 89 failed attempts at 3 a.m. And ask you to identify which signs of a password attack are present. The answer is signs one and two even though every attempt failed. Success is irrelevant to identifying the indicators.
+
+[Slide 3]
+Three goals, the same three, but applied. First: look at a log entry and name which signs are present. Second: explain the attack construction — what personal info did the adversary use, what pattern did they target? Third: recommend defenses and explain the mechanism for each one. These are the three AP exam task verbs for this lesson: identify, explain, explain. Today you practice all three with a real scenario.
+
+[Slide 4]
+Quick map of today's material. Three sections: the Scenario 1B log itself, a sign-by-sign evidence table — including the sign this log cannot show — and an enrichment section on the server-side controls that shape what attacks look like in a log.
+
+[Slide 5]
+Shift gears with me — we are done with definitions and now we are the investigator. Here is the setup, verbatim in spirit: you manage virtual teams in an online game, you discover choices you never made, and you pull up the account activity list — every time the account was accessed. That is exactly what a security analyst does first: look at the authentication record. You normally log in on weekends and evenings, when you're not in school — that baseline matters. Your job for the rest of this lesson is the three objectives applied to real data: find the signs, explain how the attacker built the attack, and recommend the fix. One added detail, and I want to be clear it is ours, not the College Board's: your family's last name is Rivera. Hold onto that. On the next slide you get the raw log, and then you analyze it before I say a word.
+
+[Slide 6]
+This is the Scenario 1B login list from the AP Cybersecurity course — the eight entries are verbatim; we have only split the official combined Date/Time column for readability. The student who owns this account normally logs in on weekends and evenings when not in school. Look at the pattern: entries 1, 2, 3, 5, 6, 8 are all from 208.104.29.211 on weekends and evenings. That is the student's normal device IP. Now look at entries 4 and 7. Different IP — 142.54.195.17. Different days — Wednesday and Monday. Different times — 11 a.m. And 10 a.m., which is school hours. Note which of the three signs are present and which log entries are your evidence.
+
+[Slide 7]
+For each of the three signs — many failed attempts in short duration, unusual timestamps, unknown device — the answer is YES or NO. If YES, the specific log field is the evidence.
+
+[Slide 8]
+Let's go through each sign one at a time. The key is to point to the specific log field, not just say yes or no.
+
+[Slide 9]
+Sign 1. Look carefully: this log shows successful sign-ins only. There is no failure count anywhere in the eight entries — so the honest answer is that Sign 1, many failed attempts in a short duration, is NOT clearly shown in this log. Say that explicitly; do not invent a failure burst because you expected one. On a real system the attacker may well have failed some attempts before entries 4 and 7, but you can only cite what the log shows. And that is fine — the standard does not require all three signs. One or more is enough to flag suspicious activity, and as you are about to see, Signs 2 and 3 are both clearly present on the same two entries. The exam will sometimes hand you explicit failure counts and sometimes an anomaly pattern like this one. Know both formats, and only claim the signs you can evidence.
+
+[Slide 10]
+Sign 2. The scenario tells you exactly when this student normally logs in: weekends and evenings when not in school. Look at entries 4 and 7 — Wednesday 11:13 a.m. And Monday 10:07 a.m. That is school time on school days. The legitimate user is almost certainly in class at those times. Sign 2 is present and clearly evidenced by comparing the attack timestamps against the scenario’s stated user pattern. This is the most reliable sign in the Scenario 1B log.
+
+[Slide 11]
+Sign 3. Every legitimate login in this log — entries 1, 2, 3, 5, 6, 8 — is from 208.104.29.211. That is the student’s home IP. Entries 4 and 7 are from 142.54.195.17. That IP has never appeared in this account’s history before these two entries. Unknown device slash unknown IP. Sign 3 is present. And notice: signs 2 and 3 both point to the exact same two entries. That is not coincidence. When multiple signs converge on the same log entries, you have near-certain evidence of unauthorized access.
+
+[Slide 12]
+Here is the scenario's teaching moment. Entries 4 and 7 are successful logins. The student did not notice because of a burst of failed attempts — they noticed because someone modified their game choices. That is how many real breaches are discovered: not by catching the attack in progress, but by finding the damage afterward. Now apply. The family name Rivera is our added detail — the official scenario names no family, and the log itself only shows entries, days, times, and IPs. An adversary who learned that name, from social media or anywhere else, almost certainly built a dictionary combining it with common year patterns and trailing special characters. That is the exact attack mechanism the standard describes. All three defenses would have helped: a random password defeats the dictionary, avoiding the family name removes the anchor, and MFA blocks the login even after the password is cracked.
+
+[Slide 13]
+Summary. Two signs present — unusual times and unknown IP — and both point at the same two entries, 4 and 7. Sign 1 is not shown, and saying so out loud is part of a full-credit answer, because this log records successes only. The attack still succeeded: the adversary most likely matched the password with a dictionary anchored on the family name, which is our added detail — the log shows only entries, days, times, and IPs. And all three defenses would have helped here. This is the AP exam analysis template: signs — with honest evidence — then mechanism, then defenses. You will use this exact structure on Day 3 with new scenarios.
+
+[Slide 14]
+Question one: the family name Rivera is our added detail — the log never shows a name. How does an adversary who learned that name turn it into a dictionary? What did the word list likely contain? Be specific — name plus years, name plus trailing special characters. Question two: the account owner wants to prevent this from happening again. Recommend two of the three defenses and explain the mechanism. Not just name them — explain how each one would have stopped this specific attack.
+
+[Slide 15]
+Enrichment. Day 2's log raised a fair question: why would a log show only successes? Two server-side controls shape what an attack looks like in the record. Account lockout freezes the account after a threshold of rapid failures — it stops automated tools cold, at the cost of enabling denial-of-service against the user. Rate limiting slows attempts down instead: an attacker forced to space out guesses leaves no dramatic burst, which is one reason a login log can end up looking like Scenario 1B's — quiet, with only the successes recorded. Remember the layer distinction for the exam: lockout and rate limiting are server-side controls; the three defenses are actions the individual user takes. Both layers together, plus MFA, is the full posture.
+
+[Slide 16]
+Everything we just did in class is waiting for you on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.2 page and run the self-check so you know where you actually stand. Then do Exercise 1, the login log analysis, where you find all three signs of an attack. Exercise 2 is the adversary profile builder, and the quiz at the bottom is five questions across all three objectives. If you want it again at your own speed, the lesson video walks through this exact material slide for slide.
+
+[Slide 17]
+You read a real log honestly: you found the two signs that are evidenced, you refused to invent the one that is not, you traced the mechanism, and you recommended defenses with explanations. Day 3 brings new scenarios that are slightly more ambiguous — you will need to decide whether what you are seeing is a password attack or something else. Tonight: walk through the Rivera log in your head. Can you name which signs are present, which entries prove it, and which sign is missing — without looking?
+

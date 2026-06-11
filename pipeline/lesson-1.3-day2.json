@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "lessonId": "1.3-day2",
+    "title": "Best Practices for Public Networks"
+  },
+  "slides": [
+    {
+      "script": "Lesson 1.3, Day 2 of 4. Yesterday you learned the three CB wireless attacks and the three CB defenses. Today you put them to work. You are a wireless security analyst, and four incidents just landed on your desk. Your job for each one: name the attack, classify the adversary as low or high skilled, and recommend the CB defense that would have stopped it. Before we start, one correction from yesterday's notes."
+    },
+    {
+      "script": "The most common error I saw on yesterday's guided notes: describing a man-in-the-middle attack as just watching traffic. That is sniffing. Sniffing is passive — the attacker only observes. A man-in-the-middle attacker sits between you and the destination and can modify what passes through: alter a transaction, inject content, redirect you. Active versus passive. Write that distinction down now, because it shows up again in today's extension and it is exam-tested."
+    },
+    {
+      "script": "Here is the assignment for every one of the four incidents. First, identify the attack by its CB name: evil twin, jamming or denial of service, or war driving. Second, classify the adversary: low skilled means they bought tools someone else built; high skilled means they can build or modify their own. Third, recommend the CB defense that fits. And fourth, this is where points are won or lost, justify the defense by tying it to how the attack actually works. 'Be careful on public Wi-Fi' earns nothing."
+    },
+    {
+      "script": "Use this three-step method on every scenario. Step one, anchor your first instinct in writing before you start second-guessing. Step two is the signal filter, and this is the one that does the heavy lifting: find the defining action. Setting up a fake access point is an evil twin. Disrupting or flooding the signal is jamming. Just detecting and mapping networks is war driving. Step three, match the defense to that specific mechanism. The exam loves to offer you a real CB defense that does not actually stop the attack in front of you."
+    },
+    {
+      "script": "Twenty-seven minutes. Work the four scenarios in order on your packet. For each one I want all four parts: attack type, skill level, the CB defense, and one line of rationale. If you finish early, flip to the back and start the active-versus-passive extension. The single most common place people get stuck is evil twin versus war driving, so here is your tiebreaker: did the attacker set up a fake network, or did they only detect real ones? Setting up is evil twin. Detecting is war driving. Go."
+    },
+    {
+      "script": "Pencils down. Let's walk through all four. For each incident I'll cold-call one of you for the classification and a second person for the CB defense. We're building a defense-to-attack map on the board as we go."
+    },
+    {
+      "script": "Scenario one, the coffee shop. Attack type? Evil twin. The defining signal is that the attacker set up their own access point with a matching name and a fake login portal. Skill level is low: a pre-built pineapple-style device costs under two hundred dollars, no code required, which matches the CB definition of a low-skilled adversary using tools others built. The defense is SSID verification before connecting. Watch the trap: a lot of people say VPN here. A VPN encrypts traffic after you connect, but the password was stolen at the fake portal before any VPN would kick in. Verify the network first."
+    },
+    {
+      "script": "Scenario two, the shareholder meeting. This is a jamming or denial-of-service attack — a high-power signal flooding the 2.4 gigahertz band. Skill level low; you can buy a jammer. Now the defense, and this is the important one: none of the three CB defenses apply. SSID verification, VPN, protocol awareness — they all protect the confidentiality of your data. Jamming does not try to read your data; it blocks access entirely. That is an availability attack. So full credit is for recognizing it's a different category: switch to the 5 gigahertz band, go wired for the critical event, or for an individual, drop to cellular data."
+    },
+    {
+      "script": "Scenario three, the car in the parking lot. This is war driving. The defining signal: the person is detecting and mapping real network beacons from outside the building. No fake access point, no connection attempt. Skill can range from low to high here, since the multiple-antenna rig suggests some sophistication, but the technique itself runs on any laptop with free software. Defenses are organizational, not personal: reduce how far your signal leaks outside the building, disable SSID broadcast, use strong WPA3 encryption. The trap: people call this evil twin because it sounds like 'fake Wi-Fi.' Nothing fake was set up. War driving is passive reconnaissance of real networks."
+    },
+    {
+      "script": "Scenario four, the airport, and this is the most important one of the day. It's still an evil twin, but a sophisticated variant: the SSID differs only by case and spelling, run for hours in a major airport. That's high-skilled — custom equipment, knowledge of the airport's naming conventions, operational stealth. Here is the teaching moment everyone gets wrong: the victim used HTTPS, so why were they compromised? HTTPS only encrypts the channel to a genuine server. When you type your password into a fake login page served by the attacker's own access point, HTTPS does nothing — you handed the password straight to the attacker. The CED says an adversary can't read traffic on an encrypted protocol like HTTPS, but that's about passive eavesdropping, not credential harvesting on a fake page. That distinction is almost certainly on the exam."
+    },
+    {
+      "script": "Here's the map we just built on the board. Evil twin: verify the SSID and never type credentials into a login page on a network you haven't verified. Jamming: no confidentiality defense helps, so switch bands, go wired, or use cellular. War driving: individuals can't stop it, but businesses reduce signal leak, hide the SSID, and use WPA3. The through-line for the whole exam: match the defense to the mechanism. Naming a real CB defense that doesn't fit the attack in front of you earns zero."
+    },
+    {
+      "script": "Two reflection questions before you go, full sentences. One: scenarios one and four are both evil twins — which one is low-skilled and which is high-skilled, and justify it with the CB definition. Two: the airport victim used HTTPS and was still compromised — why? Think about where the credentials were actually entered. I'll collect these."
+    },
+    {
+      "script": "For the early finishers and anyone who wants the deeper cut: classify today's four attacks as active or passive. Active means the attacker creates or modifies traffic; passive means they only observe. Scenarios one, two, and four are all active — a fake AP, a flood, a fake page. Scenario three, war driving, is the only purely passive one: it just maps real networks without touching them. Why does this matter? Encryption defeats passive attacks because the observer can't read it. But encryption alone won't save you from an active attack like the evil twin, which is exactly the airport trap."
+    },
+    {
+      "script": "End of day two. You can now look at a wireless incident and name the attack, classify the adversary, and pick the defense that fits. Next class you move from analyst to consultant: three real clients need your wireless security advice, and client one is the coffee shop from CB Scenario 1C. You'll write recommendations using all three CB defenses, and 'be careful out there' will not earn credit — every recommendation ties to a specific threat. See you then."
+    }
+  ]
+}

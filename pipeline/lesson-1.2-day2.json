@@ -1,0 +1,324 @@
+{
+  "meta": {
+    "lessonId": "1.2",
+    "lessonTitle": "Suspicious Website Logins",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 2,
+    "los": "LO 1.2.A, 1.2.B, 1.2.C",
+    "anchor": "Detecting Unauthorized Logins · Exercise 1: Login Log Analysis",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.2 · Day 2 of 4",
+      "title": "Reading the Log: Scenario 1B",
+      "subtitle": "Applying all three LOs to the CB authentication scenario",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2. Today is application. Yesterday you learned the three signs of a password attack, the dictionary attack mechanism, and the three defenses. Today you are going to apply all three learning objectives to Scenario 1B from the CB framework — the website login log from Scenario 1B, Detecting Unauthorized Logins. By the end of class you will have worked through a structured analysis of a real-world authorization log, identified which CB-specified indicators are present — and, just as important, which one is not — and explained exactly what the adversary most likely did to get in. This is exactly the kind of task the AP exam asks you to perform."
+    },
+    {
+      "type": "misconception",
+      "heading": "Quick Reset: The Most Common Day 1 Error",
+      "misconception": "The attack signs only matter if the adversary actually got in.",
+      "whyItHappens": "Students focus on the outcome — breach vs. no breach — and miss that the CB framework defines the signs of an attack regardless of success. Failed attempts ARE the evidence.",
+      "correction": "EK 1.2.A.2 defines three signs of an attack in progress. Many failed attempts, unusual timestamps, and unknown devices are indicators whether or not the attacker ultimately succeeds. The AP exam will ask you to identify signs in a log — success is not required for the indicators to apply.",
+      "example": "A log showing 89 failed attempts at 3 a.m. from an IP in a country you’ve never visited is strong evidence of a password attack — even if every single attempt failed.",
+      "script": "Before we dive into Scenario 1B, I want to correct the most common misconception from Day 1. Several of you wrote that the signs only matter if the attacker got in. That is wrong. EK 1.2.A.2 defines signs of an attack in progress. The failed attempts are the evidence. The AP exam will give you a log with 89 failed attempts at 3 a.m. and ask you to identify which signs of a password attack are present. The answer is signs one and two even though every attempt failed. Success is irrelevant to identifying the indicators."
+    },
+    {
+      "type": "objectives",
+      "heading": "Day 2 Goals",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify attack signs in a real website login log (LO 1.2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how the adversary likely constructed their attack (LO 1.2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Recommend specific defenses and explain why each one helps (LO 1.2.C)"
+        }
+      ],
+      "script": "Three goals, same three LOs, but applied. LO 1.2.A: look at a log entry and name which signs are present. LO 1.2.B: explain the attack construction — what personal info did the adversary use, what pattern did they target? LO 1.2.C: recommend defenses and explain the mechanism for each one. These are the three AP exam task verbs for this lesson: identify, explain, explain. Today you practice all three with a real scenario."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have three sections that match today's lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "The Scenario 1B Log",
+          "description": "The eight-entry website login log: baseline pattern vs. entries 4 and 7 (EK 1.2.A.2)."
+        },
+        {
+          "title": "Sign-by-Sign Evidence",
+          "description": "Which CB-specified signs are present, which entries prove it — and which sign a success-only log cannot show."
+        },
+        {
+          "title": "Enrichment: Lockout & Rate Limiting",
+          "description": "Server-side controls that shape what an attack looks like in a log.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The lesson page at apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks has every answer if you fall behind.",
+      "script": "Quick map of today's Guided Notes. Three sections: the Scenario 1B log itself, your sign-by-sign evidence table — including the sign this log cannot show — and an enrichment section on the server-side controls that shape what attacks look like in a log. Keep the packet open and fill it in as we go."
+    },
+    {
+      "type": "scenario_intro",
+      "eyebrow": "CB Scenario 1B",
+      "heading": "Scenario 1B: Detecting Unauthorized Logins",
+      "narrative": "You participate in an online game that allows users to create and manage virtual teams. One day, you discover that some of your previous choices have been modified without your knowledge. You check the account activity section, which lists each time the account was accessed. You normally log in to the website on weekends and evenings, when you're not in school. (One added detail for our class thread — not in the CED: your family's last name is Rivera.)",
+      "jobLabel": "Your job in this lesson:",
+      "job": "Apply all three Lesson 1.2 objectives to a real login log: find every CB-specified sign of an attack with evidence, explain how the adversary built it, and recommend defenses that would have stopped it.",
+      "script": "Shift gears with me — we are done with definitions and now we are the investigator. Here is the CB setup, verbatim in spirit: you manage virtual teams in an online game, you discover choices you never made, and you pull up the account activity list — every time the account was accessed. That is exactly what a security analyst does first: look at the authentication record. You normally log in on weekends and evenings, when you're not in school — that baseline matters. Your job for the rest of this lesson is the three objectives applied to real data: find the signs, explain how the attacker built the attack, and recommend the fix. One added detail for our class thread, and I want to be clear it is ours, not the College Board's: your family's last name is Rivera. Hold onto that. On the next slide you get the raw log, and then you analyze it before I say a word."
+    },
+    {
+      "type": "worked_table",
+      "eyebrow": "CB Scenario 1B",
+      "heading": "The Website Login Log",
+      "context": "You play an online game; your previous choices were modified without your knowledge. The account activity section lists the last eight logins. You normally log in on weekends and evenings, when not in school.",
+      "columns": [
+        "Entry",
+        "Day",
+        "Date",
+        "Time",
+        "Device IP Address"
+      ],
+      "rows": [
+        [
+          "1",
+          "Saturday",
+          "April 18",
+          "10:43",
+          "208.104.29.211"
+        ],
+        [
+          "2",
+          "Sunday",
+          "April 19",
+          "20:51",
+          "208.104.29.211"
+        ],
+        [
+          "3",
+          "Tuesday",
+          "April 21",
+          "18:34",
+          "208.104.29.211"
+        ],
+        [
+          "4",
+          "Wednesday",
+          "April 22",
+          "11:13",
+          "142.54.195.17"
+        ],
+        [
+          "5",
+          "Saturday",
+          "April 25",
+          "13:21",
+          "208.104.29.211"
+        ],
+        [
+          "6",
+          "Sunday",
+          "April 26",
+          "21:18",
+          "208.104.29.211"
+        ],
+        [
+          "7",
+          "Monday",
+          "April 27",
+          "10:07",
+          "142.54.195.17"
+        ],
+        [
+          "8",
+          "Wednesday",
+          "April 29",
+          "19:12",
+          "208.104.29.211"
+        ]
+      ],
+      "highlightCol": 4,
+      "script": "This is the CB Scenario 1B login list from the AP Cybersecurity CED — the eight entries are verbatim; we have only split the CED's combined Date/Time column for readability. The student who owns this account normally logs in on weekends and evenings when not in school. Look at the pattern: entries 1, 2, 3, 5, 6, 8 are all from 208.104.29.211 on weekends and evenings. That is the student's normal device IP. Now look at entries 4 and 7. Different IP — 142.54.195.17. Different days — Wednesday and Monday. Different times — 11 a.m. and 10 a.m., which is school hours. Before I say anything else, I want you to look at this log independently for one minute. Using EK 1.2.A.2, mark which of the three CB-specified signs are present and which log entries are your evidence. One minute, silent."
+    },
+    {
+      "type": "work_timer",
+      "heading": "Independent Analysis — 3 Minutes",
+      "task": "Examine the log. For each of the three CB-specified signs of a password attack, write YES or NO and quote the specific log entries that support your answer.",
+      "timer_minutes": 3,
+      "script": "Three minutes. Work independently. For each of the three signs — many failed attempts in short duration, unusual timestamps, unknown device — write YES or NO. If YES, quote the specific log field that is your evidence. I will cold-call three people after the timer."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Sign-by-Sign Debrief",
+      "kicker": "Mapping EK 1.2.A.2 to the Rivera Log",
+      "script": "Debrief time. We are going through each sign one at a time. I will call on students for each one. Your job is to cite the specific log field, not just say yes or no."
+    },
+    {
+      "type": "scenario_debrief",
+      "eyebrow": "Sign 1 · Debrief",
+      "heading": "Many Failed Attempts in Short Duration",
+      "difficulty": "CB-Required",
+      "incident": "The log records eight SUCCESSFUL sign-ins and nothing else. There are no failure counts, no timestamps of rejected attempts, and no burst of rapid retries anywhere in the eight entries. Entries 4 and 7 are simply successes from a second IP.",
+      "attack": "Sign 1 NOT clearly shown (EK 1.2.A.2)",
+      "skill": "Honest log reading: this authorization log shows successes only, so the evidence for ‘many failed attempts in a short duration’ simply is not in it. On a real system, failed attempts may have happened before entries 4 and 7 — but you cannot cite what the log does not show.",
+      "defense": "Rate limiting + account lockout (server-side controls that would surface or stop a failure burst)",
+      "deciding": "One or more signs is enough to flag suspicious activity — and in this log, Signs 2 and 3 carry the case. Writing ‘Sign 1 present’ here invents evidence; full credit names the two signs that ARE evidenced and explicitly notes that Sign 1 is not shown.",
+      "trap": "Students assume every password-attack log must show a failure burst and claim Sign 1 anyway. The CB exam will sometimes give you explicit failure counts and sometimes, like here, an anomaly-only log. Citing a sign with no supporting log field costs the evidence point.",
+      "script": "Sign 1. Look carefully: this log shows successful sign-ins only. There is no failure count anywhere in the eight entries — so the honest answer is that Sign 1, many failed attempts in a short duration, is NOT clearly shown in this log. Say that explicitly; do not invent a failure burst because you expected one. On a real system the attacker may well have failed some attempts before entries 4 and 7, but you can only cite what the log shows. And that is fine — the CB framework does not require all three signs. One or more is enough to flag suspicious activity, and as you are about to see, Signs 2 and 3 are both clearly present on the same two entries. The exam will sometimes hand you explicit failure counts and sometimes an anomaly pattern like this one. Know both formats, and only claim the signs you can evidence."
+    },
+    {
+      "type": "scenario_debrief",
+      "eyebrow": "Sign 2 · Debrief",
+      "heading": "Login Attempts at Unusual Times",
+      "difficulty": "CB-Required",
+      "incident": "The student’s normal logins: weekends (Saturday/Sunday) and Tuesday/Wednesday evenings after school (18:34, 19:12). Entries 4 and 7: Wednesday 11:13 a.m. and Monday 10:07 a.m. — school hours on school days.",
+      "attack": "Sign 2 Present (EK 1.2.A.2)",
+      "skill": "The student explicitly logs in ‘on weekends and evenings, when not in school.’ The scenario gives you the baseline. 11 a.m. and 10 a.m. on weekdays is anomalous relative to that stated pattern.",
+      "defense": "Anomalous login alerts (notify account owner of off-hours access attempts)",
+      "deciding": "Unusual time is always relative to the legitimate user’s established pattern — not to an absolute clock time. The CB scenario hands you the pattern: ‘weekends and evenings when not in school.’ Entries 4 and 7 violate it.",
+      "trap": "Students call a time ‘suspicious’ in the absolute — ‘11 a.m. is normal, nothing weird here’ — without comparing it to the legitimate user's stated pattern. Full credit compares the timestamps in entries 4 and 7 against the scenario's baseline: weekends and evenings, when not in school.",
+      "script": "Sign 2. The scenario tells you exactly when this student normally logs in: weekends and evenings when not in school. Look at entries 4 and 7 — Wednesday 11:13 a.m. and Monday 10:07 a.m. That is school time on school days. The legitimate user is almost certainly in class at those times. Sign 2 is present and clearly evidenced by comparing the attack timestamps against the scenario’s stated user pattern. This is the most reliable sign in the CB Scenario 1B log."
+    },
+    {
+      "type": "scenario_debrief",
+      "eyebrow": "Sign 3 · Debrief",
+      "heading": "Login Attempts from Unknown Device",
+      "difficulty": "CB-Required",
+      "incident": "All legitimate logins: 208.104.29.211 — the student’s known home IP. Entries 4 and 7: 142.54.195.17 — a completely different IP address the student has never used.",
+      "attack": "Sign 3 Present (EK 1.2.A.2)",
+      "skill": "Two distinct IPs. The student’s home IP (208.104.29.211) appears in entries 1, 2, 3, 5, 6, 8. The suspicious IP (142.54.195.17) appears only in entries 4 and 7 — the same two suspicious entries.",
+      "defense": "Device allowlisting and IP geofencing (admin-side controls)",
+      "deciding": "Both sign 2 and sign 3 are present in the same two entries (4 and 7). When multiple signs align on the same entries, that is the strongest possible indicator. The AP exam rewards students who identify both signs on the same evidence.",
+      "trap": "Students hunt for a device name and stall when the log doesn't have one. This log identifies devices by source IP only — the unknown ‘device’ IS the unfamiliar IP, 142.54.195.17. Full credit cites the new IP against the home IP's history across entries 1, 2, 3, 5, 6, and 8.",
+      "script": "Sign 3. Every legitimate login in this log — entries 1, 2, 3, 5, 6, 8 — is from 208.104.29.211. That is the student’s home IP. Entries 4 and 7 are from 142.54.195.17. That IP has never appeared in this account’s history before these two entries. Unknown device slash unknown IP. Sign 3 is present. And notice: signs 2 and 3 both point to the exact same two entries. That is not coincidence. When multiple CB signs converge on the same log entries, you have near-certain evidence of unauthorized access."
+    },
+    {
+      "type": "scenario_debrief",
+      "eyebrow": "Breach Analysis · Entries 4 + 7",
+      "heading": "What Actually Happened in Entries 4 and 7?",
+      "difficulty": "CB-Required",
+      "incident": "Entries 4 and 7 are SUCCESSFUL logins from 142.54.195.17 on school days during school hours. The student's game choices were modified without their knowledge — that is how the breach was discovered.",
+      "attack": "Unauthorized account access — EK 1.2.A.2 Signs 2 + 3 both present",
+      "skill": "The adversary successfully logged in. Our class scenario adds the detail (the CED names no family) that the family's last name is Rivera. Per EK 1.2.B.2, the adversary likely gathered personal information — the family name, possibly a pet name or birth year — and constructed a targeted dictionary around it.",
+      "defense": "EK 1.2.C.1 (unique random password), EK 1.2.C.2 (no family name in password), EK 1.2.C.3 (MFA blocks access even after password is cracked)",
+      "deciding": "This is the CB scenario’s teaching moment: a SUCCESSFUL login from an unknown IP at an unusual time is still evidence of an attack. The attack did not fail — it succeeded. The student only noticed because their game data was changed.",
+      "trap": "Students who conclude ‘this is not an attack because the logins succeeded’ miss the key point. EK 1.2.A.2 applies to signs of an attack in progress. Two of three signs are present in entries 4 and 7 regardless of success or failure.",
+      "script": "Here is the CB scenario's teaching moment. Entries 4 and 7 are successful logins. The student did not notice because of a burst of failed attempts — they noticed because someone modified their game choices. That is how many real breaches are discovered: not by catching the attack in progress, but by finding the damage afterward. Now apply EK 1.2.B. The family name Rivera is our class's added detail — the CED scenario names no family, and the log itself only shows entries, days, times, and IPs. An adversary who learned that name, from social media or anywhere else, almost certainly built a dictionary combining it with common year patterns and trailing special characters. Per EK 1.2.B.1 and 1.2.B.2, that is the exact attack mechanism the CB framework describes. All three EK 1.2.C defenses would have helped: a random password defeats the dictionary, avoiding the family name removes the anchor, and MFA blocks the login even after the password is cracked."
+    },
+    {
+      "type": "summary",
+      "heading": "Exercise 1 Summary: What the Log Tells Us",
+      "points": [
+        "Two of the three CB-specified signs are present, both on entries 4 and 7: unusual times (Wednesday 11:13 and Monday 10:07 — school hours, against a weekends-and-evenings baseline) and unknown device/IP (142.54.195.17 vs. the home IP 208.104.29.211)",
+        "Sign 1 — many failed attempts in a short duration — is NOT shown: this log records successful sign-ins only, with no failure counts",
+        "The attack succeeded: per EK 1.2.B.1–B.2 the adversary most likely built a targeted dictionary anchored on personal info such as the family name Rivera — our class's added detail; the CED log itself shows only entries, days, times, and IPs",
+        "All three EK 1.2.C defenses would have helped: a random password defeats the dictionary, avoiding the family name removes the anchor, and MFA blocks access even after the password is cracked"
+      ],
+      "script": "Summary. Two signs present — unusual times and unknown IP — and both point at the same two entries, 4 and 7. Sign 1 is not shown, and saying so out loud is part of a full-credit answer, because this log records successes only. The attack still succeeded: the adversary most likely matched the password with a dictionary anchored on the family name, which is our class's added detail — the CED log shows only entries, days, times, and IPs. And all three defenses from EK 1.2.C would have helped here. Write this summary in your Guided Notes. This is the AP exam analysis template: signs — with honest evidence — then mechanism, then defenses. You will use this exact structure on Day 3 with new scenarios."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "These questions map to LO 1.2.B and LO 1.2.C. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Our class scenario adds the detail that the family's last name is Rivera (the CED log itself shows no names). Explain, using EK 1.2.B.2, how an adversary who learned that name — from social media or other research — would use it to construct a dictionary attack. Be specific about what the word list likely contained.",
+        "The account password has now been changed. Recommend two specific actions from EK 1.2.C and explain the mechanism by which each one would have prevented this breach."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. Reference EK numbers.",
+      "script": "Six minutes, independent. Question one: the family name Rivera is our added class detail — the CED log never shows a name. Walk me through EK 1.2.B.2: how does an adversary who learned that name turn it into a dictionary? What did the word list likely contain? Be specific — name plus years, name plus trailing special characters. Question two: the account owner wants to prevent this from happening again. Recommend two of the three EK 1.2.C defenses and explain the mechanism. Not just name them — explain how each one would have stopped this specific attack."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Account Lockout and Rate Limiting",
+      "subheading": "Enrichment: not directly CB-required, but explains why a log like Scenario 1B can show only successes — no visible failure burst.",
+      "track": "enrichment",
+      "left": {
+        "title": "Account Lockout",
+        "definition": "Temporarily locks an account after N failed attempts",
+        "ek": "Enrichment",
+        "examples": [
+          "Stops automated tools that require rapid submission",
+          "Triggers after a configurable threshold (e.g., 5 failures)",
+          "Forces the attacker to wait or change tactics",
+          "Trade-off: aggressive lockout enables denial-of-service against the account"
+        ]
+      },
+      "right": {
+        "title": "Rate Limiting",
+        "definition": "Slows or pauses authentication requests",
+        "ek": "Enrichment",
+        "examples": [
+          "Adds delay between failed attempts (exponential backoff)",
+          "Does not lock the account — the attacker can still try, but slowly",
+          "Slow, spaced-out guessing leaves no failure burst — one reason a login log can end up showing only the successes",
+          "Makes dictionary attacks take days instead of minutes for long lists"
+        ]
+      },
+      "footer": "AP TIP: Lockout and rate limiting are server-side controls. The three CB defenses from EK 1.2.C are actions the individual user can take. Both layers work together.",
+      "script": "Enrichment. Day 2's log raised a fair question: why would a log show only successes? Two server-side controls shape what an attack looks like in the record. Account lockout freezes the account after a threshold of rapid failures — it stops automated tools cold, at the cost of enabling denial-of-service against the user. Rate limiting slows attempts down instead: an attacker forced to space out guesses leaves no dramatic burst, which is one reason a login log can end up looking like Scenario 1B's — quiet, with only the successes recorded. Remember the layer distinction for the exam: lockout and rate limiting are server-side controls; the three EK 1.2.C defenses are actions the individual user takes. Both layers together, plus MFA, is the full posture."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.2 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Login log analysis — find all three attack signs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Adversary profile builder.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-2"
+        },
+        {
+          "label": "Lesson 1.2 quiz",
+          "tail": "Five questions across all three LOs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything we just did in class is waiting for you on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.2 page and run the self-check so you know where you actually stand. Then do Exercise 1, the login log analysis, where you find all three signs of an attack on your own. Exercise 2 is the adversary profile builder, and the quiz at the bottom is five questions across all three objectives. If you were absent or you want it again at your own speed, the lesson video walks through this exact material slide for slide. Write the lesson page URL down now so you are not hunting for it tonight."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 2",
+      "heading": "You Can Now Read a Log",
+      "leftLabel": "Today You Did",
+      "rightLabel": "Up Next — Day 3",
+      "todayPoints": [
+        "Applied all three LOs to the real CB Scenario 1B website login log.",
+        "Identified the two signs present (2 and 3) with log evidence — and explained why Sign 1 isn't shown in a success-only log.",
+        "Traced the dictionary attack construction from the family name given in the scenario narrative (EK 1.2.B.2).",
+        "Mapped all three EK 1.2.C defenses to this specific attack."
+      ],
+      "nextPoints": [
+        "Two new scenarios — one has a twist that changes the classification.",
+        "Build adversary profiles using both EK 1.2.B elements.",
+        "Learn the AP exam reasoning pattern for distinguishing attack types.",
+        "Bring your Guided Notes — you’ll need the three signs and three defenses ready."
+      ],
+      "teaser": "One of tomorrow’s scenarios shows a single successful login with zero failed attempts. Is that still a password attack?",
+      "script": "Day 2 done. You read a real log honestly: you found the two signs that are evidenced, you refused to invent the one that is not, you traced the mechanism, and you recommended defenses with explanations. Day 3 brings new scenarios that are slightly more ambiguous — you will need to decide whether what you are seeing is a password attack or something else. Tonight: walk through the Rivera log in your head. Can you name which signs are present, which entries prove it, and which sign is missing — without looking?"
+    }
+  ]
+}

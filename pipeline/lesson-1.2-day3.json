@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "lessonId": "1.2",
+    "lessonTitle": "Suspicious Website Logins",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 3,
+    "los": "LO 1.2.A, 1.2.B, 1.2.C",
+    "anchor": "Detecting Unauthorized Logins · Exercise 2: Adversary Profile Builder",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.2 · Day 3 of 4",
+      "title": "Adversary Profile and AP Exam Strategy",
+      "subtitle": "Case studies, attack classification, and the exam reasoning pattern you need for Day 4",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 3. Yesterday you analyzed Scenario 1B together as a class. Today you apply that same skill set independently on two new scenarios, then we debrief the AP exam reasoning pattern. Day 4 is the quiz. Everything today is designed to give you the mental model you need to handle any password attack question on the AP exam, including the ones that are slightly ambiguous or that try to trick you."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A college application portal log shows 3 failed attempts from a known student’s laptop, then a success, all between 8 p.m. and 8:10 p.m. Is this a password attack? Write your reasoning using EK 1.2.A.2.",
+      "subprompt": "After writing your answer: what information would make you change your conclusion? What additional log data would you want to see?",
+      "directions": "Independent. 5 minutes. Reference the three CB-specified signs explicitly.",
+      "script": "Five minutes. A student’s laptop. Three failures then a success. Eight p.m. on a known student device. Apply EK 1.2.A.2. Is this a password attack? Write your reasoning, referencing each of the three signs. Then: what additional data would change your conclusion? What if the failures were from a different IP than the success? What if there were 47 failures instead of 3? This is the ambiguity the AP exam tests. Three failures might be a user who mistyped their password. Forty-seven failures at 2 a.m. is not."
+    },
+    {
+      "type": "objectives",
+      "heading": "Day 3 Goals",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Distinguish a genuine password attack from normal account anomalies (LO 1.2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Build a complete adversary profile: motivation, technique, personal info used (LO 1.2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Match defenses to the specific attack vectors in each scenario (LO 1.2.C)"
+        }
+      ],
+      "script": "Day 3 is about precision. LO 1.2.A is not just identifying signs — it’s distinguishing genuine attacks from normal account activity. LO 1.2.B is building a complete adversary profile: what were they after, what technique did they use, what personal information did they leverage? LO 1.2.C is matching the right defense to the specific vulnerability in the scenario. Not every scenario needs all three defenses. Precision matters."
+    },
+    {
+      "type": "work_timer",
+      "heading": "Case Study 1 — Independent Analysis (8 Minutes)",
+      "task": "Case Study 1 is in your Guided Notes packet. Read the scenario, then answer all four questions using EK numbers. Do not discuss with neighbors until the timer ends.",
+      "timer_minutes": 8,
+      "script": "Eight minutes. Case Study 1 is in your packet. Read it and answer all four questions independently. Use EK numbers in every answer. Do not discuss. I will cold-call four students for the debrief."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Case Study 1 Debrief",
+      "kicker": "Social Media Researcher — Targeted Dictionary Attack",
+      "script": "Case Study 1 debrief. This was the scenario where the adversary found the victim’s Instagram before the attack. Let’s go through it."
+    },
+    {
+      "type": "case_study",
+      "heading": "Case Study 1: The Social Media Researcher",
+      "scenarioLabel": "The Situation",
+      "scenario": "A gaming platform reports 312 failed logins to account @ProGamer_Keely between 1:14 a.m. and 1:47 a.m. from a single IP. Keely’s public Instagram shows her dog’s name (Biscuit), her graduation year (2022), and her favorite team (Packers). Her account password is Biscuit22!",
+      "analysisLabel": "Full-Credit Answers",
+      "analysis": [
+        "All three signs present: 312 failures in 33 minutes (Sign 1, EK 1.2.A.2), 1 a.m. timestamp when Keely is asleep (Sign 2), single external IP that is not her known device (Sign 3).",
+        "EK 1.2.B.2: adversary researched Keely’s Instagram and gathered Biscuit (pet name), 22 (graduation year), Packers (team). These feed the dictionary directly.",
+        "EK 1.2.B.1 Pattern applied: word + two-digit number + special character at end. Biscuit22! is a direct hit on the most common CB-specified pattern.",
+        "Most effective defense: EK 1.2.C.2 (avoid personal info) removes the anchor. EK 1.2.C.3 (MFA) blocks access even after the dictionary succeeds."
+      ],
+      "trap": "Students who recommend EK 1.2.C.1 alone miss the specificity. The question asks which defense is MOST effective for THIS attack. EK 1.2.C.2 directly neutralizes the EK 1.2.B.2 research phase. No personal info anchor = the dictionary fails entirely.",
+      "script": "Three signs: 312 failures in 33 minutes is high volume, 1 a.m. is unusual, single external IP is unknown device. EK 1.2.B.2 is crystal clear: the adversary found Biscuit on Instagram, found the graduation year 22, and tried Biscuit plus year combinations with trailing special characters. EK 1.2.B.1 Pattern 1 is word plus two-digit number plus special character at the end. Biscuit22! is almost certainly in the top 20 guesses. EK 1.2.C.2 removes the personal info anchor so the dictionary fails. EK 1.2.C.3 MFA blocks access even after the password is cracked."
+    },
+    {
+      "type": "work_timer",
+      "heading": "Case Study 2 — Independent Analysis (7 Minutes)",
+      "task": "Case Study 2 is in your Guided Notes packet. This one has a twist — not all login anomalies are password attacks. Read carefully before applying EK 1.2.A.2.",
+      "timer_minutes": 7,
+      "script": "Seven minutes, Case Study 2. Read it carefully before you write anything. This scenario has a twist. Not every unusual login is a password attack. Apply EK 1.2.A.2 precisely. If you conclude it is NOT a password attack, explain what it is instead and what you would need to see to change your conclusion."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Case Study 2 Debrief",
+      "kicker": "The Negative ID — Using EK 1.2.A.2 When the Pattern Doesn't Fit",
+      "script": "Case Study 2. The twist: the CB-graded move here is the negative ID — showing from EK 1.2.A.2 which signs are present, which sign is absent, and concluding that this is not the classic online password attack pattern. Putting a name on what it actually is — credential stuffing — is enrichment. Let's work through it."
+    },
+    {
+      "type": "case_study",
+      "heading": "Case Study 2: Single Attempt, Instant Success",
+      "scenarioLabel": "The Situation",
+      "scenario": "A streaming service log shows a single login to account @MarcusT at 3:22 a.m. from an IP in a country Marcus has never visited. No failed attempts. The attempt immediately succeeded. Marcus uses the same password (Marcus2019!) on a gaming platform that suffered a data breach six months ago.",
+      "analysisLabel": "Full-Credit Answers",
+      "analysis": [
+        "EK 1.2.A.2 sign check: Sign 1 ABSENT — zero failed attempts. Sign 2 present — 3:22 a.m. is anomalous for Marcus. Sign 3 present — an IP from a country he has never visited.",
+        "CB-graded conclusion (the negative ID): the log does not show the many-failures guessing pattern of an online password attack (EK 1.2.A.1). Full credit names the signs that are present (2 and 3), explicitly cites the absent one (1), and concludes the guessing mechanism isn't evidenced.",
+        "Enrichment — naming the mechanism: a single instant success fits credential stuffing. The adversary reused Marcus's real password (Marcus2019!) leaked in the gaming-platform breach six months earlier. No guessing was needed, which is exactly why no failures appear.",
+        "Most effective defense: the unique-password component of EK 1.2.C.1 — a different password on the streaming service stops a reuse attack entirely. EK 1.2.C.3 (MFA) also blocks this access."
+      ],
+      "trap": "Unauthorized access is not automatically an ‘online password attack.’ The CB-graded answer is the EK 1.2.A.2 negative ID — which signs are present, which sign is absent, and what that absence rules out. Naming ‘credential stuffing’ earns enrichment credit, not the CB point; concluding ‘not an attack at all’ because the login succeeded misses both.",
+      "script": "Here is the twist, and here is exactly how the College Board grades it. Run the sign check first. Sign 1: zero failed attempts — absent, and say so explicitly. Sign 2: 3:22 a.m. — present. Sign 3: a country Marcus has never visited — present. Now the negative ID, which is the CB-graded conclusion: with no failed attempts, this log does not show the guessing pattern that defines an online password attack in EK 1.2.A.1. Dictionary and brute-force attacks fail a lot before they succeed; this login succeeded instantly. That reasoning — present signs, absent sign, what the absence rules out — is the full-credit answer. Everything after that is enrichment: the single-instant-success fingerprint is credential stuffing, the adversary reusing Marcus's real password from the gaming-platform breach. And that points at the defense: the unique-password component of EK 1.2.C.1. Dictionary attacks fail if your password is random. Credential stuffing fails if your passwords are unique per site. MFA backstops both."
+    },
+    {
+      "type": "discussion",
+      "eyebrow": "Discussion · Day 3",
+      "prompt": "From Case Studies 1 and 2 and the Rivera log: what patterns tell you definitively that you are looking at a password attack versus normal account anomalies? What thresholds matter?",
+      "subprompt": "Group discussion: develop a mental checklist using the three CB signs. What combinations are definitive versus ambiguous? When is one sign enough? When do you need all three?",
+      "script": "Three minutes with your group. Pull from all three scenarios. What patterns tell you definitively you are looking at a password attack? What combinations of the three signs create an unambiguous picture? When is one sign enough? When do you need two or three? I want groups to come back with a concrete mental checklist, not just ‘look for the three signs.’ Thresholds and combinations. Go."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "AP Exam Strategy: Password Attack Questions",
+      "subheading": "These four moves appear repeatedly in authentication and login security questions.",
+      "strategies": [
+        {
+          "name": "Read the Log Before the Question",
+          "text": "On the AP exam, log analysis questions often give you the data first. Identify the signs before reading the question stem. You will know what you are looking at before you see what they are asking."
+        },
+        {
+          "name": "Count and Timestamp",
+          "text": "When you see a log, immediately ask: how many failures? Over what time range? At what time of day? Those two data points distinguish automated attacks from normal user behavior."
+        },
+        {
+          "name": "Match Defense to Attack Vector",
+          "text": "EK 1.2.C has three defenses. On a free-response, always explain WHY the defense stops THIS specific attack. ‘Use MFA’ is incomplete. ‘MFA blocks access even after the password is cracked because the adversary would also need the second factor’ is complete."
+        },
+        {
+          "name": "Distinguish Attack Types by Failure Pattern",
+          "text": "Many failures before success = the EK 1.2.A.1 guessing pattern (dictionary or brute force). A single success with no failures = that pattern is ABSENT — say so, citing EK 1.2.A.2. The CB-graded skill is reading which signs are present or absent; naming the no-failure mechanism (credential stuffing) is enrichment."
+        }
+      ],
+      "script": "Four AP strategy points for this lesson. First: read the log before the question. Scan the timestamps and failure counts before you read what they are asking. Second: count and timestamp. Number of failures plus time range tells you automation. Third: match defense to attack vector mechanistically. The exam awards credit for explaining the mechanism, not just naming the defense. Fourth: the failure pattern is the tell — and the CB-graded skill is the sign check itself. Many failures means the EK 1.2.A.1 guessing pattern. A single clean success means that pattern is absent, and you should say so with the EK 1.2.A.2 signs. Putting the name credential stuffing on it is enrichment — nice to have, never required."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.2 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Login log analysis — find all three attack signs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Adversary profile builder.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-2"
+        },
+        {
+          "label": "Lesson 1.2 quiz",
+          "tail": "Five questions across all three LOs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything we just did in class is waiting for you on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.2 page and run the self-check so you know where you actually stand. Then do Exercise 1, the login log analysis, where you find all three signs of an attack on your own. Exercise 2 is the adversary profile builder, and the quiz at the bottom is five questions across all three objectives. If you were absent or you want it again at your own speed, the lesson video walks through this exact material slide for slide. Write the lesson page URL down now so you are not hunting for it tonight."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 3 · Day 3 of 4",
+      "heading": "You Can Now Classify the Attack",
+      "leftLabel": "Today You Did",
+      "rightLabel": "Up Next — Day 4",
+      "todayPoints": [
+        "Used the EK 1.2.A.2 negative ID to show when a login anomaly is NOT the classic guessing pattern (credential stuffing is the enrichment name for it).",
+        "Built adversary profiles using both EK 1.2.B elements for two new scenarios.",
+        "Matched EK 1.2.C defenses to specific attack vectors with mechanistic explanations.",
+        "Developed your personal AP exam log-reading checklist."
+      ],
+      "nextPoints": [
+        "Lesson 1.2 Quiz — 25 minutes covering all three LOs.",
+        "Two log analysis questions and one explain-the-defense question.",
+        "Defense answers require mechanistic explanations to earn full credit.",
+        "Bridge to Lesson 1.3: wireless attacks start where authentication ends."
+      ],
+      "teaser": "The quiz tomorrow asks you to identify a defense AND explain exactly why it stops the specific attack in the scenario. Practice that explanation tonight.",
+      "script": "Day 3 done. You can now distinguish attack types, build adversary profiles, and match defenses to vectors with explanations. Day 4 is the quiz. Two log analysis questions and one explain-the-defense question, 25 minutes. Tonight: review your case study notes. Practice saying each EK 1.2.C defense out loud with the mechanistic explanation. Not ‘use MFA.’ Say why MFA stops the specific attack you are defending against. That is what the quiz asks for."
+    }
+  ]
+}

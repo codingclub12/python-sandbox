@@ -1,0 +1,42 @@
+VOICEOVER SCRIPT — Lesson 1.2
+============================================================
+
+[Slide 1]
+Yesterday you analyzed Scenario 1B together. Today you apply that same skill set to two new scenarios, then we debrief the AP exam reasoning pattern. Day 4 is the quiz. Everything today is designed to give you the mental model you need to handle any password attack question on the AP exam, including the ones that are slightly ambiguous or that try to trick you.
+
+[Slide 2]
+A student’s laptop. Three failures then a success. Eight p.m. On a known student device. Is this a password attack? Consider each of the three signs. Then: what additional data would change your conclusion? What if the failures were from a different IP than the success? What if there were 47 failures instead of 3? This is the ambiguity the AP exam tests. Three failures might be a user who mistyped their password. Forty-seven failures at 2 a.m. Is not.
+
+[Slide 3]
+Day 3 is about precision. The first skill is not just identifying signs — it’s distinguishing genuine attacks from normal account activity. The second is building a complete adversary profile: what were they after, what technique did they use, what personal information did they leverage? The third is matching the right defense to the specific vulnerability in the scenario. Not every scenario needs all three defenses. Precision matters.
+
+[Slide 4]
+Case Study 1 has four questions to work through. Read it carefully and answer all four.
+
+[Slide 5]
+Case Study 1 debrief. This was the scenario where the adversary found the victim’s Instagram before the attack. Let’s go through it.
+
+[Slide 6]
+Three signs: 312 failures in 33 minutes is high volume, 1 a.m. Is unusual, single external IP is unknown device. The mechanism is crystal clear: the adversary found Biscuit on Instagram, found the graduation year 22, and tried Biscuit plus year combinations with trailing special characters. The pattern is word plus two-digit number plus special character at the end. Biscuit22! Is almost certainly in the top 20 guesses. Avoiding the personal info removes the anchor so the dictionary fails. MFA blocks access even after the password is cracked.
+
+[Slide 7]
+Case Study 2. This scenario has a twist. Not every unusual login is a password attack. If it is NOT a password attack, what is it instead, and what would you need to see to change that conclusion?
+
+[Slide 8]
+Case Study 2. The twist: the graded move here is the negative ID — showing which signs are present, which sign is absent, and concluding that this is not the classic online password attack pattern. Putting a name on what it actually is — credential stuffing — is enrichment. Let's work through it.
+
+[Slide 9]
+Here is the twist, and here is exactly how the College Board grades it. Run the sign check first. Sign 1: zero failed attempts — absent, and say so explicitly. Sign 2: 3:22 a.m. — present. Sign 3: a country Marcus has never visited — present. Now the negative ID, which is the graded conclusion: with no failed attempts, this log does not show the guessing pattern that defines an online password attack. Dictionary and brute-force attacks fail a lot before they succeed; this login succeeded instantly. That reasoning — present signs, absent sign, what the absence rules out — is the full-credit answer. Everything after that is enrichment: the single-instant-success fingerprint is credential stuffing, the adversary reusing Marcus's real password from the gaming-platform breach. And that points at the defense: the unique-password component. Dictionary attacks fail if your password is random. Credential stuffing fails if your passwords are unique per site. MFA backstops both.
+
+[Slide 10]
+Pull from all three scenarios. What patterns tell you definitively you are looking at a password attack? What combinations of the three signs create an unambiguous picture? When is one sign enough? When do you need two or three? The goal is a concrete mental checklist, not just ‘look for the three signs.’ Thresholds and combinations.
+
+[Slide 11]
+Four AP strategy points for this lesson. First: read the log before the question. Scan the timestamps and failure counts before you read what they are asking. Second: count and timestamp. Number of failures plus time range tells you automation. Third: match defense to attack vector mechanistically. The exam awards credit for explaining the mechanism, not just naming the defense. Fourth: the failure pattern is the tell — and the graded skill is the sign check itself. Many failures means the guessing pattern. A single clean success means that pattern is absent, and you should say so with the signs. Putting the name credential stuffing on it is enrichment — nice to have, never required.
+
+[Slide 12]
+Everything we just did in class is waiting for you on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.2 page and run the self-check so you know where you actually stand. Then do Exercise 1, the login log analysis, where you find all three signs of an attack. Exercise 2 is the adversary profile builder, and the quiz at the bottom is five questions across all three objectives. If you want it again at your own speed, the lesson video walks through this exact material slide for slide.
+
+[Slide 13]
+You can now distinguish attack types, build adversary profiles, and match defenses to vectors with explanations. Day 4 is the quiz: two log analysis questions and one explain-the-defense question. Tonight: review your case study notes. Practice saying each defense out loud with the mechanistic explanation. Not ‘use MFA.’ Say why MFA stops the specific attack you are defending against. That is what the quiz asks for.
+
