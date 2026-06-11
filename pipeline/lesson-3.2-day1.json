@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "lessonId": "3.2",
+    "lessonTitle": "Protecting Networks: Managerial Controls",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 3: Securing Networks",
+    "day": 1,
+    "los": "LO 3.2.A, LO 3.2.B",
+    "anchor": "Configuring a Secure Wireless Network",
+    "author": "AP CS Exam Prep",
+    "totalDays": 3
+  },
+  "guide": {
+    "title": "Lesson 3.2 — Protecting Networks: Managerial Controls — Teacher Guide",
+    "subtitle": "Unit 3 · Topic 3.2 · 3 class periods · Scenario 3B",
+    "overview": [
+      "Lesson 3.2 opens the protective half of Unit 3: after Topic 3.1 catalogued network vulnerabilities and attacks, this topic asks how an organization sets policy to harden its network devices and then configures a wireless network to resist those attacks. Across three days students learn to identify the managerial controls related to network security — router, switch, VPN, and wireless security policies and what each policy specifies (EK 3.2.A.1–A.4) — and to configure the specific wireless security features the CED names: disabling beacon-frame broadcasting, controlling broadcast direction and signal strength, enabling strong encryption (WPA3), and enabling MAC filtering with required authentication (EK 3.2.B.1–B.4). The work is anchored on Scenario 3B, Configuring a Secure Wireless Network, where students describe configurations to secure a wireless network.",
+      "The Day 1 organizing idea is the distinction between a managerial control and a technical configuration: a security policy (3.2.A) is a written minimum-standard document that says what must be true, while configuring wireless features (3.2.B) is the hands-on technical act that makes it true. The same item — say, MAC filtering or AES/WPA encryption — appears once as a policy requirement and again as a configuration step, and students should be able to name which layer they are in. Scenario 3B is written in the second person and names no individuals; none is added here."
+    ],
+    "los": [
+      "LO 3.2.A — Identify managerial controls related to network security.",
+      "LO 3.2.B — Configure wireless network security features."
+    ],
+    "eks": [
+      "EK 3.2.A.1 — A router security policy will set forth a minimum configuration standard for routers on an organization's network and may include: banning local user accounts (all router logins must use an approved authentication server); disabling unnecessary services (e.g., Telnet); and requiring a firewall (an organization may opt for a firewall device separate from the router).",
+      "EK 3.2.A.2 — A switch security policy will set forth a minimum configuration standard for switches on an organization's network and may include: banning local user accounts (all switch logins must use an approved authentication server); requiring port security to be enabled; and using MAC filtering.",
+      "EK 3.2.A.3 — A virtual private network (VPN) policy will detail the minimum security requirements for employees using a VPN to access an organization's internal network, and it may include: a list of roles within the organization that are allowed to use a VPN to access the organization's internal network; authentication requirements for employees using a VPN (e.g., public/private key system or MFA); and a prohibition against split tunneling (also called dual tunneling).",
+      "EK 3.2.A.4 — A wireless security policy will establish the minimum security requirements for wireless networks within an organization and may include: requiring users to authenticate to the wireless network through an extensible authentication protocol (EAP) connected to an approved authentication server; requiring all wireless traffic to be encrypted using AES encryption with a minimum key length; and disabling beacon frames on wireless access points.",
+      "EK 3.2.B.1 — Organizations can disable beacon frame broadcasting on wireless access points (WAPs) to make it harder for adversaries to find their wireless network and learn its basic properties.",
+      "EK 3.2.B.2 — Organizations can control the broadcast direction and signal strength of a WAP so the signal does not extend beyond the physical space the access point is meant to cover.",
+      "EK 3.2.B.3 — Organizations should enable strong wireless encryption protocols to ensure wireless frames are not readable by adversaries who might intercept them. WEP, WPS, and the original WPA wireless encryption protocols have known vulnerabilities and are insecure. WPA3 is currently the strongest wireless encryption algorithm.",
+      "EK 3.2.B.4 — Organizations can enable MAC filtering to prevent unauthorized devices from accessing the network, and they can require users to authenticate when joining a network."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each day.",
+      "Printed/Digital Day 1–3 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page (apcsexamprep.com/pages/ap-cybersecurity-unit-3-managerial-controls), which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 3.2 quiz (student copies) for Day 3.",
+      "Scenario 3B narrative (Configuring a Secure Wireless Network) displayed on the decks (no handout needed)."
+    ],
+    "prereqs": [
+      "Topic 3.1 (Network Vulnerabilities and Attacks). Lesson 3.2 is the protective counterpart: 3.1 identified how adversaries exploit a network, and 3.2 sets policy and configures wireless features to defend against them. Students should also recall MAC addresses and authentication-server concepts, which reappear here in switch and wireless policy."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Identify the four managerial network-security policies (LO 3.2.A)",
+        "segments": [
+          { "segment": "QOTD (U3/L3.2/Q1) + bell ringer (policy vs. configuration)", "min": 5, "slides": "1-2" },
+          { "segment": "Guided-notes preview + objectives", "min": 3, "slides": "3-4" },
+          { "segment": "Router and switch security policies (EK 3.2.A.1–A.2)", "min": 12, "slides": "5-6" },
+          { "segment": "VPN and wireless security policies (EK 3.2.A.3–A.4)", "min": 12, "slides": "7-8" },
+          { "segment": "Vocab + Stop and Think", "min": 8, "slides": "9-10" },
+          { "segment": "Wrap and assign Your Turn", "min": 5, "slides": "11-12" }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Configure wireless network security features (LO 3.2.B)",
+        "segments": [
+          { "segment": "QOTD (U3/L3.2/Q2) + bell ringer (hiding and shrinking the signal)", "min": 5, "slides": "1-4" },
+          { "segment": "Disabling beacon frames + controlling broadcast direction/signal strength (EK 3.2.B.1–B.2)", "min": 12, "slides": "5-7" },
+          { "segment": "Strong encryption: WEP/WPS/original WPA vs. WPA3 (EK 3.2.B.3)", "min": 12, "slides": "8-9" },
+          { "segment": "MAC filtering + required authentication (EK 3.2.B.4) + Stop and Think", "min": 11, "slides": "10-12" },
+          { "segment": "Wrap and assign Your Turn", "min": 5, "slides": "13-14" }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Apply to Scenario 3B and review the whole topic + quiz (LO 3.2.A, LO 3.2.B)",
+        "segments": [
+          { "segment": "QOTD (U3/L3.2/Q3) + bell ringer (the Scenario 3B wireless walkthrough)", "min": 5, "slides": "1-3" },
+          { "segment": "Worked review: each policy and each wireless configuration, side by side", "min": 12, "slides": "4-6" },
+          { "segment": "Configure a secure wireless network for Scenario 3B + Stop and Think", "min": 12, "slides": "7-8" },
+          { "segment": "Lesson 3.2 quiz", "min": 15, "slides": "Handout" },
+          { "segment": "Quiz debrief + bridge to Topic 3.3", "min": 6, "slides": "9-10" }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "A policy is the same as a configuration",
+        "myth": "Writing a wireless security policy is enough to protect the network.",
+        "reality": "LO 3.2.A managerial controls are written minimum-standard documents (router, switch, VPN, wireless policies); LO 3.2.B is the separate, hands-on act of actually configuring the wireless features. A policy that says 'use WPA3' protects nothing until someone configures the WAP. Both layers are required."
+      },
+      {
+        "heading": "All WPA is safe",
+        "myth": "As long as the wireless network uses WPA, the traffic is secure.",
+        "reality": "EK 3.2.B.3 says the ORIGINAL WPA, like WEP and WPS, has known vulnerabilities and is insecure. WPA3 is currently the strongest wireless encryption algorithm — the version number matters, not just the WPA name."
+      },
+      {
+        "heading": "Local accounts on devices are fine",
+        "myth": "Each router or switch should keep its own local login accounts for convenience.",
+        "reality": "EK 3.2.A.1 and A.2 say router and switch security policies may BAN local user accounts — all device logins must instead use an approved authentication server, so access is centrally controlled and revoked."
+      },
+      {
+        "heading": "Disabling beacon frames is encryption",
+        "myth": "Turning off beacon-frame broadcasting encrypts the wireless traffic.",
+        "reality": "EK 3.2.B.1 says disabling beacon frames only makes the network harder to FIND and learn basic properties of — it hides the network, it does not encrypt frames. Encryption is a separate step (EK 3.2.B.3, WPA3)."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post a two-column anchor — 'POLICY (3.2.A): router / switch / VPN / wireless — a written rule' vs. 'CONFIGURE (3.2.B): beacon frames / signal direction / WPA3 / MAC filtering — a hands-on action' — so students sort each item into the right layer before the Stop and Think.",
+        "Provide a sentence frame: 'This is EK 3.2.____ because it is a ____ (policy / configuration) that ____.'"
+      ],
+      "extension": [
+        "Have students take a single requirement (e.g., MAC filtering or AES encryption) and trace it from the policy that requires it (3.2.A) to the configuration that implements it (3.2.B), explaining the role of each layer.",
+        "Ask students to justify, using EK 3.2.B.3, why an organization still running original WPA is at risk even though it technically has 'wireless encryption,' and what single change most improves it."
+      ]
+    },
+    "discussion": [
+      "Why does the CED separate managerial controls (3.2.A) from configuring wireless features (3.2.B) — what does each layer add that the other cannot?",
+      "Router and switch policies both 'ban local user accounts.' What does requiring an approved authentication server buy an organization that local accounts do not?",
+      "EK 3.2.B.2 controls signal direction and strength. How is shrinking a wireless signal to the building footprint a security control, not just a performance tweak?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 3.2 — Protecting Networks: Managerial Controls — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "An organization is writing a document that sets a minimum configuration standard for the routers on its network, including a requirement that all router logins use an approved authentication server and that unnecessary services such as Telnet be disabled. Which managerial control is the organization creating?",
+        "predictFirst": true,
+        "options": [
+          "A router security policy, which sets the minimum configuration standard for the organization's routers",
+          "A VPN policy, which lists the roles allowed to remotely access the internal network",
+          "A wireless security policy, which sets the minimum standard for the organization's wireless networks",
+          "A switch security policy, which requires port security and MAC filtering on switches"
+        ],
+        "answer": "A",
+        "ek": "EK 3.2.A.1",
+        "rationale": "EK 3.2.A.1 says a router security policy sets a minimum configuration standard for routers and may include banning local user accounts (all logins must use an approved authentication server), disabling unnecessary services such as Telnet, and requiring a firewall — exactly the document described. Option B is the VPN policy (EK 3.2.A.3), which governs remote VPN access, not router standards. Option C is the wireless policy (EK 3.2.A.4). Option D is the switch policy (EK 3.2.A.2), which covers switches, not routers."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A switch security policy is being drafted from the CED standard. Per EK 3.2.A.2, which set of requirements belongs in a switch security policy?",
+        "options": [
+          "A prohibition against split tunneling and a list of roles allowed to use a VPN",
+          "Banning local user accounts, requiring port security to be enabled, and using MAC filtering",
+          "Disabling beacon frames and requiring all wireless traffic to use AES encryption",
+          "Requiring a firewall device and disabling unnecessary services such as Telnet on the switch"
+        ],
+        "answer": "B",
+        "ek": "EK 3.2.A.2",
+        "rationale": "EK 3.2.A.2 says a switch security policy may include banning local user accounts (all switch logins must use an approved authentication server), requiring port security to be enabled, and using MAC filtering — option B. Option A lists VPN-policy items (EK 3.2.A.3). Option C lists wireless-policy items (EK 3.2.A.4). Option D lists router-policy items (EK 3.2.A.1); the CED assigns the firewall and Telnet requirements to the router policy, not the switch policy."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "A company lets some employees connect to its internal network from home. It wants a policy that names which roles may connect remotely, requires MFA to authenticate, and forbids split tunneling. Per EK 3.2.A.3, which managerial control fits this need?",
+        "predictFirst": true,
+        "options": [
+          "A switch security policy, since switches forward all of the remote traffic on the internal network",
+          "A router security policy, since the router is what forwards remote traffic into the network",
+          "A VPN policy, which details the minimum security requirements for employees using a VPN to reach the internal network",
+          "A wireless security policy, since employees connecting from home are using a wireless connection"
+        ],
+        "answer": "C",
+        "ek": "EK 3.2.A.3",
+        "rationale": "EK 3.2.A.3 says a VPN policy details the minimum security requirements for employees using a VPN to access the internal network and may include a list of allowed roles, authentication requirements such as a public/private key system or MFA, and a prohibition against split tunneling (dual tunneling) — every element described. Options A and B name device policies that govern switch and router configuration standards, not remote VPN access. Option D misreads the scenario — the control governs VPN use, not the wireless medium the employee happens to use at home."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "stem": "An administrator wants to make the organization's wireless network harder for an adversary to find and learn the basic properties of, without yet changing how the traffic is encrypted. Per EK 3.2.B.1, which configuration achieves this?",
+        "predictFirst": true,
+        "options": [
+          "Upgrading the wireless encryption protocol from original WPA to WPA3 on the access point",
+          "Enabling MAC filtering so that only known device hardware addresses can join",
+          "Reducing the broadcast signal strength so the signal stays inside the building",
+          "Disabling beacon frame broadcasting on the wireless access points"
+        ],
+        "answer": "D",
+        "ek": "EK 3.2.B.1",
+        "rationale": "EK 3.2.B.1 says organizations can disable beacon frame broadcasting on WAPs to make it harder for adversaries to find the wireless network and learn its basic properties — which matches the goal exactly. Option A is an encryption change (EK 3.2.B.3), which the question explicitly set aside. Option B controls which devices may join (EK 3.2.B.4), not discoverability. Option C limits where the signal reaches (EK 3.2.B.2) but does not hide the network's beacon advertisement."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "A wireless network's signal currently reaches the parking lot and the sidewalk outside the building, where anyone can attempt to connect. The security team wants to limit how far the signal travels. Per EK 3.2.B.2, what should they configure?",
+        "options": [
+          "Control the WAP's broadcast direction and signal strength so the signal does not extend beyond the space the access point is meant to cover",
+          "Disable beacon frames so the network no longer advertises its name to the parking lot",
+          "Switch the encryption protocol to WPA3 so outsiders in the parking lot cannot read the frames",
+          "Enable MAC filtering so devices in the parking lot are not allowed to join the network"
+        ],
+        "answer": "A",
+        "ek": "EK 3.2.B.2",
+        "rationale": "EK 3.2.B.2 says organizations can control the broadcast direction and signal strength of a WAP so the signal does not extend beyond the physical space the access point is meant to cover — directly addressing a signal that spills into the parking lot. Option B hides the network's name (EK 3.2.B.1) but does not shrink the signal's reach. Option C encrypts frames (EK 3.2.B.3) but still lets the signal reach outsiders. Option D blocks unknown devices (EK 3.2.B.4) but does not reduce signal coverage."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A school audits its wireless network and finds the access points are still using the original WPA encryption protocol. Per EK 3.2.B.3, what is the best assessment and fix?",
+        "options": [
+          "Original WPA is the strongest available protocol, so no change is needed at this time",
+          "Original WPA has known vulnerabilities and is insecure, so the network should move to WPA3, currently the strongest wireless encryption algorithm",
+          "Original WPA only needs MAC filtering added to it to become a secure encryption protocol",
+          "Beacon frames should be disabled to encrypt the original WPA traffic going forward"
+        ],
+        "answer": "B",
+        "ek": "EK 3.2.B.3",
+        "rationale": "EK 3.2.B.3 says WEP, WPS, and the original WPA have known vulnerabilities and are insecure, and that WPA3 is currently the strongest wireless encryption algorithm — so the fix is to move to WPA3. Option A is false; original WPA is insecure. Option B confuses MAC filtering (device control, EK 3.2.B.4) with encryption strength. Option C confuses disabling beacon frames (hiding the network, EK 3.2.B.1) with encryption — neither encrypts traffic."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "An administrator wants to stop unauthorized devices from joining the wireless network even if someone learns the password, and also require users to authenticate when joining. Per EK 3.2.B.4, which configuration meets both goals?",
+        "predictFirst": true,
+        "options": [
+          "Reduce the access point's signal strength so unauthorized devices are physically out of range",
+          "Disable beacon frame broadcasting so unauthorized devices cannot discover the network",
+          "Enable MAC filtering to block unauthorized devices and require users to authenticate when joining",
+          "Upgrade the encryption protocol to WPA3 so unauthorized devices cannot read the traffic"
+        ],
+        "answer": "C",
+        "ek": "EK 3.2.B.4",
+        "rationale": "EK 3.2.B.4 says organizations can enable MAC filtering to prevent unauthorized devices from accessing the network and can require users to authenticate when joining — covering both stated goals. Option A limits range (EK 3.2.B.2) but does not block a device that is in range. Option B hides the network (EK 3.2.B.1) but does not stop a device that already knows it. Option D protects confidentiality of traffic (EK 3.2.B.3) but does not by itself control which devices may join."
+      },
+      {
+        "id": "Q8",
+        "kind": "multi",
+        "stem": "A wireless security policy is being written from the CED standard. I. Require users to authenticate to the wireless network through an extensible authentication protocol (EAP) connected to an approved authentication server. II. Require all wireless traffic to be encrypted using AES encryption with a minimum key length. III. Require a firewall device that is separate from the router. Which of these belong in a wireless security policy per EK 3.2.A.4?",
+        "options": [
+          "III only (the firewall requirement)",
+          "I and III only (EAP authentication and the firewall)",
+          "II and III only (AES encryption and the firewall)",
+          "I and II only (EAP authentication and AES encryption)"
+        ],
+        "answer": "D",
+        "ek": "EK 3.2.A.4",
+        "rationale": "EK 3.2.A.4 says a wireless security policy may include requiring users to authenticate through an EAP connected to an approved authentication server, requiring all wireless traffic to be encrypted using AES encryption with a minimum key length, and disabling beacon frames on access points — so statements I and II belong. Statement III, requiring a separate firewall device, is part of the ROUTER security policy (EK 3.2.A.1), not the wireless policy. The answer is I and II only."
+      }
+    ]
+  }
+}

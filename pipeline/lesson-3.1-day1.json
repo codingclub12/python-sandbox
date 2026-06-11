@@ -1,0 +1,264 @@
+{
+  "meta": {
+    "lessonId": "3.1",
+    "lessonTitle": "Network Vulnerabilities and Attacks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 3: Securing Networks",
+    "day": 1,
+    "los": "LO 3.1.A, LO 3.1.B",
+    "anchor": "Protecting Patient Medical Data",
+    "author": "AP CS Exam Prep",
+    "totalDays": 6
+  },
+  "guide": {
+    "title": "Lesson 3.1 — Network Vulnerabilities and Attacks — Teacher Guide",
+    "subtitle": "Unit 3 · Topic 3.1 · 6 class periods · Anchor: Protecting Patient Medical Data",
+    "overview": [
+      "Lesson 3.1, Network Vulnerabilities and Attacks, opens Unit 3 (Securing Networks) by naming the common network attacks and explaining how adversaries exploit network weaknesses to steal, disrupt, or destroy communication. It is the threat-side foundation that the rest of the unit defends against, paired with the unit scenario 3A, Protecting Patient Medical Data, in which students analyze a network architecture and identify its vulnerabilities.",
+      "This Day 1 file carries the lesson-level quiz and this teacher guide, which span both learning objectives in the topic's tested scope: identifying common network attacks (3.1.A) — ARP poisoning, MAC flooding, DNS poisoning, and the smurf attack — and explaining how adversaries exploit network vulnerabilities (3.1.B), from flooding and unauthenticated joins to rogue access points and wireless attacks. Across the six class periods students move from naming each attack to reasoning about which vulnerability makes it possible."
+    ],
+    "los": [
+      "LO 3.1.A — Identify common network attacks.",
+      "LO 3.1.B — Explain how adversaries can exploit network vulnerabilities to steal, disrupt, or destroy network communication."
+    ],
+    "eks": [
+      "EK 3.1.A.1 — The address resolution protocol (ARP) is used by a default gateway on a network to establish a table that pairs internet protocol (IP) addresses with media access control (MAC) addresses. An ARP poisoning attack is when an adversary sends falsified ARP packets to the default gateway to modify the table so that the adversary's device receives traffic intended for the target by linking the target's IP address to the adversary's MAC address. Faking a MAC address is called MAC spoofing. This is an example of an on-path attack (or man-in-the-middle attack), which is when an adversary interrupts a data stream between two parties, captures both parties' data, and copies or alters the data before sending them on. Both parties think they are communicating directly with each other, but instead they are each communicating with the adversary who is secretly intercepting their messages.",
+      "EK 3.1.A.2 — A MAC flooding attack is when an adversary sends the target switch many Ethernet frames, each with a different MAC address. This can force the switch into broadcast mode, and the adversary can then collect all of the frames on the network (because they are being broadcast), which could allow the adversary to access sensitive information. This is an example of eavesdropping (or sniffing), which is when an adversary captures data in transit and can record and copy the data.",
+      "EK 3.1.A.3 — A domain name system (DNS) poisoning attack is when an adversary pretends to be an authoritative name server (NS) and plants a fake DNS record on a DNS server to redirect browser traffic to a malicious website designed to steal credentials. This is an example of credential harvesting, which is when adversaries set up a fake login site that looks like a real one. Unsuspecting users enter their real credentials, which the adversaries capture and use.",
+      "EK 3.1.A.4 — A smurf attack attempts to overwhelm a network with Internet Control Message Protocol (ICMP) requests. It is a type of denial of service (DoS) attack, which makes a system or resource unavailable to authorized users. During a smurf attack, an adversary sends many ICMP requests with the victim's address to the network's broadcast address. The network's gateway then sends these requests to all devices on the network. Each device on the network replies to the victim's address, creating a flood of traffic that can block legitimate messages. When multiple devices attack the same target simultaneously, it's called a distributed denial of service (DDoS) attack.",
+      "EK 3.1.B.1 — Adversaries can send malicious traffic into a network to flood it creating a DoS, to map the internal structure of the network, or to spoof a legitimate device. Networks without firewalls, or with improperly configured firewalls, are vulnerable to these types of attacks.",
+      "EK 3.1.B.2 — Adversaries that have compromised a device often attempt to leverage their access to compromise other devices on the local area network (LAN).",
+      "EK 3.1.B.3 — Adversaries that physically plug into a data port can gain access to a LAN through the switch port unless port security is enabled. This allows adversaries to launch DoS attacks or perform MAC flooding or MAC spoofing attacks.",
+      "EK 3.1.B.4 — Adversaries standing outside of physically secure spaces can pick up the signals and beacon frames from a wireless access point that is broadcasting outside the physical space. This allows them to gather information about the wireless network and to attempt eavesdropping and cryptographic attacks on it.",
+      "EK 3.1.B.5 — Adversaries can attempt to join networks to launch attacks from within the networks. Networks that do not authenticate devices and users make it easier for adversaries to join.",
+      "EK 3.1.B.6 — If there is an open network port, an adversary can plug a wireless access point into the port creating a rogue access point. The adversary could use this rogue access point to access the internal network wirelessly (maybe even from outside the physical space). This allows the adversary direct access to the LAN, bypassing any firewalls.",
+      "EK 3.1.B.7 — Adversaries can attempt to break wireless encryption and intercept, steal, or compromise data on a network."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each of the six days.",
+      "Printed/Digital Day 1–6 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page, which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 3.1 quiz (student copies) for the final day of the topic.",
+      "Unit scenario 3A, Protecting Patient Medical Data — students analyze the current network architecture and determine network vulnerabilities."
+    ],
+    "prereqs": [
+      "Unit 1 vocabulary of confidentiality, integrity, and availability, and the Unit 2 ideas of adversaries, attack phases, and security controls. Learners should be comfortable with the basic terms IP address, MAC address, switch, gateway, firewall, and access point before naming attacks against them."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Layer-2 attacks: ARP poisoning, MAC spoofing, and on-path interception (LO 3.1.A)",
+        "segments": [
+          { "segment": "QOTD + bell ringer (the clinic's intercepted login)", "min": 5 },
+          { "segment": "Guided-notes preview + objectives", "min": 5 },
+          { "segment": "How ARP maps IP to MAC, and how poisoning rewrites the table (EK 3.1.A.1)", "min": 15 },
+          { "segment": "On-path / man-in-the-middle and MAC spoofing in action (EK 3.1.A.1)", "min": 15 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "MAC flooding, eavesdropping, and switch behavior (LO 3.1.A)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Why switches flood: forcing broadcast mode with MAC flooding (EK 3.1.A.2)", "min": 20 },
+          { "segment": "Eavesdropping / sniffing captured traffic (EK 3.1.A.2)", "min": 15 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "DNS poisoning and credential harvesting (LO 3.1.A)",
+        "segments": [
+          { "segment": "QOTD + bell ringer (the look-alike login page)", "min": 5 },
+          { "segment": "How DNS resolution works and how a fake record redirects traffic (EK 3.1.A.3)", "min": 20 },
+          { "segment": "Credential harvesting on a malicious look-alike site (EK 3.1.A.3)", "min": 15 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Denial of service: the smurf attack, DoS, and DDoS (LO 3.1.A)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "ICMP, broadcast addresses, and the smurf amplification path (EK 3.1.A.4)", "min": 20 },
+          { "segment": "From DoS to DDoS: many devices, one target (EK 3.1.A.4)", "min": 15 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Exploiting wired vulnerabilities: firewalls, lateral movement, and port security (LO 3.1.B)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Flooding, mapping, and spoofing against missing or misconfigured firewalls (EK 3.1.B.1)", "min": 12 },
+          { "segment": "Lateral movement across the LAN from one compromised device (EK 3.1.B.2)", "min": 11 },
+          { "segment": "Physical port access and why port security matters (EK 3.1.B.3)", "min": 12 },
+          { "segment": "Stop and Think + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 6,
+        "focus": "Exploiting wireless vulnerabilities and unauthenticated joins (LO 3.1.B)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Beacon frames leaking outside the building; joining unauthenticated networks (EK 3.1.B.4–B.5)", "min": 13 },
+          { "segment": "Rogue access points bypassing firewalls; breaking wireless encryption (EK 3.1.B.6–B.7)", "min": 13 },
+          { "segment": "Topic review + Lesson 3.1 quiz", "min": 14 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "ARP poisoning vs. MAC flooding",
+        "myth": "ARP poisoning and MAC flooding are basically the same attack since both involve MAC addresses.",
+        "reality": "EK 3.1.A.1 describes ARP poisoning as sending falsified ARP packets to the gateway to relink the target's IP to the adversary's MAC, enabling an on-path attack. EK 3.1.A.2 describes MAC flooding as overwhelming a switch with many frames using different MAC addresses to force broadcast mode for eavesdropping. One rewrites the IP-to-MAC table; the other exhausts the switch."
+      },
+      {
+        "heading": "A smurf attack does not steal data",
+        "myth": "A smurf attack is a way for an adversary to capture and read sensitive traffic.",
+        "reality": "EK 3.1.A.4 defines the smurf attack as a denial of service attack that overwhelms a network with ICMP requests to make a resource unavailable. Its goal is disruption, not interception — eavesdropping is tied to MAC flooding (EK 3.1.A.2), not the smurf attack."
+      },
+      {
+        "heading": "Rogue access points and firewalls",
+        "myth": "A firewall at the network edge will block an adversary who plugs a wireless access point into an open internal port.",
+        "reality": "EK 3.1.B.6 states a rogue access point plugged into an open port gives the adversary direct wireless access to the LAN, bypassing any firewalls. The firewall guards the edge, not a device already attached inside the network."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a one-page glossary mapping each attack name to its target (ARP table, switch, DNS record, broadcast address) and its goal (intercept, eavesdrop, harvest credentials, disrupt) so they can sort scenarios by what is being attacked.",
+        "Use a simple three-actor diagram (target, gateway/switch, adversary) and have students physically move arrows to show how ARP poisoning reroutes traffic before adding any vocabulary."
+      ],
+      "extension": [
+        "Have students take the scenario-3A network architecture and tag each segment with the specific EK that describes a vulnerability it has, then propose which control from later in the unit would address it.",
+        "Ask students to compare DoS and DDoS using the smurf attack (EK 3.1.A.4) and explain why amplification through the broadcast address makes the attack effective against a single victim."
+      ]
+    },
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 3.1 — Network Vulnerabilities and Attacks — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "At a clinic, an adversary sends falsified ARP packets to the default gateway so the gateway's table now links a doctor's IP address to the adversary's MAC address. Traffic meant for the doctor now flows through the adversary's device, which copies it before passing it on. Which attack and category is this?",
+        "options": [
+          "ARP poisoning — an on-path attack that intercepts traffic between two parties who think they are talking directly",
+          "MAC flooding — an eavesdropping attack that forces the switch into broadcast mode",
+          "DNS poisoning — a credential-harvesting attack that redirects a browser to a fake site",
+          "Smurf attack — a denial of service attack that floods the network with ICMP requests"
+        ],
+        "answer": "A",
+        "ek": "EK 3.1.A.1",
+        "rationale": "EK 3.1.A.1 defines ARP poisoning as sending falsified ARP packets to the gateway to relink the target's IP to the adversary's MAC, an example of an on-path (man-in-the-middle) attack where each party thinks it is talking directly with the other. Option B (MAC flooding, EK 3.1.A.2) overwhelms a switch rather than rewriting an ARP table. Option C (DNS poisoning, EK 3.1.A.3) plants a fake DNS record. Option D (smurf, EK 3.1.A.4) is a DoS attack, not interception."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An adversary sends a switch a huge number of Ethernet frames, each carrying a different MAC address, until the switch can no longer track which port owns which address. The switch begins sending all frames to every port, and the adversary records the traffic it now receives. Which attack, and what does it enable?",
+        "options": [
+          "ARP poisoning — it relinks the victim's IP to the adversary's MAC at the gateway",
+          "MAC flooding — it forces the switch into broadcast mode, enabling eavesdropping on the traffic",
+          "A rogue access point — it provides wireless access to the LAN that bypasses the firewall",
+          "DNS poisoning — it plants a fake record to redirect users to a malicious login page"
+        ],
+        "answer": "B",
+        "ek": "EK 3.1.A.2",
+        "rationale": "EK 3.1.A.2 defines MAC flooding as sending a switch many frames with different MAC addresses, forcing broadcast mode so the adversary can collect all frames — an example of eavesdropping (sniffing). Option A (ARP poisoning, EK 3.1.A.1) targets the gateway's ARP table. Option C (rogue access point, EK 3.1.B.6) is a wireless LAN-access attack. Option D (DNS poisoning, EK 3.1.A.3) targets DNS records, not the switch."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary pretends to be an authoritative name server and plants a fake DNS record on a DNS server. Staff who type the clinic's portal address are redirected to a site that looks identical to the real one, where they enter their usernames and passwords, which the adversary captures. Which attack and technique are described?",
+        "options": [
+          "A smurf attack using ICMP requests sent to the network's broadcast address",
+          "MAC flooding that captures frames after forcing the switch to broadcast",
+          "DNS poisoning that redirects traffic to a fake site for credential harvesting",
+          "ARP poisoning that links the target's IP address to the adversary's MAC address"
+        ],
+        "answer": "C",
+        "ek": "EK 3.1.A.3",
+        "rationale": "EK 3.1.A.3 defines DNS poisoning as planting a fake DNS record to redirect browser traffic to a malicious site that steals credentials — an example of credential harvesting via a fake login page. Option A (smurf, EK 3.1.A.4) is a DoS attack. Option B (MAC flooding, EK 3.1.A.2) targets a switch. Option D (ARP poisoning, EK 3.1.A.1) rewrites the gateway's ARP table, not a DNS record."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An adversary sends many ICMP requests carrying the victim's address to the network's broadcast address. The gateway forwards them to every device, and each device replies to the victim, burying it under a flood of traffic so legitimate messages cannot get through. What is this, and what is its goal?",
+        "options": [
+          "DNS poisoning — its goal is to harvest credentials on a fake login site",
+          "An on-path attack — its goal is to intercept and alter data between two parties",
+          "MAC spoofing — its goal is to disguise the adversary's device on the switch",
+          "A smurf attack — its goal is denial of service, making the resource unavailable"
+        ],
+        "answer": "D",
+        "ek": "EK 3.1.A.4",
+        "rationale": "EK 3.1.A.4 defines the smurf attack as overwhelming a network with ICMP requests sent to the broadcast address so every device replies to the victim, a type of denial of service that makes a resource unavailable. Option A (DNS poisoning, EK 3.1.A.3) harvests credentials. Option B (on-path, EK 3.1.A.1) intercepts traffic. Option C (MAC spoofing, EK 3.1.A.1) fakes a MAC address rather than flooding with ICMP."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A visitor finds an unused wall jack in a clinic hallway, plugs a laptop directly into it, and reaches the LAN through the switch port. From there the visitor begins launching MAC flooding and MAC spoofing attempts. Which missing safeguard most directly allowed this access?",
+        "options": [
+          "Port security was not enabled on the switch, so a device that physically plugged in reached the LAN",
+          "The wireless encryption was weak, letting the visitor break it from inside the building",
+          "The DNS server accepted a fake record, redirecting the visitor onto the internal network",
+          "A rogue access point had been installed, giving the visitor wireless entry to the LAN"
+        ],
+        "answer": "A",
+        "ek": "EK 3.1.B.3",
+        "rationale": "EK 3.1.B.3 states that an adversary who physically plugs into a data port can reach the LAN through the switch port unless port security is enabled, allowing DoS, MAC flooding, or MAC spoofing attacks. Option B concerns wireless encryption (EK 3.1.B.7), not a wired jack. Option C is DNS poisoning (EK 3.1.A.3). Option D is a rogue access point (EK 3.1.B.6), which is wireless, not a direct wired plug-in."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An adversary finds an open network port inside an office and plugs in a wireless access point of their own. They can now connect to the internal network wirelessly, even from the parking lot, and the connection does not pass through the organization's firewall. What has the adversary created, and why is it dangerous?",
+        "options": [
+          "An on-path attack — it captures and alters traffic between two communicating parties",
+          "A rogue access point — it gives direct wireless access to the LAN, bypassing any firewalls",
+          "A smurf attack — it floods the network with ICMP traffic to deny service to users",
+          "An ARP poisoning attack — it relinks the target's IP to the adversary's MAC address"
+        ],
+        "answer": "B",
+        "ek": "EK 3.1.B.6",
+        "rationale": "EK 3.1.B.6 states that plugging a wireless access point into an open port creates a rogue access point that grants direct wireless access to the LAN, bypassing any firewalls. Option A (on-path, EK 3.1.A.1) is traffic interception. Option C (smurf, EK 3.1.A.4) is a DoS attack. Option D (ARP poisoning, EK 3.1.A.1) rewrites an ARP table rather than adding an access point."
+      },
+      {
+        "id": "Q7",
+        "kind": "multi",
+        "stem": "A security analyst reviews three findings. I. The network has no firewall, so an adversary can flood it, map its internal structure, or spoof a legitimate device. II. The network does not authenticate devices or users, so an adversary can join it and attack from within. III. After compromising one workstation, an adversary uses that access to compromise other devices on the LAN. Match each finding to the EK that describes it.",
+        "options": [
+          "I = EK 3.1.B.6, II = EK 3.1.B.3, III = EK 3.1.B.4",
+          "I = EK 3.1.B.2, II = EK 3.1.B.6, III = EK 3.1.B.1",
+          "I = EK 3.1.B.1, II = EK 3.1.B.5, III = EK 3.1.B.2",
+          "I = EK 3.1.B.5, II = EK 3.1.B.1, III = EK 3.1.B.3"
+        ],
+        "answer": "C",
+        "ek": "EK 3.1.B.1 + EK 3.1.B.5 + EK 3.1.B.2",
+        "rationale": "EK 3.1.B.1 covers networks without firewalls being vulnerable to flooding, mapping, and spoofing — that is I. EK 3.1.B.5 covers adversaries joining networks that do not authenticate devices and users — that is II. EK 3.1.B.2 covers a compromised device being leveraged to compromise other devices on the LAN — that is III. Only option C maps all three correctly; the others misassign at least one EK."
+      },
+      {
+        "id": "Q8",
+        "kind": "recall",
+        "stem": "According to the CED, what risk arises when a wireless access point broadcasts its signals and beacon frames beyond a building's physically secure space?",
+        "options": [
+          "Devices on the network are forced into broadcast mode, exposing all of their Ethernet frames",
+          "The default gateway's ARP table is rewritten to point the target's IP at the adversary",
+          "The network is overwhelmed by ICMP requests reflected off the broadcast address",
+          "Adversaries outside the space can gather information and attempt eavesdropping and cryptographic attacks"
+        ],
+        "answer": "D",
+        "ek": "EK 3.1.B.4",
+        "rationale": "EK 3.1.B.4 states that adversaries standing outside a physically secure space can pick up signals and beacon frames from an access point broadcasting beyond it, allowing them to gather information and attempt eavesdropping and cryptographic attacks. Option A describes MAC flooding (EK 3.1.A.2). Option B describes ARP poisoning (EK 3.1.A.1). Option C describes a smurf attack (EK 3.1.A.4)."
+      }
+    ]
+  }
+}

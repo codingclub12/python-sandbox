@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "lessonId": "3.4",
+    "lessonTitle": "Protecting Networks: Firewalls",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 3: Securing Networks",
+    "day": 1,
+    "los": "LO 3.4.A, 3.4.B, 3.4.C, 3.4.D",
+    "totalDays": 8,
+    "author": "AP CS Exam Prep"
+  },
+  "guide": {
+    "title": "Protecting Networks: Firewalls — Teacher Guide",
+    "subtitle": "Unit 3: Securing Networks   •   LO 3.4.A–3.4.D",
+    "overview": [
+      "Topic 3.4 is the firewall topic of Unit 3: students learn what a firewall is, the three CED firewall types (stateless, stateful, next-generation), how an access control list (ACL) permits or denies traffic, where firewalls should be placed in a segmented network, and how to write and order firewall rules. It builds directly on the network-protection mindset of Unit 3 by turning the abstract idea of controlling traffic into concrete, ordered ACL rules at each network boundary.",
+      "Across the topic the recurring idea is that a firewall does nothing without rules, and the ORDER of those rules determines what is actually allowed or denied — reversing two rules can flip a network from open to closed."
+    ],
+    "los": [
+      "LO 3.4.A — Identify types of network-based firewalls.",
+      "LO 3.4.B — Explain how a firewall uses an access control list to allow or deny traffic entering or leaving a network.",
+      "LO 3.4.C — Determine the effective placement of firewalls in a network.",
+      "LO 3.4.D — Configure a firewall to manage the flow of network traffic."
+    ],
+    "eks": [
+      "EK 3.4.A.1 — A firewall is used to allow or deny network traffic in or out of a network. The firewall itself is software that can be hosted on a standalone device or integrated into another network device, such as a router.",
+      "EK 3.4.A.2 — A stateless firewall filters traffic based on information in packet headers, such as IP addresses, ports, and protocols.",
+      "EK 3.4.A.3 — A stateful firewall (also known as dynamic packet filtering) tracks the state of network connections passing through the firewall and can filter according to connection-related rules in addition to the filtering done by a stateless firewall. This allows for more control over content allowed in and out of a network.",
+      "EK 3.4.A.4 — A next-generation firewall (NGFW) has both the capabilities of typical stateless and stateful firewalls and additional advanced features, such as intrusion prevention, deep packet inspection, and filtering by application type.",
+      "EK 3.4.B.1 — Network administrators create a set of rules, called an access control list (ACL), that a firewall uses to permit or deny inbound and outbound network traffic.",
+      "EK 3.4.B.2 — ACL rules are checked in order and the first rule that matches the criteria will be executed for the specified data.",
+      "EK 3.4.B.3 — A typical ACL will specify the direction of traffic (inbound or outbound), the criterion to filter by (IP addresses, logical port, service, or application), and the action to take (permit or deny).",
+      "EK 3.4.C.1 — Each segment of a network should have a firewall to control the flow of data in and out of that segment.",
+      "EK 3.4.C.2 — Network segments may have different security needs based on the data and services within them. The level of security for each firewall can be set independently.",
+      "EK 3.4.C.3 — Each point of data ingress and egress between the internal network and the public internet should have a firewall.",
+      "EK 3.4.D.1 — The requirements for a firewall will specify what type of traffic from which sources or to which destinations should be allowed or denied.",
+      "EK 3.4.D.2 — Specific rules for a firewall can allow or deny inbound or outbound traffic based on source or destination port or IP address, service, protocol, or application.",
+      "EK 3.4.D.3 — Rules are implemented in order, and changing the order of a set of rules can change which traffic is allowed or denied. Consideration must be given to the precedence of filtering priorities when establishing the order of rules."
+    ],
+    "materials": [
+      "Projector for firewall-type and ACL examples",
+      "Printed Day 1 Guided Notes (student + key)",
+      "Printed Lesson 3.4 quiz (student + answer key)",
+      "Network-diagram handout showing internal segments and an internet egress point"
+    ],
+    "prereqs": [
+      "Topic 3.1–3.3 understanding of networks, segments, and traffic",
+      "Familiarity with IP addresses, ports, and common protocols (TCP, SSH on port 22, HTTP on port 80)"
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Firewall types, the ACL, placement, and rule configuration (3.4.A–D)",
+        "segments": [
+          { "segment": "Bell ringer — what a firewall lets in or out", "min": 5 },
+          { "segment": "Direct instruction — firewall definition and the three types (3.4.A)", "min": 20 },
+          { "segment": "ACLs: rules checked in order, first match wins (3.4.B)", "min": 20 },
+          { "segment": "Firewall placement across segments and at internet egress (3.4.C)", "min": 15 },
+          { "segment": "Configuring and ordering rules — worked example (3.4.D)", "min": 20 },
+          { "segment": "Quiz and wrap-up", "min": 10 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Firewall = a physical box",
+        "myth": "A firewall is always a separate hardware appliance you buy and plug in.",
+        "reality": "EK 3.4.A.1 — the firewall itself is software; it can run on a standalone device OR be integrated into another network device such as a router."
+      },
+      {
+        "heading": "Rule order does not matter",
+        "myth": "As long as all the right rules are present, a firewall behaves the same no matter what order they are in.",
+        "reality": "EK 3.4.B.2 and EK 3.4.D.3 — rules are checked in order and the first match is executed, so reversing two rules can change which traffic is allowed or denied."
+      },
+      {
+        "heading": "One firewall at the perimeter is enough",
+        "myth": "You only need a single firewall where the network meets the internet.",
+        "reality": "EK 3.4.C.1 and C.3 — each segment should have a firewall, and every ingress/egress point between the internal network and the public internet should have one."
+      },
+      {
+        "heading": "Stateful and next-generation are the same thing",
+        "myth": "A stateful firewall and a next-generation firewall are just two names for the same device.",
+        "reality": "EK 3.4.A.4 — an NGFW has the capabilities of stateless and stateful firewalls PLUS advanced features such as intrusion prevention, deep packet inspection, and filtering by application type."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give a side-by-side comparison chart of stateless vs. stateful vs. NGFW filled with the exact EK phrases before asking students to apply them.",
+        "Walk through the CED's two-rule SSH example slowly, then have students predict the result before and after swapping the rule order.",
+        "Provide a sentence frame for ACL rules: 'ACTION direction protocol port from source' so students can read and write rules consistently."
+      ],
+      "extension": [
+        "Have students write a short ACL (4–5 rules) for a small network with a public web server and an internal-only database, then justify the rule order using EK 3.4.D.3.",
+        "Ask students to explain why segments may need different firewall security levels (EK 3.4.C.2) using a hospital example with patient data vs. a public waiting-room kiosk.",
+        "Challenge students to identify which advanced NGFW feature (intrusion prevention, deep packet inspection, application filtering) addresses a given threat that a stateless firewall would miss."
+      ]
+    },
+    "discussion": [
+      "Why does the CED say a firewall is software rather than hardware, and why does that distinction matter?",
+      "Give an example where reversing two ACL rules would change the network from secure to wide open.",
+      "Why should each network segment be able to set its firewall's security level independently?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 3.4 — Protecting Networks: Firewalls — Quiz",
+    "instructions": "Choose the single best answer. 11 questions, 20 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "According to the CED, what is a firewall, and how can it be hosted?",
+        "options": [
+          "A physical cable that physically disconnects a network from the internet at night",
+          "Software that allows or denies network traffic and can run on a standalone device or be integrated into another device such as a router",
+          "A dedicated hardware appliance that must always be purchased and installed separately from any router",
+          "A log file that records every packet entering a network for later review by an administrator"
+        ],
+        "answer": "B",
+        "ek": "EK 3.4.A.1",
+        "rationale": "EK 3.4.A.1 states a firewall is used to allow or deny network traffic in or out of a network, and the firewall itself is software that can be hosted on a standalone device or integrated into another network device, such as a router. The other options misdescribe a firewall as a cable, a mandatory separate appliance, or a passive log."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A firewall is configured to inspect only the IP addresses, ports, and protocols listed in each packet's header, and it does not keep track of whether a packet belongs to an existing connection. Which type of firewall is this?",
+        "options": [
+          "A stateful firewall, which tracks the state of each network connection passing through it",
+          "A next-generation firewall, which adds intrusion prevention and deep packet inspection",
+          "A stateless firewall, which filters traffic based on information in packet headers",
+          "A proxy firewall, which terminates and rebuilds every connection on behalf of the host"
+        ],
+        "answer": "C",
+        "ek": "EK 3.4.A.2",
+        "rationale": "EK 3.4.A.2 — a stateless firewall filters traffic based on information in packet headers, such as IP addresses, ports, and protocols. It does not track connection state, which rules out the stateful and next-generation options; the CED does not describe a 'proxy firewall' type here."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An administrator needs a firewall that can do everything a stateless and a stateful firewall do, AND can also perform intrusion prevention, deep packet inspection, and filtering by application type. Which firewall type meets all of these needs?",
+        "options": [
+          "A next-generation firewall (NGFW), which combines stateless and stateful capabilities with advanced features",
+          "A stateless firewall, which inspects packet headers for IP addresses, ports, and protocols",
+          "A stateful firewall, which tracks connection state but stops short of application-type filtering",
+          "A header-only firewall, which limits inspection strictly to source and destination ports"
+        ],
+        "answer": "A",
+        "ek": "EK 3.4.A.4",
+        "rationale": "EK 3.4.A.4 — a next-generation firewall (NGFW) has both the capabilities of typical stateless and stateful firewalls and additional advanced features, such as intrusion prevention, deep packet inspection, and filtering by application type. A stateless or stateful firewall alone lacks those advanced features, and 'header-only firewall' is not a CED type."
+      },
+      {
+        "id": "Q4",
+        "kind": "recall",
+        "stem": "What is the access control list (ACL) that network administrators create for a firewall?",
+        "options": [
+          "A roster of employees who are allowed physical access to the server room during business hours",
+          "An encryption key exchanged between two firewalls to secure traffic that passes between network segments",
+          "A list of trusted websites that the firewall automatically loads into every browser on the network",
+          "A set of rules that a firewall uses to permit or deny inbound and outbound network traffic"
+        ],
+        "answer": "D",
+        "ek": "EK 3.4.B.1",
+        "rationale": "EK 3.4.B.1 — network administrators create a set of rules, called an access control list (ACL), that a firewall uses to permit or deny inbound and outbound network traffic. The other options confuse an ACL with a physical-access roster, an encryption key, or a browser allowlist."
+      },
+      {
+        "id": "Q5",
+        "kind": "multi",
+        "stem": "A typical ACL rule specifies several things. Which of the following does the CED say a typical ACL rule includes? I. The direction of traffic (inbound or outbound). II. The criterion to filter by, such as IP addresses, logical port, service, or application. III. The action to take (permit or deny). Which are included?",
+        "options": [
+          "I and III only (direction and action, but not the filter criterion)",
+          "I, II, and III (direction, filter criterion, and action)",
+          "II only (the filter criterion, such as IP address or port)",
+          "I and II only (direction and filter criterion, but not the action)"
+        ],
+        "answer": "B",
+        "ek": "EK 3.4.B.3",
+        "rationale": "EK 3.4.B.3 — a typical ACL will specify the direction of traffic (inbound or outbound), the criterion to filter by (IP addresses, logical port, service, or application), and the action to take (permit or deny). All three elements are part of a typical rule, so the answer is I, II, and III."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A firewall's ACL lists Rule 1 then Rule 2. A packet arrives that matches the criteria of BOTH rules, but the two rules specify opposite actions. According to the CED, how does the firewall decide what to do with that packet?",
+        "options": [
+          "It executes the first rule that matches the criteria, so Rule 1's action is applied",
+          "It executes whichever rule denies the traffic, since deny always overrides permit",
+          "It executes the last rule that matches, so Rule 2's action overrides Rule 1",
+          "It blocks the packet entirely whenever two rules disagree about the same traffic"
+        ],
+        "answer": "A",
+        "ek": "EK 3.4.B.2",
+        "rationale": "EK 3.4.B.2 — ACL rules are checked in order and the first rule that matches the criteria will be executed for the specified data. Since Rule 1 comes first and matches, its action is applied; there is no 'deny-overrides' or 'last match' or automatic-block rule in the CED."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A hospital network has separate segments for patient-records systems and for a public lobby kiosk, and these segments have very different security needs. According to the CED, how should firewalls be applied across this network?",
+        "options": [
+          "Place one firewall only at the segment with the most sensitive data and leave the others unprotected",
+          "Use a single shared security level for all firewalls so the configuration stays uniform across segments",
+          "Give each segment its own firewall and set each firewall's security level independently for that segment's needs",
+          "Remove internal firewalls so traffic between segments is never delayed by repeated inspection"
+        ],
+        "answer": "C",
+        "ek": "EK 3.4.C.1 + EK 3.4.C.2",
+        "rationale": "EK 3.4.C.1 — each segment of a network should have a firewall to control the flow of data in and out of that segment. EK 3.4.C.2 — segments may have different security needs, and the level of security for each firewall can be set independently. So each segment gets its own firewall with an independently set security level."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A network connects to the public internet at two separate points of data ingress and egress. The administrator has placed a firewall at only one of those two points to save money. According to the CED, what is the problem with this design?",
+        "options": [
+          "There is no problem — one firewall at any internet connection protects the entire internal network",
+          "The firewall should be removed from the internet boundary and placed only between internal segments instead",
+          "A firewall at an internet boundary cannot use an ACL, so both points are effectively unprotected anyway",
+          "Each point of ingress and egress between the internal network and the public internet should have a firewall, so the second point is unprotected"
+        ],
+        "answer": "D",
+        "ek": "EK 3.4.C.3",
+        "rationale": "EK 3.4.C.3 — each point of data ingress and egress between the internal network and the public internet should have a firewall. Leaving the second internet connection without a firewall exposes the internal network at that point. ACLs absolutely apply at internet boundaries, and internal firewalls do not replace boundary firewalls."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An administrator must write firewall rules from a requirements document. According to the CED, on which of the following can a specific firewall rule allow or deny inbound or outbound traffic?",
+        "options": [
+          "Only on the destination IP address, since ports and protocols are handled by the router instead",
+          "On source or destination port or IP address, service, protocol, or application",
+          "Only on the time of day the traffic arrives, since requirements are scheduled by shift",
+          "Only on the physical cable the traffic uses, since each cable maps to one rule"
+        ],
+        "answer": "B",
+        "ek": "EK 3.4.D.2",
+        "rationale": "EK 3.4.D.2 — specific rules for a firewall can allow or deny inbound or outbound traffic based on source or destination port or IP address, service, protocol, or application. The other options falsely narrow the criteria to a single attribute that the CED does not list."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A firewall has these two rules in order — Rule 1: ALLOW inbound TCP port 22 from ALL; Rule 2: DENY inbound TCP ALL from ALL. An administrator swaps them so the DENY rule is now Rule 1 and the ALLOW rule is now Rule 2. What happens to inbound SSH (TCP port 22) traffic after the swap?",
+        "options": [
+          "SSH traffic is now denied — the deny-all rule is checked first and matches it before the allow rule",
+          "SSH traffic is unaffected, since both rules are present and order has no effect on the outcome",
+          "SSH traffic is now allowed twice, since the allow rule still matches port 22 after the deny rule",
+          "SSH traffic triggers an error, since two TCP rules cannot both reference inbound traffic"
+        ],
+        "answer": "A",
+        "ek": "EK 3.4.D.3 + EK 3.4.B.2",
+        "rationale": "EK 3.4.D.3 — rules are implemented in order, and changing the order can change which traffic is allowed or denied. With DENY inbound TCP ALL now first, EK 3.4.B.2 means the first matching rule executes: the deny-all rule matches the SSH packet before the allow rule is ever reached, so SSH is denied. This is the exact reversal the CED illustrates."
+      },
+      {
+        "id": "Q11",
+        "kind": "recall",
+        "stem": "According to the CED, what do the requirements for a firewall specify?",
+        "options": [
+          "The brand of hardware that must be purchased before any rules can be written for the device",
+          "The maximum number of packets per second the firewall is permitted to inspect during peak hours",
+          "What type of traffic from which sources or to which destinations should be allowed or denied",
+          "The physical location in the building where the firewall device must be mounted on the wall"
+        ],
+        "answer": "C",
+        "ek": "EK 3.4.D.1",
+        "rationale": "EK 3.4.D.1 — the requirements for a firewall will specify what type of traffic from which sources or to which destinations should be allowed or denied. The requirements are about traffic policy, not hardware brand, throughput limits, or mounting location."
+      }
+    ]
+  }
+}
