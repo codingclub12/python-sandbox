@@ -1,0 +1,358 @@
+{
+  "meta": {
+    "lessonId": "5.6",
+    "lessonTitle": "Detecting Attacks on Data",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 5: Securing Applications and Data",
+    "day": 1,
+    "los": "LO 5.6.A–E",
+    "totalDays": 7
+  },
+  "guide": {
+    "title": "Lesson 5.6 — Detecting Attacks on Data — Teacher Guide",
+    "subtitle": "Unit 5 · Topic 5.6 · 7 class periods",
+    "overview": [
+      "Topic 5.6 closes Unit 5 by shifting from preventing attacks on applications and data to detecting them. Where earlier topics hardened code and inputs, 5.6 assumes an adversary may get through and asks: how do defenders notice? Students learn the detective controls the CED names — log analysis (accounting), honeypots, and cryptographic hashes — then learn to choose among them by cost, sensitivity, and data classification (5.6.B), to weigh their impact and limits including detection speed and false negatives (5.6.C), to verify a file's integrity by comparing hash values (5.6.D), and finally to read log files for the signatures of SQL injection, XSS, buffer overflow, and directory traversal attacks (5.6.E).",
+      "Across seven days the lesson moves from concepts (A: what detection is and the three core controls) to evaluation (B and C: how to pick a control and what each one can and cannot catch) to hands-on skill (D: hashing a file and comparing digests; E: spotting attack indicators in real log lines). The recurring exam idea is that detection is not prevention: a hash tells you a file changed but not who read it, and a honeypot only catches an adversary who takes the bait."
+    ],
+    "los": [
+      "LO 5.6.A — Explain how to detect attacks on data.",
+      "LO 5.6.B — Determine controls for detecting attacks against applications or data.",
+      "LO 5.6.C — Evaluate the impact of a method for detecting attacks against an application or data.",
+      "LO 5.6.D — Identify whether a file has been altered by verifying its hash.",
+      "LO 5.6.E — Apply detection techniques to identify and report indicators of application attacks by analyzing log files."
+    ],
+    "eks": [
+      "EK 5.6.A.1 — Devices track and log when data are accessed and by whom. The process of recording and monitoring user activities is called accounting. Analysis of these logs can reveal malicious activity when an adversary attempts to access, copy, move, or delete data. Suspicious activity can include: accessing files that aren't typically accessed; accessing files or applications outside of a user's normal patterns (including time of day, location, and device type); attempts to delete or copy sensitive files.",
+      "EK 5.6.A.2 — A honeypot is a file that appears as if it contains valuable data (e.g., credit card information, PII, passwords), but the data in the file are fake. A system can alert defenders if someone attempts to access the honeypot. Since the honeypot is a fake file, there is no legitimate reason to be accessing it, and any attempted access would be an indicator of malicious activity.",
+      "EK 5.6.A.3 — Cryptographic hash functions can generate a digest for data and can reveal if data have been altered. If a file has changed unexpectedly, this can be a sign of malicious activity.",
+      "EK 5.6.B.1 — Cost is a criterion in determining detective controls. Detective controls like honeypots and using hash values to check data integrity are inexpensive. Some organizations invest in third-party data loss prevention (DLP) services, which monitor data access, usage, and transmission by users throughout the organization to detect suspicious activity; DLP services provide strong detection capabilities at a higher cost.",
+      "EK 5.6.B.2 — Sensitivity or criticality of data or applications is a criterion in determining detective controls. More sensitive or critical data or applications are more likely targets of an adversary and should be monitored more closely.",
+      "EK 5.6.B.3 — Classification of data is a criterion in determining detective controls. Data that have been classified as private, educational, healthcare, or financial often have legal or regulatory detection and monitoring requirements.",
+      "EK 5.6.C.1 — To operate at an effective speed, log analysis needs to be augmented with some automation. Honeypots offer near instantaneous detection capabilities.",
+      "EK 5.6.C.2 — Some DLP tools, honeypots, and realtime automated log analysis provide alerts as an attack is happening. These tools allow for a prompt response that can stop an attack before it does more harm. Retrospective log analysis and the use of cryptographic hashes to verify data integrity identify attacks after they have occurred.",
+      "EK 5.6.C.3 — False negatives can occur in applications and data attack detection. Cryptographic hash functions only detect if data have been altered. An adversary could view and steal data without altering it, and a cryptographic hash function would not detect this. Honeypots cannot detect adversaries that do not attempt to access them.",
+      "EK 5.6.D.1 — Cryptographic hash functions can help identify changes in a file because they are repeatable: the same input always produces the same output for a given hash function.",
+      "EK 5.6.D.2 — Hashes can be calculated using the command line on a computer, a website, or specialized software. In Windows PowerShell: Get-FileHash testfile -Algorithm SHA256. In BASH: sha256sum testfile. In zsh (common on Apple computers): shasum -a 256 testfile.",
+      "EK 5.6.D.3 — A file can be hashed and its hash output recorded. Then it can be hashed again later, and the second hash output can be compared to the previous hash output for the same file. If a file's hash changes, then the file was altered between when the first and second hashes were generated.",
+      "EK 5.6.E.1 — SQL injection attacks can be detected by reviewing application and server logs of user input for SQL control words and symbols such as: a single or double quote character; Boolean conditions like OR 1=1; a double dash (which indicates a comment in SQL): --; SQL control words (always in capital letters) like WHERE, IN, FROM.",
+      "EK 5.6.E.2 — XSS attacks can be detected by reviewing user input for suspicious tags, particularly the <script>...</script> tag.",
+      "EK 5.6.E.3 — For web applications, buffer overflows can be detected by checking the amount of data the user is sending to the web application in their request. The fields commonly checked are the URL length, cookie length, query string length, and total request length. Long strings in any of these fields can be an indicator of an attempted buffer overflow attack.",
+      "EK 5.6.E.4 — Directory traversal attacks can be detected by reviewing application and server logs. HTTP GET requests that include paths with sequences of ../ are indicators of an adversary attempting a directory traversal."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "How to detect attacks on data: accounting/log analysis, honeypots, and hashes (LO 5.6.A)",
+        "segments": [
+          { "segment": "Bell ringer (the alarm on the fake file)", "min": 5 },
+          { "segment": "Objectives + accounting and log analysis (EK 5.6.A.1)", "min": 12 },
+          { "segment": "Honeypots: the fake bait file (EK 5.6.A.2)", "min": 12 },
+          { "segment": "Cryptographic hashes reveal alteration (EK 5.6.A.3)", "min": 12 },
+          { "segment": "Vocab + stop and think", "min": 10 },
+          { "segment": "Wrap and assign Your Turn", "min": 4 }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Choosing detective controls: cost (LO 5.6.B)",
+        "segments": [
+          { "segment": "Bell ringer + recap of the three controls", "min": 6 },
+          { "segment": "Cost as a criterion: cheap honeypots/hashes vs. higher-cost DLP (EK 5.6.B.1)", "min": 18 },
+          { "segment": "What DLP monitors: access, usage, transmission (EK 5.6.B.1)", "min": 14 },
+          { "segment": "Stop and think + wrap", "min": 12 }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Choosing detective controls: sensitivity and classification (LO 5.6.B)",
+        "segments": [
+          { "segment": "Bell ringer (which data gets watched closest?)", "min": 6 },
+          { "segment": "Sensitivity/criticality as a criterion (EK 5.6.B.2)", "min": 15 },
+          { "segment": "Classification and legal/regulatory requirements (EK 5.6.B.3)", "min": 17 },
+          { "segment": "Stop and think + wrap", "min": 12 }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Evaluating impact: detection speed and false negatives (LO 5.6.C)",
+        "segments": [
+          { "segment": "Bell ringer (detect now vs. detect later)", "min": 6 },
+          { "segment": "Speed: automation, honeypots near-instant, real-time vs. retrospective (EK 5.6.C.1–C.2)", "min": 18 },
+          { "segment": "False negatives: what hashes and honeypots miss (EK 5.6.C.3)", "min": 14 },
+          { "segment": "Stop and think + wrap", "min": 12 }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Verifying a file's integrity by hashing (LO 5.6.D)",
+        "segments": [
+          { "segment": "Bell ringer (did this file change?)", "min": 6 },
+          { "segment": "Repeatability of hash functions (EK 5.6.D.1)", "min": 12 },
+          { "segment": "Generating hashes: PowerShell, BASH, zsh commands (EK 5.6.D.2)", "min": 16 },
+          { "segment": "Record-then-compare workflow (EK 5.6.D.3) + stop and think", "min": 16 }
+        ]
+      },
+      {
+        "day": 6,
+        "focus": "Reading logs for attack indicators: SQLi, XSS, buffer overflow, directory traversal (LO 5.6.E)",
+        "segments": [
+          { "segment": "Bell ringer (spot the bad request)", "min": 6 },
+          { "segment": "SQL injection and XSS signatures in logs (EK 5.6.E.1–E.2)", "min": 18 },
+          { "segment": "Buffer overflow length checks and directory traversal ../ (EK 5.6.E.3–E.4)", "min": 16 },
+          { "segment": "Log-reading practice + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 7,
+        "focus": "Review and the Lesson 5.6 quiz (LO 5.6.A–E)",
+        "segments": [
+          { "segment": "Bell ringer + whole-topic recap", "min": 10 },
+          { "segment": "Worked review across all five objectives", "min": 18 },
+          { "segment": "Lesson 5.6 quiz", "min": 25 },
+          { "segment": "Quiz debrief + bridge to the exam", "min": 7 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Detection equals prevention",
+        "myth": "If a control detects an attack, it also stops the attack from succeeding.",
+        "reality": "5.6 is about detective controls. Per EK 5.6.C.2, only real-time methods (some DLP, honeypots, real-time automated log analysis) alert as an attack happens so a response can stop further harm; retrospective log analysis and hash checks identify attacks after they have already occurred."
+      },
+      {
+        "heading": "A matching hash means the data is safe",
+        "myth": "If a file's hash hasn't changed, no attacker has touched the data.",
+        "reality": "EK 5.6.C.3 names this false negative directly: cryptographic hash functions only detect whether data have been altered. An adversary could view and steal data without altering it, and the hash would not change."
+      },
+      {
+        "heading": "Honeypots catch every intruder",
+        "myth": "Deploying a honeypot guarantees you'll detect anyone who breaks in.",
+        "reality": "EK 5.6.C.3 states honeypots cannot detect adversaries that do not attempt to access them. A honeypot only raises an alert when someone takes the bait file (EK 5.6.A.2)."
+      },
+      {
+        "heading": "Detection is always expensive",
+        "myth": "Catching attackers requires costly enterprise tooling.",
+        "reality": "EK 5.6.B.1 says detective controls like honeypots and using hash values to check data integrity are inexpensive; it is third-party DLP services that provide strong detection at a higher cost."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a three-column reference card — Log analysis / Honeypot / Hash — and have them fill in what each control detects and what it misses, anchored to EK 5.6.A.1–A.3 and 5.6.C.3.",
+        "Provide a sentence frame for 5.6.E: 'This log line shows a ____ attack (EK 5.6.E.__) because it contains ____ (e.g., OR 1=1, <script>, ../, an unusually long field).'"
+      ],
+      "extension": [
+        "Have students argue, using EK 5.6.C.2, when retrospective hash-based integrity checking is still worthwhile even though it only detects attacks after they occur.",
+        "Ask students to map each of the three CED data-classification triggers in EK 5.6.B.3 to a real-world regulation, then explain why classification raises monitoring requirements."
+      ]
+    },
+    "discussion": [
+      "EK 5.6.B lists three criteria for choosing detective controls — cost, sensitivity/criticality, and classification. Which would dominate your decision for a small clinic's patient records, and why?",
+      "EK 5.6.C.3 describes false negatives for hashes and honeypots. Does knowing a control's blind spot make it useless, or does it tell you what to pair it with?",
+      "EK 5.6.A.1 says accounting logs can reveal access outside a user's normal patterns. What are the privacy trade-offs of monitoring time of day, location, and device type for every employee?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 5.6 — Detecting Attacks on Data — Quiz",
+    "instructions": "Choose the single best answer. 14 questions, 25 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "A security analyst reviews logs and notices an employee in accounting opened several engineering design files at 3 a.m. from an unfamiliar laptop — files that person has never touched before. Per EK 5.6.A.1, what process produced the records that made this detection possible?",
+        "options": [
+          "Hashing, which records a digest of every file the user opens",
+          "Sanitization, which records and rejects malformed user input",
+          "Accounting, which records and monitors when data are accessed and by whom",
+          "Classification, which records the sensitivity label assigned to each file"
+        ],
+        "answer": "C",
+        "ek": "EK 5.6.A.1",
+        "rationale": "EK 5.6.A.1 defines accounting as the process of recording and monitoring user activities — devices track and log when data are accessed and by whom, and analysis of those logs can reveal malicious activity such as accessing files outside a user's normal patterns of time of day, location, and device type. Hashing (A) checks alteration, sanitization is an input control from an earlier topic, and classification (D) labels data but does not record access events."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "An administrator places a file named 'executive_payroll_passwords.xlsx' on a server. The file contains only fabricated data, and the system is set to alert the security team the instant anyone opens it. Which detective control from EK 5.6.A.2 is this?",
+        "options": [
+          "A data loss prevention service monitoring transmission",
+          "A honeypot — a fake file whose access signals malicious activity",
+          "A cryptographic hash recorded to verify the file's integrity",
+          "A retrospective log analysis run against the access records"
+        ],
+        "answer": "B",
+        "ek": "EK 5.6.A.2",
+        "rationale": "EK 5.6.A.2 describes a honeypot as a file that appears to hold valuable data but whose contents are fake; since there is no legitimate reason to access it, any attempted access is an indicator of malicious activity and the system can alert defenders. A DLP service (A) monitors real data flows, a hash (C) checks alteration, and retrospective log analysis (D) reviews records after the fact rather than baiting an attacker."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "A defender wants a way to tell, at any later time, whether the contents of a critical configuration file have been changed unexpectedly. According to EK 5.6.A.3, which tool is designed to reveal that data have been altered?",
+        "options": [
+          "An access control vestibule placed at the server room door",
+          "A honeypot file seeded among the configuration directory",
+          "A data classification label applied to the configuration file",
+          "A cryptographic hash function that generates a digest for the data"
+        ],
+        "answer": "D",
+        "ek": "EK 5.6.A.3",
+        "rationale": "EK 5.6.A.3 states that cryptographic hash functions can generate a digest for data and can reveal if data have been altered; an unexpected change can be a sign of malicious activity. A honeypot (B) detects access to a fake file, classification (C) labels sensitivity, and an access control vestibule is a physical control unrelated to file integrity."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A startup has almost no security budget but wants some way to detect tampering with its data and to catch intruders poking at fake bait. Per EK 5.6.B.1, which option correctly reflects the CED's statement about the cost of these controls?",
+        "options": [
+          "Honeypots and hash-based integrity checks are inexpensive detective controls",
+          "Honeypots and hash checks are the most expensive detective controls available",
+          "Only a third-party DLP service can detect tampering, at a low cost",
+          "Hash checks are inexpensive, but honeypots require costly DLP licensing"
+        ],
+        "answer": "A",
+        "ek": "EK 5.6.B.1",
+        "rationale": "EK 5.6.B.1 names cost as a criterion for choosing detective controls and states that controls like honeypots and using hash values to check data integrity are inexpensive, while third-party DLP services provide strong detection at a higher cost. Options B, C, and D invert or misstate that cost relationship."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "A large bank is deciding how closely to monitor two systems: a public marketing site and the core database holding customer account balances. Per EK 5.6.B.2, which criterion should drive monitoring the database more closely?",
+        "options": [
+          "The age of the hardware the two systems run on",
+          "The number of employees who can log into each system",
+          "The sensitivity or criticality of the data, which makes it a likelier target",
+          "The programming language used to build each application"
+        ],
+        "answer": "C",
+        "ek": "EK 5.6.B.2",
+        "rationale": "EK 5.6.B.2 names sensitivity or criticality of data or applications as a criterion: more sensitive or critical data are more likely targets of an adversary and should be monitored more closely. Hardware age (A), user count (B), and programming language (D) are not the CED's stated criterion."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A hospital must decide what detection and monitoring it is required to put on its patient health records. Per EK 5.6.B.3, why does data classification factor into this decision?",
+        "options": [
+          "Classified data is automatically encrypted, removing the need to monitor it",
+          "Data classified as healthcare often carries legal or regulatory monitoring requirements",
+          "Classification reduces the sensitivity of data so it needs less monitoring",
+          "Only financial data, never healthcare data, has detection requirements"
+        ],
+        "answer": "B",
+        "ek": "EK 5.6.B.3",
+        "rationale": "EK 5.6.B.3 names classification of data as a criterion and states that data classified as private, educational, healthcare, or financial often have legal or regulatory detection and monitoring requirements. Option A and C misdescribe classification, and Option D wrongly excludes healthcare data, which the CED explicitly lists."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A SOC manager complains that manually reading every log line is far too slow to catch attacks in time. Per EK 5.6.C.1, what does the CED say is needed for log analysis to operate at an effective speed, and what offers near-instant detection?",
+        "options": [
+          "Log analysis must be done manually, and DLP offers near-instant detection",
+          "Log analysis needs no changes, and hashing offers near-instant detection",
+          "Log analysis must be slowed deliberately, and classification offers near-instant detection",
+          "Log analysis needs to be augmented with automation, and honeypots offer near-instant detection"
+        ],
+        "answer": "D",
+        "ek": "EK 5.6.C.1",
+        "rationale": "EK 5.6.C.1 states that to operate at an effective speed, log analysis needs to be augmented with some automation, and that honeypots offer near instantaneous detection capabilities. The other options contradict the CED on automation or attribute near-instant detection to the wrong control."
+      },
+      {
+        "id": "Q8",
+        "kind": "multi",
+        "stem": "Per EK 5.6.C.2, which detection methods provide alerts as an attack is happening, allowing a prompt response? I. Honeypots. II. Real-time automated log analysis. III. Using cryptographic hashes to verify data integrity.",
+        "options": [
+          "I and II only",
+          "I and III only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "A",
+        "ek": "EK 5.6.C.2",
+        "rationale": "EK 5.6.C.2 states that some DLP tools, honeypots, and real-time automated log analysis provide alerts as an attack is happening, enabling a prompt response, while retrospective log analysis and the use of cryptographic hashes to verify data integrity identify attacks after they have occurred. So I and II are real-time, but III (hashes) detects after the fact — the answer is I and II only."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "An adversary copies a folder of confidential designs to a USB drive and walks out, but does not modify any of the original files. The team relied solely on cryptographic hash checks for detection. Per EK 5.6.C.3, what happened?",
+        "options": [
+          "The hash check raised an alert as soon as the files were copied",
+          "The hash check corrected the breach by restoring the original files",
+          "A false negative occurred — hashes detect alteration, not viewing or theft",
+          "The hash values changed, revealing exactly which files were stolen"
+        ],
+        "answer": "C",
+        "ek": "EK 5.6.C.3",
+        "rationale": "EK 5.6.C.3 explains this false negative: cryptographic hash functions only detect whether data have been altered, so an adversary could view and steal data without altering it and the hash function would not detect it. The hash does not alert on copying (A), does not correct anything (B), and would not change if the originals were untouched (D)."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "A student hashes a download today, records the digest, then hashes the same unchanged file next week. Per EK 5.6.D.1, what property of cryptographic hash functions guarantees the two outputs match if the file is identical?",
+        "options": [
+          "Hash functions are random, so each run produces a different digest",
+          "Hash functions are repeatable — the same input always yields the same output",
+          "Hash functions are reversible, so the file can be rebuilt from the digest",
+          "Hash functions are encrypted, so only the owner can read the digest"
+        ],
+        "answer": "B",
+        "ek": "EK 5.6.D.1",
+        "rationale": "EK 5.6.D.1 states that cryptographic hash functions can help identify changes in a file because they are repeatable: the same input always produces the same output for a given hash function. They are not random (A), they are not described as reversible (C), and the property at issue is repeatability, not encryption (D)."
+      },
+      {
+        "id": "Q11",
+        "kind": "applied",
+        "stem": "On a macOS machine using the zsh terminal, an analyst needs to generate the SHA-256 hash of a file named testfile. Per EK 5.6.D.2, which command does this?",
+        "options": [
+          "Get-FileHash testfile -Algorithm SHA256",
+          "sha256sum testfile",
+          "Get-FileHash testfile -zsh 256",
+          "shasum -a 256 testfile"
+        ],
+        "answer": "D",
+        "ek": "EK 5.6.D.2",
+        "rationale": "EK 5.6.D.2 gives the zsh command on Apple computers as shasum -a 256 testfile. Get-FileHash (A) is the Windows PowerShell command, sha256sum (B) is the BASH command, and Option C is not a real command."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "stem": "A defender recorded the SHA-256 hash of a critical file last month. Today the file produces a different hash than the recorded value. Per EK 5.6.D.3, what can be concluded?",
+        "options": [
+          "The file was altered between when the first and second hashes were generated",
+          "The hash algorithm changed, but the file itself is unaltered",
+          "The file is corrupted only if a third hash also differs",
+          "Nothing can be concluded, since hash outputs vary on every run"
+        ],
+        "answer": "A",
+        "ek": "EK 5.6.D.3",
+        "rationale": "EK 5.6.D.3 states that a file can be hashed and its output recorded, then hashed again later and compared; if a file's hash changes, the file was altered between when the first and second hashes were generated. Because hashing is repeatable for a given function (EK 5.6.D.1), differing outputs for the same algorithm mean the file changed, ruling out B, C, and D."
+      },
+      {
+        "id": "Q13",
+        "kind": "scenario",
+        "stem": "While reviewing server logs, an analyst finds a request whose input field contains the text: ' OR 1=1 -- . Per EK 5.6.E.1, which application attack does this most clearly indicate?",
+        "options": [
+          "A buffer overflow attack, shown by the long request length",
+          "A cross-site scripting attack, shown by an injected tag",
+          "A SQL injection attack, shown by a quote, a Boolean condition, and a comment",
+          "A directory traversal attack, shown by repeated path sequences"
+        ],
+        "answer": "C",
+        "ek": "EK 5.6.E.1",
+        "rationale": "EK 5.6.E.1 says SQL injection can be detected by reviewing logs for SQL control words and symbols such as a single or double quote, Boolean conditions like OR 1=1, and a double dash (--) comment. The input shown contains all three. XSS (B) uses <script> tags, buffer overflow (A) shows abnormally long fields, and directory traversal (D) shows ../ sequences."
+      },
+      {
+        "id": "Q14",
+        "kind": "scenario",
+        "stem": "An analyst spots an HTTP GET request whose path is /files/../../../../etc/passwd. Per EK 5.6.E.4, which attack does the repeated ../ sequence indicate?",
+        "options": [
+          "An XSS attack, detected by the <script> tag in the request",
+          "A directory traversal attack, indicated by paths containing ../ sequences",
+          "A SQL injection attack, indicated by the WHERE and FROM keywords",
+          "A buffer overflow attack, indicated by an oversized cookie length"
+        ],
+        "answer": "B",
+        "ek": "EK 5.6.E.4",
+        "rationale": "EK 5.6.E.4 states that directory traversal attacks can be detected by reviewing logs, and that HTTP GET requests including paths with sequences of ../ are indicators of an adversary attempting a directory traversal — exactly the request shown. XSS (A) is flagged by <script> tags (EK 5.6.E.2), SQL injection (C) by SQL control words (EK 5.6.E.1), and buffer overflow (D) by abnormally long fields (EK 5.6.E.3)."
+      }
+    ]
+  }
+}

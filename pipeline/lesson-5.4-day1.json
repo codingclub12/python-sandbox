@@ -264,12 +264,12 @@
         "predictFirst": true,
         "stem": "A student uses OpenSSL and runs 'openssl genrsa -out rsa.pem 2048' followed by 'openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem'. According to the CED, what do these two commands accomplish?",
         "options": [
-          "They generate a 2048-bit RSA key pair saved to rsa.pem, then extract the public key from it into public.pem",
           "They decrypt a file named rsa.pem and write the recovered plaintext to public.pem",
           "They encrypt the file public.pem with a 2048-bit symmetric key stored in rsa.pem",
+          "They generate a 2048-bit RSA key pair saved to rsa.pem, then extract the public key from it into public.pem",
           "They delete a compromised key pair and replace it with a shorter 1024-bit key"
         ],
-        "answer": "A",
+        "answer": "C",
         "ek": "EK 5.4.C.3",
         "rationale": "EK 5.4.C.3 — 'openssl genrsa -out rsa.pem 2048' generates a 2048-bit RSA key pair saved to rsa.pem, and 'openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem' extracts the public key into public.pem. The other options describe decryption, symmetric encryption, or key deletion, which these commands do not perform."
       }
