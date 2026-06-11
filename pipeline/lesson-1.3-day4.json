@@ -1,43 +1,173 @@
 {
   "meta": {
-    "lessonId": "1.3-day4",
-    "title": "Best Practices for Public Networks"
+    "lessonId": "1.3",
+    "lessonTitle": "Best Practices for Public Networks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 4,
+    "los": "LO 1.3.A, LO 1.3.B, LO 1.3.C",
+    "anchor": "Public Wi-Fi Security",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
   },
   "slides": [
     {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.3 · Day 4 of 4",
+      "title": "Quiz Day",
+      "subtitle": "Five questions. Fifteen minutes. Everything from Days 1–3.",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
       "script": "Lesson 1.3, Day 4. This is the last day of this lesson. The quiz is fifteen minutes, five questions at AP pacing. Full debrief after — we're naming the misconception each wrong answer was built to exploit. Then a bridge into Lesson 1.4."
     },
     {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · Memory Challenge",
+      "prompt": "Without looking at your notes, name all 8: (a) the three CB-specified wireless attack types (EK 1.3.B); (b) the three CB-required protections (EK 1.3.C); (c) the two ways to classify an adversary by skill (EK 1.3.A).",
+      "subprompt": "Fill in all 8 from memory before the quiz starts. This is your last review.",
+      "directions": "Independent retrieval. 4 minutes.",
       "script": "3 attacks, 3 defenses, 2 adversary skill levels. 8 items. Fill them all in from memory before we start the quiz. This is deliberately hard — the retrieval attempt is the review. If you blank on one, that's the thing to check in your notes in the next 60 seconds."
     },
     {
+      "type": "ap_strategy",
+      "heading": "Use All Three Moves on Every Question",
+      "subheading": "These are on the board for the entire quiz. Use them.",
+      "strategies": [
+        {
+          "name": "Predict First",
+          "text": "Before reading any answer choices, write your predicted answer. This anchors your reasoning and prevents convincing distractors from pulling you off a correct instinct."
+        },
+        {
+          "name": "Highlight Keywords",
+          "text": "Circle NOT, EXCEPT, LEAST, MOST LIKELY, PRIMARILY, BEST before you read the choices. Missing a keyword flips the correct answer — Q2 and Q4 today both hinge on this."
+        },
+        {
+          "name": "Slash the Trash",
+          "text": "Eliminate the two most obviously wrong choices first. With two options left you have a 50% floor even when uncertain. Partial reasoning beats a random guess."
+        }
+      ],
       "script": "Three strategies on the board for the entire quiz. Predict first before you read choices. Highlight the keywords — two of today's five questions turn on a single word. Slash the trash down to two choices before you commit. Go when I hand out the papers."
     },
     {
+      "type": "work_timer",
+      "eyebrow": "Quiz · Lesson 1.3",
+      "heading": "5 Questions · Independent · AP Pacing",
+      "duration": "15:00",
+      "durationLabel": "MINUTES",
+      "tasks": [
+        "Work independently. No notes. No devices.",
+        "About 3 minutes per question — matches actual AP exam pacing.",
+        "Use all three strategies on every question."
+      ],
       "script": "Fifteen minutes. No notes, no devices. Three minutes per question is real AP exam pacing — use the time. When the timer ends, pencils down."
     },
     {
+      "type": "section_divider",
+      "number": "05",
+      "label": "Quiz Debrief",
+      "kicker": "For each question: the correct answer, why the distractors were built, and the most common miss.",
       "script": "Debrief time. For every question I'm going to name the correct answer, explain why each distractor was written the way it was, and call out the most common miss. If you got one wrong, listen for why — the wrong answer was designed to exploit a specific misunderstanding."
     },
     {
+      "type": "case_study",
+      "heading": "Q1 — Hotel Conference Blackout",
+      "scenarioLabel": "The Question",
+      "scenario": "A high-power transmitter in a parking garage floods the 2.4 GHz band for 30 minutes, preventing guests from connecting to hotel Wi-Fi. Which CB-specified wireless attack type PRIMARILY matches this? (Key word: PRIMARILY)  Answer: A — Jamming / DoS (EK 1.3.B.2).",
+      "analysisLabel": "Why the Distractors Fail",
+      "analysis": [
+        "B (Evil Twin): an evil twin requires setting up a fake access point — none is described here.",
+        "C (War Driving): war driving is passive beacon DETECTION, not active signal disruption. 'Parked in a garage' is a deliberate misdirect.",
+        "D (Not a CB attack): CB explicitly names jamming as a wireless attack type in EK 1.3.B."
+      ],
+      "trap": "Most common miss: C (war driving). The key signal is TRANSMIT (flood) vs. RECEIVE (detect). High-power transmitter flooding a band = jamming.",
       "script": "Q1. Correct answer is A, jamming. The question signals the attack plainly — high-power transmitter, frequency band flooding, preventing legitimate access. That is the textbook CB definition of jamming as a denial-of-service attack. The most common miss was C, war driving, because students see 'parking garage' and pattern-match to war driving. The deciding factor is always: is the attacker TRANSMITTING to disrupt, or RECEIVING to map? Transmitting to flood is jamming every time."
     },
     {
+      "type": "case_study",
+      "heading": "Q2 — Which VPN Statement Is INCORRECT?",
+      "scenarioLabel": "The Question",
+      "scenario": "Four statements about VPN protection on public Wi-Fi. Which is INCORRECT per EK 1.3.C.1? (Key word: INCORRECT)  Answer: C — the claim that a VPN makes the user completely anonymous and is end-to-end encrypted to each destination server.",
+      "analysisLabel": "Why the Distractors Fail",
+      "analysis": [
+        "Error 1: a VPN does NOT make the user anonymous — EK 1.3.C.1 states the VPN provider can view the traffic.",
+        "Error 2: a VPN is NOT end-to-end encrypted to each destination — it is encrypted only to the VPN operator, then decrypted and forwarded.",
+        "A, B, and D are accurate CB statements; D directly quotes EK 1.3.C.1's own caveat."
+      ],
+      "trap": "Most common miss: A, B, or D (the accurate statements). Students who missed 'INCORRECT' answered which statement they liked best.",
       "script": "Q2. Correct answer is C. C has two separate errors: the anonymity claim is false per EK 1.3.C.1, and the end-to-end encryption claim is false — a VPN encrypts to the VPN operator only, not to the final destination. If you got this wrong, almost certainly it's because you missed the word INCORRECT. A, B, and D are all accurate CB statements — circling INCORRECT before you read choices would have locked this answer in immediately."
     },
     {
+      "type": "case_study",
+      "heading": "Q3 — Which Adversary Classifications Are Correct?",
+      "scenarioLabel": "The Question",
+      "scenario": "An analyst classifies three adversaries: I. Used a GitHub evil-twin script — low-skilled. II. Discovered a zero-day + built a custom exploit — high-skilled. III. Modified an open-source jamming tool for a specific airport frequency — low-skilled. Which classifications are correct?  Answer: B — I and II only.",
+      "analysisLabel": "Why the Distractors Fail",
+      "analysis": [
+        "I is correct: a public GitHub script for a known vulnerability matches 'low-skilled adversaries rely on tools created by others' (EK 1.3.A.1).",
+        "II is correct: discovering a zero-day and writing a custom exploit matches high-skilled (EK 1.3.A.1).",
+        "III is INCORRECT as labeled: MODIFYING an existing tool to adapt is the CB definition of high-skilled, not low-skilled."
+      ],
+      "trap": "Most common miss: D (all three accurate). Students accepted the analyst's classifications without re-checking EK 1.3.A.1 — this is the spot-the-error format.",
       "script": "Q3. Correct answer is B, I and II only. III is the error — the analyst in the question got it wrong. Modifying an existing jamming tool to target a specific frequency band is exactly what CB calls high-skilled: 'modify existing ones to adapt.' That's not low-skilled because it required modifying the tool, not just deploying it as-is. If you picked D, you trusted the analyst. The question asked you to check the analyst's work."
     },
     {
+      "type": "case_study",
+      "heading": "Q4 — LEAST Effective Against an Evil Twin",
+      "scenarioLabel": "The Question",
+      "scenario": "A traveler is about to use airport free Wi-Fi for banking. Which action is LEAST effective against a potential evil twin? (Key word: LEAST)  Answer: D — changing the banking password before the session so intercepted credentials would be outdated.",
+      "analysisLabel": "Why the Distractors Fail",
+      "analysis": [
+        "A is effective: SSID verification (EK 1.3.C.3) stops the evil twin before connection.",
+        "B is effective: a VPN (EK 1.3.C.1) encrypts post-connection traffic.",
+        "C is effective: cellular data (EK 1.3.C.2) avoids the Wi-Fi attack surface entirely.",
+        "D fails: the attacker intercepts whatever credentials are used DURING the session — including the new password just set."
+      ],
+      "trap": "Most common miss: A, B, or C — all real CB defenses. Students who missed LEAST picked their favorite defense. D is security hygiene that doesn't protect the session it precedes.",
       "script": "Q4. Correct answer is D. A, B, and C are all genuine CB-required defenses — so if you picked one of those, you missed the word LEAST. D sounds reasonable as a security habit: change your password before using risky Wi-Fi. The problem is timing. The evil twin intercepts whatever you log in with during the session. If you just changed your password, the attacker gets the new one. Password rotation is a post-compromise response, not a pre-session defense. Circle LEAST before reading — this question rewards that habit."
     },
     {
+      "type": "case_study",
+      "heading": "Q5 — Corporate Parking Lot Reconnaissance",
+      "scenarioLabel": "The Question",
+      "scenario": "A car is parked near a corporate building each morning. A laptop with multiple external antennas records all nearby SSIDs, signal strengths, encryption types, and locations. No connection attempt is made. Which CB attack type is this?  Answer: C — War Driving (EK 1.3.B.3).",
+      "analysisLabel": "Why the Distractors Fail",
+      "analysis": [
+        "A (Evil Twin): no fake AP was set up — the person is MAPPING networks, not impersonating them.",
+        "B (Jamming/DoS): the high-gain antennas are for RECEPTION, not transmission; no signal flooding is described.",
+        "D (Not a CB attack): EK 1.3.B.3 explicitly classifies war driving as a wireless attack type, regardless of local legality.",
+        "C matches EK 1.3.B.3 verbatim: detect beacons, gather network information, find where the signal extends outside the building."
+      ],
+      "trap": "Most common miss: D (not a CB attack). Students conflate legality with CB classification. EK 1.3.B.3 is explicit.",
       "script": "Q5. Correct answer is C, war driving. Every detail in the scenario maps to EK 1.3.B.3 verbatim: detecting beacons, gathering network information, finding where the signal extends outside the building. The most common miss was D — students who know war driving is often legal assumed it couldn't be a CB-classified attack. Legality and CB classification are separate questions. EK 1.3.B.3 names war driving as a wireless attack type. That's the answer."
     },
     {
+      "type": "concept",
+      "heading": "Bridge to Lesson 1.4: AI-Based Attacks",
+      "tag": "WHAT'S NEXT",
+      "bullets": [
+        "Lesson 1.3 attacks (evil twin, jamming, war driving) require physical setup — a device, a location, manual operation.",
+        "Lesson 1.4 attacks use AI to scale, automate, and personalize what a human attacker could never do alone.",
+        "CB Scenario 1D: AI-generated phishing content and deepfake impersonation — the same social-engineering principles from 1.1, now at machine speed.",
+        "The adversary-skill framework (EK 1.3.A.1) still applies: AI tools can make low-skilled adversaries significantly more dangerous."
+      ],
       "script": "Before you leave: a 90-second bridge. Everything in 1.3 required an attacker to show up somewhere with equipment. That's a real constraint. Lesson 1.4 is about what happens when AI removes that constraint. The attacks scale. The personalization improves. A low-skilled adversary with an AI tool can generate spear-phishing content that previously required a skilled human to research and write. CB Scenario 1D is a deepfake impersonation scenario — same social engineering principles from 1.1, now running at machine speed and volume. Take a three-minute look at the 1.4 preview before you leave."
     },
     {
+      "type": "day_close",
+      "eyebrow": "End of Lesson 1.3 · Day 4 of 4",
+      "heading": "Public Networks: Complete",
+      "todayPoints": [
+        "Three CB wireless attacks by name, mechanism, and EK: evil twin (1.3.B.1), jamming/DoS (1.3.B.2), war driving (1.3.B.3)",
+        "Three CB defenses and their trade-offs: SSID verification, VPN (trust shifts to provider), protocol-encryption awareness",
+        "Why HTTPS doesn't stop an evil-twin credential grab — and why a VPN doesn't either once you've typed the password",
+        "How to classify any adversary as low- or high-skilled per EK 1.3.A.1"
+      ],
+      "nextPoints": [
+        "Lesson 1.4: AI-based cybersecurity attacks (LO 1.4.A, 1.4.B)",
+        "CB Scenario 1D: AI-generated phishing and deepfake impersonation",
+        "How machine learning scales attacks that previously required skilled human effort",
+        "The EK 1.3.A.1 adversary framework still applies — AI changes the skill floor, not the classification system"
+      ],
       "script": "End of Lesson 1.3. You now have the three attacks, the three defenses, and the trade-offs between them. The HTTPS-doesn't-stop-credential-harvesting and VPN-shifts-trust points are both explicitly in the CED and both likely to appear on the AP exam. Lesson 1.4 picks up where this leaves off: same adversary classification framework, same social engineering principles, now with AI doing the heavy lifting."
     }
   ]
