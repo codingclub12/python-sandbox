@@ -14,6 +14,7 @@ const H = require('./helpers');
 const { p, h1, h2, h3, bullet, numItem, link, callout, dataTable, spacer, rule, pageBreak,
         titleBlock, buildDoc, save, run, C, Paragraph, TextRun } = H;
 const { auditQuiz, HARDER_KINDS, PREDICT_OK, letterToIndex, LETTERS } = require('./quiz_audit');
+const { BorderStyle } = require('docx');
 
 // Bold logical-negation keywords in a stem. Authors write them in CAPS to flag
 // them; the emitter renders the CAPS form in bold. (Does not touch lowercase
@@ -71,6 +72,22 @@ function blank(answer) {
   return new TextRun({ text: '_'.repeat(Math.min(90, Math.max(14, answer.length + 2))), color: '999999' });
 }
 
+// A standalone answer line: in KEY mode it prints the answer (purple bold); in
+// student mode it draws ONE clean full-width writing rule that fills its
+// container (cell or content column) exactly once — no underscore wrapping,
+// no overflow past the margin. Use wherever a whole line is the answer.
+function answerPara(answer, opt = {}) {
+  if (isKey) {
+    return new Paragraph({ spacing: { after: opt.after != null ? opt.after : 0 },
+      children: [ new TextRun({ text: answer, bold: true, color: C.PURPLE }) ] });
+  }
+  return new Paragraph({
+    spacing: { before: 24, after: opt.after != null ? opt.after : 60 },
+    border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: '999999', space: 4 } },
+    children: [ new TextRun({ text: '', size: 18 }) ],
+  });
+}
+
 // ---------- slide -> notes-block transforms ----------
 function emitNotes() {
   const k = [];
@@ -120,7 +137,7 @@ function emitNotes() {
           return [
             [ new Paragraph({ spacing: { after: 0 }, children: [ new TextRun({ text: t.term, bold: true, color: C.NAVY, size: 20 }) ] }) ],
             [ new Paragraph({ spacing: { after: 0 }, children: [ new TextRun({ text: ekText, color: C.PURPLE, size: 18 }) ] }) ],
-            [ new Paragraph({ spacing: { after: 0 }, children: [ blank(defText) ] }) ],
+            [ answerPara(defText, { after: 0 }) ],
           ];
         });
         k.push(dataTable(['Term', 'EK', 'Definition'], rows, [2600, 1700, 5580]));
@@ -142,7 +159,7 @@ function emitNotes() {
         if (s.subheading) k.push(p([run(s.subheading, { italics: true, color: C.GRAY })]));
         s.items.forEach(it => {
           k.push(p([run((it.ek ? it.ek + ' \u2014 ' : '') + it.title, { bold: true, color: C.NAVY })]));
-          k.push(p([blank(it.summary)]));
+          k.push(answerPara(it.summary));
         });
         break;
       }
@@ -310,10 +327,19 @@ function emitGuide() {
 
   if (g.pacing && g.pacing.length) {
     k.push(h2('Pacing'));
+    // If any segment carries a slide range, show a Slides column that maps the
+    // deck to each segment (e.g. "1-4", "Handout"). Falls back to Segment|Time.
+    const hasSlides = g.pacing.some(d => (d.segments || []).some(s => s.slides));
     g.pacing.forEach(day => {
       k.push(h3('Day ' + day.day + (day.focus ? ' \u2014 ' + day.focus : '')));
       if (day.segments && day.segments.length) {
-        k.push(dataTable(['Segment', 'Time'], day.segments.map(s => [s.segment, String(s.min) + ' min']), [7380, 2500]));
+        if (hasSlides) {
+          k.push(dataTable(['Segment', 'Slides', 'Time'],
+            day.segments.map(s => [s.segment, s.slides || '\u2014', String(s.min) + ' min']),
+            [6180, 1700, 2000]));   // sums to CONTENT_W (9880)
+        } else {
+          k.push(dataTable(['Segment', 'Time'], day.segments.map(s => [s.segment, String(s.min) + ' min']), [7380, 2500]));
+        }
       }
     });
   }
