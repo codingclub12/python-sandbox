@@ -8,8 +8,456 @@
     "los": "LO 5.2.A, LO 5.2.B, LO 5.2.C, LO 5.2.D",
     "anchor": "Protecting Sensitive Data",
     "author": "AP CS Exam Prep",
-    "totalDays": 7
+    "totalDays": 1
   },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 5 · Lesson 5.2 · Day 1 of 1",
+      "title": "Right Data, Right Lock",
+      "subtitle": "Protecting Data: deciding what protection a piece of data deserves based on its state and classification, the managerial policies that set the rules, the access control model that enforces them, and the Linux permissions that put it all into practice",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 5, Securing Applications and Data, and Lesson 5.2, Protecting Data: Managerial Controls. This single comprehensive deck covers the whole topic — all four learning objectives. The big idea is matching the right lock to the right data. First, 5.2.A: the state of data and its classification decide how much security it deserves. Then 5.2.B: the managerial policies that write down the rules. Then 5.2.C: the access control models that enforce who can touch what. And finally 5.2.D: configuring those controls hands-on with Linux permissions. The end-of-lesson quiz and the teacher guide live on this file and span all of 5.2.A through D."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of This Lesson You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how a piece of data's state (at rest, in transit, in use) and classification (PII, PHI, PCI) impact the type and degree of security applied to it (LO 5.2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify the managerial controls for application and data security — the cryptography policy and the web application security policy (LO 5.2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Determine the appropriate access control model — RBAC, RuBAC, DAC, MAC/Bell-LaPadula — and apply the principle of least privilege (LO 5.2.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Configure access control settings on a Linux system using rwx permissions, ls -l, getfacl, and chmod in both the numeric and symbolic methods (LO 5.2.D)"
+        }
+      ],
+      "script": "Four things to walk out with, one per learning objective. First, 5.2.A: read a piece of data, name its state and its classification, and explain how those drive the type and degree of protection. Second, 5.2.B: identify the two managerial controls the College Board names — the cryptography policy and the web application security policy. Third, 5.2.C: pick the right access control model for a scenario, from RBAC to Bell-LaPadula, and apply least privilege. Fourth, 5.2.D: actually configure permissions on a Linux file with chmod, in both the numeric and symbolic methods. Read data, set policy, pick a model, configure the file — that is the arc of the whole lesson."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A hospital holds your medical records. Right now, a copy of those records is sitting on a backup drive in a locked server room. Another copy is being transmitted across the internet to a specialist's office. And a nurse has a third copy open on her screen, reading it to update your chart.",
+      "subprompt": "Write 3–5 sentences: the same records exist in three different situations at once. Should all three be protected the exact same way? For each one, what would you do to keep it safe — and why can't you do the same thing to all three?",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own, no notes. Same medical records, three situations at the same moment: a copy at rest on a backup drive, a copy moving across the internet, and a copy open on a nurse's screen being read. In three to five sentences, decide whether all three should be protected identically, and say how you'd protect each one. Here's the catch you'll discover today: you cannot encrypt the copy the nurse is reading, because she has to actually see it. That tension — data has to be unencrypted to be used — is exactly what learning objective 5.2.A is about. Hold your answers."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have four sections that match the four learning objectives. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "State and Classification Drive Protection (5.2.A)",
+          "description": "Data at rest, in transit, and in use; sensitivity-based categorization; and the regulated types PII, PHI, and PCI with the laws that govern each (EK 5.2.A.1–A.5)."
+        },
+        {
+          "title": "Managerial Controls (5.2.B)",
+          "description": "The cryptography policy and the web application security policy — what each one writes down and why (EK 5.2.B.1–B.2)."
+        },
+        {
+          "title": "Access Control Models (5.2.C)",
+          "description": "Subjects, objects, operations, then RBAC, RuBAC, DAC, MAC, Bell-LaPadula WURD, and the principle of least privilege (EK 5.2.C.1–C.7)."
+        },
+        {
+          "title": "Configuring Access Control on Linux (5.2.D)",
+          "description": "rwx permissions, the three entities, ls -l and getfacl, and chmod in numeric and symbolic form (EK 5.2.D.1–D.7)."
+        },
+        {
+          "title": "Enrichment: One Dataset, Every Layer",
+          "description": "Trace a single patient record from classification, through policy, to a model, down to the exact chmod command that enforces it (EK 5.2.A.4, C.7, D.6).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 5.2 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Five sections, the first four green and CB-required, the last one a blue enrichment. Section one is 5.2.A: how a data's state and classification set its protection. Section two is 5.2.B: the two managerial policies. Section three is 5.2.C: the access control models, from RBAC to Bell-LaPadula. Section four is 5.2.D: configuring permissions on Linux with chmod. The enrichment section ties it together — one patient record carried from its classification all the way down to the chmod command that locks it. Keep your pencil moving; I collect Guided Notes at the end."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "State and Classification Drive Protection",
+      "kicker": "Protecting Data · Learning Objective 5.2.A",
+      "script": "Section one. Learning objective 5.2.A. The whole idea here: you don't protect every piece of data the same way. Two things decide the protection — what state the data is in, and how sensitive its classification is. Let's start with the three states."
+    },
+    {
+      "type": "two_column",
+      "heading": "Why Protection Differs: Law and Data State",
+      "subheading": "EK 5.2.A.1 and A.2 — legal requirements and the physical state of the data both shape the controls applied.",
+      "left": {
+        "title": "Legal Requirements Drive Controls (EK 5.2.A.1)",
+        "definition": "What you collect dictates what you must do",
+        "ek": "EK 5.2.A.1",
+        "examples": [
+          "Organizations implement specific security controls to comply with legal requirements",
+          "Those requirements are based on the types of data they collect, store, process, and transmit",
+          "Handle credit cards and you inherit one set of rules; handle health data and you inherit another",
+          "The data you hold — not your preference — sets the floor for protection"
+        ]
+      },
+      "right": {
+        "title": "The Three States of Data (EK 5.2.A.2)",
+        "definition": "At rest, in transit, in use",
+        "ek": "EK 5.2.A.2",
+        "examples": [
+          "Data at rest are stored on a drive — protect the physical drive and encrypt it against theft",
+          "Data in transit are being sent device to device — protect the cables and encrypt against interception",
+          "Data in use are being processed by software or a person — limited by access controls",
+          "Critical rule: data must be unencrypted to be used, so encryption can't protect data in use"
+        ]
+      },
+      "footer": "AP TIP: The state of data decides the control. Encryption covers at rest and in transit; access controls cover data in use, because data must be UNENCRYPTED to be processed (EK 5.2.A.2). Name the state first, then the matching control.",
+      "script": "Two columns. On the left, EK 5.2.A.1: organizations implement controls to comply with legal requirements based on the data they collect, store, process, and transmit. The data you hold sets the floor — you don't get to opt out. On the right, EK 5.2.A.2, the three states. Data at rest sits on a drive: protect the physical drive from theft and encrypt it so a thief can't read it. Data in transit moves between devices: protect the cables and encrypt it so an interceptor can't read it. Data in use is being processed by software or a person: it's limited by access controls — and here's the key fact the exam loves — data must be unencrypted to be used, so you cannot encrypt data in use. Write all three states and the control that matches each."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary — Data States and Classification (LO 5.2.A)",
+      "terms": [
+        {
+          "term": "Data at rest",
+          "definition": "Data stored on a drive; protected by securing the physical drive against destruction or theft and by encryption so a thief cannot immediately read it (EK 5.2.A.2)."
+        },
+        {
+          "term": "Data in transit",
+          "definition": "Data being sent from one device to another; protected by securing any physical media such as cables and by encryption so an interceptor cannot immediately read it (EK 5.2.A.2)."
+        },
+        {
+          "term": "Data in use",
+          "definition": "Data being processed by software or a person; it must be unencrypted to be used, so access controls limit who or what can view or edit it (EK 5.2.A.2)."
+        },
+        {
+          "term": "Personally identifiable information (PII)",
+          "definition": "Any data that allows someone to be identified, such as name, address, or social security number; protected most notably by The Privacy Act of 1974 (EK 5.2.A.4)."
+        },
+        {
+          "term": "Protected health information (PHI)",
+          "definition": "Any data related to an individual's health, treatment, or payment for healthcare; protected under the Health Insurance Portability and Accountability Act of 1996, HIPAA (EK 5.2.A.4)."
+        },
+        {
+          "term": "Payment card information (PCI)",
+          "definition": "Data collected to process card payments, such as account number, expiration date, and CVV; regulated by the Payment Card Industry Data Security Standard, PCI-DSS (EK 5.2.A.4)."
+        }
+      ],
+      "script": "Six terms for 5.2.A. The three states first: data at rest is on a drive, protected by physical security and encryption; data in transit is moving, protected by securing the media and encryption; data in use is being processed and must be unencrypted, so access controls limit it. Then the three regulated classifications, each with its law: PII is anything that identifies you, under The Privacy Act of 1974; PHI is health data, under HIPAA; PCI is card-payment data, under PCI-DSS. The exam gives you a scenario and asks for the data type and its law — memorize these three pairings cold. Get all six into your notes."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Sensitivity Sets the Degree of Protection",
+      "context": "EK 5.2.A.3–A.5 — organizations categorize data by sensitivity and give more sensitive data a higher degree of security; regulated data is labeled and governed by compliance policies. Match the data to its classification, law, and protection.",
+      "columns": ["Data example", "Classification (EK 5.2.A.4)", "Law / standard", "Higher degree of security (EK 5.2.A.3, A.5)"],
+      "rows": [
+        ["Patient test results and treatment notes", "PHI — health information", "HIPAA (1996)", "Labeled as regulated; access-restricted and encrypted; handling policy required"],
+        ["Card number, expiration date, CVV", "PCI — payment card data", "PCI-DSS", "Strict storage and transmission rules; labeled and policy-governed"],
+        ["Name, address, social security number", "PII — identifying data", "The Privacy Act of 1974", "Protected handling; children under 13 add COPPA (1998)"],
+        ["Public marketing brochure", "Not sensitive / unregulated", "None", "Lower degree of security — sensitivity drives the priority"]
+      ],
+      "script": "This table is the heart of 5.2.A. EK 5.2.A.3 says organizations categorize data by sensitivity and prioritize a higher degree of security for more sensitive information — so not everything gets the same lock. Patient test results are PHI under HIPAA; card numbers and CVV are PCI under PCI-DSS; names and social security numbers are PII under The Privacy Act of 1974, with COPPA adding rules for children under 13. EK 5.2.A.5 adds that regulated data gets labeled and governed by compliance policies. And notice the bottom row: a public brochure isn't sensitive, so it gets a lower degree of protection. The sensitivity sets the priority. Copy this table into your notes."
+    },
+    {
+      "type": "misconception",
+      "heading": "Data in Use Can't Stay Encrypted",
+      "misconception": "Strongly protected data is always encrypted — including while it is being processed.",
+      "correction": "EK 5.2.A.2 states data in use are being processed by software or a person, and data must be unencrypted to be used. Encryption protects data at rest and in transit; data in use is protected by access controls that limit who can view or edit it, not by staying encrypted.",
+      "whyItHappens": "Students learn that encryption is the strongest protection, so they assume the most sensitive data must be encrypted at every moment — but a CPU or a person literally cannot read ciphertext.",
+      "example": "A nurse opening a patient chart must see plaintext to read it; the protection is the access control that decided she — and not a stranger — is allowed to open it.",
+      "script": "This is the single most common 5.2.A mistake. Students think the strongest protection means encrypted always, even during processing. But EK 5.2.A.2 is explicit: data must be unencrypted to be used. A CPU can't compute on ciphertext; a nurse can't read an encrypted chart. So data in use is protected not by encryption but by access controls — the rules that decide who is allowed to open it in the first place. Encryption guards data at rest and in transit; access controls guard data in use. Write the myth and the reality."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Managerial Controls: Policies That Set the Rules",
+      "kicker": "Protecting Data · Learning Objective 5.2.B",
+      "script": "Section two. Learning objective 5.2.B. Now we move from deciding what protection data deserves to writing it down. Managerial controls are policies — documents that set the rules. The College Board names two: a cryptography policy and a web application security policy."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Two Named Managerial Controls",
+      "subheading": "EK 5.2.B.1 and B.2 — both are written policies; one governs encryption, the other governs application testing.",
+      "left": {
+        "title": "Cryptography Policy (EK 5.2.B.1)",
+        "definition": "The rules for encryption and keys",
+        "ek": "EK 5.2.B.1",
+        "examples": [
+          "Describes the acceptable encryption protocols and key parameters for an organization",
+          "May list encryption algorithms approved for specific uses",
+          "May set minimum or maximum key lengths",
+          "May specify key-generation requirements and key-storage requirements"
+        ]
+      },
+      "right": {
+        "title": "Web Application Security Policy (EK 5.2.B.2)",
+        "definition": "The rules for testing and fixing apps",
+        "ek": "EK 5.2.B.2",
+        "examples": [
+          "Outlines requirements for testing and mitigating web application vulnerabilities",
+          "May set parameters for when an application is subject to a security assessment",
+          "May set timelines for remediating vulnerabilities based on level of risk",
+          "May specify how an assessment is carried out — e.g., specific tools or frameworks"
+        ]
+      },
+      "footer": "AP TIP: Both are managerial controls (policies), not technical controls. If the scenario describes ALGORITHMS, KEY LENGTHS, or KEY STORAGE, it's the cryptography policy (B.1). If it describes ASSESSMENTS, REMEDIATION TIMELINES, or TESTING TOOLS, it's the web application security policy (B.2).",
+      "script": "Two managerial controls, side by side. On the left, EK 5.2.B.1, the cryptography policy: it describes the acceptable encryption protocols and key parameters — approved algorithms for specific uses, minimum or maximum key lengths, and requirements for how keys are generated and stored. On the right, EK 5.2.B.2, the web application security policy: it outlines requirements for testing and mitigating web application vulnerabilities — when an app gets assessed, how fast vulnerabilities must be fixed based on their risk, and which tools or frameworks the assessment follows. The exam tell: keys and algorithms means cryptography policy; assessments and remediation timelines means web application security policy. Write both EKs and the trigger words for each."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary — Managerial Controls (LO 5.2.B)",
+      "terms": [
+        {
+          "term": "Managerial control",
+          "definition": "A rule, policy, or procedure that governs security — as opposed to a technical or physical control; the cryptography and web application security policies are examples (EK 5.2.B.1)."
+        },
+        {
+          "term": "Cryptography policy",
+          "definition": "A policy describing an organization's acceptable encryption protocols and key parameters, including approved algorithms, key lengths, and key generation and storage requirements (EK 5.2.B.1)."
+        },
+        {
+          "term": "Web application security policy",
+          "definition": "A policy outlining requirements for testing and mitigating web application vulnerabilities, including assessment triggers, risk-based remediation timelines, and assessment tools or frameworks (EK 5.2.B.2)."
+        }
+      ],
+      "script": "Three terms for 5.2.B. A managerial control is a rule, policy, or procedure — a document, not a firewall or a lock. The cryptography policy is the document that governs encryption: which algorithms, what key lengths, how keys are made and stored. The web application security policy is the document that governs app testing: when to assess, how fast to fix, with which tools. Both are managerial because they set rules rather than physically enforcing them. Three terms into your notes."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Questions map to LO 5.2.A and 5.2.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A clinic stores patients' test results on an encrypted backup drive, emails a copy to a specialist over the internet, and has a doctor reading another copy on screen. For each of the three copies, name the data state and the protection that fits it — and explain why the on-screen copy cannot simply be left encrypted. Cite EK 5.2.A.2.",
+        "A security manager drafts a document listing approved encryption algorithms, minimum key lengths, and how keys must be stored. Name the managerial control this is, name the other managerial control the CED defines, and give one parameter that would tell them apart. Cite EK 5.2.B.1 and B.2."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: three copies of the same test results — name the state of each and the protection that fits, and explain why the on-screen copy can't stay encrypted, citing EK 5.2.A.2. You should get at rest with physical security plus encryption, in transit with media security plus encryption, and in use with access controls because it must be unencrypted. Question two: that document of algorithms, key lengths, and key storage is a cryptography policy — name it, name the other managerial control, the web application security policy, and give one parameter that separates them. Cite both EKs. Go."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Access Control Models: Enforcing Who Can Touch What",
+      "kicker": "Protecting Data · Learning Objective 5.2.C",
+      "script": "Section three. Learning objective 5.2.C. Policies say what should happen; access control models make it happen. First the vocabulary of access control, then the five models, then the principle that ties them all together — least privilege."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Language of Access Control",
+      "subheading": "EK 5.2.C.1 and C.7 — every access control model decides which subjects get which operations on which objects, guided by least privilege.",
+      "left": {
+        "title": "Subjects, Objects, Operations (EK 5.2.C.1)",
+        "definition": "Who does what to what",
+        "ek": "EK 5.2.C.1",
+        "examples": [
+          "Subjects are the users or applications requesting access",
+          "Objects are the files or applications being accessed",
+          "Operations are what's done: access, modify, add, or remove",
+          "An access control model describes which subjects get which access to which objects"
+        ]
+      },
+      "right": {
+        "title": "Principle of Least Privilege (EK 5.2.C.7)",
+        "definition": "Exactly enough access — and no more",
+        "ek": "EK 5.2.C.7",
+        "examples": [
+          "Entities get exactly as much access as they need to perform their function",
+          "And no more than that",
+          "It applies on top of whichever model you choose",
+          "Less standing access means less damage if an account is compromised"
+        ]
+      },
+      "footer": "AP TIP: Learn the three words — SUBJECT (who), OBJECT (what's accessed), OPERATION (the action). Every model below answers the same question differently: which subjects get which operations on which objects? Least privilege (C.7) is the goal every model should serve.",
+      "script": "Before the models, the vocabulary. EK 5.2.C.1: access control enforces which subjects can perform which operations on which objects. Subjects are the users or applications; objects are the files or applications being accessed; operations are access, modify, add, or remove. An access control model is just a strategy for deciding which subjects get which access to which objects. On the right, EK 5.2.C.7, the principle of least privilege: give every entity exactly as much access as it needs to do its job and no more. It rides on top of whichever model you pick, and it limits the blast radius if an account is compromised. Write the three words and the principle."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Models: RBAC, RuBAC, DAC",
+      "subheading": "EK 5.2.C.2, C.3, and C.4 — three ways to decide access: by role, by rules, or by the owner's discretion.",
+      "items": [
+        {
+          "ek": "EK 5.2.C.2",
+          "title": "Role-Based (RBAC)",
+          "summary": "Role-based access control assigns every subject to a role and defines which roles have which types of access to which objects — e.g., only the 'accountant' role can open the payroll software. Access keys on who you are.",
+          "ekRef": "EK 5.2.C.2"
+        },
+        {
+          "ek": "EK 5.2.C.3",
+          "title": "Rule-Based (RuBAC)",
+          "summary": "Rule-based access control checks a set of rules to decide what access a subject gets for a specific object, then allows or denies — e.g., blocking access outside working hours. It is typically layered on top of another model.",
+          "ekRef": "EK 5.2.C.3"
+        },
+        {
+          "ek": "EK 5.2.C.4",
+          "title": "Discretionary (DAC)",
+          "summary": "Discretionary access control lets individual subjects set the access other subjects have on objects they own — e.g., Bob shares his file with Alice. Administrators or super users can override an owner's choices.",
+          "ekRef": "EK 5.2.C.4"
+        }
+      ],
+      "script": "First grid of three models. EK 5.2.C.2, role-based or RBAC: every subject gets a role, and roles define access — only the accountant role opens payroll. RBAC keys on who you are. EK 5.2.C.3, rule-based or RuBAC: a set of rules decides access for a specific object, allowing or denying based on conditions, like blocking access outside working hours; and crucially, RuBAC is layered on top of another model. Don't confuse RuBAC with RBAC — role versus rule, who you are versus what the conditions are. EK 5.2.C.4, discretionary or DAC: the owner of an object sets who else can access it — Bob shares his file with Alice — but a super user can override. Write all three with EK numbers."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "The Strict Model: MAC and Bell-LaPadula",
+      "subheading": "EK 5.2.C.5 and C.6 — mandatory access control and the government/military model built on it.",
+      "items": [
+        {
+          "ek": "EK 5.2.C.5",
+          "title": "Mandatory (MAC)",
+          "summary": "Mandatory access control follows strict rules for which access each subject level has to objects above, at, or below its level. Subject and object levels are assigned by an external administrator, not by the owner.",
+          "ekRef": "EK 5.2.C.5"
+        },
+        {
+          "ek": "EK 5.2.C.6",
+          "title": "Bell-LaPadula: Simple Security Property",
+          "summary": "A MAC model used by governments and militaries. The Simple Security Property states subjects may not READ objects above their level — 'no read up' — so a Secret user cannot read a Top Secret file.",
+          "ekRef": "EK 5.2.C.6"
+        },
+        {
+          "ek": "EK 5.2.C.6",
+          "title": "Bell-LaPadula: Star Property → WURD",
+          "summary": "The * (Star) Security Property states subjects may not WRITE to objects below their level — 'no write down.' Combined: write up, read down (WURD), which stops sensitive data leaking to lower levels.",
+          "ekRef": "EK 5.2.C.6"
+        }
+      ],
+      "script": "Second grid — the strict model. EK 5.2.C.5, mandatory access control or MAC: strict rules based on levels, where an external administrator assigns the level of every subject and object — the owner has no say. EK 5.2.C.6 builds Bell-LaPadula on top of MAC, used by governments and militaries, with two properties. The Simple Security Property: no read up — a Secret subject can't read Top Secret. The Star Property: no write down — that same subject can't write into an Unclassified file. Put them together and you get write up, read down, WURD, which keeps sensitive data from leaking to a lower level. Memorize WURD and what each property forbids. Three items into your notes."
+    },
+    {
+      "type": "misconception",
+      "heading": "Bell-LaPadula: 'Write Up, Read Down'",
+      "misconception": "A higher-clearance subject can freely read and write data at any level below them.",
+      "correction": "EK 5.2.C.6 states the Simple Security Property forbids reading objects ABOVE your level and the Star Property forbids writing to objects BELOW your level — summarized as write up, read down (WURD). A high-level subject may read down, but may not write down, which prevents leaking sensitive information to a lower level.",
+      "whyItHappens": "Students reason that more clearance means more power, so they assume a high-level subject can do anything to lower data — but the model's whole point is to stop information flowing downward.",
+      "example": "A Top Secret analyst can read an Unclassified memo (read down) but cannot paste Top Secret content into it (no write down), so secrets can't leak to a lower level.",
+      "script": "The classic 5.2.C trap. Students think high clearance means do anything below you. But Bell-LaPadula exists to stop information flowing downward. The Simple Security Property forbids reading above your level; the Star Property forbids writing below your level. Write up, read down. So a Top Secret analyst can read an Unclassified memo, but cannot write Top Secret content into it — because that would leak secrets to a lower level. Read down is fine; write down is the danger. Write the myth and the reality, and underline WURD."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Questions map to LO 5.2.C. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A firm grants access to payroll only to whoever holds the 'accountant' role, then adds a layer that blocks all database access outside working hours even for authorized users, and gives each account only the access it needs. Name all three CED ideas at work and cite each EK.",
+        "Under Bell-LaPadula, a subject cleared at 'Secret' wants to read a 'Top Secret' file and write into an 'Unclassified' file. State what each property allows or forbids, give the WURD summary, and explain in one sentence why the rule exists. Cite EK 5.2.C.6."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: the accountant-role access is RBAC, EK 5.2.C.2; the working-hours block layered on top is RuBAC, EK 5.2.C.3; and giving each account only what it needs is least privilege, EK 5.2.C.7. Name all three and cite each. Question two: the Secret subject can't read the Top Secret file — no read up, Simple Security Property — and can't write to the Unclassified file — no write down, Star Property. Summarize as WURD, and explain that the rule stops sensitive data leaking downward. Cite EK 5.2.C.6. Go."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Configuring Access Control on Linux",
+      "kicker": "Protecting Data · Learning Objective 5.2.D",
+      "script": "Section four. Learning objective 5.2.D. This is the hands-on objective. Everything we've decided — what data deserves, what policy says, which model — comes down to actually setting permissions on a file. On Linux that means rwx, three entities, and the chmod command."
+    },
+    {
+      "type": "concept",
+      "heading": "The Building Blocks: rwx and Three Entities",
+      "bullets": [
+        "Authorization is when an entity is granted a certain type of access to a resource (EK 5.2.D.1).",
+        "Three access types, ALWAYS in this order: read (r) = view the file, write (w) = change the file, execute (x) = run a binary/program (EK 5.2.D.2).",
+        "A dash (-) marks an absent permission: r-x means read and execute but NOT write (EK 5.2.D.2).",
+        "Three entities, ALWAYS in this order: (1) the file owner, (2) the file group, (3) all other users — shown with no spaces, e.g. rwxrwxrwx (EK 5.2.D.3).",
+        "View permissions with ls -l; a + at the end means extra permissions exist, viewable with getfacl (EK 5.2.D.4).",
+        "Modify permissions with chmod, using either the numeric method or the symbolic method (EK 5.2.D.5)."
+      ],
+      "script": "The building blocks of Linux permissions. EK 5.2.D.1: authorization is granting an entity a type of access to a resource. EK 5.2.D.2: three access types in a fixed order — read, write, execute, abbreviated rwx, where read views the file, write changes it, and execute runs a program; a dash means that permission is absent, so r-x is read and execute but not write. EK 5.2.D.3: three entities in a fixed order — owner, group, others — shown with no spaces, so rwxrwxrwx is nine characters in three sets of three. EK 5.2.D.4: ls -l shows the permissions, and a plus sign at the end means extra permissions you view with getfacl. EK 5.2.D.5: you change permissions with chmod, numeric or symbolic. Get every one of these into your notes — they're the foundation for both methods."
+    },
+    {
+      "type": "worked_table",
+      "heading": "chmod, Two Ways: Numeric and Symbolic",
+      "context": "EK 5.2.D.6–D.7 — numeric sums 4 (read) + 2 (write) + 1 (execute) per entity in owner-group-other order; symbolic targets u/g/o/a with +/- and r/w/x. Read each row across.",
+      "columns": ["Goal", "Permission string", "Numeric method (EK 5.2.D.6)", "Symbolic method (EK 5.2.D.7)"],
+      "rows": [
+        ["Owner: all; group: read+execute; others: none", "rwxr-x---", "chmod 750 test  (7=4+2+1, 5=4+1, 0)", "(set from a blank file) chmod u+rwx,g+rx test"],
+        ["Owner: read+write; group: read; others: none", "rw-r-----", "chmod 640 report.txt  (6=4+2, 4, 0)", "chmod u+rw,g+r report.txt"],
+        ["Add read+execute for owner and group", "(adds to existing)", "—  (numeric replaces, doesn't add)", "chmod ug+rx testfile"],
+        ["Remove write from group and others", "(removes from existing)", "—  (numeric replaces, doesn't add)", "chmod go-w testfile"]
+      ],
+      "script": "This table is the core skill of 5.2.D. EK 5.2.D.6, the numeric method: each entity's digit is the sum of read 4, write 2, execute 1, in owner-group-other order. So chmod 750 gives the owner 7, which is 4 plus 2 plus 1, all permissions; the group 5, which is 4 plus 1, read and execute; and others 0, nothing. Chmod 640 gives owner read-write, group read, others none. EK 5.2.D.7, the symbolic method: target u for user owner, g for group, o for others, a for all; use plus to add or minus to remove; then r, w, x. Chmod ug+rx testfile adds read and execute for the owner and group — that's the CED's own example. The key difference: numeric sets the whole permission at once, symbolic adds or removes specific bits. Copy this whole table."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary — Linux Permissions (LO 5.2.D)",
+      "terms": [
+        {
+          "term": "Authorization",
+          "definition": "Granting an entity a certain type of access to a resource; access controls decide which users have which access to which data (EK 5.2.D.1)."
+        },
+        {
+          "term": "rwx",
+          "definition": "The three Linux access types in fixed order — read (view), write (change), execute (run a binary); a dash marks an absent permission (EK 5.2.D.2)."
+        },
+        {
+          "term": "ls -l / getfacl",
+          "definition": "ls -l displays a file's current permissions; a trailing + means extra permissions exist, which getfacl displays (EK 5.2.D.4)."
+        },
+        {
+          "term": "chmod (numeric)",
+          "definition": "chmod ### filename, where each digit (owner, group, other) is the sum of 4 read + 2 write + 1 execute, so 7=rwx, 5=r-x, 6=rw- (EK 5.2.D.6)."
+        },
+        {
+          "term": "chmod (symbolic)",
+          "definition": "chmod entity +/-permission filename, with u/g/o/a entities, + add or - remove, and r/w/x permissions, e.g. chmod ug+rx testfile (EK 5.2.D.7)."
+        }
+      ],
+      "script": "Five terms for 5.2.D. Authorization is granting access to a resource. rwx is the three access types — read, write, execute — with a dash for an absent one. ls -l shows permissions, and a trailing plus sends you to getfacl for the extras. chmod numeric uses three digits, each a sum of four, two, and one, in owner-group-other order. chmod symbolic targets u, g, o, or a, adds with plus or removes with minus, and names r, w, or x. These five terms plus the worked table are everything you need to configure a file. Into your notes."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: One Patient Record, Every Layer",
+      "subheading": "Not a new EK — it shows how all four objectives stack to protect a single dataset, classification down to the exact command.",
+      "track": "enrichment",
+      "left": {
+        "title": "From Classification to Policy to Model",
+        "definition": "The decisions before the command",
+        "ek": "Enrichment",
+        "examples": [
+          "Classify: a patient record is PHI, regulated by HIPAA (EK 5.2.A.4)",
+          "State: at rest on the drive — encrypt it; in use on the nurse's screen — access controls (EK 5.2.A.2)",
+          "Policy: the cryptography policy fixes the encryption algorithm and key length (EK 5.2.B.1)",
+          "Model: choose a model, then apply least privilege — only the care team, nothing extra (EK 5.2.C.7)"
+        ]
+      },
+      "right": {
+        "title": "Down to the chmod Command",
+        "definition": "The decision, enforced on the file",
+        "ek": "Enrichment",
+        "examples": [
+          "The record file should be read/write for the owning clinician, read-only for the care-team group, nothing for others",
+          "Numeric: chmod 640 record.txt — 6=read+write owner, 4=read group, 0=others (EK 5.2.D.6)",
+          "ls -l confirms it shows rw-r-----, exactly least privilege in action (EK 5.2.D.3)",
+          "If a + appears, getfacl reveals any extra access that would violate least privilege (EK 5.2.D.4)"
+        ]
+      },
+      "footer": "TAKEAWAY: The four objectives are one pipeline. Classify the data (A) → set the policy (B) → pick the model and apply least privilege (C) → enforce it with the exact permission bits (D). chmod 640 IS least privilege made concrete.",
+      "script": "Quick enrichment that ties the whole lesson together. Take one patient record. Classify it: it's PHI under HIPAA, EK 5.2.A.4. Think about its state: at rest it gets encrypted, in use on the nurse's screen it gets access controls, because it can't be encrypted while read. The cryptography policy, EK 5.2.B.1, fixes the algorithm and key length. Then apply least privilege, EK 5.2.C.7 — only the care team gets access. And finally enforce it on the actual file: chmod 640 record.txt gives the clinician read and write, the care-team group read-only, and others nothing — ls -l confirms rw-r-----. That single command is least privilege made concrete. Four objectives, one pipeline: classify, set policy, pick the model, enforce the bits."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Questions map to LO 5.2.D. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A file's permissions display as r-xr-----. Reading the three sets in owner-group-other order, state exactly what the owner, the group, and all others can do, and explain how the dashes tell you. Cite EK 5.2.D.2 and D.3.",
+        "An administrator wants a file's owner to have read and write, the group to have read only, and others to have nothing. Write the single chmod numeric command that does this, show the math for each digit, then write a symbolic command that adds read and execute for both the owner and group. Cite EK 5.2.D.6 and D.7."
+      ],
+      "directions": "Independent. 7 minutes. Full sentences and show the commands. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, seven minutes, independent — and show the commands. Question one: r-xr----- reads in three sets — owner r-x is read and execute but not write, group r-- is read only, others --- is nothing; the dashes mark absent permissions. Cite EK 5.2.D.2 and D.3. Question two: owner read-write, group read, others none is chmod 640 filename — six is four plus two, four is read, zero is none. Then a symbolic command adding read and execute for owner and group is chmod ug+rx filename. Show your digit math and cite EK 5.2.D.6 and D.7. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "The Whole Topic, in One Slide",
+      "points": [
+        "5.2.A — A data's STATE (at rest, in transit, in use) and CLASSIFICATION (PII/Privacy Act, PHI/HIPAA, PCI/PCI-DSS) set the type and degree of protection; data in use must be unencrypted, so access controls guard it (EK 5.2.A.2–A.4).",
+        "5.2.B — Two managerial controls write the rules: the cryptography policy (algorithms, key lengths, key storage) and the web application security policy (assessments, remediation timelines, tools) (EK 5.2.B.1–B.2).",
+        "5.2.C — Pick the model: RBAC (by role), RuBAC (by rules, layered on top), DAC (owner's discretion, super user can override), MAC/Bell-LaPadula (levels; write up, read down) — all serving least privilege (EK 5.2.C.2–C.7).",
+        "5.2.D — Enforce it on Linux: rwx for owner/group/others, ls -l and getfacl to view, chmod to set — numeric sums 4+2+1 (chmod 640 = rw-r-----), symbolic targets u/g/o/a with +/- (chmod ug+rx) (EK 5.2.D.2–D.7)."
+      ],
+      "next": "Unit performance task 5A, Protecting Sensitive Data — you'll classify real data, choose a model, and configure the directory and file permissions yourself with chmod. Be able to convert any permission string to both a numeric and a symbolic command cold.",
+      "script": "The whole topic on one slide. 5.2.A: a data's state and classification set its protection — at rest, in transit, in use, and PII, PHI, PCI with their laws — and remember data in use must be unencrypted, so access controls guard it. 5.2.B: two managerial policies, cryptography and web application security. 5.2.C: pick the right model — RBAC by role, RuBAC by rules layered on top, DAC by the owner with a super user override, MAC and Bell-LaPadula by level with write up read down — all in service of least privilege. 5.2.D: enforce it on Linux with rwx, ls -l, getfacl, and chmod, numeric or symbolic. Next up is performance task 5A, where you configure real permissions yourself. Be able to convert any permission string to both methods cold."
+    }
+  ],
   "guide": {
     "title": "Lesson 5.2 — Protecting Data: Managerial Controls — Teacher Guide",
     "subtitle": "Unit 5 · Topic 5.2 · 7 class periods · Anchor: Protecting Sensitive Data",
