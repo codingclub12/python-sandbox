@@ -55,5 +55,140 @@
     {
       "script": "Wrap up. Today you classified adversaries, learned three CB-required attacks and three CB-required defenses, and worked through the two misconceptions that trip up the most students on this topic. Next class you apply all of it. Four real Wi-Fi incidents, classify the attack in each one, name the defense that would have stopped it. You are going to work through those like a security analyst, not like a student guessing at answers. Before you leave, hand in your Guided Notes. And think about the bell ringer: the network name alone was your entire decision-making process. That is exactly what an evil twin exploits."
     }
-  ]
+  ],
+  "quiz": {
+    "title": "Lesson 1.3 — Best Practices for Public Networks — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 20 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary buys a ready-made hacking tool online and uses it to exploit a vulnerability that has been publicly documented for months. The adversary cannot write or modify the tool themselves. How does the CB framework classify this adversary?",
+        "options": [
+          "Low-skilled — relies on tools created by others that exploit known vulnerabilities",
+          "High-skilled — creates new tools and discovers undocumented zero-day vulnerabilities",
+          "Low-skilled — discovers undocumented zero-day vulnerabilities without using any tools",
+          "High-skilled — purchases finished tools that only ever target publicly known flaws"
+        ],
+        "answer": "A",
+        "ek": "EK 1.3.A.1",
+        "rationale": "EK 1.3.A.1 says low-skilled adversaries rely on malicious cyber tools created by others that can be purchased online, and those tools exploit known vulnerabilities — exactly this adversary. Option B describes a high-skilled adversary. Options C and D scramble the skill-level traits, pairing the wrong capabilities with each label."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "According to the CB framework, what distinguishes a high-skilled adversary from a low-skilled one?",
+        "options": [
+          "They can only purchase tools that exploit vulnerabilities already documented publicly",
+          "They can create or modify malicious tools and discover undocumented zero-day vulnerabilities",
+          "They are motivated solely by greed and never by recognition, politics, or beliefs",
+          "They jam wireless signals while low-skilled adversaries set up evil twin access points"
+        ],
+        "answer": "B",
+        "ek": "EK 1.3.A.1",
+        "rationale": "EK 1.3.A.1 states high-skilled adversaries can create new tools or modify existing ones and can discover undocumented vulnerabilities, known as zero days. Option A describes the low-skilled adversary. Option C wrongly narrows motivation, which EK 1.3.A.2 lists broadly. Option D invents a skill-to-attack mapping the CED does not make."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "A threat report notes that an attacker group is driven by a mix of revenge, dedication to a cause, and desire for recognition. Which CB-specified idea does this directly illustrate?",
+        "options": [
+          "That adversaries are classified only by their technical skill level",
+          "That encrypted protocols like HTTPS protect traffic from an evil twin",
+          "That adversaries have a variety of motivations behind their attacks",
+          "That jamming attacks are a form of denial-of-service attack"
+        ],
+        "answer": "C",
+        "ek": "EK 1.3.A.2",
+        "rationale": "EK 1.3.A.2 lists motivations including greed, desire for recognition, dedication to a cause, revenge, politics, or beliefs — the report names several of these. Option A addresses skill (EK 1.3.A.1), not motivation. Options B and D are true CED statements but concern wireless attacks, not adversary motivation."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "At a coffee shop, a victim connects to a wireless access point whose SSID is identical to the shop's real network but is actually run by an adversary, who then captures the victim's traffic. The victim's banking session over HTTPS stays unreadable to the attacker. Which attack is this, and why is the banking traffic safe?",
+        "options": [
+          "War driving — the adversary detected the beacon while walking past the building",
+          "Evil twin — a rogue access point imitates the SSID, yet HTTPS encryption hides that traffic",
+          "Jamming — a strong EM signal blocks the access point, though HTTPS still functions normally",
+          "Evil twin — the rogue access point can read all traffic, including the encrypted HTTPS session"
+        ],
+        "answer": "B",
+        "ek": "EK 1.3.B.1",
+        "rationale": "EK 1.3.B.1 describes an evil twin as a rogue WAP using an SSID similar or identical to the target so victims unknowingly connect and the adversary captures traffic — but the adversary cannot read traffic using an encrypted protocol like HTTPS. Option D names the attack right but contradicts the encryption point. Options A and C name different attacks."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "A wireless network suddenly becomes unusable because an adversary floods the area with a strong electromagnetic signal in the network's frequency range, preventing legitimate traffic between the access point and users. Under the CB framework, this jamming attack is also an example of what?",
+        "options": [
+          "A zero-day exploit against an undocumented vulnerability",
+          "An evil twin attack using a duplicated service set identifier",
+          "A war driving attack conducted from a moving vehicle",
+          "A denial-of-service attack that blocks access to resources"
+        ],
+        "answer": "D",
+        "ek": "EK 1.3.B.2",
+        "rationale": "EK 1.3.B.2 says jamming floods an area with a strong EM signal in the network's frequency range, preventing legitimate traffic, and that this attack preventing users from accessing resources is called a denial-of-service (DoS) attack. Options A, B, and C name unrelated concepts or different wireless attacks."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "In the CB framework, what does an adversary attempt to do during a war driving attack?",
+        "options": [
+          "Flood the frequency range with electromagnetic noise to block legitimate traffic",
+          "Stand up a rogue access point with an SSID identical to a target network",
+          "Detect wireless network beacons while driving or walking around a target",
+          "Decrypt HTTPS sessions captured from victims on a public network"
+        ],
+        "answer": "C",
+        "ek": "EK 1.3.B.3",
+        "rationale": "EK 1.3.B.3 says in a war driving attack adversaries try to detect wireless network beacons while driving or walking around a target, then gather information and find where the signal extends outside the building. Option A is jamming (EK 1.3.B.2), option B is an evil twin (EK 1.3.B.1), and option D contradicts EK 1.3.B.1."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Before joining the airport Wi-Fi, a traveler carefully compares the network name shown on their device against the official name posted at the help desk to make sure they match exactly. Which CB-specified protective action is the traveler taking?",
+        "options": [
+          "Verifying that the network name exactly matches the network they intend to join",
+          "Using a VPN so that all of their traffic is encrypted to the VPN operator",
+          "Avoiding unencrypted networks to protect data such as their DNS queries",
+          "Relying on HTTPS to keep an evil twin from reading their network traffic"
+        ],
+        "answer": "A",
+        "ek": "EK 1.3.C.1",
+        "rationale": "EK 1.3.C.1 says individuals should verify that the name of any wireless network they join exactly matches the name of the network they intend to join — precisely the matching check described. Options B, C, and D are other real CED defenses (EK 1.3.C.3, 1.3.C.2, 1.3.B.1) but not the action shown here."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A user worried about sensitive data on public Wi-Fi installs a VPN. According to the CB framework, what is the key limitation they should understand about this choice?",
+        "options": [
+          "The VPN leaves DNS queries fully exposed to every nearby wireless user",
+          "The VPN provider itself can view the user's traffic even though the service provider cannot",
+          "The VPN only works on networks whose name matches the intended network exactly",
+          "The VPN converts every jamming attack into a denial-of-service attack automatically"
+        ],
+        "answer": "B",
+        "ek": "EK 1.3.C.3",
+        "rationale": "EK 1.3.C.3 says a VPN encrypts all traffic to the VPN operator's system, and although this prevents a service provider from viewing traffic, the VPN provider can view the traffic. Options A, C, and D misstate the CED or attach unrelated concepts to the VPN."
+      },
+      {
+        "id": "Q9",
+        "kind": "recall",
+        "stem": "The CB framework notes that most internet protocols are encrypted, yet still advises individuals to weigh the sensitivity of their data before joining unencrypted Wi-Fi. What example of vulnerable data does the CED give?",
+        "options": [
+          "Saved passwords stored inside the device's local keychain",
+          "Cloned voice samples scraped from social-media videos",
+          "DNS queries that may not be protected on an unencrypted network",
+          "Beacon frames broadcast by the wireless access point"
+        ],
+        "answer": "C",
+        "ek": "EK 1.3.C.2",
+        "rationale": "EK 1.3.C.2 says most internet protocols are encrypted, but individuals may consider the sensitivity of their data when choosing whether to join unencrypted Wi-Fi to protect vulnerable data such as DNS queries. Options A, B, and D are not the example the CED gives here."
+      }
+    ]
+  }
 }

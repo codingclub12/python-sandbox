@@ -49,5 +49,143 @@
     {
       "script": "That's Day 1. We defined social engineering, named the two tactics for this topic — intimidation and urgency — explained why they work on everyone, and found both of them hiding in the Scenario 1A email. Tomorrow we follow the damage downstream: what a victim actually loses when an attack succeeds. Here's your teaser — if you handed an attacker just three ordinary facts about yourself, a pet's name, a birthday, an old workplace, what could they unlock with them? Bring an answer."
     }
-  ]
+  ],
+  "quiz": {
+    "title": "Lesson 1.1 — Social Engineering & Attack Types — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student gets a text: \"This is IT Support. Your account will be permanently deleted in 5 minutes unless you reply with the 6-digit code we just sent.\" Per EK 1.1.A.2, which two tactics does this message use?",
+        "options": [
+          "Intimidation — the threat of permanent deletion — and urgency — the 5-minute deadline",
+          "Reciprocity and authority bias, two named CED social-engineering tactics",
+          "Urgency only — the message contains no threatened negative consequence",
+          "Intimidation only — the deadline is informational, not pressure to act fast"
+        ],
+        "answer": "A",
+        "ek": "EK 1.1.A.2",
+        "rationale": "EK 1.1.A.2 names exactly two tactics. Intimidation is threatening a target with negative consequences if they don't comply — here, permanent account deletion. Urgency is creating a reason to act quickly — the 5-minute deadline. The message uses both, so A is correct. B invents tactics the CED does not list for this EK. C and D each ignore one of the two tactics that are plainly present."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "According to EK 1.1.A.1, social engineering attacks use psychological tactics to manipulate users into doing which of the following?",
+        "options": [
+          "Patching software, rotating passwords, or enabling multifactor authentication",
+          "Encrypting a hard drive, wiping a device, or disabling a firewall setting",
+          "Revealing sensitive information, downloading a malicious file, or clicking a malicious link",
+          "Resetting a router, clearing browser history, or updating an operating system"
+        ],
+        "answer": "C",
+        "ek": "EK 1.1.A.1",
+        "rationale": "EK 1.1.A.1 states the goals precisely: manipulate users into revealing sensitive information (elicitation), downloading a malicious file, or clicking on a malicious link. C restates this exactly. A, B, and D list defensive or unrelated technical actions that are not the manipulated behaviors named in the EK."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A teacher asks which channels social engineering can arrive through, per EK 1.1.A.1. Which option best matches the CED's list?",
+        "options": [
+          "Only through email attachments scanned by a mail server before delivery",
+          "In person, or by email, text message, or social media messages",
+          "Only through automated network scans that need no human interaction",
+          "Exclusively in person, since the tactics require face-to-face contact"
+        ],
+        "answer": "B",
+        "ek": "EK 1.1.A.1",
+        "rationale": "EK 1.1.A.1 says social engineering can be performed in person but is often done by email, by text message, or through social media messages. B matches this list. A and C wrongly narrow it to a single technical channel, and D contradicts the EK by excluding the remote channels it explicitly names."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A message warns, \"If you don't verify now, your paycheck will be withheld.\" Per EK 1.1.B.2, explain how intimidation works on the reader.",
+        "options": [
+          "It offers a reward, exploiting the human tendency to reciprocate a favor",
+          "It builds slow rapport over time so the reader lowers their guard gradually",
+          "It proves the sender's identity, so the reader trusts the request automatically",
+          "It leverages a natural aversion to negative consequences, using fear to incite action"
+        ],
+        "answer": "D",
+        "ek": "EK 1.1.B.2",
+        "rationale": "EK 1.1.B.2 states intimidation leverages a natural human aversion to negative consequences: by drawing attention to a possible bad outcome, adversaries use fear to incite targets to act. The withheld paycheck is the negative consequence, and fear of it drives the action — D matches the EK. A, B, and C describe other mechanisms the CED does not attribute to intimidation."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Per EK 1.1.B.3, why is a sense of urgency effective at getting a target to comply?",
+        "options": [
+          "Pressure to act quickly can stop the target from considering whether the action is reasonable or safe",
+          "It permanently changes the target's long-term beliefs about the sender's trustworthiness",
+          "It guarantees the target will report the message to their IT department immediately",
+          "It removes the negative consequence so the target no longer feels any fear at all"
+        ],
+        "answer": "A",
+        "ek": "EK 1.1.B.3",
+        "rationale": "EK 1.1.B.3 says urgency leverages a natural human response to time-sensitive needs: feeling pressured to act quickly can prevent targets from taking time to consider whether an action is reasonable or safe. A restates this mechanism. B and C describe outcomes the EK does not claim, and D confuses urgency with intimidation and misstates the effect."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "Per EK 1.1.B.1, what do social engineering tactics fundamentally rely on?",
+        "options": [
+          "Software vulnerabilities in the target's email client or web browser",
+          "Common psychological principles that influence human behavior",
+          "Stolen encryption keys obtained from a breached certificate authority",
+          "Misconfigured firewalls that allow malicious traffic into a network"
+        ],
+        "answer": "B",
+        "ek": "EK 1.1.B.1",
+        "rationale": "EK 1.1.B.1 states that social engineering tactics rely on common psychological principles that influence human behavior. B matches this directly. A, C, and D describe technical weaknesses, but the defining feature of social engineering in the CED is that it targets human behavior rather than technology."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A victim is tricked into revealing a pet's name, birthdate, and former workplace. Per EK 1.1.C.1, why is this information valuable to an adversary?",
+        "options": [
+          "It encrypts the victim's files, letting the adversary demand a ransom payment",
+          "It disables multifactor authentication on every account the victim owns",
+          "It is often used as challenge-question answers that verify a user's identity",
+          "It directly grants administrator rights over the victim's employer network"
+        ],
+        "answer": "C",
+        "ek": "EK 1.1.C.1",
+        "rationale": "EK 1.1.C.1 says victims may give an adversary personal information that could lead to impersonation — name, phone number, address, workplace, pets' names, or birthdate — and that such information is often used on websites as challenge questions to verify a user's identity. C matches the EK. A, B, and D describe impacts the CED does not tie to this kind of personal information."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary convinces a victim to read back the one-time password (OTP) texted to their phone. Per EK 1.1.C.2, what is the direct impact?",
+        "options": [
+          "The adversary permanently deletes the victim's account from the service",
+          "The adversary can log in to the service as the victim",
+          "The adversary gains physical access to the victim's mobile device",
+          "The adversary installs malware that steals data from the victim's browser"
+        ],
+        "answer": "B",
+        "ek": "EK 1.1.C.2",
+        "rationale": "EK 1.1.C.2 says victims may give an adversary secure information like a one-time password or authentication login code, which could allow an adversary to log in to a service as the victim. B matches the EK. A and C are not stated impacts of handing over an OTP, and D describes EK 1.1.C.3 (malware), not the OTP impact."
+      },
+      {
+        "id": "Q9",
+        "kind": "multi",
+        "stem": "Per EK 1.1.C.3, clicking a malicious link or downloading malware can lead to which outcomes? I. Malware installed on the device. II. Information stolen from the web browser. III. Being directed to a site that captures login credentials.",
+        "options": [
+          "Outcome I only of the three",
+          "Outcomes I and II only",
+          "Outcomes II and III only",
+          "Outcomes I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK 1.1.C.3",
+        "rationale": "EK 1.1.C.3 says victims may download malware or click a link that installs malware on their device, steals information from their web browser, or directs them to a website where their login credentials can be captured. All three outcomes are listed in the EK, so D is correct. The narrower options each omit at least one outcome the EK explicitly names."
+      }
+    ]
+  }
 }
