@@ -66,14 +66,13 @@
     {
       "type": "concept",
       "heading": "Physical Access Bypasses Technical Controls",
-      "body": "EK 2.2.C.1 — Physical access to devices can allow adversaries to bypass many technical controls and layers of security. A firewall, strong passwords, and encrypted network traffic protect a device from attacks coming over the network. None of them stop an adversary standing in front of the machine who can unplug it, pull its drive, plug in a keylogger, or carry it out the door. This is why a single unlocked door can undo a large investment in digital security — and why physical risk has to be assessed on its own terms.",
-      "points": [
+      "script": "Here's why physical risk gets its own objective. EK 2.2.C.1 says physical access to devices can allow adversaries to bypass many technical controls and layers of security. Think about what a firewall, passwords, and encryption actually do: they defend a device from attacks arriving over the network. Now put an adversary physically in front of that device. The firewall is irrelevant — they're already inside the perimeter. They can unplug it, pull the drive, plug in a keylogger, or walk out with it, exactly the harms from yesterday's EK 2.2.B.3 through B.5. So a single unlocked door can undo a huge investment in digital security. That's the reason we assess physical risk separately, and it's why a physical vulnerability can rate high even at an organization with excellent network security. Write EK 2.2.C.1 and the phrase 'bypass technical controls.'",
+      "bullets": [
         "Technical controls (firewalls, passwords, encryption) defend against NETWORK attacks (EK 2.2.C.1)",
         "Physical access defeats them — the adversary is already past the network perimeter",
         "Once at the device, they can do everything from Day 2: power, ports, theft, destruction (EK 2.2.B.3–B.5)",
         "This is why physical vulnerabilities can carry HIGH risk even with strong digital security"
-      ],
-      "script": "Here's why physical risk gets its own objective. EK 2.2.C.1 says physical access to devices can allow adversaries to bypass many technical controls and layers of security. Think about what a firewall, passwords, and encryption actually do: they defend a device from attacks arriving over the network. Now put an adversary physically in front of that device. The firewall is irrelevant — they're already inside the perimeter. They can unplug it, pull the drive, plug in a keylogger, or walk out with it, exactly the harms from yesterday's EK 2.2.B.3 through B.5. So a single unlocked door can undo a huge investment in digital security. That's the reason we assess physical risk separately, and it's why a physical vulnerability can rate high even at an organization with excellent network security. Write EK 2.2.C.1 and the phrase 'bypass technical controls.'"
+      ]
     },
     {
       "type": "section_divider",
@@ -112,12 +111,32 @@
       "type": "worked_table",
       "heading": "Reading the Two Dials: Sensitivity × Likelihood",
       "subheading": "Each CB example turns on the SAME two factors — what's exposed and how reachable it is.",
-      "columns": ["Risk Level", "Asset Exposed", "Access / Likelihood", "CB Illustrative Example"],
+      "columns": [
+        "Risk Level",
+        "Asset Exposed",
+        "Access / Likelihood",
+        "CB Illustrative Example"
+      ],
       "highlightCol": 0,
       "rows": [
-        ["HIGH (EK 2.2.C.2)", "Sensitive: server with customer data", "No lock; unmonitored hallway", "Server room with no lock off an unmonitored hallway"],
-        ["MODERATE (EK 2.2.C.3)", "Noncritical: reception computer", "Foothold: exposed USB + internal Wi-Fi", "Reception computer, internal Wi-Fi, exposed USB ports"],
-        ["LOW (EK 2.2.C.4)", "Low value: non-sensitive laptops", "Badge access; exploitation unlikely", "Unsecured laptops left out during a group lunch"]
+        [
+          "HIGH (EK 2.2.C.2)",
+          "Sensitive: server with customer data",
+          "No lock; unmonitored hallway",
+          "Server room with no lock off an unmonitored hallway"
+        ],
+        [
+          "MODERATE (EK 2.2.C.3)",
+          "Noncritical: reception computer",
+          "Foothold: exposed USB + internal Wi-Fi",
+          "Reception computer, internal Wi-Fi, exposed USB ports"
+        ],
+        [
+          "LOW (EK 2.2.C.4)",
+          "Low value: non-sensitive laptops",
+          "Badge access; exploitation unlikely",
+          "Unsecured laptops left out during a group lunch"
+        ]
       ],
       "footer": "AP TIP: To grade a vulnerability, ask TWO questions — (1) how sensitive/valuable is the exposed asset? (2) how easily and likely is it to be exploited? High = sensitive + open. Moderate = a foothold to bigger things. Low = low value + unlikely.",
       "script": "Let's read the three examples as one method. Every grade turns on two dials: how sensitive or valuable the exposed asset is, and how reachable — how likely to be exploited — it is. Top row, high: the asset is sensitive, a server with customer data, and access is wide open, no lock and an unmonitored hallway. Sensitive plus open equals high. Middle row, moderate: the asset itself is noncritical — a reception computer — but it's a foothold, exposed USB ports on a machine that's on the internal network, so an adversary could use it to reach bigger resources. Bottom row, low: the asset is low value, non-sensitive laptops, and exploitation is unlikely because they're behind badge access during a brief group lunch. So the method is two questions: how sensitive is the asset, and how likely is the exploit. Hold those two dials in your head — you'll turn them on every vulnerability at Xtensr tomorrow."

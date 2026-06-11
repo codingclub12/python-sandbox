@@ -82,13 +82,38 @@
       "type": "worked_table",
       "heading": "Applying the Three Techniques to Xtensr Labs",
       "subheading": "Each row maps an Xtensr attack path to the EK 2.4.C technique that detects it.",
-      "columns": ["Xtensr location & attack", "Technique applied", "EK", "How the attack is detected"],
+      "columns": [
+        "Xtensr location & attack",
+        "Technique applied",
+        "EK",
+        "How the attack is detected"
+      ],
       "highlightCol": 3,
       "rows": [
-        ["Adversary enters the controlled lab area posing as a visitor", "Cameras + facial recognition", "EK 2.4.C.1", "Facial recognition alerts that an unauthorized individual has entered a controlled area; footage then tracks their path to the vault"],
-        ["Movement detected in the empty server room at night", "Motion detector + camera", "EK 2.4.C.2", "The motion alert is verified by pulling up the server-room camera to confirm a real breach versus a false alarm"],
-        ["Someone slips into the records vault behind a badged employee", "Badge entry logs + door-open time", "EK 2.4.C.3", "The vault door logged open longer than normal, flagging likely tailgating/piggybacking for review"],
-        ["After the breach, the team needs the adversary's full route", "Live + recorded camera footage", "EK 2.4.C.1", "Defenders use live and recorded footage to reconstruct the adversary's path and actions through the lab"]
+        [
+          "Adversary enters the controlled lab area posing as a visitor",
+          "Cameras + facial recognition",
+          "EK 2.4.C.1",
+          "Facial recognition alerts that an unauthorized individual has entered a controlled area; footage then tracks their path to the vault"
+        ],
+        [
+          "Movement detected in the empty server room at night",
+          "Motion detector + camera",
+          "EK 2.4.C.2",
+          "The motion alert is verified by pulling up the server-room camera to confirm a real breach versus a false alarm"
+        ],
+        [
+          "Someone slips into the records vault behind a badged employee",
+          "Badge entry logs + door-open time",
+          "EK 2.4.C.3",
+          "The vault door logged open longer than normal, flagging likely tailgating/piggybacking for review"
+        ],
+        [
+          "After the breach, the team needs the adversary's full route",
+          "Live + recorded camera footage",
+          "EK 2.4.C.1",
+          "Defenders use live and recorded footage to reconstruct the adversary's path and actions through the lab"
+        ]
       ],
       "footer": "AP TIP: For EK 2.4.C, name the PAIR and the OUTCOME — facial recognition alerts AND footage tracks (C.1); motion alerts AND camera verifies (C.2); badge logs flag a too-long door (C.3).",
       "script": "Here's all three techniques applied to Xtensr Labs in one table — this is exactly the kind of applied reasoning the exam wants. Row one: an adversary walks into the controlled lab area posing as a visitor. Technique: cameras with facial recognition, EK 2.4.C.1. The software alerts that an unauthorized individual entered a controlled area, and then the footage tracks their path toward the vault. Row two: movement in the empty server room at night. Technique: motion detector paired with a camera, EK 2.4.C.2 — the sensor raises the alert, and you pull up the camera to verify it's a real breach and not a false alarm. Row three: someone slips into the records vault behind a badged employee. Technique: badge logs and door-open time, EK 2.4.C.3 — the door logged open longer than normal, the signature of tailgating. Row four, after the fact: the team needs the full route, so they use live and recorded footage to reconstruct the adversary's path and actions — that's the second half of EK 2.4.C.1. On the exam, always name both the pairing and the outcome."
@@ -125,15 +150,16 @@
     {
       "type": "case_study",
       "heading": "Tailgating at the Vault: Reading the Badge Log",
-      "subheading": "EK 2.4.C.3 applied — detecting an attack that leaves no obvious trace, by the numbers in a log.",
-      "body": "An authorized researcher badges into the Xtensr records vault at 4:58 p.m. A normal entry holds the door open about 3 seconds. Tonight the door sensor logs the vault door open for 14 seconds. Reviewing the entry log the next morning, the security team flags that anomaly: a door open far longer than normal is the signature of piggybacking or tailgating — someone slipping in behind the badge holder before the door closes. No badge was scanned for the second person, but the door-open time gave them away. The team then pulls the vault camera footage for 4:58 p.m. (EK 2.4.C.1) to confirm a second individual and identify them.",
-      "prompts": [
+      "script": "Here's EK 2.4.C.3 as a mini case study, because it's the subtlest technique. A researcher badges into the Xtensr vault at 4:58 p.m. A normal entry holds the door about three seconds; tonight the sensor logs it open for fourteen. The next morning, reviewing the entry log, the team flags that — a door open far longer than normal is the classic signature of piggybacking or tailgating, someone slipping in behind the badge holder before the door shuts. Notice what's clever here: no second badge was ever scanned, so checking 'whose badge was used' would show one authorized entry and miss the attack completely. It was the door-open TIME that gave it away. Then the team pairs it with EK 2.4.C.1 — pull the vault camera for 4:58 to confirm and identify the second person. So C.3 detects that something's wrong from the log, and C.1 tells you who. Three questions on your notes; work them in the next few minutes.",
+      "scenarioLabel": "The Incident",
+      "scenario": "An authorized researcher badges into the Xtensr records vault at 4:58 p.m. A normal entry holds the door open about 3 seconds. Tonight the door sensor logs the vault door open for 14 seconds. Reviewing the entry log the next morning, the security team flags that anomaly: a door open far longer than normal is the signature of piggybacking or tailgating — someone slipping in behind the badge holder before the door closes. No badge was scanned for the second person, but the door-open time gave them away. The team then pulls the vault camera footage for 4:58 p.m. (EK 2.4.C.1) to confirm a second individual and identify them.",
+      "analysisLabel": "Work Through It",
+      "analysis": [
         "Which EK detection technique flagged the anomaly, and what specific data point raised the flag?",
         "Why would simply checking 'whose badge was used' have missed this attack entirely?",
-        "How do EK 2.4.C.3 and EK 2.4.C.1 work together to both detect AND identify the tailgater?"
-      ],
-      "footer": "EK 2.4.C.3 detects tailgating from door-open time in the entry log; EK 2.4.C.1 footage then confirms and identifies the second person. Detection and identification, paired.",
-      "script": "Here's EK 2.4.C.3 as a mini case study, because it's the subtlest technique. A researcher badges into the Xtensr vault at 4:58 p.m. A normal entry holds the door about three seconds; tonight the sensor logs it open for fourteen. The next morning, reviewing the entry log, the team flags that — a door open far longer than normal is the classic signature of piggybacking or tailgating, someone slipping in behind the badge holder before the door shuts. Notice what's clever here: no second badge was ever scanned, so checking 'whose badge was used' would show one authorized entry and miss the attack completely. It was the door-open TIME that gave it away. Then the team pairs it with EK 2.4.C.1 — pull the vault camera for 4:58 to confirm and identify the second person. So C.3 detects that something's wrong from the log, and C.1 tells you who. Three questions on your notes; work them in the next few minutes."
+        "How do EK 2.4.C.3 and EK 2.4.C.1 work together to both detect AND identify the tailgater?",
+        "Takeaway: EK 2.4.C.3 detects tailgating from door-open time in the entry log; EK 2.4.C.1 footage then confirms and identifies the second person. Detection and identification, paired."
+      ]
     },
     {
       "type": "vocab",

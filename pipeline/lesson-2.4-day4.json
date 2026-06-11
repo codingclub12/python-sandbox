@@ -79,13 +79,38 @@
       "type": "worked_table",
       "heading": "Every Control: Identify → Place → Apply",
       "subheading": "The whole topic in one grid — what each control detects (2.4.A), where it goes (2.4.B), and how it's applied (2.4.C).",
-      "columns": ["Control", "What it detects (2.4.A)", "Effective placement (2.4.B)", "Applied technique (2.4.C)"],
+      "columns": [
+        "Control",
+        "What it detects (2.4.A)",
+        "Effective placement (2.4.B)",
+        "Applied technique (2.4.C)"
+      ],
       "highlightCol": 3,
       "rows": [
-        ["Camera", "Visual record of an adversary's activity; recorded + monitored (A.1)", "Coverage, angle, tamper-resistance; ingress/egress points (B.1)", "Pair with facial recognition to alert; footage tracks the path (C.1)"],
-        ["Motion sensor", "Alerts security to movement in an area (A.3)", "Where traffic is unexpected — server rooms, sensitive storage (B.2)", "Pair with a camera to verify a real breach vs. false alarm (C.2)"],
-        ["Security guard", "Monitors an area and responds to suspicious activity (A.2)", "Stationary at chokepoints; patrolling on perimeters (B.4)", "Responds to verified alerts and supports investigation on site"],
-        ["Lock / vestibule + badge", "Employees notice unauthorized people first (A.4)", "Locks on all sensitive entries; vestibule on the most sensitive (B.3)", "Badge entry logs flag tailgating by door-open time (C.3)"]
+        [
+          "Camera",
+          "Visual record of an adversary's activity; recorded + monitored (A.1)",
+          "Coverage, angle, tamper-resistance; ingress/egress points (B.1)",
+          "Pair with facial recognition to alert; footage tracks the path (C.1)"
+        ],
+        [
+          "Motion sensor",
+          "Alerts security to movement in an area (A.3)",
+          "Where traffic is unexpected — server rooms, sensitive storage (B.2)",
+          "Pair with a camera to verify a real breach vs. false alarm (C.2)"
+        ],
+        [
+          "Security guard",
+          "Monitors an area and responds to suspicious activity (A.2)",
+          "Stationary at chokepoints; patrolling on perimeters (B.4)",
+          "Responds to verified alerts and supports investigation on site"
+        ],
+        [
+          "Lock / vestibule + badge",
+          "Employees notice unauthorized people first (A.4)",
+          "Locks on all sensitive entries; vestibule on the most sensitive (B.3)",
+          "Badge entry logs flag tailgating by door-open time (C.3)"
+        ]
       ],
       "footer": "AP TIP: The exam connects the columns — a question may give you a control and ask where it goes (2.4.B) and how to apply it (2.4.C). Read this table left to right until each row is automatic.",
       "script": "Here is the entire topic on one page, and I want each row to become automatic. Read it left to right. Camera: it detects by capturing a visual record, recorded and monitored — that's 2.4.A.1; you place it considering coverage, angle, and tamper-resistance, at ingress and egress points — 2.4.B.1; and you apply it by pairing it with facial recognition to alert and using footage to track the adversary — 2.4.C.1. Motion sensor: detects movement, 2.4.A.3; placed where traffic is unexpected, 2.4.B.2; applied by pairing with a camera to verify, 2.4.C.2. Security guard: monitors and responds, 2.4.A.2; stationary at chokepoints or patrolling perimeters, 2.4.B.4; applied by responding to verified alerts. And the lock-vestibule-badge row ties to the human method — employees notice first, 2.4.A.4 — placed as locks on sensitive entries and vestibules on the most sensitive, 2.4.B.3, and applied through badge logs that catch tailgating by door-open time, 2.4.C.3. Read across until you can recite any row from one cell."
@@ -93,15 +118,16 @@
     {
       "type": "case_study",
       "heading": "Cumulative Scenario: A Full Detection Plan for Xtensr Labs",
-      "subheading": "Use all three objectives at once to defend the entire building — from lobby to vault.",
-      "body": "Pull it all together for Xtensr Research Labs. At the LOBBY (a point of ingress, EK 2.4.B.1), place a camera with facial recognition (EK 2.4.C.1) and a stationary guard at the entrance (EK 2.4.B.4); employees who work there are also a first line of detection (EK 2.4.A.4). Down the HALLWAYS, cameras provide coverage and, once any breach is detected, footage tracks the adversary's path (EK 2.4.C.1). In the empty SERVER ROOM, a motion sensor belongs because traffic there is unexpected (EK 2.4.B.2); it alerts to movement (EK 2.4.A.3) and is paired with a camera to verify the breach (EK 2.4.C.2). At the records VAULT, a lock and an access control vestibule guard the entry (EK 2.4.B.3), and the badge-log door-open time flags tailgating (EK 2.4.C.3). Patrolling guards cover the exterior perimeter (EK 2.4.B.4).",
-      "prompts": [
+      "script": "This is the capstone — a complete detection plan for Xtensr Labs that uses every objective. Walk the building with me. At the lobby, which is a point of ingress, you place a camera with facial recognition and a stationary guard, and the employees there are themselves a detection method. Down the hallways, cameras cover the route and let you track an adversary once a breach is known. In the empty server room, a motion sensor fits because any traffic is unexpected — it alerts, and a paired camera verifies. At the vault, a lock and an access control vestibule guard the door, and the badge log's door-open time catches tailgating. Patrolling guards take the exterior. Notice how the objectives interlock: identify the method, place it right, apply it to catch the attack. Three questions on your notes — walk the adversary's path naming each control and EK, find where one control would fail alone and which pairing saves it, and propose one addition with its EK. This is exactly the Scenario 2A deliverable: monitoring equipment placed to detect breaches across the whole building.",
+      "scenarioLabel": "The Detection Plan",
+      "scenario": "Pull it all together for Xtensr Research Labs. At the LOBBY (a point of ingress, EK 2.4.B.1), place a camera with facial recognition (EK 2.4.C.1) and a stationary guard at the entrance (EK 2.4.B.4); employees who work there are also a first line of detection (EK 2.4.A.4). Down the HALLWAYS, cameras provide coverage and, once any breach is detected, footage tracks the adversary's path (EK 2.4.C.1). In the empty SERVER ROOM, a motion sensor belongs because traffic there is unexpected (EK 2.4.B.2); it alerts to movement (EK 2.4.A.3) and is paired with a camera to verify the breach (EK 2.4.C.2). At the records VAULT, a lock and an access control vestibule guard the entry (EK 2.4.B.3), and the badge-log door-open time flags tailgating (EK 2.4.C.3). Patrolling guards cover the exterior perimeter (EK 2.4.B.4).",
+      "analysisLabel": "Work Through It",
+      "analysis": [
         "Walk the adversary from lobby to vault and name every control that could detect them, in order, with its EK.",
         "Where in this plan would a SINGLE control fail on its own, and which paired control covers the gap?",
-        "If you could add only one more control to this plan, where would it go and why — cite the EK for your reasoning."
-      ],
-      "footer": "This is the Topic 2.4 deliverable for Scenario 2A: a placement of monitoring equipment that detects physical security breaches across the whole Xtensr building, using all three objectives together.",
-      "script": "This is the capstone — a complete detection plan for Xtensr Labs that uses every objective. Walk the building with me. At the lobby, which is a point of ingress, you place a camera with facial recognition and a stationary guard, and the employees there are themselves a detection method. Down the hallways, cameras cover the route and let you track an adversary once a breach is known. In the empty server room, a motion sensor fits because any traffic is unexpected — it alerts, and a paired camera verifies. At the vault, a lock and an access control vestibule guard the door, and the badge log's door-open time catches tailgating. Patrolling guards take the exterior. Notice how the objectives interlock: identify the method, place it right, apply it to catch the attack. Three questions on your notes — walk the adversary's path naming each control and EK, find where one control would fail alone and which pairing saves it, and propose one addition with its EK. This is exactly the Scenario 2A deliverable: monitoring equipment placed to detect breaches across the whole building."
+        "If you could add only one more control to this plan, where would it go and why — cite the EK for your reasoning.",
+        "Takeaway: This is the Topic 2.4 deliverable for Scenario 2A: a placement of monitoring equipment that detects physical security breaches across the whole Xtensr building, using all three objectives together."
+      ]
     },
     {
       "type": "vocab",
