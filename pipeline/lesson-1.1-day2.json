@@ -1,43 +1,222 @@
 {
   "meta": {
-    "lessonId": "1.1-day2",
-    "title": "Social Engineering & Attack Types"
+    "lessonId": "1.1",
+    "lessonTitle": "Understanding Social Engineering",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 2,
+    "los": "LO 1.1.C",
+    "anchor": "Social Engineering",
+    "author": "AP CS Exam Prep",
+    "totalDays": 2
   },
   "slides": [
     {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.1 · Day 2 of 2",
+      "title": "The Impacts of Social Engineering",
+      "subtitle": "What a victim actually loses — and what the adversary gains — when a social-engineering attack succeeds",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
       "script": "Welcome back to Lesson 1.1, Day 2. Yesterday we learned to spot social engineering and to explain why intimidation and urgency work. Today we follow the damage downstream: when one of these attacks succeeds, what does the victim actually lose, and what does the adversary gain? Then we'll tie the whole lesson together and take the Lesson 1.1 quiz."
     },
     {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Yesterday's teacher clicked the link in the fake “Google Drive” email. Nothing seemed to happen — the page just looked like a normal Google sign-in, so they typed their email and password and moved on.",
+      "subprompt": "Write 3–5 sentences: list everything the attacker might now be able to do, and explain how one click turned into all of it.",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
       "script": "Two minutes, on your own. Picture yesterday's scenario going wrong: the teacher clicks the link, sees what looks like a normal Google sign-in page, types their email and password, and moves on. Nothing obvious happened. So in three to five sentences: list everything the attacker might now be able to do, and explain how a single click turned into all of it. Hold that — it's exactly today's topic."
     },
     {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Name the three things a victim can hand over in a social-engineering attack: personal information, a secure code, or a click/download that gives up access (LO 1.1.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how each loss becomes a bigger problem — impersonation, account takeover, or malware and credential capture (EK 1.1.C.1–1.1.C.3)"
+        },
+        {
+          "tag": "CB",
+          "text": "Take a successful attack, identify its most likely impact category, and justify the choice with the CED"
+        }
+      ],
       "script": "Today is all about consequences — learning objective 1.1.C, describing the possible impacts for victims of social engineering. We break it into three targets. First, name the three things a victim can give up: personal information (1.1.C.1), a secure code like a one-time password (1.1.C.2), or a click or download that hands over access (1.1.C.3). Second, explain how each of those becomes a bigger problem — personal details feed impersonation and account challenge questions, a secure code lets an adversary log in as the victim, and a malicious click or download leads to malware or a credential-capture site. Third, you’ll practice taking any successful attack and naming its most likely impact, then defending that choice with the CED. By the end you should be able to connect what the victim lost to what the adversary gained."
     },
     {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "What Victims Can Lose",
+          "description": "The three impact categories: personal info, login codes, and malware from a link or file (EK 1.1.C.1–C.3)."
+        },
+        {
+          "title": "From Impact to Adversary Gain",
+          "description": "Map each loss to what the attacker can do next — the exam's favorite move."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 1.1 page on apcsexamprep.com has every answer if you fall behind.",
       "script": "Two sections today, both CB-required. First, what victims can lose — the three impact categories the CED names. Second, we connect each impact to what the adversary gains, because that is exactly how the exam frames its questions. Keep the packet open and fill it in as we go."
     },
     {
+      "type": "section_divider",
+      "number": "03",
+      "label": "What Victims Can Lose",
+      "kicker": "Possible Impacts · Learning Objective 1.1.C",
       "script": "Section three, and our whole focus today. The College Board groups the possible impacts into three categories. Get these three and you can answer any impact question on this topic."
     },
     {
+      "type": "impacts_grid",
+      "heading": "Three Things a Victim Can Lose",
+      "subheading": "Each category is one EK statement — know all three by what the adversary gains.",
+      "items": [
+        {
+          "ek": "EK 1.1.C.1",
+          "title": "Personal information",
+          "ekRef": "EK 1.1.C.1",
+          "summary": "Names, phone numbers, addresses, workplaces, pets' names, and birthdates can lead to impersonation — these are the very facts websites use as challenge questions to verify identity."
+        },
+        {
+          "ek": "EK 1.1.C.2",
+          "title": "A login code",
+          "ekRef": "EK 1.1.C.2",
+          "summary": "Handing over a one-time password (OTP) or authentication login code lets the adversary log in to a service as the victim."
+        },
+        {
+          "ek": "EK 1.1.C.3",
+          "title": "A click or download",
+          "ekRef": "EK 1.1.C.3",
+          "summary": "Downloading a file or clicking a link can install malware, steal information from the web browser, or send the victim to a site that captures their login credentials."
+        }
+      ],
       "script": "Three categories. One: personal information — names, phone numbers, addresses, workplaces, pets' names, birthdates. Why does that matter? Because those are the exact facts websites use as challenge questions to verify who you are, so giving them up enables impersonation. Two: a login code — if you read out a one-time password or authentication code, the adversary uses it to log in to your account as you. Three: a click or a download — clicking a link or downloading a file can install malware, steal what's in your browser, or drop you on a fake page that captures your credentials. Personal info, a login code, a click. Three buckets."
     },
     {
+      "type": "worked_table",
+      "eyebrow": "Worked Walkthrough",
+      "heading": "From Victim's Loss to Adversary's Gain",
+      "context": "The exam rarely asks “what is the impact” in isolation — it asks what the adversary can DO with it. Practice the second column.",
+      "columns": [
+        "What the victim gives up",
+        "What the adversary gains",
+        "EK"
+      ],
+      "rows": [
+        [
+          "Pet's name, birthdate, old workplace",
+          "Answers to account challenge questions — a path to impersonation",
+          "1.1.C.1"
+        ],
+        [
+          "A one-time passcode (OTP)",
+          "A live login to the victim's account as the victim",
+          "1.1.C.2"
+        ],
+        [
+          "A click on a malicious link",
+          "Malware installed, browser data stolen, or credentials captured on a fake page",
+          "1.1.C.3"
+        ]
+      ],
+      "highlightCol": 1,
       "script": "Here's the move the exam actually wants. It rarely asks “what is the impact” in a vacuum — it asks what the adversary can DO with what the victim gave up. So practice the middle column. Give up a pet's name and a birthday, and the adversary gains answers to your challenge questions, a path to impersonation. Give up an OTP, and they gain a live login as you. Click a malicious link, and they gain installed malware, stolen browser data, or your credentials captured on a fake page. And look — yesterday's bell ringer lands right here in rows two and three: the teacher's typed password was captured on a fake page, which hands the adversary a login, the same end state as giving up a code."
     },
     {
+      "type": "ap_strategy",
+      "heading": "How Topic 1.1 Is Tested",
+      "subheading": "Three moves cover almost every 1.1 question on the exam.",
+      "strategies": [
+        {
+          "name": "Name the tactic",
+          "text": "If there's a threat, it's intimidation; if there's a deadline or time pressure, it's urgency. Those are the only two named tactics in this topic."
+        },
+        {
+          "name": "Explain the instinct",
+          "text": "Tie the tactic to the human response — fear of a negative consequence (intimidation) or reacting fast under time pressure (urgency)."
+        },
+        {
+          "name": "Trace the impact",
+          "text": "Translate what the victim gave up into what the adversary can do: impersonation, logging in as the victim, or malware / credential capture."
+        }
+      ],
       "script": "Three moves cover almost every Topic 1.1 question. Move one: name the tactic. See a threat? Intimidation. See a deadline or time pressure? Urgency. Those are the only two named tactics here, so you're never choosing from a long list. Move two: explain the instinct — fear of consequences for intimidation, reacting fast under pressure for urgency. Move three: trace the impact — turn what the victim gave up into what the adversary can now do. Tactic, instinct, impact. Practice those three and this topic is yours."
     },
     {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Back to Scenario 1A. These map to LO 1.1.C. Complete on your Guided Notes.",
+      "prompts": [
+        "List the potential consequences for the teacher who clicked the link in the Scenario 1A email, and cite the EK for each.",
+        "If the fake page had instead asked the teacher to confirm their birthdate and the name of their first school, which impact category would that fall under, and what could the adversary do with those answers?",
+        "Explain in one sentence why “nothing seemed to happen” makes this kind of attack more dangerous, not less."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
       "script": "Stop and think — six minutes, full sentences. Back to Scenario 1A. Question one: list the potential consequences for the teacher who clicked the link, and cite the EK for each. Question two: suppose the fake page had instead asked the teacher to confirm a birthdate and the name of their first school — which impact category is that, and what could the adversary do with those answers? Question three: explain in one sentence why “nothing seemed to happen” makes this kind of attack more dangerous, not less. Then we take the quiz."
     },
     {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — Finish the Lesson",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.1 page",
+          "tail": "Full review of tactics, why they work, and impacts.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-understanding-social-engineering"
+        },
+        {
+          "label": "Tactic-spotting practice",
+          "tail": "Name the tactic in short messages (Day 1 skill).",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-1-exercise-1"
+        },
+        {
+          "label": "Impacts practice",
+          "tail": "Match each loss to the adversary's gain (today's skill).",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-1-exercise-2"
+        },
+        {
+          "label": "Lesson 1.1 quiz",
+          "tail": "Questions covering the full topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-1-quiz"
+        }
+      ],
+      "note": "We've now covered the whole topic. The lesson video covers both days slide for slide if you need a replay.",
       "script": "Now it's the full set, because we've finished the topic. Review on the Lesson 1.1 page, then both practice exercises — tactic-spotting from Day 1 and impacts from today — and finally the Lesson 1.1 quiz, six questions across the whole topic. If you're out or want a replay, the lesson video covers both days slide for slide."
     },
     {
+      "type": "final_summary",
+      "heading": "Lesson 1.1 in One Page",
+      "points": [
+        "Social engineering manipulates people, not technology, into revealing info, downloading a file, or clicking a link (EK 1.1.A.1)",
+        "Two named tactics: intimidation (threat of a negative consequence) and urgency (a deadline forcing fast action) (EK 1.1.A.2)",
+        "They work because they exploit universal instincts — fear of consequences and reaction to time pressure (EK 1.1.B.1–B.3)",
+        "Impacts: personal info → impersonation; a login code → account takeover; a click → malware or credential capture (EK 1.1.C.1–C.3)",
+        "Exam recipe: name the tactic, explain the instinct, trace the impact"
+      ],
+      "next": "Lesson 1.2 — Suspicious Website Logins: how adversaries attack weak passwords, and how to make authentication stronger.",
       "script": "Lesson 1.1 in one page. Social engineering manipulates people, not technology, to reveal information, download a file, or click a link. Two named tactics: intimidation, the threat of a negative consequence, and urgency, a deadline that forces fast action. They work because they exploit instincts everyone has — fear and time pressure. And the impacts come in three: personal info leads to impersonation, a login code leads to account takeover, and a click leads to malware or credential capture. Your exam recipe is name the tactic, explain the instinct, trace the impact. Next up, Lesson 1.2, Suspicious Website Logins — weak passwords and how to make authentication stronger."
     },
     {
+      "type": "day_close",
+      "eyebrow": "End of Lesson 1.1 · Day 2 of 2",
+      "heading": "End of Lesson 1.1",
+      "todayPoints": [
+        "Named the three impact categories: personal info, a login code, and a click/download (EK 1.1.C.1–C.3)",
+        "Mapped each loss to what the adversary gains",
+        "Applied it back to the Scenario 1A phishing email",
+        "Completed the Lesson 1.1 quiz"
+      ],
+      "nextPoints": [
+        "Lesson 1.2: Suspicious Website Logins (LO 1.2.A–C)",
+        "Signs of a password attack and how weak authentication is exploited",
+        "How to make authentication stronger — long, random, unique passwords and MFA"
+      ],
+      "teaser": "If an attacker already knows your pet's name and your birthday, your password might be the weakest link of all. Tomorrow: why most passwords are easier to guess than you think.",
       "script": "That's Lesson 1.1. We named the three impact categories, mapped each one to what the adversary gains, applied it back to the Scenario 1A email, and took the quiz. Next time we move from manipulation to authentication: Lesson 1.2, Suspicious Website Logins. Here's the teaser — if an attacker already has your pet's name and your birthday from today's lesson, your password might be the weakest link of all. Tomorrow, why most passwords are easier to guess than you think."
     }
   ]
