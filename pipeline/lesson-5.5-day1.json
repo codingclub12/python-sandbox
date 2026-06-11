@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "lessonId": "5.5",
+    "lessonTitle": "Protecting Applications",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 5: Securing Applications and Data",
+    "day": 1,
+    "los": "LO 5.5.A, 5.5.B",
+    "totalDays": 2,
+    "author": "AP CS Exam Prep"
+  },
+  "guide": {
+    "title": "Protecting Applications — Teacher Guide",
+    "subtitle": "Unit 5: Securing Applications and Data   •   LO 5.5.A–5.5.B",
+    "overview": [
+      "Topic 5.5 shifts Unit 5 from securing data to securing the applications that handle it. Students first learn the application security principles of secure by design and security by default: building security into every phase of product development rather than bolting it on, and shipping software and devices with security features already enabled out of the box.",
+      "The topic then turns to one of the most practical defenses a programmer controls — user input sanitization and validation. Because applications wrap user input in control characters (the single quote, double quote, and semicolon) to process it, a verification function that removes those malicious characters or rejects the input protects against attacks such as SQL injection, XSS, and directory traversal."
+    ],
+    "los": [
+      "LO 5.5.A — Identify the application security principles of secure by design and security by default.",
+      "LO 5.5.B — Explain how user input sanitization protects applications."
+    ],
+    "eks": [
+      "EK 5.5.A.1 — Secure by design is an initiative that encourages companies to include security in all phases of product development including design. When organizations implement secure by design, security is a design principle not just a technical feature.",
+      "EK 5.5.A.2 — Secure by design includes three design principles: (i) Companies should take ownership of customer security outcomes — they should build products that meet the security needs of their customers; (ii) Companies should embrace radical transparency and accountability — sharing relevant security-related product news and updates quickly increases security for everyone; (iii) Companies should build organizational structure and leadership to implement secure by design — they need leaders who are focused on security and have a security-first posture.",
+      "EK 5.5.A.3 — Secure by design includes the concept of secure by default, which is the idea that security features for software and devices should be enabled by default. Devices and software should be secure to use out of the box, with security features already enabled.",
+      "EK 5.5.B.1 — When users enter input into an application, the application typically encases that input in special characters to process it. The characters that encase the user input are called control characters and include the single quote, the double quote, and the semicolon.",
+      "EK 5.5.B.2 — When creating a program that takes user input, programmers should use a function to verify that user input meets their expected criteria and does not include any control characters that could be used to manipulate the system. This verification function can sanitize user input by removing potentially malicious characters, or it can give the user an error and force the user to provide different input. This can protect against many application attacks, including SQL injection attacks, XSS attacks, and directory traversal attacks."
+    ],
+    "materials": [
+      "Projector for secure-by-design principle examples and sample input-validation code",
+      "Printed Day 1 Guided Notes (student + key)",
+      "Printed Lesson 5.5 quiz (student + answer key)",
+      "Handout listing the three control characters and a short input-validation pseudocode example to annotate"
+    ],
+    "prereqs": [
+      "Topic 5.1–5.4 understanding of application/data risks and the controls used to mitigate them",
+      "Familiarity with the idea of user input, SQL injection, XSS, and directory traversal as application attacks"
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Secure by design and security by default, then how user input sanitization and validation protect applications (5.5.A–B)",
+        "segments": [
+          { "segment": "Bell ringer — should security be added at the end or built in from the start?", "min": 5 },
+          { "segment": "Direct instruction — secure by design as a principle and its three design principles (5.5.A)", "min": 20 },
+          { "segment": "Secure by default: security features enabled out of the box (5.5.A)", "min": 10 },
+          { "segment": "Control characters and why applications encase user input (5.5.B)", "min": 15 },
+          { "segment": "Input verification: sanitize vs. reject, and the attacks it prevents (5.5.B)", "min": 20 },
+          { "segment": "Quiz and wrap-up", "min": 10 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Secure by design is just a technical feature you add",
+        "myth": "Secure by design means adding a security feature like encryption to the finished product.",
+        "reality": "EK 5.5.A.1 — secure by design is an initiative to include security in all phases of product development including design; when organizations implement it, security is a design principle, not just a technical feature."
+      },
+      {
+        "heading": "Secure by default and secure by design are unrelated ideas",
+        "myth": "Secure by default is a separate initiative that has nothing to do with secure by design.",
+        "reality": "EK 5.5.A.3 — secure by design includes the concept of secure by default, the idea that security features for software and devices should be enabled by default so they are secure to use out of the box."
+      },
+      {
+        "heading": "Any character in the input box could be a control character",
+        "myth": "Control characters are just a vague category of anything the program does not like.",
+        "reality": "EK 5.5.B.1 — control characters are the special characters that encase user input so the application can process it, and the CED names exactly three: the single quote, the double quote, and the semicolon."
+      },
+      {
+        "heading": "Sanitization always silently cleans the input",
+        "myth": "A validation function can only strip out bad characters and let the cleaned input through.",
+        "reality": "EK 5.5.B.2 — a verification function can sanitize input by removing potentially malicious characters, or it can give the user an error and force them to provide different input; both approaches protect the application."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a three-row chart of the secure-by-design principles (ownership of customer outcomes, radical transparency and accountability, organizational structure and leadership) with one example per row, and have them match new scenarios to a principle.",
+        "Provide a labeled example showing how a single quote, double quote, or semicolon could break out of the input the application encases, so students can see why those three control characters matter (EK 5.5.B.1).",
+        "Use a sentence frame for sanitization: 'The verification function can either ___ the bad characters or ___ the user, which stops attacks like ___.'"
+      ],
+      "extension": [
+        "Have students explain, using EK 5.5.A.2, how 'radical transparency and accountability' increases security for everyone, not just the company that ships the update.",
+        "Ask students to contrast the two outcomes of a verification function — sanitizing versus rejecting input — and argue when each is the better design choice (EK 5.5.B.2).",
+        "Challenge students to map each of the three attacks the CED lists (SQL injection, XSS, directory traversal) to how unsanitized control characters could enable it (EK 5.5.B.2)."
+      ]
+    },
+    "discussion": [
+      "Why does the CED insist that secure by design makes security a design principle rather than just a technical feature?",
+      "Why should security features be enabled by default instead of left for the user to turn on?",
+      "How does a single function that checks user input protect against several different application attacks at once?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 5.5 — Protecting Applications — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "According to the CED, what is secure by design?",
+        "options": [
+          "An initiative that encourages companies to include security in all phases of product development, including design",
+          "A regulation that requires every finished product to ship with built-in encryption keys",
+          "A testing stage that scans for vulnerabilities only after a product has been released",
+          "A marketing label awarded to products that pass a one-time external security audit"
+        ],
+        "answer": "A",
+        "ek": "EK 5.5.A.1",
+        "rationale": "EK 5.5.A.1 — secure by design is an initiative that encourages companies to include security in all phases of product development including design, so that security is a design principle, not just a technical feature. The other options describe a regulation, a post-release test, and a marketing label, none of which match the CED definition."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A software company quickly publishes security-related product news and updates so that other organizations can protect themselves too. According to the CED, which secure-by-design principle is the company practicing?",
+        "options": [
+          "Building organizational structure and leadership with a security-first posture",
+          "Embracing radical transparency and accountability by sharing security news and updates quickly",
+          "Taking ownership of customer security outcomes by meeting customers' security needs",
+          "Enabling security features by default so products are secure out of the box"
+        ],
+        "answer": "B",
+        "ek": "EK 5.5.A.2",
+        "rationale": "EK 5.5.A.2 — embracing radical transparency and accountability means sharing relevant security-related product news and updates quickly, which increases security for everyone. The other options name the leadership principle, the customer-outcomes principle, and secure by default, which is a different concept."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A router ships from the factory with its firewall turned on and its encryption already configured, so a customer who never changes a setting is still protected. According to the CED, which concept does this illustrate?",
+        "options": [
+          "Radical transparency, since the manufacturer is publicly disclosing the router's settings",
+          "Ownership of customer outcomes alone, since secure defaults are unrelated to secure by design",
+          "Secure by default, the idea that security features should be enabled by default and secure out of the box",
+          "Input sanitization, since the router is filtering control characters from user configuration data"
+        ],
+        "answer": "C",
+        "ek": "EK 5.5.A.3",
+        "rationale": "EK 5.5.A.3 — secure by design includes secure by default, the idea that security features for software and devices should be enabled by default so they are secure to use out of the box. The other options misname the concept, wrongly separate it from secure by design, or confuse it with input sanitization."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "Which of the following does the CED list as the three design principles of secure by design? I. Companies should take ownership of customer security outcomes. II. Companies should embrace radical transparency and accountability. III. Companies should build organizational structure and leadership to implement secure by design. Which are included?",
+        "options": [
+          "I and II only (ownership of outcomes and radical transparency, but not organizational leadership)",
+          "II and III only (radical transparency and organizational leadership, but not ownership of outcomes)",
+          "I and III only (ownership of outcomes and organizational leadership, but not radical transparency)",
+          "I, II, and III (ownership of outcomes, radical transparency, and organizational leadership)"
+        ],
+        "answer": "D",
+        "ek": "EK 5.5.A.2",
+        "rationale": "EK 5.5.A.2 — secure by design includes three design principles: taking ownership of customer security outcomes, embracing radical transparency and accountability, and building organizational structure and leadership to implement secure by design. All three are listed, so the answer is I, II, and III."
+      },
+      {
+        "id": "Q5",
+        "kind": "recall",
+        "stem": "According to the CED, which characters that encase user input are called control characters?",
+        "options": [
+          "The ampersand, the asterisk, and the percent sign",
+          "The single quote, the double quote, and the semicolon",
+          "The forward slash, the backslash, and the colon",
+          "The question mark, the equals sign, and the hash symbol"
+        ],
+        "answer": "B",
+        "ek": "EK 5.5.B.1",
+        "rationale": "EK 5.5.B.1 — when users enter input, the application typically encases that input in special characters to process it, and those characters are called control characters: the single quote, the double quote, and the semicolon. The other options list characters the CED does not name as control characters."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A programmer adds a function that checks every form submission and either strips out potentially malicious characters or rejects the input and asks the user to try again. According to the CED, what does this verification function accomplish?",
+        "options": [
+          "It encrypts the stored input so that it can only be read with the correct private key",
+          "It guarantees the application can never crash, since every possible input is now accepted",
+          "It sanitizes input by removing malicious characters or forces different input, protecting against attacks such as SQL injection, XSS, and directory traversal",
+          "It replaces the need for any other security control, since validated input makes the whole system secure"
+        ],
+        "answer": "C",
+        "ek": "EK 5.5.B.2",
+        "rationale": "EK 5.5.B.2 — a verification function can sanitize user input by removing potentially malicious characters, or give the user an error and force different input, which protects against many application attacks including SQL injection, XSS, and directory traversal. The other options describe encryption, an impossible crash guarantee, or replacing all other controls, none of which the CED states."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A development team wants to verify that user input meets expected criteria and contains no control characters that could be used to manipulate the system. According to the CED, which group of attacks does adding this input-verification function help protect against?",
+        "options": [
+          "SQL injection attacks, XSS attacks, and directory traversal attacks",
+          "Distributed denial-of-service attacks, jamming attacks, and physical theft of hardware",
+          "Offline password cracking, rainbow-table attacks, and brute-force key guessing",
+          "Phishing emails, social engineering phone calls, and shoulder surfing"
+        ],
+        "answer": "A",
+        "ek": "EK 5.5.B.2",
+        "rationale": "EK 5.5.B.2 — using a function to verify user input and remove control characters can protect against many application attacks, including SQL injection attacks, XSS attacks, and directory traversal attacks. The other options list network, password, or human-targeted attacks that input verification does not address in the CED."
+      }
+    ]
+  }
+}
