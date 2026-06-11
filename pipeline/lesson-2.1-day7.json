@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "lessonId": "2.1",
+    "lessonTitle": "Cyber Foundations",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 7,
+    "los": "LO 2.1.G",
+    "anchor": "Cyber Foundations",
+    "author": "AP CS Exam Prep",
+    "totalDays": 8
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.1 · Day 7 of 8",
+      "title": "Why One Lock Is Never Enough",
+      "subtitle": "Cyber Foundations: a defense-in-depth strategy stacks multiple types of security controls so that when one layer is bypassed, another still protects the data — addressing different threats and adding resilience",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 2.1, Day 7 of 8. Yesterday you built a toolbox of security controls — physical, technical, managerial, and preventative, detective, corrective. Today, learning objective 2.1.G, answers the obvious next question: why not just pick the one best control and be done? The College Board's answer is defense in depth, also called layered defense. The idea is that you use multiple types of controls together, for two specific reasons the exam tests. One: different threats need different controls, so layers let you address many threats at once. Two: any single control can be bypassed, so layers give you resilience — when an adversary defeats one, another still stands. By the end of class you'll be able to explain why defense in depth is effective using both reasons, in the College Board's own terms."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A medieval castle didn't rely on just a tall wall. It had a moat, then the wall, then a heavy gate, then archers on the towers, then an inner keep. An attacker who got over the wall still faced the gate, the archers, and the keep.",
+      "subprompt": "Write 3–5 sentences: why didn't the castle builders just make one really, really good wall instead? What does having five different obstacles give you that one perfect obstacle can't?",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own. A medieval castle never trusted a single wall — moat, wall, gate, archers, inner keep, one behind the other. In three to five sentences: why didn't they just build one perfect wall? What do five different obstacles give you that one great obstacle can't? Hold your answer. You just described defense in depth, and the two reasons you'll land on — different obstacles for different attackers, and a backup when one fails — are exactly EK 2.1.G.2 and G.3."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 7 Guided Notes have two sections that match today’s lesson. Both are CB-required.",
+      "sections": [
+        {
+          "title": "What Defense in Depth Is",
+          "description": "A layered defense uses multiple types of security controls across layers like human, physical, network, device, application, and data (EK 2.1.G.1, G.4)."
+        },
+        {
+          "title": "Why It Works: Coverage and Resilience",
+          "description": "Layers address different threats, each with the best-suited control, and provide resilience when one control is bypassed (EK 2.1.G.2, G.3)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.1 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Two sections today, both CB-required. First, what defense in depth is — a layered defense using multiple types of controls, across the six layers the College Board names: human, physical, network, device, application, and data. Second, the heart of the objective: why it works. Two reasons — coverage, addressing different threats each with its best-suited control, and resilience, still protecting the data when one control is bypassed. Keep the packet open; I collect Guided Notes at the end."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain why a defense-in-depth security strategy is effective at optimally protecting an organization (LO 2.1.G)"
+        }
+      ],
+      "script": "One learning objective today: explain why a defense-in-depth security strategy is effective — learning objective 2.1.G. Notice the verb is explain, not identify. The exam won't just ask you to name defense in depth; it'll ask you WHY it works, and there are two answers it wants. First, defense in depth addresses different types of threats, each with the security control most suited to mitigate it — that's coverage. Second, it provides resilience: when one control is bypassed, another may still prevent access or limit the damage. By the end of today you can explain both reasons clearly, and that's what earns the points on a free-response or a 'why' multiple-choice item."
+    },
+    {
+      "type": "section_divider",
+      "number": "07",
+      "label": "Defense in Depth",
+      "kicker": "Cyber Foundations · Learning Objective 2.1.G",
+      "script": "Section seven of the lesson. Learning objective 2.1.G. First what a layered defense is, then the two reasons it's effective. Keep the castle in mind — every idea today maps onto it. Twelve minutes here."
+    },
+    {
+      "type": "two_column",
+      "heading": "What a Defense-in-Depth Strategy Is",
+      "subheading": "EK 2.1.G.1 and G.4 — a layered defense uses multiple types of controls, arranged across six named layers.",
+      "left": {
+        "title": "The Definition (EK 2.1.G.1)",
+        "definition": "Multiple control types, layered",
+        "ek": "EK 2.1.G.1",
+        "examples": [
+          "Defense in depth is also called layered defense",
+          "It uses multiple types of security controls together",
+          "The goal is to protect sensitive data and systems",
+          "No single control carries the whole burden"
+        ]
+      },
+      "right": {
+        "title": "The Six Layers (EK 2.1.G.4)",
+        "definition": "Where the layers can sit",
+        "ek": "EK 2.1.G.4",
+        "examples": [
+          "Human and physical layers — the people and the building",
+          "Network and device layers — the connections and the hardware",
+          "Application and data layers — the software and the information itself",
+          "Layers can include human, physical, network, device, application, and data"
+        ]
+      },
+      "footer": "AP TIP: Defense in depth = layered defense (EK 2.1.G.1) using MULTIPLE TYPES of controls. The CED names six possible layers (EK 2.1.G.4): human, physical, network, device, application, data — from the outside in.",
+      "script": "Start with what it is. Left column, EK 2.1.G.1: a defense-in-depth strategy, also called a layered defense, uses multiple types of security controls to protect sensitive data and systems. The key phrase is 'multiple types' — you're combining the controls you classified yesterday, not stacking five copies of the same one. Right column, EK 2.1.G.4: the layers can include human, physical, network, device, application, and data. Picture them from the outside in — the people, the building, the network connections, the individual devices, the applications, and at the center, the data itself. Each layer is a place to put a control. Write the definition with G.1 and all six layers with G.4."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Why Defense in Depth Is Effective: The CB Reasons",
+      "subheading": "EK 2.1.G.1, G.2, and G.3 — multiple control types give coverage of different threats AND resilience when one fails.",
+      "items": [
+        {
+          "ek": "EK 2.1.G.1",
+          "title": "Multiple Types of Controls",
+          "summary": "A defense-in-depth strategy uses multiple types of security controls to protect sensitive data and systems. Combining control types is the foundation that makes the next two benefits possible.",
+          "ekRef": "EK 2.1.G.1"
+        },
+        {
+          "ek": "EK 2.1.G.2",
+          "title": "Coverage of Different Threats",
+          "summary": "A defense-in-depth strategy allows an organization to address different types of threats, each with a security control most suited to mitigate it — one control rarely stops every kind of attack.",
+          "ekRef": "EK 2.1.G.2"
+        },
+        {
+          "ek": "EK 2.1.G.3",
+          "title": "Resilience When One Fails",
+          "summary": "A defense-in-depth strategy allows for resilience in data protection, so when one security control is bypassed by an adversary, another may still prevent access to the data or system or limit the damage done.",
+          "ekRef": "EK 2.1.G.3"
+        }
+      ],
+      "script": "Three cards, and the middle two are the answer to the exam's 'why' question. EK 2.1.G.1 is the foundation: defense in depth uses multiple types of controls to protect data and systems. Now the two reasons it's effective. EK 2.1.G.2, coverage: it lets an organization address different types of threats, each with the control most suited to mitigate it — because no single control stops every kind of attack. A firewall won't stop a social engineer; a password policy won't stop a flood. Different threats, different controls. EK 2.1.G.3, resilience: when one control is bypassed by an adversary, another may still prevent access to the data or system, or at least limit the damage. That's the castle — get past the wall and the archers and keep are still there. Write G.2 as coverage and G.3 as resilience; those are the two reasons that earn points."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘More Layers Means a Perfect Wall’ Myth",
+      "misconception": "The point of defense in depth is to stack enough layers that nothing can ever get through — perfect, unbreakable security.",
+      "whyItHappens": "Layering sounds like it should add up to an impenetrable barrier, and it's easy to assume that 'more controls' is just a path to zero risk — the same instinct from the risk-management lesson.",
+      "correction": "Defense in depth doesn't promise perfection — yesterday's EK 2.1.E.5 already said absolute security is unattainable. What EK 2.1.G.3 actually promises is RESILIENCE: when one control is bypassed, another may still prevent access OR limit the damage. The honest goal isn't 'never breached,' it's 'one failure isn't catastrophic.' And EK 2.1.G.2 adds that layers exist because different threats need different controls — not because more of the same is stronger.",
+      "example": "An adversary phishes an employee's password and gets past the human layer. With defense in depth, multi-factor authentication on the device layer still blocks them, or network monitoring detects the unusual login and a corrective control locks the account before data is taken. The breach of one layer didn't end the game. Stack five identical firewalls, though, and an attack that beats one beats all five — that's depth without diversity, and it misses the point of EK 2.1.G.2.",
+      "script": "Here's the trap. Layering sounds like it builds toward a perfect, unbreakable wall, so students claim defense in depth equals total security. But you already disproved that yesterday — EK 2.1.E.5, absolute security is unattainable. What EK 2.1.G.3 actually promises is resilience: when one control is bypassed, another may still prevent access OR limit the damage. The realistic goal isn't 'never breached,' it's 'one failure doesn't become a catastrophe.' And EK 2.1.G.2 reminds you the layers must be different — they exist because different threats need different controls. Picture it: an attacker phishes a password and beats the human layer, but multi-factor authentication on the device blocks them, or monitoring catches the odd login and locks the account before data leaves. One layer fell; the game went on. Now stack five identical firewalls — beat one, beat all five. That's depth without diversity, and it misses G.2 entirely. Don't write 'unbreakable.' Write 'resilient.'"
+    },
+    {
+      "type": "two_column",
+      "heading": "Layered Defense in Action: The Castle and the Network",
+      "subheading": "The two CB reasons, made concrete — coverage (EK 2.1.G.2) and resilience (EK 2.1.G.3) across the six layers (EK 2.1.G.4).",
+      "left": {
+        "title": "Coverage: Different Threats, Different Layers",
+        "definition": "Each threat met by its best-suited control (EK 2.1.G.2)",
+        "ek": "EK 2.1.G.2",
+        "examples": [
+          "Human layer: security training counters a social-engineering threat",
+          "Network layer: a firewall counters an external intrusion threat",
+          "Physical layer: locks and guards counter a break-in threat",
+          "Data layer: encryption counters a theft-of-stored-data threat"
+        ]
+      },
+      "right": {
+        "title": "Resilience: A Backup When One Fails",
+        "definition": "Bypass one control, another still stands (EK 2.1.G.3)",
+        "ek": "EK 2.1.G.3",
+        "examples": [
+          "Adversary phishes a password — beats the human layer",
+          "Multi-factor authentication on the device layer still blocks access",
+          "Network monitoring detects the unusual login attempt",
+          "Encryption on the data layer limits damage even if access is gained"
+        ]
+      },
+      "footer": "KEY SKILL: To answer 'why is defense in depth effective,' give BOTH reasons — coverage (different threats, best-suited control, EK 2.1.G.2) AND resilience (a bypassed control is backed by another, EK 2.1.G.3). One reason is half an answer.",
+      "script": "Let's make both reasons concrete, and connect them to the six layers. Left column is coverage, EK 2.1.G.2: different threats, each met by the control best suited to it. Security training on the human layer stops social engineering; a firewall on the network layer stops external intrusion; locks and guards on the physical layer stop a break-in; encryption on the data layer protects stored data. No one control does all four jobs — that's why you need layers. Right column is resilience, EK 2.1.G.3: the same attack, traced through the layers. An adversary phishes a password and beats the human layer — but multi-factor authentication on the device blocks them, monitoring on the network flags the strange login, and even if they break through, encryption on the data layer limits what they can steal. Here's the key skill: when the exam asks why defense in depth is effective, give BOTH reasons. Coverage and resilience. One reason is half an answer."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.1.G)",
+      "terms": [
+        {
+          "term": "Defense in depth",
+          "definition": "A layered security strategy that uses multiple types of security controls to protect sensitive data and systems (EK 2.1.G.1)."
+        },
+        {
+          "term": "Layered defense",
+          "definition": "Another name for defense in depth — protecting data and systems by combining multiple types of controls rather than relying on one (EK 2.1.G.1)."
+        },
+        {
+          "term": "Coverage of threats",
+          "definition": "The benefit by which a layered defense addresses different types of threats, each with the security control most suited to mitigate it (EK 2.1.G.2)."
+        },
+        {
+          "term": "Resilience",
+          "definition": "The benefit by which, when one control is bypassed, another may still prevent access to the data or system or limit the damage done (EK 2.1.G.3)."
+        },
+        {
+          "term": "Security layers",
+          "definition": "The places a control can sit in a layered defense — human, physical, network, device, application, and data (EK 2.1.G.4)."
+        }
+      ],
+      "script": "Five terms for LO 2.1.G. Defense in depth and layered defense are the same thing — multiple types of controls protecting data and systems, EK 2.1.G.1; know both names because the exam uses either. Then the two benefits that are the heart of the objective: coverage, addressing different threats each with the best-suited control, EK 2.1.G.2; and resilience, where one bypassed control is backed by another that prevents access or limits damage, EK 2.1.G.3. Finally, the security layers — human, physical, network, device, application, data, EK 2.1.G.4. Get all five into your notes with EK numbers, and be able to state coverage and resilience as the two reasons defense in depth works."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "All questions map to LO 2.1.G. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Explain why a defense-in-depth strategy is more effective than relying on a single strong security control. Give BOTH College Board reasons — coverage and resilience — and cite the EK for each.",
+        "An adversary tricks an employee into revealing a password, getting past the company's security-awareness training. Describe how a defense-in-depth strategy could still protect the data using a different layer, and explain which EK (2.1.G.2 or 2.1.G.3) this illustrates and why."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one is the core exam question: why is defense in depth better than one strong control? Give both reasons — coverage, EK 2.1.G.2, different threats each with its best-suited control, and resilience, EK 2.1.G.3, a backup when one is bypassed. Both, with EKs. Question two: the password is phished and training fails — describe how another layer, say multi-factor authentication or encryption, still protects the data, and say which EK that illustrates. That's resilience, G.3. Be precise."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.1 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-cyber-foundations"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Identify-the-layer scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Explain coverage vs. resilience on layered scenarios.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-2"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site. Re-run the Lesson 2.1 self-check, then Exercise 1, where you identify which layer a control sits in, and Exercise 2, where you explain coverage versus resilience on layered scenarios. Practice writing the two-reason 'why' answer until it's automatic — that's the points. The lesson video walks the material slide for slide. Write the lesson page URL down now."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 7 · Day 7 of 8",
+      "heading": "End of Day 7",
+      "todayPoints": [
+        "Defined defense in depth / layered defense: multiple types of controls protecting data and systems (EK 2.1.G.1)",
+        "Named the six layers — human, physical, network, device, application, data (EK 2.1.G.4)",
+        "Explained reason one, coverage: different threats each met by the best-suited control (EK 2.1.G.2)",
+        "Explained reason two, resilience: a bypassed control is backed by another that limits damage (EK 2.1.G.3)"
+      ],
+      "nextPoints": [
+        "Tomorrow is a synthesis and review day across the whole risk-and-controls arc (LO 2.1.E, F, G)",
+        "Tie risk management, control types, and defense in depth into one worked picture",
+        "Practice cumulative scenarios that move from assessing a risk to layering controls against it"
+      ],
+      "teaser": "You now have the full chain: assess a risk, choose how to manage it, pick the right controls, and layer them. Tomorrow we put all three days together on one cumulative scenario — from risk to resilient defense.",
+      "script": "Day 7 done. You can define defense in depth, name its six layers, and — most important — explain why it's effective with both College Board reasons: coverage, addressing different threats each with its best-suited control, and resilience, where one bypassed control is backed by another that limits the damage. That two-reason answer is the whole objective. Tomorrow is our synthesis day: no new content, but we connect the last three days — managing risk, choosing controls, and layering them — into one cumulative scenario from start to finish. Review your Guided Notes — be able to state coverage and resilience cold, with their EK numbers."
+    }
+  ]
+}

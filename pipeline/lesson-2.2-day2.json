@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "lessonId": "2.2",
+    "lessonTitle": "Physical Vulnerabilities",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 2,
+    "los": "LO 2.2.B",
+    "anchor": "Securing Xtensr Labs",
+    "author": "AP CS Exam Prep",
+    "totalDays": 5
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.2 · Day 2 of 5",
+      "title": "What Physical Access Lets an Adversary Do",
+      "subtitle": "Physical Vulnerabilities: how threats — human adversaries AND natural disasters — exploit physical weaknesses to cause loss, damage, disruption, or destruction to assets",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome back to Lesson 2.2, Day 2. Yesterday, 2.2.A, you learned to name the attacks that get an adversary in — piggybacking, tailgating, shoulder surfing, dumpster diving, card cloning. Today is 2.2.B: explain how threats exploit physical vulnerabilities to cause loss, damage, disruption, or destruction to assets. Two big moves today. First, the College Board widens 'threat' beyond hackers to include natural disasters — floods, fires, storms count, and you must know that. Second, we get concrete about what physical access actually enables: disrupting power so a device goes dark, stealing or copying sensitive information, plugging a keylogger or malware drive into a port, and physically destroying a device. By the end you can explain how a physical weakness turns into real loss. This is the bridge to Day 3, where we learn to grade how risky each of these vulnerabilities is."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "An adversary has made it into an unlocked server room — the same kind of room your bell ringer pictured last night. They have a few minutes alone with the racks, the cables, the wall outlets, and the open USB ports on the front of a server.",
+      "subprompt": "Write 3–5 sentences: list at least three different harmful things they could do in that room. For each, say what the organization loses — data, a working device, or a running service.",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own. Picture the adversary from last night's teaser: they're now standing alone in an unlocked server room with the racks, the cables, the wall outlets, and open USB ports on the front of a server. In three to five sentences, list at least three harmful things they could do in there — and for each one, tell me what the organization loses: data, a working device, or a running service. Hold your answer. Everything you write is in today's standard, EK 2.2.B, and by the end of class you'll be able to name each harm the way the College Board does."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have two sections that match today’s lesson. Both are CB-required.",
+      "sections": [
+        {
+          "title": "Threats and Vulnerabilities Defined",
+          "description": "Threats include human adversaries AND natural disasters; vulnerabilities are weaknesses that allow four common compromises (EK 2.2.B.1, B.2)."
+        },
+        {
+          "title": "What Physical Access Enables",
+          "description": "Disrupting power, stealing or copying data, plugging in keyloggers/malware, and physically destroying devices (EK 2.2.B.3, B.4, B.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.2 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Two sections today, both CB-required. First, the definitions: what the College Board counts as a threat — and it's not just hackers, it includes natural disasters — and what a vulnerability is, plus the four common compromises a vulnerability allows. Second, the concrete harms physical access enables: disrupting power, stealing or copying data, plugging in a keylogger or malware drive, and physically destroying a device. Keep the packet open; I collect Guided Notes at the end."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how threats can exploit common physical vulnerabilities to cause loss, damage, disruption, or destruction to assets (LO 2.2.B)"
+        }
+      ],
+      "script": "One objective today, the second for this topic: explain how threats can exploit common physical vulnerabilities to cause loss, damage, disruption, or destruction to assets — learning objective 2.2.B. The verb jumps from identify to explain. Yesterday you named attacks; today you explain the chain — threat, vulnerability, compromise, harm. Hold onto those four outcome words from the objective: loss, damage, disruption, destruction. Every harm we discuss maps to one of them. By the end of class you can take a physical weakness and explain exactly how a threat exploits it and what the organization loses."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Threats and Vulnerabilities",
+      "kicker": "Exploiting Physical Vulnerabilities · Learning Objective 2.2.B",
+      "script": "Section three of the lesson. Learning objective 2.2.B. Before the specific harms, two definitions the College Board is precise about: what a threat is — including natural disasters — and what a vulnerability is. Ten minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "Threats vs. Vulnerabilities: Two Words the Exam Keeps Straight",
+      "subheading": "EK 2.2.B.1 and B.2 — a threat is WHO or WHAT could cause harm; a vulnerability is the weakness they exploit.",
+      "left": {
+        "title": "Threats (EK 2.2.B.1)",
+        "definition": "What could cause harm or disruption",
+        "ek": "EK 2.2.B.1",
+        "examples": [
+          "Human adversaries seeking to cause harm or disruption",
+          "Natural disasters — floods, fires, storms, earthquakes",
+          "Natural disasters can physically damage or destroy computers and data",
+          "They can also disrupt the digital services those computers provide"
+        ]
+      },
+      "right": {
+        "title": "Vulnerabilities (EK 2.2.B.2)",
+        "definition": "Weaknesses or flaws that allow compromise",
+        "ek": "EK 2.2.B.2",
+        "examples": [
+          "Unauthorized access to sensitive data or restricted physical spaces",
+          "Disruption of services",
+          "Theft or destruction of digital or physical resources",
+          "Unauthorized modification of data"
+        ]
+      },
+      "footer": "AP TIP: A THREAT is who/what could cause harm (including natural disasters — EK 2.2.B.1). A VULNERABILITY is the weakness they exploit, and the four bullets on the right are the common COMPROMISES that result (EK 2.2.B.2). Don't blur the two.",
+      "script": "Two definitions the exam keeps strictly apart. On the left, EK 2.2.B.1, threats: a threat is who or what could cause harm or disruption. The College Board names two kinds — human adversaries seeking to cause harm, and natural disasters. Don't skip the natural disasters; the standard says they can cause physical damage or destruction to computers and data and disrupt the digital services those computers provide. A flood is a threat just like a hacker is. On the right, EK 2.2.B.2, vulnerabilities: a vulnerability is a weakness or flaw that could allow an asset to be compromised, and the standard lists four common compromises — unauthorized access to sensitive data or restricted spaces, disruption of services, theft or destruction of resources, and unauthorized modification of data. Write both EKs. Threat is the who-or-what; vulnerability is the weakness; the four bullets are what goes wrong."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "What Physical Access Enables",
+      "kicker": "Exploiting Physical Vulnerabilities · Learning Objective 2.2.B",
+      "script": "Section four. Same objective, 2.2.B. Now the concrete part: once an adversary is physically present, what can they actually do? Three EKs, each a category of harm. Fourteen minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Things Physical Access Enables",
+      "subheading": "EK 2.2.B.3, B.4, and B.5 — power, data, and the device itself.",
+      "items": [
+        {
+          "ek": "EK 2.2.B.3",
+          "title": "Disrupt Power",
+          "summary": "When adversaries disrupt power to a device, the device and any services it provides become unavailable. To disrupt power, adversaries may damage fuses or breakers in an electrical box, unplug or cut electrical wiring, or damage power distribution systems like substations and transformers.",
+          "ekRef": "EK 2.2.B.3"
+        },
+        {
+          "ek": "EK 2.2.B.4",
+          "title": "Steal or Copy Information",
+          "summary": "When adversaries gain access to an area with sensitive information, they can steal or copy that sensitive information — taking documents, drives, or data with them, or duplicating it on the spot to use later.",
+          "ekRef": "EK 2.2.B.4"
+        },
+        {
+          "ek": "EK 2.2.B.5",
+          "title": "Attack the Device and Its Ports",
+          "summary": "With physical access to a device and its ports, adversaries can plug in a keylogger or external drive containing malware to collect data or gain control of the device — and they can physically destroy the device, making it, its data, and its services unavailable.",
+          "ekRef": "EK 2.2.B.5"
+        }
+      ],
+      "script": "Three categories of harm physical access enables. First, EK 2.2.B.3, disrupt power: cut the power and the device and every service it provides go dark — that's a disruption. The standard gives the methods verbatim: damaging fuses or breakers in an electrical box, unplugging or cutting wiring, or damaging power distribution systems like substations and transformers. Second, EK 2.2.B.4, steal or copy information: get into an area with sensitive information and you can take it or copy it — that's loss of confidentiality. Third, EK 2.2.B.5, attack the device through its ports: plug in a keylogger or an external drive carrying malware to collect data from a user or even gain control of the device, and with direct access you can physically destroy the device, making it, its data, and its services unavailable — that's destruction. Write all three with EK numbers, and tag each with which outcome word it produces: disruption, loss, destruction."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.2.B)",
+      "terms": [
+        {
+          "term": "Threat",
+          "definition": "Who or what could cause harm or disruption — including human adversaries seeking harm AND natural disasters that can damage, destroy, or disrupt computers, data, and digital services (EK 2.2.B.1)."
+        },
+        {
+          "term": "Natural disaster (as a threat)",
+          "definition": "A non-human threat such as a flood, fire, or storm that can cause physical damage or destruction to computers and data and disrupt the digital services they provide (EK 2.2.B.1)."
+        },
+        {
+          "term": "Vulnerability",
+          "definition": "A weakness or flaw that could allow an asset to be compromised, enabling unauthorized access, disruption of services, theft or destruction, or unauthorized modification of data (EK 2.2.B.2)."
+        },
+        {
+          "term": "Power disruption",
+          "definition": "Making a device and its services unavailable by damaging fuses or breakers, unplugging or cutting wiring, or damaging power distribution systems like substations and transformers (EK 2.2.B.3)."
+        },
+        {
+          "term": "Data theft / copying",
+          "definition": "Stealing or copying sensitive information after gaining access to an area where that information is kept (EK 2.2.B.4)."
+        },
+        {
+          "term": "Malicious port access",
+          "definition": "Plugging a keylogger or malware-laden external drive into a device's ports to collect data or gain control, or physically destroying the device (EK 2.2.B.5)."
+        }
+      ],
+      "script": "Six terms for today. The two the exam leans on are threat and vulnerability — keep them straight: a threat is who or what could cause harm, including natural disasters, EK 2.2.B.1; a vulnerability is the weakness they exploit, EK 2.2.B.2. Don't lose natural disaster as its own term — the exam likes to test that weather counts as a threat. Then the three concrete harms: power disruption, EK 2.2.B.3; data theft or copying, EK 2.2.B.4; and malicious port access, EK 2.2.B.5. Get all six into your notes with EK numbers."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘Only Hackers Are Threats’ Myth",
+      "misconception": "A threat to physical security means a human adversary — a thief or a hacker. Weather and accidents aren't really cybersecurity threats.",
+      "whyItHappens": "The word 'threat' sounds intentional and human, and most of yesterday's named attacks (piggybacking, card cloning) involve a person. It's easy to forget the standard's other half.",
+      "correction": "EK 2.2.B.1 explicitly defines threats to include BOTH human adversaries seeking to cause harm or disruption AND natural disasters. Natural disasters can cause physical damage or destruction to computers and data and disrupt the digital services those computers provide — the same loss, damage, disruption, and destruction outcomes a human adversary causes. A flood that drowns a server room is a threat the exam expects you to recognize.",
+      "example": "A data center built in a flood plain has no human attacker, but a single storm can destroy its servers (destruction), corrupt its backups (loss/damage), and knock its services offline for days (disruption). The vulnerability — poor physical siting — is exploited by a natural disaster, not a person. That is squarely within EK 2.2.B.1, which is why physical security planning addresses fire suppression, flood control, and power redundancy, not just locks and badges.",
+      "script": "Here's the misconception the College Board builds into 2.2.B. The word 'threat' sounds like a person — a thief, a hacker — and after a whole day of human attacks yesterday, it's natural to assume threats are always people. But read EK 2.2.B.1: threats include human adversaries AND natural disasters. A flood, a fire, a storm — each can physically damage or destroy computers and data and disrupt the services they provide. Same outcomes as a human attacker: loss, damage, disruption, destruction. Picture a data center in a flood plain: no attacker, but one storm destroys the servers, corrupts the backups, and takes services down for days. The vulnerability there is poor siting, and the threat exploiting it is weather. That's why real physical-security plans include fire suppression and flood control, not just locks. On the exam, if a scenario describes weather wrecking equipment, that's still a threat under 2.2.B.1 — don't write it off."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.2.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "An adversary gains physical access to a device and plugs an external drive containing malware into one of its USB ports. Cite the EK, explain two distinct things this could let the adversary do, and name which of the objective's outcome words (loss, damage, disruption, destruction) each one produces.",
+        "Explain why the College Board includes natural disasters in its definition of threats (EK 2.2.B.1). Give one example of a natural disaster exploiting a physical vulnerability, and state what the organization loses."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: the adversary plugs a malware-loaded drive into a USB port — cite EK 2.2.B.5, then explain two distinct things that enables, like collecting data and gaining control of the device, and tag each with an outcome word. Question two is the natural-disaster point: explain why EK 2.2.B.1 counts disasters as threats, give one example — a flood, a fire — exploiting a physical weakness, and say what's lost. Be precise with EK numbers and outcome words."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.2 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-physical-vulnerabilities"
+        },
+        {
+          "label": "Exercise 3",
+          "tail": "Match each physical access to its compromise (EK 2.2.B.2).",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-exercise-3"
+        },
+        {
+          "label": "Exercise 4",
+          "tail": "Threat vs. vulnerability sort, including natural disasters.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-exercise-4"
+        },
+        {
+          "label": "Lesson 2.2 quiz",
+          "tail": "Five questions across the whole topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site. Re-run the Lesson 2.2 self-check, then do Exercise 3, where you match each kind of physical access to the compromise it causes, and Exercise 4, where you sort threats from vulnerabilities and make sure natural disasters land on the threat side. The quiz is your five-question check across the whole topic — you'll take it on Day 5. If you want today again at your own pace, the lesson video walks it slide for slide."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 2 · Day 2 of 5",
+      "heading": "End of Day 2",
+      "todayPoints": [
+        "Defined threats to include BOTH human adversaries and natural disasters (LO 2.2.B, EK 2.2.B.1)",
+        "Defined vulnerabilities and the four common compromises they allow (EK 2.2.B.2)",
+        "Explained how physical access disrupts power, steals/copies data, and weaponizes ports or destroys devices (EK 2.2.B.3–B.5)",
+        "Mapped each harm to an outcome word: loss, damage, disruption, or destruction"
+      ],
+      "nextPoints": [
+        "Learn the method for assessing and documenting risk from physical vulnerabilities (LO 2.2.C)",
+        "See why physical access is special: it can bypass technical controls (EK 2.2.C.1)",
+        "Grade vulnerabilities as high, moderate, or low risk (EK 2.2.C.2–C.4)"
+      ],
+      "teaser": "You can now name the attacks and explain the harms. But a security team can't fix everything at once — so which vulnerability do you tackle first? Tomorrow you learn the College Board's method for grading risk high, moderate, or low.",
+      "script": "Day 2 done. You can keep threat and vulnerability straight — and you remember that natural disasters are threats too — and you can explain how physical access turns into power disruption, data theft, malware, and destruction. That's the whole of 2.2.B. But naming harms isn't enough; a real team can't fix everything at once. Tomorrow, EK 2.2.C: the method for assessing and documenting risk. You'll learn why physical access is uniquely dangerous because it bypasses technical controls, and how to grade each vulnerability high, moderate, or low so you know what to fix first. Review your Guided Notes — be able to define threat and vulnerability and name the three concrete harms with their EK numbers."
+    }
+  ]
+}

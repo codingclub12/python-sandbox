@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "lessonId": "2.2",
+    "lessonTitle": "Physical Vulnerabilities",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 3,
+    "los": "LO 2.2.C",
+    "anchor": "Securing Xtensr Labs",
+    "author": "AP CS Exam Prep",
+    "totalDays": 5
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.2 · Day 3 of 5",
+      "title": "Grading the Danger: High, Moderate, Low",
+      "subtitle": "Physical Vulnerabilities: the method for assessing and documenting risk — why physical access bypasses technical controls, and how to rate each vulnerability high, moderate, or low",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Lesson 2.2, Day 3. Day 1 named the attacks; Day 2 explained the harms. Today, 2.2.C, you learn the method: assess and document risks from physical vulnerabilities. This is the skill the unit scenario is built on. Two ideas anchor today. First, EK 2.2.C.1: physical access is uniquely dangerous because it can bypass many technical controls and layers of security — the firewall doesn't help if someone can unplug the server. Second, the heart of the day: the College Board's three-level risk method — high, moderate, and low — each with a precise definition and an illustrative example. Today is the method in the abstract; tomorrow, Day 4, you apply this exact method to the Xtensr labs. So learn the three risk levels cold — they are your tool for the rest of the unit."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Three weaknesses, same building. (A) A server holding customer data sits in a room with no lock, reached through an unmonitored hallway. (B) A reception-area computer with exposed USB ports connects to the internal Wi-Fi. (C) Badge-access employees leave non-sensitive laptops unsecured on their desks during a group lunch.",
+      "subprompt": "Write 3–5 sentences: rank these three from most to least serious and explain your top pick. What made it more dangerous than the others?",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own. Three weaknesses in one building. A: a server with customer data in a room with no lock, off an unmonitored hallway. B: a reception computer with exposed USB ports that's on the internal Wi-Fi. C: badge-access employees leaving non-sensitive laptops out during a group lunch. Rank them most to least serious and defend your number one — what makes it worse than the others? Hold your answer. These three are the College Board's own illustrative examples for high, moderate, and low risk, and by the end of class you'll grade them the exact way the standard does."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 3 Guided Notes have two sections that match today’s lesson. Both are CB-required.",
+      "sections": [
+        {
+          "title": "Why Physical Access Is Special",
+          "description": "Physical access to devices can bypass many technical controls and layers of security — the lock matters as much as the firewall (EK 2.2.C.1)."
+        },
+        {
+          "title": "The High / Moderate / Low Risk Method",
+          "description": "Grade each vulnerability by what's exposed and how likely exploitation is, using the CB's three levels and illustrative examples (EK 2.2.C.2, C.3, C.4)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.2 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Two sections today, both CB-required. First, why physical access is special: it can bypass the technical controls and layers of security a team has carefully built. Second, the core skill — the high, moderate, low risk method: how to grade each vulnerability based on what it exposes and how likely it is to be exploited, using the College Board's three levels and their illustrative examples. Keep the packet open; this method is what you'll apply to the Xtensr labs tomorrow."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Assess and document risks from physical vulnerabilities (LO 2.2.C)"
+        }
+      ],
+      "script": "One objective today, the third for this topic: assess and document risks from physical vulnerabilities — learning objective 2.2.C. The verbs are assess and document. Assess means assign a risk level; document means record it clearly so a team can act on it. The College Board gives you a three-level scale — high, moderate, low — each with a definition built on two factors: how sensitive or valuable the exposed asset is, and how likely the vulnerability is to be exploited. By the end of class you can take any physical vulnerability, place it on that scale, and justify the placement the way the standard does. Tomorrow you'll do it for a real set of building plans."
+    },
+    {
+      "type": "section_divider",
+      "number": "05",
+      "label": "Why Physical Access Is Special",
+      "kicker": "Assessing Physical Risk · Learning Objective 2.2.C",
+      "script": "Section five of the lesson. Learning objective 2.2.C. Before the grading scale, the reason physical risk deserves its own treatment: physical access can defeat the digital defenses entirely. Eight minutes."
+    },
+    {
+      "type": "concept",
+      "heading": "Physical Access Bypasses Technical Controls",
+      "body": "EK 2.2.C.1 — Physical access to devices can allow adversaries to bypass many technical controls and layers of security. A firewall, strong passwords, and encrypted network traffic protect a device from attacks coming over the network. None of them stop an adversary standing in front of the machine who can unplug it, pull its drive, plug in a keylogger, or carry it out the door. This is why a single unlocked door can undo a large investment in digital security — and why physical risk has to be assessed on its own terms.",
+      "points": [
+        "Technical controls (firewalls, passwords, encryption) defend against NETWORK attacks (EK 2.2.C.1)",
+        "Physical access defeats them — the adversary is already past the network perimeter",
+        "Once at the device, they can do everything from Day 2: power, ports, theft, destruction (EK 2.2.B.3–B.5)",
+        "This is why physical vulnerabilities can carry HIGH risk even with strong digital security"
+      ],
+      "script": "Here's why physical risk gets its own objective. EK 2.2.C.1 says physical access to devices can allow adversaries to bypass many technical controls and layers of security. Think about what a firewall, passwords, and encryption actually do: they defend a device from attacks arriving over the network. Now put an adversary physically in front of that device. The firewall is irrelevant — they're already inside the perimeter. They can unplug it, pull the drive, plug in a keylogger, or walk out with it, exactly the harms from yesterday's EK 2.2.B.3 through B.5. So a single unlocked door can undo a huge investment in digital security. That's the reason we assess physical risk separately, and it's why a physical vulnerability can rate high even at an organization with excellent network security. Write EK 2.2.C.1 and the phrase 'bypass technical controls.'"
+    },
+    {
+      "type": "section_divider",
+      "number": "06",
+      "label": "The High / Moderate / Low Method",
+      "kicker": "Assessing Physical Risk · Learning Objective 2.2.C",
+      "script": "Section six. Same objective, 2.2.C. The core skill of the day and the unit: grading a physical vulnerability high, moderate, or low. Three definitions, three illustrative examples, straight from the standard. Fourteen minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "The Three Risk Levels, with the CB's Own Examples",
+      "subheading": "EK 2.2.C.2, C.3, and C.4 — graded by what's exposed and how likely exploitation is.",
+      "items": [
+        {
+          "ek": "EK 2.2.C.2",
+          "title": "High Risk",
+          "summary": "Arises when sensitive information or systems are exposed in physical spaces without sufficiently restricted and controlled access. Illustrative example: a server that stores customer data is in a room with no lock, accessed via an unmonitored hallway.",
+          "ekRef": "EK 2.2.C.2"
+        },
+        {
+          "ek": "EK 2.2.C.3",
+          "title": "Moderate Risk",
+          "summary": "Arises when a noncritical or nonsensitive part of an organization is left unprotected in a way that it could act as a foothold for an adversary to gain initial access to other resources. Illustrative example: a reception-area computer that connects to the internal wireless network and has exposed USB ports.",
+          "ekRef": "EK 2.2.C.3"
+        },
+        {
+          "ek": "EK 2.2.C.4",
+          "title": "Low Risk",
+          "summary": "Arises when a vulnerable asset is of low value and the vulnerability is unlikely to be exploited. Illustrative example: badge-access employees leave non-sensitive laptops unsecured on their desks during a group lunch, with no cables tethering the devices.",
+          "ekRef": "EK 2.2.C.4"
+        }
+      ],
+      "script": "The three risk levels, with the College Board's own illustrative examples — these are worth memorizing. EK 2.2.C.2, high risk: sensitive information or systems exposed in physical spaces without sufficiently restricted and controlled access. The example is the server with customer data in a room with no lock, off an unmonitored hallway — sensitive asset, wide-open access. EK 2.2.C.3, moderate risk: a noncritical or nonsensitive part of the organization left unprotected in a way that could act as a foothold to reach other resources. The example is the reception computer with exposed USB ports that's on the internal Wi-Fi — not sensitive itself, but a stepping stone inward. EK 2.2.C.4, low risk: a low-value asset where exploitation is unlikely. The example is badge-access employees leaving non-sensitive laptops out during a group lunch — low value, behind a badge, unlikely to be exploited. Write all three definitions and examples with EK numbers. Notice the two dials: how sensitive the asset is, and how likely the exploit."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Reading the Two Dials: Sensitivity × Likelihood",
+      "subheading": "Each CB example turns on the SAME two factors — what's exposed and how reachable it is.",
+      "columns": ["Risk Level", "Asset Exposed", "Access / Likelihood", "CB Illustrative Example"],
+      "highlightCol": 0,
+      "rows": [
+        ["HIGH (EK 2.2.C.2)", "Sensitive: server with customer data", "No lock; unmonitored hallway", "Server room with no lock off an unmonitored hallway"],
+        ["MODERATE (EK 2.2.C.3)", "Noncritical: reception computer", "Foothold: exposed USB + internal Wi-Fi", "Reception computer, internal Wi-Fi, exposed USB ports"],
+        ["LOW (EK 2.2.C.4)", "Low value: non-sensitive laptops", "Badge access; exploitation unlikely", "Unsecured laptops left out during a group lunch"]
+      ],
+      "footer": "AP TIP: To grade a vulnerability, ask TWO questions — (1) how sensitive/valuable is the exposed asset? (2) how easily and likely is it to be exploited? High = sensitive + open. Moderate = a foothold to bigger things. Low = low value + unlikely.",
+      "script": "Let's read the three examples as one method. Every grade turns on two dials: how sensitive or valuable the exposed asset is, and how reachable — how likely to be exploited — it is. Top row, high: the asset is sensitive, a server with customer data, and access is wide open, no lock and an unmonitored hallway. Sensitive plus open equals high. Middle row, moderate: the asset itself is noncritical — a reception computer — but it's a foothold, exposed USB ports on a machine that's on the internal network, so an adversary could use it to reach bigger resources. Bottom row, low: the asset is low value, non-sensitive laptops, and exploitation is unlikely because they're behind badge access during a brief group lunch. So the method is two questions: how sensitive is the asset, and how likely is the exploit. Hold those two dials in your head — you'll turn them on every vulnerability at Xtensr tomorrow."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘Lock Everything Equally’ Myth",
+      "misconception": "Every physical vulnerability is serious, so a security team should treat them all as high risk and fix them in any order.",
+      "whyItHappens": "After Days 1 and 2, every attack and harm sounds alarming, so it's tempting to flatten them all into one urgent pile. Risk assessment feels like splitting hairs.",
+      "correction": "The whole point of EK 2.2.C.2–C.4 is that risk is NOT uniform. It's graded by two factors — the sensitivity/value of the exposed asset and the likelihood of exploitation. A locked badge area with non-sensitive laptops (low) is not the same emergency as an unlocked room full of customer data (high). Documenting risk levels is how a team decides what to fix first when it can't fix everything at once.",
+      "example": "Compare the CB's own examples: the unlocked server room with customer data (high — sensitive asset, no access control) versus the laptops left out behind badge access during lunch (low — low value, unlikely to be exploited). Treating them as equally urgent would waste scarce security resources tethering cheap laptops while the customer-data server stays unlocked. Correct assessment sends the team to the high-risk item first.",
+      "script": "Here's the misconception that derails risk assessment. After two days of scary attacks and harms, students want to stamp everything 'high' and fix it all now. But the entire purpose of EK 2.2.C.2 through C.4 is that risk is not uniform — it's graded by two factors, the sensitivity or value of what's exposed and how likely it is to be exploited. The College Board's own examples make the point: the unlocked server room full of customer data is high, but the badge-protected laptops left out during lunch are low. Treat them the same and you'd send your team to cable down cheap laptops while the customer-data server sits unlocked. That's backwards. Documenting risk levels is exactly how a team prioritizes when it can't fix everything at once — and that prioritization is the skill the exam and the Xtensr scenario test."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.2.C)",
+      "terms": [
+        {
+          "term": "Bypassing technical controls",
+          "definition": "The reason physical risk is special: physical access to devices can allow adversaries to defeat many technical controls and layers of security, like firewalls and passwords, that only guard against network attacks (EK 2.2.C.1)."
+        },
+        {
+          "term": "Risk assessment (physical)",
+          "definition": "Assigning each physical vulnerability a risk level based on how sensitive or valuable the exposed asset is and how likely the vulnerability is to be exploited (EK 2.2.C.2)."
+        },
+        {
+          "term": "High risk",
+          "definition": "Sensitive information or systems exposed in physical spaces without sufficiently restricted and controlled access — e.g., a customer-data server in an unlocked room off an unmonitored hallway (EK 2.2.C.2)."
+        },
+        {
+          "term": "Moderate risk",
+          "definition": "A noncritical or nonsensitive part of an organization left unprotected in a way that could act as a foothold for an adversary to gain initial access to other resources (EK 2.2.C.3)."
+        },
+        {
+          "term": "Low risk",
+          "definition": "A vulnerable asset that is of low value and where the vulnerability is unlikely to be exploited — e.g., non-sensitive laptops left unsecured behind badge access during lunch (EK 2.2.C.4)."
+        },
+        {
+          "term": "Foothold",
+          "definition": "A noncritical asset an adversary can use as an initial entry point to reach other, more valuable resources — the defining feature of a moderate-risk vulnerability (EK 2.2.C.3)."
+        }
+      ],
+      "script": "Six terms today, all about grading risk. The three that matter most are high, moderate, and low risk — know each definition and be able to recite the College Board's illustrative example for each. High, EK 2.2.C.2: sensitive asset, no controlled access. Moderate, EK 2.2.C.3: noncritical asset that's a foothold to bigger things — and learn the word foothold, it's the giveaway for moderate. Low, EK 2.2.C.4: low value, unlikely to be exploited. Bracket those with EK 2.2.C.1, bypassing technical controls — the reason physical risk is special — and the general idea of physical risk assessment. All six in your notes with EK numbers."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.2.C. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Take the bell-ringer's three weaknesses and assign each a risk level (high, moderate, or low). Cite the matching EK for each and justify the grade using the two factors — asset sensitivity/value and likelihood of exploitation.",
+        "Explain why EK 2.2.C.1 (physical access bypasses technical controls) means a vulnerability can be high risk even at an organization with an excellent firewall and strong passwords. Use one concrete example."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: take the three bell-ringer weaknesses and grade each — the customer-data server is high, EK 2.2.C.2; the reception computer foothold is moderate, EK 2.2.C.3; the laptops at lunch are low, EK 2.2.C.4 — and for each, justify with the two factors. Question two: explain why EK 2.2.C.1 means a vulnerability can be high even with a great firewall — because physical access bypasses those technical controls — and give one concrete example. Cite EK numbers."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.2 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-physical-vulnerabilities"
+        },
+        {
+          "label": "Exercise 5",
+          "tail": "Grade vulnerabilities high / moderate / low.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-exercise-5"
+        },
+        {
+          "label": "Exercise 6",
+          "tail": "Match each CB illustrative example to its risk level.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-exercise-6"
+        },
+        {
+          "label": "Lesson 2.2 quiz",
+          "tail": "Five questions across the whole topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site. Re-run the Lesson 2.2 self-check, then Exercise 5, where you grade a set of vulnerabilities high, moderate, or low, and Exercise 6, where you match each College Board illustrative example to its risk level. The quiz is your five-question topic check on Day 5. If you want today again at your own pace, the lesson video walks the risk method slide for slide."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 3 · Day 3 of 5",
+      "heading": "End of Day 3",
+      "todayPoints": [
+        "Explained why physical access is special: it can bypass many technical controls and layers of security (LO 2.2.C, EK 2.2.C.1)",
+        "Learned the three risk levels — high, moderate, low — with the CB's illustrative examples (EK 2.2.C.2–C.4)",
+        "Identified the two factors behind every grade: asset sensitivity/value and likelihood of exploitation",
+        "Practiced documenting risk so a team knows what to fix first"
+      ],
+      "nextPoints": [
+        "Apply this exact method to Scenario 2A — Securing Xtensr Labs (LO 2.2.C)",
+        "Walk the new lab's building plans and current controls to identify physical vulnerabilities",
+        "Assess and document each one as high, moderate, or low risk"
+      ],
+      "teaser": "You have the method. Tomorrow you become the assessor: Xtensr is buying a new lab across town, and your job is to walk its plans, find the physical vulnerabilities, and grade every one. Bring the two dials.",
+      "script": "Day 3 done. You now own the method: you know why physical access is uniquely dangerous because it bypasses technical controls, and you can grade any vulnerability high, moderate, or low using the two factors — sensitivity and likelihood. That's the whole of 2.2.C in the abstract. Tomorrow you put it to work. Scenario 2A: Xtensr Research Labs is acquiring a smaller lab across town, and you're on the physical security team tasked with assessing it. You'll walk the building plans, identify the vulnerabilities, and document a risk level for each — exactly what you practiced today. Review your Guided Notes — be able to define all three risk levels and recite the College Board's example for each."
+    }
+  ]
+}

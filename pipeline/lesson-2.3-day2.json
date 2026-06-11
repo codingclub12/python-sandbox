@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "lessonId": "2.3",
+    "lessonTitle": "Protecting Spaces",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 2,
+    "los": "LO 2.3.B",
+    "anchor": "Securing Xtensr Labs",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.3 · Day 2 of 4",
+      "title": "Choosing the Physical Control That Fits the Risk",
+      "subtitle": "Protecting Spaces: how a defender reasons from the adversary to prevent, detect, or correct — and the physical controls the College Board names for mitigating physical vulnerabilities",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome back to Lesson 2.3, Day 2 of 4. Yesterday, 2.3.A, was managerial controls — training and policy. Today is the first day of 2.3.B: determining mitigation strategies for risks from physical vulnerabilities, which means the physical controls. We start with the reasoning, EK 2.3.B.1: a defender chooses a control by thinking about how an adversary would exploit the vulnerability and whether the control will prevent, detect, or correct the attack. Then we build the toolkit — fences, gates, bollards, locks, card readers, vestibules, turnstiles, USB-port controls, UPS and generators — EK 2.3.B.2 through B.7. Finally, EK 2.3.B.8: how organizations prioritize by severity and cost. Tomorrow, Day 3, you apply all of it to Scenario 2A. Today is where you learn the tools and how to pick them."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Your team finds two vulnerabilities at a new lab: (1) the parking lot lets vehicles drive right up to the glass lobby wall, and (2) a side door props open and anyone can walk to the unlocked server cabinet. You have a limited budget and can't fix everything at once.",
+      "subprompt": "Write 3–5 sentences: for each vulnerability, name a control that would stop the attack. Then say which one you'd fund first, and why — what makes one risk more urgent than the other?",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own. Two vulnerabilities at a new lab: one, the parking lot lets a vehicle drive straight up to a glass lobby wall; two, a side door props open and anyone can reach an unlocked server cabinet. Limited budget — you can't fix it all today. In three to five sentences, name a control for each, then tell me which you'd fund first and why. You're already doing two things the College Board tests today: matching a control to a vulnerability, EK 2.3.B.2 and B.3, and prioritizing by severity and cost, EK 2.3.B.8. Hold your answer."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have three sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Choosing a Control: Prevent, Detect, Correct",
+          "description": "A defender reasons from how an adversary would exploit the vulnerability to whether a control will prevent, detect, or correct the attack (EK 2.3.B.1)."
+        },
+        {
+          "title": "The Physical-Control Toolkit",
+          "description": "Fences/gates/bollards, locks, card readers, vestibules/turnstiles, disabled USB ports, and UPS/generators (EK 2.3.B.2–B.7)."
+        },
+        {
+          "title": "Enrichment: Prioritizing by Severity and Cost",
+          "description": "Organizations can't buy every control at once, so they rank mitigations by how severe the risk is and how much the fix costs (EK 2.3.B.8).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.3 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three sections, two green and one blue. Section one is the reasoning of EK 2.3.B.1 — how a defender picks a control by thinking like an adversary and asking whether the control prevents, detects, or corrects. Section two is the toolkit itself: the physical controls in EK 2.3.B.2 through B.7. Section three is an enrichment that's actually a required EK, B.8 — how organizations prioritize mitigations by severity and cost, which is the budget side of the job. Keep your pencil moving; I collect Guided Notes at the end of class."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Determine mitigation strategies for risks from physical vulnerabilities (LO 2.3.B)"
+        }
+      ],
+      "script": "One learning objective today, and it carries into tomorrow: determine mitigation strategies for risks from physical vulnerabilities — learning objective 2.3.B. The verb is determine, which is harder than identify — you don't just name a control, you choose the right one for a given vulnerability and justify it. The College Board gives you a method in EK 2.3.B.1 and a toolkit in B.2 through B.7, plus a prioritization rule in B.8. By the end of today you can take a physical vulnerability, name a control that mitigates it, and say whether that control prevents, detects, or corrects the attack."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "How a Defender Chooses a Control",
+      "kicker": "Mitigation Strategies · Learning Objective 2.3.B",
+      "script": "Section one. Learning objective 2.3.B. Before the catalog of controls, the method: EK 2.3.B.1, how a defender reasons from the adversary to a control that prevents, detects, or corrects. Eight minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "Determining a Relevant Control (EK 2.3.B.1)",
+      "subheading": "The defender's reasoning: start from the adversary, end at prevent / detect / correct.",
+      "left": {
+        "title": "Think Like the Adversary",
+        "definition": "How could an adversary exploit this vulnerability?",
+        "ek": "EK 2.3.B.1",
+        "examples": [
+          "A cyber defender considers how an adversary could take advantage of a vulnerability",
+          "The question is how the adversary would attack the system through that gap",
+          "Only after understanding the attack can you choose a fitting control",
+          "Starting from the attack — not from a hardware catalog — keeps the control relevant"
+        ]
+      },
+      "right": {
+        "title": "Prevent, Detect, or Correct",
+        "definition": "What should the control do about that attack?",
+        "ek": "EK 2.3.B.1",
+        "examples": [
+          "PREVENT: stop the attack from happening (a lock, a fence, a vestibule)",
+          "DETECT: notice the attack when it occurs (a card-reader log, monitoring)",
+          "CORRECT: limit or recover from the damage (a UPS keeping a device running)",
+          "A relevant control addresses the attack in at least one of these three ways"
+        ]
+      },
+      "footer": "AP TIP: EK 2.3.B.1 is the METHOD behind every control choice. Name the adversary's move first, then say whether your control prevents, detects, or corrects it. That two-part reasoning is what ‘determine’ asks for.",
+      "script": "Here is the method, EK 2.3.B.1: to determine a relevant control, a cyber defender considers how an adversary could take advantage of a vulnerability to attack a system, and how to prevent, detect, or correct the attack. Two moves. On the left, think like the adversary — how would they actually exploit this gap? You can't pick a good control until you understand the attack, and starting from the attack instead of a catalog keeps your control relevant. On the right, decide what the control should do: prevent the attack from happening, like a lock or a fence; detect it when it occurs, like a card-reader log; or correct it, limit or recover from the damage, like a UPS keeping a device alive through a power cut. Every control you'll meet today fits at least one of those three. Write EK 2.3.B.1 and the three words: prevent, detect, correct."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Physical-Control Toolkit",
+      "kicker": "Mitigation Strategies · Learning Objective 2.3.B",
+      "script": "Section two. Same objective, 2.3.B. Now the toolkit — the specific physical controls the College Board names, EK 2.3.B.2 through B.7. As each one comes up, ask: what does it prevent, detect, or correct? Fifteen minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "The Physical-Control Toolkit (EK 2.3.B.2–B.7)",
+      "subheading": "Six families of physical controls. For each, know what it does and the vulnerability it mitigates.",
+      "items": [
+        {
+          "ek": "EK 2.3.B.2",
+          "title": "Perimeter: Fencing, Gates, Bollards",
+          "summary": "Installing physical controls like fencing, gates, and bollards around a building can deter adversaries from trying to physically access an organization's buildings — bollards specifically stop vehicles from reaching a wall or entrance.",
+          "ekRef": "EK 2.3.B.2"
+        },
+        {
+          "ek": "EK 2.3.B.3",
+          "title": "Locks on Doors, Cabinets, Computers",
+          "summary": "Locks on doors, server cabinets, and computers can prevent devices from being accessed or stolen — the direct control for an unlocked server cabinet or an unsecured workstation.",
+          "ekRef": "EK 2.3.B.3"
+        },
+        {
+          "ek": "EK 2.3.B.4 + B.5",
+          "title": "Entry Control: Readers, Vestibules, Turnstiles",
+          "summary": "Card readers record which badges access which entries at what times and deny unauthorized badges (B.4); access control vestibules and turnstiles prevent an authorized person from intentionally or accidentally admitting an unauthorized person to a restricted area (B.5).",
+          "ekRef": "EK 2.3.B.4"
+        }
+      ],
+      "script": "Here's the core of the toolkit. First, EK 2.3.B.2, the perimeter: fencing, gates, and bollards around a building deter adversaries from even trying to get physical access — and bollards specifically stop vehicles, which answers the parking-lot-meets-glass-wall vulnerability from your bell ringer. Second, EK 2.3.B.3, locks: locks on doors, server cabinets, and computers prevent devices from being accessed or stolen — that's the answer to the unlocked server cabinet. Third, entry control, two EKs together: card readers, EK 2.3.B.4, record which badge opened which entry at what time and deny unauthorized badges — note that's both detection and prevention. And access control vestibules and turnstiles, EK 2.3.B.5, stop an authorized person from letting an unauthorized person in, on purpose or by accident — that's the hardware answer to tailgating. Write all of these with their EK numbers and what each one prevents or detects."
+    },
+    {
+      "type": "two_column",
+      "heading": "Protecting the Computer Itself (EK 2.3.B.6 & B.7)",
+      "subheading": "Two more controls in the toolkit — one blocks a data path, one keeps power flowing.",
+      "left": {
+        "title": "Disable USB Ports (EK 2.3.B.6)",
+        "definition": "Close a physical data path into the machine",
+        "ek": "EK 2.3.B.6",
+        "examples": [
+          "Organizations can disable USB ports on a computer",
+          "This prevents external drives from loading malware onto the computer",
+          "It closes a physical attack path even if someone reaches the keyboard",
+          "A preventive control aimed at malware introduced through removable media"
+        ]
+      },
+      "right": {
+        "title": "UPS and Generators (EK 2.3.B.7)",
+        "definition": "Keep critical devices powered through an outage",
+        "ek": "EK 2.3.B.7",
+        "examples": [
+          "An uninterruptible power supply (UPS) provides backup power for a device during a power outage",
+          "Power generators provide power at a larger scale to a building or set of critical devices",
+          "This is a corrective control — it limits loss when power fails",
+          "It keeps availability intact so an outage doesn't become data loss or downtime"
+        ]
+      },
+      "footer": "AP TIP: EK 2.3.B.6 (disable USB ports) is PREVENT — it closes a malware path. EK 2.3.B.7 (UPS / generators) is CORRECT — it keeps devices running through a power loss. Same toolkit, different job in the prevent/detect/correct model.",
+      "script": "Two more controls that protect the machine itself. On the left, EK 2.3.B.6: organizations can disable USB ports to prevent external drives from loading malware onto a computer. That closes a physical data path — even if someone gets to the keyboard, they can't plug in an infected drive. It's a preventive control. On the right, EK 2.3.B.7: an uninterruptible power supply, a UPS, provides backup power for a device during an outage, and power generators do the same at a larger scale for a building or set of critical devices. Notice this one is corrective — it doesn't stop the outage, it limits the loss by keeping critical devices running. Map each to the prevent-detect-correct model: USB disabling prevents, UPS and generators correct. Write both EKs."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘Any Strong Control Will Do’ Myth",
+      "misconception": "If you bolt on enough powerful security controls, the vulnerability is handled — the specific control doesn't really matter as long as it's serious security.",
+      "whyItHappens": "All the controls sound protective, so it's tempting to grab the most impressive-sounding one. Students skip EK 2.3.B.1's reasoning step and jump straight to naming hardware.",
+      "correction": "EK 2.3.B.1 requires matching the control to the specific attack: consider how the adversary exploits THIS vulnerability, then choose a control that prevents, detects, or corrects THAT attack. Bollards do nothing for an unlocked server cabinet; a UPS does nothing about tailgating. And EK 2.3.B.8 adds that organizations prioritize by severity and cost — more controls is not automatically better. The right control fits the vulnerability and the budget.",
+      "example": "Recommending a building-wide generator (EK 2.3.B.7) to fix a propped-open side door is both wrong and wasteful — the door needs a lock and maybe a vestibule (B.3, B.5). Conversely, a $20 lock can mitigate a severe theft risk better than a $50,000 perimeter upgrade. The exam rewards the control that matches the attack, justified by prevent/detect/correct and weighed against severity and cost.",
+      "script": "Here's the trap on Day 2. Every control sounds protective, so students grab the most impressive one and skip the reasoning. But EK 2.3.B.1 says match the control to the specific attack — figure out how the adversary exploits this particular vulnerability, then pick a control that prevents, detects, or corrects that attack. Bollards do nothing for an unlocked server cabinet; a UPS does nothing about tailgating. And EK 2.3.B.8 reminds you that organizations prioritize by severity and cost, so piling on controls isn't the goal. Picture recommending a building-wide generator to fix a propped-open door — wrong and wasteful; that door needs a lock and maybe a vestibule. Meanwhile a twenty-dollar lock can beat a fifty-thousand-dollar perimeter upgrade for a theft risk. On the exam, name the control that fits the attack, justify it with prevent-detect-correct, and weigh it against severity and cost."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Prioritizing by Severity and Cost (EK 2.3.B.8)",
+      "subheading": "A required EK and the budget half of the job: you usually can't fund every control at once.",
+      "track": "enrichment",
+      "left": {
+        "title": "The Two Factors",
+        "definition": "What organizations weigh when they rank mitigations",
+        "ek": "EK 2.3.B.8",
+        "examples": [
+          "Organizations prioritize risk mitigations based on the SEVERITY of the risks",
+          "And on the COST of the recommended mitigations",
+          "A severe risk with a cheap fix is the easiest call — fund it first",
+          "A minor risk with an expensive fix may be accepted or deferred"
+        ]
+      },
+      "right": {
+        "title": "Why It Matters",
+        "definition": "Security budgets are finite; choices must be defended",
+        "ek": "EK 2.3.B.8",
+        "examples": [
+          "You rarely have the budget to mitigate every vulnerability at once",
+          "Ranking by severity and cost decides what gets fixed first",
+          "This connects back to risk assessment from Topic 2.2",
+          "A strong recommendation says WHICH controls and in WHAT order, and why"
+        ]
+      },
+      "footer": "TAKEAWAY: EK 2.3.B.8 turns a list of possible controls into a plan. Severe + cheap goes first; minor + costly may wait. On the exam, justify your ordering with both factors, not just one.",
+      "script": "Quick enrichment, and it's a required EK, B.8. Once you've found controls for every vulnerability, you still have to decide what to fund, because the budget is finite. The College Board names two factors: the severity of the risk and the cost of the mitigation. On the left, those two factors — a severe risk with a cheap fix is the easiest yes, fund it first; a minor risk with an expensive fix might be deferred or accepted. On the right, why it matters: you can't fix everything at once, so ranking by severity and cost decides the order, and that connects straight back to the risk assessment you did in Topic 2.2. On the exam, when you're asked to prioritize, use both factors — severity and cost — not just one. Write EK 2.3.B.8 and both factors."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.3.B)",
+      "terms": [
+        {
+          "term": "Physical control",
+          "definition": "A hardware or barrier-based security control — like a fence, lock, or card reader — that physically deters, prevents, or detects a physical attack (EK 2.3.B.2)."
+        },
+        {
+          "term": "Prevent / detect / correct",
+          "definition": "The three things a control can do about an attack; a defender chooses a relevant control by deciding which of these it should accomplish (EK 2.3.B.1)."
+        },
+        {
+          "term": "Bollard",
+          "definition": "A short, sturdy post installed around a building that, with fencing and gates, deters adversaries and stops vehicles from physically reaching a structure (EK 2.3.B.2)."
+        },
+        {
+          "term": "Card reader",
+          "definition": "An entry control that records which employee badges access which entries at what times and denies access to unauthorized badges (EK 2.3.B.4)."
+        },
+        {
+          "term": "Access control vestibule",
+          "definition": "An entry control, with turnstiles, that prevents an authorized person from intentionally or accidentally admitting an unauthorized person into a restricted area (EK 2.3.B.5)."
+        },
+        {
+          "term": "Uninterruptible power supply (UPS)",
+          "definition": "A backup power source for a device during a power outage; generators provide power at larger scale to a building or set of critical devices (EK 2.3.B.7)."
+        }
+      ],
+      "script": "Six terms for today, anchored on the 2.3.B EKs. The umbrella term is physical control — hardware that deters, prevents, or detects. The reasoning term is prevent, detect, correct, the three jobs a control can do, EK 2.3.B.1. Then the specific named controls: a bollard, the post that stops vehicles, EK 2.3.B.2; a card reader, which both logs and denies access, EK 2.3.B.4; an access control vestibule, which stops tailgating, EK 2.3.B.5; and the uninterruptible power supply, the UPS, with generators for larger scale, EK 2.3.B.7. Know all six by name and EK number, and for each, what it prevents, detects, or corrects."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.3.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A loading-dock door at a lab can be propped open, letting a stranger walk straight to an unlocked server cabinet. Using EK 2.3.B.1's reasoning, describe how an adversary would exploit this, name TWO physical controls that mitigate it, and state for each whether it prevents, detects, or corrects the attack (cite EK numbers).",
+        "Your assessment lists a severe theft risk fixable with a $40 cabinet lock and a low-severity power-flicker risk fixable with a $30,000 generator. Using EK 2.3.B.8, explain which mitigation you fund first and why, naming both factors the CED says organizations weigh."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: a propped-open dock door leading to an unlocked server cabinet — use EK 2.3.B.1 to describe the adversary's move, then name two controls, like a lock on the cabinet, EK 2.3.B.3, and a vestibule or card reader at the door, B.4 or B.5, and for each say prevent, detect, or correct. Question two: a severe theft risk with a forty-dollar lock versus a minor power flicker with a thirty-thousand-dollar generator — use EK 2.3.B.8 to say which you fund first and why, and name both factors, severity and cost. Be precise and cite EKs."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.3 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-protecting-spaces"
+        },
+        {
+          "label": "Exercise 3",
+          "tail": "Match each vulnerability to a physical control.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-3-exercise-3"
+        },
+        {
+          "label": "Exercise 4",
+          "tail": "Label each control: prevent, detect, or correct.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-3-exercise-4"
+        },
+        {
+          "label": "Lesson 2.3 quiz",
+          "tail": "Five questions across both objectives.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-3-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site. Re-run the Lesson 2.3 self-check, then Exercise 3, where you match each vulnerability to a physical control, and Exercise 4, where you label each control prevent, detect, or correct — that's exactly the skill we built today. The quiz is your five-question check across both objectives; you take it Day 4. Tomorrow we apply all of today's tools to Scenario 2A."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 2 · Day 2 of 4",
+      "heading": "End of Day 2",
+      "todayPoints": [
+        "Learned the method for choosing a control: think like the adversary, then prevent, detect, or correct (EK 2.3.B.1)",
+        "Built the physical-control toolkit: fences/gates/bollards (B.2), locks (B.3), card readers (B.4), vestibules/turnstiles (B.5)",
+        "Added device-level controls: disabling USB ports (B.6) and UPS/generators (B.7)",
+        "Saw how organizations prioritize mitigations by severity and cost (B.8)"
+      ],
+      "nextPoints": [
+        "Apply every control from today to Scenario 2A: Securing Xtensr Labs (LO 2.3.B)",
+        "Match each Xtensr vulnerability to a mitigating control and justify prevent/detect/correct",
+        "Prioritize the Xtensr recommendations by severity and cost"
+      ],
+      "teaser": "Tonight, picture the new lab Xtensr just bought: an open parking lot, a side door, a server room, rows of workstations. Tomorrow you walk it as the physical security team and recommend a control for every gap you find.",
+      "script": "Day 2 done. You can take a physical vulnerability, name a control that mitigates it, and say whether that control prevents, detects, or corrects the attack — and you know the College Board's toolkit by EK number, B.2 through B.7, plus the prioritization rule in B.8. Tomorrow is the payoff: Scenario 2A, Securing Xtensr Labs. You'll walk the new lab Xtensr acquired, match each vulnerability to a control, justify it with prevent-detect-correct, and prioritize your recommendations by severity and cost. Review your Guided Notes — be able to name every EK 2.3.B control and what it does."
+    }
+  ]
+}
