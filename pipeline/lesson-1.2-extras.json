@@ -1,0 +1,329 @@
+{
+  "meta": {
+    "lessonId": "1.2",
+    "lessonTitle": "Suspicious Website Logins",
+    "unit": "Unit 1: Introduction to Security",
+    "days": 4,
+    "los": "LO 1.2.A, 1.2.B, 1.2.C"
+  },
+  "map": {
+    "subtitle": "Unit 1: Introduction to Security   •   4 days   •   LO 1.2.A, 1.2.B, 1.2.C",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–4 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–4 (student fill-in + answer KEY)",
+      "Exercise 1: Login Log Detective and Exercise 2: Adversary Profile Builder (student + answer KEY)",
+      "Discussion — The Password Problem (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 3)",
+      "Quiz (student + answer KEY — key C-A-D-B-A, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 foundation, Day 2 Scenario 1B log, Day 3 case studies, Day 4 quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Suspicious Website Logins'; the CED scenario is 'Scenario 1B: Detecting Unauthorized Logins'; the unit hub lists this lesson as 'Detecting Suspicious Account Activity.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Login Log Detective",
+    "minutes": "~20 min",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-1",
+    "intro": "Part A uses CB Scenario 1B (Detecting Unauthorized Logins), the official College Board scenario for this topic. Part B extends the same skills. Both map to CB Learning Objectives 1.2.A, 1.2.B, and 1.2.C.",
+    "scenarioTitle": "CB Scenario 1B: Detecting Unauthorized Logins",
+    "narrative": "You participate in an online game that allows users to create and manage virtual teams. One day, you discover that some of your previous choices have been modified without your knowledge. You check the account activity section, which lists each time the account was accessed. You normally log in to the website on weekends and evenings, when you're not in school. (One added detail for this class — not in the CED: your family's last name is Rivera.)",
+    "scenarioNote": "Scenario and log entries from the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026); the Date/Time column is split for readability, and the Rivera surname is this course's added teaching detail.",
+    "log": {
+      "columns": [
+        "Entry",
+        "Day",
+        "Date",
+        "Time",
+        "Device IP Address"
+      ],
+      "rows": [
+        [
+          "1",
+          "Saturday",
+          "April 18",
+          "10:43",
+          "208.104.29.211"
+        ],
+        [
+          "2",
+          "Sunday",
+          "April 19",
+          "20:51",
+          "208.104.29.211"
+        ],
+        [
+          "3",
+          "Tuesday",
+          "April 21",
+          "18:34",
+          "208.104.29.211"
+        ],
+        [
+          "4",
+          "Wednesday",
+          "April 22",
+          "11:13",
+          "142.54.195.17"
+        ],
+        [
+          "5",
+          "Saturday",
+          "April 25",
+          "13:21",
+          "208.104.29.211"
+        ],
+        [
+          "6",
+          "Sunday",
+          "April 26",
+          "21:18",
+          "208.104.29.211"
+        ],
+        [
+          "7",
+          "Monday",
+          "April 27",
+          "10:07",
+          "142.54.195.17"
+        ],
+        [
+          "8",
+          "Wednesday",
+          "April 29",
+          "19:12",
+          "208.104.29.211"
+        ]
+      ]
+    },
+    "predict": "Before you answer Part A, write one sentence: which log entries look wrong to you, and why?",
+    "partALabel": "Part A - CB Scenario 1B",
+    "partA": [
+      {
+        "ek": "EK 1.2.A.2",
+        "pts": 6,
+        "q": "For EACH of the three CB-specified signs of a password attack, state whether it is present in this log or not, and quote the specific entries (or absence of evidence) that support your answer.",
+        "answer": "Sign 1 (many failed attempts in a short duration): NOT shown — this log records successful sign-ins only; there are no failure counts anywhere in the eight entries. Sign 2 (unusual times): PRESENT — entries 4 (Wednesday 11:13) and 7 (Monday 10:07) are school-hours logins against a stated weekends-and-evenings baseline. Sign 3 (unknown device): PRESENT — entries 4 and 7 come from 142.54.195.17, an IP never seen before, vs. the home IP 208.104.29.211 in entries 1, 2, 3, 5, 6, 8. Full credit requires explicitly noting the absent sign rather than inventing a failure burst."
+      },
+      {
+        "ek": "EK 1.2.A.2",
+        "pts": 3,
+        "q": "Both suspicious signs converge on the same two entries. Which entries are they, and why does that convergence make the evidence stronger than either sign alone?",
+        "answer": "Entries 4 and 7. Each carries BOTH anomalies at once — wrong time (school hours) and wrong source (unknown IP). Two independent indicators pointing at the same events is far less likely to be coincidence than either one alone, so the convergence is near-certain evidence of unauthorized access."
+      },
+      {
+        "ek": "EK 1.2.B.1 / 1.2.B.2",
+        "pts": 4,
+        "q": "Our class scenario adds the detail that the family's last name is Rivera (the CED log shows no names). Explain how an adversary who learned that name could construct a dictionary attack. Be specific about what the word list likely contained.",
+        "answer": "Per EK 1.2.B.2 the adversary gathers personal information (the family name, e.g., from social media) and combines it with the common patterns from EK 1.2.B.1: one or two words + a two-digit year + a trailing special character. The list likely contained Rivera plus every plausible year (Rivera09, Rivera2009, Rivera22...) with !, @, #, $ appended — e.g., Rivera2009!. An automated tool then submits the list against the website login."
+      },
+      {
+        "ek": "EK 1.2.C",
+        "pts": 4,
+        "q": "Recommend TWO of the three CED-specified defenses and explain the mechanism by which each one would have prevented THIS breach (naming the defense alone earns half credit).",
+        "answer": "Any two of: (C.1) a long, random, unique password generated by a password manager — a random string cannot be derived from personal info, so the Rivera-anchored dictionary never contains it; (C.2) avoid personal information — removing the family name eliminates the anchor the dictionary was built around; (C.3) enable MFA — even after the password is matched, the adversary cannot supply the one-time code, so the logins in entries 4 and 7 fail."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 1.2.A.2",
+        "pts": 3,
+        "q": "Why is a success-only log like this one MORE dangerous than a log full of failed attempts, even though it shows fewer signs?",
+        "answer": "A failure burst announces the attack while it is still failing; a success-only log means the attack already worked and generated no alarm. The victim here only noticed because saved settings changed — the damage, not the attack, was the first visible evidence."
+      },
+      {
+        "ek": "EK 1.2.B.1",
+        "pts": 3,
+        "q": "A password strength meter rated Rivera2009! as 'strong.' Explain why the meter and a targeted dictionary attack disagree about this password.",
+        "answer": "Meters score character variety (upper/lower/digit/symbol), which Rivera2009! has. EK 1.2.B.1's patterns are about predictability: name + year + trailing special character is exactly what a targeted dictionary tries first. Variety is not unpredictability."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Name one server-side control (not an EK 1.2.C user action) and describe how it would change what this log looks like.",
+        "answer": "Account lockout would freeze the account after N rapid failures, likely surfacing lockout events in the log; rate limiting would slow guessing so much that a long dictionary becomes impractical — both controls shape whether a failure burst ever appears. (Either control, or anomalous-login alerts, earns credit.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Adversary Profile Builder",
+    "minutes": "~20 min",
+    "subtitle": "6 scenarios - Three-Step Method",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-2",
+    "intro": "Six short scenarios. For each, run the EK 1.2.A.2 sign check (which signs are present, which are absent), state the most likely mechanism with its EK, and name the most effective CED defense. Advanced students also name the enrichment attack sub-type.",
+    "standard": "CB Standard (required): sign check + mechanism + defense for all 6. Enrichment (optional): also name the attack sub-type.",
+    "methodHeading": "Three-Step Method - use for every scenario",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Before analyzing, write your gut read. Anchoring your own answer first keeps a convincing wrong option from swaying you."
+      ],
+      [
+        "Step 2 - Sign check (EK 1.2.A.2)",
+        "For each of the three CB signs — many failed attempts in short duration, unusual times, unknown device/IP — write PRESENT or ABSENT with the evidence. Only claim what the scenario shows."
+      ],
+      [
+        "Step 3 - Mechanism + defense",
+        "State what the adversary most likely did (EK 1.2.A.1, 1.2.B.1, 1.2.B.2) and which EK 1.2.C defense most directly breaks that mechanism."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment sub-types (NOT required by the CED for Topic 1.2): Dictionary attack = targeted word list built from gathered personal info. Brute force = tries every combination. Credential stuffing = reuses real credentials leaked in a prior breach. Password spraying = a few common passwords tried across many accounts.",
+    "fields": [
+      "Sign check (1 / 2 / 3 — present or absent?)",
+      "Mechanism + most effective defense",
+      "Enrichment — attack sub-type"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Introductory",
+        "text": "A gaming platform reports 312 failed logins to account @ProGamer_Keely between 1:14 a.m. and 1:47 a.m. from a single unfamiliar IP. Keely's public Instagram shows her dog's name (Biscuit) and her graduation year (2022). Her password is Biscuit22!",
+        "key": {
+          "signs": "All three PRESENT: 312 failures in 33 minutes (Sign 1); 1 a.m. while Keely sleeps (Sign 2); single unfamiliar IP (Sign 3).",
+          "mechanism": "Targeted dictionary built from her Instagram per EK 1.2.B.2 — Biscuit + year + trailing ! is the EK 1.2.B.1 formula. Most effective defense: EK 1.2.C.2 (no personal info removes the anchor); EK 1.2.C.3 also blocks the login.",
+          "subtype": "Dictionary attack."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Introductory",
+        "text": "A log shows 47 failed logins between 2:00 and 2:03 a.m. — all from the account owner's usual home IP address.",
+        "key": {
+          "signs": "Sign 1 PRESENT (47 failures in 3 minutes); Sign 2 PRESENT (2 a.m.); Sign 3 ABSENT — the source is the owner's known IP, and you must say so.",
+          "mechanism": "Automated guessing run from (or through) a device on the home network — EK 1.2.A.1 guessing pattern. Defense: EK 1.2.C.1 random password defeats the list; lockout/rate limiting (enrichment) stops the burst.",
+          "subtype": "Dictionary or brute force (the volume/speed shows automation; the scenario does not reveal the word list)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Moderate",
+        "text": "A website's account-activity log shows eight successful logins and no failures. Six match the owner's weekend-and-evening pattern from the home IP; two occur on school mornings from an IP never seen before. The family's last name appears in the account password.",
+        "key": {
+          "signs": "Sign 1 ABSENT (success-only log — no failure counts); Sign 2 PRESENT (school-hours logins vs. stated baseline); Sign 3 PRESENT (never-seen IP).",
+          "mechanism": "EK 1.2.B.2 dictionary anchored on the family name matched the password; the attack succeeded, which is why only successes appear. Defense: EK 1.2.C.2 (remove the name) or C.1 (random unique password); C.3 MFA blocks the sign-in outright.",
+          "subtype": "Dictionary attack (this is the Scenario 1B pattern)."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Moderate",
+        "text": "A streaming service log shows a single login to @MarcusT at 3:22 a.m. from a country Marcus has never visited. Zero failed attempts — the first try succeeded instantly. Marcus uses the same password on a gaming platform that was breached six months ago.",
+        "key": {
+          "signs": "Sign 1 ABSENT (zero failures — cite it explicitly); Sign 2 PRESENT (3:22 a.m.); Sign 3 PRESENT (foreign IP).",
+          "mechanism": "The CB-graded answer is the negative ID: no failures means the EK 1.2.A.1 guessing pattern is NOT evidenced. The adversary already had the real password from the breach. Defense: the UNIQUE component of EK 1.2.C.1 — a different password per site kills reuse; C.3 MFA also blocks it.",
+          "subtype": "Credential stuffing (enrichment name — instant single success with a known-breached, reused password)."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A college application portal log shows 3 failed attempts from a known student's laptop, then a success — all between 8:00 and 8:10 p.m., the student's normal homework window.",
+        "key": {
+          "signs": "All three ABSENT: 3 failures is normal mistyping, not volume+speed (Sign 1 requires both); 8 p.m. matches the user's pattern (Sign 2); known laptop (Sign 3).",
+          "mechanism": "No attack evidenced — a legitimate user fumbling their password. Full credit states that none of the EK 1.2.A.2 signs are met and explains what WOULD change the conclusion (e.g., 47 failures, or failures from a different IP than the success).",
+          "subtype": "None — normal user behavior. (Calling this an attack is the planted trap.)"
+        }
+      },
+      {
+        "n": 6,
+        "difficulty": "Challenge",
+        "text": "Over one week, an account receives exactly one failed login every 25–35 minutes, around the clock, each from a different IP address. On day six, one attempt succeeds from yet another new IP.",
+        "key": {
+          "signs": "Sign 1 PARTIAL/ARGUABLE — many failures overall but deliberately NOT in a short duration (say this explicitly); Sign 2 PRESENT (around-the-clock attempts, including hours the user never logs in); Sign 3 PRESENT (constantly rotating unknown IPs).",
+          "mechanism": "A slow, distributed guessing campaign paced to evade lockout and rate limiting (enrichment context from Day 2) — still an EK 1.2.A.1 online password attack. Defense: EK 1.2.C.1 long random password makes the list never hit; C.3 MFA blocks the day-six success.",
+          "subtype": "Throttled/distributed dictionary attack (rate-limit evasion); also accept password spraying if justified."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Password Problem",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 3)",
+    "overview": "Password attacks succeed not because people are lazy, but because human memory and convenience push everyone toward the same predictable patterns — and adversaries industrialize that predictability. Across three short windows in this lesson, your group will connect the CB-required signs and defenses to real life, debate which defense is hardest to actually live with, and decide when a login anomaly is — and is not — an attack.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Nearly everyone reuses passwords or builds them from personal facts — pets, birthdays, teams. Why do people keep doing it even when they know the risk? What would it actually take to change the habit (not just 'be more careful')?"
+          },
+          {
+            "text": "Question 2. Whose job is password security, really — the user who picks the password, or the service that allows weak ones? Defend your split with one concrete example."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the Scenario 1B sign-by-sign debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The quiet breach  [EK 1.2.A.2]",
+            "text": "The Rivera log shows ONLY successes — the family found out because game settings changed. Why is a success-only log harder to catch than a log full of failures? Agree on the single best one-sentence answer your group can write.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which defense is hardest to live with?  [EK 1.2.C]",
+            "text": "Debate for about 3 minutes: of the three CED defenses — password manager with random unique passwords (C.1), no personal info (C.2), MFA everywhere (C.3) — which is hardest for a normal person to sustain, and what is the realistic cost of skipping it? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 3, ~9 min, after Case Study 2",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'did everything right' case",
+            "text": "Marcus had a 'strong-looking' password and never fell for a phishing email — but he reused that password on a site that got breached, and his streaming account was taken over with ONE clean login (Case Study 2). Design the defense: which single change most directly stops this attack, why do the other two CED defenses help less here, and when a login anomaly shows NO failed attempts, what should an analyst conclude — and not conclude — from EK 1.2.A.2?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (defense + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}
