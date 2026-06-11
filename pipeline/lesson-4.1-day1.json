@@ -8,8 +8,7 @@
     "los": "LO 4.1.A, LO 4.1.B, LO 4.1.C",
     "anchor": "Designing Secure Connected Farm Equipment",
     "author": "AP CS Exam Prep",
-    "totalDays": 1,
-    "day": 1
+    "totalDays": 1
   },
   "slides": [
     {
@@ -104,12 +103,32 @@
       "type": "worked_table",
       "heading": "Embedded and IoT: The Computers Inside the Machines",
       "context": "Embedded computers are PART of a machine (EK 4.1.A.4); when those everyday devices connect to the internet, they're called IoT devices (EK 4.1.A.5).",
-      "columns": ["Category", "Defining trait (CED)", "Examples from the CED"],
+      "columns": [
+        "Category",
+        "Defining trait (CED)",
+        "Examples from the CED"
+      ],
       "rows": [
-        ["Embedded (EK 4.1.A.4)", "Part of a machine; specialized instruction set for that machine's components; slower, cheaper, minimal storage", "The controller built into a tractor, car, train, or airplane"],
-        ["IoT (EK 4.1.A.5)", "An everyday device with an embedded computer that is internet-connected", "Washing machines, coffee makers, thermostats; connected farm equipment"],
-        ["Critical infrastructure (EK 4.1.A.5)", "Embedded computers operating infrastructure", "Circuit breakers at electrical substations; pumps at water treatment plants"],
-        ["Medical (EK 4.1.A.5)", "Embedded computers in medical equipment", "IV pumps, MRI scanners, pacemakers, insulin pumps"]
+        [
+          "Embedded (EK 4.1.A.4)",
+          "Part of a machine; specialized instruction set for that machine's components; slower, cheaper, minimal storage",
+          "The controller built into a tractor, car, train, or airplane"
+        ],
+        [
+          "IoT (EK 4.1.A.5)",
+          "An everyday device with an embedded computer that is internet-connected",
+          "Washing machines, coffee makers, thermostats; connected farm equipment"
+        ],
+        [
+          "Critical infrastructure (EK 4.1.A.5)",
+          "Embedded computers operating infrastructure",
+          "Circuit breakers at electrical substations; pumps at water treatment plants"
+        ],
+        [
+          "Medical (EK 4.1.A.5)",
+          "Embedded computers in medical equipment",
+          "IV pumps, MRI scanners, pacemakers, insulin pumps"
+        ]
       ],
       "note": "AP TIP: A device can wear two labels — the tractor's controller is BOTH embedded (part of the machine) AND IoT (internet-connected). Name both when both apply.",
       "script": "The last two categories live inside other machines. An embedded computer, EK 4.1.A.4, is part of a machine: it has a specialized instruction set for that machine's components, and it tends to be slower, cheaper, and short on storage. When an everyday device with an embedded computer connects to the internet, EK 4.1.A.5 calls it an IoT device — washing machines, thermostats, and our connected farm equipment. The same EK reaches into critical infrastructure, the breakers and water-plant pumps, and into medical equipment, the IV pumps and pacemakers. The exam tip: a device can carry two labels at once. That tractor controller is both embedded and IoT, so name both."
@@ -351,11 +370,27 @@
       "type": "worked_table",
       "heading": "Rating Device-Vulnerability Risk: High, Moderate, Low",
       "context": "Risk from device vulnerabilities depends on the device's criticality and the data or services it provides (EK 4.1.D.1); the level is high, moderate, or low (EK 4.1.D.2–D.4).",
-      "columns": ["Level", "What defines it (CED)", "CED illustrative example"],
+      "columns": [
+        "Level",
+        "What defines it (CED)",
+        "CED illustrative example"
+      ],
       "rows": [
-        ["High (EK 4.1.D.2)", "Potentially compromises sensitive data or critical operations", "An organization hasn't installed the latest update for its email server, which patched a known critical vulnerability"],
-        ["Moderate (EK 4.1.D.3)", "Arises from weak authentication, or vulnerabilities less likely to be exploited", "Water-treatment pump controllers reachable by username and password remotely, with no MFA"],
-        ["Low (EK 4.1.D.4)", "Vulnerabilities that, if exploited, would have little impact", "An employee's laptop has telnet port 23 open"]
+        [
+          "High (EK 4.1.D.2)",
+          "Potentially compromises sensitive data or critical operations",
+          "An organization hasn't installed the latest update for its email server, which patched a known critical vulnerability"
+        ],
+        [
+          "Moderate (EK 4.1.D.3)",
+          "Arises from weak authentication, or vulnerabilities less likely to be exploited",
+          "Water-treatment pump controllers reachable by username and password remotely, with no MFA"
+        ],
+        [
+          "Low (EK 4.1.D.4)",
+          "Vulnerabilities that, if exploited, would have little impact",
+          "An employee's laptop has telnet port 23 open"
+        ]
       ],
       "note": "AP TIP: The same vulnerability can sit at different levels depending on the DEVICE. Unpatched software on a critical email server is high; the impact and the device's criticality set the level (EK 4.1.D.1).",
       "script": "Three risk levels, straight from EK 4.1.D.2 through D.4, and EK 4.1.D.1 tells you the level depends on how critical the device is and the data or services it provides. High risk: exploitation could compromise sensitive data or critical operations — the CED's example is an unpatched email server with a known critical vulnerability. Moderate: it stems from weak authentication, or a vulnerability less likely to be exploited — the water-treatment pumps reachable by password with no MFA. Low: little real impact if exploited — a laptop with telnet port 23 open. The crucial point: the same weakness can sit at different levels depending on the device's criticality. This table is the engine of scenario 4A."

@@ -124,13 +124,49 @@
       "eyebrow": "Worked Walkthrough · LO 5.4.A",
       "heading": "Which Key Encrypts, Which Key Decrypts?",
       "context": "Scenario: Mara wants to send Devon a confidential file. Devon is the RECEIVER, so Devon generated the key pair. Work left to right — the receiver's key pair drives every choice (EK 5.4.A.2–A.4).",
-      "columns": ["Step", "Whose key?", "Public or private?", "Action", "Why (EK)"],
+      "columns": [
+        "Step",
+        "Whose key?",
+        "Public or private?",
+        "Action",
+        "Why (EK)"
+      ],
       "rows": [
-        ["1. Set up", "Devon (receiver)", "Generates the PAIR", "Devon creates a public + private key pair", "EK 5.4.A.2"],
-        ["2. Publish", "Devon's public key", "Public", "Devon publishes it for anyone to use", "EK 5.4.A.3"],
-        ["3. Encrypt", "Devon's public key", "Public", "Mara encrypts the file with Devon's PUBLIC key", "EK 5.4.A.4"],
-        ["4. Send", "—", "—", "Mara sends the ciphertext over any channel", "EK 5.4.A.1"],
-        ["5. Decrypt", "Devon's private key", "Private", "Only Devon, holding the PRIVATE key, can decrypt", "EK 5.4.A.4"]
+        [
+          "1. Set up",
+          "Devon (receiver)",
+          "Generates the PAIR",
+          "Devon creates a public + private key pair",
+          "EK 5.4.A.2"
+        ],
+        [
+          "2. Publish",
+          "Devon's public key",
+          "Public",
+          "Devon publishes it for anyone to use",
+          "EK 5.4.A.3"
+        ],
+        [
+          "3. Encrypt",
+          "Devon's public key",
+          "Public",
+          "Mara encrypts the file with Devon's PUBLIC key",
+          "EK 5.4.A.4"
+        ],
+        [
+          "4. Send",
+          "—",
+          "—",
+          "Mara sends the ciphertext over any channel",
+          "EK 5.4.A.1"
+        ],
+        [
+          "5. Decrypt",
+          "Devon's private key",
+          "Private",
+          "Only Devon, holding the PRIVATE key, can decrypt",
+          "EK 5.4.A.4"
+        ]
       ],
       "highlightCol": 2,
       "script": "Let's walk the whole send-and-receive cycle as a table, because this is exactly how the exam asks it. The scenario: Mara wants to send Devon a confidential file. Devon is the receiver, so Devon generated the key pair — step one, EK 5.4.A.2. Step two, Devon publishes the public key for anyone to use, EK 5.4.A.3. Step three is the one students miss: to encrypt, Mara uses Devon's public key — the receiver's public key, not her own anything — EK 5.4.A.4. Step four, she sends the ciphertext over any channel, safe even if it's intercepted, EK 5.4.A.1. Step five, only Devon, holding the matching private key, can decrypt and read it. Look down the public-or-private column: encrypt with the receiver's public key, decrypt with the receiver's private key. Memorize that one sentence."
@@ -236,12 +272,32 @@
       "eyebrow": "Worked Walkthrough · LO 5.4.C",
       "heading": "The OpenSSL Sequence, Command by Command",
       "context": "Each OpenSSL command and exactly what it produces. Read it as a pipeline: generate the pair, extract the public key, encrypt, then decrypt (EK 5.4.C.3).",
-      "columns": ["Command", "What it does", "Output"],
+      "columns": [
+        "Command",
+        "What it does",
+        "Output"
+      ],
       "rows": [
-        ["openssl genrsa -out rsa.pem 2048", "Generates a 2048-bit RSA key pair", "rsa.pem (the key pair)"],
-        ["openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem", "Extracts the public key from the pair", "public.pem (public key)"],
-        ["openssl pkeyutl -encrypt -pubin -inkey public.pem -in test -out test.enc", "Encrypts a file using the public key", "test.enc (ciphertext)"],
-        ["openssl pkeyutl -decrypt -inkey rsa.pem -in test.enc -out test", "Decrypts the ciphertext using the private key", "test (recovered plaintext)"]
+        [
+          "openssl genrsa -out rsa.pem 2048",
+          "Generates a 2048-bit RSA key pair",
+          "rsa.pem (the key pair)"
+        ],
+        [
+          "openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem",
+          "Extracts the public key from the pair",
+          "public.pem (public key)"
+        ],
+        [
+          "openssl pkeyutl -encrypt -pubin -inkey public.pem -in test -out test.enc",
+          "Encrypts a file using the public key",
+          "test.enc (ciphertext)"
+        ],
+        [
+          "openssl pkeyutl -decrypt -inkey rsa.pem -in test.enc -out test",
+          "Decrypts the ciphertext using the private key",
+          "test (recovered plaintext)"
+        ]
       ],
       "highlightCol": 2,
       "script": "Here is the full OpenSSL sequence the CED gives, command by command, EK 5.4.C.3. Command one, genrsa with 2048, generates a 2048-bit RSA key pair into rsa.pem — that file holds the whole pair. Command two, rsa with pubout, extracts just the public key into public.pem, the part you'd publish. Command three, pkeyutl encrypt with pubin, uses that public key to encrypt a file called test into ciphertext test.enc. Command four, pkeyutl decrypt, uses the original rsa.pem, which contains the private key, to decrypt test.enc back into the plaintext test. Notice the pattern matches everything from section one: encrypt with the public key, decrypt with the private key. Read the output column top to bottom — pair, public key, ciphertext, recovered plaintext."
@@ -343,50 +399,110 @@
         "day": 1,
         "focus": "Public/private key pairs and which key to use when sending or receiving (5.4.A); intro to keyspace math (5.4.B)",
         "segments": [
-          { "segment": "Bell ringer — how could two strangers exchange a secret without meeting first?", "min": 5 },
-          { "segment": "Direct instruction — asymmetric encryption, key pairs, and mathematical inverses (5.4.A.1–A.2)", "min": 20 },
-          { "segment": "Sending vs. receiving: which key encrypts, which key decrypts (5.4.A.4)", "min": 15 },
-          { "segment": "Bridge to key length and keyspace (5.4.B.1)", "min": 5 },
-          { "segment": "Quiz and wrap-up", "min": 10 }
+          {
+            "segment": "Bell ringer — how could two strangers exchange a secret without meeting first?",
+            "min": 5
+          },
+          {
+            "segment": "Direct instruction — asymmetric encryption, key pairs, and mathematical inverses (5.4.A.1–A.2)",
+            "min": 15
+          },
+          {
+            "segment": "Sending vs. receiving: which key encrypts, which key decrypts (5.4.A.4)",
+            "min": 15
+          },
+          {
+            "segment": "Bridge to key length and keyspace (5.4.B.1)",
+            "min": 5
+          },
+          {
+            "segment": "Quiz and wrap-up",
+            "min": 10
+          }
         ]
       },
       {
         "day": 2,
         "focus": "Protecting the private key and key compromise (5.4.A.3)",
         "segments": [
-          { "segment": "Bell ringer — what happens if a private key is stolen?", "min": 5 },
-          { "segment": "Direct instruction — storing the private key securely; publishing the public key (5.4.A.3)", "min": 20 },
-          { "segment": "Key-compromise response: delete the pair and generate a new one (5.4.A.3)", "min": 15 },
-          { "segment": "Guided practice — scenarios on key exposure", "min": 15 }
+          {
+            "segment": "Bell ringer — what happens if a private key is stolen?",
+            "min": 5
+          },
+          {
+            "segment": "Direct instruction — storing the private key securely; publishing the public key (5.4.A.3)",
+            "min": 15
+          },
+          {
+            "segment": "Key-compromise response: delete the pair and generate a new one (5.4.A.3)",
+            "min": 15
+          },
+          {
+            "segment": "Guided practice — scenarios on key exposure",
+            "min": 15
+          }
         ]
       },
       {
         "day": 3,
         "focus": "Key length and security: keyspace, guessing, and the speed trade-off (5.4.B)",
         "segments": [
-          { "segment": "Bell ringer — how many keys is a 2^n keyspace?", "min": 5 },
-          { "segment": "Direct instruction — keyspace 2^n and average guesses 2^(n−1) (5.4.B.1–B.2)", "min": 20 },
-          { "segment": "Longer keys are more secure but slower; recommendations rise over time (5.4.B.3–B.4)", "min": 15 },
-          { "segment": "Same-algorithm comparison rule with RSA/AES examples (5.4.B.5)", "min": 15 }
+          {
+            "segment": "Bell ringer — how many keys is a 2^n keyspace?",
+            "min": 5
+          },
+          {
+            "segment": "Direct instruction — keyspace 2^n and average guesses 2^(n−1) (5.4.B.1–B.2)",
+            "min": 15
+          },
+          {
+            "segment": "Longer keys are more secure but slower; recommendations rise over time (5.4.B.3–B.4)",
+            "min": 15
+          },
+          {
+            "segment": "Same-algorithm comparison rule with RSA/AES examples (5.4.B.5)",
+            "min": 15
+          }
         ]
       },
       {
         "day": 4,
         "focus": "Applying asymmetric algorithms: RSA, ECC, and OpenSSL (5.4.C)",
         "segments": [
-          { "segment": "Bell ringer — name a place public-key crypto is used", "min": 5 },
-          { "segment": "Direct instruction — RSA, ECC, digital signatures and certificates (5.4.C.1)", "min": 15 },
-          { "segment": "Tools: CLI, specialized software, web-based (5.4.C.2)", "min": 10 },
-          { "segment": "OpenSSL walkthrough — genrsa, extract public key, encrypt, decrypt (5.4.C.3)", "min": 25 }
+          {
+            "segment": "Bell ringer — name a place public-key crypto is used",
+            "min": 5
+          },
+          {
+            "segment": "Direct instruction — RSA, ECC, digital signatures and certificates (5.4.C.1)",
+            "min": 15
+          },
+          {
+            "segment": "Tools: CLI, specialized software, web-based (5.4.C.2)",
+            "min": 10
+          },
+          {
+            "segment": "OpenSSL walkthrough — genrsa, extract public key, encrypt, decrypt (5.4.C.3)",
+            "min": 20
+          }
         ]
       },
       {
         "day": 5,
         "focus": "Hands-on lab 5B 'Sending Encrypted Messages' and review",
         "segments": [
-          { "segment": "Lab setup and key-pair generation", "min": 10 },
-          { "segment": "Encrypt a message and send it; decrypt a received message (Lab 5B)", "min": 30 },
-          { "segment": "Whole-topic review across 5.4.A–C", "min": 15 }
+          {
+            "segment": "Lab setup and key-pair generation",
+            "min": 10
+          },
+          {
+            "segment": "Encrypt a message and send it; decrypt a received message (Lab 5B)",
+            "min": 25
+          },
+          {
+            "segment": "Whole-topic review across 5.4.A–C",
+            "min": 15
+          }
         ]
       }
     ],

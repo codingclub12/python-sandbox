@@ -252,13 +252,37 @@
       "type": "worked_table",
       "heading": "Matching the Benefit to the EK",
       "context": "Each row pairs a security outcome with the technique and EK that produces it — the exact match the exam asks for.",
-      "columns": ["Security outcome", "How segmentation delivers it", "EK"],
+      "columns": [
+        "Security outcome",
+        "How segmentation delivers it",
+        "EK"
+      ],
       "rows": [
-        ["A breach in one subnet can't reach devices on other subnets", "Isolating network traffic between subnets", "EK 3.3.B.2"],
-        ["Sensitive systems get stricter rules than general-use systems", "Different security policies per segment (higher/lower zones)", "EK 3.3.B.3"],
-        ["A public web server is reachable but the interior stays protected", "A screened subnet/DMZ holds public-facing resources", "EK 3.3.A.1"],
-        ["A compromised device exposes fewer other devices", "Subnetting contains the breach", "EK 3.3.A.2"],
-        ["A switch can't be overwhelmed by fake MAC addresses", "Port security limits MAC addresses per port", "EK 3.3.B.4"]
+        [
+          "A breach in one subnet can't reach devices on other subnets",
+          "Isolating network traffic between subnets",
+          "EK 3.3.B.2"
+        ],
+        [
+          "Sensitive systems get stricter rules than general-use systems",
+          "Different security policies per segment (higher/lower zones)",
+          "EK 3.3.B.3"
+        ],
+        [
+          "A public web server is reachable but the interior stays protected",
+          "A screened subnet/DMZ holds public-facing resources",
+          "EK 3.3.A.1"
+        ],
+        [
+          "A compromised device exposes fewer other devices",
+          "Subnetting contains the breach",
+          "EK 3.3.A.2"
+        ],
+        [
+          "A switch can't be overwhelmed by fake MAC addresses",
+          "Port security limits MAC addresses per port",
+          "EK 3.3.B.4"
+        ]
       ],
       "note": "On the exam, read the OUTCOME described in the scenario, then name the technique and EK that produces it.",
       "script": "Let's pull section one and section two together in one table, because the exam tests this matching directly. If the outcome is that a breach in one subnet can't reach others, that's isolating traffic, EK 3.3.B.2. If sensitive systems get stricter rules than general ones, that's different policies per segment, EK 3.3.B.3. A reachable public server with a protected interior is the screened subnet, EK 3.3.A.1. A compromised device exposing fewer others is subnetting containing the breach, EK 3.3.A.2. And a switch that can't be flooded with fake MAC addresses is port security, EK 3.3.B.4. The exam move is always the same: read the outcome, name the technique, cite the EK."
@@ -389,26 +413,89 @@
         "day": 1,
         "focus": "Identify the three segmentation techniques: screened subnet/DMZ, subnetting, VLANs (LO 3.3.A)",
         "segments": [
-          { "segment": "QOTD (U3/L3.3/Q1) + bell ringer (one flat network, one breach)", "min": 5, "slides": "1-2" },
-          { "segment": "Guided-notes preview + objectives", "min": 3, "slides": "3-4" },
-          { "segment": "Screened subnet / DMZ: firewall zones, public-facing resources, lower security zone (EK 3.3.A.1)", "min": 12, "slides": "5-6" },
-          { "segment": "Subnetting by IP addressing; containing a breach to fewer exposed devices (EK 3.3.A.2)", "min": 9, "slides": "7-8" },
-          { "segment": "VLANs: switches logically separate physically connected devices (EK 3.3.A.3)", "min": 8, "slides": "9-10" },
-          { "segment": "Vocab + Stop and Think", "min": 6, "slides": "11-12" },
-          { "segment": "Wrap and assign Your Turn", "min": 2, "slides": "13-14" }
+          {
+            "segment": "QOTD (U3/L3.3/Q1) + bell ringer (one flat network, one breach)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Screened subnet / DMZ: firewall zones, public-facing resources, lower security zone (EK 3.3.A.1)",
+            "min": 12,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Subnetting by IP addressing; containing a breach to fewer exposed devices (EK 3.3.A.2)",
+            "min": 9,
+            "slides": "7-8"
+          },
+          {
+            "segment": "VLANs: switches logically separate physically connected devices (EK 3.3.A.3)",
+            "min": 8,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 6,
+            "slides": "11-12"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 2,
+            "slides": "13-14"
+          }
         ]
       },
       {
         "day": 2,
         "focus": "Explain why segmentation increases security, plus port security; apply to Scenario 3C (LO 3.3.B)",
         "segments": [
-          { "segment": "QOTD (U3/L3.3/Q2) + bell ringer (why does isolation help?)", "min": 5, "slides": "1-4" },
-          { "segment": "Segmentation defined; isolating traffic to stop cross-subnet attacks (EK 3.3.B.1–B.2)", "min": 10, "slides": "5-6" },
-          { "segment": "Different security policies per segment; higher vs. lower security zones (EK 3.3.B.3)", "min": 8, "slides": "7-8" },
-          { "segment": "Port security against MAC flooding (EK 3.3.B.4)", "min": 7, "slides": "9-10" },
-          { "segment": "Apply to Scenario 3C: recommend segmentation for each submarine LAN", "min": 8, "slides": "11" },
-          { "segment": "Lesson 3.3 quiz", "min": 15, "slides": "Handout" },
-          { "segment": "Quiz debrief + bridge to Topic 3.4 (firewalls)", "min": 5, "slides": "12-13" }
+          {
+            "segment": "QOTD (U3/L3.3/Q2) + bell ringer (why does isolation help?)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Segmentation defined; isolating traffic to stop cross-subnet attacks (EK 3.3.B.1–B.2)",
+            "min": 10,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Different security policies per segment; higher vs. lower security zones (EK 3.3.B.3)",
+            "min": 8,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Port security against MAC flooding (EK 3.3.B.4)",
+            "min": 7,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Apply to Scenario 3C: recommend segmentation for each submarine LAN",
+            "min": 8,
+            "slides": "11"
+          },
+          {
+            "segment": "Quiz debrief + bridge to Topic 3.4 (firewalls)",
+            "min": 5,
+            "slides": "12-13"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 3.3 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
         ]
       }
     ],

@@ -331,7 +331,10 @@ function emitGuide() {
     // deck to each segment (e.g. "1-4", "Handout"). Falls back to Segment|Time.
     const hasSlides = g.pacing.some(d => (d.segments || []).some(s => s.slides));
     g.pacing.forEach(day => {
-      k.push(h3('Day ' + day.day + (day.focus ? ' \u2014 ' + day.focus : '')));
+      // A flex entry is a labeled assessment/extension block, not a numbered prep day.
+      k.push(h3(day.flex ? (day.label || 'Flex / Assessment block (no deck)')
+                         : ('Day ' + day.day + (day.focus ? ' \u2014 ' + day.focus : ''))));
+      if (day.flex && day.focus) k.push(p([run(day.focus, { italics: true, color: C.GRAY })]));
       if (day.segments && day.segments.length) {
         if (hasSlides) {
           k.push(dataTable(['Segment', 'Slides', 'Time'],

@@ -152,12 +152,37 @@
       "type": "worked_table",
       "heading": "Sensitivity Sets the Degree of Protection",
       "context": "EK 5.2.A.3–A.5 — organizations categorize data by sensitivity and give more sensitive data a higher degree of security; regulated data is labeled and governed by compliance policies. Match the data to its classification, law, and protection.",
-      "columns": ["Data example", "Classification (EK 5.2.A.4)", "Law / standard", "Higher degree of security (EK 5.2.A.3, A.5)"],
+      "columns": [
+        "Data example",
+        "Classification (EK 5.2.A.4)",
+        "Law / standard",
+        "Higher degree of security (EK 5.2.A.3, A.5)"
+      ],
       "rows": [
-        ["Patient test results and treatment notes", "PHI — health information", "HIPAA (1996)", "Labeled as regulated; access-restricted and encrypted; handling policy required"],
-        ["Card number, expiration date, CVV", "PCI — payment card data", "PCI-DSS", "Strict storage and transmission rules; labeled and policy-governed"],
-        ["Name, address, social security number", "PII — identifying data", "The Privacy Act of 1974", "Protected handling; children under 13 add COPPA (1998)"],
-        ["Public marketing brochure", "Not sensitive / unregulated", "None", "Lower degree of security — sensitivity drives the priority"]
+        [
+          "Patient test results and treatment notes",
+          "PHI — health information",
+          "HIPAA (1996)",
+          "Labeled as regulated; access-restricted and encrypted; handling policy required"
+        ],
+        [
+          "Card number, expiration date, CVV",
+          "PCI — payment card data",
+          "PCI-DSS",
+          "Strict storage and transmission rules; labeled and policy-governed"
+        ],
+        [
+          "Name, address, social security number",
+          "PII — identifying data",
+          "The Privacy Act of 1974",
+          "Protected handling; children under 13 add COPPA (1998)"
+        ],
+        [
+          "Public marketing brochure",
+          "Not sensitive / unregulated",
+          "None",
+          "Lower degree of security — sensitivity drives the priority"
+        ]
       ],
       "script": "This table is the heart of 5.2.A. EK 5.2.A.3 says organizations categorize data by sensitivity and prioritize a higher degree of security for more sensitive information — so not everything gets the same lock. Patient test results are PHI under HIPAA; card numbers and CVV are PCI under PCI-DSS; names and social security numbers are PII under The Privacy Act of 1974, with COPPA adding rules for children under 13. EK 5.2.A.5 adds that regulated data gets labeled and governed by compliance policies. And notice the bottom row: a public brochure isn't sensitive, so it gets a lower degree of protection. The sensitivity sets the priority. Copy this table into your notes."
     },
@@ -368,12 +393,37 @@
       "type": "worked_table",
       "heading": "chmod, Two Ways: Numeric and Symbolic",
       "context": "EK 5.2.D.6–D.7 — numeric sums 4 (read) + 2 (write) + 1 (execute) per entity in owner-group-other order; symbolic targets u/g/o/a with +/- and r/w/x. Read each row across.",
-      "columns": ["Goal", "Permission string", "Numeric method (EK 5.2.D.6)", "Symbolic method (EK 5.2.D.7)"],
+      "columns": [
+        "Goal",
+        "Permission string",
+        "Numeric method (EK 5.2.D.6)",
+        "Symbolic method (EK 5.2.D.7)"
+      ],
       "rows": [
-        ["Owner: all; group: read+execute; others: none", "rwxr-x---", "chmod 750 test  (7=4+2+1, 5=4+1, 0)", "(set from a blank file) chmod u+rwx,g+rx test"],
-        ["Owner: read+write; group: read; others: none", "rw-r-----", "chmod 640 report.txt  (6=4+2, 4, 0)", "chmod u+rw,g+r report.txt"],
-        ["Add read+execute for owner and group", "(adds to existing)", "—  (numeric replaces, doesn't add)", "chmod ug+rx testfile"],
-        ["Remove write from group and others", "(removes from existing)", "—  (numeric replaces, doesn't add)", "chmod go-w testfile"]
+        [
+          "Owner: all; group: read+execute; others: none",
+          "rwxr-x---",
+          "chmod 750 test  (7=4+2+1, 5=4+1, 0)",
+          "(set from a blank file) chmod u+rwx,g+rx test"
+        ],
+        [
+          "Owner: read+write; group: read; others: none",
+          "rw-r-----",
+          "chmod 640 report.txt  (6=4+2, 4, 0)",
+          "chmod u+rw,g+r report.txt"
+        ],
+        [
+          "Add read+execute for owner and group",
+          "(adds to existing)",
+          "—  (numeric replaces, doesn't add)",
+          "chmod ug+rx testfile"
+        ],
+        [
+          "Remove write from group and others",
+          "(removes from existing)",
+          "—  (numeric replaces, doesn't add)",
+          "chmod go-w testfile"
+        ]
       ],
       "script": "This table is the core skill of 5.2.D. EK 5.2.D.6, the numeric method: each entity's digit is the sum of read 4, write 2, execute 1, in owner-group-other order. So chmod 750 gives the owner 7, which is 4 plus 2 plus 1, all permissions; the group 5, which is 4 plus 1, read and execute; and others 0, nothing. Chmod 640 gives owner read-write, group read, others none. EK 5.2.D.7, the symbolic method: target u for user owner, g for group, o for others, a for all; use plus to add or minus to remove; then r, w, x. Chmod ug+rx testfile adds read and execute for the owner and group — that's the CED's own example. The key difference: numeric sets the whole permission at once, symbolic adds or removes specific bits. Copy this whole table."
     },
@@ -510,75 +560,174 @@
         "day": 1,
         "focus": "Data states and how state impacts security (LO 5.2.A)",
         "segments": [
-          { "segment": "QOTD + bell ringer (what data does a hospital store, send, and use?)", "min": 5 },
-          { "segment": "Guided-notes preview + objectives", "min": 5 },
-          { "segment": "Legal-driven controls and the three data states: at rest, in transit, in use (EK 5.2.A.1–A.2)", "min": 20 },
-          { "segment": "How each state is protected — physical drive/media, encryption, and access controls (EK 5.2.A.2)", "min": 10 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer (what data does a hospital store, send, and use?)",
+            "min": 5
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 5
+          },
+          {
+            "segment": "Legal-driven controls and the three data states: at rest, in transit, in use (EK 5.2.A.1–A.2)",
+            "min": 20
+          },
+          {
+            "segment": "How each state is protected — physical drive/media, encryption, and access controls (EK 5.2.A.2)",
+            "min": 10
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 2,
         "focus": "Data classification: sensitivity and regulated data (LO 5.2.A)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Categorizing by sensitivity and prioritizing higher security (EK 5.2.A.3)", "min": 12 },
-          { "segment": "Regulated data — PII, PHI, PCI — and the laws/standards that protect each (EK 5.2.A.4)", "min": 18 },
-          { "segment": "Labeling and compliance policies for regulated data (EK 5.2.A.5)", "min": 5 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Categorizing by sensitivity and prioritizing higher security (EK 5.2.A.3)",
+            "min": 12
+          },
+          {
+            "segment": "Regulated data — PII, PHI, PCI — and the laws/standards that protect each (EK 5.2.A.4)",
+            "min": 18
+          },
+          {
+            "segment": "Labeling and compliance policies for regulated data (EK 5.2.A.5)",
+            "min": 5
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 3,
         "focus": "Managerial controls: cryptography and web application security policies (LO 5.2.B)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Cryptography policy: approved algorithms, key lengths, key generation and storage (EK 5.2.B.1)", "min": 18 },
-          { "segment": "Web application security policy: assessment triggers, remediation timelines, assessment parameters (EK 5.2.B.2)", "min": 17 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Cryptography policy: approved algorithms, key lengths, key generation and storage (EK 5.2.B.1)",
+            "min": 18
+          },
+          {
+            "segment": "Web application security policy: assessment triggers, remediation timelines, assessment parameters (EK 5.2.B.2)",
+            "min": 17
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 4,
         "focus": "Access control fundamentals; RBAC and RuBAC (LO 5.2.C)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Subjects, objects, operations, and what an access control model is (EK 5.2.C.1)", "min": 13 },
-          { "segment": "Role-based access control (RBAC) with the accountant/payroll example (EK 5.2.C.2)", "min": 12 },
-          { "segment": "Rule-based access control (RuBAC) layered on another model, with the working-hours example (EK 5.2.C.3)", "min": 10 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Subjects, objects, operations, and what an access control model is (EK 5.2.C.1)",
+            "min": 13
+          },
+          {
+            "segment": "Role-based access control (RBAC) with the accountant/payroll example (EK 5.2.C.2)",
+            "min": 12
+          },
+          {
+            "segment": "Rule-based access control (RuBAC) layered on another model, with the working-hours example (EK 5.2.C.3)",
+            "min": 10
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 5,
         "focus": "DAC, MAC, Bell-LaPadula, and least privilege (LO 5.2.C)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Discretionary access control (DAC), owners, and super users (EK 5.2.C.4)", "min": 12 },
-          { "segment": "Mandatory access control (MAC) and the Bell-LaPadula WURD properties (EK 5.2.C.5–C.6)", "min": 18 },
-          { "segment": "The principle of least privilege (EK 5.2.C.7)", "min": 5 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Discretionary access control (DAC), owners, and super users (EK 5.2.C.4)",
+            "min": 12
+          },
+          {
+            "segment": "Mandatory access control (MAC) and the Bell-LaPadula WURD properties (EK 5.2.C.5–C.6)",
+            "min": 18
+          },
+          {
+            "segment": "The principle of least privilege (EK 5.2.C.7)",
+            "min": 5
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 6,
         "focus": "Linux permissions: rwx, entities, ls -l, getfacl, and the numeric method (LO 5.2.D)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Authorization and the three access types rwx; the three default entities (EK 5.2.D.1–D.3)", "min": 13 },
-          { "segment": "Viewing permissions with ls -l and getfacl; modifying with chmod (EK 5.2.D.4–D.5)", "min": 10 },
-          { "segment": "chmod numeric method: 0/1/2/4 values and combined permissions (EK 5.2.D.6)", "min": 12 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Authorization and the three access types rwx; the three default entities (EK 5.2.D.1–D.3)",
+            "min": 13
+          },
+          {
+            "segment": "Viewing permissions with ls -l and getfacl; modifying with chmod (EK 5.2.D.4–D.5)",
+            "min": 10
+          },
+          {
+            "segment": "chmod numeric method: 0/1/2/4 values and combined permissions (EK 5.2.D.6)",
+            "min": 12
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 7,
         "focus": "Linux permissions: the symbolic method and topic review (LO 5.2.D)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "chmod symbolic method: u/g/o/a, +/-, r/w/x, and combined commands (EK 5.2.D.7)", "min": 18 },
-          { "segment": "Numeric vs. symbolic practice on the sandbox/worksheet", "min": 12 },
-          { "segment": "Topic review + Lesson 5.2 quiz", "min": 10 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "chmod symbolic method: u/g/o/a, +/-, r/w/x, and combined commands (EK 5.2.D.7)",
+            "min": 18
+          },
+          {
+            "segment": "Numeric vs. symbolic practice on the sandbox/worksheet",
+            "min": 12
+          },
+          {
+            "segment": "Topic review + Lesson 5.2 quiz",
+            "min": 10
+          }
         ]
       }
     ],

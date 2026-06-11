@@ -271,12 +271,42 @@
       "eyebrow": "Worked Walkthrough",
       "heading": "Record-Then-Compare: Did the File Change? (EK 5.6.D.3)",
       "context": "Hash the file, record the digest, hash it again later, and compare. If the two digests differ for the same algorithm, the file was altered between the two hashings (EK 5.6.D.3). Here a defender checks a critical config file across two dates.",
-      "columns": ["Step", "When", "Command (BASH)", "SHA-256 Digest (abbrev.)", "Conclusion"],
+      "columns": [
+        "Step",
+        "When",
+        "Command (BASH)",
+        "SHA-256 Digest (abbrev.)",
+        "Conclusion"
+      ],
       "rows": [
-        ["1. Baseline", "May 1", "sha256sum config.cfg", "a91f…3d7c (recorded)", "This is the trusted reference value — store it safely"],
-        ["2. Re-hash", "Jun 1", "sha256sum config.cfg", "a91f…3d7c", "Identical to baseline → file is UNCHANGED (integrity intact)"],
-        ["3. Re-hash", "Jun 8", "sha256sum config.cfg", "b04e…9af1", "Differs from baseline → file WAS ALTERED between May 1 and Jun 8"],
-        ["4. Interpret", "—", "compare, don’t re-run blindly", "b04e…9af1 ≠ a91f…3d7c", "Because hashing is repeatable, a different digest means a changed file — investigate it as possible malicious activity"]
+        [
+          "1. Baseline",
+          "May 1",
+          "sha256sum config.cfg",
+          "a91f…3d7c (recorded)",
+          "This is the trusted reference value — store it safely"
+        ],
+        [
+          "2. Re-hash",
+          "Jun 1",
+          "sha256sum config.cfg",
+          "a91f…3d7c",
+          "Identical to baseline → file is UNCHANGED (integrity intact)"
+        ],
+        [
+          "3. Re-hash",
+          "Jun 8",
+          "sha256sum config.cfg",
+          "b04e…9af1",
+          "Differs from baseline → file WAS ALTERED between May 1 and Jun 8"
+        ],
+        [
+          "4. Interpret",
+          "—",
+          "compare, don’t re-run blindly",
+          "b04e…9af1 ≠ a91f…3d7c",
+          "Because hashing is repeatable, a different digest means a changed file — investigate it as possible malicious activity"
+        ]
       ],
       "highlightCol": 4,
       "script": "Let's walk the record-then-compare workflow from EK 5.6.D.3 as a worked example. Step one, baseline: on May 1 you hash the config file and record the digest — that abbreviated a91f…3d7c is now your trusted reference. Step two, June 1, you re-hash; the digest is identical, so the file is unchanged, integrity intact. Step three, June 8, you re-hash again and get b04e…9af1 — different from the baseline. That means the file was altered sometime between May 1 and June 8. Step four, interpret: because hashing is repeatable, a different digest for the same algorithm can only mean the file changed — so you investigate it as possible malicious activity. Notice the hash tells you THAT it changed and roughly WHEN, but not who or how. Copy this table into your notes."
@@ -324,12 +354,37 @@
       "eyebrow": "Worked Walkthrough",
       "heading": "Name That Attack From the Log Line (EK 5.6.E.1–E.4)",
       "context": "The exam shows a raw request and asks which attack it indicates. Match the fingerprint to the attack and cite the EK. The last two rows cover buffer overflow (length checks) and directory traversal (../).",
-      "columns": ["Log Line / Request", "Tell-tale Indicator", "Attack", "EK"],
+      "columns": [
+        "Log Line / Request",
+        "Tell-tale Indicator",
+        "Attack",
+        "EK"
+      ],
       "rows": [
-        ["input = ' OR 1=1 --", "Quote + Boolean OR 1=1 + double-dash comment", "SQL injection", "EK 5.6.E.1"],
-        ["comment = <script>steal()</script>", "An injected <script>…</script> tag", "Cross-site scripting (XSS)", "EK 5.6.E.2"],
-        ["cookie length = 9,800 chars", "Abnormally long URL / cookie / query string / total request", "Buffer overflow", "EK 5.6.E.3"],
-        ["GET /files/../../../../etc/passwd", "Repeated ../ sequences in the path", "Directory traversal", "EK 5.6.E.4"]
+        [
+          "input = ' OR 1=1 --",
+          "Quote + Boolean OR 1=1 + double-dash comment",
+          "SQL injection",
+          "EK 5.6.E.1"
+        ],
+        [
+          "comment = <script>steal()</script>",
+          "An injected <script>…</script> tag",
+          "Cross-site scripting (XSS)",
+          "EK 5.6.E.2"
+        ],
+        [
+          "cookie length = 9,800 chars",
+          "Abnormally long URL / cookie / query string / total request",
+          "Buffer overflow",
+          "EK 5.6.E.3"
+        ],
+        [
+          "GET /files/../../../../etc/passwd",
+          "Repeated ../ sequences in the path",
+          "Directory traversal",
+          "EK 5.6.E.4"
+        ]
       ],
       "highlightCol": 2,
       "script": "Now all four attacks in one lookup table — this is the 5.6.E skill in its purest form. Row one: input is quote, OR 1=1, double-dash — three SQL tells, so SQL injection, EK 5.6.E.1. Row two: a comment field holds a script tag, so cross-site scripting, EK 5.6.E.2. Row three: a cookie that's 9,800 characters long — abnormally long URL, cookie, query string, or total request length signals a buffer overflow, EK 5.6.E.3; for web apps you detect these by checking how much data the user is sending. Row four: a GET request whose path is full of ../ sequences climbing toward etc/passwd — that's directory traversal, EK 5.6.E.4. Match the indicator to the attack and cite the EK. Copy the whole table; this is high-frequency on the exam."
@@ -404,72 +459,170 @@
         "day": 1,
         "focus": "How to detect attacks on data: accounting/log analysis, honeypots, and hashes (LO 5.6.A)",
         "segments": [
-          { "segment": "Bell ringer (the alarm on the fake file)", "min": 5 },
-          { "segment": "Objectives + accounting and log analysis (EK 5.6.A.1)", "min": 12 },
-          { "segment": "Honeypots: the fake bait file (EK 5.6.A.2)", "min": 12 },
-          { "segment": "Cryptographic hashes reveal alteration (EK 5.6.A.3)", "min": 12 },
-          { "segment": "Vocab + stop and think", "min": 10 },
-          { "segment": "Wrap and assign Your Turn", "min": 4 }
+          {
+            "segment": "Bell ringer (the alarm on the fake file)",
+            "min": 5
+          },
+          {
+            "segment": "Objectives + accounting and log analysis (EK 5.6.A.1)",
+            "min": 7
+          },
+          {
+            "segment": "Honeypots: the fake bait file (EK 5.6.A.2)",
+            "min": 12
+          },
+          {
+            "segment": "Cryptographic hashes reveal alteration (EK 5.6.A.3)",
+            "min": 12
+          },
+          {
+            "segment": "Vocab + stop and think",
+            "min": 10
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 4
+          }
         ]
       },
       {
         "day": 2,
         "focus": "Choosing detective controls: cost (LO 5.6.B)",
         "segments": [
-          { "segment": "Bell ringer + recap of the three controls", "min": 6 },
-          { "segment": "Cost as a criterion: cheap honeypots/hashes vs. higher-cost DLP (EK 5.6.B.1)", "min": 18 },
-          { "segment": "What DLP monitors: access, usage, transmission (EK 5.6.B.1)", "min": 14 },
-          { "segment": "Stop and think + wrap", "min": 12 }
+          {
+            "segment": "Bell ringer + recap of the three controls",
+            "min": 6
+          },
+          {
+            "segment": "Cost as a criterion: cheap honeypots/hashes vs. higher-cost DLP (EK 5.6.B.1)",
+            "min": 18
+          },
+          {
+            "segment": "What DLP monitors: access, usage, transmission (EK 5.6.B.1)",
+            "min": 14
+          },
+          {
+            "segment": "Stop and think + wrap",
+            "min": 12
+          }
         ]
       },
       {
         "day": 3,
         "focus": "Choosing detective controls: sensitivity and classification (LO 5.6.B)",
         "segments": [
-          { "segment": "Bell ringer (which data gets watched closest?)", "min": 6 },
-          { "segment": "Sensitivity/criticality as a criterion (EK 5.6.B.2)", "min": 15 },
-          { "segment": "Classification and legal/regulatory requirements (EK 5.6.B.3)", "min": 17 },
-          { "segment": "Stop and think + wrap", "min": 12 }
+          {
+            "segment": "Bell ringer (which data gets watched closest?)",
+            "min": 6
+          },
+          {
+            "segment": "Sensitivity/criticality as a criterion (EK 5.6.B.2)",
+            "min": 15
+          },
+          {
+            "segment": "Classification and legal/regulatory requirements (EK 5.6.B.3)",
+            "min": 17
+          },
+          {
+            "segment": "Stop and think + wrap",
+            "min": 12
+          }
         ]
       },
       {
         "day": 4,
         "focus": "Evaluating impact: detection speed and false negatives (LO 5.6.C)",
         "segments": [
-          { "segment": "Bell ringer (detect now vs. detect later)", "min": 6 },
-          { "segment": "Speed: automation, honeypots near-instant, real-time vs. retrospective (EK 5.6.C.1–C.2)", "min": 18 },
-          { "segment": "False negatives: what hashes and honeypots miss (EK 5.6.C.3)", "min": 14 },
-          { "segment": "Stop and think + wrap", "min": 12 }
+          {
+            "segment": "Bell ringer (detect now vs. detect later)",
+            "min": 6
+          },
+          {
+            "segment": "Speed: automation, honeypots near-instant, real-time vs. retrospective (EK 5.6.C.1–C.2)",
+            "min": 18
+          },
+          {
+            "segment": "False negatives: what hashes and honeypots miss (EK 5.6.C.3)",
+            "min": 14
+          },
+          {
+            "segment": "Stop and think + wrap",
+            "min": 12
+          }
         ]
       },
       {
         "day": 5,
         "focus": "Verifying a file's integrity by hashing (LO 5.6.D)",
         "segments": [
-          { "segment": "Bell ringer (did this file change?)", "min": 6 },
-          { "segment": "Repeatability of hash functions (EK 5.6.D.1)", "min": 12 },
-          { "segment": "Generating hashes: PowerShell, BASH, zsh commands (EK 5.6.D.2)", "min": 16 },
-          { "segment": "Record-then-compare workflow (EK 5.6.D.3) + stop and think", "min": 16 }
+          {
+            "segment": "Bell ringer (did this file change?)",
+            "min": 6
+          },
+          {
+            "segment": "Repeatability of hash functions (EK 5.6.D.1)",
+            "min": 12
+          },
+          {
+            "segment": "Generating hashes: PowerShell, BASH, zsh commands (EK 5.6.D.2)",
+            "min": 16
+          },
+          {
+            "segment": "Record-then-compare workflow (EK 5.6.D.3) + stop and think",
+            "min": 16
+          }
         ]
       },
       {
         "day": 6,
         "focus": "Reading logs for attack indicators: SQLi, XSS, buffer overflow, directory traversal (LO 5.6.E)",
         "segments": [
-          { "segment": "Bell ringer (spot the bad request)", "min": 6 },
-          { "segment": "SQL injection and XSS signatures in logs (EK 5.6.E.1–E.2)", "min": 18 },
-          { "segment": "Buffer overflow length checks and directory traversal ../ (EK 5.6.E.3–E.4)", "min": 16 },
-          { "segment": "Log-reading practice + wrap", "min": 10 }
+          {
+            "segment": "Bell ringer (spot the bad request)",
+            "min": 6
+          },
+          {
+            "segment": "SQL injection and XSS signatures in logs (EK 5.6.E.1–E.2)",
+            "min": 18
+          },
+          {
+            "segment": "Buffer overflow length checks and directory traversal ../ (EK 5.6.E.3–E.4)",
+            "min": 16
+          },
+          {
+            "segment": "Log-reading practice + wrap",
+            "min": 10
+          }
         ]
       },
       {
         "day": 7,
         "focus": "Review and the Lesson 5.6 quiz (LO 5.6.A–E)",
         "segments": [
-          { "segment": "Bell ringer + whole-topic recap", "min": 10 },
-          { "segment": "Worked review across all five objectives", "min": 18 },
-          { "segment": "Lesson 5.6 quiz", "min": 25 },
-          { "segment": "Quiz debrief + bridge to the exam", "min": 7 }
+          {
+            "segment": "Bell ringer + whole-topic recap",
+            "min": 10
+          },
+          {
+            "segment": "Worked review across all five objectives",
+            "min": 18
+          },
+          {
+            "segment": "Quiz debrief + bridge to the exam",
+            "min": 7
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 5.6 quiz",
+            "min": 25,
+            "slides": "Handout"
+          }
         ]
       }
     ],

@@ -181,12 +181,42 @@
       "type": "worked_table",
       "heading": "Sorting the Four Attacks",
       "context": "One row per attack. The exam rewards naming the TARGET and the CATEGORY, not just the attack — fill this in and any 3.1.A scenario becomes a lookup.",
-      "columns": ["Attack", "What it targets", "How it works", "Category of harm", "EK"],
+      "columns": [
+        "Attack",
+        "What it targets",
+        "How it works",
+        "Category of harm",
+        "EK"
+      ],
       "rows": [
-        ["ARP poisoning", "Gateway's ARP (IP-to-MAC) table", "Falsified ARP packets relink the target's IP to the adversary's MAC", "On-path / man-in-the-middle (interception)", "3.1.A.1"],
-        ["MAC flooding", "The switch", "Many frames with different MACs force broadcast mode", "Eavesdropping (sniffing)", "3.1.A.2"],
-        ["DNS poisoning", "A DNS server's records", "A fake DNS record redirects browsers to a malicious site", "Credential harvesting", "3.1.A.3"],
-        ["Smurf attack", "The broadcast address", "ICMP requests with the victim's address are reflected by every device", "Denial of service (DoS / DDoS)", "3.1.A.4"]
+        [
+          "ARP poisoning",
+          "Gateway's ARP (IP-to-MAC) table",
+          "Falsified ARP packets relink the target's IP to the adversary's MAC",
+          "On-path / man-in-the-middle (interception)",
+          "3.1.A.1"
+        ],
+        [
+          "MAC flooding",
+          "The switch",
+          "Many frames with different MACs force broadcast mode",
+          "Eavesdropping (sniffing)",
+          "3.1.A.2"
+        ],
+        [
+          "DNS poisoning",
+          "A DNS server's records",
+          "A fake DNS record redirects browsers to a malicious site",
+          "Credential harvesting",
+          "3.1.A.3"
+        ],
+        [
+          "Smurf attack",
+          "The broadcast address",
+          "ICMP requests with the victim's address are reflected by every device",
+          "Denial of service (DoS / DDoS)",
+          "3.1.A.4"
+        ]
       ],
       "note": "Notice ARP poisoning and MAC flooding hit the local switch fabric (Layer 2); DNS poisoning and the smurf attack operate across the network.",
       "script": "Here is the whole of 3.1.A on one slide — one row per attack, four columns that matter. ARP poisoning targets the gateway's ARP table, uses falsified ARP packets, and produces an on-path interception. MAC flooding targets the switch, floods it with frames, and produces eavesdropping. DNS poisoning targets a DNS server's records, plants a fake record, and produces credential harvesting. The smurf attack targets the broadcast address, reflects ICMP off every device, and produces denial of service. Copy this table exactly. When the exam hands you a scenario, find the target and the category, and the answer falls right out."
@@ -379,62 +409,140 @@
         "day": 1,
         "focus": "Layer-2 attacks: ARP poisoning, MAC spoofing, and on-path interception (LO 3.1.A)",
         "segments": [
-          { "segment": "QOTD + bell ringer (the clinic's intercepted login)", "min": 5 },
-          { "segment": "Guided-notes preview + objectives", "min": 5 },
-          { "segment": "How ARP maps IP to MAC, and how poisoning rewrites the table (EK 3.1.A.1)", "min": 15 },
-          { "segment": "On-path / man-in-the-middle and MAC spoofing in action (EK 3.1.A.1)", "min": 15 },
-          { "segment": "Stop and Think + wrap", "min": 10 }
+          {
+            "segment": "QOTD + bell ringer (the clinic's intercepted login)",
+            "min": 5
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 5
+          },
+          {
+            "segment": "How ARP maps IP to MAC, and how poisoning rewrites the table (EK 3.1.A.1)",
+            "min": 15
+          },
+          {
+            "segment": "On-path / man-in-the-middle and MAC spoofing in action (EK 3.1.A.1)",
+            "min": 15
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10
+          }
         ]
       },
       {
         "day": 2,
         "focus": "MAC flooding, eavesdropping, and switch behavior (LO 3.1.A)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Why switches flood: forcing broadcast mode with MAC flooding (EK 3.1.A.2)", "min": 20 },
-          { "segment": "Eavesdropping / sniffing captured traffic (EK 3.1.A.2)", "min": 15 },
-          { "segment": "Stop and Think + wrap", "min": 10 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Why switches flood: forcing broadcast mode with MAC flooding (EK 3.1.A.2)",
+            "min": 20
+          },
+          {
+            "segment": "Eavesdropping / sniffing captured traffic (EK 3.1.A.2)",
+            "min": 15
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10
+          }
         ]
       },
       {
         "day": 3,
         "focus": "DNS poisoning and credential harvesting (LO 3.1.A)",
         "segments": [
-          { "segment": "QOTD + bell ringer (the look-alike login page)", "min": 5 },
-          { "segment": "How DNS resolution works and how a fake record redirects traffic (EK 3.1.A.3)", "min": 20 },
-          { "segment": "Credential harvesting on a malicious look-alike site (EK 3.1.A.3)", "min": 15 },
-          { "segment": "Stop and Think + wrap", "min": 10 }
+          {
+            "segment": "QOTD + bell ringer (the look-alike login page)",
+            "min": 5
+          },
+          {
+            "segment": "How DNS resolution works and how a fake record redirects traffic (EK 3.1.A.3)",
+            "min": 20
+          },
+          {
+            "segment": "Credential harvesting on a malicious look-alike site (EK 3.1.A.3)",
+            "min": 15
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10
+          }
         ]
       },
       {
         "day": 4,
         "focus": "Denial of service: the smurf attack, DoS, and DDoS (LO 3.1.A)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "ICMP, broadcast addresses, and the smurf amplification path (EK 3.1.A.4)", "min": 20 },
-          { "segment": "From DoS to DDoS: many devices, one target (EK 3.1.A.4)", "min": 15 },
-          { "segment": "Stop and Think + wrap", "min": 10 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "ICMP, broadcast addresses, and the smurf amplification path (EK 3.1.A.4)",
+            "min": 20
+          },
+          {
+            "segment": "From DoS to DDoS: many devices, one target (EK 3.1.A.4)",
+            "min": 15
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10
+          }
         ]
       },
       {
         "day": 5,
         "focus": "Exploiting wired vulnerabilities: firewalls, lateral movement, and port security (LO 3.1.B)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Flooding, mapping, and spoofing against missing or misconfigured firewalls (EK 3.1.B.1)", "min": 12 },
-          { "segment": "Lateral movement across the LAN from one compromised device (EK 3.1.B.2)", "min": 11 },
-          { "segment": "Physical port access and why port security matters (EK 3.1.B.3)", "min": 12 },
-          { "segment": "Stop and Think + wrap", "min": 10 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Flooding, mapping, and spoofing against missing or misconfigured firewalls (EK 3.1.B.1)",
+            "min": 12
+          },
+          {
+            "segment": "Lateral movement across the LAN from one compromised device (EK 3.1.B.2)",
+            "min": 11
+          },
+          {
+            "segment": "Physical port access and why port security matters (EK 3.1.B.3)",
+            "min": 12
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10
+          }
         ]
       },
       {
         "day": 6,
         "focus": "Exploiting wireless vulnerabilities and unauthenticated joins (LO 3.1.B)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Beacon frames leaking outside the building; joining unauthenticated networks (EK 3.1.B.4–B.5)", "min": 13 },
-          { "segment": "Rogue access points bypassing firewalls; breaking wireless encryption (EK 3.1.B.6–B.7)", "min": 13 },
-          { "segment": "Topic review + Lesson 3.1 quiz", "min": 14 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Beacon frames leaking outside the building; joining unauthenticated networks (EK 3.1.B.4–B.5)",
+            "min": 13
+          },
+          {
+            "segment": "Rogue access points bypassing firewalls; breaking wireless encryption (EK 3.1.B.6–B.7)",
+            "min": 13
+          },
+          {
+            "segment": "Topic review + Lesson 3.1 quiz",
+            "min": 14
+          }
         ]
       }
     ],

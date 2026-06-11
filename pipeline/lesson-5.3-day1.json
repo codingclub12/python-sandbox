@@ -109,12 +109,37 @@
       "eyebrow": "Worked Walkthrough",
       "heading": "Tracing the Pipeline: Plaintext to Ciphertext and Back",
       "context": "Same key, both directions. Watch how encryption and decryption are mirror images of one another (EK 5.3.A.1–A.2).",
-      "columns": ["Step", "What goes in", "Process / key", "What comes out"],
+      "columns": [
+        "Step",
+        "What goes in",
+        "Process / key",
+        "What comes out"
+      ],
       "rows": [
-        ["Start", "plaintext: \"TRANSFER $5000\"", "the readable file", "—"],
-        ["Encrypt", "plaintext + key", "encryption algorithm with the shared key", "ciphertext: \"9F2A…C1\" (unreadable)"],
-        ["At rest", "ciphertext on disk", "no key present", "still unreadable to a thief"],
-        ["Decrypt", "ciphertext + same key", "decryption with the same key", "plaintext: \"TRANSFER $5000\""]
+        [
+          "Start",
+          "plaintext: \"TRANSFER $5000\"",
+          "the readable file",
+          "—"
+        ],
+        [
+          "Encrypt",
+          "plaintext + key",
+          "encryption algorithm with the shared key",
+          "ciphertext: \"9F2A…C1\" (unreadable)"
+        ],
+        [
+          "At rest",
+          "ciphertext on disk",
+          "no key present",
+          "still unreadable to a thief"
+        ],
+        [
+          "Decrypt",
+          "ciphertext + same key",
+          "decryption with the same key",
+          "plaintext: \"TRANSFER $5000\""
+        ]
       ],
       "note": "The same key is used in both directions — that is what makes this symmetric (EK 5.3.A.4). Take the key away and the ciphertext row is where an attacker is stuck.",
       "script": "Let's trace the pipeline concretely. Start with plaintext — say, the message TRANSFER $5000. Feed plaintext plus the key into the encryption algorithm and out comes ciphertext, an unreadable string like 9F2A...C1. That ciphertext is what sits on the disk; with no key present, it's useless to a thief — that's the stolen laptop from the bell ringer. To get the message back, feed the ciphertext plus the same key into decryption, and you recover the original plaintext exactly. Notice the same key runs both directions — that's what makes this symmetric, and we'll name that classification in a moment."
@@ -195,11 +220,31 @@
       "eyebrow": "Worked Walkthrough",
       "heading": "Encrypting and Decrypting a File with OpenSSL",
       "context": "EK 5.3.B.3–B.4 — symmetric encryption can be done on the command line. With OpenSSL the key is derived from the password you provide, and the SAME password is used both ways.",
-      "columns": ["Goal", "OpenSSL command", "Key", "Result"],
+      "columns": [
+        "Goal",
+        "OpenSSL command",
+        "Key",
+        "Result"
+      ],
       "rows": [
-        ["Encrypt the file 'test'", "openssl enc -aes-128-cbc -e -in test -k password -out test.enc", "derived from -k password", "test.enc (ciphertext)"],
-        ["Decrypt it back", "openssl enc -aes-128-cbc -d -in test.enc -k password -out text", "SAME password", "text (recovered plaintext)"],
-        ["Wrong password", "openssl enc -aes-128-cbc -d -in test.enc -k WRONG -out text", "different key", "decryption fails / garbage"]
+        [
+          "Encrypt the file 'test'",
+          "openssl enc -aes-128-cbc -e -in test -k password -out test.enc",
+          "derived from -k password",
+          "test.enc (ciphertext)"
+        ],
+        [
+          "Decrypt it back",
+          "openssl enc -aes-128-cbc -d -in test.enc -k password -out text",
+          "SAME password",
+          "text (recovered plaintext)"
+        ],
+        [
+          "Wrong password",
+          "openssl enc -aes-128-cbc -d -in test.enc -k WRONG -out text",
+          "different key",
+          "decryption fails / garbage"
+        ]
       ],
       "note": "Tools beyond the CLI: AES Crypt (open-source software) and many web-based tools also encrypt and decrypt files (EK 5.3.B.3). The -e flag encrypts, -d decrypts; everything else stays the same because the key is symmetric.",
       "script": "Now the applied piece, EK 5.3.B.3 and B.4. Symmetric encryption can be done on the command line, with specialized software like the open-source AES Crypt, or with web-based tools. Let's do it with OpenSSL. To encrypt the file named test, you run openssl enc, dash-aes-128-cbc, dash-e for encrypt, in test, dash-k password, out test.enc — and the key is derived from that password. To decrypt, the command is nearly identical: dash-d for decrypt, in test.enc, the same dash-k password, out text. The only changes are the flag and the filenames; the password — the key — is the same, because AES is symmetric. Put in the wrong password and decryption fails. That's the whole loop."
@@ -365,43 +410,96 @@
         "day": 1,
         "focus": "Cryptography vocabulary, keyspace, and how encryption protects files (5.3.A)",
         "segments": [
-          { "segment": "Bell ringer — what would it take to keep a file unreadable if it were stolen", "min": 5 },
-          { "segment": "Direct instruction — purpose of cryptography: encryption, decryption, plaintext, ciphertext, key (5.3.A.1–A.2)", "min": 20 },
-          { "segment": "Keyspace and why a larger keyspace resists brute force (5.3.A.3)", "min": 15 },
-          { "segment": "Classifying algorithms: symmetric vs. asymmetric (5.3.A.4)", "min": 15 },
-          { "segment": "Quiz and wrap-up", "min": 5 }
+          {
+            "segment": "Bell ringer — keeping a stolen file unreadable",
+            "min": 5
+          },
+          {
+            "segment": "Purpose of cryptography: plaintext, ciphertext, key (5.3.A.1–A.2)",
+            "min": 18
+          },
+          {
+            "segment": "Keyspace and resistance to brute force (5.3.A.3)",
+            "min": 14
+          },
+          {
+            "segment": "Symmetric vs. asymmetric (5.3.A.4)",
+            "min": 13
+          }
         ]
       },
       {
         "day": 2,
-        "focus": "Block vs. stream encryption and AES fundamentals (5.3.A.5, 5.3.B.1–B.2)",
+        "focus": "Block vs. stream and AES fundamentals (5.3.A.5, 5.3.B.1–B.2)",
         "segments": [
-          { "segment": "Bell ringer — recall symmetric vs. asymmetric from Day 1", "min": 5 },
-          { "segment": "Block vs. stream encryption (5.3.A.5)", "min": 15 },
-          { "segment": "AES as the most common symmetric algorithm and where it is used (5.3.B.1)", "min": 15 },
-          { "segment": "AES block size and the trade-off of longer keys (5.3.B.2)", "min": 20 },
-          { "segment": "Check for understanding", "min": 5 }
+          {
+            "segment": "Bell ringer — recall symmetric vs. asymmetric",
+            "min": 5
+          },
+          {
+            "segment": "Block vs. stream encryption (5.3.A.5)",
+            "min": 15
+          },
+          {
+            "segment": "AES and where it is used (5.3.B.1)",
+            "min": 15
+          },
+          {
+            "segment": "AES block size and the longer-key trade-off (5.3.B.2)",
+            "min": 15
+          }
         ]
       },
       {
         "day": 3,
         "focus": "Tools and applying symmetric encryption with OpenSSL (5.3.B.3–B.4)",
         "segments": [
-          { "segment": "Bell ringer — which tool would you use to encrypt one file", "min": 5 },
-          { "segment": "Tools for symmetric encryption: command line, AES Crypt, web-based (5.3.B.3)", "min": 15 },
-          { "segment": "OpenSSL encrypt and decrypt commands; same key both ways (5.3.B.4)", "min": 20 },
-          { "segment": "Guided lab — encrypt and decrypt a test file", "min": 15 },
-          { "segment": "Wrap-up", "min": 5 }
+          {
+            "segment": "Bell ringer — choosing an encryption tool",
+            "min": 5
+          },
+          {
+            "segment": "Tools: command line, AES Crypt, web-based (5.3.B.3)",
+            "min": 13
+          },
+          {
+            "segment": "OpenSSL encrypt/decrypt; same key both ways (5.3.B.4)",
+            "min": 17
+          },
+          {
+            "segment": "Guided lab — encrypt and decrypt a test file",
+            "min": 15
+          }
         ]
       },
       {
         "day": 4,
-        "focus": "Review, hands-on practice, and assessment (5.3.A–B)",
+        "focus": "Review and hands-on practice (5.3.A–B)",
         "segments": [
-          { "segment": "Bell ringer — vocabulary quick-fire", "min": 5 },
-          { "segment": "Independent lab — encrypt, decrypt, and verify a recovered file", "min": 25 },
-          { "segment": "Whole-class review of the full topic", "min": 15 },
-          { "segment": "Topic assessment", "min": 15 }
+          {
+            "segment": "Bell ringer — vocabulary quick-fire",
+            "min": 5
+          },
+          {
+            "segment": "Independent lab — encrypt, decrypt, and verify a recovered file",
+            "min": 25
+          },
+          {
+            "segment": "Whole-topic review",
+            "min": 15
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 5.3 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
         ]
       }
     ],

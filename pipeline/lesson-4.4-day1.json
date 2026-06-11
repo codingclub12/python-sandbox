@@ -6,13 +6,13 @@
     "unit": "Unit 4: Securing Devices",
     "day": 1,
     "los": "LO 4.4.A, 4.4.B, 4.4.C, 4.4.D",
-    "totalDays": 1,
+    "totalDays": 2,
     "author": "AP CS Exam Prep"
   },
   "slides": [
     {
       "type": "title",
-      "eyebrow": "Unit 4 · Lesson 4.4 · Day 1 of 1",
+      "eyebrow": "Unit 4 · Lesson 4.4 · Days 1–2",
       "title": "Reading the Evidence Trail",
       "subtitle": "Detecting Attacks on Devices: how logs and indicators of compromise reveal an attack, how to choose and evaluate a detection method, and how to spot password attacks line by line in authentication logs",
       "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
@@ -270,13 +270,49 @@
       "type": "worked_table",
       "heading": "Worked Example: Reading an Authentication Log for IoCs",
       "context": "An analyst reviews this authentication-log excerpt from one server. Each row is one login attempt. Read it line by line and name the indicator — then the attack.",
-      "columns": ["Time", "Username", "Source IP", "Result", "Indicator → Attack"],
+      "columns": [
+        "Time",
+        "Username",
+        "Source IP",
+        "Result",
+        "Indicator → Attack"
+      ],
       "rows": [
-        ["09:01:02", "j.adams", "10.0.0.14", "SUCCESS", "Normal: expected user, internal IP, business hours"],
-        ["09:14:30–09:14:41", "m.lee", "203.0.113.9", "FAIL ×9", "One user, 9 wrong passwords in seconds → online password attack (EK 4.4.D.1)"],
-        ["02:47:10", "m.lee", "198.51.100.7", "SUCCESS", "Authorized user, unusual time + new IP → possible compromised password (EK 4.4.D.2)"],
-        ["10:05:00–10:05:08", "a, b, c, d, e …", "203.0.113.9", "FAIL (many users)", "Many users, one unusual IP, within seconds → password spraying (EK 4.4.D.3)"],
-        ["10:22:33–10:22:39", "admin:admin, root:root …", "203.0.113.9", "FAIL (defaults)", "Default user:password pairs in quick succession, one IP → credential stuffing (EK 4.4.D.4)"]
+        [
+          "09:01:02",
+          "j.adams",
+          "10.0.0.14",
+          "SUCCESS",
+          "Normal: expected user, internal IP, business hours"
+        ],
+        [
+          "09:14:30–09:14:41",
+          "m.lee",
+          "203.0.113.9",
+          "FAIL ×9",
+          "One user, 9 wrong passwords in seconds → online password attack (EK 4.4.D.1)"
+        ],
+        [
+          "02:47:10",
+          "m.lee",
+          "198.51.100.7",
+          "SUCCESS",
+          "Authorized user, unusual time + new IP → possible compromised password (EK 4.4.D.2)"
+        ],
+        [
+          "10:05:00–10:05:08",
+          "a, b, c, d, e …",
+          "203.0.113.9",
+          "FAIL (many users)",
+          "Many users, one unusual IP, within seconds → password spraying (EK 4.4.D.3)"
+        ],
+        [
+          "10:22:33–10:22:39",
+          "admin:admin, root:root …",
+          "203.0.113.9",
+          "FAIL (defaults)",
+          "Default user:password pairs in quick succession, one IP → credential stuffing (EK 4.4.D.4)"
+        ]
       ],
       "note": "Note what is NOT here: an offline password attack leaves no rows at all — it runs on the adversary's computer and never reaches this log (EK 4.4.D.5).",
       "highlightCol": 4,
@@ -352,14 +388,66 @@
     "pacing": [
       {
         "day": 1,
-        "focus": "Logs and IoCs, choosing a detection method, evaluating impact, and reading logs for password attacks (4.4.A–D)",
+        "focus": "Logs, IoCs, and choosing a detection method (LO 4.4.A–B)",
         "segments": [
-          { "segment": "Bell ringer — what a log could reveal about an attack", "min": 5 },
-          { "segment": "Direct instruction — logs, IoCs, and the host/file/behavior IoC types (4.4.A)", "min": 20 },
-          { "segment": "Choosing a detection method: performance, cost, sensitivity (4.4.B)", "min": 15 },
-          { "segment": "Evaluating impact: speed, attack phase, false positives vs. bypass (4.4.C)", "min": 15 },
-          { "segment": "Reading auth logs for password attacks — worked log examples (4.4.D)", "min": 20 },
-          { "segment": "Quiz and wrap-up", "min": 10 }
+          {
+            "segment": "Bell ringer — what a log could reveal about an attack",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Logs, IoCs, and host/file/behavior indicators (4.4.A)",
+            "min": 20,
+            "slides": "3-8"
+          },
+          {
+            "segment": "Choosing a detection method: performance, cost, sensitivity (4.4.B)",
+            "min": 15,
+            "slides": "9-11"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "11"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Evaluating impact and reading logs for IoCs (LO 4.4.C–D)",
+        "segments": [
+          {
+            "segment": "Recap Day 1 + bell ringer",
+            "min": 5,
+            "slides": "12"
+          },
+          {
+            "segment": "Evaluating impact: speed, attack phase, false positives vs. negatives (4.4.C)",
+            "min": 15,
+            "slides": "12-15"
+          },
+          {
+            "segment": "Reading auth logs for password attacks — worked examples (4.4.D)",
+            "min": 20,
+            "slides": "16-19"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "20"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 4.4 quiz",
+            "min": 20,
+            "slides": "Handout"
+          }
         ]
       }
     ],

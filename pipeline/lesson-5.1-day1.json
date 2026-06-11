@@ -229,12 +229,37 @@
       "type": "worked_table",
       "heading": "The Four Application Attacks at a Glance",
       "context": "Sort every 5.1.B scenario by what the attack reaches, not by surface keywords. This is the chart to memorize for LO 5.1.B.",
-      "columns": ["Attack", "What It Targets", "Defining Move (CED)", "EK"],
+      "columns": [
+        "Attack",
+        "What It Targets",
+        "Defining Move (CED)",
+        "EK"
+      ],
       "rows": [
-        ["SQL injection", "Database on the server", "SQL commands + control characters in an input field; returns or alters database data", "EK 5.1.B.4"],
-        ["Cross-site scripting (XSS)", "Victim's web browser", "Injected code the browser executes; Reflected via a link, Stored via saved site content", "EK 5.1.B.6"],
-        ["Buffer overflow", "Computer memory", "Input exceeds a fixed-size buffer and overflows into adjacent memory; can run unauthorized code", "EK 5.1.B.8"],
-        ["Directory traversal", "Server's file system", "Modified URL / GET request climbs the directory tree to reach sensitive files", "EK 5.1.B.10"]
+        [
+          "SQL injection",
+          "Database on the server",
+          "SQL commands + control characters in an input field; returns or alters database data",
+          "EK 5.1.B.4"
+        ],
+        [
+          "Cross-site scripting (XSS)",
+          "Victim's web browser",
+          "Injected code the browser executes; Reflected via a link, Stored via saved site content",
+          "EK 5.1.B.6"
+        ],
+        [
+          "Buffer overflow",
+          "Computer memory",
+          "Input exceeds a fixed-size buffer and overflows into adjacent memory; can run unauthorized code",
+          "EK 5.1.B.8"
+        ],
+        [
+          "Directory traversal",
+          "Server's file system",
+          "Modified URL / GET request climbs the directory tree to reach sensitive files",
+          "EK 5.1.B.10"
+        ]
       ],
       "script": "Here's the chart to memorize for 5.1.B. Four attacks, sorted by what each one reaches, because that's how you tell them apart under exam pressure. SQL injection targets the database on the server — SQL commands and control characters in an input field, EK 5.1.B.4. XSS targets the victim's browser — injected code the browser runs, Reflected via a link or Stored via saved content, EK 5.1.B.6. Buffer overflow targets memory — input that exceeds a fixed-size buffer and spills into adjacent memory, EK 5.1.B.8. Directory traversal targets the server's file system — a modified URL that climbs the directory tree, EK 5.1.B.10. Copy this table exactly. When a scenario describes a behavior, match it to the target column first."
     },
@@ -329,11 +354,31 @@
       "type": "worked_table",
       "heading": "Documenting Risk: High, Moderate, Low",
       "context": "Per EK 5.1.C.2–C.4, risk level combines data sensitivity with the likelihood of the exploit — not sensitivity alone. Use this grid to place any scenario.",
-      "columns": ["Level", "CED Definition", "Illustrative Example", "EK"],
+      "columns": [
+        "Level",
+        "CED Definition",
+        "Illustrative Example",
+        "EK"
+      ],
       "rows": [
-        ["High", "Highly sensitive data (e.g., governed by laws or regulations) that could be compromised through a highly likely exploit", "Regulation-governed jet-engine specs on a single unencrypted drive easy to copy", "EK 5.1.C.2"],
-        ["Moderate", "Sensitive data that does not have strong enough encryption or strict enough access controls", "Customer records protected, but with weak encryption or loose permissions", "EK 5.1.C.3"],
-        ["Low", "Less sensitive information that is encrypted with shorter keys or has access controls that are not strict enough", "Routine internal data with short-key encryption or somewhat loose access", "EK 5.1.C.4"]
+        [
+          "High",
+          "Highly sensitive data (e.g., governed by laws or regulations) that could be compromised through a highly likely exploit",
+          "Regulation-governed jet-engine specs on a single unencrypted drive easy to copy",
+          "EK 5.1.C.2"
+        ],
+        [
+          "Moderate",
+          "Sensitive data that does not have strong enough encryption or strict enough access controls",
+          "Customer records protected, but with weak encryption or loose permissions",
+          "EK 5.1.C.3"
+        ],
+        [
+          "Low",
+          "Less sensitive information that is encrypted with shorter keys or has access controls that are not strict enough",
+          "Routine internal data with short-key encryption or somewhat loose access",
+          "EK 5.1.C.4"
+        ]
       ],
       "script": "Now the documentation grid, EK 5.1.C.2 through C.4. High risk: highly sensitive data — the CED's example is data governed by laws or regulations — that could be compromised through a highly likely exploit. Both conditions matter: very sensitive AND very likely. Moderate risk: sensitive data that simply doesn't have strong enough encryption or strict enough access controls. Low risk: less sensitive information encrypted with shorter keys or with access controls that aren't quite strict enough. Memorize the wording in the middle column — the exam paraphrases these almost verbatim. To document a vulnerability, place it in a row and cite the EK."
     },
@@ -444,51 +489,114 @@
         "day": 1,
         "focus": "Exploiting file and access-control vulnerabilities (LO 5.1.A)",
         "segments": [
-          { "segment": "QOTD + bell ringer (where does sensitive data sit unprotected?)", "min": 5 },
-          { "segment": "Guided-notes preview + objectives", "min": 5 },
-          { "segment": "Reading unencrypted files with device or drive access (EK 5.1.A.1)", "min": 12 },
-          { "segment": "Standard vs. administrative users and elevated privileges (EK 5.1.A.2)", "min": 13 },
-          { "segment": "Weak access-control settings: steal, destroy, or disrupt (EK 5.1.A.3) + wrap", "min": 10 }
+          {
+            "segment": "QOTD + bell ringer (where does sensitive data sit unprotected?)",
+            "min": 5
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 5
+          },
+          {
+            "segment": "Reading unencrypted files with device or drive access (EK 5.1.A.1)",
+            "min": 12
+          },
+          {
+            "segment": "Standard vs. administrative users and elevated privileges (EK 5.1.A.2)",
+            "min": 13
+          },
+          {
+            "segment": "Weak access-control settings: steal, destroy, or disrupt (EK 5.1.A.3) + wrap",
+            "min": 10
+          }
         ]
       },
       {
         "day": 2,
         "focus": "Applications, data validation, and SQL injection (LO 5.1.B)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "What applications are; local vs. server-based web apps (EK 5.1.B.1)", "min": 10 },
-          { "segment": "Open-ended input, data validation, and injection-type attacks (EK 5.1.B.2)", "min": 15 },
-          { "segment": "SQL, unvalidated input, and the SQL-injection attack (EK 5.1.B.3–B.4)", "min": 15 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "What applications are; local vs. server-based web apps (EK 5.1.B.1)",
+            "min": 10
+          },
+          {
+            "segment": "Open-ended input, data validation, and injection-type attacks (EK 5.1.B.2)",
+            "min": 15
+          },
+          {
+            "segment": "SQL, unvalidated input, and the SQL-injection attack (EK 5.1.B.3–B.4)",
+            "min": 15
+          }
         ]
       },
       {
         "day": 3,
         "focus": "Cross-site scripting (LO 5.1.B)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "HTML, Javascript in the browser, and browser-stored secrets (EK 5.1.B.5)", "min": 18 },
-          { "segment": "XSS attacks: Reflected (Type I) vs. Stored (Type II) (EK 5.1.B.6)", "min": 17 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "HTML, Javascript in the browser, and browser-stored secrets (EK 5.1.B.5)",
+            "min": 18
+          },
+          {
+            "segment": "XSS attacks: Reflected (Type I) vs. Stored (Type II) (EK 5.1.B.6)",
+            "min": 17
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 4,
         "focus": "Buffer overflow and directory traversal (LO 5.1.B)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Buffers, fixed size, and overflow into adjacent memory (EK 5.1.B.7–B.8)", "min": 17 },
-          { "segment": "GET requests, server file systems, and directory traversal (EK 5.1.B.9–B.10)", "min": 18 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Buffers, fixed size, and overflow into adjacent memory (EK 5.1.B.7–B.8)",
+            "min": 17
+          },
+          {
+            "segment": "GET requests, server file systems, and directory traversal (EK 5.1.B.9–B.10)",
+            "min": 18
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 5,
         "focus": "Assessing and documenting data risk (LO 5.1.C)",
         "segments": [
-          { "segment": "QOTD + bell ringer", "min": 5 },
-          { "segment": "Risk to confidentiality, integrity, and availability (EK 5.1.C.1)", "min": 12 },
-          { "segment": "High, moderate, and low risk by sensitivity and likelihood (EK 5.1.C.2–C.4)", "min": 14 },
-          { "segment": "Topic review + Lesson 5.1 quiz", "min": 14 }
+          {
+            "segment": "QOTD + bell ringer",
+            "min": 5
+          },
+          {
+            "segment": "Risk to confidentiality, integrity, and availability (EK 5.1.C.1)",
+            "min": 12
+          },
+          {
+            "segment": "High, moderate, and low risk by sensitivity and likelihood (EK 5.1.C.2–C.4)",
+            "min": 14
+          },
+          {
+            "segment": "Topic review + Lesson 5.1 quiz",
+            "min": 14
+          }
         ]
       }
     ],

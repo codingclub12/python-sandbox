@@ -6,13 +6,13 @@
     "unit": "Unit 5: Securing Applications and Data",
     "day": 1,
     "los": "LO 5.5.A, 5.5.B",
-    "totalDays": 1,
+    "totalDays": 2,
     "author": "AP CS Exam Prep"
   },
   "slides": [
     {
       "type": "title",
-      "eyebrow": "Unit 5 · Lesson 5.5 · Day 1 of 1",
+      "eyebrow": "Unit 5 · Lesson 5.5 · Days 1–2",
       "title": "Baked In, Not Bolted On",
       "subtitle": "Protecting Applications: building security into every phase of development (secure by design and secure by default) and checking user input so control characters can't be turned into an attack",
       "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
@@ -271,13 +271,37 @@
       "type": "worked_table",
       "heading": "Matching Scenarios to the Right Concept",
       "context": "For each scenario, name the CED concept and cite the EK. This is exactly how the exam frames 5.5.A and 5.5.B.",
-      "columns": ["Scenario", "Concept", "EK"],
+      "columns": [
+        "Scenario",
+        "Concept",
+        "EK"
+      ],
       "rows": [
-        ["A company treats security as a requirement from the first design meeting", "Secure by design", "EK 5.5.A.1"],
-        ["A vendor quickly publishes security updates so others can protect themselves too", "Radical transparency and accountability", "EK 5.5.A.2"],
-        ["A router ships with its firewall already on and encryption configured", "Secure by default", "EK 5.5.A.3"],
-        ["An app wraps typed input in single quotes, double quotes, and semicolons to process it", "Control characters", "EK 5.5.B.1"],
-        ["A function strips out malicious characters or errors out, blocking SQL injection and XSS", "Input sanitization / verification", "EK 5.5.B.2"]
+        [
+          "A company treats security as a requirement from the first design meeting",
+          "Secure by design",
+          "EK 5.5.A.1"
+        ],
+        [
+          "A vendor quickly publishes security updates so others can protect themselves too",
+          "Radical transparency and accountability",
+          "EK 5.5.A.2"
+        ],
+        [
+          "A router ships with its firewall already on and encryption configured",
+          "Secure by default",
+          "EK 5.5.A.3"
+        ],
+        [
+          "An app wraps typed input in single quotes, double quotes, and semicolons to process it",
+          "Control characters",
+          "EK 5.5.B.1"
+        ],
+        [
+          "A function strips out malicious characters or errors out, blocking SQL injection and XSS",
+          "Input sanitization / verification",
+          "EK 5.5.B.2"
+        ]
       ],
       "note": "Read the scenario, name the concept, cite the EK — that is the move the quiz asks for on every item.",
       "script": "Let's pull both objectives together into the move the exam actually asks for: read a scenario, name the concept, cite the EK. Security treated as a requirement from the first design meeting — that's secure by design, A.1. A vendor publishing updates fast so others benefit — radical transparency and accountability, A.2. A router shipping with its firewall already on — secure by default, A.3. An app wrapping typed input in quotes and semicolons to process it — those are control characters, B.1. And a function that strips malicious characters or errors out to block SQL injection and XSS — input verification, B.2. Practice naming the concept and the EK together; that pairing is worth easy points."
@@ -338,14 +362,66 @@
     "pacing": [
       {
         "day": 1,
-        "focus": "Secure by design and security by default, then how user input sanitization and validation protect applications (5.5.A–B)",
+        "focus": "Secure by design and secure by default (LO 5.5.A)",
         "segments": [
-          { "segment": "Bell ringer — should security be added at the end or built in from the start?", "min": 5 },
-          { "segment": "Direct instruction — secure by design as a principle and its three design principles (5.5.A)", "min": 20 },
-          { "segment": "Secure by default: security features enabled out of the box (5.5.A)", "min": 10 },
-          { "segment": "Control characters and why applications encase user input (5.5.B)", "min": 15 },
-          { "segment": "Input verification: sanitize vs. reject, and the attacks it prevents (5.5.B)", "min": 20 },
-          { "segment": "Quiz and wrap-up", "min": 10 }
+          {
+            "segment": "Bell ringer — built-in vs. bolted-on security",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Secure by design as a principle and its practices (5.5.A)",
+            "min": 20,
+            "slides": "3-8"
+          },
+          {
+            "segment": "Secure by default: features enabled out of the box (5.5.A)",
+            "min": 12,
+            "slides": "8-9"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "9"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Input sanitization and the attacks it stops (LO 5.5.B)",
+        "segments": [
+          {
+            "segment": "Recap Day 1 + bell ringer",
+            "min": 5,
+            "slides": "10"
+          },
+          {
+            "segment": "Control characters and why apps encase user input (5.5.B)",
+            "min": 15,
+            "slides": "10-12"
+          },
+          {
+            "segment": "Input verification: sanitize vs. reject (5.5.B)",
+            "min": 20,
+            "slides": "13-16"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 5.5 quiz",
+            "min": 20,
+            "slides": "Handout"
+          }
         ]
       }
     ],

@@ -6,13 +6,13 @@
     "unit": "Unit 4: Securing Devices",
     "day": 1,
     "los": "LO 4.3.A, 4.3.B, 4.3.C, 4.3.D",
-    "totalDays": 1,
+    "totalDays": 2,
     "author": "AP CS Exam Prep"
   },
   "slides": [
     {
       "type": "title",
-      "eyebrow": "Unit 4 · Lesson 4.3 · Day 1 of 1",
+      "eyebrow": "Unit 4 · Lesson 4.3 · Days 1–2",
       "title": "Four Locks on One Machine",
       "subtitle": "Protecting Devices: the managerial policies, anti-malware scanning, software updates, and host-based firewall rules that keep a single device secure even when the network around it is compromised",
       "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
@@ -118,14 +118,42 @@
       "eyebrow": "Worked Walkthrough",
       "heading": "Sort the Clause to the Policy",
       "context": "Each clause below comes straight from EK 4.3.A.1–A.3. Practice matching a real clause to the policy that owns it — this is exactly how the exam asks 4.3.A.",
-      "columns": ["Example clause", "Policy", "EK"],
+      "columns": [
+        "Example clause",
+        "Policy",
+        "EK"
+      ],
       "rows": [
-        ["“Social media and gaming websites are blocked.”", "Acceptable use", "EK 4.3.A.1"],
-        ["“Users must keep their software updated.”", "Acceptable use", "EK 4.3.A.1"],
-        ["“Do not connect external drives or USB media.”", "Acceptable use", "EK 4.3.A.1"],
-        ["“Passwords must be at least 12 characters, no reuse.”", "Password", "EK 4.3.A.2"],
-        ["“Use the company password manager; don’t write passwords down.”", "Password", "EK 4.3.A.2"],
-        ["“Users may not install software; request it from IT.”", "Software installation", "EK 4.3.A.3"]
+        [
+          "“Social media and gaming websites are blocked.”",
+          "Acceptable use",
+          "EK 4.3.A.1"
+        ],
+        [
+          "“Users must keep their software updated.”",
+          "Acceptable use",
+          "EK 4.3.A.1"
+        ],
+        [
+          "“Do not connect external drives or USB media.”",
+          "Acceptable use",
+          "EK 4.3.A.1"
+        ],
+        [
+          "“Passwords must be at least 12 characters, no reuse.”",
+          "Password",
+          "EK 4.3.A.2"
+        ],
+        [
+          "“Use the company password manager; don’t write passwords down.”",
+          "Password",
+          "EK 4.3.A.2"
+        ],
+        [
+          "“Users may not install software; request it from IT.”",
+          "Software installation",
+          "EK 4.3.A.3"
+        ]
       ],
       "note": "Watch the overlap trap: “requiring users to keep software updated” lives in the ACCEPTABLE USE policy (EK 4.3.A.1), not the software installation policy.",
       "script": "Let's work the matching skill directly. Read each clause and name the policy. Blocking social media or gaming, requiring updates, and prohibiting external drives are all acceptable use — EK 4.3.A.1. Minimum length with no reuse, and using a password manager instead of writing passwords down, are password policy — EK 4.3.A.2. Prohibiting installs and routing requests through IT is the software installation policy — EK 4.3.A.3. Watch the trap at the bottom: the requirement to keep software updated lives in the acceptable use policy, not the software installation policy. The exam loves that one."
@@ -271,12 +299,37 @@
       "eyebrow": "Worked Walkthrough",
       "heading": "Reading an Ordered ACL: First Match Wins",
       "context": "Rules apply top to bottom; the FIRST rule that matches a packet decides the action (EK 4.3.D.2). Trace each packet down the list until it hits a match.",
-      "columns": ["#", "Rule", "Packet", "Result"],
+      "columns": [
+        "#",
+        "Rule",
+        "Packet",
+        "Result"
+      ],
       "rows": [
-        ["1", "ALLOW inbound TCP 443 from any", "Inbound HTTPS (443)", "ALLOW (rule 1)"],
-        ["2", "DENY outbound TCP 21 (FTP) to any", "Outbound FTP (21)", "DENY (rule 2)"],
-        ["3", "ALLOW outbound TCP 443 to any", "Outbound HTTPS (443)", "ALLOW (rule 3)"],
-        ["4", "DENY all (default)", "Inbound TCP 23 (Telnet)", "DENY (rule 4)"]
+        [
+          "1",
+          "ALLOW inbound TCP 443 from any",
+          "Inbound HTTPS (443)",
+          "ALLOW (rule 1)"
+        ],
+        [
+          "2",
+          "DENY outbound TCP 21 (FTP) to any",
+          "Outbound FTP (21)",
+          "DENY (rule 2)"
+        ],
+        [
+          "3",
+          "ALLOW outbound TCP 443 to any",
+          "Outbound HTTPS (443)",
+          "ALLOW (rule 3)"
+        ],
+        [
+          "4",
+          "DENY all (default)",
+          "Inbound TCP 23 (Telnet)",
+          "DENY (rule 4)"
+        ]
       ],
       "note": "Order matters: if a broad ALLOW sat above a specific DENY, the DENY would never fire — the first match short-circuits the rest (EK 4.3.D.2).",
       "script": "Let's read an ACL the way the firewall does — top to bottom, first match wins. An inbound HTTPS packet on 443 hits rule one and is allowed; we never look further. An outbound FTP packet on 21 falls past rule one, matches rule two, and is denied. Outbound HTTPS matches rule three and is allowed. An inbound Telnet packet matches nothing specific and hits the default deny at rule four. The big lesson is in the note: order matters. If a broad allow sat above a specific deny, the deny would never fire, because the first match short-circuits everything below it. When you configure a host firewall, put your specific deny rules above your broad allows."
@@ -426,14 +479,66 @@
     "pacing": [
       {
         "day": 1,
-        "focus": "Managerial controls, anti-malware, updates/patching, and host-based firewalls (4.3.A–D)",
+        "focus": "Managerial controls and anti-malware (LO 4.3.A–B)",
         "segments": [
-          { "segment": "Bell ringer — what rules govern your school-issued device", "min": 5 },
-          { "segment": "Direct instruction — managerial controls: acceptable use, password, and software installation policies (4.3.A)", "min": 20 },
-          { "segment": "Anti-malware: signatures, signature databases, scanning, and quarantine (4.3.B)", "min": 15 },
-          { "segment": "Updates and patching: closing known vulnerabilities (4.3.C)", "min": 15 },
-          { "segment": "Host-based firewalls: ordered ACL rules and blocking unneeded ports (4.3.D)", "min": 20 },
-          { "segment": "Quiz and wrap-up", "min": 10 }
+          {
+            "segment": "Bell ringer — what rules govern your school device",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Managerial controls: acceptable use, passwords, training (4.3.A)",
+            "min": 20,
+            "slides": "3-9"
+          },
+          {
+            "segment": "Anti-malware: signatures, databases, scanning (4.3.B)",
+            "min": 15,
+            "slides": "10-13"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "13"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Updates/patching and host-based firewalls (LO 4.3.C–D)",
+        "segments": [
+          {
+            "segment": "Recap Day 1 + bell ringer",
+            "min": 5,
+            "slides": "14"
+          },
+          {
+            "segment": "Updates and patching: closing known vulnerabilities (4.3.C)",
+            "min": 15,
+            "slides": "14-16"
+          },
+          {
+            "segment": "Host-based firewalls: ordered ACL rules (4.3.D)",
+            "min": 20,
+            "slides": "17-23"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "24"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 4.3 quiz",
+            "min": 20,
+            "slides": "Handout"
+          }
         ]
       }
     ],
