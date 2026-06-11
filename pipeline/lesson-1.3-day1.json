@@ -480,5 +480,189 @@
         "rationale": "EK 1.3.C.2 says most internet protocols are encrypted, but individuals may consider the sensitivity of their data when choosing whether to join unencrypted Wi-Fi to protect vulnerable data such as DNS queries. Options A, B, and D are not the example the CED gives here."
       }
     ]
+  },
+  "guide": {
+    "title": "Lesson 1.3 — Best Practices for Public Networks — Teacher Guide",
+    "subtitle": "Unit 1 · Topic 1.3 · 4 class periods · Scenario 1C",
+    "overview": [
+      "Lesson 1.3 covers the hazards of public Wi-Fi. Across four days students learn to classify the adversary behind an attack (by skill level and motivation), identify the three wireless attacks the CED names (evil twin, jamming, war driving), and describe the actions individuals can take to protect their data online. Day 1 builds the framework; Days 2–3 apply it as a security analyst and consultant; Day 4 is the quiz and debrief.",
+      "Scope note: LO 1.3.A is about adversary SKILL and MOTIVATION — not the five named adversary categories, which belong to Unit 2, Topic 2.1.B. Keep Lesson 1.3 to skill level (low vs high / zero days) and motivation.",
+      "Scenario 1C (Verifying Network Authenticity) anchors Day 3: a coffee-shop captive portal on a look-alike “Guest Wi-Fi” harvests the victim's platform login and is used to take over a linked music account."
+    ],
+    "los": [
+      "LO 1.3.A — Identify the type of adversary conducting a cyberattack.",
+      "LO 1.3.B — Identify types of wireless cyberattacks.",
+      "LO 1.3.C — Describe actions individuals can take to increase protection of sensitive data when using the internet and Wi-Fi."
+    ],
+    "eks": [
+      "EK 1.3.A.1 — Adversaries can be classified by their skill levels. Low-skilled adversaries rely on malicious cyber tools created by others that can be purchased online; the tools they use exploit known vulnerabilities. High-skilled adversaries have the capacity to create new malicious cyber tools or modify existing ones to adapt to new defensive techniques and tools; they also have the capacity to discover undocumented vulnerabilities, known as zero days.",
+      "EK 1.3.A.2 — Adversaries have a variety of motivations, including greed, desire for recognition, dedication to a cause, revenge, politics, or beliefs.",
+      "EK 1.3.B.1 — In an evil twin attack, an adversary sets up their own wireless access point (WAP) with a service set identifier (SSID) similar or identical to a target network; the adversary's network is called the evil twin. Victims could unknowingly connect to the evil twin, allowing the adversary to capture their network traffic. The adversary cannot read traffic that uses an encrypted protocol like HTTPS.",
+      "EK 1.3.B.2 — In a jamming attack, an adversary floods an area with a strong electromagnetic (EM) signal in the same frequency range as the wireless network, which prevents legitimate traffic between the access point (AP) and users. This type of attack that prevents users from accessing resources is called a denial of service (DoS) attack.",
+      "EK 1.3.B.3 — In a war driving attack, adversaries try to detect wireless network beacons while driving or walking around a target. If a wireless signal is detected, the adversary can gather information about the type of wireless network used and find areas where the wireless signal extends outside the physical building.",
+      "EK 1.3.C.1 — Individuals may consider using a virtual private network (VPN), which encrypts all their traffic to the VPN operator's system. Although this action prevents a service provider from viewing traffic, the VPN provider can view the traffic.",
+      "EK 1.3.C.2 — Most internet protocols are encrypted to protect network traffic. However, individuals may consider the sensitivity of their data in choosing whether to join unencrypted Wi-Fi networks to protect vulnerable data such as DNS queries.",
+      "EK 1.3.C.3 — Individuals should verify that the name of any wireless network they join exactly matches the name of the network they intend to join."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version) for each of the four days.",
+      "Printed Day 1–4 Guided Notes (student copies).",
+      "Printed Exercise 1 — Wireless Attack Identifier (Day 2) and Exercise 2 — Network Trust Advisor (Day 3).",
+      "Printed Lesson 1.3 quiz (student copies) for Day 4.",
+      "Scenario 1C displayed on the Day 3 deck (no handout needed)."
+    ],
+    "prereqs": [
+      "Lesson 1.1 (social engineering) and 1.2 (authentication) help, since Scenario 1C ends in a credential-capture and account takeover, but neither is strictly required."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Classify adversaries; identify the three wireless attacks (LO 1.3.A, 1.3.B)",
+        "segments": [
+          {
+            "segment": "Bell ringer (three coffee-shop networks — which do you join?)",
+            "min": 5
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3
+          },
+          {
+            "segment": "Adversary skill levels + six motivations (EK 1.3.A.1–A.2)",
+            "min": 12
+          },
+          {
+            "segment": "Three wireless attacks: evil twin, jamming/DoS, war driving (EK 1.3.B.1–B.3)",
+            "min": 12
+          },
+          {
+            "segment": "The HTTPS myth + active vs passive (enrichment)",
+            "min": 8
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 7
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Wireless Attack Identifier: classify four real incidents and match defenses (LO 1.3.A–C)",
+        "segments": [
+          {
+            "segment": "Correction from Day 1 (MITM modifies vs sniffing observes)",
+            "min": 4
+          },
+          {
+            "segment": "Objectives + the three-step analyst method",
+            "min": 5
+          },
+          {
+            "segment": "Independent analysis: Exercise 1, four incidents",
+            "min": 22,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Debrief the four incidents (attack · adversary · defense)",
+            "min": 14
+          },
+          {
+            "segment": "Stop and Think + active vs passive extension",
+            "min": 5
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Network Trust Advisor: defense recommendations for three clients; Scenario 1C (LO 1.3.C)",
+        "segments": [
+          {
+            "segment": "Warmup: real or fake captive portals",
+            "min": 3
+          },
+          {
+            "segment": "Objectives + the full-credit rubric",
+            "min": 5
+          },
+          {
+            "segment": "Exercise 2: three clients (incl. CB Scenario 1C)",
+            "min": 22,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Debrief the three clients (defense + rationale + trap)",
+            "min": 14
+          },
+          {
+            "segment": "Discussion + the AP exam pattern for this lesson",
+            "min": 6
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Quiz, debrief, and bridge to Lesson 1.4 (assess)",
+        "segments": [
+          {
+            "segment": "Memory-challenge bell ringer (the 8 items)",
+            "min": 4
+          },
+          {
+            "segment": "AP strategy review (predict · keywords · slash the trash)",
+            "min": 4
+          },
+          {
+            "segment": "Lesson 1.3 quiz (5 questions, AP pacing)",
+            "min": 15,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Quiz debrief (Q1–Q5: distractors and common misses)",
+            "min": 20
+          },
+          {
+            "segment": "Bridge to Lesson 1.4 (AI-based attacks)",
+            "min": 5
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "If the name matches, it's safe",
+        "myth": "A Wi-Fi network is trustworthy if its name matches the venue.",
+        "reality": "An evil twin uses an SSID similar or identical to the real one (EK 1.3.B.1). A matching name proves nothing; verify the exact posted name and protect your traffic."
+      },
+      {
+        "heading": "A VPN makes you invisible",
+        "myth": "Using a VPN means no one can ever see my traffic.",
+        "reality": "A VPN hides traffic from the local service provider, but the VPN provider itself can view it (EK 1.3.C.1). A VPN shifts trust; it does not remove it."
+      },
+      {
+        "heading": "LO 1.3.A is the five adversary types",
+        "myth": "LO 1.3.A is about the five adversary types (script kiddies, hacktivists, and so on).",
+        "reality": "Topic 1.3 classifies adversaries only by skill level and motivation. The five named categories are Unit 2, Topic 2.1.B — don't import them here."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give a two-column word bank (skill: low/high; motivation: the six listed) before the Stop and Think so students focus on matching.",
+        "Provide an attack-name card (evil twin / jamming / war driving) with a one-line cue for each as a sorting aid."
+      ],
+      "extension": [
+        "Have students design a public-Wi-Fi setup for a fictional cafe and list which of the three attacks each of their choices defends against.",
+        "Ask students to explain how war driving could be a precursor to an evil twin attack, using the reconnaissance idea from Unit 2 phrasing."
+      ]
+    },
+    "discussion": [
+      "Why is war driving dangerous even though it doesn't break into anything by itself?",
+      "If a VPN provider can see your traffic, what makes a VPN worth using on public Wi-Fi anyway?",
+      "Which single habit would have protected the Scenario 1C victim, and why is it more reliable than ‘looking for the right name’?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
   }
 }
