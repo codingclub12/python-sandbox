@@ -135,7 +135,7 @@ function validateLesson(file) {
       case 'impacts_grid': {
         impactsSeen++;
         const n = (s.items || []).length;
-        if (n !== 3) F(`${tag}: impacts_grid must have EXACTLY 3 items; found ${n}`);
+        if (n < 2 || n > 4) F(`${tag}: impacts_grid must have 2-4 items (renderer lays out one row); found ${n}`);
         (s.items || []).forEach((it, j) => { if (!it.ek) W(`${tag}: item[${j}] has no "ek" badge`); });
         break;
       }

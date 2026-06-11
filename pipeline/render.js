@@ -663,12 +663,16 @@ function buildImpactsGrid(slide, s) {
     });
   }
 
-  const cardW = (W - 2 * M.edge - 0.6) / 3;
+  // Responsive column count: 2, 3, or 4 items in a single row.
+  // For n=3 (gap 0.3) this is identical to the original (W-2*edge-0.6)/3 layout.
+  const nCols = s.items.length;
+  const gap = 0.3;
+  const cardW = (W - 2 * M.edge - gap * (nCols - 1)) / nCols;
   const cardY = 2.0;
   const cardH = 4.5;
 
   s.items.forEach((item, i) => {
-    const x = M.edge + i * (cardW + 0.3);
+    const x = M.edge + i * (cardW + gap);
     // Card
     slide.addShape(pres.shapes.RECTANGLE, {
       x, y: cardY, w: cardW, h: cardH,
@@ -917,7 +921,7 @@ function buildAPStrategy(slide, s) {
   const cardH = 4.5;
 
   s.strategies.forEach((st, i) => {
-    const x = M.edge + i * (cardW + 0.3);
+    const x = M.edge + i * (cardW + gap);
     slide.addShape(pres.shapes.RECTANGLE, {
       x, y: cardY, w: cardW, h: cardH,
       fill: { color: C.cardTint }, line: { color: C.border, width: 1 },
