@@ -7,8 +7,478 @@
     "day": 1,
     "los": "LO 3.5.A, 3.5.B, 3.5.C, 3.5.D, 3.5.E",
     "author": "AP CS Exam Prep",
-    "totalDays": 7
+    "totalDays": 1
   },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 3 · Lesson 3.5 · Day 1 of 1",
+      "title": "When the Network Talks, Who's Listening?",
+      "subtitle": "Detecting Attacks on Networks: the automated tools, AI, and detection methods that turn millions of log lines into an alert — and the trade-offs between catching every attack and drowning in false alarms",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 3, Securing Networks, and Lesson 3.5, Detecting Attacks on Networks. Earlier topics in this unit protected and configured the network; this one asks a different question — once an attacker is inside or knocking, how does an organization actually notice? This single comprehensive deck covers all five learning objectives, 3.5.A through 3.5.E. We start with the automated tools that listen — NIDS, NIPS, and SIEM — then move to how AI scales that listening across tens of millions of log lines, how teams choose a detection method, how they weigh its impact, and finally how an analyst reads log files to name a specific attack. The whole topic turns on one trade-off: catch every attack, or avoid drowning in false alarms."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of This Topic You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the automated tools that detect network attacks — NIDS, NIPS, and SIEM — and tell apart 'just alert' from 'alert and act' (LO 3.5.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how organizations leverage AI to classify millions of log data points and how alert thresholds balance missed attacks against false alarms (LO 3.5.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Determine a detection method — signature, anomaly, or hybrid — from traffic volume, pattern consistency, data sensitivity, and likelihood of novel attacks (LO 3.5.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Evaluate a detection method's impact by speed, cost, false-positive rate, and false-negative rate (LO 3.5.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply detection techniques to log files to identify indicators of specific network attacks (LO 3.5.E)"
+        }
+      ],
+      "script": "Five objectives for this topic, one per learning objective. First, 3.5.A — identify the automated detection tools and tell apart a tool that only alerts from one that can also act. Second, 3.5.B — explain how AI scales detection and how an organization's alert threshold trades off missed attacks against false alarms. Third, 3.5.C — determine the right detection method from four criteria. Fourth, 3.5.D — evaluate that method's impact across speed, cost, false positives, and false negatives. And fifth, 3.5.E — read a log file and name the specific attack from its indicators. Keep these five in view; everything today hangs on them."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Two security tools watch the same network. Tool A spots malicious traffic and immediately raises an alert for a human to investigate — but it does nothing else. Tool B spots the same traffic and, on its own, closes the port and blocks the attacker's IP address to stop the attack.",
+      "subprompt": "Write 3–5 sentences: what is the key difference between Tool A and Tool B? Which one would you want guarding a hospital's life-support network, and what is the risk of letting a tool act automatically without a human in the loop?",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own, no notes. Read it: Tool A detects malicious traffic and raises an alert, but takes no action. Tool B detects the same traffic and acts on its own — closes the port, blocks the IP. In three to five sentences, name the key difference, and decide which you'd put on a hospital network, and what the risk is of letting a tool act automatically. Hold your answers. By the end of today you'll know that Tool A is a NIDS and Tool B is a NIPS, and you'll be able to cite the exact EK that separates them."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes follow the five learning objectives of this topic. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "The Listening Tools (LO 3.5.A)",
+          "description": "Log files as the raw material, then NIDS, NIPS, and SIEM — detect, detect-and-halt, and aggregate-and-alert (EK 3.5.A.1–A.4)."
+        },
+        {
+          "title": "AI and Thresholds (LO 3.5.B)",
+          "description": "Why humans can't read millions of log lines, how AI classifies them, and how a likelihood threshold balances missed attacks vs. false alarms (EK 3.5.B.1–B.4)."
+        },
+        {
+          "title": "Choosing & Judging a Method (LO 3.5.C–D)",
+          "description": "Signature, anomaly, or hybrid — chosen by four criteria and judged by speed, cost, false positives, and false negatives (EK 3.5.C.1–C.4, D.1–D.4)."
+        },
+        {
+          "title": "Reading the Logs (LO 3.5.E)",
+          "description": "Match an indicator in a log file to the specific network attack it reveals, from evil-twin to smurf to network-based IoCs (EK 3.5.E.1–E.7)."
+        },
+        {
+          "title": "Enrichment: The Trade-off Triangle",
+          "description": "See how speed, cost, and coverage pull against each other so no single method 'wins' (EK 3.5.C, D).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 3.5 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Your notes follow the five objectives. Section one, the listening tools — log files plus NIDS, NIPS, and SIEM. Section two, AI and thresholds — why humans can't keep up and how a threshold tunes alerts. Section three folds together choosing a method and judging its impact. Section four is reading logs to name an attack. And the blue enrichment section ties it together with the trade-off triangle. Keep your pencil moving; I collect Guided Notes at the end."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Tools That Listen: NIDS, NIPS, SIEM",
+      "kicker": "Detecting Attacks on Networks · Learning Objective 3.5.A",
+      "script": "Section one. Learning objective 3.5.A. Before any tool can detect an attack, it needs data — and that data lives in log files. Then we'll meet the three named tools: NIDS, NIPS, and SIEM. Watch for what each one does once it finds something."
+    },
+    {
+      "type": "two_column",
+      "heading": "Same Data, Two Jobs: Detect vs. Detect-and-Halt",
+      "subheading": "EK 3.5.A.1–A.3 — both tools read the same logged data, but only one can act to stop an attack.",
+      "left": {
+        "title": "NIDS — Network Intrusion Detection System (EK 3.5.A.2)",
+        "definition": "Analyzes data, then alerts — but does not act",
+        "ek": "EK 3.5.A.2",
+        "examples": [
+          "Automated detection tools analyze data collected from the network and devices, often in a log file (EK 3.5.A.1)",
+          "A NIDS analyzes that data to determine if malicious activity is taking place",
+          "When an attack is detected, the NIDS generates an alert",
+          "Key limit: a NIDS does NOT take action to stop the attack"
+        ]
+      },
+      "right": {
+        "title": "NIPS — Network Intrusion Prevention System (EK 3.5.A.3)",
+        "definition": "Analyzes data, alerts, AND can stop the attack",
+        "ek": "EK 3.5.A.3",
+        "examples": [
+          "Like an IDS, a NIPS analyzes data to determine if malicious activity is taking place",
+          "Unlike a NIDS, a NIPS can also mitigate or halt the attack",
+          "It does so by closing ports, blocking specific IP or MAC addresses, or rejecting specific protocols",
+          "Detection vs. detection-plus-response is the whole difference"
+        ]
+      },
+      "footer": "AP TIP: If a tool 'detects and alerts' but takes no action, it's a NIDS (EK 3.5.A.2). If it 'detects and can also mitigate or halt' the attack, it's a NIPS (EK 3.5.A.3). The verb 'act/halt/block' is your tell.",
+      "script": "Two columns, same logged data, two different jobs. On the left, EK 3.5.A.1 and A.2: automated tools analyze data collected from the network and devices, usually in a log file, and a NIDS — network intrusion detection system — analyzes that data to determine if malicious activity is happening, then generates an alert. Crucially, a NIDS only alerts; it does not stop the attack. On the right, EK 3.5.A.3, the NIPS — network intrusion prevention system — does everything the NIDS does, but can also mitigate or halt the attack by closing ports, blocking IP or MAC addresses, or rejecting protocols. The tell on the exam is the verb: if the tool acts, it's a NIPS. Write both EKs."
+    },
+    {
+      "type": "concept",
+      "heading": "SIEM: One Pane of Glass Over Many Sources (EK 3.5.A.4)",
+      "tag": "CB",
+      "bullets": [
+        "A SIEM — security information and event management system — collects and analyzes data from MANY sources at once: firewalls, NIDS/NIPS, device logs, and application logs (EK 3.5.A.4)",
+        "It looks across those sources to detect PATTERNS that may indicate a cyberattack — connections no single tool would catch alone",
+        "When it finds such a pattern, the SIEM raises an alert (EK 3.5.A.4)",
+        "The alert is not the end: security analysts INVESTIGATE it to decide whether it is a true threat (EK 3.5.A.4)",
+        "Analysts then follow standard operating procedures to resolve the alert or escalate it (EK 3.5.A.4)",
+        "So the workflow is: aggregate sources → detect a pattern → alert → human investigates → resolve or escalate"
+      ],
+      "script": "Where a NIDS or NIPS watches one stream, a SIEM — security information and event management system — pulls together data from many sources at once: firewalls, the NIDS and NIPS, device logs, and application logs. By correlating across all of them, it spots patterns that no single tool would catch alone, and raises an alert when a pattern may indicate a cyberattack. But the alert is just the start: EK 3.5.A.4 is explicit that a human security analyst investigates the alert to decide whether it's a true threat, then follows standard operating procedures to resolve it or escalate it. Memorize that workflow — the exam tests the analyst's role, not just the tool."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary — Detection Tools (LO 3.5.A)",
+      "terms": [
+        {
+          "term": "Log file",
+          "definition": "Where automated tools collect the data they analyze — data from the network and devices such as switches, routers, servers, firewalls, and user computers (EK 3.5.A.1)."
+        },
+        {
+          "term": "NIDS",
+          "definition": "A network intrusion detection system; an automated tool that analyzes data to determine if malicious activity is taking place and generates an alert, but does not act to stop the attack (EK 3.5.A.2)."
+        },
+        {
+          "term": "NIPS",
+          "definition": "A network intrusion prevention system; like an IDS it analyzes data for malicious activity, but it can also mitigate or halt an attack by closing ports, blocking IP or MAC addresses, or rejecting protocols (EK 3.5.A.3)."
+        },
+        {
+          "term": "SIEM",
+          "definition": "A security information and event management system that collects and analyzes data from multiple sources to detect patterns that may indicate a cyberattack and raises an alert for analysts to investigate (EK 3.5.A.4)."
+        }
+      ],
+      "script": "Four terms for the tools. A log file is where automated tools collect the data they analyze, from across the network and its devices. A NIDS analyzes that data and alerts, but takes no action. A NIPS does the same and can also halt the attack. A SIEM aggregates many sources, finds patterns, and raises an alert for a human analyst to investigate. Each definition carries its EK number — get all four into your notes by name and EK."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Leveraging AI for Detection",
+      "kicker": "Detecting Attacks on Networks · Learning Objective 3.5.B",
+      "script": "Section two. Learning objective 3.5.B. The tools in section one generate an overwhelming amount of data — far more than any human team can read. This section is how organizations leverage AI to keep up, and the single dial that controls whether they catch attacks or drown in false alarms."
+    },
+    {
+      "type": "concept",
+      "heading": "Why Humans Can't Do This Alone (EK 3.5.B.1–B.2)",
+      "tag": "CB",
+      "bullets": [
+        "Computers log every action users take, and firewalls, IDS, IPS, and other sensors log all traffic passing through the network (EK 3.5.B.1)",
+        "A medium-sized organization's network logs MILLIONS — or even tens of millions — of data points per day (EK 3.5.B.1)",
+        "Even a large team of humans is incapable of analyzing that much data (EK 3.5.B.1)",
+        "So threat-detection teams create AI algorithms to analyze the large volume of data (EK 3.5.B.2)",
+        "The AI's job is to classify the data patterns as either malicious or normal (EK 3.5.B.2)"
+      ],
+      "script": "Start with the scale problem. EK 3.5.B.1: computers log every user action, and firewalls, IDS, IPS, and other sensors log all the traffic through the network — for a medium-sized organization that's millions, even tens of millions, of data points a day. The CED is blunt: even a large team of humans cannot analyze that much data. So, EK 3.5.B.2, threat-detection teams build AI algorithms to analyze the data and classify each pattern as malicious or normal. AI isn't a luxury here; it's the only way to read the volume. Write both EKs."
+    },
+    {
+      "type": "two_column",
+      "heading": "Probabilities and the Threshold Dial",
+      "subheading": "EK 3.5.B.3–B.4 — the AI reports a likelihood, and the organization decides when that likelihood fires an alert.",
+      "left": {
+        "title": "Probabilistic Scoring (EK 3.5.B.3)",
+        "definition": "The AI reports a likelihood, not a yes/no",
+        "ek": "EK 3.5.B.3",
+        "examples": [
+          "AI threat-detection models are based on probabilistic calculations",
+          "They report a PERCENTAGE indicating the likelihood that something is malicious",
+          "Example: 'this connection is 78% likely to be malicious'",
+          "It is a probability, not a certainty — which is why a threshold is needed"
+        ]
+      },
+      "right": {
+        "title": "The Alert Threshold (EK 3.5.B.4)",
+        "definition": "The org sets the percentage that triggers an alert",
+        "ek": "EK 3.5.B.4",
+        "examples": [
+          "Organizations determine their OWN thresholds for what likelihood results in an alert",
+          "Threshold set too HIGH → real attacks may go undetected",
+          "Threshold set too LOW → the team is overwhelmed with false alerts",
+          "Tuning the threshold is a balance, not a 'higher is safer' dial"
+        ]
+      },
+      "footer": "AP TIP: The threshold is an ORGANIZATIONAL decision, not a fixed technical setting (EK 3.5.B.4). Too high misses real attacks; too low buries the team in false alarms. Be ready to reason about both failure modes.",
+      "script": "Two columns on how AI decides. On the left, EK 3.5.B.3: these models are probabilistic — they don't say malicious or not, they report a percentage likelihood that something is malicious, say 78 percent. On the right, EK 3.5.B.4: the organization sets its own threshold for what percentage triggers an alert. And here's the heart of it — set the threshold too high and real attacks slip past undetected; set it too low and the team is buried in false alerts. The threshold is a balance an organization chooses, not a fixed setting. Expect the exam to ask you to reason about both failure modes. Write both EKs."
+    },
+    {
+      "type": "misconception",
+      "heading": "A Higher AI Threshold Is Not Always Safer",
+      "misconception": "Setting the AI alert threshold very high makes the network safer because there are fewer false alarms.",
+      "correction": "EK 3.5.B.4 says a threshold set too high means real attacks may go undetected, while a threshold set too low overwhelms the team with false alerts. Tuning the threshold is a balance between missing attacks and drowning in alarms — not a 'higher is safer' dial.",
+      "whyItHappens": "Fewer alerts feels calmer and safer, so it's tempting to crank the threshold up. But fewer alerts can mean real attacks are sliding past unnoticed.",
+      "example": "At a very high threshold, a genuine attack scored at 60% likelihood never fires an alert — a missed attack hiding behind a quiet dashboard.",
+      "script": "A common misconception: students assume a higher AI threshold is always safer because there are fewer false alarms. EK 3.5.B.4 says otherwise. Too high, and real attacks go undetected; too low, and the team is overwhelmed with false alerts. It's a balance. A quiet dashboard can mean you're safe — or it can mean a real attack scored just below your threshold and never alerted. Don't read 'fewer alerts' as 'more secure.'"
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Determining a Detection Method",
+      "kicker": "Detecting Attacks on Networks · Learning Objective 3.5.C",
+      "script": "Section three. Learning objective 3.5.C. Now the choice: signature-based, anomaly-based, or hybrid detection? The CED gives four criteria for deciding. We'll lay them out in a table, then compare the two base methods head to head."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Four Criteria → Which Method (EK 3.5.C.1–C.4)",
+      "context": "The CED names four criteria for choosing a detection method. Match the situation to the method the CED prefers.",
+      "columns": [
+        "Criterion",
+        "Situation",
+        "Preferred method",
+        "EK"
+      ],
+      "rows": [
+        [
+          "Volume of traffic",
+          "High traffic volume; needs speed",
+          "Signature-based (more efficient, runs faster; compares to a database of known IoCs/signatures that must be updated)",
+          "EK 3.5.C.1"
+        ],
+        [
+          "Pattern consistency",
+          "Consistent, predictable traffic patterns",
+          "Anomaly-based (compares to a baseline of recorded activity; alerts when data is outside a tolerance range)",
+          "EK 3.5.C.2"
+        ],
+        [
+          "Sensitivity / criticality",
+          "Especially sensitive or critical data or services",
+          "Hybrid (combines signature + anomaly; more expensive; generates more alerts)",
+          "EK 3.5.C.3"
+        ],
+        [
+          "Likelihood of novel attacks",
+          "New, never-before-seen attacks likely; hybrid cost prohibitive",
+          "Anomaly-based (signature CANNOT detect a new attack)",
+          "EK 3.5.C.4"
+        ]
+      ],
+      "note": "Baselines for anomaly-based detection must be recorded on UNCOMPROMISED systems to establish expected data types and volumes (EK 3.5.C.2).",
+      "script": "Here's the decision table — four criteria from EK 3.5.C. Criterion one, traffic volume: high volume favors signature-based detection, which is more efficient and faster because it compares data to a database of known indicators of compromise, called signatures, that must be kept updated. Criterion two, pattern consistency: consistent traffic favors anomaly-based detection, which compares against a baseline of recorded activity and alerts when data falls outside a tolerance range — and that baseline must be recorded on an uncompromised system. Criterion three, sensitivity: more sensitive or critical networks lean hybrid, combining both, at higher cost and more alerts. Criterion four, novel attacks: signature-based detection cannot catch a brand-new attack, so when novel attacks are likely and hybrid is too costly, anomaly-based is preferred. Copy this table — it's the spine of 3.5.C."
+    },
+    {
+      "type": "two_column",
+      "heading": "Signature vs. Anomaly, Head to Head",
+      "subheading": "EK 3.5.C.1–C.2 — two base methods with opposite strengths; hybrid combines them.",
+      "left": {
+        "title": "Signature-Based Detection (EK 3.5.C.1)",
+        "definition": "Matches data to a database of known signatures",
+        "ek": "EK 3.5.C.1",
+        "examples": [
+          "Compares detection data to a database of known indicators of compromise (IoCs), called signatures",
+          "More efficient for networks with HIGH traffic volume",
+          "Signature databases must be updated with IoCs for the latest attacks",
+          "Runs more quickly than anomaly-based detection"
+        ]
+      },
+      "right": {
+        "title": "Anomaly-Based Detection (EK 3.5.C.2)",
+        "definition": "Compares data to a baseline of normal activity",
+        "ek": "EK 3.5.C.2",
+        "examples": [
+          "Most effective on networks with CONSISTENT traffic patterns",
+          "Compares detection data to a baseline of recorded activity",
+          "Baselines must be recorded on uncompromised systems (expected data types and volumes)",
+          "Triggers an alert/action when data is outside a specified tolerance range"
+        ]
+      },
+      "footer": "AP TIP: Hybrid detection (EK 3.5.C.3) combines BOTH — chosen for sensitive/critical networks — but it is the most expensive option and generates the most alerts.",
+      "script": "Now the two base methods side by side. Left, signature-based, EK 3.5.C.1: it compares incoming data against a database of known indicators of compromise — signatures — so it's efficient and fast on high-volume networks, but the database has to be constantly updated with the latest attacks. Right, anomaly-based, EK 3.5.C.2: instead of a known-bad list, it compares against a baseline of normal recorded activity, and that baseline must come from an uncompromised system. It works best where traffic is consistent, and it alerts when data falls outside a tolerance range. Hybrid combines both for sensitive networks — most coverage, but most expensive and most alerts. Write both EKs and the hybrid footer."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Evaluating a Method's Impact",
+      "kicker": "Detecting Attacks on Networks · Learning Objective 3.5.D",
+      "script": "Section four. Learning objective 3.5.D. Choosing a method isn't free — every choice has consequences. The CED evaluates impact on four factors: speed, cost, false positives, and false negatives. This is where the trade-offs become real."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Four Factors That Judge a Detection Method",
+      "subheading": "EK 3.5.D.1–D.4 — speed, cost, false positives, and false negatives — and how the methods compare on each.",
+      "items": [
+        {
+          "ek": "EK 3.5.D.1",
+          "title": "Speed",
+          "summary": "Faster detection enables faster response. Signature-based detection is faster than anomaly-based detection, especially on networks with high traffic volume."
+        },
+        {
+          "ek": "EK 3.5.D.2",
+          "title": "Cost",
+          "summary": "Tools and ongoing costs must fit a budget. Anomaly-based systems need more expensive hardware than signature-based; hybrid is the most expensive because it combines both methods."
+        },
+        {
+          "ek": "EK 3.5.D.3",
+          "title": "False positive rate",
+          "summary": "Signature-based has almost no false positives; anomaly-based or hybrid have higher rates — wasting time on nonmalicious activity and causing alert fatigue, where responders assume alerts are false before investigating."
+        },
+        {
+          "ek": "EK 3.5.D.4",
+          "title": "False negative rate",
+          "summary": "A false negative is when an adversary bypasses detection. Signature-based systems are easier to bypass than anomaly-based or hybrid, and false negatives can let adversaries cause loss, harm, disruption, or destruction."
+        }
+      ],
+      "script": "Four impact factors, EK 3.5.D.1 through D.4. Speed: faster detection means faster response, and signature-based is faster, especially on high-volume networks. Cost: anomaly hardware costs more than signature, and hybrid is the most expensive of all because it runs both. False positive rate: signature-based has almost no false positives, while anomaly and hybrid raise more — wasting effort on harmless activity and breeding alert fatigue, where responders stop taking alerts seriously because they assume they're false. False negative rate: a false negative is when an adversary slips past detection entirely, signature-based systems are the easiest to bypass, and a false negative can let an adversary cause real loss, harm, disruption, or destruction. Notice the tension: signature wins speed, cost, and false positives — but loses on false negatives and novel attacks. Write all four."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary — Impact & Errors (LO 3.5.D)",
+      "terms": [
+        {
+          "term": "False positive",
+          "definition": "An alert on activity that is not actually malicious; anomaly-based and hybrid detection have higher false-positive rates than signature-based (EK 3.5.D.3)."
+        },
+        {
+          "term": "Alert fatigue",
+          "definition": "A condition where responders get accustomed to false positives and take alerts less seriously, assuming alerts are false before investigating them (EK 3.5.D.3)."
+        },
+        {
+          "term": "False negative",
+          "definition": "When an adversary can bypass a detection system; signature-based systems are easier to bypass, and false negatives can result in adversaries causing loss, harm, disruption, or destruction (EK 3.5.D.4)."
+        },
+        {
+          "term": "Hybrid detection",
+          "definition": "Combining signature-based and anomaly-based detection; the most expensive option, generating more alerts, chosen for more sensitive or critical networks (EK 3.5.C.3)."
+        }
+      ],
+      "script": "Four terms for impact and errors. A false positive is an alert on activity that isn't actually malicious — common with anomaly and hybrid. Alert fatigue is what happens when too many false positives train responders to dismiss alerts before investigating. A false negative is the opposite failure — an adversary bypasses detection entirely, and signature-based systems are the easiest to bypass. And hybrid detection is the combine-both approach: best coverage, highest cost, most alerts. Get all four into your notes with their EKs — false positive and false negative are opposite failure modes, and the exam tests that distinction."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Choosing and Judging a Method",
+      "subheading": "Both questions map to LO 3.5.C and 3.5.D. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A high-volume ISP needs the fastest possible detection and keeps its indicator database constantly updated; budget is tight. Name the detection method that fits, cite the EK, and state one impact-factor downside it accepts (cite that EK too).",
+        "Explain the difference between a false positive and a false negative. For each, name which detection method tends to produce more of it and one real consequence, citing the relevant EK."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: that high-volume ISP, tight budget, fast detection, updated signature database — name the method, cite the EK, and name one downside it accepts with its EK. You should land on signature-based, EK 3.5.C.1 and D.1, accepting more false negatives, EK 3.5.D.4. Question two: explain false positive versus false negative — which method produces more of each, and one consequence apiece, with EKs. Be precise and cite. This is exactly how the exam asks it. Go."
+    },
+    {
+      "type": "section_divider",
+      "number": "05",
+      "label": "Reading the Logs: Indicators of Attacks",
+      "kicker": "Detecting Attacks on Networks · Learning Objective 3.5.E",
+      "script": "Section five. Learning objective 3.5.E. The payoff: an analyst reads a log file and names the attack. Each network attack leaves a fingerprint, and the CED gives you the indicator to look for. We'll table them, then look at network-based indicators of compromise."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Indicator → Attack: A Detection Cheat Sheet (EK 3.5.E.1–E.6)",
+      "context": "When analyzing log files and network traffic, match the indicator to the attack it reveals.",
+      "columns": [
+        "Attack",
+        "How it is detected (the indicator)",
+        "EK"
+      ],
+      "rows": [
+        [
+          "Evil-twin",
+          "Scan for SSIDs that look suspicious or similar to legitimate local SSIDs; signal triangulation to locate and disable the rogue access point",
+          "EK 3.5.E.1"
+        ],
+        [
+          "Jamming",
+          "No wireless devices in a physical space can connect; scan for electromagnetic (EM) noise in the wireless range",
+          "EK 3.5.E.2"
+        ],
+        [
+          "ARP poisoning",
+          "Monitor traffic for unusual ARP messages, especially duplicate-MAC-address ARP packets; check the ARP table on the default gateway",
+          "EK 3.5.E.3"
+        ],
+        [
+          "MAC flooding",
+          "Watch for an unexpected surge of Ethernet frames with different MAC addresses; check the MAC address table on a switch",
+          "EK 3.5.E.4"
+        ],
+        [
+          "DNS poisoning",
+          "Difficult to detect; an abrupt, inexplicable drop in website traffic means DNS records should be examined",
+          "EK 3.5.E.5"
+        ],
+        [
+          "Smurf",
+          "Watch traffic for a sudden increase in ICMP requests sent to the network's broadcast address",
+          "EK 3.5.E.6"
+        ]
+      ],
+      "note": "Sentence frame: 'The indicator ____ points to a(n) ____ attack, detected per EK 3.5.E.__ by ____.'",
+      "script": "Here's your indicator-to-attack cheat sheet from EK 3.5.E.1 through E.6. Evil-twin: scan for suspicious SSIDs that mimic legitimate ones, and use signal triangulation to find and disable the rogue access point. Jamming: nobody in a physical space can connect, and you scan for electromagnetic noise. ARP poisoning: unusual ARP messages, especially duplicate-MAC-address packets, and check the gateway's ARP table. MAC flooding: a surge of Ethernet frames with different MAC addresses, and check the switch's MAC table. DNS poisoning is hard to spot, but an abrupt, unexplained drop in website traffic says examine the DNS records. And smurf: a sudden spike in ICMP requests to the broadcast address. Memorize the indicator for each — that's exactly the 3.5.E exam task."
+    },
+    {
+      "type": "concept",
+      "heading": "Network-Based Indicators of Compromise (EK 3.5.E.7)",
+      "tag": "CB",
+      "bullets": [
+        "Network-based IoCs are discovered when analyzing network traffic, often in the form of packet-capture files (EK 3.5.E.7)",
+        "Indicators can be found in source and destination IP addresses, ports, and protocols (EK 3.5.E.7)",
+        "Watch for connections to known malicious IP addresses (EK 3.5.E.7)",
+        "Watch for unauthorized network scans (EK 3.5.E.7)",
+        "Watch for unusual spikes or slowdowns in network traffic (EK 3.5.E.7)",
+        "Watch for mismatched port-application traffic — a port that doesn't match its expected application (EK 3.5.E.7)"
+      ],
+      "script": "Beyond the attack-specific tells, EK 3.5.E.7 gives you a general toolkit: network-based indicators of compromise, found by analyzing network traffic, often in packet-capture files. Look in the source and destination IP addresses, the ports, and the protocols. Four concrete red flags: connections to known malicious IP addresses, unauthorized network scans, unusual spikes or slowdowns in traffic, and mismatched port-application traffic — a port carrying traffic that doesn't match the application it should. When the exam hands you a packet capture, these four are what you're hunting for. Write all four indicators."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: The Detection Trade-off Triangle",
+      "subheading": "Not a new EK — it shows why no single method wins on every factor at once.",
+      "track": "enrichment",
+      "left": {
+        "title": "Pull One Corner, Lose Another",
+        "definition": "Speed, cost, and coverage fight each other",
+        "ek": "Enrichment",
+        "examples": [
+          "Signature: fast and cheap with almost no false positives (EK 3.5.C.1, D.1, D.3)…",
+          "…but it can't catch novel attacks and is the easiest to bypass — more false negatives (EK 3.5.C.4, D.4)",
+          "Anomaly: catches novel attacks on consistent networks (EK 3.5.C.2, C.4)…",
+          "…but costs more hardware and raises more false positives → alert fatigue (EK 3.5.D.2, D.3)"
+        ]
+      },
+      "right": {
+        "title": "Why Hybrid Isn't a Free Win",
+        "definition": "Most coverage, highest cost, most alerts",
+        "ek": "Enrichment",
+        "examples": [
+          "Hybrid combines both methods, so it covers the most ground (EK 3.5.C.3)",
+          "But it is the most expensive option of all (EK 3.5.D.2)",
+          "And it generates the most alerts, deepening false-positive load (EK 3.5.C.3, D.3)",
+          "So even 'do both' is a trade-off, reserved for the most sensitive/critical networks"
+        ]
+      },
+      "footer": "TAKEAWAY: There is no free lunch. The 'right' method depends on the EK 3.5.C criteria, and every choice carries an EK 3.5.D impact you accept on purpose.",
+      "script": "Quick enrichment that ties the whole topic together — the trade-off triangle. Signature-based is fast, cheap, and barely ever cries wolf, but it can't see a novel attack and it's the easiest to bypass, so it accepts more false negatives. Anomaly-based flips that: it catches the brand-new attack on a consistent network, but it costs more and floods you with false positives, which breeds alert fatigue. And hybrid? It covers the most ground by doing both — but it's the most expensive and generates the most alerts, so even 'do both' is a trade-off you only make for the most sensitive networks. The lesson: there's no free lunch. You pick a method from the 3.5.C criteria and you accept a 3.5.D impact on purpose."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Read the Log, Name the Attack",
+      "subheading": "Both questions map to LO 3.5.E. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A log review shows duplicate-MAC-address ARP packets, and the analyst checks the default gateway's ARP table. Name the attack, cite the EK, and contrast its indicator with the indicator for a MAC flooding attack.",
+        "In a packet-capture file an analyst finds connections to a known malicious IP address and traffic where the port doesn't match its expected application. Name the category these findings fall under, cite the EK, and list one other indicator in that same category."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent. Question one: duplicate-MAC-address ARP packets plus checking the gateway's ARP table — name the attack, cite the EK, and contrast it with the MAC flooding indicator. That's ARP poisoning, EK 3.5.E.3, versus a surge of Ethernet frames with different MAC addresses on a switch, EK 3.5.E.4. Question two: connections to a known malicious IP and a port that doesn't match its application — name the category and cite the EK, then add one more indicator from it. That's network-based IoCs, EK 3.5.E.7, and you could add unauthorized scans or unusual traffic spikes. Cite as you go. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Detecting Attacks on Networks, in One Slide",
+      "points": [
+        "Tools (3.5.A): a NIDS detects and alerts; a NIPS detects and can halt; a SIEM aggregates many sources, alerts, and a human analyst investigates (EK 3.5.A.1–A.4)",
+        "AI (3.5.B): networks log millions of points a day, so AI classifies them as malicious or normal, reporting a likelihood; the organization's threshold balances missed attacks (too high) against false alarms (too low) (EK 3.5.B.1–B.4)",
+        "Choosing (3.5.C): four criteria — high volume → signature; consistent patterns → anomaly; sensitive/critical → hybrid; novel attacks → anomaly when hybrid is too costly (EK 3.5.C.1–C.4)",
+        "Impact (3.5.D): signature is faster, cheaper, and almost no false positives, but easier to bypass (false negatives); anomaly/hybrid catch more but cost more and cause false positives and alert fatigue (EK 3.5.D.1–D.4)",
+        "Reading logs (3.5.E): match the indicator to the attack — evil-twin, jamming, ARP poisoning, MAC flooding, DNS poisoning, smurf — and hunt packet-capture files for network-based IoCs (EK 3.5.E.1–E.7)"
+      ],
+      "next": "Scenario 3B asks you to recommend detective controls for a wireless network and describe their impact — exactly the 3.5.C choose-a-method and 3.5.D judge-its-impact skills you built today.",
+      "script": "Everything in one slide. Tools: NIDS detects and alerts, NIPS can also halt, SIEM aggregates and a human investigates. AI: too much data for humans, so AI classifies it and reports a likelihood, and the organization's threshold balances missing attacks against false alarms. Choosing: four criteria steer you to signature, anomaly, or hybrid. Impact: signature is fast, cheap, and clean on false positives but easier to bypass; anomaly and hybrid catch more but cost more and cry wolf more. And reading logs: match the indicator to the attack, and hunt packet captures for network-based IoCs. That sets up Scenario 3B — recommend detective controls and describe their impact, which is exactly what you practiced. Review your Guided Notes; you should be able to do all five of these cold."
+    }
+  ],
   "quiz": {
     "title": "Lesson 3.5 — Detecting Attacks on Networks — Quiz",
     "instructions": "Choose the single best answer. 14 questions, 25 minutes, no notes.",
@@ -260,77 +730,182 @@
         "day": 1,
         "focus": "Automated tools that detect network attacks: NIDS, NIPS, SIEM (LO 3.5.A)",
         "segments": [
-          { "segment": "Bell ringer: which tool just alerts, which can also act?", "min": 5 },
-          { "segment": "Guided-notes preview + objectives", "min": 5 },
-          { "segment": "Log files as the raw material of detection (EK 3.5.A.1)", "min": 10 },
-          { "segment": "NIDS vs. NIPS: detect vs. detect-and-halt (EK 3.5.A.2, A.3)", "min": 12 },
-          { "segment": "SIEM: aggregating sources and the analyst workflow (EK 3.5.A.4)", "min": 10 },
-          { "segment": "Vocab + Stop and Think", "min": 5 },
-          { "segment": "Wrap and assign Your Turn", "min": 3 }
+          {
+            "segment": "Bell ringer: which tool just alerts, which can also act?",
+            "min": 5
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 5
+          },
+          {
+            "segment": "Log files as the raw material of detection (EK 3.5.A.1)",
+            "min": 10
+          },
+          {
+            "segment": "NIDS vs. NIPS: detect vs. detect-and-halt (EK 3.5.A.2, A.3)",
+            "min": 12
+          },
+          {
+            "segment": "SIEM: aggregating sources and the analyst workflow (EK 3.5.A.4)",
+            "min": 10
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 5
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3
+          }
         ]
       },
       {
         "day": 2,
         "focus": "Leveraging AI for threat detection and response (LO 3.5.B)",
         "segments": [
-          { "segment": "Bell ringer: tens of millions of log lines a day", "min": 5 },
-          { "segment": "Why humans alone can't scale; AI classification (EK 3.5.B.1, B.2)", "min": 12 },
-          { "segment": "Probabilistic scoring and likelihood percentages (EK 3.5.B.3)", "min": 10 },
-          { "segment": "Thresholds: too high vs. too low (EK 3.5.B.4)", "min": 12 },
-          { "segment": "Stop and Think + wrap", "min": 6 }
+          {
+            "segment": "Bell ringer: tens of millions of log lines a day",
+            "min": 5
+          },
+          {
+            "segment": "Why humans alone can't scale; AI classification (EK 3.5.B.1, B.2)",
+            "min": 12
+          },
+          {
+            "segment": "Probabilistic scoring and likelihood percentages (EK 3.5.B.3)",
+            "min": 10
+          },
+          {
+            "segment": "Thresholds: too high vs. too low (EK 3.5.B.4)",
+            "min": 12
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 6
+          }
         ]
       },
       {
         "day": 3,
         "focus": "Determining a network detection method, part 1: signature vs. anomaly (LO 3.5.C)",
         "segments": [
-          { "segment": "Bell ringer: high-traffic ISP vs. predictable office network", "min": 5 },
-          { "segment": "Traffic volume → signature-based (EK 3.5.C.1)", "min": 12 },
-          { "segment": "Pattern consistency → anomaly-based and baselines (EK 3.5.C.2)", "min": 12 },
-          { "segment": "Stop and Think + wrap", "min": 6 }
+          {
+            "segment": "Bell ringer: high-traffic ISP vs. predictable office network",
+            "min": 5
+          },
+          {
+            "segment": "Traffic volume → signature-based (EK 3.5.C.1)",
+            "min": 12
+          },
+          {
+            "segment": "Pattern consistency → anomaly-based and baselines (EK 3.5.C.2)",
+            "min": 12
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 6
+          }
         ]
       },
       {
         "day": 4,
         "focus": "Determining a method, part 2: sensitivity, novel attacks, hybrid (LO 3.5.C)",
         "segments": [
-          { "segment": "Bell ringer: a hospital's most sensitive systems", "min": 5 },
-          { "segment": "Sensitivity/criticality → hybrid (EK 3.5.C.3)", "min": 12 },
-          { "segment": "Novel attacks → anomaly when hybrid is too costly (EK 3.5.C.4)", "min": 12 },
-          { "segment": "Criteria-matching practice + Stop and Think", "min": 6 }
+          {
+            "segment": "Bell ringer: a hospital's most sensitive systems",
+            "min": 5
+          },
+          {
+            "segment": "Sensitivity/criticality → hybrid (EK 3.5.C.3)",
+            "min": 12
+          },
+          {
+            "segment": "Novel attacks → anomaly when hybrid is too costly (EK 3.5.C.4)",
+            "min": 12
+          },
+          {
+            "segment": "Criteria-matching practice + Stop and Think",
+            "min": 6
+          }
         ]
       },
       {
         "day": 5,
         "focus": "Evaluating the impact of a detection method (LO 3.5.D)",
         "segments": [
-          { "segment": "Bell ringer: fast and cheap, but what's the catch?", "min": 5 },
-          { "segment": "Speed and cost as impact factors (EK 3.5.D.1, D.2)", "min": 12 },
-          { "segment": "False positives and alert fatigue (EK 3.5.D.3)", "min": 10 },
-          { "segment": "False negatives and bypass risk (EK 3.5.D.4)", "min": 10 },
-          { "segment": "Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "Bell ringer: fast and cheap, but what's the catch?",
+            "min": 5
+          },
+          {
+            "segment": "Speed and cost as impact factors (EK 3.5.D.1, D.2)",
+            "min": 12
+          },
+          {
+            "segment": "False positives and alert fatigue (EK 3.5.D.3)",
+            "min": 10
+          },
+          {
+            "segment": "False negatives and bypass risk (EK 3.5.D.4)",
+            "min": 10
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 6,
         "focus": "Applying detection techniques to log files (LO 3.5.E)",
         "segments": [
-          { "segment": "Bell ringer: read the indicator, name the attack", "min": 5 },
-          { "segment": "Wireless attacks: evil-twin and jamming (EK 3.5.E.1, E.2)", "min": 10 },
-          { "segment": "ARP poisoning, MAC flooding (EK 3.5.E.3, E.4)", "min": 10 },
-          { "segment": "DNS poisoning, smurf, network IoCs (EK 3.5.E.5, E.6, E.7)", "min": 12 },
-          { "segment": "Log-analysis Stop and Think + wrap", "min": 5 }
+          {
+            "segment": "Bell ringer: read the indicator, name the attack",
+            "min": 5
+          },
+          {
+            "segment": "Wireless attacks: evil-twin and jamming (EK 3.5.E.1, E.2)",
+            "min": 10
+          },
+          {
+            "segment": "ARP poisoning, MAC flooding (EK 3.5.E.3, E.4)",
+            "min": 10
+          },
+          {
+            "segment": "DNS poisoning, smurf, network IoCs (EK 3.5.E.5, E.6, E.7)",
+            "min": 12
+          },
+          {
+            "segment": "Log-analysis Stop and Think + wrap",
+            "min": 5
+          }
         ]
       },
       {
         "day": 7,
         "focus": "Review, Scenario 3B detective-control plan, and quiz (LO 3.5.A–E)",
         "segments": [
-          { "segment": "Bell ringer: cumulative detection scenario", "min": 5 },
-          { "segment": "Review table: every tool, method, and indicator", "min": 12 },
-          { "segment": "Scenario 3B: recommend detective controls and describe their impact", "min": 12 },
-          { "segment": "Lesson 3.5 quiz", "min": 25 },
-          { "segment": "Quiz debrief + bridge to next topic", "min": 6 }
+          {
+            "segment": "Bell ringer: cumulative detection scenario",
+            "min": 5
+          },
+          {
+            "segment": "Review table: every tool, method, and indicator",
+            "min": 12
+          },
+          {
+            "segment": "Scenario 3B: recommend detective controls and describe their impact",
+            "min": 12
+          },
+          {
+            "segment": "Lesson 3.5 quiz",
+            "min": 25
+          },
+          {
+            "segment": "Quiz debrief + bridge to next topic",
+            "min": 6
+          }
         ]
       }
     ],
