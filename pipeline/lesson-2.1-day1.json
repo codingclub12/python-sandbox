@@ -295,7 +295,7 @@
   ],
   "quiz": {
     "title": "Lesson 2.1 — Cyber Foundations — Quiz",
-    "instructions": "Choose the single best answer. 25 minutes, no notes. Cite EK numbers in any written justification your teacher requires.",
+    "instructions": "Choose the single best answer. 16 questions, 30 minutes, no notes.",
     "questions": [
       {
         "id": "Q1",
@@ -366,6 +366,160 @@
         "answer": "A",
         "ek": "EK 2.1.D.3 + EK 2.1.D.4 + EK 2.1.D.5",
         "rationale": "EK 2.1.D.3 states that risk assessment considers two factors: the likelihood of an attack against a specific vulnerability and the severity of the projected damage. EK 2.1.D.4 lists likelihood factors including the value of the target and the skill required (a documented exploit lowers that skill), and EK 2.1.D.5 ties severity to financial cost — the $250,000 estimate — so option A is correct. Option B wrongly drops likelihood. Options C and D invent factors the CED never names; risk requires a threat exploiting a vulnerability to compromise an asset (EK 2.1.D.1), not customer sentiment or headcount."
+      },
+      {
+        "id": "Q6",
+        "kind": "multi",
+        "stem": "A threat-intelligence team labels four adversaries by type. I. A former employee using still-valid credentials to exfiltrate data out of revenge. II. A group defacing a company website to protest its environmental record. III. A syndicate deploying ransomware purely for financial gain. Which labels are correct?",
+        "options": [
+          "I = hacktivist, II = insider, III = script kiddie",
+          "I = insider, II = hacktivist, III = transnational criminal organization",
+          "I = transnational criminal organization, II = cyberterrorist, III = insider",
+          "I = script kiddie, II = insider, III = hacktivist"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.B.2 + EK 2.1.B.3 + EK 2.1.B.5",
+        "rationale": "An insider has legitimate credentials and access and may be motivated by revenge (EK 2.1.B.3). A hacktivist is driven by a social, political, or personal cause (EK 2.1.B.2). A transnational criminal organization seeks financial gain, primarily through ransomware (EK 2.1.B.5). Options A, C, and D each swap at least two of these categories."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "Investigators reconstruct an intrusion: after gaining a foothold, the adversary moved from a low-privilege workstation to a domain-admin account, then copied the customer database to an outside server, and finally deleted the security logs on the way out. In order, which phases does this sequence show?",
+        "options": [
+          "Reconnaissance, then initial access, then persistence",
+          "Initial access, then persistence, then reconnaissance",
+          "Lateral movement, then taking action, then evading detection",
+          "Taking action, then reconnaissance, then lateral movement"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.C.5 + EK 2.1.C.6 + EK 2.1.C.7",
+        "rationale": "Escalating privileges across systems is lateral movement (EK 2.1.C.5); copying the database is acting on objectives, the taking-action phase (EK 2.1.C.6); deleting logs is evading detection (EK 2.1.C.7). The other options name early phases (reconnaissance, initial access, persistence) that occur before this point or place the phases out of order."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A risk analyst writes: 'Our unpatched web server could be used by an outside attacker to take down our customer portal.' Matching the underlined items to risk-assessment terms, the unpatched server, the attacker, and the portal are respectively the:",
+        "options": [
+          "asset, vulnerability, and threat — and a risk exists only once an attack has already succeeded",
+          "threat, asset, and vulnerability — risk is just another word for a vulnerability",
+          "asset, threat, and vulnerability — and risk can be expressed only in qualitative terms",
+          "vulnerability, threat, and asset — and risk exists when a threat can exploit a vulnerability to compromise an asset"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.D.1 + EK 2.1.D.2 + EK 2.1.D.6",
+        "rationale": "Risk occurs when a threat can exploit a vulnerability to compromise an asset (EK 2.1.D.1): the unpatched server is the vulnerability, the attacker is the threat, and the portal is the asset (EK 2.1.D.2). The added claims in A, B, and C are false — risk is not only post-attack, is not the same as a vulnerability, and its results can be quantitative or qualitative (EK 2.1.D.6)."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "A hospital decides it cannot stop offering online appointment booking because patients depend on it, so instead it buys cyber-insurance to cover losses from a possible breach of that system. Which risk-management strategy is the hospital primarily using?",
+        "options": [
+          "Avoidance — it has stopped the activity that generates the risk",
+          "Transference — it shifts the financial burden of the risk to another entity",
+          "Mitigation — it installs controls that lower the likelihood of an attack",
+          "Acceptance — it takes no action and simply absorbs any loss itself"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.E.1 + EK 2.1.E.3",
+        "rationale": "Buying insurance is risk transference: it places the burden of the risk on another entity (EK 2.1.E.3). Avoidance would mean stopping the booking service, which the hospital cannot do because it is mission-critical (EK 2.1.E.2); mitigation installs security controls (EK 2.1.E.4); acceptance takes no action at all."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "To cut the chance that a phishing attack succeeds, a company rolls out multi-factor authentication and email filtering. In risk-management terms, this step is BEST described as:",
+        "options": [
+          "Risk avoidance — it removes the phishing threat entirely",
+          "Risk transference — it moves the risk to the software vendor",
+          "Risk mitigation — it implements controls to reduce the risk",
+          "Residual risk — it is whatever risk is left after other steps"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.E.4",
+        "rationale": "Implementing security controls to reduce the likelihood or impact of a risk is mitigation (EK 2.1.E.4). It does not remove the underlying threat (avoidance), does not shift the burden to another entity (transference), and is an action taken rather than the leftover residual risk."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "After avoiding, transferring, and mitigating where it can, a firm finds a small amount of risk still remains. Leadership formally signs off on operating with that remaining risk because eliminating it entirely is not realistic. Which concept does this BEST illustrate?",
+        "options": [
+          "Risk avoidance applied to a mission-critical activity",
+          "Choosing a cost-effective control over the expected loss",
+          "Transferring the remaining burden to an insurance provider",
+          "Accepting residual risk, since absolute security is unattainable"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.E.5",
+        "rationale": "Residual risk is the risk that remains after avoidance, transference, and mitigation; accepting it acknowledges that absolute security is unattainable (EK 2.1.E.5). The other options describe avoidance (EK 2.1.E.2), cost-effectiveness (EK 2.1.E.6), and transference (EK 2.1.E.3)."
+      },
+      {
+        "id": "Q12",
+        "kind": "multi",
+        "stem": "Classify each control by TYPE: I. A bollard installed outside the lobby. II. Full-disk encryption on company laptops. III. A written password policy enforced with quarterly access reviews. Which classification is correct?",
+        "options": [
+          "I = physical, II = technical, III = managerial",
+          "I = technical, II = managerial, III = physical",
+          "I = managerial, II = physical, III = technical",
+          "I = physical, II = managerial, III = technical"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.F.2",
+        "rationale": "Physical controls secure the physical space (a bollard); technical controls secure the digital space (encryption); managerial controls are rules, policies, and procedures (a password policy and access reviews), per EK 2.1.F.2. Options B, C, and D each swap at least two of the categories."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "stem": "An intrusion detection system (IDS) and a SIEM both raise alerts when suspicious activity occurs, but neither one stops the activity. Classified by FUNCTION, these are BEST described as:",
+        "options": [
+          "Preventative controls — they stop adversaries before an attack",
+          "Detective controls — they identify attacks when they occur",
+          "Corrective controls — they restore systems after an attack",
+          "Managerial controls — they set the rules and procedures"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.F.3",
+        "rationale": "Detective controls help identify attacks when they occur and include IDSs, SIEM systems, and cameras (EK 2.1.F.3). Preventative controls stop an attack (locks, encryption); corrective controls restore systems (patching, IPSs); managerial is a control type, not a function."
+      },
+      {
+        "id": "Q14",
+        "kind": "scenario",
+        "stem": "A ransomware attack encrypts a company's files so staff can no longer open them, halting operations for two days. Which element of the confidentiality–integrity–availability triad has been MOST directly violated?",
+        "options": [
+          "Confidentiality — attackers were able to read private data",
+          "Integrity — the stored data values were secretly altered",
+          "Availability — authorized users can no longer access the data",
+          "Non-repudiation — the sender's identity is now in doubt"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.F.1",
+        "rationale": "Availability ensures that data and services are accessible to authorized individuals when needed; ransomware that locks files and causes downtime is an availability violation (EK 2.1.F.1). Confidentiality concerns unauthorized access, integrity concerns data accuracy, and non-repudiation is not one of the three listed principles."
+      },
+      {
+        "id": "Q15",
+        "kind": "scenario",
+        "stem": "An attacker slips past a company's firewall, but the compromised account still cannot reach the customer database because a separate access-control layer blocks it — and the data was encrypted as well. Which benefit of defense-in-depth does this BEST demonstrate?",
+        "options": [
+          "It lowers cost by relying on one single, very strong control",
+          "It removes the need for any human-layer security training",
+          "It guarantees that no adversary can ever breach the network",
+          "It provides resilience, so one bypassed control is backed by another"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.G.1 + EK 2.1.G.3",
+        "rationale": "Defense-in-depth layers multiple controls so that when one is bypassed, another may still prevent access or limit the damage — resilience (EK 2.1.G.1, EK 2.1.G.3). It does not rely on a single control, does not remove the human layer (EK 2.1.G.4), and never guarantees absolute prevention."
+      },
+      {
+        "id": "Q16",
+        "kind": "applied",
+        "stem": "A security architect maps protections across the human, physical, network, device, application, and data layers so each major threat is met by the control best suited to it. Which statement BEST explains why this layered approach is necessary?",
+        "options": [
+          "Different threats each need a suited control, and multiple layers add resilience",
+          "A single firewall is sufficient as long as it is configured correctly",
+          "Layering controls is required only for the data layer, not the others",
+          "Defense-in-depth replaces the need for any incident response plan"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.G.2 + EK 2.1.G.4",
+        "rationale": "A defense-in-depth strategy lets an organization address different threats, each with the control most suited to mitigate it (EK 2.1.G.2), across layers that include human, physical, network, device, application, and data (EK 2.1.G.4). A single firewall is not sufficient, layering is not limited to the data layer, and it does not replace incident response planning."
       }
     ]
   },
