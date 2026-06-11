@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "lessonId": "5.3",
+    "lessonTitle": "Protecting Stored Data with Encryption",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 5: Securing Applications and Data",
+    "day": 1,
+    "los": "LO 5.3.A, 5.3.B",
+    "totalDays": 4,
+    "author": "AP CS Exam Prep"
+  },
+  "guide": {
+    "title": "Protecting Stored Data with Encryption — Teacher Guide",
+    "subtitle": "Unit 5: Securing Applications and Data   •   LO 5.3.A–5.3.B",
+    "overview": [
+      "Topic 5.3 is the symmetric-cryptography topic of Unit 5: students learn how encryption hides the contents of stored files and how a single shared key turns plaintext into ciphertext and back. They build the vocabulary of cryptography (algorithm, key, plaintext, ciphertext, keyspace) and the classifications of algorithms (symmetric vs. asymmetric, block vs. stream).",
+      "The applied half of the topic centers on the Advanced Encryption Standard (AES) — the most common symmetric algorithm — and on actually encrypting and decrypting a file with the same key using tools such as OpenSSL on the command line, AES Crypt, or web-based tools. It sets up Topic 5.4, where the second key of asymmetric cryptography is introduced."
+    ],
+    "los": [
+      "LO 5.3.A — Explain how encryption can be used to protect files.",
+      "LO 5.3.B — Apply symmetric encryption algorithms to encrypt and decrypt data."
+    ],
+    "eks": [
+      "EK 5.3.A.1 — The purpose of cryptography is to hide information. A cryptographic algorithm defines a process for encrypting and decrypting information. Encryption is the process of hiding the information, and decryption is the process of reversing the encryption to retrieve the original information.",
+      "EK 5.3.A.2 — An encryption algorithm defines a process for combining the information to be encrypted with a predefined key. The information to be encrypted is called the plaintext. The output of the encryption algorithm is called the ciphertext.",
+      "EK 5.3.A.3 — The number of possible keys that can be used in an encryption algorithm is called the keyspace. The larger the keyspace, the longer it will take an adversary to discover the correct key by random chance.",
+      "EK 5.3.A.4 — Cryptographic algorithms are classified by whether they use one key or two keys. Symmetric encryption algorithms use the same key to encrypt and decrypt information. Asymmetric encryption algorithms use two different keys—one to encrypt information and the other to decrypt information.",
+      "EK 5.3.A.5 — Cryptographic algorithms are also classified by whether they process information one bit at a time or in fixed-size chunks of bits. Block encryption handles information in fixed-size chunks called blocks, producing an output block for each input block. Stream encryption handles input information continuously, producing output one element at a time.",
+      "EK 5.3.B.1 — Computer-based encryption algorithms operate on binary data. The most common symmetric encryption algorithm is the Advanced Encryption Standard (AES). AES encryption is used to secure Wi-Fi transmissions, internet browsing, file encryption on disks, and hardware-level encryption on processors.",
+      "EK 5.3.B.2 — AES is a symmetric key block cipher that encrypts data in 128-bit blocks (16 bytes). AES can operate with keys of varying lengths. Longer keys produce more secure encryption but require more time to encrypt and decrypt.",
+      "EK 5.3.B.3 — Symmetric encryption and decryption can be performed using the command line, specialized software, or web-based tools. On a command line interface, users can encrypt or decrypt with OpenSSL. Specialized software like AES Crypt is an open source tool that can encrypt and decrypt files. There are many web-based tools for encrypting and decrypting files.",
+      "EK 5.3.B.4 — Using OpenSSL in a CLI, a user can encrypt and decrypt a file using commands where the encryption key is derived from the password provided. To encrypt a file named test with AES using a 128-bit key: openssl enc -aes-128-cbc -e -in test -k password -out test.enc. To decrypt the encrypted file using the same key: openssl enc -aes-128-cbc -d -in test.enc -k password -out text."
+    ],
+    "materials": [
+      "Projector for cryptography vocabulary and OpenSSL command walkthroughs",
+      "Printed Day 1 Guided Notes (student + key)",
+      "Printed Lesson 5.3 quiz (student + answer key)",
+      "Terminal or lab machines with OpenSSL (or AES Crypt) for the encrypt/decrypt demo"
+    ],
+    "prereqs": [
+      "Topic 5.1–5.2 understanding of securing applications and data and data classification",
+      "Comfort with binary data and the command line from earlier units"
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Cryptography vocabulary, keyspace, and how encryption protects files (5.3.A)",
+        "segments": [
+          { "segment": "Bell ringer — what would it take to keep a file unreadable if it were stolen", "min": 5 },
+          { "segment": "Direct instruction — purpose of cryptography: encryption, decryption, plaintext, ciphertext, key (5.3.A.1–A.2)", "min": 20 },
+          { "segment": "Keyspace and why a larger keyspace resists brute force (5.3.A.3)", "min": 15 },
+          { "segment": "Classifying algorithms: symmetric vs. asymmetric (5.3.A.4)", "min": 15 },
+          { "segment": "Quiz and wrap-up", "min": 5 }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Block vs. stream encryption and AES fundamentals (5.3.A.5, 5.3.B.1–B.2)",
+        "segments": [
+          { "segment": "Bell ringer — recall symmetric vs. asymmetric from Day 1", "min": 5 },
+          { "segment": "Block vs. stream encryption (5.3.A.5)", "min": 15 },
+          { "segment": "AES as the most common symmetric algorithm and where it is used (5.3.B.1)", "min": 15 },
+          { "segment": "AES block size and the trade-off of longer keys (5.3.B.2)", "min": 20 },
+          { "segment": "Check for understanding", "min": 5 }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Tools and applying symmetric encryption with OpenSSL (5.3.B.3–B.4)",
+        "segments": [
+          { "segment": "Bell ringer — which tool would you use to encrypt one file", "min": 5 },
+          { "segment": "Tools for symmetric encryption: command line, AES Crypt, web-based (5.3.B.3)", "min": 15 },
+          { "segment": "OpenSSL encrypt and decrypt commands; same key both ways (5.3.B.4)", "min": 20 },
+          { "segment": "Guided lab — encrypt and decrypt a test file", "min": 15 },
+          { "segment": "Wrap-up", "min": 5 }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Review, hands-on practice, and assessment (5.3.A–B)",
+        "segments": [
+          { "segment": "Bell ringer — vocabulary quick-fire", "min": 5 },
+          { "segment": "Independent lab — encrypt, decrypt, and verify a recovered file", "min": 25 },
+          { "segment": "Whole-class review of the full topic", "min": 15 },
+          { "segment": "Topic assessment", "min": 15 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Encryption and decryption need different keys",
+        "myth": "All encryption uses one key to lock a file and a separate key to unlock it.",
+        "reality": "EK 5.3.A.4 — that describes asymmetric encryption; symmetric encryption algorithms use the same key to encrypt and decrypt information, which is the model AES uses."
+      },
+      {
+        "heading": "Plaintext means unencrypted English text only",
+        "myth": "Plaintext has to be readable words, and ciphertext is just scrambled letters.",
+        "reality": "EK 5.3.A.2 and B.1 — plaintext is simply the information to be encrypted and ciphertext is the algorithm's output; computer-based algorithms operate on binary data, not just letters."
+      },
+      {
+        "heading": "A longer key is purely better with no cost",
+        "myth": "You should always pick the longest possible AES key with no downside.",
+        "reality": "EK 5.3.B.2 — longer keys produce more secure encryption but require more time to encrypt and decrypt, so there is a real performance trade-off."
+      },
+      {
+        "heading": "Keyspace is the size of the key file",
+        "myth": "Keyspace just means how many bytes the key takes up on disk.",
+        "reality": "EK 5.3.A.3 — keyspace is the number of possible keys an algorithm can use; the larger the keyspace, the longer it takes an adversary to find the right key by random chance."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a labeled diagram of the pipeline: plaintext → encryption algorithm + key → ciphertext, and the reverse for decryption (EK 5.3.A.1–A.2).",
+        "Provide a two-column chart contrasting symmetric (one key) and asymmetric (two keys) and block (fixed-size chunks) versus stream (one element at a time) (EK 5.3.A.4–A.5).",
+        "Walk through the OpenSSL encrypt and decrypt commands line by line, highlighting that the same password-derived key is used both ways (EK 5.3.B.4)."
+      ],
+      "extension": [
+        "Have students explain, using EK 5.3.A.3, why doubling a key's length dramatically increases the keyspace and the time needed for a brute-force attack.",
+        "Ask students to research two real uses of AES from EK 5.3.B.1 (e.g., Wi-Fi or disk encryption) and describe what data each protects.",
+        "Challenge students to predict and verify what happens when they decrypt a file with the wrong password using OpenSSL, then relate it back to EK 5.3.B.4."
+      ]
+    },
+    "discussion": [
+      "Why does a larger keyspace make an encrypted file harder for an adversary to crack by random chance?",
+      "When is symmetric encryption (one shared key) a good fit, and when does sharing that single key become a problem?",
+      "Why does the CED describe a trade-off for longer AES keys instead of saying longer is always best?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 5.3 — Protecting Stored Data with Encryption — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "According to the CED, what is the purpose of cryptography?",
+        "options": [
+          "To hide information so that it cannot be read without reversing the process",
+          "To compress information so that files take up less space on a disk",
+          "To copy information to a backup location in case the original is lost",
+          "To speed up information transfer across a network connection"
+        ],
+        "answer": "A",
+        "ek": "EK 5.3.A.1",
+        "rationale": "EK 5.3.A.1 — the purpose of cryptography is to hide information; encryption hides the information and decryption reverses it to retrieve the original. Compression, backup, and faster transfer are unrelated goals the CED does not assign to cryptography."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A user runs a file through an encryption algorithm with a key. According to the CED, what is the readable input called and what is the scrambled output called?",
+        "options": [
+          "The input is the ciphertext and the output is the plaintext",
+          "The input is the plaintext and the output is the ciphertext",
+          "The input is the keyspace and the output is the cipher key",
+          "The input is the signature and the output is the digest"
+        ],
+        "answer": "B",
+        "ek": "EK 5.3.A.2",
+        "rationale": "EK 5.3.A.2 — the information to be encrypted is called the plaintext, and the output of the encryption algorithm is called the ciphertext. The reversed pairing is wrong, and keyspace, cipher key, signature, and digest are not the names for the input and output here."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A security team is choosing between two algorithms; one has a far larger number of possible keys than the other. According to the CED, why does the larger keyspace make that algorithm harder to break?",
+        "options": [
+          "It makes each individual key shorter, so the algorithm runs faster on stored files",
+          "It guarantees that the same plaintext always produces a different ciphertext each time",
+          "It removes the need for a key entirely, leaving the adversary nothing to guess",
+          "It takes an adversary longer to discover the correct key by random chance"
+        ],
+        "answer": "D",
+        "ek": "EK 5.3.A.3",
+        "rationale": "EK 5.3.A.3 — keyspace is the number of possible keys, and the larger the keyspace, the longer it takes an adversary to discover the correct key by random chance. A larger keyspace does not shorten keys, guarantee varied ciphertext, or eliminate the key."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Two coworkers protect a shared file by using the exact same secret key to both encrypt it and later decrypt it. According to the CED, which classification of cryptographic algorithm are they using?",
+        "options": [
+          "Asymmetric encryption, which uses two different keys for encryption and decryption",
+          "Stream encryption, which is defined by processing one element of input at a time",
+          "Symmetric encryption, which uses the same key to encrypt and decrypt information",
+          "Block encryption, which is defined by processing input in fixed-size chunks of bits"
+        ],
+        "answer": "C",
+        "ek": "EK 5.3.A.4",
+        "rationale": "EK 5.3.A.4 — symmetric encryption algorithms use the same key to encrypt and decrypt information, which matches the shared single key. Asymmetric uses two different keys, while block and stream describe how data is processed, not how many keys are used."
+      },
+      {
+        "id": "Q5",
+        "kind": "multi",
+        "stem": "Consider these statements about classifying cryptographic algorithms from the CED. I. Asymmetric algorithms use two different keys. II. Block encryption handles information in fixed-size chunks called blocks. III. Stream encryption handles input continuously, producing output one element at a time. Which statements are accurate?",
+        "options": [
+          "I and II only, leaving out the description of stream encryption",
+          "II and III only, leaving out the description of asymmetric algorithms",
+          "I and III only, leaving out the description of block encryption",
+          "I, II, and III, since all three describe accurate classifications"
+        ],
+        "answer": "D",
+        "ek": "EK 5.3.A.4 + EK 5.3.A.5",
+        "rationale": "EK 5.3.A.4 supports I — asymmetric algorithms use two different keys. EK 5.3.A.5 supports II and III — block encryption handles fixed-size chunks called blocks, and stream encryption handles input continuously, producing output one element at a time. All three are accurate."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An administrator needs the most common symmetric algorithm to encrypt files on disk and to help secure Wi-Fi. According to the CED, which algorithm fits, and what is its block size?",
+        "options": [
+          "AES, a symmetric key block cipher that encrypts data in 128-bit (16-byte) blocks",
+          "AES, a stream cipher that encrypts data one single bit at a time as it arrives",
+          "A two-key asymmetric algorithm that encrypts data in 64-bit (8-byte) blocks",
+          "A password-only scheme that stores files without using any encryption key"
+        ],
+        "answer": "A",
+        "ek": "EK 5.3.B.1 + EK 5.3.B.2",
+        "rationale": "EK 5.3.B.1 — AES is the most common symmetric algorithm, used for Wi-Fi, browsing, disk file encryption, and processor-level encryption. EK 5.3.B.2 — AES is a symmetric key block cipher that encrypts data in 128-bit blocks (16 bytes). AES is not a stream cipher, not asymmetric, and does use a key."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A user encrypts a file with OpenSSL using openssl enc -aes-128-cbc -e -in test -k password -out test.enc. According to the CED, what is needed to decrypt test.enc back to the original?",
+        "options": [
+          "A completely different second key, since AES requires separate keys to undo encryption",
+          "The same key (derived from the same password), used with the OpenSSL decrypt command",
+          "No key at all, since OpenSSL stores the recovery information inside the .enc file",
+          "A longer key than the one used to encrypt, to reverse the original operation"
+        ],
+        "answer": "B",
+        "ek": "EK 5.3.B.4",
+        "rationale": "EK 5.3.B.4 — to decrypt, the user runs OpenSSL with the same key, where the key is derived from the password provided (openssl enc -aes-128-cbc -d -in test.enc -k password -out text). Symmetric encryption uses one key, so no different, absent, or longer key is involved."
+      }
+    ]
+  }
+}

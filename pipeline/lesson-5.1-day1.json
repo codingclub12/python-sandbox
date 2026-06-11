@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "lessonId": "5.1",
+    "lessonTitle": "Application and Data Vulnerabilities",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 5: Securing Applications and Data",
+    "day": 1,
+    "los": "LO 5.1.A, LO 5.1.B, LO 5.1.C",
+    "anchor": "Protecting Sensitive Data",
+    "author": "AP CS Exam Prep",
+    "totalDays": 5
+  },
+  "guide": {
+    "title": "Lesson 5.1 — Application and Data Vulnerabilities — Teacher Guide",
+    "subtitle": "Unit 5 · Topic 5.1 · 5 class periods · Anchor: Protecting Sensitive Data",
+    "overview": [
+      "Lesson 5.1, Application and Data Vulnerabilities and Attacks, opens Unit 5 (Securing Applications and Data) by explaining how adversaries exploit application and file vulnerabilities to cause loss, damage, disruption, or destruction; how specific application attacks exploit vulnerabilities; and how to assess and document the risk those vulnerabilities create. It is the threat-side foundation for the data-protection and access-control work the rest of the unit builds, paired with the unit scenario 5A, Protecting Sensitive Data.",
+      "This Day 1 file carries the lesson-level quiz and this teacher guide, which span three learning objectives in the topic's tested scope: how adversaries exploit application and file vulnerabilities (5.1.A) — reading unencrypted files, elevated privileges from administrative accounts, and weak access-control settings; how application attacks exploit vulnerabilities (5.1.B) — failed data validation, SQL injection, cross-site scripting, buffer overflow, and directory traversal; and how to assess and document data-security risks (5.1.C) — high, moderate, and low risk by data sensitivity and likelihood of exploit."
+    ],
+    "los": [
+      "LO 5.1.A — Explain how adversaries can exploit application and file vulnerabilities to cause loss, damage, disruption, or destruction.",
+      "LO 5.1.B — Explain how application attacks exploit vulnerabilities.",
+      "LO 5.1.C — Assess and document risks from application and data vulnerabilities."
+    ],
+    "eks": [
+      "EK 5.1.A.1 — An adversary can read any unencrypted files if they have access to the device or drive storing the files.",
+      "EK 5.1.A.2 — Computers have standard users and administrative users. Administrative users have access to control system settings and can typically access any files or applications on a system. If regular users are given administrative privileges on a computer, and an adversary can compromise a user's account, then the adversary will have elevated privileges on the system.",
+      "EK 5.1.A.3 — When access control settings are weakly configured, many users often have permission to view and sometimes even edit files on a system. Adversaries can take advantage of weak access control settings to steal or destroy files or disrupt an application.",
+      "EK 5.1.B.1 — Applications are programs that run instructions on computers; they are executable data. Some applications run locally on a user's computer, while other applications, like web applications, run on a server and are accessed by users through a network.",
+      "EK 5.1.B.2 — Many applications take user input through open-ended input fields where users can type characters. Developers should include user input checks in their application, such as numeric input when asked for a number of items, to ensure that the user input matches what is expected; the application should reject input outside of the expected parameters. This process of verifying that user input meets expected criteria before processing it is called data validation. Applications that fail to validate user input are vulnerable to injection-type attacks, where adversaries insert unexpected character strings in input fields to alter the behavior of a program.",
+      "EK 5.1.B.3 — Structured query language (SQL) is a computer language used to request information from databases and make changes to databases or entries in databases. Applications that query a database using unvalidated or unsanitized input from users are vulnerable.",
+      "EK 5.1.B.4 — An SQL-injection attack places SQL commands and control characters into a user-input field in an application, which can lead to a breach of confidentiality by causing the application to return more information than it should, or a breach of integrity by modifying or deleting data in the database.",
+      "EK 5.1.B.5 — Websites are written using hypertext markup language (HTML), and many websites use Javascript to create dynamic content on websites or web applications. Because Javascript commands run in the browser of the user visiting the website, those commands can access sensitive data stored in the browser like usernames, passwords, and cryptographic keys.",
+      "EK 5.1.B.6 — A cross site scripting (XSS) attack injects malicious code into a website that a user's browser then executes. The malicious code can be embedded in a link the user clicks (a Type I or Reflected XSS attack) or it can be inserted onto a website through a comment field, forum post, or visitor log, which would affect any user visiting that website (a Type II or Stored XSS attack).",
+      "EK 5.1.B.7 — When applications take user input, that input is written to a buffer. A buffer is a designated section of computer memory with a fixed size. If the amount of data the user enters exceeds the size of the buffer, it can overflow into adjacent memory locations and overwrite other parts of the computer's memory.",
+      "EK 5.1.B.8 — A buffer overflow attack feeds more data into memory than was allotted, which can cause a system to crash or to execute code outside the scope of a program's security policy, effectively allowing the adversary to perform unauthorized actions on a computer, such as accessing, modifying, or deleting files.",
+      "EK 5.1.B.9 — The files that run web applications are stored in directories on servers. When users access web applications, their browsers send GET requests using hypertext transfer protocol (HTTP). A GET request accesses a file somewhere in the filesystem of the server.",
+      "EK 5.1.B.10 — In a directory traversal attack, adversaries modify URLs and GET requests to attempt to access sensitive data (e.g., usernames and passwords) on a server's file system.",
+      "EK 5.1.C.1 — Data security risks can involve a compromise of confidentiality when unauthorized persons can access sensitive data, integrity when data can be manipulated or altered from its intended state, and availability when data can be destroyed or encrypted to prevent others from accessing it.",
+      "EK 5.1.C.2 — High risks from data vulnerabilities often involve highly sensitive data (e.g., data that is governed by laws or regulations) that could be compromised through a highly likely exploit.",
+      "EK 5.1.C.3 — Moderate risks from data vulnerabilities often involve sensitive data not having strong enough encryption or strict enough access controls.",
+      "EK 5.1.C.4 — Low risks from data vulnerabilities often involve less sensitive information being encrypted with shorter keys or having access controls that are not strict enough."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each of the five days.",
+      "Printed/Digital Day 1–5 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page, which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 5.1 quiz (student copies) for the final day of the topic.",
+      "Unit scenario 5A, Protecting Sensitive Data — students examine application and data vulnerabilities, then assess and document the risk each one creates."
+    ],
+    "prereqs": [
+      "Unit 1 vocabulary of confidentiality, integrity, and availability, and the Unit 2 ideas of adversaries, exploits, and risk. Learners should be comfortable with the basic terms file, encryption, access control, user account, server, and web application before naming application-level threats against them."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Exploiting file and access-control vulnerabilities (LO 5.1.A)",
+        "segments": [
+          { "segment": "QOTD + bell ringer (where does sensitive data sit unprotected?)", "min": 5 },
+          { "segment": "Guided-notes preview + objectives", "min": 5 },
+          { "segment": "Reading unencrypted files with device or drive access (EK 5.1.A.1)", "min": 12 },
+          { "segment": "Standard vs. administrative users and elevated privileges (EK 5.1.A.2)", "min": 13 },
+          { "segment": "Weak access-control settings: steal, destroy, or disrupt (EK 5.1.A.3) + wrap", "min": 10 }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Applications, data validation, and SQL injection (LO 5.1.B)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "What applications are; local vs. server-based web apps (EK 5.1.B.1)", "min": 10 },
+          { "segment": "Open-ended input, data validation, and injection-type attacks (EK 5.1.B.2)", "min": 15 },
+          { "segment": "SQL, unvalidated input, and the SQL-injection attack (EK 5.1.B.3–B.4)", "min": 15 }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Cross-site scripting (LO 5.1.B)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "HTML, Javascript in the browser, and browser-stored secrets (EK 5.1.B.5)", "min": 18 },
+          { "segment": "XSS attacks: Reflected (Type I) vs. Stored (Type II) (EK 5.1.B.6)", "min": 17 },
+          { "segment": "Stop and Think + wrap", "min": 5 }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Buffer overflow and directory traversal (LO 5.1.B)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Buffers, fixed size, and overflow into adjacent memory (EK 5.1.B.7–B.8)", "min": 17 },
+          { "segment": "GET requests, server file systems, and directory traversal (EK 5.1.B.9–B.10)", "min": 18 },
+          { "segment": "Stop and Think + wrap", "min": 5 }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Assessing and documenting data risk (LO 5.1.C)",
+        "segments": [
+          { "segment": "QOTD + bell ringer", "min": 5 },
+          { "segment": "Risk to confidentiality, integrity, and availability (EK 5.1.C.1)", "min": 12 },
+          { "segment": "High, moderate, and low risk by sensitivity and likelihood (EK 5.1.C.2–C.4)", "min": 14 },
+          { "segment": "Topic review + Lesson 5.1 quiz", "min": 14 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Encryption is not access control",
+        "myth": "If a file sits behind a login or on a private server, an adversary with the drive still cannot read it.",
+        "reality": "EK 5.1.A.1 states an adversary can read any unencrypted files if they have access to the device or drive storing them. Login screens and folder permissions do not protect the bytes on an unencrypted drive once an adversary holds the device itself — only encryption does."
+      },
+      {
+        "heading": "SQL injection vs. cross-site scripting",
+        "myth": "SQL injection and XSS are the same injection attack with different names.",
+        "reality": "EK 5.1.B.4 describes SQL injection as placing SQL commands into an input field to read or alter a database on the server, while EK 5.1.B.6 describes XSS as injecting malicious code into a website that a user's browser then executes. One targets the database; the other runs in victims' browsers."
+      },
+      {
+        "heading": "Risk is not just sensitivity",
+        "myth": "The risk of a data vulnerability is determined only by how sensitive the data is.",
+        "reality": "EK 5.1.C.2 frames high risk as highly sensitive data that could be compromised through a highly likely exploit — risk combines both the sensitivity of the data and the likelihood of the exploit, not sensitivity alone."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a one-page chart mapping each 5.1.B attack (SQL injection, XSS, buffer overflow, directory traversal) to its target (database, browser, memory buffer, server file system) and the EK that defines it, so they sort scenarios by what the attack reaches rather than by surface keywords.",
+        "Build a three-row risk grid — high, moderate, low — with the EK 5.1.C.2–C.4 wording and one CED illustrative example per row, and have students place new scenarios before attempting any scenario item."
+      ],
+      "extension": [
+        "Have students trace the CED directory-traversal example (../../../etc/passwd against /var/www/images/) and explain, step by step using EK 5.1.B.9–B.10, how the modified GET request walks up to the root and reaches the passwd file.",
+        "Ask students to compare a confidentiality breach from SQL injection (returning more data than it should) with an integrity breach (modifying or deleting data) per EK 5.1.B.4, and map each to the CIA triad language in EK 5.1.C.1."
+      ]
+    },
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 5.1 — Application and Data Vulnerabilities — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary steals a laptop from a parked car. The drive is not encrypted, and the financial records stored on it open immediately once the adversary connects the drive to another machine. Which CED idea best explains why the records were exposed?",
+        "options": [
+          "An adversary can read any unencrypted files once they have access to the device or drive storing them",
+          "A buffer overflow let the adversary execute code outside the scope of the program's security policy",
+          "Weak data validation allowed an injection-type attack against an open-ended input field",
+          "A directory traversal attack modified a GET request to reach files elsewhere on the server"
+        ],
+        "answer": "A",
+        "ek": "EK 5.1.A.1",
+        "rationale": "EK 5.1.A.1 states that an adversary can read any unencrypted files if they have access to the device or drive storing the files, which is exactly what physical theft of an unencrypted drive provides. Option B is buffer overflow (EK 5.1.B.8), option C is failed data validation/injection (EK 5.1.B.2), and option D is directory traversal (EK 5.1.B.10) — none describe simply reading an unencrypted stolen drive."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A help-desk policy gives every employee an administrative account so they can install their own software. An adversary phishes one employee's credentials. Why is this configuration especially dangerous according to the CED?",
+        "options": [
+          "Administrative accounts cannot be compromised by phishing, so the policy carries no added risk at all",
+          "Standard user accounts already control system settings, so the granted privilege level changes nothing",
+          "The adversary inherits elevated privileges — the compromised account holds administrative rights over system settings and files",
+          "The adversary is limited to that one user's own files, since administrative rights never extend beyond a single account"
+        ],
+        "answer": "C",
+        "ek": "EK 5.1.A.2",
+        "rationale": "EK 5.1.A.2 explains that administrative users can access system settings and typically any files or applications; if regular users are given administrative privileges and an adversary compromises a user's account, the adversary gains elevated privileges on the system — matching option C. Option A is false (any account can be phished), option B is false (standard users do not control system settings), and option D contradicts the EK, which says administrative privileges reach across the system, not one account."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "On a shared department server, the access-control settings were never tightened, so nearly every employee can view and edit files in every folder. An adversary who compromises any one account finds they can delete and alter records across the whole share. Which vulnerability does this illustrate?",
+        "options": [
+          "An SQL-injection attack placing SQL commands into a user-input field to alter the database",
+          "Weakly configured access control settings let many users view and edit files, which adversaries exploit to steal, destroy, or disrupt",
+          "A cross-site scripting attack injecting code that the victim's browser then executes",
+          "A buffer overflow overwriting adjacent memory after input exceeds the buffer's fixed size"
+        ],
+        "answer": "B",
+        "ek": "EK 5.1.A.3",
+        "rationale": "EK 5.1.A.3 states that when access control settings are weakly configured, many users often have permission to view and sometimes edit files, and adversaries take advantage of weak access control settings to steal or destroy files or disrupt an application — matching the over-broad share permissions. Option A is SQL injection (EK 5.1.B.4), option C is XSS (EK 5.1.B.6), and option D is buffer overflow (EK 5.1.B.7–B.8)."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A login form passes whatever a user types straight into a database query with no checks. An adversary types control characters and database commands into the username field, and the application returns every account record instead of one. Which attack is this, and what failure enabled it?",
+        "options": [
+          "A directory traversal attack enabled by GET requests that reach files on the server's file system",
+          "A cross-site scripting attack enabled by Javascript that runs in the visitor's browser",
+          "A buffer overflow enabled by input that exceeds the fixed size of a memory buffer",
+          "An SQL-injection attack enabled by the application querying the database with unvalidated user input"
+        ],
+        "answer": "D",
+        "ek": "EK 5.1.B.4",
+        "rationale": "EK 5.1.B.3 notes that applications querying a database with unvalidated or unsanitized user input are vulnerable, and EK 5.1.B.4 defines an SQL-injection attack as placing SQL commands and control characters into a user-input field, causing a breach of confidentiality by returning more information than it should — exactly the described behavior. Option A is directory traversal (EK 5.1.B.10), option B is XSS (EK 5.1.B.6), and option C is buffer overflow (EK 5.1.B.8)."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An adversary posts a comment containing a script to a public forum. The forum saves the comment, and from then on every visitor who loads that page has the script run in their browser, where it reads stored usernames and passwords. Which attack — and which subtype — is described?",
+        "options": [
+          "A Stored (Type II) cross-site scripting attack, inserted through a comment field and affecting every visitor to the page",
+          "A Reflected (Type I) cross-site scripting attack, embedded only in a link that a single user must click",
+          "An SQL-injection attack, placing SQL commands into an input field to read the database",
+          "A directory traversal attack, modifying a URL to climb to the root of the server's file system"
+        ],
+        "answer": "A",
+        "ek": "EK 5.1.B.6",
+        "rationale": "EK 5.1.B.6 defines a Type II or Stored XSS attack as malicious code inserted onto a website through a comment field, forum post, or visitor log, affecting any user visiting that website; EK 5.1.B.5 notes such browser-run code can access stored usernames and passwords. Option B is the Reflected (Type I) variant carried in a clicked link, option C is SQL injection (EK 5.1.B.4), and option D is directory traversal (EK 5.1.B.10)."
+      },
+      {
+        "id": "Q6",
+        "kind": "multi",
+        "stem": "A security class reviews three web-application incidents. I. Input longer than a fixed-size section of memory spills into adjacent memory and overwrites it, letting the adversary run unauthorized code. II. An adversary modifies a URL to ../../../etc/passwd to climb to the root of the server's file system and read a sensitive file. III. An adversary inserts a malicious string into an unvalidated input field to alter how the program behaves. Match each incident to the correct CED term.",
+        "options": [
+          "I = directory traversal, II = buffer overflow, III = injection-type attack",
+          "I = buffer overflow, II = injection-type attack, III = directory traversal",
+          "I = buffer overflow, II = directory traversal, III = injection-type attack",
+          "I = injection-type attack, II = directory traversal, III = buffer overflow"
+        ],
+        "answer": "C",
+        "ek": "EK 5.1.B.2 + EK 5.1.B.8 + EK 5.1.B.10",
+        "rationale": "EK 5.1.B.7–B.8 describe a buffer overflow as input exceeding a fixed-size buffer that overflows into adjacent memory and lets the adversary run unauthorized code — that is I. EK 5.1.B.10 describes a directory traversal as modifying URLs/GET requests (the ../../../etc/passwd example) to reach sensitive files — that is II. EK 5.1.B.2 describes an injection-type attack as inserting unexpected character strings into unvalidated input fields to alter program behavior — that is III. Only option C maps all three correctly."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A defense contractor stores the complete technical specifications for a next-generation military jet engine — data governed by federal regulation — on a single unencrypted drive that is easy for an insider to copy. Using the CED risk levels, how should this be documented?",
+        "options": [
+          "Low risk — less sensitive information being protected with somewhat short encryption keys",
+          "Moderate risk — sensitive data that simply lacks strong enough encryption or access controls",
+          "No documented risk — regulated data is automatically protected by the governing law itself",
+          "High risk — highly sensitive, regulation-governed data exposed through a highly likely exploit"
+        ],
+        "answer": "D",
+        "ek": "EK 5.1.C.2",
+        "rationale": "EK 5.1.C.2 defines high risk as highly sensitive data (e.g., data governed by laws or regulations) that could be compromised through a highly likely exploit, and the CED illustrative example is precisely regulated jet-engine specs on an unencrypted drive. Option A is low risk (EK 5.1.C.4), option B is moderate risk (EK 5.1.C.3), and option C contradicts the CED — regulation does not by itself encrypt or restrict the data."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An auditor catalogs three exposures: one where outsiders can read sensitive records, one where records can be secretly altered, and one where records can be encrypted by ransomware so no one can reach them. Which CED framing organizes these three exposures?",
+        "options": [
+          "They map to the three XSS subtypes — Reflected, Stored, and a third browser-side variant",
+          "They map to compromises of confidentiality, integrity, and availability respectively",
+          "They map to the three injection attacks — SQL injection, buffer overflow, and directory traversal",
+          "They map to standard users, administrative users, and weak access-control settings"
+        ],
+        "answer": "B",
+        "ek": "EK 5.1.C.1",
+        "rationale": "EK 5.1.C.1 states data security risks can involve a compromise of confidentiality when unauthorized persons access sensitive data, integrity when data is manipulated or altered, and availability when data is destroyed or encrypted to prevent access — matching the three exposures in order. Option A lists XSS subtypes, option C lists distinct application attacks, and option D lists user/access-control concepts from 5.1.A, none of which is the CIA framing."
+      }
+    ]
+  }
+}

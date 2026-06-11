@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "lessonId": "5.4",
+    "lessonTitle": "Asymmetric Encryption",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 5: Securing Applications and Data",
+    "day": 1,
+    "los": "LO 5.4.A, 5.4.B, 5.4.C",
+    "totalDays": 5,
+    "author": "AP CS Exam Prep"
+  },
+  "guide": {
+    "title": "Asymmetric Encryption — Teacher Guide",
+    "subtitle": "Unit 5: Securing Applications and Data   •   LO 5.4.A–5.4.C",
+    "overview": [
+      "Topic 5.4 builds on the symmetric cryptography of Topic 5.3 by introducing asymmetric (public-key) encryption, which lets two parties communicate securely without prearranging a shared secret key. Students learn how a key pair works — two mathematically-inverse keys, one public and one private — and how to decide which key to use when sending versus receiving data.",
+      "The topic then connects key length to security through keyspace math (an n-bit key has a keyspace of 2^n), explains the trade-off that longer keys are more secure but slower, and finishes by applying common asymmetric algorithms such as RSA and ECC, including hands-on OpenSSL commands to generate a key pair and encrypt and decrypt a file."
+    ],
+    "los": [
+      "LO 5.4.A — Determine the appropriate asymmetric key to use when sending or receiving encrypted data.",
+      "LO 5.4.B — Explain why the length of a key impacts the security of encrypted data.",
+      "LO 5.4.C — Apply asymmetric encryption algorithms to encrypt and decrypt data."
+    ],
+    "eks": [
+      "EK 5.4.A.1 — Asymmetric encryption allows users to communicate securely without prearranging a shared secret key.",
+      "EK 5.4.A.2 — When using asymmetric encryption, each entity that will be receiving data must first generate a key pair. Key pairs are binary strings of equal length that are generated at the same time through a mathematical process. One key is designated as the public key and the other as the private key. The keys are mathematical inverses of each other—each key reverses its partner. Either key can be used to encrypt information, but only the other key in the key pair will then be able to decrypt it.",
+      "EK 5.4.A.3 — Once the receiver generates the key pair, the private key must be stored securely. If the private key is exposed, shared, stolen, corrupted, or compromised the key pair must be deleted and a new key pair must be generated, because the security of the encryption algorithm rests on the security of the private key. The public key is published for anyone to view and use.",
+      "EK 5.4.A.4 — To send information securely to someone, the sender will use the receiver's public key to encrypt the data and send it. Only the receiver who has the private key will be able to decrypt and read the information.",
+      "EK 5.4.B.1 — Longer keys result in larger keyspaces. For binary keys, an n-bit length key has a keyspace of 2^n.",
+      "EK 5.4.B.2 — Using an application to randomly guess an n-bit length encryption key means that on average an adversary will be able to guess the correct key in 2^n / 2 or 2^(n−1) guesses.",
+      "EK 5.4.B.3 — Although longer keys are more secure, they also require more time to encrypt and decrypt messages.",
+      "EK 5.4.B.4 — Computational processing power and efficiency continue to improve, allowing software to guess keys faster. Key-length recommendations for both symmetric and asymmetric encryption algorithms are periodically increased to account for increased processing power.",
+      "EK 5.4.B.5 — Key-length comparison is only valid when comparing keys for the same cryptographic algorithm. (An AES 256-bit key is more secure than an AES 128-bit key; an RSA 4096-bit key is more secure than an RSA 2048-bit key; RSA and AES keys cannot be directly compared.)",
+      "EK 5.4.C.1 — Common asymmetric encryption algorithms include RSA and elliptic curve cryptography (ECC). Asymmetric algorithms are used in many applications, including digital signatures and digital certificates.",
+      "EK 5.4.C.2 — As with symmetric encryption, asymmetric encryption and decryption can be performed using the command line (e.g., OpenSSL), specialized software (e.g., the open-source RSA Encryption Tool), or web-based tools.",
+      "EK 5.4.C.3 — In a CLI, a user can generate an asymmetric key pair and encrypt or decrypt files. Example commands: 'openssl genrsa -out rsa.pem 2048' generates a 2048-bit RSA key pair; 'openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem' extracts the public key; 'openssl pkeyutl -encrypt -pubin -inkey public.pem -in test -out test.enc' encrypts; 'openssl pkeyutl -decrypt -inkey rsa.pem -in test.enc -out test' decrypts."
+    ],
+    "materials": [
+      "Projector for the public/private key-pair diagram and OpenSSL command demo",
+      "Printed Day 1 Guided Notes (student + key)",
+      "Printed Lesson 5.4 quiz (student + answer key)",
+      "Optional terminal access for an OpenSSL key-generation and encrypt/decrypt walkthrough"
+    ],
+    "prereqs": [
+      "Topic 5.3 understanding of symmetric encryption and how a single shared key encrypts and decrypts data",
+      "Comfort with the idea of keyspace and powers of two from earlier cryptography work"
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Public/private key pairs and which key to use when sending or receiving (5.4.A); intro to keyspace math (5.4.B)",
+        "segments": [
+          { "segment": "Bell ringer — how could two strangers exchange a secret without meeting first?", "min": 5 },
+          { "segment": "Direct instruction — asymmetric encryption, key pairs, and mathematical inverses (5.4.A.1–A.2)", "min": 20 },
+          { "segment": "Sending vs. receiving: which key encrypts, which key decrypts (5.4.A.4)", "min": 15 },
+          { "segment": "Bridge to key length and keyspace (5.4.B.1)", "min": 5 },
+          { "segment": "Quiz and wrap-up", "min": 10 }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Protecting the private key and key compromise (5.4.A.3)",
+        "segments": [
+          { "segment": "Bell ringer — what happens if a private key is stolen?", "min": 5 },
+          { "segment": "Direct instruction — storing the private key securely; publishing the public key (5.4.A.3)", "min": 20 },
+          { "segment": "Key-compromise response: delete the pair and generate a new one (5.4.A.3)", "min": 15 },
+          { "segment": "Guided practice — scenarios on key exposure", "min": 15 }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Key length and security: keyspace, guessing, and the speed trade-off (5.4.B)",
+        "segments": [
+          { "segment": "Bell ringer — how many keys is a 2^n keyspace?", "min": 5 },
+          { "segment": "Direct instruction — keyspace 2^n and average guesses 2^(n−1) (5.4.B.1–B.2)", "min": 20 },
+          { "segment": "Longer keys are more secure but slower; recommendations rise over time (5.4.B.3–B.4)", "min": 15 },
+          { "segment": "Same-algorithm comparison rule with RSA/AES examples (5.4.B.5)", "min": 15 }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Applying asymmetric algorithms: RSA, ECC, and OpenSSL (5.4.C)",
+        "segments": [
+          { "segment": "Bell ringer — name a place public-key crypto is used", "min": 5 },
+          { "segment": "Direct instruction — RSA, ECC, digital signatures and certificates (5.4.C.1)", "min": 15 },
+          { "segment": "Tools: CLI, specialized software, web-based (5.4.C.2)", "min": 10 },
+          { "segment": "OpenSSL walkthrough — genrsa, extract public key, encrypt, decrypt (5.4.C.3)", "min": 25 }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Hands-on lab 5B 'Sending Encrypted Messages' and review",
+        "segments": [
+          { "segment": "Lab setup and key-pair generation", "min": 10 },
+          { "segment": "Encrypt a message and send it; decrypt a received message (Lab 5B)", "min": 30 },
+          { "segment": "Whole-topic review across 5.4.A–C", "min": 15 }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Asymmetric encryption still needs a shared secret first",
+        "myth": "Two parties must secretly agree on a key before they can use asymmetric encryption.",
+        "reality": "EK 5.4.A.1 — asymmetric encryption allows users to communicate securely without prearranging a shared secret key; the receiver publishes a public key that anyone can use to encrypt to them (EK 5.4.A.3)."
+      },
+      {
+        "heading": "You encrypt with your own private key to send a secret",
+        "myth": "To send someone a confidential message, you encrypt it with your private key.",
+        "reality": "EK 5.4.A.4 — to send information securely, the sender uses the receiver's public key to encrypt; only the receiver, who holds the matching private key, can decrypt and read it."
+      },
+      {
+        "heading": "A longer key is always better, no strings attached",
+        "myth": "Using the longest possible key is purely an upgrade with no downside.",
+        "reality": "EK 5.4.B.3 — although longer keys are more secure, they also require more time to encrypt and decrypt messages, so length is a trade-off, not a free win."
+      },
+      {
+        "heading": "Any bigger key beats any smaller key",
+        "myth": "A 2048-bit RSA key must be weaker than a 256-bit AES key since 2048 > 256... or the reverse — bigger number always wins.",
+        "reality": "EK 5.4.B.5 — key-length comparison is only valid when comparing keys for the same cryptographic algorithm; RSA and AES keys cannot be directly compared to one another."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a two-column 'sending vs. receiving' chart and have them fill in which key (public or private) is used in each direction from EK 5.4.A.4.",
+        "Provide a filled example of the keyspace formula (e.g., a 4-bit key has 2^4 = 16 possible keys) before asking students to compute 2^n for larger n.",
+        "Offer a sentence frame for key compromise: 'If the private key is ___, the key pair must be ___ and a new pair ___ (EK 5.4.A.3).'"
+      ],
+      "extension": [
+        "Have students explain why either key in a pair can encrypt but only the partner key can decrypt, using the 'mathematical inverses' language of EK 5.4.A.2, and connect this to digital signatures (EK 5.4.C.1).",
+        "Ask students to justify why an RSA 4096-bit key is more secure than an RSA 2048-bit key but cannot be ranked against an AES 256-bit key (EK 5.4.B.5).",
+        "Challenge students to walk through the full OpenSSL sequence in EK 5.4.C.3 and label what each command produces (key pair, extracted public key, ciphertext, recovered plaintext)."
+      ]
+    },
+    "discussion": [
+      "Why does asymmetric encryption remove the need to share a secret key ahead of time?",
+      "Why does the security of the whole algorithm rest on keeping the private key secret rather than the public key?",
+      "When would the extra encryption/decryption time of a longer key be worth it, and when might it not be?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 5.4 — Asymmetric Encryption — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 20 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "According to the CED, what key advantage does asymmetric encryption provide over a shared-secret approach?",
+        "options": [
+          "It compresses data so encrypted files take up less storage on the receiver's device",
+          "It allows users to communicate securely without prearranging a shared secret key",
+          "It removes the need for any keys at all once the first message has been sent",
+          "It guarantees that messages can never be intercepted while crossing a network"
+        ],
+        "answer": "B",
+        "ek": "EK 5.4.A.1",
+        "rationale": "EK 5.4.A.1 — asymmetric encryption allows users to communicate securely without prearranging a shared secret key. The other options invent compression, claim keys disappear, or promise interception is impossible, none of which the CED states."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Mara wants to send Devon a confidential file using asymmetric encryption. According to the CED, which key should Mara use to encrypt the file, and who can then decrypt it?",
+        "options": [
+          "Mara encrypts with her own private key, and anyone holding her public key can decrypt it",
+          "Mara encrypts with Devon's private key, and only Mara can decrypt it afterward",
+          "Mara encrypts with a shared secret key the two agreed on in advance, and both can decrypt it",
+          "Mara encrypts with Devon's public key, and only Devon, who holds the matching private key, can decrypt it"
+        ],
+        "answer": "D",
+        "ek": "EK 5.4.A.4",
+        "rationale": "EK 5.4.A.4 — to send information securely, the sender uses the receiver's public key to encrypt the data; only the receiver who has the private key can decrypt and read it. The other options use the wrong key, give Mara a key she should not have, or fall back to a prearranged shared secret, which asymmetric encryption avoids."
+      },
+      {
+        "id": "Q3",
+        "kind": "recall",
+        "stem": "According to the CED, how are the two keys in an asymmetric key pair related to each other?",
+        "options": [
+          "They are identical copies, so either one can both encrypt and decrypt on its own",
+          "They are mathematical inverses of each other, and either key can encrypt but only its partner can decrypt",
+          "They are independent random numbers with no mathematical relationship between them",
+          "They are different lengths, with the longer key reserved only for decryption"
+        ],
+        "answer": "B",
+        "ek": "EK 5.4.A.2",
+        "rationale": "EK 5.4.A.2 — key pairs are binary strings of equal length generated together; the keys are mathematical inverses of each other, and either key can encrypt but only the other key in the pair can decrypt. The other options claim the keys are identical, unrelated, or of different lengths, all of which contradict the CED."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An administrator discovers that the private key for a server's key pair was stolen by an attacker. According to the CED, what is the correct response?",
+        "options": [
+          "Delete the compromised key pair and generate a new key pair, since the algorithm's security rests on the private key",
+          "Publish the private key alongside the public key so users know it has changed",
+          "Keep using the same key pair but rotate the public key to a new location",
+          "Encrypt the stolen private key with the public key to make it safe to keep using"
+        ],
+        "answer": "A",
+        "ek": "EK 5.4.A.3",
+        "rationale": "EK 5.4.A.3 — if the private key is exposed, shared, stolen, corrupted, or compromised, the key pair must be deleted and a new key pair generated, because the security of the encryption algorithm rests on the security of the private key. The other options publish the private key, reuse a compromised pair, or pretend re-encrypting the stolen key restores safety."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A binary encryption key is n bits long. According to the CED, how large is its keyspace, and how many guesses on average will a random-guessing application need to find it?",
+        "options": [
+          "Keyspace of n^2, with about n/2 guesses needed on average",
+          "Keyspace of 2 times n, with about n guesses needed on average",
+          "Keyspace of 2^n, with about 2^n / 2 (that is, 2^(n−1)) guesses needed on average",
+          "Keyspace of n!, with about half of n! guesses needed on average"
+        ],
+        "answer": "C",
+        "ek": "EK 5.4.B.1 + EK 5.4.B.2",
+        "rationale": "EK 5.4.B.1 — for binary keys, an n-bit key has a keyspace of 2^n. EK 5.4.B.2 — randomly guessing an n-bit key means an adversary will on average find it in 2^n / 2, or 2^(n−1), guesses. The other options use formulas (n^2, 2n, n!) the CED does not give for keyspace size."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A team considers switching from a shorter key to a much longer one for the same algorithm. According to the CED, what trade-off should they expect?",
+        "options": [
+          "The longer key is less secure but encrypts and decrypts much faster",
+          "The longer key is more secure but requires more time to encrypt and decrypt messages",
+          "The longer key is both more secure and faster, with no downside at all",
+          "The longer key changes neither security nor speed, only the file size of the output"
+        ],
+        "answer": "B",
+        "ek": "EK 5.4.B.3",
+        "rationale": "EK 5.4.B.3 — although longer keys are more secure, they also require more time to encrypt and decrypt messages. The other options reverse the security relationship, deny any cost, or claim length affects only file size."
+      },
+      {
+        "id": "Q7",
+        "kind": "multi",
+        "stem": "Which of the following statements about comparing key lengths does the CED support? I. An AES 256-bit key is more secure than an AES 128-bit key. II. An RSA 4096-bit key is more secure than an RSA 2048-bit key. III. An RSA 2048-bit key can be directly compared to an AES 256-bit key to decide which is stronger. Which are correct?",
+        "options": [
+          "I and II only — comparisons hold within the same algorithm, but RSA and AES cannot be directly compared",
+          "I and III only — AES comparisons and cross-algorithm comparisons hold, but RSA lengths cannot be compared",
+          "II and III only — RSA comparisons and cross-algorithm comparisons hold, but AES lengths cannot be compared",
+          "I, II, and III — all three comparisons are valid as long as one key has more bits"
+        ],
+        "answer": "A",
+        "ek": "EK 5.4.B.5",
+        "rationale": "EK 5.4.B.5 — key-length comparison is only valid when comparing keys for the same algorithm: AES 256 beats AES 128 (I) and RSA 4096 beats RSA 2048 (II), but RSA and AES keys cannot be directly compared (III is false). Only I and II are correct."
+      },
+      {
+        "id": "Q8",
+        "kind": "recall",
+        "stem": "According to the CED, which of the following are common asymmetric encryption algorithms and where are they applied?",
+        "options": [
+          "AES and DES, used mainly for hashing passwords before they are stored",
+          "MD5 and SHA, used to generate the public and private keys in a pair",
+          "Base64 and ASCII, used to convert files into an encrypted binary format",
+          "RSA and elliptic curve cryptography (ECC), used in applications such as digital signatures and digital certificates"
+        ],
+        "answer": "D",
+        "ek": "EK 5.4.C.1",
+        "rationale": "EK 5.4.C.1 — common asymmetric encryption algorithms include RSA and elliptic curve cryptography (ECC), used in many applications including digital signatures and digital certificates. AES/DES are symmetric, MD5/SHA are hash functions, and Base64/ASCII are encodings, not asymmetric algorithms."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A student uses OpenSSL and runs 'openssl genrsa -out rsa.pem 2048' followed by 'openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem'. According to the CED, what do these two commands accomplish?",
+        "options": [
+          "They generate a 2048-bit RSA key pair saved to rsa.pem, then extract the public key from it into public.pem",
+          "They decrypt a file named rsa.pem and write the recovered plaintext to public.pem",
+          "They encrypt the file public.pem with a 2048-bit symmetric key stored in rsa.pem",
+          "They delete a compromised key pair and replace it with a shorter 1024-bit key"
+        ],
+        "answer": "A",
+        "ek": "EK 5.4.C.3",
+        "rationale": "EK 5.4.C.3 — 'openssl genrsa -out rsa.pem 2048' generates a 2048-bit RSA key pair saved to rsa.pem, and 'openssl rsa -pubout -in rsa.pem -outform PEM -out public.pem' extracts the public key into public.pem. The other options describe decryption, symmetric encryption, or key deletion, which these commands do not perform."
+      }
+    ]
+  }
+}
