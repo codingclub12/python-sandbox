@@ -1,0 +1,461 @@
+{
+  "meta": { "unitId": "Unit 2", "title": "Securing Spaces", "unitLabel": "Unit 2 • Securing Spaces" },
+  "timeMinutes": 60,
+  "partI": {
+    "instructions": "Choose the single best answer.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A caller tells a help-desk worker, 'I'm calling on behalf of the regional director, who told me to have you reset this account password right now.' The caller never mentions a deadline or consequences. Which social engineering tactic is MOST clearly being used?",
+        "options": [
+          "Authority — the caller claims to relay instructions from someone with power over the target",
+          "Urgency — the caller imposes a tight deadline that forces a quick decision",
+          "Scarcity — the caller stresses that the opportunity is in limited supply",
+          "Consensus — the caller suggests that everyone else has already complied"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.A.3",
+        "rationale": "Authority is when adversaries impersonate someone with power over a target or pretend to relay instructions from that person — exactly what 'on behalf of the regional director' does. No deadline (urgency), limited supply (scarcity), or group pressure (consensus) appears."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An email warns, 'Your mailbox will be permanently deleted in 30 minutes unless you verify now.' Which social engineering tactic does this BEST illustrate?",
+        "options": [
+          "Familiarity — the sender pretends to be someone close to the target",
+          "Urgency — the sender creates a deadline requiring quick action to avert a negative consequence",
+          "Pretexting — the sender invents a believable reason simply to make contact",
+          "Intimidation — the sender threatens negative consequences without any time limit"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.A.8",
+        "rationale": "Urgency is when adversaries create a deadline that requires quick action by a target to avert negative consequences; the 30-minute window is the defining feature. Intimidation also threatens consequences but is not defined by the deadline itself."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A former employee who still has valid login credentials begins selling internal product designs out of revenge. Which adversary type BEST describes this actor?",
+        "options": [
+          "Script kiddie — a low-skilled actor relying on tools built by others",
+          "Hacktivist — an actor driven by a social or political cause",
+          "Insider adversary — an actor with legitimate credentials and access, motivated by greed or revenge",
+          "Cyberterrorist — an actor seeking to disrupt entire communities or infrastructure"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.B.3",
+        "rationale": "Insider adversaries are unique because they have legitimate credentials and access to systems and data and can be motivated by greed or revenge — matching the former employee acting out of revenge with valid credentials."
+      },
+      {
+        "id": "Q4",
+        "kind": "recall",
+        "stem": "Which description correctly characterizes a transnational criminal organization as an adversary type?",
+        "options": [
+          "An actor motivated mainly by recognition who borrows tools without understanding them",
+          "An actor compromising systems to advance a personal or political cause it believes is just",
+          "An actor seeking to destabilize regions or nations by attacking civil infrastructure",
+          "An actor seeking financial gain by deploying ransomware and stealing corporate IP to resell"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.B.5",
+        "rationale": "Transnational criminal organizations seek financial gain primarily by deploying ransomware and stealing corporate intellectual property to sell in illegal markets."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Investigators find that an attacker used a remote access trojan to keep sending commands to a compromised laptop over a command-and-control channel long after the break-in. Which cyberattack phase does this BEST represent?",
+        "options": [
+          "Reconnaissance — the attacker gathers freely available information about the target",
+          "Persistence — the attacker maintains access without having to regain it, often via a RAT and C2",
+          "Lateral movement — the attacker escalates privileges across accounts and computers",
+          "Evading detection — the attacker erases log files and planted artifacts"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.C.4",
+        "rationale": "After gaining access, adversaries establish persistence to maintain access without needing to regain it, often using a C2 protocol through malware like a RAT or rootkit — precisely the described behavior."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Before any intrusion, an attacker compiles employee names, job titles, and email formats from public LinkedIn pages and the company website. Which phase of a cyberattack is this?",
+        "options": [
+          "Initial access — the attacker establishes a foothold on a target device",
+          "Taking action — the attacker exfiltrates or destroys targeted data",
+          "Reconnaissance — the attacker gathers information about the target, often using OSINT",
+          "Persistence — the attacker installs malware to maintain a foothold"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.C.2",
+        "rationale": "In the reconnaissance phase, adversaries gather as much information as possible about their target, often using open source intelligence (OSINT) — freely available information like public profiles and websites."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "According to the risk assessment process, when does risk occur?",
+        "options": [
+          "Whenever any asset, regardless of value, is connected to a network",
+          "When a threat can exploit a vulnerability to compromise an asset",
+          "Only after an attacker has already exfiltrated data from a system",
+          "Only when an organization has chosen to accept residual risk"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.D.1",
+        "rationale": "Risk occurs when a threat can exploit a vulnerability to compromise an asset — the definition from the risk assessment process."
+      },
+      {
+        "id": "Q8",
+        "kind": "multi",
+        "stem": "A security team is estimating the LIKELIHOOD that a specific vulnerability will be exploited. Which factors below are listed as influencing that likelihood?\nI. The value of the target to adversaries\nII. The level of skill required to exploit the vulnerability\nIII. The motivation and capabilities of likely adversaries",
+        "options": [
+          "I and II only",
+          "II and III only",
+          "I and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.D.4",
+        "rationale": "Likelihood depends on the value of the target, the level of skill required to exploit the vulnerability, and the motivation and capabilities of likely adversaries — all three factors apply."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A company buys a cyber-insurance policy so that if a breach occurs, the insurer covers most of the financial loss. Which risk-management strategy is the company using?",
+        "options": [
+          "Risk transference — the burden of the risk is placed on another entity such as an insurer",
+          "Risk avoidance — the activity generating the risk is stopped entirely",
+          "Risk mitigation — security controls are added to reduce likelihood or impact",
+          "Risk acceptance — the residual risk is acknowledged and absorbed as-is"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.E.3",
+        "rationale": "Risk transference places the burden of the risk on another entity, such as an insurance company, a government, or consumers — exactly what buying insurance does."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A hospital decides it cannot stop offering its online patient portal even though the portal carries risk, so instead it adds multi-factor authentication and monitoring to lower the chance and impact of a breach. Which strategy does this represent?",
+        "options": [
+          "Risk avoidance — the risky activity is discontinued as nonessential",
+          "Risk acceptance — the remaining risk is simply absorbed without new controls",
+          "Risk mitigation — security controls are implemented to reduce a risk's likelihood or impact",
+          "Risk transference — the risk is shifted onto a third party by contract"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.E.4",
+        "rationale": "Risk mitigation implements security controls to reduce the likelihood or impact of a risk. Avoidance is ruled out because the portal is a critical part of the organization's mission."
+      },
+      {
+        "id": "Q11",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "After applying avoidance, transference, and mitigation, a firm still faces a small amount of risk it judges tolerable and chooses to live with. Which term and strategy describe what remains?",
+        "options": [
+          "Inherent risk handled through avoidance",
+          "Transferred risk handled through insurance",
+          "Projected risk handled through mitigation",
+          "Residual risk handled through acceptance"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.E.5",
+        "rationale": "Residual risk is the risk that remains after avoidance, transference, and mitigation; risk acceptance acknowledges that absolute security is unattainable and the organization is willing to accept that level."
+      },
+      {
+        "id": "Q12",
+        "kind": "applied",
+        "stem": "A control that 'ensures data are accurate and trustworthy' is protecting which principle of the CIA triad, and what attack does a system lacking it face?",
+        "options": [
+          "Integrity — the system becomes vulnerable to data manipulation",
+          "Confidentiality — the system becomes vulnerable to data theft",
+          "Availability — the system experiences unexpected downtime",
+          "Authentication — the system cannot verify user identities"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.F.1",
+        "rationale": "Integrity ensures data are accurate and trustworthy; systems lacking integrity are vulnerable to data manipulation. Authentication is not one of the three CIA principles."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An organization writes a password policy, schedules regular access reviews, and maintains an incident response plan. By TYPE, these are best classified as which kind of security control?",
+        "options": [
+          "Physical controls — security in the physical space",
+          "Technical controls — security in the digital space",
+          "Managerial controls — rules, policies, and procedures specifying required security",
+          "Corrective controls — measures that restore systems to an operational state"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.F.2",
+        "rationale": "Managerial controls provide rules, guidelines, policies, and procedures specifying what security should be in place and include password policies, regular access reviews, and incident response plans. (Corrective is a function classification, not a type.)"
+      },
+      {
+        "id": "Q14",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A facilities team replaces a broken badge card reader and applies the latest patches to the access-control server. By FUNCTION, what kind of controls are these actions?",
+        "options": [
+          "Preventative controls — they stop an adversary from attacking in the first place",
+          "Corrective controls — they fix problems and help restore systems to an operational state",
+          "Detective controls — they identify attacks as they occur",
+          "Managerial controls — they set the policies that govern security"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.F.3",
+        "rationale": "Corrective controls fix problems and help restore systems to an operational state and include vulnerability patching and repairing a broken card reader — both actions described here."
+      },
+      {
+        "id": "Q15",
+        "kind": "recall",
+        "stem": "An intrusion detection system, security cameras, and a SIEM are grouped together under which control function?",
+        "options": [
+          "Preventative — they keep an adversary from ever gaining entry",
+          "Corrective — they restore a damaged system after an incident",
+          "Detective — they help identify attacks when they occur",
+          "Physical — they secure only the building perimeter"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.F.3",
+        "rationale": "Detective controls help identify attacks when they occur and include intrusion detection systems (IDSs), cameras, and SIEM systems."
+      },
+      {
+        "id": "Q16",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An administrator argues, 'If an attacker slips past our firewall, our encryption and our locked server room should still keep them from reaching the data.' Which security principle BEST captures this reasoning?",
+        "options": [
+          "Defense in depth — multiple layered controls so that if one is bypassed another still protects the asset",
+          "Risk transference — moving the consequence of failure to an outside insurer",
+          "Least privilege — granting each user only the access strictly required",
+          "Quantitative risk assessment — assigning a numeric score to each vulnerability"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.G.3",
+        "rationale": "A defense-in-depth strategy provides resilience: when one control is bypassed, another may still prevent access or limit damage — exactly the firewall-then-encryption-then-locked-room reasoning."
+      },
+      {
+        "id": "Q17",
+        "kind": "multi",
+        "stem": "Which of the following are named as possible LAYERS in a defense-in-depth strategy?\nI. Human\nII. Network\nIII. Data",
+        "options": [
+          "I and II only",
+          "I, II, and III",
+          "II and III only",
+          "I and III only"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.G.4",
+        "rationale": "Layers in a defense-in-depth strategy can include human, physical, network, device, application, and data — so human, network, and data are all valid layers."
+      },
+      {
+        "id": "Q18",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary carries a large stack of boxes toward a badge-controlled door and an employee holds it open for them out of courtesy. Which physical attack is this, and how does it differ from the related one?",
+        "options": [
+          "Tailgating — the adversary slips in unnoticed without the employee's awareness",
+          "Shoulder surfing — the adversary observes credentials being entered",
+          "Piggybacking — the adversary uses social engineering to get an authorized person to grant access",
+          "Card cloning — the adversary copies an authorized user's access card"
+        ],
+        "answer": "C",
+        "ek": "EK 2.2.A.2",
+        "rationale": "Piggybacking uses social engineering to manipulate an authorized individual into granting access (e.g., carrying something large so someone holds the door). Tailgating, by contrast, is entry without the authorized person's awareness or knowledge."
+      },
+      {
+        "id": "Q19",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An adversary copies an authorized employee's badge so they can reach everything that employee is permitted to access. Which physical attack is this?",
+        "options": [
+          "Dumpster diving — searching physical trash for useful information",
+          "Card cloning — making a copy of an authorized user's access card",
+          "Shoulder surfing — watching a user enter sensitive information",
+          "Tailgating — following an authorized person through a controlled door"
+        ],
+        "answer": "B",
+        "ek": "EK 2.2.A.6",
+        "rationale": "Card cloning is making a copy of an authorized user's access card so the adversary can gain access to all the resources that user is authorized to access."
+      },
+      {
+        "id": "Q20",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An attacker who reaches an unattended desktop's exposed ports plugs in a keylogger and a USB drive carrying malware. Why is gaining physical access to a device so dangerous, per the CED?",
+        "options": [
+          "Physical access only matters for natural disasters, not deliberate attacks",
+          "Physical access can bypass many technical controls and layers of security",
+          "Physical access is always classified as a low risk regardless of the asset",
+          "Physical access affects availability but never confidentiality or integrity"
+        ],
+        "answer": "B",
+        "ek": "EK 2.2.C.1 + EK 2.2.B.5",
+        "rationale": "Physical access to devices can allow adversaries to bypass many technical controls and layers of security; through exposed ports they can install a keylogger or malware to collect data or take control."
+      },
+      {
+        "id": "Q21",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A server storing customer data sits in a room with no lock, reached through an unmonitored hallway. Using the CED's risk levels for physical vulnerabilities, how should this be rated?",
+        "options": [
+          "Low risk — the asset is of low value and unlikely to be exploited",
+          "Moderate risk — a noncritical area that could serve as a foothold",
+          "High risk — sensitive systems are exposed without sufficiently restricted, controlled access",
+          "No risk — storing data on a server eliminates physical exposure"
+        ],
+        "answer": "C",
+        "ek": "EK 2.2.C.2",
+        "rationale": "High risks arise when sensitive information or systems are exposed in physical spaces without sufficiently restricted and controlled access — the CED's own illustrative example is an unlocked server room off an unmonitored hallway."
+      },
+      {
+        "id": "Q22",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A workstation security policy requires staff to lock devices when stepping away, clear sensitive papers from desks, and use privacy screen filters. By TYPE of control, what category does this policy fall under?",
+        "options": [
+          "Managerial control — a policy outlining measures required to protect the physical workplace",
+          "Detective control — a measure whose purpose is to spot attacks in progress",
+          "Technical control — a digital-space safeguard like a firewall or encryption",
+          "Corrective control — a measure that restores systems after an incident"
+        ],
+        "answer": "A",
+        "ek": "EK 2.3.A.2 + EK 2.1.F.2",
+        "rationale": "A workstation security policy is a managerial control: it outlines measures (locking devices, clean-desk practices, privacy screens) necessary to protect a physical workplace. Managerial controls provide rules, guidelines, and procedures."
+      },
+      {
+        "id": "Q23",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "To stop an authorized employee from accidentally letting an unauthorized person follow them into a restricted lab, which physical mitigation does the CED specifically recommend?",
+        "options": [
+          "Disabling USB ports so external drives cannot load malware",
+          "Adding an uninterruptible power supply to the lab's devices",
+          "Installing fencing and bollards around the building exterior",
+          "Using an access control vestibule or turnstile at the entry"
+        ],
+        "answer": "D",
+        "ek": "EK 2.3.B.5",
+        "rationale": "Access control vestibules and turnstiles can prevent an authorized person from intentionally or accidentally admitting an unauthorized person into a restricted area — directly addressing the piggybacking/tailgating concern."
+      },
+      {
+        "id": "Q24",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A security manager wants motion sensors that produce meaningful alerts rather than constant false alarms. Where does the CED say motion sensors should be placed?",
+        "options": [
+          "In high-traffic lobbies where the most people pass each day",
+          "In areas where traffic is unexpected, such as server rooms with few authorized people",
+          "Only outdoors along the building's exterior fence line",
+          "At every interior doorway regardless of how busy it is"
+        ],
+        "answer": "B",
+        "ek": "EK 2.4.B.2",
+        "rationale": "Motion sensors should be placed where traffic is unexpected, like server rooms or areas storing sensitive materials with few people having access; high-traffic placement creates many false alarms that get ignored."
+      },
+      {
+        "id": "Q25",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Reviewing electronic badge entry logs, a defender notices a restricted door was held open far longer than usual on several occasions. According to the CED, what does this pattern most likely help detect?",
+        "options": [
+          "Card cloning of executive badges across multiple buildings",
+          "Dumpster diving occurring in the parking area after hours",
+          "Piggybacking or tailgating, signaled by doors open longer than normal",
+          "A power disruption attack against the building's substation"
+        ],
+        "answer": "C",
+        "ek": "EK 2.4.C.3",
+        "rationale": "A door sensor can record how long a badge-controlled door stays open; reviewing entry logs reveals potential piggybacking or tailgating when doors are open longer than normal lengths of time."
+      },
+      {
+        "id": "Q26",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "After a motion detector trips in a sensitive storage room at night, the security team immediately pulls up the camera feed to confirm whether someone is actually present. Which detection principle does this BEST demonstrate?",
+        "options": [
+          "Motion detectors work best when paired with cameras to verify a breach",
+          "Cameras should be left unrecorded to conserve storage space",
+          "Motion sensors are most effective in the busiest hallways",
+          "Security guards must always be stationary rather than patrolling"
+        ],
+        "answer": "A",
+        "ek": "EK 2.4.C.2 + EK 2.4.A.3",
+        "rationale": "Motion detectors work best when paired with cameras; when a motion-triggered alert is raised, defenders use cameras to check the space visually and verify a physical security breach."
+      }
+    ]
+  },
+  "partII": {
+    "instructions": "Answer in complete sentences; cite specific tactics, attacks, or controls.",
+    "questions": [
+      {
+        "id": "FR1",
+        "prompt": "A mid-size accounting firm keeps a server holding client tax records in a back room that has no lock and is reached through a hallway with no cameras. A receptionist's computer near the unsecured front lobby connects to the internal network and has exposed USB ports. The firm cannot stop storing client records because doing so is core to its business.",
+        "parts": [
+          "(a) Identify the physical vulnerability with the HIGHEST risk level and justify your rating using the CED's risk criteria.",
+          "(b) Explain why the receptionist's exposed-USB computer is still a meaningful risk even though it is not the crown-jewel asset.",
+          "(c) Recommend a risk-management STRATEGY for the server room and name one specific physical control that implements it. Explain why avoidance is not appropriate here."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) The unlocked server room storing client tax records, reached through an unmonitored hallway, is the highest risk. This is a HIGH risk because sensitive information and systems are exposed in a physical space without sufficiently restricted and controlled access (EK 2.2.C.2). The asset is high value (client tax data) and the lack of any lock or monitoring makes exploitation likely, and physical access can let an adversary bypass many technical controls (EK 2.2.C.1).",
+          "(b) The receptionist's computer is a MODERATE risk: it is a noncritical part of the organization left unprotected in a way that could act as a foothold for an adversary to gain initial access to other resources (EK 2.2.C.3). Although it is not the most sensitive asset, its exposed USB ports let an adversary plug in a keylogger or a malware-loaded drive to collect data or gain control of the device (EK 2.2.B.5), and because it connects to the internal network it can become a launch point toward the high-value records.",
+          "(c) The firm should MITIGATE the server-room risk by implementing security controls that reduce its likelihood or impact (EK 2.1.E.4). A specific physical control is a lock on the server-room door (and ideally the server cabinet) to prevent the devices from being accessed or stolen (EK 2.3.B.3). Avoidance is not appropriate because storing client records is a critical part of the firm's mission, and EK 2.1.E.2 states that avoidance is not possible when the activity is essential to the organization's purpose."
+        ],
+        "rubric": [
+          "3 pts (part a): identifies the unlocked server room as HIGH risk AND justifies with the EK 2.2.C.2 criterion of sensitive systems exposed without sufficiently restricted/controlled access (1 pt asset, 1 pt rating, 1 pt justification).",
+          "3 pts (part b): rates the receptionist PC as a foothold/MODERATE risk (EK 2.2.C.3) AND explains the exposed-USB keylogger/malware threat (EK 2.2.B.5) and its network connection.",
+          "3 pts (part c): names MITIGATION (EK 2.1.E.4) (1 pt), names a specific physical control such as a door/cabinet lock (EK 2.3.B.3) (1 pt), and explains avoidance is unavailable for a mission-critical activity (EK 2.1.E.2) (1 pt)."
+        ],
+        "ek": "EK 2.2.C.1 + EK 2.2.C.2 + EK 2.2.C.3 + EK 2.2.B.5 + EK 2.1.E.2 + EK 2.1.E.4 + EK 2.3.B.3"
+      },
+      {
+        "id": "FR2",
+        "prompt": "A research company is designing security for a new building. Management wants a layered approach so that a single failure cannot expose the lab where prototype data is stored. They ask you to map controls across multiple layers and functions.",
+        "parts": [
+          "(a) Explain what a defense-in-depth (layered defense) strategy is and why it provides resilience even when one control is bypassed.",
+          "(b) Recommend THREE controls for the lab that fall into DIFFERENT layers from the CED's list (human, physical, network, device, application, data). Name the layer for each.",
+          "(c) For two of your recommended controls, classify each by FUNCTION (preventative, detective, or corrective) and justify the classification."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) A defense-in-depth, or layered, strategy uses multiple types of security controls to protect sensitive data and systems (EK 2.1.G.1). It provides resilience because when one control is bypassed by an adversary, another control may still prevent access to the data or system or limit the damage done (EK 2.1.G.3); it also lets the organization address different types of threats, each with the control best suited to mitigate it (EK 2.1.G.2).",
+          "(b) Human layer: employee security awareness training so staff do not badge unauthorized people into the lab (EK 2.3.A.1). Physical layer: a lock on the lab door to prevent the devices from being accessed or stolen (EK 2.3.B.3). Device layer: disabling the USB ports on lab computers so external drives cannot load malware (EK 2.3.B.6). These three sit in three distinct layers from EK 2.1.G.4.",
+          "(c) The lab-door lock is a PREVENTATIVE control because preventative controls address potential vulnerabilities with the goal of stopping an adversary from attacking, and locks are given as an example (EK 2.1.F.3). A security camera at the lab entrance would be a DETECTIVE control because detective controls help identify attacks when they occur, and cameras are listed as an example (EK 2.1.F.3); its recorded feed is especially useful in after-incident investigations (EK 2.4.A.1)."
+        ],
+        "rubric": [
+          "3 pts (part a): defines defense-in-depth as multiple layered controls (EK 2.1.G.1) (1 pt) and explains resilience when one control is bypassed (EK 2.1.G.3) (2 pts).",
+          "3 pts (part b): names three valid controls in three DIFFERENT layers from EK 2.1.G.4 with correct layer labels (1 pt each); controls must be CED-grounded (e.g., training, lock, disable USB).",
+          "3 pts (part c): correctly classifies two controls by function with EK 2.1.F.3 justification (preventative lock, detective camera, or corrective patch/repair) — 1.5 pts each."
+        ],
+        "ek": "EK 2.1.G.1 + EK 2.1.G.2 + EK 2.1.G.3 + EK 2.1.G.4 + EK 2.1.F.3 + EK 2.3.A.1 + EK 2.3.B.3 + EK 2.3.B.6 + EK 2.4.A.1"
+      },
+      {
+        "id": "FR3",
+        "prompt": "Over two weeks, a company notices odd activity: a person carrying boxes was let through a badge door by a helpful employee, and badge logs show the rear restricted-area door staying open much longer than usual on several nights. Management asks you to explain the attack and design a DETECTION-focused response.",
+        "parts": [
+          "(a) Name the social-engineering-based physical attack the box-carrier most likely used and explain how it works.",
+          "(b) Explain how reviewing electronic badge entry logs can reveal this kind of attack, citing the specific signal defenders look for.",
+          "(c) Recommend a detection setup for the rear door combining at least two controls, and justify the PLACEMENT of one of them using the CED's guidance."
+        ],
+        "points": 8,
+        "sample": [
+          "(a) The box-carrier most likely used piggybacking, an attack where an adversary uses social engineering to manipulate an authorized individual into granting access to a restricted area (EK 2.2.A.2). Carrying something large to entice an authorized person to hold the door open is one of the named piggybacking tactics.",
+          "(b) When employees must use an electronic badge to unlock a restricted door, a sensor can record how long the door was open; reviewing the entry logs reveals potential piggybacking or tailgating because the door is held open for longer than normal lengths of time (EK 2.4.C.3). The longer-than-usual open durations on several nights are exactly that signal.",
+          "(c) I would install a camera at the rear door paired with a motion sensor inside the restricted area. The camera should be placed to cover the point of ingress/egress with attention to its angle and resistance to tampering (EK 2.4.B.1), since points of ingress and egress are often monitored by camera; its feed should be recorded and monitored for after-incident review (EK 2.4.A.1). The motion sensor belongs inside the low-traffic restricted area rather than a busy hallway, because motion sensors placed where traffic is unexpected produce meaningful alerts instead of constant false alarms (EK 2.4.B.2), and motion detectors work best when paired with cameras to verify a breach (EK 2.4.C.2)."
+        ],
+        "rubric": [
+          "2 pts (part a): names piggybacking AND describes the social-engineering door-holding mechanism (EK 2.2.A.2).",
+          "3 pts (part b): explains the badge-log door-open-duration sensor (EK 2.4.C.3) (2 pts) and ties the longer-than-normal signal to piggybacking/tailgating (1 pt).",
+          "3 pts (part c): recommends two detection controls such as camera plus motion sensor (1 pt) and justifies placement of one using EK 2.4.B.1 (camera at ingress/egress) or EK 2.4.B.2 (motion sensor in low-traffic area) (2 pts)."
+        ],
+        "ek": "EK 2.2.A.2 + EK 2.4.C.3 + EK 2.4.B.1 + EK 2.4.B.2 + EK 2.4.A.1 + EK 2.4.C.2"
+      }
+    ]
+  }
+}
