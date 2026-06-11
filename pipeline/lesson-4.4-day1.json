@@ -6,9 +6,307 @@
     "unit": "Unit 4: Securing Devices",
     "day": 1,
     "los": "LO 4.4.A, 4.4.B, 4.4.C, 4.4.D",
-    "totalDays": 7,
+    "totalDays": 1,
     "author": "AP CS Exam Prep"
   },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 4 · Lesson 4.4 · Day 1 of 1",
+      "title": "Reading the Evidence Trail",
+      "subtitle": "Detecting Attacks on Devices: how logs and indicators of compromise reveal an attack, how to choose and evaluate a detection method, and how to spot password attacks line by line in authentication logs",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 4, Securing Devices, and Lesson 4.4, Detecting Attacks on Devices — a single comprehensive day. Every action a device takes leaves a trace: a login attempt, a file download, a configuration change. Today you learn to read that evidence trail. We move through four learning objectives — how to detect attacks, how to choose a detection control, how to evaluate that control's impact, and finally how to read an authentication log and name the password attack hiding in it. By the end you'll be able to look at a log excerpt and point to the indicator of compromise."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how computing systems log activity and identify host-based, file-based, and behavior-based indicators of compromise (LO 4.4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Choose a detection control by weighing performance, cost, and the sensitivity of the device (LO 4.4.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Evaluate a detection method's impact — speed, attack phase, and false positives versus ease of bypass (LO 4.4.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Read authentication logs to identify online password attacks, password spraying, and credential stuffing (LO 4.4.D)"
+        }
+      ],
+      "script": "Four objectives today, one for each learning objective in the topic. First, 4.4.A: how systems log activity and the three flavors of indicator of compromise — host-based, file-based, and behavior-based. Second, 4.4.B: how to pick a detection control by weighing performance, cost, and how sensitive the device is. Third, 4.4.C: how to evaluate the impact of that method — its speed, the attack phase it catches, and the trade-off between false positives and ease of bypass. Fourth, 4.4.D: the hands-on payoff, reading an authentication log to name an online password attack, password spraying, or credential stuffing. Keep these four in view; everything today maps back to one of them."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "An analyst opens a server's authentication log after a suspected break-in. The log records every login attempt — who tried, from what IP address, at what time, and whether it succeeded.",
+      "subprompt": "Write 3–5 sentences: what patterns in that log might make you suspect an attack? List at least three specific things you'd look for, and explain what each one would tell you.",
+      "directions": "Independent writing. I will cold-call 2–3 students.",
+      "script": "Two minutes, on your own, no notes. An analyst is staring at an authentication log after a suspected break-in — every login attempt with the user, the source IP, the time, and whether it worked. In three to five sentences, list at least three patterns that would make you suspicious, and say what each would tell you. Think about repetition, timing, location. Hold your answers — by the end of class every pattern you name will have a precise CED label and an EK number, from a burst of failed logins to a flood of users from one strange IP."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Guided Notes have four sections that match today’s four objectives. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Logs and Indicators of Compromise",
+          "description": "What computing systems log, what an IoC is, and the three IoC types — host-based, file-based, and behavior-based (EK 4.4.A.1–A.6)."
+        },
+        {
+          "title": "Choosing a Detection Control",
+          "description": "Weighing performance, cost (including EDR services), and device sensitivity to pick signature-based, anomaly-based, or hybrid detection (EK 4.4.B.1–B.3)."
+        },
+        {
+          "title": "Evaluating the Impact",
+          "description": "Speed and performance, the attack phase detection catches, and false positives versus ease of bypass (EK 4.4.C.1–C.3)."
+        },
+        {
+          "title": "Reading Logs for Password Attacks",
+          "description": "Spotting online password attacks, password spraying, and credential stuffing — and why offline attacks leave no trace (EK 4.4.D.1–D.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 4.4 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Four sections in your notes, one per objective. Section one is the foundation: what gets logged, what an indicator of compromise is, and the three IoC types. Section two is the decision: how to choose a detection control from performance, cost, and sensitivity. Section three is the evaluation: judging that method's impact on speed, attack phase, and the false-positive versus bypass trade-off. Section four is the hands-on finish: reading auth logs to name password attacks. Keep your pencil moving; I collect Guided Notes at the end of class."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Logs and Indicators of Compromise",
+      "kicker": "Detecting Attacks on Devices · Learning Objective 4.4.A",
+      "script": "Section one. Learning objective 4.4.A: how to detect attacks against devices. It all starts with logs — the evidence trail — and the indicators of compromise we read out of them. Three IoC types to learn here, so stay with me."
+    },
+    {
+      "type": "concept",
+      "heading": "Logs Are the Evidence Trail (EK 4.4.A.1–A.3)",
+      "tag": "CB",
+      "bullets": [
+        "Computing systems log system processes and settings, login attempts, file download attempts, and user actions (EK 4.4.A.1)",
+        "Those logs can be used to reconstruct the circumstances leading up to and during a cyber incident (EK 4.4.A.1)",
+        "An indicator of compromise (IoC) is evidence that an adversary has compromised a device or network (EK 4.4.A.2)",
+        "Authentication logs (auth logs) record every attempted login on a system; analyzing them can reveal attempted attacks (EK 4.4.A.3)"
+      ],
+      "script": "Start with the foundation. Computing systems log four kinds of activity — system processes and settings, login attempts, file download attempts, and user actions, EK 4.4.A.1 — and those logs let an analyst reconstruct what happened before and during an incident. An indicator of compromise, or IoC, EK 4.4.A.2, is simply evidence that an adversary has compromised a device or network — it's the trail we follow. And one log matters more than any other today: the authentication log, EK 4.4.A.3, which records every attempted login, so analyzing it can reveal attacks. Write all three EKs."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Types of Indicators of Compromise",
+      "subheading": "EK 4.4.A.4–A.6 — where each IoC type is found and what it looks like.",
+      "items": [
+        {
+          "ek": "EK 4.4.A.4",
+          "title": "Host-based IoCs",
+          "summary": "Found by analyzing logs and configuration settings. Examples: unusual files created or modified, unexpected processes or services, unauthorized changes to configuration settings, and unauthorized software installation or update.",
+          "ekRef": "EK 4.4.A.4"
+        },
+        {
+          "ek": "EK 4.4.A.5",
+          "title": "File-based IoCs",
+          "summary": "Found by analyzing files on a device, usually executable files. Examples: a file whose hash matches known malware, a file name known to be created by a piece of malware, and a file path associated with malicious activity.",
+          "ekRef": "EK 4.4.A.5"
+        },
+        {
+          "ek": "EK 4.4.A.6",
+          "title": "Behavior-based IoCs",
+          "summary": "Found by analyzing authentication and access logs. Examples: multiple failed login attempts, unusual login times or locations, unauthorized attempts to access sensitive data, and attempts to elevate user privileges.",
+          "ekRef": "EK 4.4.A.6"
+        }
+      ],
+      "script": "Three types of IoC, and the exam wants you to know where each one is found. Host-based, EK 4.4.A.4, come from logs and configuration settings — unusual files, unexpected processes, unauthorized config changes, software installed without permission. File-based, EK 4.4.A.5, come from analyzing files on the device, usually executables — a hash that matches known malware, a malware-associated file name, a suspicious file path. Behavior-based, EK 4.4.A.6, come from authentication and access logs — multiple failed logins, unusual login times or locations, attempts to reach sensitive data, attempts to elevate privileges. The tell is the source: configuration versus files versus logs. Get all three into your notes with examples."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 4.4.A)",
+      "terms": [
+        {
+          "term": "Indicator of compromise (IoC)",
+          "definition": "Evidence that an adversary has compromised a device or network (EK 4.4.A.2)."
+        },
+        {
+          "term": "Authentication log (auth log)",
+          "definition": "A log that records every attempted login on a system; analyzing it can reveal attempted attacks (EK 4.4.A.3)."
+        },
+        {
+          "term": "Host-based IoC",
+          "definition": "An indicator discovered by analyzing logs and configuration settings, such as unexpected processes or unauthorized configuration changes (EK 4.4.A.4)."
+        },
+        {
+          "term": "File-based IoC",
+          "definition": "An indicator discovered by analyzing files on a device, usually executables — for example, a file whose hash matches known malware (EK 4.4.A.5)."
+        },
+        {
+          "term": "Behavior-based IoC",
+          "definition": "An indicator discovered by analyzing authentication and access logs, such as multiple failed logins or unusual login times (EK 4.4.A.6)."
+        }
+      ],
+      "script": "Five terms for section one. An indicator of compromise is evidence an adversary has gotten in. An authentication log records every login attempt. Then the three IoC types, each tied to where it's found: host-based from logs and configuration, file-based from files on the device, behavior-based from authentication and access logs. Memorize each by name and EK, because the exam hands you an example and asks for the type."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Choosing a Detection Control",
+      "kicker": "Detecting Attacks on Devices · Learning Objective 4.4.B",
+      "script": "Section two. Learning objective 4.4.B: determining the right control for detecting attacks. Three criteria drive the choice — performance, cost, and the sensitivity of the device. Let's weigh them."
+    },
+    {
+      "type": "two_column",
+      "heading": "Performance and Cost Drive the Choice",
+      "subheading": "EK 4.4.B.1 and B.2 — system resources and dollars both shape which detection method fits.",
+      "left": {
+        "title": "Performance (EK 4.4.B.1)",
+        "definition": "Detection tools consume memory and processing power",
+        "ek": "EK 4.4.B.1",
+        "examples": [
+          "Detection tools use system memory and processing power and can impact device performance",
+          "Anomaly-based tools use MORE system resources than signature-based tools",
+          "Signature-based detection is the better option for devices with less powerful resources",
+          "Many embedded devices lack the resources to run any detection tools at all"
+        ]
+      },
+      "right": {
+        "title": "Cost (EK 4.4.B.2)",
+        "definition": "Licenses and services have to be paid for",
+        "ek": "EK 4.4.B.2",
+        "examples": [
+          "Buyers must consider the cost of enough licenses for every device monitored",
+          "Some organizations buy an endpoint detection and response (EDR) service from a third-party vendor",
+          "EDR services are expensive but provide a holistic, unified approach",
+          "EDR typically includes a centralized alert platform for monitoring possible attacks"
+        ]
+      },
+      "footer": "AP TIP: Performance (EK 4.4.B.1) is about system resources — anomaly-based costs more, so signature-based fits weak devices. Cost (EK 4.4.B.2) is about money — EDR is the expensive, unified, third-party option with a central alert platform.",
+      "script": "Two of the three criteria, side by side. On the left, performance, EK 4.4.B.1: detection tools eat memory and processing power, and anomaly-based tools eat more than signature-based. So for a weak device, signature-based is the better fit — and many embedded devices can't run any detection tool at all. On the right, cost, EK 4.4.B.2: you have to buy a license for every device you monitor, and some organizations instead buy an endpoint detection and response service, EDR, from a third-party vendor. EDR is expensive but unified and holistic, with a centralized alert platform. Write both EKs and note the keyword: anomaly equals more resources, EDR equals expensive but centralized."
+    },
+    {
+      "type": "concept",
+      "heading": "Sensitivity of the Device (EK 4.4.B.3)",
+      "tag": "CB",
+      "bullets": [
+        "Sensitivity or criticality of the device is the third criterion for choosing a detection method (EK 4.4.B.3)",
+        "Devices that store or process sensitive information, or provide critical services, are more likely to be targeted",
+        "Those high-value devices benefit from a hybrid-detection model to offer maximum protection, when possible",
+        "Pair this with performance: a sensitive but resource-rich server can run hybrid; a weak embedded sensor cannot"
+      ],
+      "script": "The third criterion is sensitivity, EK 4.4.B.3. A device that stores or processes sensitive information, or provides a critical service, is more likely to be a target — and those high-value devices benefit from a hybrid-detection model for maximum protection, when possible. Notice the phrase 'when possible': you still have to respect performance. A powerful, sensitive server can run hybrid; a tiny embedded sensor can't, no matter how sensitive its data. The exam loves to test that tension between sensitivity and resources, so write both ideas down."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 4.4.A and LO 4.4.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "An analyst finds an executable whose hash matches known malware, sitting in a file path tied to malicious activity. Name the IoC type and cite the EK. Then name one host-based and one behavior-based indicator from the CED and cite their EKs.",
+        "A security team must pick detection software for (a) a fleet of low-power embedded sensors and (b) a hospital server holding sensitive patient records. Recommend a detection approach for each, and justify it using performance, cost, or sensitivity with EK numbers."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: a malware-hash executable in a suspicious path — name the IoC type with its EK, then give one host-based and one behavior-based example with EKs. That's EK 4.4.A.5 for file-based, and you choose from A.4 and A.6 for the others. Question two: pick detection for low-power sensors versus a sensitive hospital server, and justify each with performance, cost, or sensitivity. Expect signature-based for the sensors, EK 4.4.B.1, and a hybrid model for the server, EK 4.4.B.3. Cite as you go. Begin."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Evaluating the Impact",
+      "kicker": "Detecting Attacks on Devices · Learning Objective 4.4.C",
+      "script": "Section three. Learning objective 4.4.C: evaluating the impact of a detection method. Three factors — speed and performance, the phase of the attack you catch, and the trade-off between false positives and ease of bypass."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Factors in Evaluating Impact",
+      "subheading": "EK 4.4.C.1–C.3 — how speed, attack phase, and the false-positive trade-off shape the decision.",
+      "items": [
+        {
+          "ek": "EK 4.4.C.1",
+          "title": "Speed and Performance",
+          "summary": "Signature-based detection is faster than anomaly-based in general, and that effect is compounded on devices, which often lack the processing power to run anomaly-based tools effectively. Resource-intensive tools can degrade device performance.",
+          "ekRef": "EK 4.4.C.1"
+        },
+        {
+          "ek": "EK 4.4.C.2",
+          "title": "Phase of the Attack",
+          "summary": "To act on a device, adversaries must first bypass physical- or network-layer protective, deterrent, and detective controls. Detecting and stopping an attack at the device level can prevent access to sensitive data or disruption of critical services.",
+          "ekRef": "EK 4.4.C.2"
+        },
+        {
+          "ek": "EK 4.4.C.3",
+          "title": "False Positives vs. Bypass",
+          "summary": "Most device-level detection is signature-based, which has a low rate of false positives — but signature-based detection is also easier for adversaries to bypass. The two facts are separate trade-offs.",
+          "ekRef": "EK 4.4.C.3"
+        }
+      ],
+      "script": "Three factors for judging impact. EK 4.4.C.1, speed and performance: signature-based is faster than anomaly-based in general, and that gap grows on devices that can't run anomaly-based tools well — heavy tools degrade performance. EK 4.4.C.2, phase of the attack: by the time an adversary acts on a device, they've already bypassed physical- and network-layer controls, so catching the attack at the device level can be the last line that protects sensitive data or critical services. EK 4.4.C.3, the false-positive trade-off: most device-level detection is signature-based, which gives few false positives, but it's also easier to bypass. Keep those two facts separate. Write all three EKs."
+    },
+    {
+      "type": "misconception",
+      "heading": "Misconception: Fewer False Positives Means Harder to Bypass",
+      "misconception": "Signature-based detection has a low rate of false positives, so it must also be the hardest detection method for an attacker to get past.",
+      "correction": "EK 4.4.C.3 — those are two separate trade-offs. Signature-based detection does have a low false-positive rate, but it is also EASIER for adversaries to bypass. A low false-positive rate says nothing about how resistant the method is to evasion.",
+      "script": "A trap worth flagging. Students see 'low false positives' and assume that also means 'hard to bypass.' Not so. EK 4.4.C.3 keeps these as two separate trade-offs: signature-based detection is accurate, with few false alarms, but precisely because it matches known signatures it's easier for an adversary to slip past with something new. Low false positives is a reliability claim; ease of bypass is a security claim. Don't fuse them — the exam writes distractors that do exactly that."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Reading Logs for Password Attacks",
+      "kicker": "Detecting Attacks on Devices · Learning Objective 4.4.D",
+      "script": "Section four, the hands-on finish. Learning objective 4.4.D: applying detection to identify password attacks in log files. We'll learn the signatures of each attack, then read an actual auth-log excerpt together."
+    },
+    {
+      "type": "concept",
+      "heading": "The Signatures of Each Password Attack (EK 4.4.D.1–D.5)",
+      "tag": "CB",
+      "bullets": [
+        "Online password attack: a single user account attempting many wrong passwords in a short span (EK 4.4.D.1)",
+        "Compromised account: an authorized user logging in from an unexpected location, IP, or time may mean their password is stolen (EK 4.4.D.2)",
+        "Password spraying: many different users trying to log in within seconds of each other from one IP or unusual IPs (EK 4.4.D.3)",
+        "Credential stuffing: a series of default user:password combinations tried in quick succession, often from the same IP (EK 4.4.D.4)",
+        "Offline password attacks can’t be detected — they happen on the adversary’s own computer (EK 4.4.D.5)"
+      ],
+      "script": "Here are the signatures you'll match in the log. EK 4.4.D.1, online password attack: one user account, many wrong passwords, fast. EK 4.4.D.2, a compromised account: a real user logging in from an unexpected place, IP, or time — a sign the password was stolen. EK 4.4.D.3, password spraying: many different users, one or a few odd IPs, all within seconds. EK 4.4.D.4, credential stuffing: default user-and-password pairs tried in quick succession, usually from one IP. And EK 4.4.D.5, the one that catches students: offline attacks can't be detected at all, because they run on the adversary's own machine and never touch your logs. Write all five."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Worked Example: Reading an Authentication Log for IoCs",
+      "context": "An analyst reviews this authentication-log excerpt from one server. Each row is one login attempt. Read it line by line and name the indicator — then the attack.",
+      "columns": ["Time", "Username", "Source IP", "Result", "Indicator → Attack"],
+      "rows": [
+        ["09:01:02", "j.adams", "10.0.0.14", "SUCCESS", "Normal: expected user, internal IP, business hours"],
+        ["09:14:30–09:14:41", "m.lee", "203.0.113.9", "FAIL ×9", "One user, 9 wrong passwords in seconds → online password attack (EK 4.4.D.1)"],
+        ["02:47:10", "m.lee", "198.51.100.7", "SUCCESS", "Authorized user, unusual time + new IP → possible compromised password (EK 4.4.D.2)"],
+        ["10:05:00–10:05:08", "a, b, c, d, e …", "203.0.113.9", "FAIL (many users)", "Many users, one unusual IP, within seconds → password spraying (EK 4.4.D.3)"],
+        ["10:22:33–10:22:39", "admin:admin, root:root …", "203.0.113.9", "FAIL (defaults)", "Default user:password pairs in quick succession, one IP → credential stuffing (EK 4.4.D.4)"]
+      ],
+      "note": "Note what is NOT here: an offline password attack leaves no rows at all — it runs on the adversary's computer and never reaches this log (EK 4.4.D.5).",
+      "highlightCol": 4,
+      "script": "Let's read it together, top to bottom. Row one is normal: an expected user, an internal IP, business hours — no indicator. Row two: user m.lee, nine failed passwords in nine seconds from one external IP — that's one user, many wrong passwords, an online password attack, EK 4.4.D.1. Row three: m.lee again, but this time a success at 2:47 in the morning from a brand-new IP — an authorized account logging in at an unusual time and place, a possible compromised password, EK 4.4.D.2. Row four: a flood of different usernames, all from one unusual IP, within seconds — that's password spraying, EK 4.4.D.3. Row five: default pairs like admin-admin and root-root tried in quick succession from one IP — credential stuffing, EK 4.4.D.4. And the thing that's missing? An offline attack — it would leave no rows here at all, EK 4.4.D.5. That's the whole objective in one table."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 4.4.C and LO 4.4.D. Complete on your Guided Notes packet.",
+      "prompts": [
+        "An auth log shows hundreds of different usernames each attempting one login within a five-second window, all from a single unfamiliar IP address. Name the attack, cite the EK, and explain how its log signature differs from a single user trying many wrong passwords.",
+        "An adversary steals a password-hash database and cracks it entirely on their own computer. Explain, using the CED, why this attack produces no entries in the target's authentication log — and contrast that with why an online attack does."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
+      "script": "Last two questions, six minutes, independent, full sentences. Question one: hundreds of different users, one login each, five-second window, one unfamiliar IP — name the attack and cite the EK, then contrast its signature with a single user trying many passwords. That's password spraying, EK 4.4.D.3, versus an online password attack, EK 4.4.D.1. Question two: an adversary cracks a stolen hash database on their own machine — explain why your logs stay empty, and contrast that with an online attack that does leave a trail. Lean on EK 4.4.D.5. Cite as you write. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Detecting Attacks on Devices, in One Slide",
+      "points": [
+        "Logs record processes, logins, downloads, and user actions, and let analysts reconstruct an incident; an IoC is evidence of compromise (EK 4.4.A.1–A.2)",
+        "IoCs come in three types by source: host-based (logs/config), file-based (files), and behavior-based (auth/access logs) (EK 4.4.A.4–A.6)",
+        "Choose a detection control by performance, cost, and sensitivity — signature-based for weak devices, EDR for unified monitoring, hybrid for critical ones (EK 4.4.B.1–B.3)",
+        "Evaluate impact by speed, attack phase, and false positives vs. bypass — signature-based is fast and accurate but easier to evade (EK 4.4.C.1–C.3)",
+        "Read auth logs to name password attacks: online (one user, many tries), spraying (many users, one IP), stuffing (default pairs) — offline attacks leave no trace (EK 4.4.D.1–D.5)"
+      ],
+      "next": "Carry these detection skills into the Lesson 4.4 quiz — read every scenario for the indicator, then name the type and the attack with its EK number.",
+      "script": "Pull it all together. Logs are the evidence trail, and an IoC is evidence of compromise. IoCs come in three types by source — host-based, file-based, behavior-based. You choose a detection control by weighing performance, cost, and sensitivity: signature-based for weak devices, EDR when you want unified monitoring, hybrid for the most critical machines. You evaluate that method by speed, attack phase, and the false-positive-versus-bypass trade-off — signature-based is fast and accurate but easier to evade. And you read authentication logs to name the password attack: one user with many tries is online, many users from one IP is spraying, default pairs are stuffing, and an offline attack leaves nothing behind. That's the whole topic — now take it to the quiz."
+    }
+  ],
   "guide": {
     "title": "Detecting Attacks on Devices — Teacher Guide",
     "subtitle": "Unit 4: Securing Devices   •   LO 4.4.A–4.4.D",
