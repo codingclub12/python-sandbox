@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "lessonId": "5.3",
+    "lessonTitle": "Protecting Stored Data with Encryption",
+    "unit": "Unit 5: Securing Applications and Data",
+    "days": 1,
+    "los": "LO 5.3.A, 5.3.B"
+  },
+  "map": {
+    "subtitle": "Unit 5: Securing Applications and Data   •   1 day   •   LO 5.3.A, 5.3.B",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Encryption Concept Identifier and Exercise 2: Encrypt the File Advisor (student + answer KEY)",
+      "Discussion — The Key Is the Secret (2-part: Opening + Closing)",
+      "Quiz (student + answer KEY — key A-B-D-C-D-A-B, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-5-protecting-stored-data-with-encryption"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-3-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-3-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-3-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (a single Day 1 deck: cryptography vocabulary, keyspace, symmetric/asymmetric and block/stream, then AES and OpenSSL).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Protecting Stored Data with Encryption'; the learning objectives are 5.3.A (explain how encryption protects files) and 5.3.B (apply symmetric encryption); the unit hub lists this lesson as 'Symmetric Encryption.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Encryption Concept Identifier",
+    "minutes": "~20 min",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-3-exercise-1",
+    "intro": "You are a cryptography analyst reviewing a set of encryption deployments. For each row you will classify the algorithm by number of keys (symmetric vs. asymmetric) and by how it processes data (block vs. stream), and reason about keyspace. Part A works the classification table; Part B extends the same skills. Everything maps to CB Learning Objectives 5.3.A and 5.3.B.",
+    "scenarioTitle": "Classification Log: Five Encryption Deployments",
+    "narrative": "Five encryption deployments crossed your desk this week. For each one your team logged what it protects, how many keys it uses, how it processes the data, and the key length on record. Read the table row by row, then answer Part A. Use the pipeline you learned — plaintext + key → algorithm → ciphertext — and the two independent classifications (key count, and processing style) to identify each deployment.",
+    "log": {
+      "columns": [
+        "ID",
+        "Deployment",
+        "Keys used",
+        "How data is processed",
+        "Key length on record"
+      ],
+      "rows": [
+        [
+          "1",
+          "Files encrypted on a stolen laptop's disk",
+          "One shared key, both directions",
+          "Fixed-size 128-bit (16-byte) chunks",
+          "256-bit"
+        ],
+        [
+          "2",
+          "Two coworkers protect a shared file",
+          "Same secret key to encrypt and decrypt",
+          "Fixed-size chunks (blocks)",
+          "128-bit"
+        ],
+        [
+          "3",
+          "A messaging app that encrypts each character as it is typed",
+          "One shared key, both directions",
+          "Continuously, one element at a time",
+          "256-bit"
+        ],
+        [
+          "4",
+          "A system that encrypts with one key and decrypts with a different key",
+          "Two different keys",
+          "Fixed-size chunks (blocks)",
+          "2048-bit"
+        ],
+        [
+          "5",
+          "OpenSSL command: openssl enc -aes-128-cbc -e -in test -k password -out test.enc",
+          "Key derived from the -k password (same both ways)",
+          "Fixed-size 128-bit blocks",
+          "128-bit"
+        ]
+      ]
+    },
+    "scenarioNote": "Deployments adapted from the Lesson 5.3 worked walkthroughs; algorithm classifications and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026). Asymmetric (row 4) is named here only as a contrast and is developed in Topic 5.4.",
+    "predict": "Before you answer Part A, write one sentence: of the five deployments, which one is NOT symmetric, and what single detail in the row decides it?",
+    "partALabel": "Part A - Deployment Classification",
+    "partA": [
+      {
+        "ek": "EK 5.3.A.4",
+        "pts": 6,
+        "q": "Deployments 1, 2, 3, and 5 are all symmetric, while Deployment 4 is asymmetric. For EACH of the five rows, state symmetric or asymmetric and quote the specific key detail in the row that proves it.",
+        "answer": "Per EK 5.3.A.4 the dividing line is the number of keys: symmetric uses the SAME key to encrypt and decrypt, asymmetric uses two DIFFERENT keys. Row 1 — symmetric ('one shared key, both directions'). Row 2 — symmetric ('same secret key to encrypt and decrypt'). Row 3 — symmetric ('one shared key, both directions'). Row 4 — asymmetric ('two different keys' — one key encrypts, a different key decrypts). Row 5 — symmetric (OpenSSL derives one key from the -k password and uses that same key both ways). Full credit requires quoting the key-count detail in each row, not just the algorithm name."
+      },
+      {
+        "ek": "EK 5.3.A.5",
+        "pts": 4,
+        "q": "Deployments 2 and 3 use the same number of keys but are processed differently. Classify each as block or stream per EK 5.3.A.5, quote the detail that decides it, and explain why these two classifications (key count and processing style) are independent.",
+        "answer": "Per EK 5.3.A.5 the second classification is by processing: block encryption handles fixed-size chunks called blocks (one output block per input block), stream encryption handles input continuously, one element at a time. Deployment 2 is block ('fixed-size chunks (blocks)'); Deployment 3 is stream ('continuously, one element at a time'). The classifications are independent because key count (A.4) and processing style (A.5) describe different things — an algorithm always has BOTH. Both rows are symmetric, yet one is a block cipher and the other a stream cipher."
+      },
+      {
+        "ek": "EK 5.3.B.1 / 5.3.B.2",
+        "pts": 4,
+        "q": "Deployments 1 and 5 are both AES. Name the full algorithm, state its block size from EK 5.3.B.2, and explain why both rows are still AES even though their key lengths differ (256-bit vs. 128-bit).",
+        "answer": "Both are the Advanced Encryption Standard (AES), per EK 5.3.B.1 the most common symmetric algorithm, used to secure Wi-Fi, browsing, disk file encryption, and processor-level encryption. Per EK 5.3.B.2 AES is a symmetric key block cipher that always encrypts data in 128-bit blocks (16 bytes) regardless of key length. AES can operate with keys of varying lengths, so a 256-bit deployment and a 128-bit deployment are both AES — the block size (128 bits) is fixed, but the KEY length is what varies between them."
+      },
+      {
+        "ek": "EK 5.3.A.3",
+        "pts": 4,
+        "q": "Deployment 1 uses a 256-bit key and Deployment 2 a 128-bit key. Using EK 5.3.A.3, explain why the 256-bit deployment is harder for an adversary to break by random chance, and why this is exactly what protects the stolen laptop's disk.",
+        "answer": "Per EK 5.3.A.3 the keyspace is the number of possible keys an algorithm can use, and the larger the keyspace, the longer it takes an adversary to discover the correct key by random chance. A 256-bit key has a far larger keyspace than a 128-bit key (each added bit doubles the count), so brute-force guessing takes dramatically longer. This is what protects the stolen disk in Deployment 1: the thief has the ciphertext and unlimited time, but with no key his only option is to try keys, and a 256-bit keyspace makes hitting the right one by chance infeasible."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 5.3.A.1 / 5.3.A.2",
+        "pts": 3,
+        "q": "A student says 'plaintext has to be readable English words.' Using EK 5.3.A.2 and B.1, explain why that is wrong and define plaintext and ciphertext precisely.",
+        "answer": "Per EK 5.3.A.2 the plaintext is simply the information to be encrypted (the input to the algorithm) and the ciphertext is the output of the encryption algorithm — neither term requires English words. Per EK 5.3.B.1 computer-based encryption algorithms operate on binary data, not just letters, so the plaintext can be any file's bytes and the ciphertext is its scrambled binary output. 'Readable words' confuses an example of plaintext with the definition."
+      },
+      {
+        "ek": "EK 5.3.B.2",
+        "pts": 3,
+        "q": "An administrator argues 'just always pick the longest AES key — longer is always better.' Using EK 5.3.B.2, explain the trade-off the administrator is ignoring.",
+        "answer": "Per EK 5.3.B.2 longer keys produce more secure encryption but require more time to encrypt and decrypt — it is a real performance trade-off, not a free win. The administrator is ignoring the compute cost: the larger keyspace (EK 5.3.A.3) does resist brute force better, but every encrypt/decrypt operation takes longer, so engineers pick a key length that balances security with speed rather than defaulting to the maximum."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Deployment 4 is asymmetric. Name one problem of symmetric encryption that having two different keys is designed to solve.",
+        "answer": "Symmetric encryption requires both parties to share the one secret key, so the key itself must somehow be delivered securely — if it is intercepted in transit, the encryption is broken. Asymmetric encryption (two different keys, developed in Topic 5.4) solves this key-sharing problem: a public key can encrypt without ever sharing the private decryption key. (Any answer naming the shared-key distribution problem earns credit.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Encrypt the File Advisor",
+    "minutes": "~20 min",
+    "subtitle": "3 scenarios - Choose the Tool + OpenSSL Steps",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-3-exercise-2",
+    "intro": "You are a security consultant. Three people need to protect files at rest. For each, identify the correct algorithm and classification, recommend a CB tool (OpenSSL, AES Crypt, or a web-based tool), and write the exact OpenSSL commands BY EK to encrypt and decrypt. Vague 'use encryption' advice scores zero.",
+    "standard": "CB Standard (required): name the algorithm + classification + a CB tool + the correct OpenSSL encrypt/decrypt commands, for all 3. Enrichment (optional): name the key-length trade-off sub-type at play.",
+    "methodHeading": "Three-Step Method - use for every scenario",
+    "method": [
+      [
+        "Step 1 - Name the algorithm",
+        "Identify AES as the most common symmetric algorithm (EK 5.3.B.1) and state its two classifications: symmetric (EK 5.3.A.4) and block cipher with 128-bit blocks (EK 5.3.A.5, B.2)."
+      ],
+      [
+        "Step 2 - Pick the tool",
+        "Choose a CB tool that fits the user: command line OpenSSL, the open-source AES Crypt, or a web-based tool (EK 5.3.B.3). Match the tool to the user's comfort and setting."
+      ],
+      [
+        "Step 3 - Write the commands",
+        "Give the exact OpenSSL encrypt and decrypt commands (EK 5.3.B.4), noting that the SAME password-derived key is used both ways and a wrong password fails to decrypt."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment sub-types (connecting EK 5.3.A.3 to B.2, not separately required): Bigger-keyspace = each added key bit doubles the number of possible keys, so a 256-bit key resists brute force far longer than 128-bit. Security-vs-speed = longer keys cost more compute time per operation. Same-key trap = symmetric means a wrong/different key (or password) cannot decrypt what the right key encrypted.",
+    "fields": [
+      "Algorithm + classification (symmetric/asymmetric, block/stream + EK):",
+      "Recommended tool (EK 5.3.B.3):",
+      "OpenSSL encrypt + decrypt commands (EK 5.3.B.4):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Dana, a sysadmin comfortable in a terminal, needs to encrypt a single file named 'test' on a Linux server before backing it up, then be able to decrypt it later. She wants the exact command-line steps and is fine with a 128-bit key.",
+        "key": {
+          "signs": "AES is the right fit: the most common symmetric algorithm (EK 5.3.B.1), a symmetric (EK 5.3.A.4) block cipher with 128-bit blocks (EK 5.3.B.2). Dana is comfortable in a terminal, so the command-line tool fits.",
+          "mechanism": "Tool: OpenSSL on the command line (EK 5.3.B.3). Encrypt: openssl enc -aes-128-cbc -e -in test -k password -out test.enc. Decrypt: openssl enc -aes-128-cbc -d -in test.enc -k password -out text. Per EK 5.3.B.4 the key is derived from the -k password, and the SAME password is used both ways — the only changes are the -e/-d flag and the filenames.",
+          "subtype": "Same-key trap — because AES is symmetric, if Dana later supplies a WRONG password the decryption fails / produces garbage; she must reuse the exact password."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Priya is a non-technical small-business owner who wants to encrypt sensitive client files on her own computer without ever touching a command line. She is willing to install desktop software but does not want to use a website that uploads her files.",
+        "key": {
+          "signs": "Same algorithm, same classifications: AES, symmetric (EK 5.3.A.4) block cipher, 128-bit blocks (EK 5.3.B.2) — what changes is the TOOL, because Priya will not use a terminal and does not want to upload files to a website.",
+          "mechanism": "Tool: AES Crypt (EK 5.3.B.3) — an open-source specialized software tool that encrypts and decrypts files without the command line and runs locally, so files are not uploaded to a web service. It still performs the same symmetric AES operation: one password/key encrypts and the same one decrypts. If she prefers the CLI later, the OpenSSL equivalents are openssl enc -aes-128-cbc -e -in <file> -k password -out <file>.enc and ... -d ... to reverse (EK 5.3.B.4).",
+          "subtype": "Same-key trap — AES Crypt is still symmetric, so the SAME password must be used to decrypt; a different password cannot recover the files."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "Marcus runs a long-term archive of highly sensitive records that must stay encrypted for decades, and asks whether he should 'just use the longest possible AES key' for maximum safety. He also wants to know, mechanically, what stays the same about AES if he picks a longer key.",
+        "key": {
+          "signs": "AES again — symmetric (EK 5.3.A.4) block cipher (EK 5.3.A.5). Marcus is right that a longer key helps security, but 'longest is always best' over-applies the idea and ignores the cost.",
+          "mechanism": "Per EK 5.3.B.2, AES can use keys of varying lengths, and a longer key produces more secure encryption BUT takes more time to encrypt and decrypt — so the honest answer is a trade-off, not 'always pick the longest.' What stays the same: AES always encrypts in 128-bit (16-byte) blocks regardless of key length, and it stays a symmetric block cipher. Tool: OpenSSL (e.g., -aes-256-cbc for a 256-bit key) or AES Crypt (EK 5.3.B.3-B.4).",
+          "subtype": "Security-vs-speed and bigger-keyspace — each added key bit doubles the keyspace (EK 5.3.A.3) so brute force takes far longer, but each operation costs more compute time (EK 5.3.B.2). Trap: recommending the maximum key length with no mention of the performance cost drops the points."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Key Is the Secret",
+    "minutes": "~17 min total - 2 parts - Opening + Closing",
+    "overview": "A stolen disk is harmless if the files on it are encrypted and the thief lacks the key. Across two short windows in this single-day lesson, your group will reason about why the key (not the algorithm) is the real secret, debate the genuine cost of longer keys, and decide what a longer AES key does and does not change.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1 opener, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The bell-ringer thief has the entire physical disk and unlimited time, yet still cannot read the files. Algorithms like AES are public and well known — so what is the ONE thing the thief is actually missing, and why does the size of that secret matter more than the cleverness of the algorithm?"
+          },
+          {
+            "text": "Question 2. Symmetric encryption uses a single shared key for everyone who needs the file. When is one shared key a clean, simple win, and when does sharing that single key become the weak point? Defend your split with one concrete example (e.g., your own files vs. emailing a key to a stranger)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Closing Debrief",
+        "when": "Day 1 closer, ~9 min, after the OpenSSL walkthrough",
+        "intro": "As a group, complete both tasks below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "Task A - The same-key proof  [EK 5.3.A.4 / 5.3.B.4]",
+            "text": "We encrypted 'test' with OpenSSL and decrypted it with the SAME password. In one sentence your whole group agrees on, explain what makes this symmetric and what happens — and why — if someone tries to decrypt with a different password.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Is longer always better?  [EK 5.3.A.3 / 5.3.B.2]",
+            "text": "Debate for about 3 minutes: a longer AES key grows the keyspace and resists brute force (EK 5.3.A.3) but costs compute time on every operation (EK 5.3.B.2). For an archive that must last decades, is the longest key always the right call? Record your group's verdict and one reason, and name one thing about AES that does NOT change when the key gets longer (hint: the block size).",
+            "lines": 3
+          }
+        ]
+      }
+    ]
+  }
+}

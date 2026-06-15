@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "lessonId": "4.2",
+    "lessonTitle": "Authentication",
+    "unit": "Unit 4: Securing Devices",
+    "days": 5,
+    "los": "LO 4.2.A, 4.2.B, 4.2.C, 4.2.D"
+  },
+  "map": {
+    "subtitle": "Unit 4: Securing Devices   •   5 days   •   LO 4.2.A, 4.2.B, 4.2.C, 4.2.D",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–5 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–5 (student fill-in + answer KEY)",
+      "Exercise 1: Password Attack Identifier and Exercise 2: Password Policy Advisor (student + answer KEY)",
+      "Discussion — Proving Who You Are (3-part: Opening Day 1, Mid-lesson Day 3, Closing Day 5)",
+      "Quiz (student + answer KEY — 11 questions, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-4-authentication"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-2-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-2-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-2-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 hashing and salting, Days 2–3 password attacks, Day 4 factors and MFA, Day 5 login settings + Scenario 4B + quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Authentication'; the CED scenario is 'Scenario 4B: Configuring Authentication Settings' (configure the local password and account-lockout policies); the unit hub lists this lesson under 'Securing Devices.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Password Attack Identifier",
+    "minutes": "~20 min",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-2-exercise-1",
+    "intro": "You are a security analyst triaging five incidents. For each row of the case log you will classify the password attack by its CB name, decide whether it runs online or offline, and judge whether account lockout would help. Part A works the case log; Part B classifies authentication factors and MFA. Everything maps to CB Learning Objectives 4.2.A, 4.2.B, 4.2.C, and 4.2.D.",
+    "scenarioTitle": "Case Log: Five Authentication Incidents",
+    "narrative": "Five separate incidents crossed your desk this week. For each one the log records what the adversary did, where the attack ran (a live login portal vs. a captured database on the adversary's own machine), and the outcome. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, name the defining action that identifies the CB attack, then decide whether account lockout (EK 4.2.D.5) could have constrained it.",
+    "log": {
+      "columns": [
+        "ID",
+        "Where it ran",
+        "What the adversary did",
+        "Outcome",
+        "Defining detail"
+      ],
+      "rows": [
+        [
+          "1",
+          "Live login portal",
+          "Tried one common password, 'Password123', against thousands of different user accounts at one organization",
+          "A handful of weak-password accounts were entered",
+          "One guess sprayed broadly across many accounts; per-account lockout never tripped"
+        ],
+        [
+          "2",
+          "Live login portal",
+          "Took username:password pairs from a breached database at another company and replayed them against a victim's unrelated email account",
+          "The reused password worked on the email account",
+          "Stolen/leaked credentials tried on the victim's other accounts"
+        ],
+        [
+          "3",
+          "Adversary's own computer",
+          "Captured the salted user:password hash database and ran automated tools hashing every possible password to compare against each captured hash",
+          "A few weak hashes matched after long compute time",
+          "Offline; tests all combinations; account lockout never applies"
+        ],
+        [
+          "4",
+          "Adversary's own computer",
+          "Precomputed a list of common passwords paired with their hashes, sorted it by hash, then searched the sorted hashes for a captured target hash",
+          "An unsalted weak hash was matched by lookup",
+          "Offline; precomputed sorted table traded storage for fast lookup"
+        ],
+        [
+          "5",
+          "Live login portal",
+          "Tried the factory default administrative credentials shipped on a batch of routers and IoT devices",
+          "Devices that never changed the default were taken over",
+          "Common default credentials replayed against devices"
+        ]
+      ]
+    },
+    "scenarioNote": "Incidents adapted from the Day 2–3 password-attack debrief; attack names and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026). The online/offline column is the key to whether lockout applies (EK 4.2.B.2).",
+    "predict": "Before you answer Part A, write one sentence: which two incidents would NOT be slowed at all by account lockout, and what single column tells you that?",
+    "partALabel": "Part A - Incident Classification",
+    "partA": [
+      {
+        "ek": "EK 4.2.B.4 / EK 4.2.B.3",
+        "pts": 6,
+        "q": "Incident 1 and Incident 2 are different credential-based attacks that both run at a live portal. Name each CB attack, quote the defining action from the log that proves it, and explain how the DIRECTION of each attack differs.",
+        "answer": "Incident 1 is password spraying (EK 4.2.B.4): the adversary attempts one common password ('Password123') against many different user accounts — one guess sprayed broadly. Incident 2 is trying stolen or leaked credentials (EK 4.2.B.3): the adversary takes username:password pairs leaked from another company's breach and replays those exact pairs on the victim's unrelated accounts because people reuse passwords. Direction: spraying is one password across MANY accounts (broad, shallow, to dodge per-account lockout), while leaked-credential reuse is known-correct pairs aimed at ONE target's other accounts. Naming both attacks alone earns half credit; full credit requires the directional contrast."
+      },
+      {
+        "ek": "EK 4.2.B.2 / EK 4.2.D.5",
+        "pts": 4,
+        "q": "Incidents 3 and 4 ran on the adversary's own computer. Explain why the organization's account-lockout setting (locks after 5 failed logins) does nothing against either one, citing the online/offline distinction.",
+        "answer": "Per EK 4.2.B.2, both are OFFLINE attacks: the adversary has already captured the user:password hash database and runs the cracking on their own computer, so there is no live authentication portal to lock. Account lockout (EK 4.2.D.5) only constrains ONLINE attacks at a live portal by stopping continuous guessing there. With no portal involved, the 5-attempt lockout never fires, and the adversary can hash candidates as fast as their hardware allows. This is why salting and non-deprecated hashes still matter — they raise offline cost even though lockout cannot."
+      },
+      {
+        "ek": "EK 4.2.B.6 / EK 4.2.B.7",
+        "pts": 4,
+        "q": "Incidents 3 and 4 are both offline hash attacks, yet they use different methods. Name each CB attack and explain the speed/storage trade-off that distinguishes them. Note: neither one reverses a hash — explain why.",
+        "answer": "Incident 3 is a brute force attack (EK 4.2.B.6): it hashes and tests every possible password against the captured hash — guaranteed to find it eventually but the slowest, most compute-heavy method. Incident 4 is a rainbow table attack (EK 4.2.B.7): the adversary precomputes a table of candidate passwords paired with their hashes, sorts it by hash, and searches the sorted hashes for the captured hash — trading enormous precomputed storage for very fast lookups. Neither reverses the hash: hashes are pre-image resistant (EK 4.2.A.3) and can't be reversed (EK 4.2.B.6); both methods hash GUESSES forward and compare to the captured hash, and a match reveals a usable password."
+      },
+      {
+        "ek": "EK 4.2.B.5",
+        "pts": 4,
+        "q": "Incident 5 targeted routers and IoT devices using factory passwords. Name the CB attack, explain why these devices were uniquely vulnerable, and name the single most direct fix.",
+        "answer": "Incident 5 is credential stuffing (EK 4.2.B.5): the adversary attempts access using common default credentials (or previously stolen credentials). Switches, routers, and IoT devices ship preconfigured with a default administrative user and password, so any device left at its factory default is trivially entered with publicly known defaults. The most direct fix is to change the default administrative credentials to a strong, unique password on first setup, which removes the known credential the attack relies on; enabling MFA where supported (EK 4.2.C.6) further blocks reuse of any single stolen credential."
+      }
+    ],
+    "partBLabel": "Part B - Factors & MFA (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 4.2.C.2 / EK 4.2.C.3 / EK 4.2.C.6",
+        "pts": 3,
+        "q": "A bank app asks for a PIN you memorized and then a tap on a hardware token it mailed you. Name the factor type of each proof and state whether this qualifies as MFA, citing the EKs.",
+        "answer": "The PIN is a knowledge factor — something you know (EK 4.2.C.2). The hardware token is a possession factor — an object unique to you that you have (EK 4.2.C.3). Because the two proofs are of DIFFERENT factor types, this is multifactor authentication (EK 4.2.C.6): MFA requires at least two separate factors and is more secure than single-factor because a stolen PIN alone is useless without the token."
+      },
+      {
+        "ek": "EK 4.2.C.2 / EK 4.2.C.6",
+        "pts": 3,
+        "q": "An admin claims that requiring a password PLUS a security-question answer is MFA. Explain why this is wrong, citing the EKs.",
+        "answer": "It is still single-factor. EK 4.2.C.2 classifies both passwords and answers to preselected challenge questions as knowledge factors — something you know. EK 4.2.C.6 requires at least two SEPARATE factors, meaning two different factor TYPES. Two knowledge proofs are the same type, so they do not satisfy MFA. True MFA pairs a knowledge factor with a different type, such as a possession factor (token, EK 4.2.C.3) or a biometric factor (fingerprint, EK 4.2.C.4). The exam test is to count factor types, not the number of prompts."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Password Policy Advisor",
+    "minutes": "~20 min",
+    "subtitle": "3 scenarios - Scenario 4B",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-2-exercise-2",
+    "intro": "You are configuring local security policy for three organizations (this is CB Scenario 4B — configuring the password and account-lockout policies). For each, identify the attack that threatens them most, then set the specific login settings — complexity, minimum length, maximum age, password history, and account lockout — that blunt it BY NAME AND EK. Explain WHY each setting addresses that exact risk. Vague 'use strong passwords' advice scores zero.",
+    "standard": "CB Standard (required): name the threat + set the matching EK 4.2.D setting(s) + tie each to the mechanism, for all 3 organizations. Enrichment (optional): name whether the threat is an online or offline attack and what that implies for lockout.",
+    "methodHeading": "Three-Step Method - use for every scenario",
+    "method": [
+      [
+        "Step 1 - Name the threat",
+        "Identify the CB password attack the organization most likely faces (spraying, stuffing, leaked-credential reuse, brute force, dictionary, or rainbow table) and cite its EK 4.2.B number."
+      ],
+      [
+        "Step 2 - Set the policy",
+        "Pick the EK 4.2.D login setting(s) that break THIS threat's mechanism: complexity (D.1), minimum length (D.2), maximum age (D.3), password history (D.4), or account lockout (D.5). Give a concrete value where the CED suggests one."
+      ],
+      [
+        "Step 3 - Justify + warn",
+        "Explain why the setting addresses this org's exact risk, and state one limitation (e.g., lockout does NOT stop offline attacks per EK 4.2.B.2; forced maximum age can breed patterns per EK 4.2.D.3)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment framing (the online/offline split, EK 4.2.B.2): ONLINE attacks (spraying, stuffing, leaked-credential reuse at a live portal) can be slowed by account lockout (EK 4.2.D.5). OFFLINE attacks (brute force, dictionary, rainbow table on a captured hash database) ignore lockout entirely — they are blunted instead by complexity (D.1), minimum length (D.2), and salting plus non-deprecated hashes (EK 4.2.A.4, A.6).",
+    "fields": [
+      "Most likely attack (name + EK 4.2.B):",
+      "Login setting(s) to configure (EK 4.2.D, with values):",
+      "Limitation to warn the org about:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "CB Scenario 4B — Northgate School District. Their login logs show repeated bursts of failed sign-ins at the live staff portal: an adversary keeps trying the same handful of common passwords against many staff accounts, and separately a single account took dozens of rapid wrong guesses overnight. No lockout policy exists, and complexity is not enforced.",
+        "key": {
+          "signs": "These are ONLINE attacks at a live portal: one common password tried across many accounts is password spraying (EK 4.2.B.4); dozens of rapid wrong guesses at one account is continuous online guessing that lockout is designed to stop (EK 4.2.B.2).",
+          "mechanism": "Configure account lockout (EK 4.2.D.5): lock the account after 3–5 invalid attempts so an adversary can't keep guessing at the live portal — this directly stops the rapid single-account burst and slows spraying. Add complexity (EK 4.2.D.1, require upper/lower/digit/special) and a minimum length (EK 4.2.D.2) so the common passwords spraying relies on are no longer valid choices.",
+          "subtype": "ONLINE attacks — lockout (D.5) applies here. Warn: lockout can enable a denial-of-service if an adversary deliberately locks real users out, and it does NOTHING against offline cracking of a stolen hash database (EK 4.2.B.2), so it is not a complete defense."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Helix Logistics — a backup of the user:password hash database was stolen six months ago. Forensics shows the adversary is running automated hash-cracking tools offline on their own hardware. Several accounts used short, dictionary-word passwords, and password reuse across personal sites is widespread among staff.",
+        "key": {
+          "signs": "This is an OFFLINE attack (EK 4.2.B.2): the captured hash database is being cracked on the adversary's own computer, so account lockout cannot apply. Short dictionary-word passwords are exactly what brute force and dictionary attacks (EK 4.2.B.6) find fastest, and reuse exposes staff to leaked-credential attacks (EK 4.2.B.3) elsewhere.",
+          "mechanism": "Configure complexity (EK 4.2.D.1) and a strong minimum length (EK 4.2.D.2) so passwords are far slower to crack — length and complexity raise offline cost when lockout can't help. Configure maximum age (EK 4.2.D.3, e.g., a one-time forced reset after this breach) to retire the already-captured passwords, and password history (EK 4.2.D.4, store 5–10 prior hashes) so users can't cycle back to the compromised one.",
+          "subtype": "OFFLINE attack — lockout (D.5) is useless here. Warn: routinely forcing maximum-age changes can breed predictable patterns like PasswordFall2028 (EK 4.2.D.3), so use a one-time post-breach reset rather than a constant short interval; long, unique, salted passwords are the real offline defense."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "Pinnacle Devices ships networking gear with a default administrative username and password and never forces a change. A customer's fleet of routers was taken over after attackers tried well-known factory credentials. Internally, staff also reuse last quarter's passwords whenever the system lets them.",
+        "key": {
+          "signs": "The fleet takeover is credential stuffing (EK 4.2.B.5): adversaries try common default administrative credentials shipped on switches, routers, and IoT devices. Internally, staff cycling back to old passwords defeats the point of any reset and leaves recently compromised passwords valid.",
+          "mechanism": "Force a change of default administrative credentials on first setup and enforce complexity (EK 4.2.D.1) and minimum length (EK 4.2.D.2) so the new credential is strong, not another guessable default. Configure password history (EK 4.2.D.4, store 5–10 previous hashes) to block staff from reusing last quarter's password, and account lockout (EK 4.2.D.5) on the management portal to stop online guessing of the new credential.",
+          "subtype": "Credential stuffing is an ONLINE attack at the device/login portal, so lockout (D.5) helps — but the most direct fix is eliminating the default credential itself. Warn: password history (D.4) only blocks REUSE; it does not stop a brand-new weak password, so pair it with complexity and length."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Proving Who You Are",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 3) + Closing (Day 5)",
+    "overview": "A password is only a proof — and proofs can be stolen, guessed, or cracked. Across three short windows in this lesson, your group will connect how systems store that proof as salted hashes, debate which password attack is hardest to defend against, and decide how factors, MFA, and login settings raise the bar so a single stolen password no longer means a lost account.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. A company stored every password in a plaintext spreadsheet so the help desk could read them back. Why is that so dangerous, and if the company can't store the actual password but still has to check it at login, what could it store instead that proves you typed the right one?"
+          },
+          {
+            "text": "Question 2. Two users pick the exact same password. Why would storing only the hash still leak information about them, and what small change fixes it without anyone keeping a secret? Defend your answer with the idea of salt."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 3, ~8 min, right after the offline hash-cracking debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Why lockout isn't enough  [EK 4.2.B.2]",
+            "text": "An adversary captured the salted hash database and is cracking it on their own laptop. In one sentence your whole group agrees on, explain why the company's 5-attempt account lockout does NOTHING against this attack, and why the hashes still can't simply be 'reversed.'",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which password attack is hardest to defend?  [EK 4.2.B]",
+            "text": "Debate for about 3 minutes: of password spraying (B.4), credential stuffing (B.5), and offline brute force / rainbow tables (B.6, B.7), which is hardest for a normal organization to defend against, and what is the realistic cost of getting it wrong? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 5, ~9 min, after Scenario 4B",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'one password fell' case",
+            "text": "An employee's single password was compromised and, because MFA was off, the adversary acted with all of that user's access (EK 4.2.B.1). Design the defense: which ONE change most directly stops a stolen password from becoming a stolen account — and why — and of the five login settings (complexity, length, maximum age, history, lockout), which actually help here and which do NOT, given the attack might be online or offline (EK 4.2.B.2, 4.2.D)?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (defense + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}
