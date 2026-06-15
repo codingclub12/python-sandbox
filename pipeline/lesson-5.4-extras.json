@@ -56,7 +56,7 @@
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-4-exercise-1",
     "intro": "You are a security analyst auditing how a team uses asymmetric encryption. For each scenario in the log, decide WHICH key (whose, public or private) does the encrypting, decrypting, signing, or verifying — and why. Part A works the log row by row; Part B extends the same skills. Everything maps to CB Learning Objectives 5.4.A, 5.4.B, and 5.4.C.",
     "scenarioTitle": "Key-Use Log: Five Asymmetric Operations",
-    "narrative": "Devon is the receiver who generated a public/private key pair; Mara is a sender. Five operations crossed your desk this week. For each one, the log records the goal, whose key was used, whether that key is public or private, and the resulting action. Read the log row by row, then answer Part A. Use the one rule from EK 5.4.A.4: to send a secret, encrypt with the RECEIVER'S PUBLIC key; only the matching private key decrypts.",
+    "narrative": "Devon is the receiver who generated a public/private key pair; Mara is a sender. Five operations crossed your desk this week. For each one, the log records the goal, whose key was used, whether that key is public or private, and the resulting action. Read the log row by row, then answer Part A. Use the one rule: to send a secret, encrypt with the RECEIVER'S PUBLIC key; only the matching private key decrypts.",
     "log": {
       "columns": [
         "ID",
@@ -71,39 +71,39 @@
           "Mara sends Devon a confidential file",
           "Devon's key",
           "Public",
-          "Mara encrypts the file with Devon's published public key (EK 5.4.A.4)"
+          "Mara encrypts the file with Devon's published public key"
         ],
         [
           "2",
           "Devon reads Mara's file",
           "Devon's key",
           "Private",
-          "Only Devon, holding the matching private key, can decrypt it (EK 5.4.A.4)"
+          "Only Devon, holding the matching private key, can decrypt it"
         ],
         [
           "3",
           "Devon proves a notice came from Devon",
           "Devon's key",
           "Private",
-          "Devon encrypts with the private key; anyone's copy of the public key unlocks it (digital signature, EK 5.4.C.1)"
+          "Devon encrypts with the private key; anyone's copy of the public key unlocks it"
         ],
         [
           "4",
           "Mara verifies the notice is really Devon's",
           "Devon's key",
           "Public",
-          "Mara decrypts the signature with Devon's public key, proving authorship (EK 5.4.C.1)"
+          "Mara decrypts the signature with Devon's public key, proving authorship"
         ],
         [
           "5",
           "An intern's private key is stolen from a laptop",
           "Intern's key",
           "Private",
-          "Delete the whole pair and generate a new one (EK 5.4.A.3)"
+          "Delete the whole pair and generate a new one"
         ]
       ]
     },
-    "scenarioNote": "Operations follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026); the signing rows (3–4) use the enrichment 'either key can encrypt' property of EK 5.4.A.2 that seeds digital signatures (EK 5.4.C.1).",
+    "scenarioNote": "Operations follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026); the signing rows (3–4) use the enrichment 'either key can encrypt' property of that seeds digital signatures.",
     "predict": "Before you answer Part A, write one sentence: of the five operations, which one is most often done with the WRONG key by mistake, and what is the single rule that fixes it?",
     "partALabel": "Part A - Key-Use Identification",
     "partA": [
@@ -161,29 +161,29 @@
     "minutes": "~20 min",
     "subtitle": "3 clients - Three-Step Method",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-4-exercise-2",
-    "intro": "You are a key-management consultant. Three clients need advice on storing private keys, responding to compromise, and choosing key length. For each client, decide what must be guarded versus published, give the CED-correct compromise response, and justify any key-length choice BY EK. Vague 'use strong encryption' advice scores zero.",
-    "standard": "CB Standard (required): correct key-storage/compromise response (EK 5.4.A.3) + key-length reasoning (EK 5.4.B) for all 3. Enrichment (optional): name the algorithm/tool sub-type (RSA, ECC, OpenSSL, etc.).",
+    "intro": "You are a key-management consultant. Three clients need advice on storing private keys, responding to compromise, and choosing key length. For each client, decide what must be guarded versus published, give the CED-correct compromise response, and justify any key-length choice BY. Vague 'use strong encryption' advice scores zero.",
+    "standard": "CB Standard (required): correct key-storage/compromise response + key-length reasoning for all 3. Enrichment (optional): name the algorithm/tool sub-type (RSA, ECC, OpenSSL, etc.).",
     "methodHeading": "Three-Step Method - use for every client",
     "method": [
       [
         "Step 1 - What is guarded vs. published?",
-        "State which key must be stored securely (private) and which is published for anyone (public). The security of the whole algorithm rests on the private key (EK 5.4.A.3)."
+        "State which key must be stored securely (private) and which is published for anyone (public). The security of the whole algorithm rests on the private key."
       ],
       [
         "Step 2 - Compromise response",
-        "If a private key is exposed, shared, stolen, corrupted, or compromised: delete the whole key pair and generate a new one (EK 5.4.A.3). Never re-encrypt or reuse it."
+        "If a private key is exposed, shared, stolen, corrupted, or compromised: delete the whole key pair and generate a new one. Never re-encrypt or reuse it."
       ],
       [
         "Step 3 - Key-length choice + justify",
-        "Use keyspace 2^n (EK 5.4.B.1) and average guesses 2^(n−1) (EK 5.4.B.2); longer is more secure but slower (EK 5.4.B.3); recommendations rise over time (EK 5.4.B.4); compare lengths only within one algorithm (EK 5.4.B.5)."
+        "Use keyspace 2^n and average guesses 2^(n−1); longer is more secure but slower; recommendations rise over time; compare lengths only within one algorithm."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment sub-types (algorithms and tools named in EK 5.4.C.1–C.2, not required to name on every item): RSA = the classic factoring-based asymmetric algorithm. ECC = elliptic curve cryptography, smaller keys for comparable strength. OpenSSL = command-line tool to generate pairs and encrypt/decrypt. Specialized software (e.g., the open-source RSA Encryption Tool) and web-based tools are the other two tool categories.",
+    "enrichmentNote": "Enrichment sub-types: RSA = the classic factoring-based asymmetric algorithm. ECC = elliptic curve cryptography, smaller keys for comparable strength. OpenSSL = command-line tool to generate pairs and encrypt/decrypt. Specialized software (e.g. The open-source RSA Encryption Tool) and web-based tools are the other two tool categories.",
     "fields": [
-      "Guarded vs. published (which key, why) [EK 5.4.A.3]:",
-      "Compromise response (what to do) [EK 5.4.A.3]:",
-      "Key-length choice + justification [EK 5.4.B]:"
+      "Guarded vs. Published (which key, why) []:",
+      "Compromise response (what to do) []:",
+      "Key-length choice + justification []:"
     ],
     "scenarios": [
       {
@@ -232,7 +232,7 @@
             "text": "Question 1. You can hand your public key to the entire world — post it on a website, print it on a flyer — and your messages stay safe. Why does giving away one of your two keys NOT weaken the system, when giving away the other would destroy it completely?"
           },
           {
-            "text": "Question 2. Asymmetric encryption lets two strangers who share no secret communicate securely (EK 5.4.A.1). Where in your own life does some version of this already happen — a 'public thing everyone sees' plus a 'private thing only you hold'? Defend one concrete example."
+            "text": "Question 2. Asymmetric encryption lets two strangers who share no secret communicate securely. Where in your own life does some version of this already happen — a 'public thing everyone sees' plus a 'private thing only you hold'? Defend one concrete example."
           },
           {
             "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
@@ -246,12 +246,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The doubling that wins the race  [EK 5.4.B.1-B.2]",
+            "label": "Task A - The doubling that wins the race",
             "text": "Each added bit DOUBLES the keyspace (2^n) and the average guesses to crack it (2^(n−1)). In one sentence your whole group agrees on, explain why adding even a handful of bits beats an attacker who just buys a faster computer.",
             "lines": 2
           },
           {
-            "label": "Task B - Longer always better?  [EK 5.4.B.3-B.5]",
+            "label": "Task B - Longer always better?",
             "text": "Debate for about 3 minutes: longer keys are more secure but slower (B.3), and you cannot compare an RSA key to an AES key by bit count (B.5). When is a longer key clearly worth the speed cost, and when is reaching for 'the biggest number' actually a mistake? Record your group's rule of thumb and one reason.",
             "lines": 2
           }
@@ -264,7 +264,7 @@
         "items": [
           {
             "label": "The 'one stolen key' case",
-            "text": "A company kept its public key online and its private key on a guarded server — then an attacker copied the private key off that server. Design the response: which single CED action must they take (EK 5.4.A.3), why does re-encrypting or 'rotating just the public key' NOT work (EK 5.4.A.2), and when an analyst learns a PRIVATE key leaked, what should they conclude about every message ever sent to that pair?",
+            "text": "A company kept its public key online and its private key on a guarded server — then an attacker copied the private key off that server. Design the response: which single CED action must they take, why does re-encrypting or 'rotating just the public key' NOT work, and when an analyst learns a PRIVATE key leaked, what should they conclude about every message ever sent to that pair?",
             "lines": 4
           },
           {

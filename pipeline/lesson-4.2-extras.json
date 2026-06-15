@@ -56,7 +56,7 @@
     "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-2-exercise-1",
     "intro": "You are a security analyst triaging five incidents. For each row of the case log you will classify the password attack by its CB name, decide whether it runs online or offline, and judge whether account lockout would help. Part A works the case log; Part B classifies authentication factors and MFA. Everything maps to CB Learning Objectives 4.2.A, 4.2.B, 4.2.C, and 4.2.D.",
     "scenarioTitle": "Case Log: Five Authentication Incidents",
-    "narrative": "Five separate incidents crossed your desk this week. For each one the log records what the adversary did, where the attack ran (a live login portal vs. a captured database on the adversary's own machine), and the outcome. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, name the defining action that identifies the CB attack, then decide whether account lockout (EK 4.2.D.5) could have constrained it.",
+    "narrative": "Five separate incidents crossed your desk this week. For each one the log records what the adversary did, where the attack ran (a live login portal vs. A captured database on the adversary's own machine), and the outcome. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, name the defining action that identifies the CB attack, then decide whether account lockout could have constrained it.",
     "log": {
       "columns": [
         "ID",
@@ -103,7 +103,7 @@
         ]
       ]
     },
-    "scenarioNote": "Incidents adapted from the Day 2–3 password-attack debrief; attack names and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026). The online/offline column is the key to whether lockout applies (EK 4.2.B.2).",
+    "scenarioNote": "Incidents adapted from the Day 2–3 password-attack debrief; attack names and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026). The online/offline column is the key to whether lockout applies.",
     "predict": "Before you answer Part A, write one sentence: which two incidents would NOT be slowed at all by account lockout, and what single column tells you that?",
     "partALabel": "Part A - Incident Classification",
     "partA": [
@@ -155,28 +155,28 @@
     "minutes": "~20 min",
     "subtitle": "3 scenarios - Scenario 4B",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-2-exercise-2",
-    "intro": "You are configuring local security policy for three organizations (this is CB Scenario 4B — configuring the password and account-lockout policies). For each, identify the attack that threatens them most, then set the specific login settings — complexity, minimum length, maximum age, password history, and account lockout — that blunt it BY NAME AND EK. Explain WHY each setting addresses that exact risk. Vague 'use strong passwords' advice scores zero.",
-    "standard": "CB Standard (required): name the threat + set the matching EK 4.2.D setting(s) + tie each to the mechanism, for all 3 organizations. Enrichment (optional): name whether the threat is an online or offline attack and what that implies for lockout.",
+    "intro": "You are configuring local security policy for three organizations (this is CB Scenario 4B — configuring the password and account-lockout policies). For each, identify the attack that threatens them most, then set the specific login settings — complexity, minimum length, maximum age, password history, and account lockout — that blunt it BY NAME. Explain WHY each setting addresses that exact risk. Vague 'use strong passwords' advice scores zero.",
+    "standard": "CB Standard (required): name the threat + set the matching setting(s) + tie each to the mechanism, for all 3 organizations. Enrichment (optional): name whether the threat is an online or offline attack and what that implies for lockout.",
     "methodHeading": "Three-Step Method - use for every scenario",
     "method": [
       [
         "Step 1 - Name the threat",
-        "Identify the CB password attack the organization most likely faces (spraying, stuffing, leaked-credential reuse, brute force, dictionary, or rainbow table) and cite its EK 4.2.B number."
+        "Identify the CB password attack the organization most likely faces (spraying, stuffing, leaked-credential reuse, brute force, dictionary, or rainbow table) number."
       ],
       [
         "Step 2 - Set the policy",
-        "Pick the EK 4.2.D login setting(s) that break THIS threat's mechanism: complexity (D.1), minimum length (D.2), maximum age (D.3), password history (D.4), or account lockout (D.5). Give a concrete value where the CED suggests one."
+        "Pick the login setting(s) that break THIS threat's mechanism: complexity (D.1), minimum length (D.2), maximum age (D.3), password history (D.4), or account lockout (D.5). Give a concrete value where the CED suggests one."
       ],
       [
         "Step 3 - Justify + warn",
-        "Explain why the setting addresses this org's exact risk, and state one limitation (e.g., lockout does NOT stop offline attacks per EK 4.2.B.2; forced maximum age can breed patterns per EK 4.2.D.3)."
+        "Explain why the setting addresses this org's exact risk, and state one limitation."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment framing (the online/offline split, EK 4.2.B.2): ONLINE attacks (spraying, stuffing, leaked-credential reuse at a live portal) can be slowed by account lockout (EK 4.2.D.5). OFFLINE attacks (brute force, dictionary, rainbow table on a captured hash database) ignore lockout entirely — they are blunted instead by complexity (D.1), minimum length (D.2), and salting plus non-deprecated hashes (EK 4.2.A.4, A.6).",
+    "enrichmentNote": "Enrichment framing: ONLINE attacks (spraying, stuffing, leaked-credential reuse at a live portal) can be slowed by account lockout. OFFLINE attacks (brute force, dictionary, rainbow table on a captured hash database) ignore lockout entirely — they are blunted instead by complexity (D.1), minimum length (D.2), and salting plus non-deprecated hashes.",
     "fields": [
-      "Most likely attack (name + EK 4.2.B):",
-      "Login setting(s) to configure (EK 4.2.D, with values):",
+      "Most likely attack:",
+      "Login setting(s) to configure:",
       "Limitation to warn the org about:"
     ],
     "scenarios": [
@@ -240,12 +240,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - Why lockout isn't enough  [EK 4.2.B.2]",
+            "label": "Task A - Why lockout isn't enough",
             "text": "An adversary captured the salted hash database and is cracking it on their own laptop. In one sentence your whole group agrees on, explain why the company's 5-attempt account lockout does NOTHING against this attack, and why the hashes still can't simply be 'reversed.'",
             "lines": 2
           },
           {
-            "label": "Task B - Which password attack is hardest to defend?  [EK 4.2.B]",
+            "label": "Task B - Which password attack is hardest to defend?",
             "text": "Debate for about 3 minutes: of password spraying (B.4), credential stuffing (B.5), and offline brute force / rainbow tables (B.6, B.7), which is hardest for a normal organization to defend against, and what is the realistic cost of getting it wrong? Record your group's ranking and one reason.",
             "lines": 2
           }
@@ -258,7 +258,7 @@
         "items": [
           {
             "label": "The 'one password fell' case",
-            "text": "An employee's single password was compromised and, because MFA was off, the adversary acted with all of that user's access (EK 4.2.B.1). Design the defense: which ONE change most directly stops a stolen password from becoming a stolen account — and why — and of the five login settings (complexity, length, maximum age, history, lockout), which actually help here and which do NOT, given the attack might be online or offline (EK 4.2.B.2, 4.2.D)?",
+            "text": "An employee's single password was compromised and, because MFA was off, the adversary acted with all of that user's access. Design the defense: which ONE change most directly stops a stolen password from becoming a stolen account — and why — and of the five login settings (complexity, length, maximum age, history, lockout), which actually help here and which do NOT, given the attack might be online or offline?",
             "lines": 4
           },
           {

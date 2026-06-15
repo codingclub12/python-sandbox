@@ -86,10 +86,12 @@ function emitEx1() {
     k.push(h2(label));
     if (intro) k.push(p([run(intro, { italics: true, color: C.GRAY })]));
     items.forEach((q, i) => {
-      k.push(p([run('Q' + (i + 1) + '  ', { bold: true, color: C.NAVY }),
-                run('[' + q.ek + '] ', { bold: true, color: C.PURPLE }),
-                run('(' + q.pts + ' pts)  ', { color: C.GRAY }),
-                run(q.q)], { after: 100 }));
+      // EK tag is a CB-alignment label for the teacher — show it on the KEY only,
+      // never on the student copy (students name techniques, not framework codes).
+      const head = [run('Q' + (i + 1) + '  ', { bold: true, color: C.NAVY })];
+      if (isKey) head.push(run('[' + q.ek + '] ', { bold: true, color: C.PURPLE }));
+      head.push(run('(' + q.pts + ' pts)  ', { color: C.GRAY }), run(q.q));
+      k.push(p(head, { after: 100 }));
       if (isKey) k.push(answerBlock(q.answer)); else k.push(...blankLines(3));
     });
   };

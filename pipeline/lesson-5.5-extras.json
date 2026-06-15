@@ -56,14 +56,14 @@
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-5-exercise-1",
     "intro": "You are a product security reviewer. Five product decisions just crossed your desk. For each one you will classify it as secure by design (the development-wide principle), secure by default (features on out of the box), or an input-verification gap (a control-character problem). Part A works the review log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.5.A and 5.5.B.",
     "scenarioTitle": "Review Log: Five Product Decisions",
-    "narrative": "Your security operations review board logged five recent product decisions. Each row records the company, the decision they made, the EK family it touches, and the classification you must assign. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the defining detail (is security built into development, switched on at shipping, or being checked at the input boundary?), then name the CED concept and its EK.",
+    "narrative": "Your security operations review board logged five recent product decisions. Each row records the company, the decision they made, the family it touches, and the classification you must assign. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the defining detail (is security built into development, switched on at shipping, or being checked at the input boundary?), then name the CED concept.",
     "log": {
       "columns": [
         "ID",
         "Company decision",
         "Defining detail",
         "Category",
-        "EK"
+        ""
       ],
       "rows": [
         [
@@ -71,35 +71,35 @@
           "A camera maker treats security as a requirement from the first design meeting, calling it a design principle rather than a feature added at launch.",
           "Security included in ALL phases of development, including design",
           "Secure by design",
-          "EK 5.5.A.1"
+          ""
         ],
         [
           "2",
           "A router ships from the factory with its firewall already on and encryption configured, so a customer who never opens settings is still protected.",
           "Security features enabled out of the box",
           "Secure by default",
-          "EK 5.5.A.3"
+          ""
         ],
         [
           "3",
           "A web team adds a function that strips out single quotes, double quotes, and semicolons (or errors out) before a form submission reaches the database.",
           "Verifying input at the boundary for control characters",
           "Input verification",
-          "EK 5.5.B.2"
+          ""
         ],
         [
           "4",
           "A vendor quickly publishes security-related product news and patches so other organizations can protect themselves too.",
           "Sharing security updates quickly to raise security for everyone",
           "Secure by design (principle)",
-          "EK 5.5.A.2"
+          ""
         ],
         [
           "5",
           "An app encases each typed search term in single quotes and semicolons to process it, but never checks what the user actually typed.",
           "Control characters used, but input left unverified",
           "Input-verification gap",
-          "EK 5.5.B.1"
+          ""
         ]
       ]
     },
@@ -116,7 +116,7 @@
       {
         "ek": "EK 5.5.A.3",
         "pts": 4,
-        "q": "Decisions 2 (router firewall on) and 4 (vendor publishes updates fast) are both inside secure by design but illustrate DIFFERENT ideas. Name the concept and EK for each, and explain the one detail that separates them.",
+        "q": "Decisions 2 (router firewall on) and 4 (vendor publishes updates fast) are both inside secure by design but illustrate DIFFERENT ideas. Name the concept for each, and explain the one detail that separates them.",
         "answer": "Decision 2 is secure by default (EK 5.5.A.3): the firewall is already on and encryption configured out of the box, so a customer who never changes a setting is still protected. Decision 4 is the radical-transparency-and-accountability principle (EK 5.5.A.2): sharing security news and updates quickly increases security for everyone, not just that vendor. The separating detail: 2 is about the state the product SHIPS IN (features enabled), while 4 is about an ongoing BEHAVIOR the company practices (disclosing updates). Both live inside secure by design, but only 2 is secure by default."
       },
       {
@@ -138,7 +138,7 @@
       {
         "ek": "EK 5.5.A.1",
         "pts": 3,
-        "q": "A teammate says 'we made our app secure by design — we added encryption right before launch.' Using EK 5.5.A.1, explain why this misuses the term.",
+        "q": "A teammate says 'we made our app secure by design — we added encryption right before launch.', explain why this misuses the term.",
         "answer": "Adding encryption right before launch is a technical feature bolted on at the end, which is the opposite of secure by design. EK 5.5.A.1 defines secure by design as an initiative to include security in ALL phases of development, INCLUDING design, so that security is a design principle, not a late add-on. A single feature added at the end does not make the product secure by design; the practice has to be present from the first design decision forward."
       },
       {
@@ -155,28 +155,28 @@
     "minutes": "~20 min",
     "subtitle": "3 inputs - Sanitize vs. Reject",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-5-exercise-2",
-    "intro": "You are an application security consultant. Three teams bring you an input field and ask how their verification function should handle it. For each, run the EK 5.5.B.1 control-character check (which of the three control characters could appear and how), decide whether the function should SANITIZE or REJECT and name the EK 5.5.B.2 mechanism, and name the application attack the choice defends against. Advanced students also name the enrichment sub-type. Vague 'just clean it' advice scores zero.",
-    "standard": "CB Standard (required): control-character check + sanitize-or-reject mechanism (EK 5.5.B.2) + the attack it defends against, for all 3 inputs. Enrichment (optional): name which of SQL injection, XSS, or directory traversal the input most directly maps to.",
+    "intro": "You are an application security consultant. Three teams bring you an input field and ask how their verification function should handle it. For each, run the control-character check (which of the three control characters could appear and how), decide whether the function should SANITIZE or REJECT 5.5.B.2 mechanism, and name the application attack the choice defends against. Advanced students also name the enrichment sub-type. Vague 'just clean it' advice scores zero.",
+    "standard": "CB Standard (required): control-character check + sanitize-or-reject mechanism + the attack it defends against, for all 3 inputs. Enrichment (optional): name which of SQL injection, XSS, or directory traversal the input most directly maps to.",
     "methodHeading": "Three-Step Method - use for every input",
     "method": [
       [
-        "Step 1 - Sign check (EK 5.5.B.1)",
+        "Step 1 - Sign check",
         "Identify which of the three control characters — single quote ( ' ), double quote ( \" ), semicolon ( ; ) — could legitimately appear and which would be a red flag in THIS field. Only claim what the field's purpose shows."
       ],
       [
-        "Step 2 - Sanitize or reject (EK 5.5.B.2)",
+        "Step 2 - Sanitize or reject",
         "Decide whether the verification function should sanitize (strip the malicious control characters and process the cleaned input) or reject (error out and force the user to provide different input). Justify which fits this field better."
       ],
       [
         "Step 3 - Name the attack defended",
-        "State which application attack the choice most directly blocks — SQL injection, XSS, or directory traversal — and tie it to the unverified control character it depends on (EK 5.5.B.2)."
+        "State which application attack the choice most directly blocks — SQL injection, XSS, or directory traversal — and tie it to the unverified control character it depends on."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment sub-types (the three attacks EK 5.5.B.2 names): SQL injection = a single quote breaks out of a database query to inject new SQL. XSS (cross-site scripting) = control characters close a tag and inject a script into a page. Directory traversal = crafted input escapes the intended folder to reach other files. All three abuse input the application never verified, which is why one verification function defends against all of them.",
+    "enrichmentNote": "Enrichment sub-types: SQL injection = a single quote breaks out of a database query to inject new SQL. XSS (cross-site scripting) = control characters close a tag and inject a script into a page. Directory traversal = crafted input escapes the intended folder to reach other files. All three abuse input the application never verified, which is why one verification function defends against all of them.",
     "fields": [
       "Control-character check (which of ' \" ; could appear?):",
-      "Sanitize or reject — and why (EK 5.5.B.2):",
+      "Sanitize or reject — and why:",
       "Attack defended against (enrichment sub-type):"
     ],
     "scenarios": [
@@ -240,12 +240,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - Why three characters matter  [EK 5.5.B.1]",
+            "label": "Task A - Why three characters matter",
             "text": "Applications encase user input in three control characters — the single quote, double quote, and semicolon — to process it. In one sentence your whole group agrees on, explain why those SAME characters become dangerous when a user can sneak them into their own input.",
             "lines": 2
           },
           {
-            "label": "Task B - Sanitize or reject?  [EK 5.5.B.2]",
+            "label": "Task B - Sanitize or reject?",
             "text": "Debate for about 3 minutes: a verification function can either sanitize (strip the bad characters and process the rest) or reject (error out and demand new input). For a public comment box versus a login username field, which outcome fits each — and what is the realistic cost of choosing wrong? Record your group's choice and one reason for each field.",
             "lines": 2
           }
@@ -258,7 +258,7 @@
         "items": [
           {
             "label": "The 'one function, three attacks' case",
-            "text": "A team adds a single input-verification function and it suddenly blocks SQL injection, XSS, AND directory traversal. Design the explanation: why can ONE function stop three attacks that look so different (EK 5.5.B.2), what is the common weakness all three share, and when a developer says 'our input is sanitized,' what should a reviewer conclude — and NOT conclude — about the rest of the application's security?",
+            "text": "A team adds a single input-verification function and it suddenly blocks SQL injection, XSS, AND directory traversal. Design the explanation: why can ONE function stop three attacks that look so different, what is the common weakness all three share, and when a developer says 'our input is sanitized,' what should a reviewer conclude — and NOT conclude — about the rest of the application's security?",
             "lines": 4
           },
           {

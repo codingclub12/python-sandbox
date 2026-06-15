@@ -54,9 +54,9 @@
     "title": "Malware/Device Vulnerability Identifier",
     "minutes": "~25 min",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-1-exercise-1",
-    "intro": "You are a security analyst triaging incidents on the connected farm. Five cases just landed in the queue. For each one you will name the CB malware type (EK 4.1.B) or the exact device vulnerability (EK 4.1.C) and cite the EK. Part A works the case log; Part B extends the same skills. Everything maps to CB Learning Objectives 4.1.A, 4.1.B, and 4.1.C.",
+    "intro": "You are a security analyst triaging incidents on the connected farm. Five cases just landed in the queue. For each one you will name the CB malware type or the exact device vulnerability. Part A works the case log; Part B extends the same skills. Everything maps to CB Learning Objectives 4.1.A, 4.1.B, and 4.1.C.",
     "scenarioTitle": "Incident Log: Five Connected-Farm Cases",
-    "narrative": "Five incidents were reported across the farm's network this week. Your operations log captured the device, what the adversary did, what the user observed, and the after-effect. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the one defining behavior, then match it to the exact malware type or device vulnerability with its EK.",
+    "narrative": "Five incidents were reported across the farm's network this week. Your operations log captured the device, what the adversary did, what the user observed, and the after-effect. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the one defining behavior, then match it to the exact malware type or device vulnerability.",
     "log": {
       "columns": [
         "ID",
@@ -110,25 +110,25 @@
       {
         "ek": "EK 4.1.B.2",
         "pts": 6,
-        "q": "Case 1 (the invoice attachment) and a hypothetical variant where the SAME code spread to every machine with no one clicking are different CB malware types. Name the type in Case 1, name the variant's type, cite the EK for each, and quote the one defining detail that separates them.",
+        "q": "Case 1 (the invoice attachment) and a hypothetical variant where the SAME code spread to every machine with no one clicking are different CB malware types. Name the type in Case 1, name the variant's type, and quote the one defining detail that separates them.",
         "answer": "Case 1 is a virus (EK 4.1.B.2): the log states 'nothing ran until the employee opened the file' — a virus must be activated by a user executing or opening a file. The spreading variant would be a worm (EK 4.1.B.2): a worm spreads from one computer to another without human interaction. The single defining detail is whether human action is required to spread — the employee opening the file (virus) versus 'no one clicking' (worm). This human-action line is the most-tested distinction in 4.1.B."
       },
       {
         "ek": "EK 4.1.B.2",
         "pts": 3,
-        "q": "Case 2 encrypted the files and posted a countdown demanding payment. Name the CB malware type, cite its EK, and quote the two behaviors from the log that prove it is this type and not a rootkit.",
+        "q": "Case 2 encrypted the files and posted a countdown demanding payment. Name the CB malware type, and quote the two behaviors from the log that prove it is this type and not a rootkit.",
         "answer": "Case 2 is ransomware (EK 4.1.B.2): ransomware encrypts a device's files, preventing access, and typically demands payment for a decryption key within a fixed amount of time. The two proving behaviors are 'encrypted every file on the drive' and 'a screen demanded payment for a decryption key' with a countdown/deadline. A rootkit (EK 4.1.B.2) hides in the OS and makes itself invisible — it does not encrypt files or demand payment, so the visible ransom screen rules it out."
       },
       {
         "ek": "EK 4.1.C.1",
         "pts": 4,
-        "q": "Case 3 hit the email server. Name the exact CB device vulnerability, cite its EK, and explain the chain from the missing update to the stolen customer records.",
+        "q": "Case 3 hit the email server. Name the exact CB device vulnerability, and explain the chain from the missing update to the stolen customer records.",
         "answer": "Case 3 is unpatched software (EK 4.1.C.1): adversaries develop exploits for known vulnerabilities in software, and a device running an unpatched version is exposed to that exploit. The chain: the latest update patched a known vulnerability, but it was not installed; the adversary built an exploit for that known hole; per EK 4.1.C.1 the exploit let them crash services and ultimately take control to issue their own commands, including commands to steal information — here, the sensitive customer records. The fix is the missing patch itself."
       },
       {
         "ek": "EK 4.1.C.3",
         "pts": 4,
-        "q": "Case 4 (the office laptop) is frequently misread as weak authentication. Name the correct CB vulnerability, cite its EK, and explain the detail that rules out weak authentication (EK 4.1.C.2).",
+        "q": "Case 4 (the office laptop) is frequently misread as weak authentication. Name the correct CB vulnerability, and explain the detail that rules out weak authentication.",
         "answer": "Case 4 is a missing BIOS/UEFI password (EK 4.1.C.3): with no password on the BIOS/UEFI, an adversary can boot into a special mode such as recovery mode for higher-level privileges, load their own operating system from an external drive, and alter user profiles including changing passwords — exactly the log's 'booted into recovery mode and loaded their own OS' and 'password silently changed.' The detail that rules out weak authentication (EK 4.1.C.2): the adversary never guessed or socially-engineered the existing password — they bypassed it entirely by booting an external OS, which is a firmware/boot weakness, and they needed brief PHYSICAL access to do it."
       }
     ],
@@ -138,13 +138,13 @@
       {
         "ek": "EK 4.1.C.6",
         "pts": 3,
-        "q": "Case 5 (the grain sensor) had crafted malicious data sent straight to it. Name the CB vulnerability and its EK, then explain why this is a different weakness from an open port (EK 4.1.C.5).",
+        "q": "Case 5 (the grain sensor) had crafted malicious data sent straight to it. Name the CB vulnerability, then explain why this is a different weakness from an open port.",
         "answer": "Case 5 is a missing/misconfigured firewall (EK 4.1.C.6): adversaries send malicious data to disrupt or take control of a device, and a device with no firewall cannot filter out that malicious data. An open port (EK 4.1.C.5) is about an adversary leveraging a port to CONNECT to the device — reaching it in the first place — whereas a missing firewall is about failing to FILTER the malicious data once it arrives. C.5 is the way in; C.6 is the failure to screen what comes through."
       },
       {
         "ek": "EK 4.1.B.3",
         "pts": 3,
-        "q": "An analyst scans the records PC's drive and finds nothing, yet the machine is clearly compromised and the threat is using a legitimate installed program. Name the CB malware type, cite its EK, and explain why a drive scan missed it.",
+        "q": "An analyst scans the records PC's drive and finds nothing, yet the machine is clearly compromised and the threat is using a legitimate installed program. Name the CB malware type, and explain why a drive scan missed it.",
         "answer": "This is fileless malware (EK 4.1.B.3): it is malicious code that lives in RAM and uses legitimate programs already installed on the device rather than existing as a file on disk. A drive scan missed it because there is no file on the drive for the scanner to find, and because it rides trusted, installed tools it looks like normal activity. EK 4.1.B.3 is the exception to 'malware is a file' — defense shifts from scanning the disk to watching the behavior of trusted programs."
       },
       {
@@ -161,28 +161,28 @@
     "minutes": "~25 min",
     "subtitle": "4 devices - scenario 4A method",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-1-exercise-2",
-    "intro": "You are documenting risk for the connected farm (scenario 4A). For each device you will name the exact vulnerability with its EK 4.1.C number, assign a CB risk level — high, moderate, or low (EK 4.1.D.2–D.4) — and justify the level from the device's criticality and the impact of exploitation (EK 4.1.D.1). Advanced students also name the malware or technique an adversary would most likely use.",
-    "standard": "CB Standard (required): name the vulnerability (EK 4.1.C) + assign H/M/L (EK 4.1.D) + justify from criticality and impact, for all 4 devices. Enrichment (optional): name the malware/technique an adversary would use.",
+    "intro": "You are documenting risk for the connected farm (scenario 4A). For each device you will name the exact vulnerability 4.1.C number, assign a CB risk level — high, moderate, or low — and justify the level from the device's criticality and the impact of exploitation. Advanced students also name the malware or technique an adversary would most likely use.",
+    "standard": "CB Standard (required): name the vulnerability + assign H/M/L + justify from criticality and impact, for all 4 devices. Enrichment (optional): name the malware/technique an adversary would use.",
     "methodHeading": "Three-Step Method - use for every device",
     "method": [
       [
         "Step 1 - Name the vulnerability",
-        "Identify the exact CB device weakness the device has — unpatched software (C.1), weak authentication (C.2), missing BIOS/UEFI password (C.3), autorun (C.4), open ports (C.5), missing firewall (C.6), or missing anti-malware (C.7) — and cite its EK 4.1.C number."
+        "Identify the exact CB device weakness the device has — unpatched software (C.1), weak authentication (C.2), missing BIOS/UEFI password (C.3), autorun (C.4), open ports (C.5), missing firewall (C.6), or missing anti-malware (C.7) — number."
       ],
       [
         "Step 2 - Assign the risk level",
-        "Rate the risk high (EK 4.1.D.2 — sensitive data or critical operations), moderate (EK 4.1.D.3 — weak authentication or less likely to be exploited), or low (EK 4.1.D.4 — little impact if exploited). The same vulnerability can sit at different levels depending on the device (EK 4.1.D.1)."
+        "Rate the risk high, moderate, or low. The same vulnerability can sit at different levels depending on the device."
       ],
       [
         "Step 3 - Justify + document",
-        "Explain WHY the level fits, from the device's criticality and the data or services it provides (EK 4.1.D.1), then write the one-line documentation entry: device, vulnerability, technique, impact, level."
+        "Explain WHY the level fits, from the device's criticality and the data or services it provides, then write the one-line documentation entry: device, vulnerability, technique, impact, level."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
     "enrichmentNote": "Enrichment (NOT required by the CED for assigning the level): also name the malware or technique an adversary would use against each device — e.g., a known-vulnerability exploit against unpatched software (C.1), ransomware that encrypts the records drive, a RAT for remote control, or crafted malicious packets against a device with no firewall (C.6). Naming the technique sharpens the impact half of the risk rating but is not required for the H/M/L score.",
     "fields": [
-      "Vulnerability + EK:",
-      "Risk (H/M/L) + EK:",
+      "Vulnerability:",
+      "Risk (H/M/L):",
       "Justification (criticality + impact):"
     ],
     "scenarios": [
@@ -256,12 +256,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The behavior, not the name  [EK 4.1.B.2]",
+            "label": "Task A - The behavior, not the name",
             "text": "The exam gives you a behavior and asks for the malware name. In one sentence your whole group agrees on, state the single detail that separates a virus from a worm — and why that one detail decides it.",
             "lines": 2
           },
           {
-            "label": "Task B - Which weakness is hardest to close?  [EK 4.1.C]",
+            "label": "Task B - Which weakness is hardest to close?",
             "text": "Debate for about 3 minutes: of the seven CED weaknesses — unpatched software (C.1), weak authentication (C.2), missing BIOS/UEFI password (C.3), autorun (C.4), open ports (C.5), missing firewall (C.6), missing anti-malware (C.7) — which is hardest for a real organization to keep closed on every device, and what is the realistic cost of skipping it? Record your group's pick and one reason.",
             "lines": 2
           }
@@ -274,7 +274,7 @@
         "items": [
           {
             "label": "The 'same flaw, different device' case",
-            "text": "An open telnet port 23 on an employee's laptop is rated LOW, but the CED says the same vulnerability can be HIGH on another device. Design the rating: name a farm device where an open port would be HIGH risk and explain why, then state what an analyst must document for each risk (EK 4.1.D.1–D.4) — and what they should NOT conclude from the vulnerability alone, without weighing the device's criticality.",
+            "text": "An open telnet port 23 on an employee's laptop is rated LOW, but the CED says the same vulnerability can be HIGH on another device. Design the rating: name a farm device where an open port would be HIGH risk and explain why, then state what an analyst must document for each risk — and what they should NOT conclude from the vulnerability alone, without weighing the device's criticality.",
             "lines": 4
           },
           {

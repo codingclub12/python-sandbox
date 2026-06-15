@@ -10,7 +10,13 @@
 const fs = require('fs');
 const H = require('./helpers');
 const { p, h2, bullet, callout, spacer, rule, pageBreak, titleBlock, buildDoc, save,
-        run, C, Paragraph } = H;
+        run, C, Paragraph, stripEK } = H;
+function deepStripEK(o) {
+  if (typeof o === 'string') return /\bEK\b/.test(o) ? stripEK(o) : o;
+  if (Array.isArray(o)) return o.map(deepStripEK);
+  if (o && typeof o === 'object') { const r = {}; for (const k in o) r[k] = deepStripEK(o[k]); return r; }
+  return o;
+}
 const { auditQuiz, letterToIndex, LETTERS, PREDICT_OK } = require('./quiz_audit');
 
 const args = process.argv.slice(2);
@@ -64,7 +70,7 @@ function mcqBlocks() {
              '   •   harder items ' + audit.stats.harderPct + '%', { size: 18, color: C.GRAY })]),
     ], 'tip'));
   }
-  data.partI.questions.forEach((q, i) => {
+  (isKey?data.partI.questions:data.partI.questions.map(deepStripEK)).forEach((q, i) => {
     const ai = letterToIndex(q.answer);
     const kind = (q.kind || 'recall').toLowerCase();
     k.push(p([run((i + 1) + '. ', { bold: true, color: C.NAVY }), ...boldStem(q.stem)], { after: 60 }));
@@ -96,7 +102,7 @@ function frqBlocks() {
   k.push(pageBreak());
   k.push(h2('Part II — Free Response'));
   if (data.partII.instructions) k.push(p([run(data.partII.instructions, { italics: true, color: C.GRAY })]));
-  data.partII.questions.forEach((q, i) => {
+  (isKey?data.partII.questions:data.partII.questions.map(deepStripEK)).forEach((q, i) => {
     const head = [run('FR' + (i + 1) + '. ', { bold: true, color: C.NAVY }), ...boldStem(q.prompt)];
     if (q.points) head.push(run('   (' + q.points + ' points)', { color: C.GRAY }));
     k.push(p(head, { after: 80 }));

@@ -56,7 +56,7 @@
     "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-5-exercise-1",
     "intro": "You are a SOC analyst on the night shift. Five log entries just surfaced across the network's sensors. For each one you read the recorded indicator, name the specific CB network attack it reveals, and name the detection method or tool involved. Part A works the log row by row; Part B extends the same skills. Everything maps to CB Learning Objectives 3.5.A, 3.5.D, and 3.5.E.",
     "scenarioTitle": "SOC Log Review: Five Detection Indicators",
-    "narrative": "Your security operations center aggregates data from many sources into one log — switch tables, ARP traffic, wireless scans, ICMP counters, and packet captures. Read each entry's recorded indicator, then answer Part A. Use the cheat sheet from class: match the indicator to the attack (EK 3.5.E.1–E.7), then say how the tool or method that surfaced it works.",
+    "narrative": "Your security operations center aggregates data from many sources into one log — switch tables, ARP traffic, wireless scans, ICMP counters, and packet captures. Read each entry's recorded indicator, then answer Part A. Use the cheat sheet from class: match the indicator to the attack, then say how the tool or method that surfaced it works.",
     "log": {
       "columns": [
         "ID",
@@ -122,13 +122,13 @@
       {
         "ek": "EK 3.5.E.6",
         "pts": 4,
-        "q": "Entry 4 shows a spike of ICMP requests to the broadcast address. Name the CB attack, quote the exact indicator from EK 3.5.E.6, and explain why this is detected by traffic volume rather than by a signature of the payload.",
+        "q": "Entry 4 shows a spike of ICMP requests to the broadcast address. Name the CB attack, quote the exact indicator, and explain why this is detected by traffic volume rather than by a signature of the payload.",
         "answer": "Entry 4 is a smurf attack (EK 3.5.E.6). The indicator named in the EK is a sudden increase in ICMP requests sent to the network's broadcast address. It is detected by watching network traffic for that volume spike because the attack's signature is its pattern — a flood of echo requests to a broadcast address with a spoofed source — rather than malicious content inside any one packet; the harm comes from amplification across many hosts, which shows up as an abrupt traffic increase."
       },
       {
         "ek": "EK 3.5.E.7",
         "pts": 4,
-        "q": "Entry 5 comes from a packet-capture file. Name the CB category these findings fall under, cite the EK, list the two indicators shown, and name two MORE indicators in that same category from the CED.",
+        "q": "Entry 5 comes from a packet-capture file. Name the CB category these findings fall under, list the two indicators shown, and name two MORE indicators in that same category from the CED.",
         "answer": "Entry 5 is a set of network-based indicators of compromise (IoCs), EK 3.5.E.7, discovered by analyzing network traffic, often in packet-capture files, by inspecting source/destination IP addresses, ports, and protocols. The two shown are: connections to a known malicious IP address, and mismatched port-application traffic (a port that does not match its expected application). Two more indicators in the same category named by the CED are unauthorized network scans and unusual spikes or slowdowns in network traffic."
       }
     ],
@@ -144,7 +144,7 @@
       {
         "ek": "EK 3.5.A.4",
         "pts": 3,
-        "q": "Entry 5 was only caught because one system correlated the malicious-IP connection with the port-application mismatch across firewall and pcap logs. Name that system, cite the EK, and state what the analyst does after the alert fires.",
+        "q": "Entry 5 was only caught because one system correlated the malicious-IP connection with the port-application mismatch across firewall and pcap logs. Name that system, and state what the analyst does after the alert fires.",
         "answer": "That system is a SIEM (security information and event management system), EK 3.5.A.4: it collects and analyzes data from multiple sources — firewalls, NIDS/NIPS, device logs, application logs — to detect patterns no single tool would catch alone and raises an alert. After the alert fires, a security analyst investigates it to determine whether it represents a true threat, then follows standard operating procedures to resolve or escalate it."
       }
     ]
@@ -155,29 +155,29 @@
     "minutes": "25 minutes",
     "subtitle": "3 scenarios - Scenario 3B",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-5-exercise-2",
-    "intro": "You are a detection consultant. Three organizations need you to recommend a detective control. For each, run the EK 3.5.E sign check on the indicators they describe, recommend a detection method — signature-based, anomaly-based, or hybrid — with its EK and the right tool (NIDS/NIPS/SIEM), and justify the choice from the EK 3.5.C criteria while naming the EK 3.5.D impact you accept. Scenario 1 is CB Scenario 3B (Configuring a Secure Wireless Network). Vague 'add monitoring' advice scores zero.",
-    "standard": "CB Standard (required): sign check + method (EK 3.5.C) + tool + impact you accept (EK 3.5.D) for all 3. Enrichment (optional): name the detection-method sub-type (signature / anomaly / hybrid) and one trade-off.",
+    "intro": "You are a detection consultant. Three organizations need you to recommend a detective control. For each, run the sign check on the indicators they describe, recommend a detection method — signature-based, anomaly-based, or hybrid — and the right tool (NIDS/NIPS/SIEM), and justify the choice criteria while 3.5.D impact you accept. Scenario 1 is CB Scenario 3B (Configuring a Secure Wireless Network). Vague 'add monitoring' advice scores zero.",
+    "standard": "CB Standard (required): sign check + method + tool + impact you accept for all 3. Enrichment (optional): name the detection-method sub-type (signature / anomaly / hybrid) and one trade-off.",
     "methodHeading": "Three-Step Method - use for every scenario",
     "method": [
       [
-        "Step 1 - Sign check (EK 3.5.E)",
-        "Read the indicators the org describes and name the attack(s) they point to. Only claim what the scenario shows; tie each indicator to its EK 3.5.E number."
+        "Step 1 - Sign check",
+        "Read the indicators the org describes and name the attack(s) they point to. Only claim what the scenario shows; tie each indicator to its number."
       ],
       [
-        "Step 2 - Choose the method (EK 3.5.C)",
+        "Step 2 - Choose the method",
         "Use the four criteria — traffic volume (C.1), pattern consistency (C.2), sensitivity/criticality (C.3), likelihood of novel attacks (C.4) — to pick signature, anomaly, or hybrid, and name the tool (NIDS/NIPS/SIEM) that delivers it."
       ],
       [
-        "Step 3 - State the impact (EK 3.5.D)",
+        "Step 3 - State the impact",
         "Name the impact factor you accept on purpose: speed (D.1), cost (D.2), false-positive rate / alert fatigue (D.3), or false-negative / bypass risk (D.4). Every choice carries an impact."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment framing (the trade-off triangle, NOT a new EK): Signature-based is fast and cheap with almost no false positives (EK 3.5.C.1, D.1, D.3) but cannot catch novel attacks and is easiest to bypass (EK 3.5.C.4, D.4). Anomaly-based catches novel attacks on consistent networks (EK 3.5.C.2, C.4) but costs more hardware and raises false positives → alert fatigue (EK 3.5.D.2, D.3). Hybrid covers the most ground (EK 3.5.C.3) but is the most expensive and most alert-heavy. There is no free lunch.",
+    "enrichmentNote": "Enrichment framing (the trade-off triangle, NOT a new): Signature-based is fast and cheap with almost no false positives but cannot catch novel attacks and is easiest to bypass. Anomaly-based catches novel attacks on consistent networks but costs more hardware and raises false positives → alert fatigue. Hybrid covers the most ground but is the most expensive and most alert-heavy. There is no free lunch.",
     "fields": [
-      "Sign check (which attack(s) + EK 3.5.E):",
-      "Method + tool recommended (EK 3.5.C; NIDS/NIPS/SIEM):",
-      "Impact you accept on purpose (EK 3.5.D):"
+      "Sign check (which attack(s) 3.5.E):",
+      "Method + tool recommended:",
+      "Impact you accept on purpose:"
     ],
     "scenarios": [
       {
@@ -240,12 +240,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The quiet dashboard  [EK 3.5.B.4]",
+            "label": "Task A - The quiet dashboard",
             "text": "A team cranks its AI alert threshold very high so it almost never alerts, and the dashboard goes quiet. In one sentence your whole group agrees on, explain why a quiet dashboard can mean LESS safety, not more — and what a too-high threshold does to real attacks.",
             "lines": 2
           },
           {
-            "label": "Task B - Which trade-off is hardest to live with?  [EK 3.5.C, 3.5.D]",
+            "label": "Task B - Which trade-off is hardest to live with?",
             "text": "Debate for about 3 minutes: of the three methods — signature-based (fast, cheap, low false positives, but easy to bypass), anomaly-based (catches novel attacks, but costly and false-positive-heavy), and hybrid (best coverage, most expensive, most alerts) — which trade-off is hardest for a real team to actually live with, and what is the realistic cost of choosing wrong? Record your group's ranking and one reason.",
             "lines": 2
           }
@@ -258,7 +258,7 @@
         "items": [
           {
             "label": "The 'we had detection' case",
-            "text": "A research lab ran signature-based detection to save money, kept its database updated, and still got breached by a brand-new attack that no signature matched (a false negative, EK 3.5.D.4). Design the defense: which single detection method would most directly have caught this (EK 3.5.C.4), why did signature-based detection fail here, and when an adversary bypasses detection entirely with NO alert, what should an analyst conclude — and NOT conclude — about whether the network is safe?",
+            "text": "A research lab ran signature-based detection to save money, kept its database updated, and still got breached by a brand-new attack that no signature matched. Design the defense: which single detection method would most directly have caught this, why did signature-based detection fail here, and when an adversary bypasses detection entirely with NO alert, what should an analyst conclude — and NOT conclude — about whether the network is safe?",
             "lines": 4
           },
           {

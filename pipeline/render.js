@@ -921,7 +921,7 @@ function buildAPStrategy(slide, s) {
   const cardH = 4.5;
 
   s.strategies.forEach((st, i) => {
-    const x = M.edge + i * (cardW + gap);
+    const x = M.edge + i * (cardW + 0.3);
     slide.addShape(pres.shapes.RECTANGLE, {
       x, y: cardY, w: cardW, h: cardH,
       fill: { color: C.cardTint }, line: { color: C.border, width: 1 },

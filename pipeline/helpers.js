@@ -136,5 +136,38 @@ const LINKS={
   teacher:    SITE+'/pages/ap-cybersecurity-teacher-resources',
 };
 
-module.exports={C,FONT,MONO,run,p,h1,h2,h3,bullet,numItem,link,code,callout,dataTable,
+// Remove College-Board EK code citations/labels from STUDENT-facing prose, so
+// students name techniques/concepts rather than reciting framework codes. Only
+// run it on strings that actually mention "EK" (callers gate on /EK/).
+const _EKC = '\\d+\\.\\d+\\.[A-Z](?:\\.\\d+)?';
+const _EKCS = '(?:EK\\s*)?' + _EKC + '(?:\\s*(?:[–\\-/,&]|and|to)\\s*(?:EK\\s*)?(?:' + _EKC + '|[A-Z]\\.\\d+|\\.\\d+))*';
+function stripEK(s) {
+  if (!s) return s; let t = s;
+  t = t.replace(new RegExp('\\s*per\\s+(?:the\\s+)?(?:EK\\s*)?(?:' + _EKC + '\\s+)?reasoning', 'gi'), '');
+  t = t.replace(new RegExp('\\s*\\([^()]*EK\\s*' + _EKC + '[^()]*\\)', 'gi'), '');
+  t = t.replace(new RegExp('\\s*\\(\\s*' + _EKCS + '\\s*\\)', 'gi'), '');
+  t = t.replace(new RegExp('\\s*\\[[^\\][]*EK\\s*' + _EKC + '[^\\][]*\\]', 'gi'), '');
+  t = t.replace(new RegExp('\\s*\\[\\s*' + _EKCS + '\\s*\\]', 'gi'), '');
+  t = t.replace(new RegExp('(^|[.?!]\\s+)(?:Using|Citing|Per|Reference|Quoting|Referencing)\\s+' + _EKCS + '\\s*,?\\s*', 'g'), '$1');
+  t = t.replace(new RegExp(',?\\s*(?:and\\s+)?(?:citing|cite|per|under|by|from|via|using|reference|referencing|quote|quoting)\\s+(?:its|the|each|one)?\\s*' + _EKCS, 'gi'), '');
+  t = t.replace(/,?\s*(?:and\s+|then\s+)?(?:cite|citing|name|naming|quote|quoting|give|state|provide|list|including)\s+(?:its|the|each|which|one|every|both)\s+EK(?:'s)?(?:\s+number)?(?:\s+for\s+(?:each|it|each\s+part|what[^,.]*))?/gi, '');
+  t = t.replace(/\s+and\s+(?:its\s+|their\s+)?EK\b/gi, '');
+  t = t.replace(/\s+with\s+(?:its|the|each)\s+EK\b/gi, '');
+  t = t.replace(/\bwhich\s+EK\b/gi, 'what');
+  t = t.replace(/\bthe\s+EK's\b/gi, 'its');
+  t = t.replace(new RegExp('\\b(yet|and|because|since|so|but)\\s+EK\\s*' + _EKC + '\\b(?=\\s+[a-z])', 'gi'), '$1 that capability');
+  t = t.replace(/\s*\(EK\)/gi, '').replace(/\s*\+\s*EK\b/gi, '').replace(/\s+EK\s*:/gi, ':');
+  t = t.replace(new RegExp('\\s*\\bEK\\s*' + _EKC + '\\b', 'g'), '');
+  t = t.replace(/\s*\bEK\b/g, '');
+  t = t.replace(/\s{2,}/g, ' ').replace(/\s+([.,;:?!])/g, '$1').replace(/\(\s*\)/g, '').replace(/\[\s*\]/g, '')
+       .replace(/,\s*,/g, ',').replace(/,\s*\./g, '.').replace(/\s+,/g, ',')
+       .replace(/:\s*\)/g, ')').replace(/\(\s*,/g, '(').replace(/—\s*[,.]/g, '—').replace(/\s+—\s*$/, '').trim();
+  // a removed clause can leave a sentence-end glued to a comma, or a dangling comma after a verb
+  t = t.replace(/([.?!])\s*,/g, '$1').replace(/\b(state|explain|name|give|identify)\s*,\s+/gi, '$1 ')
+       .replace(/—\s*,/g, '—').replace(/,\s*—/g, ' —').replace(/\s{2,}/g, ' ').trim();
+  t = t.replace(/(^|[.?!]\s+)([a-z])/g, (m, p, c) => p + c.toUpperCase());
+  return t;
+}
+
+module.exports={C,FONT,MONO,run,p,h1,h2,h3,bullet,numItem,link,code,callout,dataTable,stripEK,
   spacer,rule,pageBreak,titleBlock,buildDoc,save,LINKS,Paragraph,TextRun,PageBreak};

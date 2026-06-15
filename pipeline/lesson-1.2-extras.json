@@ -171,7 +171,7 @@
       {
         "ek": "Enrichment",
         "pts": 2,
-        "q": "ENRICHMENT: Name one server-side control (not an EK 1.2.C user action) and describe how it would change what this log looks like.",
+        "q": "ENRICHMENT: Name one server-side control and describe how it would change what this log looks like.",
         "answer": "Account lockout would freeze the account after N rapid failures, likely surfacing lockout events in the log; rate limiting would slow guessing so much that a long dictionary becomes impractical — both controls shape whether a failure burst ever appears. (Either control, or anomalous-login alerts, earns credit.)"
       }
     ]
@@ -182,7 +182,7 @@
     "minutes": "~20 min",
     "subtitle": "6 scenarios - Three-Step Method",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-2",
-    "intro": "Six short scenarios. For each, run the EK 1.2.A.2 sign check (which signs are present, which are absent), state the most likely mechanism with its EK, and name the most effective CED defense. Advanced students also name the enrichment attack sub-type.",
+    "intro": "Six short scenarios. For each, run the sign check (which signs are present, which are absent), state the most likely mechanism, and name the most effective CED defense. Advanced students also name the enrichment attack sub-type.",
     "standard": "CB Standard (required): sign check + mechanism + defense for all 6. Enrichment (optional): also name the attack sub-type.",
     "methodHeading": "Three-Step Method - use for every scenario",
     "method": [
@@ -191,12 +191,12 @@
         "Before analyzing, write your gut read. Anchoring your own answer first keeps a convincing wrong option from swaying you."
       ],
       [
-        "Step 2 - Sign check (EK 1.2.A.2)",
+        "Step 2 - Sign check",
         "For each of the three CB signs — many failed attempts in short duration, unusual times, unknown device/IP — write PRESENT or ABSENT with the evidence. Only claim what the scenario shows."
       ],
       [
         "Step 3 - Mechanism + defense",
-        "State what the adversary most likely did (EK 1.2.A.1, 1.2.B.1, 1.2.B.2) and which EK 1.2.C defense most directly breaks that mechanism."
+        "State what the adversary most likely did and what 1.2.C defense most directly breaks that mechanism."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
@@ -297,12 +297,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The quiet breach  [EK 1.2.A.2]",
+            "label": "Task A - The quiet breach",
             "text": "The Rivera log shows ONLY successes — the family found out because game settings changed. Why is a success-only log harder to catch than a log full of failures? Agree on the single best one-sentence answer your group can write.",
             "lines": 2
           },
           {
-            "label": "Task B - Which defense is hardest to live with?  [EK 1.2.C]",
+            "label": "Task B - Which defense is hardest to live with?",
             "text": "Debate for about 3 minutes: of the three CED defenses — password manager with random unique passwords (C.1), no personal info (C.2), MFA everywhere (C.3) — which is hardest for a normal person to sustain, and what is the realistic cost of skipping it? Record your group's ranking and one reason.",
             "lines": 2
           }
@@ -315,7 +315,7 @@
         "items": [
           {
             "label": "The 'did everything right' case",
-            "text": "Marcus had a 'strong-looking' password and never fell for a phishing email — but he reused that password on a site that got breached, and his streaming account was taken over with ONE clean login (Case Study 2). Design the defense: which single change most directly stops this attack, why do the other two CED defenses help less here, and when a login anomaly shows NO failed attempts, what should an analyst conclude — and not conclude — from EK 1.2.A.2?",
+            "text": "Marcus had a 'strong-looking' password and never fell for a phishing email — but he reused that password on a site that got breached, and his streaming account was taken over with ONE clean login (Case Study 2). Design the defense: which single change most directly stops this attack, why do the other two CED defenses help less here, and when a login anomaly shows NO failed attempts, what should an analyst conclude — and not conclude —?",
             "lines": 4
           },
           {

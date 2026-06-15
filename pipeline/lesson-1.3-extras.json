@@ -103,25 +103,25 @@
       {
         "ek": "EK 1.3.B.1",
         "pts": 6,
-        "q": "Incident 1 (coffee shop) and Incident 4 (airport) are both the same CB attack type. Name the attack, quote the defining action in each that proves it, and name the CB defense (with EK) that would have stopped each one BEFORE the credentials were lost.",
+        "q": "Incident 1 (coffee shop) and Incident 4 (airport) are both the same CB attack type. Name the attack, quote the defining action in each that proves it, and name the CB defense (with) that would have stopped each one BEFORE the credentials were lost.",
         "answer": "Both are evil twin attacks (EK 1.3.B.1). Incident 1: the adversary SET UP their own portable router broadcasting an identical SSID with a fake login portal — standing up a look-alike AP is the evil twin signature. Incident 4: the adversary stood up a look-alike AP whose SSID differed only in spelling/casing ('Airport_Free_WiFi' vs. 'AIRPORT-FREE-Wi-Fi'). Defense for both: verify the SSID exactly matches the network you intend to join, character by character, before connecting (EK 1.3.C.3). Verification happens before connection, so it stops the credential capture that occurs at the fake portal; a VPN does not help because the password is handed over at the fake page itself."
       },
       {
         "ek": "EK 1.3.B.2",
         "pts": 4,
-        "q": "Classify Incident 2 (shareholder meeting) by its CB attack name, state the broader CB category it belongs to, and explain why NONE of the three EK 1.3.C defenses stop it.",
+        "q": "Classify Incident 2 (shareholder meeting) by its CB attack name state the broader CB category it belongs to, and explain why NONE of the three defenses stop it.",
         "answer": "Incident 2 is a jamming attack (EK 1.3.B.2): a high-power EM signal floods the same frequency range, preventing legitimate traffic between the AP and users. CB classifies this explicitly as a denial-of-service (DoS) attack because it blocks access to a resource. The three EK 1.3.C defenses — SSID verification (C.3), VPN (C.1), and protocol-encryption awareness (C.2) — all protect the confidentiality of data; jamming attacks availability, not confidentiality, so none of them apply. The practical response is to switch bands (5 GHz), go wired, or use cellular data."
       },
       {
         "ek": "EK 1.3.B.3",
         "pts": 4,
-        "q": "Incident 3 (office parking lot) is frequently misclassified as an evil twin. Name the correct CB attack, explain the one detail that rules out evil twin, and state why individual EK 1.3.C defenses do little against it.",
+        "q": "Incident 3 (office parking lot) is frequently misclassified as an evil twin. Name the correct CB attack, explain the one detail that rules out evil twin, and state why individual defenses do little against it.",
         "answer": "Incident 3 is war driving (EK 1.3.B.3): the adversary detects and maps real wireless network beacons from outside the building — SSIDs, encryption types, signal strengths, coordinates — and finds where the signal leaks beyond the perimeter. The detail that rules out evil twin: nothing fake was set up and no connection was attempted; this is passive reconnaissance of real networks, not impersonation. Individual EK 1.3.C defenses do little because there is no connection for the user to verify or encrypt; the real mitigations are organizational (reduce signal leakage, disable SSID broadcast, use strong WPA3 encryption)."
       },
       {
         "ek": "EK 1.3.A.1",
         "pts": 4,
-        "q": "Incidents 1 and 4 are both evil twins, yet they differ in adversary skill. Classify each adversary as low-skilled or high-skilled per EK 1.3.A.1 and justify each with a specific detail from the log.",
+        "q": "Incidents 1 and 4 are both evil twins, yet they differ in adversary skill. Classify each adversary as low-skilled or high-skilled and justify each with a specific detail from the log.",
         "answer": "Incident 1 is the work of a low-skilled adversary (EK 1.3.A.1): a pre-built portable router/portal kit can be purchased online and run with no custom code, which matches 'relies on tools created by others.' Incident 4 is high-skilled: deliberately matching the airport's naming convention down to spelling and casing, running the look-alike AP for hours in a major transit hub, and capturing credentials at scale implies custom equipment, knowledge of the venue, and operational stealth — the capacity to build/modify tools and operate beyond an off-the-shelf kit."
       }
     ],
@@ -131,13 +131,13 @@
       {
         "ek": "EK 1.3.B.1",
         "pts": 3,
-        "q": "The Incident 4 traveler browsed over HTTPS and was still compromised. Explain why HTTPS did not protect the email login, citing EK 1.3.B.1.",
+        "q": "The Incident 4 traveler browsed over HTTPS and was still compromised. Explain why HTTPS did not protect the email login.",
         "answer": "EK 1.3.B.1 says an adversary cannot READ traffic that uses an encrypted protocol like HTTPS — that defeats passive eavesdropping on content. But the traveler typed their password into a fake login page served by the attacker's own access point. HTTPS faithfully encrypted that submission and delivered it straight to the attacker's server; the credentials were handed over, not intercepted. HTTPS stops eavesdropping, not credential harvesting on a fake page."
       },
       {
         "ek": "EK 1.3.C.1",
         "pts": 3,
-        "q": "A colleague says 'just use a VPN on public Wi-Fi and you are safe.' Using EK 1.3.C.1, name one thing a VPN does protect against and one thing it does not.",
+        "q": "A colleague says 'just use a VPN on public Wi-Fi and you are safe.', name one thing a VPN does protect against and one thing it does not.",
         "answer": "Per EK 1.3.C.1 a VPN encrypts all traffic from your device to the VPN operator's system, so a local attacker on the same Wi-Fi cannot read it — that is real protection against passive local interception. But the VPN provider itself can view the traffic, so a VPN shifts trust rather than eliminating it; and a VPN gives zero protection if you submit credentials to a fake/phishing login page, because you handed the password over willingly."
       }
     ]
@@ -148,17 +148,17 @@
     "minutes": "25 minutes",
     "subtitle": "3 clients - Scenario 1C",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-exercise-2",
-    "intro": "You are a network security consultant. Three clients need advice on public Wi-Fi. Client 1 is CB Scenario 1C (Verifying Network Authenticity). For each client, name the most likely wireless threat, recommend CB-required defenses BY NAME AND EK, and explain WHY each defense addresses that client's specific risk. Vague 'be careful' advice scores zero.",
-    "standard": "CB Standard (required): name the threat + recommend the matching EK 1.3.C defense(s) + tie each to the mechanism, for all 3 clients. Enrichment (optional): name the active-vs-passive sub-type of the attack.",
+    "intro": "You are a network security consultant. Three clients need advice on public Wi-Fi. Client 1 is CB Scenario 1C (Verifying Network Authenticity). For each client, name the most likely wireless threat, recommend CB-required defenses BY NAME and explain WHY each defense addresses that client's specific risk. Vague 'be careful' advice scores zero.",
+    "standard": "CB Standard (required): name the threat + recommend the matching defense(s) + tie each to the mechanism, for all 3 clients. Enrichment (optional): name the active-vs-passive sub-type of the attack.",
     "methodHeading": "Three-Step Method - use for every client",
     "method": [
       [
         "Step 1 - Name the threat",
-        "Identify the CB wireless attack the client most likely faces (evil twin, jamming/DoS, or war driving) and cite its EK 1.3.B number."
+        "Identify the CB wireless attack the client most likely faces (evil twin, jamming/DoS, or war driving) number."
       ],
       [
         "Step 2 - Match the defense",
-        "Pick the EK 1.3.C defense(s) that break THIS threat's mechanism: SSID verification (C.3), VPN (C.1), or protocol-encryption awareness (C.2). Layer them when more than one applies."
+        "Pick the defense(s) that break THIS threat's mechanism: SSID verification (C.3), VPN (C.1), or protocol-encryption awareness (C.2). Layer them when more than one applies."
       ],
       [
         "Step 3 - Justify + warn",
@@ -168,8 +168,8 @@
     "enrichmentHeading": "Enrichment — beyond CB-required content",
     "enrichmentNote": "Enrichment sub-types (NOT required by the CED for Topic 1.3): Active attacks create or modify traffic (evil twin sets up a fake AP and serves a fake page; jamming floods the band). Passive attacks only observe (war driving detects and maps real beacons; packet sniffing reads traffic). Encryption defeats passive interception; active attacks need verification, availability, or out-of-band defenses.",
     "fields": [
-      "Most likely attack (name + EK 1.3.B):",
-      "Defense(s) recommended (EK 1.3.C):",
+      "Most likely attack:",
+      "Defense(s) recommended:",
       "Limitation to warn the client about:"
     ],
     "scenarios": [
@@ -233,12 +233,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The HTTPS trap  [EK 1.3.B.1]",
+            "label": "Task A - The HTTPS trap",
             "text": "The airport victim (Incident 4) used HTTPS and was still compromised. In one sentence your whole group agrees on, explain exactly what HTTPS did protect and what it did NOT protect against in an evil twin attack.",
             "lines": 2
           },
           {
-            "label": "Task B - Which defense is hardest to live with?  [EK 1.3.C]",
+            "label": "Task B - Which defense is hardest to live with?",
             "text": "Debate for about 3 minutes: of the three CED defenses — SSID verification (C.3), VPN (C.1), and protocol-encryption awareness (C.2) — which is hardest for a normal person to actually do every time, and what is the realistic cost of skipping it? Record your group's ranking and one reason.",
             "lines": 2
           }
@@ -251,7 +251,7 @@
         "items": [
           {
             "label": "The 'did everything right' case",
-            "text": "A remote worker used a VPN at a hotel and still got their email taken over (Client 2). Design the defense: which single CB action would most directly have stopped this, why did the VPN not save them (EK 1.3.C.1), and when a user who 'used a VPN' is still compromised, what should an analyst conclude — and NOT conclude — about where the credentials were lost?",
+            "text": "A remote worker used a VPN at a hotel and still got their email taken over (Client 2). Design the defense: which single CB action would most directly have stopped this, why did the VPN not save them, and when a user who 'used a VPN' is still compromised, what should an analyst conclude — and NOT conclude — about where the credentials were lost?",
             "lines": 4
           },
           {

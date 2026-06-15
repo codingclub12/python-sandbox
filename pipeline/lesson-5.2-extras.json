@@ -54,9 +54,9 @@
     "title": "Access Control / Data Classification Identifier",
     "minutes": "25 minutes",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-2-exercise-1",
-    "intro": "You are a data protection analyst. A worklog of five cases just landed on your desk. For each one you will name the data classification or the access control model that fits, cite the law/standard or the EK, and justify it from the specific detail in the row. Part A works the case log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.2.A and 5.2.C.",
+    "intro": "You are a data protection analyst. A worklog of five cases just landed on your desk. For each one you will name the data classification or the access control model that fits, cite the law/standard or the, and justify it from the specific detail in the row. Part A works the case log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.2.A and 5.2.C.",
     "scenarioTitle": "Case Log: Five Data-Protection Decisions",
-    "narrative": "Five cases crossed your desk this week. Your team logged each one with the situation, the data or access detail, the question it raises, and the decision owner. Read the log row by row, then answer Part A. Use the three-step method: name the data classification (PII/PHI/PCI) or the access control model (RBAC/RuBAC/DAC/MAC) the case turns on, cite the governing law or EK, then justify it from the row.",
+    "narrative": "Five cases crossed your desk this week. Your team logged each one with the situation, the data or access detail, the question it raises, and the decision owner. Read the log row by row, then answer Part A. Use the three-step method: name the data classification (PII/PHI/PCI) or the access control model (RBAC/RuBAC/DAC/MAC) the case turns on, cite the governing law or, then justify it from the row.",
     "log": {
       "columns": [
         "Case",
@@ -110,7 +110,7 @@
       {
         "ek": "EK 5.2.C.2 / 5.2.C.3",
         "pts": 4,
-        "q": "Case 3 names the access control model directly, but a layered model is frequently added on top of it. Name the model in Case 3 with its EK, name the model most often layered on top of it, and explain the one-word difference between the two.",
+        "q": "Case 3 names the access control model directly, but a layered model is frequently added on top of it. Name the model in Case 3, name the model most often layered on top of it, and explain the one-word difference between the two.",
         "answer": "Case 3 is role-based access control (RBAC, EK 5.2.C.2): every subject is assigned to a role and roles define access — only the 'accountant' role may open payroll, so access keys on WHO you are. The model most often layered on top is rule-based access control (RuBAC, EK 5.2.C.3), which checks a set of rules — e.g., blocking access outside working hours — and is typically layered on top of another model. The one-word difference: RBAC decides by ROLE (who you are), RuBAC decides by RULE (what the conditions are)."
       },
       {
@@ -132,13 +132,13 @@
       {
         "ek": "EK 5.2.A.2",
         "pts": 3,
-        "q": "The Case 1 charts exist in three states at once: backed up on a drive, emailed to a specialist, and open on a nurse's screen. Name each state and its matching protection, and explain why the on-screen copy cannot simply be left encrypted. Cite EK 5.2.A.2.",
+        "q": "The Case 1 charts exist in three states at once: backed up on a drive, emailed to a specialist, and open on a nurse's screen. Name each state and its matching protection, and explain why the on-screen copy cannot simply be left encrypted..",
         "answer": "On the backup drive the data is AT REST — protect the physical drive and encrypt it so a thief cannot read it. Emailed across the internet it is IN TRANSIT — protect the media and encrypt it so an interceptor cannot read it. Open on the nurse's screen it is IN USE — protected by access controls that limit who may view or edit it. The on-screen copy cannot stay encrypted because EK 5.2.A.2 states data must be unencrypted to be used: a person literally cannot read ciphertext, so access controls, not encryption, guard data in use."
       },
       {
         "ek": "EK 5.2.A.3 / 5.2.A.5",
         "pts": 3,
-        "q": "A public marketing brochure and a patient's PHI live on the same server. Explain, citing EK 5.2.A.3, why the organization spends more securing the PHI, and state what EK 5.2.A.5 requires the organization to do with the regulated data specifically.",
+        "q": "A public marketing brochure and a patient's PHI live on the same server. Explain why the organization spends more securing the PHI, and state what requires the organization to do with the regulated data specifically.",
         "answer": "EK 5.2.A.3 says organizations categorize data by sensitivity and prioritize a higher degree of security for more sensitive information, so the PHI — which can harm a patient and triggers legal duties — gets stronger protection than an unregulated brochure, which is not sensitive. EK 5.2.A.5 adds that organizations collecting regulated data must LABEL it and maintain policies that comply with the legal or regulatory requirements for its safe storage, transmission, and handling — labeling and compliance policies are required for the PHI, not the brochure."
       }
     ]
@@ -155,19 +155,19 @@
     "method": [
       [
         "Step 1 - Read the requirement",
-        "Decide, per least privilege (EK 5.2.C.7), exactly what each entity needs: owner, group, others. No more access than the function requires."
+        "Decide, per least privilege, exactly what each entity needs: owner, group, others. No more access than the function requires."
       ],
       [
         "Step 2 - Write the rwx string",
-        "Translate to nine characters in owner-group-other order (EK 5.2.D.3), using a dash for each absent permission (EK 5.2.D.2)."
+        "Translate to nine characters in owner-group-other order, using a dash for each absent permission."
       ],
       [
         "Step 3 - Give both chmod commands",
-        "Numeric (EK 5.2.D.6): sum 4 read + 2 write + 1 execute per entity. Symbolic (EK 5.2.D.7): u/g/o/a with +/- and r/w/x. Show the digit math."
+        "Numeric: sum 4 read + 2 write + 1 execute per entity. Symbolic: u/g/o/a with +/- and r/w/x. Show the digit math."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 5.2): after setting permissions, ls -l shows the resulting string; a trailing + means extra ACL permissions exist that getfacl reveals (EK 5.2.D.4). Spotting a + that grants access nobody needs is least privilege enforcement made visible.",
+    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 5.2): after setting permissions, ls -l shows the resulting string; a trailing + means extra ACL permissions exist that getfacl reveals. Spotting a + that grants access nobody needs is least privilege enforcement made visible.",
     "fields": [
       "Permission string (owner / group / other):",
       "Numeric chmod command (show 4+2+1 math):",
@@ -234,12 +234,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - Write up, read down  [EK 5.2.C.6]",
+            "label": "Task A - Write up, read down",
             "text": "Under Bell-LaPadula a Top Secret analyst CAN read an Unclassified memo but CANNOT write Top Secret content into it. In one sentence your whole group agrees on, explain why 'no write down' protects secrets even though it feels backwards that higher clearance can't write to lower files.",
             "lines": 2
           },
           {
-            "label": "Task B - Which is hardest to live with?  [EK 5.2.C.7]",
+            "label": "Task B - Which is hardest to live with?",
             "text": "Debate for about 3 minutes: of the access control ideas — RBAC by role, RuBAC layered rules, DAC owner discretion, MAC strict levels — which is hardest for a real organization to maintain alongside the principle of least privilege, and what is the realistic cost of getting it wrong? Record your group's ranking and one reason.",
             "lines": 2
           }

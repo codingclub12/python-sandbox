@@ -56,7 +56,7 @@
     "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-1-exercise-1",
     "intro": "You are a SOC analyst at a medical clinic running the unit anchor, Protecting Patient Medical Data. Five network incidents hit your monitoring board this morning. For each one you will name the CB attack, state what it targets, and name the category of harm. Part A works the incident log; Part B extends the same skills. Everything maps to CB Learning Objectives 3.1.A and 3.1.B.",
     "scenarioTitle": "Incident Log: Five Clinic Network Events",
-    "narrative": "Five network incidents were captured on the clinic's monitoring board this week. Each row records where it was observed, the technical signature your sensors saw, and the visible effect on staff or patients. Read the log row by row, then answer Part A. Use the two-column habit from class: for every incident, lock onto WHAT it targets and the CATEGORY of harm it causes, then the EK falls right out.",
+    "narrative": "Five network incidents were captured on the clinic's monitoring board this week. Each row records where it was observed, the technical signature your sensors saw, and the visible effect on staff or patients. Read the log row by row, then answer Part A. Use the two-column habit from class: for every incident, lock onto WHAT it targets and the CATEGORY of harm it causes, then the falls right out.",
     "log": {
       "columns": [
         "ID",
@@ -138,13 +138,13 @@
       {
         "ek": "EK 3.1.B.3",
         "pts": 3,
-        "q": "Incident 5 is a vulnerability, not one of the four named attacks. Name the EK 3.1.B vulnerability it shows, name the single safeguard that would most directly have stopped it, and explain why an edge firewall would not have helped.",
+        "q": "Incident 5 is a vulnerability, not one of the four named attacks. 3.1.B vulnerability it shows, name the single safeguard that would most directly have stopped it, and explain why an edge firewall would not have helped.",
         "answer": "Incident 5 is physical port access (EK 3.1.B.3): an adversary who physically plugs into a data port reaches the LAN through the switch port unless port security is enabled, which then allows DoS, MAC flooding, or MAC spoofing from inside. The safeguard is port security on the switch, which restricts which devices a port will accept. An edge firewall would not help because the firewall guards traffic crossing the network edge, not a device already attached inside the perimeter — once the laptop is plugged into an internal port it is behind the firewall, attacking the switch directly."
       },
       {
         "ek": "EK 3.1.B.6",
         "pts": 3,
-        "q": "Compare two ways an adversary could reach the clinic's wireless LAN: picking up leaking signals from outside (EK 3.1.B.4) versus planting a rogue access point on an open port (EK 3.1.B.6). How does each work, and which one bypasses the firewall entirely?",
+        "q": "Compare two ways an adversary could reach the clinic's wireless LAN: picking up leaking signals from outside versus planting a rogue access point on an open port. How does each work, and which one bypasses the firewall entirely?",
         "answer": "Leaking signals (EK 3.1.B.4): an access point broadcasting beyond the building's walls lets an adversary standing outside pick up signals and beacon frames to gather information and attempt eavesdropping and cryptographic attacks — passive reconnaissance from outside, with no device planted. A rogue access point (EK 3.1.B.6): the adversary plugs a wireless access point into an open internal network port, creating direct wireless access to the LAN, even from the parking lot. The rogue access point bypasses the firewall entirely, because a device attached inside the network does not cross the edge the firewall guards; leaking signals do not bypass the firewall but expose information that was already radiating outside."
       }
     ]
@@ -155,27 +155,27 @@
     "minutes": "25 minutes",
     "subtitle": "3 findings - High / Moderate / Low",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-1-exercise-2",
-    "intro": "You are documenting the security assessment for the clinic's network (unit anchor: Protecting Patient Medical Data). Three findings came back from the assessment. For each, name the vulnerability with its EK 3.1.B number, then rate the risk HIGH, MODERATE, or LOW by weighing impact (confidentiality, integrity, availability) against likelihood of exploitation, and justify the rating. A bare label with no impact-and-likelihood justification scores zero.",
-    "standard": "CB Standard (required): name the vulnerability + EK, rate the risk H/M/L, and justify with impact x likelihood for all 3 findings. Enrichment (optional): name the specific named attack (EK 3.1.A) the vulnerability most directly invites.",
+    "intro": "You are documenting the security assessment for the clinic's network (unit anchor: Protecting Patient Medical Data). Three findings came back from the assessment. For each, name the vulnerability 3.1.B number, then rate the risk HIGH, MODERATE, or LOW by weighing impact (confidentiality, integrity, availability) against likelihood of exploitation, and justify the rating. A bare label with no impact-and-likelihood justification scores zero.",
+    "standard": "CB Standard (required): name the vulnerability, rate the risk H/M/L, and justify with impact x likelihood for all 3 findings. Enrichment (optional): name the specific named attack the vulnerability most directly invites.",
     "methodHeading": "Three-Step Method - use for every finding",
     "method": [
       [
-        "Step 1 - Name the vulnerability + EK",
-        "Identify the EK 3.1.B weakness the finding describes (missing firewall, lateral movement, open port, leaking signals, unauthenticated join, rogue AP, or breakable encryption) and cite its EK number."
+        "Step 1 - Name the vulnerability",
+        "Identify the weakness the finding describes (missing firewall, lateral movement, open port, leaking signals, unauthenticated join, rogue AP, or breakable encryption)."
       ],
       [
-        "Step 2 - Weigh impact (EK 3.1.C.1)",
+        "Step 2 - Weigh impact",
         "State which of confidentiality, integrity, and availability the exploit threatens — interception/alteration of data, a DoS, or lateral movement to more sensitive systems — and how severe that impact would be."
       ],
       [
-        "Step 3 - Weigh likelihood + rate (EK 3.1.C.3–C.6)",
-        "Judge how hard the exploit is (harder = less likely), combine impact x likelihood, and write the rating HIGH (EK 3.1.C.4), MODERATE (EK 3.1.C.5), or LOW (EK 3.1.C.6) with a one-line justification."
+        "Step 3 - Weigh likelihood + rate",
+        "Judge how hard the exploit is (harder = less likely), combine impact x likelihood, and write the rating HIGH, MODERATE, or LOW with a one-line justification."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Automated vulnerability scanners (EK 3.1.C.2) check networks, devices, and applications for known vulnerabilities and return a report listing each finding, its severity, and mitigation recommendations — that is where these findings come from. Enrichment naming (NOT required by the CED for the rating): tie each vulnerability to the named EK 3.1.A attack it most directly invites — e.g., an open port invites MAC flooding (A.2) and MAC spoofing; weak Wi-Fi encryption invites eavesdropping after it is broken.",
+    "enrichmentNote": "Automated vulnerability scanners check networks, devices, and applications for known vulnerabilities and return a report listing each finding, its severity, and mitigation recommendations — that is where these findings come from. Enrichment naming (NOT required by the CED for the rating): tie each vulnerability to the named attack it most directly invites — e.g. An open port invites MAC flooding (A.2) and MAC spoofing; weak Wi-Fi encryption invites eavesdropping after it is broken.",
     "fields": [
-      "Vulnerability + EK:",
+      "Vulnerability:",
       "Risk rating (H/M/L):",
       "Justification (impact x likelihood):"
     ],
@@ -240,12 +240,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - It never read a thing  [EK 3.1.A.4]",
-            "text": "A smurf attack can take the clinic's records server completely offline, yet it never reads one patient record. In one sentence your whole group agrees on, explain why a denial-of-service attack is dangerous EVEN THOUGH it steals no data, and why that makes it a different category from MAC flooding (EK 3.1.A.2).",
+            "label": "Task A - It never read a thing",
+            "text": "A smurf attack can take the clinic's records server completely offline, yet it never reads one patient record. In one sentence your whole group agrees on, explain why a denial-of-service attack is dangerous EVEN THOUGH it steals no data, and why that makes it a different category from MAC flooding.",
             "lines": 2
           },
           {
-            "label": "Task B - Same layer, different attack  [EK 3.1.A.1 vs A.2]",
+            "label": "Task B - Same layer, different attack",
             "text": "Debate for about 3 minutes: ARP poisoning and MAC flooding both live at Layer 2 and both involve MAC addresses, but they target different things and cause different harm. Agree on the single clearest one-sentence test your group could give a classmate to tell them apart, naming the target and the category for each.",
             "lines": 2
           }
@@ -258,7 +258,7 @@
         "items": [
           {
             "label": "Rate it and defend it",
-            "text": "The clinic runs one flat, unsegmented network reachable over weak Wi-Fi encryption, with the patient-database server on it (EK 3.1.C.4). Design the assessment: rate the risk high, moderate, or low, justify it using BOTH impact (EK 3.1.C.1) and likelihood (EK 3.1.C.3), name the single change that would most reduce the rating, and explain why 'there is a known vulnerability' is not by itself enough to call something high risk.",
+            "text": "The clinic runs one flat, unsegmented network reachable over weak Wi-Fi encryption, with the patient-database server on it. Design the assessment: rate the risk high, moderate, or low, justify it using BOTH impact and likelihood, name the single change that would most reduce the rating, and explain why 'there is a known vulnerability' is not by itself enough to call something high risk.",
             "lines": 4
           },
           {

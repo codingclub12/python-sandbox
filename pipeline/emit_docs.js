@@ -12,7 +12,16 @@
 const fs = require('fs');
 const H = require('./helpers');
 const { p, h1, h2, h3, bullet, numItem, link, callout, dataTable, spacer, rule, pageBreak,
-        titleBlock, buildDoc, save, run, C, Paragraph, TextRun } = H;
+        titleBlock, buildDoc, save, run, C, Paragraph, TextRun, stripEK } = H;
+
+// Deep copy of a slide with every string EK-stripped — used to render STUDENT
+// notes (the KEY keeps EK codes; slides themselves keep them too).
+function deepStripEK(o) {
+  if (typeof o === 'string') return /\bEK\b/.test(o) ? stripEK(o) : o;
+  if (Array.isArray(o)) return o.map(deepStripEK);
+  if (o && typeof o === 'object') { const r = {}; for (const k in o) r[k] = deepStripEK(o[k]); return r; }
+  return o;
+}
 const { auditQuiz, HARDER_KINDS, PREDICT_OK, letterToIndex, LETTERS } = require('./quiz_audit');
 const { BorderStyle } = require('docx');
 
@@ -102,7 +111,9 @@ function emitNotes() {
   let enrichmentHeaderEmitted = false;
 
   // Mirror render.js: CB track drops enrichment slides entirely.
-  const slides = (track === 'cb') ? data.slides.filter(s => s.track !== 'enrichment') : data.slides;
+  let slides = (track === 'cb') ? data.slides.filter(s => s.track !== 'enrichment') : data.slides;
+  // STUDENT packet hides EK framework codes; the KEY keeps them for alignment.
+  if (!isKey) slides = slides.map(deepStripEK);
 
   for (const s of slides) {
     // Open an Enrichment section the first time we hit deep-dive-only content
@@ -128,19 +139,20 @@ function emitNotes() {
         break;
 
       case 'vocab': {
-        // EK numbers pulled OUT of the definition into a column that stays visible
-        // even in student mode, so Stop-and-Think EK citations are answerable.
+        // The EK column is a CB-alignment aid for the teacher: show it on the KEY,
+        // drop it from the STUDENT packet (students learn terms, not framework codes).
+        const termCell = term => [ new Paragraph({ spacing: { after: 0 }, children: [ new TextRun({ text: term, bold: true, color: C.NAVY, size: 20 }) ] }) ];
+        const ekCell = txt => [ new Paragraph({ spacing: { after: 0 }, children: [ new TextRun({ text: txt, color: C.PURPLE, size: 18 }) ] }) ];
         const rows = s.terms.map(t => {
           const eks = (t.definition.match(/\(EK[^)]*\)/g) || []).map(x => x.replace(/^\(|\)$/g, ''));
           const ekText = eks.length ? eks.join('; ') : '\u2014';
           const defText = t.definition.replace(/\s*\(EK[^)]*\)/g, '').replace(/\s+([.;,])/g, '$1').replace(/\s{2,}/g, ' ').trim();
-          return [
-            [ new Paragraph({ spacing: { after: 0 }, children: [ new TextRun({ text: t.term, bold: true, color: C.NAVY, size: 20 }) ] }) ],
-            [ new Paragraph({ spacing: { after: 0 }, children: [ new TextRun({ text: ekText, color: C.PURPLE, size: 18 }) ] }) ],
-            [ answerPara(defText, { after: 0 }) ],
-          ];
+          return isKey
+            ? [ termCell(t.term), ekCell(ekText), [ answerPara(defText, { after: 0 }) ] ]
+            : [ termCell(t.term), [ answerPara(defText, { after: 0 }) ] ];
         });
-        k.push(dataTable(['Term', 'EK', 'Definition'], rows, [2600, 1700, 5580]));
+        if (isKey) k.push(dataTable(['Term', 'EK', 'Definition'], rows, [2600, 1700, 5580]));
+        else       k.push(dataTable(['Term', 'Definition'], rows, [3000, 6880]));
         break;
       }
 
@@ -244,14 +256,18 @@ function emitQuiz() {
   }
   if (!audit.pass && force) console.error('  (--force) emitting despite ' + audit.hardFails.length + ' hard failure(s).');
 
+  // Audit ran on the original; the STUDENT copy renders with EK codes stripped
+  // from stems/options (the KEY keeps them). Answer letters are unaffected.
+  const rquiz = isKey ? quiz : deepStripEK(quiz);
+
   const k = [];
   k.push(...titleBlock(
     'Quiz \u2022 Lesson ' + meta.lessonId + (isKey ? ' \u2022 ANSWER KEY' : ''),
-    quiz.title || (meta.lessonTitle + ' \u2014 Lesson Quiz'),
+    rquiz.title || (meta.lessonTitle + ' \u2014 Lesson Quiz'),
     isKey ? 'Teacher copy \u2014 correct answer in purple, rationale below each item.'
           : 'Name: __________________________   Period: ______   Date: __________'
   ));
-  if (quiz.instructions) k.push(p([run(quiz.instructions, { italics: true, color: C.GRAY })]));
+  if (rquiz.instructions) k.push(p([run(rquiz.instructions, { italics: true, color: C.GRAY })]));
 
   if (isKey) {
     const seq = audit.stats.keySequence.split('-').map((L, i) => (i + 1) + '-' + L).join('    ');
@@ -263,7 +279,7 @@ function emitQuiz() {
     ], 'tip'));
   }
 
-  quiz.questions.forEach((q, i) => {
+  rquiz.questions.forEach((q, i) => {
     const ai = letterToIndex(q.answer);
     const kind = (q.kind || 'recall').toLowerCase();
 

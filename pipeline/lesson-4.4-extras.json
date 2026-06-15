@@ -110,7 +110,7 @@
       {
         "ek": "EK 4.4.A.4 / 4.4.A.5 / 4.4.A.6",
         "pts": 6,
-        "q": "Findings 3 and 4 are NOT in the authentication log. For EACH, name the CED IoC type, cite its EK, and quote the defining detail from the table that proves the type. Then explain the one-word source test that separates host-based from file-based.",
+        "q": "Findings 3 and 4 are NOT in the authentication log. For EACH, name the CED IoC type, and quote the defining detail from the table that proves the type. Then explain the one-word source test that separates host-based from file-based.",
         "answer": "Finding 3 is a file-based IoC (EK 4.4.A.5): it was discovered by analyzing a file on the device — an executable whose hash matches known malware AND a file path associated with malicious activity, both CED file-based examples. Finding 4 is a host-based IoC (EK 4.4.A.4): it was discovered in system configuration settings — an unauthorized change to configuration plus an unexpected service, both CED host-based examples. The source test: file-based comes from analyzing FILES (usually executables); host-based comes from analyzing LOGS and CONFIGURATION SETTINGS. The tell is where the evidence was found, not what it suggests."
       },
       {
@@ -122,13 +122,13 @@
       {
         "ek": "EK 4.4.D.3",
         "pts": 4,
-        "q": "Finding 2 is frequently confused with Finding 1. Name the attack in Finding 2, cite its EK, and state the one detail that distinguishes its signature from an online password attack.",
+        "q": "Finding 2 is frequently confused with Finding 1. Name the attack in Finding 2, and state the one detail that distinguishes its signature from an online password attack.",
         "answer": "Finding 2 is password spraying (EK 4.4.D.3): the indicator is MANY DIFFERENT users trying to log in within seconds of each other from one IP (or unusual IPs). The distinguishing detail is the breadth of usernames: an online password attack (EK 4.4.D.1) is ONE user account attempting many wrong passwords, whereas spraying spreads across many distinct accounts from a single source. Same IP, opposite username pattern."
       },
       {
         "ek": "EK 4.4.D.4",
         "pts": 4,
-        "q": "Finding 5 shows admin:admin and root:root tried in quick succession. Name the attack, cite its EK, and explain why the specific CONTENT of the attempts — not just the speed — is what fixes the classification.",
+        "q": "Finding 5 shows admin:admin and root:root tried in quick succession. Name the attack, and explain why the specific CONTENT of the attempts — not just the speed — is what fixes the classification.",
         "answer": "Finding 5 is credential stuffing (EK 4.4.D.4): the indicator is a series of DEFAULT user:password combinations attempted in quick succession, often from the same IP. Speed alone would not distinguish it from spraying or an online attack — what fixes the classification is the content: admin:admin and root:root are paired default credentials, so the adversary is reusing known default pairs rather than guessing passwords for one account (online) or hitting many accounts with a common password (spraying)."
       }
     ],
@@ -144,13 +144,13 @@
       {
         "ek": "EK 4.4.C.3",
         "pts": 3,
-        "q": "The server in this scenario runs signature-based detection, which raised few false alarms all week. A colleague concludes it must also be the hardest detection for an adversary to evade. Using EK 4.4.C.3, explain why that conclusion is wrong.",
+        "q": "The server in this scenario runs signature-based detection, which raised few false alarms all week. A colleague concludes it must also be the hardest detection for an adversary to evade. Explain why that conclusion is wrong.",
         "answer": "EK 4.4.C.3 keeps these as two SEPARATE trade-offs. Signature-based detection does have a low rate of false positives — that is a reliability claim. But signature-based detection is also EASIER for adversaries to bypass, because it matches known signatures and novel variants slip past — that is a security claim. A low false-positive rate says nothing about resistance to evasion, so the colleague has fused two independent facts."
       },
       {
         "ek": "Enrichment",
         "pts": 2,
-        "q": "ENRICHMENT: Findings 4 and 1 each illustrate a different attack PHASE concern. Using EK 4.4.C.2, explain why catching any of these indicators at the device level matters in terms of what the adversary already had to bypass.",
+        "q": "ENRICHMENT: Findings 4 and 1 each illustrate a different attack PHASE concern. Explain why catching any of these indicators at the device level matters in terms of what the adversary already had to bypass.",
         "answer": "Per EK 4.4.C.2, to act on a device an adversary must first bypass a combination of physical- or network-layer protective, deterrent, and detective controls. By the time an indicator appears on this server (a config change in Finding 4, a login burst in Finding 1), the adversary is already past those outer layers, so device-level detection is the last line that can prevent access to sensitive data or disruption of critical services. (Credit for naming the bypassed outer-layer controls and the device level as the final catch point.)"
       }
     ]
@@ -161,8 +161,8 @@
     "minutes": "25 minutes",
     "subtitle": "3 clients - Three-Step Method",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-4-exercise-2",
-    "intro": "You are a device-detection consultant. Three clients need advice on detecting attacks on their devices. For each client, read the signs in the situation, recommend a detection approach justified by performance, cost, or sensitivity BY NAME AND EK, and — where an auth log is involved — name the password attack from its signature. Vague 'just monitor more' advice scores zero.",
-    "standard": "CB Standard (required): read the signs + choose/justify a detection control (EK 4.4.B) or evaluate its impact (EK 4.4.C) + name any password attack from its log signature (EK 4.4.D), for all 3 clients. Enrichment (optional): also name the IoC sub-type the situation best illustrates.",
+    "intro": "You are a device-detection consultant. Three clients need advice on detecting attacks on their devices. For each client, read the signs in the situation, recommend a detection approach justified by performance, cost, or sensitivity BY NAME and — where an auth log is involved — name the password attack from its signature. Vague 'just monitor more' advice scores zero.",
+    "standard": "CB Standard (required): read the signs + choose/justify a detection control or evaluate its impact + name any password attack from its log signature, for all 3 clients. Enrichment (optional): also name the IoC sub-type the situation best illustrates.",
     "methodHeading": "Three-Step Method - use for every client",
     "method": [
       [
@@ -171,18 +171,18 @@
       ],
       [
         "Step 2 - Choose / evaluate the control",
-        "Pick or judge the detection approach using the CED criteria — performance (EK 4.4.B.1), cost/EDR (EK 4.4.B.2), sensitivity/hybrid (EK 4.4.B.3) — and the impact factors speed (EK 4.4.C.1), attack phase (EK 4.4.C.2), false positives vs. bypass (EK 4.4.C.3)."
+        "Pick or judge the detection approach using the CED criteria — performance, cost/EDR, sensitivity/hybrid — and the impact factors speed, attack phase, false positives vs. Bypass."
       ],
       [
         "Step 3 - Name the attack + justify",
-        "If an auth log is involved, name the password attack from its signature (online EK 4.4.D.1, compromised account EK 4.4.D.2, spraying EK 4.4.D.3, stuffing EK 4.4.D.4, offline EK 4.4.D.5), then justify why your control fits THIS client's resources and risk."
+        "If an auth log is involved, name the password attack from its signature, then justify why your control fits THIS client's resources and risk."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
     "enrichmentNote": "Enrichment IoC sub-types (the CED's three categories by source): Host-based = found in logs and configuration settings (unexpected processes, unauthorized config changes). File-based = found by analyzing files, usually executables (hash matches known malware, malicious file path). Behavior-based = found in authentication and access logs (failed-login bursts, unusual login times/locations, privilege-elevation attempts). The source of the evidence decides the type.",
     "fields": [
-      "Detection approach + criterion (EK 4.4.B / 4.4.C):",
-      "Password attack from the log signature (EK 4.4.D), if any:",
+      "Detection approach + criterion:",
+      "Password attack from the log signature, if any:",
       "Enrichment — IoC sub-type the situation illustrates:"
     ],
     "scenarios": [
@@ -229,7 +229,7 @@
         "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
         "items": [
           {
-            "text": "Question 1. Logs record system processes, login attempts, file downloads, and user actions (EK 4.4.A.1) — yet most attacks are noticed only after damage shows. Why is reading the evidence trail so hard in practice, and what would it actually take to catch an indicator of compromise EARLY (not just 'check the logs more')?"
+            "text": "Question 1. Logs record system processes, login attempts, file downloads, and user actions — yet most attacks are noticed only after damage shows. Why is reading the evidence trail so hard in practice, and what would it actually take to catch an indicator of compromise EARLY (not just 'check the logs more')?"
           },
           {
             "text": "Question 2. Anomaly-based detection catches more but costs more system resources; signature-based is fast and accurate but easier to bypass. Whose call is it to accept that trade-off — the team buying for a weak embedded device, or the team running a sensitive server? Defend your split with one concrete example."
@@ -246,13 +246,13 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - One user vs. many users  [EK 4.4.D.1 / D.3]",
-            "text": "In the worked auth log, one row was a single user with nine wrong passwords and another was many usernames from one IP within seconds. In one sentence your whole group agrees on, state the single detail that separates an online password attack (EK 4.4.D.1) from password spraying (EK 4.4.D.3).",
+            "label": "Task A - One user vs. Many users",
+            "text": "In the worked auth log, one row was a single user with nine wrong passwords and another was many usernames from one IP within seconds. In one sentence your whole group agrees on, state the single detail that separates an online password attack from password spraying.",
             "lines": 2
           },
           {
-            "label": "Task B - Which trade-off is hardest to accept?  [EK 4.4.B / 4.4.C]",
-            "text": "Debate for about 3 minutes: of the detection trade-offs — performance cost of anomaly-based (EK 4.4.B.1/4.4.C.1), the price of an EDR service (EK 4.4.B.2), and signature-based being easy to bypass despite low false positives (EK 4.4.C.3) — which is hardest for a real organization to live with, and what is the realistic cost of choosing wrong? Record your group's ranking and one reason.",
+            "label": "Task B - Which trade-off is hardest to accept?",
+            "text": "Debate for about 3 minutes: of the detection trade-offs — performance cost of anomaly-based, the price of an EDR service, and signature-based being easy to bypass despite low false positives — which is hardest for a real organization to live with, and what is the realistic cost of choosing wrong? Record your group's ranking and one reason.",
             "lines": 2
           }
         ]
@@ -264,7 +264,7 @@
         "items": [
           {
             "label": "The 'empty log' case",
-            "text": "A partner organization reports that adversaries cracked a stolen password-hash database and took over accounts — yet the target's own authentication logs show NOTHING (EK 4.4.D.5). Design the response: why did this attack leave no trace, what should the analyst conclude — and NOT conclude — from an empty log, and which CED defense (force resets after a hash-database compromise per EK 4.4.D.1) most directly limits the damage once an offline crack is suspected?",
+            "text": "A partner organization reports that adversaries cracked a stolen password-hash database and took over accounts — yet the target's own authentication logs show NOTHING. Design the response: why did this attack leave no trace, what should the analyst conclude — and NOT conclude — from an empty log, and which CED defense most directly limits the damage once an offline crack is suspected?",
             "lines": 4
           },
           {

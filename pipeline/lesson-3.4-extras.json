@@ -54,9 +54,9 @@
     "title": "ACL Rule Tracer",
     "minutes": "25 minutes",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-4-exercise-1",
-    "intro": "You are a network administrator reviewing a firewall's access control list. The ACL below is checked top to bottom, and the FIRST rule that matches a packet is the one that executes (EK 3.4.B.2). Read the table row by row, then trace each test packet through the list and decide ALLOW or DENY and why. Part A works the ACL; Part B extends the same skills. Everything maps to CB Learning Objectives 3.4.B and 3.4.D.",
+    "intro": "You are a network administrator reviewing a firewall's access control list. The ACL below is checked top to bottom, and the FIRST rule that matches a packet is the one that executes. Read the table row by row, then trace each test packet through the list and decide ALLOW or DENY and why. Part A works the ACL; Part B extends the same skills. Everything maps to CB Learning Objectives 3.4.B and 3.4.D.",
     "scenarioTitle": "Firewall ACL: Five Ordered Rules",
-    "narrative": "A small office firewall protects a web server (10.0.0.5) and an internal database (10.0.0.9). The administrator wrote the access control list below. Each rule has a direction, a filter criterion, and an action (EK 3.4.B.3). The firewall checks the rules in the order shown and stops at the first match (EK 3.4.B.2). Read the ACL, then in Part A trace specific inbound packets through it.",
+    "narrative": "A small office firewall protects a web server (10.0.0.5) and an internal database (10.0.0.9). The administrator wrote the access control list below. Each rule has a direction, a filter criterion, and an action. The firewall checks the rules in the order shown and stops at the first match. Read the ACL, then in Part A trace specific inbound packets through it.",
     "log": {
       "columns": [
         "Order",
@@ -144,7 +144,7 @@
       {
         "ek": "EK 3.4.B.1",
         "pts": 3,
-        "q": "A coworker says, 'This ACL only controls traffic coming IN — outbound traffic isn't its job.' Correct this using EK 3.4.B.1.",
+        "q": "A coworker says, 'This ACL only controls traffic coming IN — outbound traffic isn't its job.' Correct this.",
         "answer": "Per EK 3.4.B.1 the access control list is the set of rules a firewall uses to permit or deny BOTH inbound AND outbound network traffic. This particular ACL happens to list only inbound rules, but an ACL can and routinely does govern outbound traffic too (for example, blocking internal hosts from reaching a banned external service). The coworker is confusing what THIS list contains with what an ACL is capable of controlling."
       },
       {
@@ -161,29 +161,29 @@
     "minutes": "25 minutes",
     "subtitle": "3 clients - Requirements to Ordered Rules",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-4-exercise-2",
-    "intro": "You are a firewall consultant. Three clients hand you requirements and ask you to turn them into a correctly ordered ACL. For each client, identify the signs/requirements, state the rules and the ordering mechanism that makes them work, and name the firewall placement or type that fits. Run the EK 3.4.D method on every client. Advanced students also name the firewall-type or placement sub-detail.",
-    "standard": "CB Standard (required): read the requirements + write/order the matching rules (EK 3.4.D) + tie the order to first-match-wins (EK 3.4.B.2), for all 3 clients. Enrichment (optional): also name the firewall type (3.4.A) or placement detail (3.4.C) that applies.",
+    "intro": "You are a firewall consultant. Three clients hand you requirements and ask you to turn them into a correctly ordered ACL. For each client, identify the signs/requirements, state the rules and the ordering mechanism that makes them work, and name the firewall placement or type that fits. Run the method on every client. Advanced students also name the firewall-type or placement sub-detail.",
+    "standard": "CB Standard (required): read the requirements + write/order the matching rules + tie the order to first-match-wins, for all 3 clients. Enrichment (optional): also name the firewall type or placement detail that applies.",
     "methodHeading": "Four-Step Method - use for every client",
     "method": [
       [
         "Step 1 - Read the requirements",
-        "Identify what type of traffic, from which sources, to which destinations should be allowed or denied (EK 3.4.D.1). Write the allow list and the deny list before touching order."
+        "Identify what type of traffic, from which sources, to which destinations should be allowed or denied. Write the allow list and the deny list before touching order."
       ],
       [
         "Step 2 - Build the rules",
-        "For each requirement write a rule with a direction, a criterion (port, IP, service, protocol, or application), and an action (EK 3.4.B.3, EK 3.4.D.2)."
+        "For each requirement write a rule with a direction, a criterion (port, IP, service, protocol, or application), and an action."
       ],
       [
         "Step 3 - Order them",
-        "Put specific ALLOW rules above the broad DENY-all so the first match executes the right action (EK 3.4.B.2). Remember: changing the order can change the outcome (EK 3.4.D.3)."
+        "Put specific ALLOW rules above the broad DENY-all so the first match executes the right action. Remember: changing the order can change the outcome."
       ],
       [
         "Step 4 - Place + classify",
-        "State where the firewall(s) go — each segment and each internet boundary (EK 3.4.C) — and, if it matters, which firewall type the requirement demands (EK 3.4.A)."
+        "State where the firewall(s) go — each segment and each internet boundary — and, if it matters, which firewall type the requirement demands."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment detail (NOT separately required for ordering): match the requirement to the right firewall TYPE. Stateless (EK 3.4.A.2) filters on header fields only; stateful (EK 3.4.A.3) tracks connection state so reply traffic to an allowed outbound request is recognized; NGFW (EK 3.4.A.4) adds intrusion prevention, deep packet inspection, and application-type filtering — the only type that can block a specific app by name rather than by port.",
+    "enrichmentNote": "Enrichment detail (NOT separately required for ordering): match the requirement to the right firewall TYPE. Stateless filters on header fields only; stateful tracks connection state so reply traffic to an allowed outbound request is recognized; NGFW adds intrusion prevention, deep packet inspection, and application-type filtering — the only type that can block a specific app by name rather than by port.",
     "fields": [
       "Requirements → allow list / deny list:",
       "Ordered rules (with first-match justification):",
@@ -250,7 +250,7 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The silent reversal  [EK 3.4.B.2 / 3.4.D.3]",
+            "label": "Task A - The silent reversal",
             "text": "In the worked example, swapping two rules took the network from 'SSH allowed' to 'SSH blocked' with no rule added or removed. In one sentence your whole group agrees on, explain exactly WHY first-match-wins makes order — not the set of rules — decide the outcome.",
             "lines": 2
           },
@@ -268,7 +268,7 @@
         "items": [
           {
             "label": "The 'all the right rules, still broken' case",
-            "text": "An administrator wrote every correct allow rule for a web server AND a correct default-deny — but the web server is unreachable from the internet. Design the fix: which single change most directly restores access, why is adding MORE rules the wrong instinct here, and when legitimate traffic is blocked by a correct-looking ACL, what should an analyst conclude — and NOT conclude — about where the problem is, citing EK 3.4.B.2 and 3.4.D.3?",
+            "text": "An administrator wrote every correct allow rule for a web server AND a correct default-deny — but the web server is unreachable from the internet. Design the fix: which single change most directly restores access, why is adding MORE rules the wrong instinct here, and when legitimate traffic is blocked by a correct-looking ACL, what should an analyst conclude — and NOT conclude — about where the problem is?",
             "lines": 4
           },
           {

@@ -56,7 +56,7 @@
     "online": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-1",
     "intro": "You are on the physical security team at Xtensr Research Labs. Five detection events just landed in the incident log. For each one you will name the CB detection method, state exactly what it detects and the condition it needs, and judge whether it actually caught the adversary. Part A works the log; Part B extends the same skills. Everything maps to CB Learning Objectives 2.4.A, 2.4.B, and 2.4.C.",
     "scenarioTitle": "Xtensr Labs Incident Log: Five Detection Events",
-    "narrative": "Five things happened at the new Xtensr lab this week. The security operations log recorded each event with where it occurred, what the equipment or person reported, and the outcome. Read the log row by row, then answer Part A. Use the method: name the CB detection method (EK 2.4.A.1–A.4), state what it detects and its blind spot, then judge whether it caught the attack.",
+    "narrative": "Five things happened at the new Xtensr lab this week. The security operations log recorded each event with where it occurred, what the equipment or person reported, and the outcome. Read the log row by row, then answer Part A. Use the method: name the CB detection method, state what it detects and its blind spot, then judge whether it caught the attack.",
     "log": {
       "columns": [
         "ID",
@@ -116,13 +116,13 @@
       {
         "ek": "EK 2.4.A.1",
         "pts": 4,
-        "q": "Event 3 (hallway camera) is the trap event: a camera was running yet the intrusion was missed in the moment. Cite EK 2.4.A.1 to explain why recording alone was not enough, and state what the footage WAS still good for.",
+        "q": "Event 3 (hallway camera) is the trap event: a camera was running yet the intrusion was missed in the moment. To explain why recording alone was not enough, and state what the footage WAS still good for.",
         "answer": "EK 2.4.A.1 says a camera feed should be recorded AND monitored for maximum effect, because those are two different jobs. This camera was only recorded and never monitored, so no one could respond while the attack was happening — recording alone is purely an after-the-fact tool. The footage was still valuable for the after-incident investigation: reviewed the next morning, it could reconstruct the adversary's path, timing, and actions. Recording supports investigation; monitoring is what catches the attack live."
       },
       {
         "ek": "EK 2.4.A.2 / EK 2.4.B.4",
         "pts": 4,
-        "q": "Events 4 and 5 both involve the vault, but one detected after the fact and one stopped the attack in real time. Name the method in each, and explain why a stationary guard at this entrance (EK 2.4.B.4) is so effective here.",
+        "q": "Events 4 and 5 both involve the vault, but one detected after the fact and one stopped the attack in real time. Name the method in each, and explain why a stationary guard at this entrance is so effective here.",
         "answer": "Event 4 is badge-log/door-open-time review (EK 2.4.C.3): the door logged open far longer than normal — 14 seconds vs. ~3 — the signature of piggybacking or tailgating, detected after the fact in the entry log. Event 5 is a security guard (EK 2.4.A.2): a guard both monitors an area and can respond to suspicious activity the moment it is detected, so the entry was blocked immediately. A stationary guard (EK 2.4.B.4) is highly effective at the vault because it is a chokepoint that funnels traffic — a specific entrance to a more secure area — exactly where constant, on-the-spot protection pays off."
       }
     ],
@@ -132,13 +132,13 @@
       {
         "ek": "EK 2.4.A.1",
         "pts": 3,
-        "q": "Why is Event 3's 'recorded but never monitored' camera a more dangerous setup than having no camera at all? Cite EK 2.4.A.1.",
+        "q": "Why is Event 3's 'recorded but never monitored' camera a more dangerous setup than having no camera at all?.",
         "answer": "It creates false confidence. The organization believes it is protected because a camera is 'covering' the area, so it stops watching and skips other detection — yet EK 2.4.A.1's monitoring half is missing, so nothing triggers a real-time response. A recorded-only feed detects nothing in the moment; the breach is found only after the damage is done. Believing you are covered when you are not is worse than knowing you have a gap."
       },
       {
         "ek": "EK 2.4.A.4",
         "pts": 3,
-        "q": "Event 2's success depended on a person being present. Explain why an organization cannot rely on employee awareness (EK 2.4.A.4) alone for detection, and what fills the gap.",
+        "q": "Event 2's success depended on a person being present. Explain why an organization cannot rely on employee awareness alone for detection, and what fills the gap.",
         "answer": "EK 2.4.A.4 only works when employees are present and paying attention, so it covers business hours but goes blind overnight, on weekends, and in restricted areas few people enter. The Event 1 server-room intrusion happened at 2:14 a.m. precisely when no employee was there. Equipment-based detection — monitored cameras (A.1), motion sensors in unexpected-traffic areas (A.3/B.2), and guards (A.2) — fills the off-hours gap that the human method cannot cover."
       }
     ]
@@ -149,29 +149,29 @@
     "minutes": "25 minutes",
     "subtitle": "3 areas - Scenario 2A",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-2",
-    "intro": "You are on the physical security team conducting the Scenario 2A vulnerability assessment of the new Xtensr lab. Three areas of the building need a detection recommendation. For each, name the CB detection method(s) that fit, place them correctly BY EK, and explain WHY each placement detects that area's specific risk. Vague 'add cameras' advice scores zero.",
-    "standard": "CB Standard (required): name the method + place it per the matching EK 2.4.B rule + apply the EK 2.4.C technique, for all 3 areas. Enrichment (optional): name whether each method detects LIVE, AFTER-THE-FACT, or both.",
+    "intro": "You are on the physical security team conducting the Scenario 2A vulnerability assessment of the new Xtensr lab. Three areas of the building need a detection recommendation. For each, name the CB detection method(s) that fit, place them correctly BY, and explain WHY each placement detects that area's specific risk. Vague 'add cameras' advice scores zero.",
+    "standard": "CB Standard (required): name the method + place it per the matching rule + apply the technique, for all 3 areas. Enrichment (optional): name whether each method detects LIVE, AFTER-THE-FACT, or both.",
     "methodHeading": "Three-Step Method - use for every area",
     "method": [
       [
         "Step 1 - Name the method",
-        "Identify the CB detection method(s) the area needs — camera (A.1), guard (A.2), motion sensor (A.3), or employees (A.4) — and cite the EK."
+        "Identify the CB detection method(s) the area needs — camera (A.1), guard (A.2), motion sensor (A.3), or employees (A.4)"
       ],
       [
         "Step 2 - Place it correctly",
-        "Apply the EK 2.4.B placement rule: camera coverage/angle/tamper at ingress-egress (B.1), sensor where traffic is unexpected (B.2), locks/vestibule on sensitive entries (B.3), stationary vs. patrolling guard (B.4)."
+        "Apply the placement rule: camera coverage/angle/tamper at ingress-egress (B.1), sensor where traffic is unexpected (B.2), locks/vestibule on sensitive entries (B.3), stationary vs. Patrolling guard (B.4)."
       ],
       [
         "Step 3 - Apply + verify",
-        "Apply the EK 2.4.C technique that turns the device into detection: facial recognition + footage tracking (C.1), motion+camera verification (C.2), badge-log door-open time (C.3). Name one limitation to warn about."
+        "Apply the technique that turns the device into detection: facial recognition + footage tracking (C.1), motion+camera verification (C.2), badge-log door-open time (C.3). Name one limitation to warn about."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 2.4): classify each method as LIVE detection (catches the attack as it happens — a monitored camera, a guard, a motion sensor, an alert employee), AFTER-THE-FACT (helps reconstruct what already happened — recorded camera footage, badge-log review), or BOTH. EK 2.4.A.1 insists a feed be recorded AND monitored precisely because those are two different jobs.",
+    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 2.4): classify each method as LIVE detection (catches the attack as it happens — a monitored camera, a guard, a motion sensor, an alert employee), AFTER-THE-FACT (helps reconstruct what already happened — recorded camera footage, badge-log review), or BOTH. Insists a feed be recorded AND monitored precisely because those are two different jobs.",
     "fields": [
-      "Detection method(s) (name + EK 2.4.A):",
-      "Effective placement (EK 2.4.B):",
-      "Applied technique + one limitation (EK 2.4.C):"
+      "Detection method(s):",
+      "Effective placement:",
+      "Applied technique + one limitation:"
     ],
     "scenarios": [
       {
@@ -234,12 +234,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The false-alarm trap  [EK 2.4.B.2]",
+            "label": "Task A - The false-alarm trap",
             "text": "A motion sensor in a busy lobby fires hundreds of times a day, so security tunes it out — and the one night an adversary trips it, no one responds. In one sentence your whole group agrees on, explain why a badly placed sensor is WORSE than no sensor at all.",
             "lines": 2
           },
           {
-            "label": "Task B - Which control is hardest to keep working?  [EK 2.4.A / 2.4.B]",
+            "label": "Task B - Which control is hardest to keep working?",
             "text": "Debate for about 3 minutes: of the four detection methods — monitored cameras (A.1), guards (A.2), motion sensors (A.3), and alert employees (A.4) — which is hardest for an organization to actually keep working every day, and what is the realistic cost of letting it lapse? Record your group's ranking and one reason.",
             "lines": 2
           }
@@ -252,7 +252,7 @@
         "items": [
           {
             "label": "The 'we had a camera' case",
-            "text": "At Xtensr, a hallway camera recorded all night but no one watched the feed, and an intrusion was only found the next morning (EK 2.4.A.1). Design the fix: which single change would most directly have caught this live, why did 'having a camera' give false confidence, and when a 'covered' space is breached unnoticed, what should an analyst conclude — and NOT conclude — about whether the control was working?",
+            "text": "At Xtensr, a hallway camera recorded all night but no one watched the feed, and an intrusion was only found the next morning. Design the fix: which single change would most directly have caught this live, why did 'having a camera' give false confidence, and when a 'covered' space is breached unnoticed, what should an analyst conclude — and NOT conclude — about whether the control was working?",
             "lines": 4
           },
           {

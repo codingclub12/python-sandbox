@@ -54,9 +54,9 @@
     "title": "Physical Attack Identifier",
     "minutes": "25 minutes",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-exercise-1",
-    "intro": "You are a physical-security analyst. Five incidents from this week's surveillance and access logs are below. For each one you will name the CB physical attack, cite its EK, and identify the social-engineering or access mechanism behind it. Part A works the incident log; Part B extends the same skills to how physical access turns into loss. Everything maps to CB Learning Objectives 2.2.A and 2.2.B.",
+    "intro": "You are a physical-security analyst. Five incidents from this week's surveillance and access logs are below. For each one you will name the CB physical attack, and identify the social-engineering or access mechanism behind it. Part A works the incident log; Part B extends the same skills to how physical access turns into loss. Everything maps to CB Learning Objectives 2.2.A and 2.2.B.",
     "scenarioTitle": "Incident Log: Five Physical-Security Events",
-    "narrative": "Your security operations center logged five events at the office campus this week. Each row records the location, what surveillance or witnesses observed, what the authorized employee did or experienced, and the after-effect. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the defining action (manipulated into granting access, followed unnoticed, watched, trash harvested, or card copied), then match the attack name and EK to that mechanism.",
+    "narrative": "Your security operations center logged five events at the office campus this week. Each row records the location, what surveillance or witnesses observed, what the authorized employee did or experienced, and the after-effect. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the defining action (manipulated into granting access, followed unnoticed, watched, trash harvested, or card copied), then match the attack name to that mechanism.",
     "log": {
       "columns": [
         "ID",
@@ -110,25 +110,25 @@
       {
         "ek": "EK 2.2.A.2 / 2.2.A.3",
         "pts": 6,
-        "q": "Incident 1 (loading dock) and Incident 2 (security door) both end with an unauthorized person inside, yet they are two different CB attacks. Name each attack with its EK, quote the defining action that proves it, and state the one question that separates them.",
+        "q": "Incident 1 (loading dock) and Incident 2 (security door) both end with an unauthorized person inside, yet they are two different CB attacks. Name each attack, quote the defining action that proves it, and state the one question that separates them.",
         "answer": "Incident 1 is piggybacking (EK 2.2.A.2): the employee KNOWINGLY held the door open after being manipulated by the heavy box and uniform — carrying something large to entice a person to hold the door is a named CB tactic. Incident 2 is tailgating (EK 2.2.A.3): the adversary followed close behind WITHOUT the employee's awareness or knowledge — the employee on their phone never noticed. The separating question: did the authorized person knowingly grant access? Yes = piggybacking; no = tailgating."
       },
       {
         "ek": "EK 2.2.A.4",
         "pts": 4,
-        "q": "Incident 3 (keypad camera) is sometimes mislabeled. Name the correct CB attack and EK, and explain how the camera detail fits the official definition rather than turning it into a different attack.",
+        "q": "Incident 3 (keypad camera) is sometimes mislabeled. Name the correct CB attack, and explain how the camera detail fits the official definition rather than turning it into a different attack.",
         "answer": "Incident 3 is shoulder surfing (EK 2.2.A.4): the adversary watches as a user accesses sensitive information so it can be used later. The CED explicitly notes that adversaries sometimes use a camera to record the target accessing the information for later analysis — so recording the keypad over several days is still shoulder surfing, not a new attack. No restricted area was entered; the credential was stolen by observation."
       },
       {
         "ek": "EK 2.2.A.5",
         "pts": 4,
-        "q": "Incident 4 (trash bins) and Incident 3 (keypad camera) both steal information without entering the building. Name Incident 4's attack and EK, and explain the source difference that distinguishes the two info-stealing attacks.",
+        "q": "Incident 4 (trash bins) and Incident 3 (keypad camera) both steal information without entering the building. Name Incident 4's attack, and explain the source difference that distinguishes the two info-stealing attacks.",
         "answer": "Incident 4 is dumpster diving (EK 2.2.A.5): the adversary goes through a target's physical trash for information that could help reach their goal — the printouts, sticky notes, and org chart. The source difference: shoulder surfing watches a LIVE access (eyes/camera on a screen or keypad), while dumpster diving harvests DISCARDED material (paper in the trash). Name the source — live access vs. trash — to tell them apart."
       },
       {
         "ek": "EK 2.2.A.6",
         "pts": 4,
-        "q": "Incident 5 (elevator) is dangerous even though the employee never lost their badge. Name the attack and EK, and explain why the original cardholder noticing nothing is exactly what makes the attack effective.",
+        "q": "Incident 5 (elevator) is dangerous even though the employee never lost their badge. Name the attack, and explain why the original cardholder noticing nothing is exactly what makes the attack effective.",
         "answer": "Incident 5 is card cloning (EK 2.2.A.6): the adversary makes a copy of an authorized user's access card to gain access to all the resources that user is authorized to access. Because the original badge keeps working normally, nothing looks wrong to the employee — the clone grants the adversary full access while the legitimate user has no signal that their credential was duplicated, so the breach can persist unnoticed."
       }
     ],
@@ -138,13 +138,13 @@
       {
         "ek": "EK 2.2.C.1 / 2.2.B.5",
         "pts": 3,
-        "q": "Suppose the adversary from Incident 5 uses the cloned card to reach a server protected by a strong password and a firewall. Explain, citing EK 2.2.C.1, why those digital controls do not protect the machine, and name one thing the adversary could now do per EK 2.2.B.5.",
+        "q": "Suppose the adversary from Incident 5 uses the cloned card to reach a server protected by a strong password and a firewall. Explain why those digital controls do not protect the machine, and name one thing the adversary could now do.",
         "answer": "EK 2.2.C.1 states that physical access to devices can allow adversaries to bypass many technical controls and layers of security — once the adversary is standing at the machine, the password and firewall no longer stand between them and the hardware. Per EK 2.2.B.5 they could plug a keylogger or a malware-loaded external drive into an open port to collect data or gain control of the device, or physically destroy the device to make it and its services unavailable."
       },
       {
         "ek": "EK 2.2.B.1",
         "pts": 3,
-        "q": "Every incident in the log involves a human adversary. Per EK 2.2.B.1, name the other category of threat to physical security and describe two harms it can cause that a human adversary also causes.",
+        "q": "Every incident in the log involves a human adversary. Name the other category of threat to physical security and describe two harms it can cause that a human adversary also causes.",
         "answer": "Per EK 2.2.B.1 the other category is natural disasters. Like a human adversary, a natural disaster can cause physical damage or destruction to computers and data, and it can disrupt the digital services those computers provide. So a flood or fire is a CB-recognized physical-security threat even though no person is involved."
       }
     ]
@@ -155,29 +155,29 @@
     "minutes": "25 minutes",
     "subtitle": "3 findings - Scenario 2A",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-2-exercise-2",
-    "intro": "You are on the physical-security team at Xtensr Research Labs, which has just acquired a smaller lab in the same town. Conduct a physical vulnerability assessment of three findings from the new lab. For each one, run the EK 2.2.A/B sign check (which named attack(s) the finding enables), state the mechanism and the CB risk level it should receive, and assign the high/moderate/low rating by name and EK. Advanced students also name the enrichment risk-driver sub-type. Vague 'be careful' advice scores zero.",
-    "standard": "CB Standard (required): sign check + mechanism + CB risk level (EK 2.2.C.2–C.4) for all 3 findings. Enrichment (optional): also name the risk-driver sub-type.",
+    "intro": "You are on the physical-security team at Xtensr Research Labs, which has just acquired a smaller lab in the same town. Conduct a physical vulnerability assessment of three findings from the new lab. For each one, run the/B sign check (which named attack(s) the finding enables), state the mechanism and the CB risk level it should receive, and assign the high/moderate/low rating by name. Advanced students also name the enrichment risk-driver sub-type. Vague 'be careful' advice scores zero.",
+    "standard": "CB Standard (required): sign check + mechanism + CB risk level for all 3 findings. Enrichment (optional): also name the risk-driver sub-type.",
     "methodHeading": "Three-Step Method - use for every finding",
     "method": [
       [
-        "Step 1 - Sign check (EK 2.2.A / 2.2.B)",
-        "Identify the named physical attack(s) the finding enables — piggybacking, tailgating, shoulder surfing, dumpster diving, card cloning, power disruption, port attack — and cite the EK. Only claim what the finding shows."
+        "Step 1 - Sign check",
+        "Identify the named physical attack(s) the finding enables — piggybacking, tailgating, shoulder surfing, dumpster diving, card cloning, power disruption, port attack — Only claim what the finding shows."
       ],
       [
         "Step 2 - Mechanism + value",
-        "State what an adversary could do with this weakness and how sensitive or valuable the exposed asset is. Physical access can bypass technical controls (EK 2.2.C.1), so weigh what is reachable once inside."
+        "State what an adversary could do with this weakness and how sensitive or valuable the exposed asset is. Physical access can bypass technical controls, so weigh what is reachable once inside."
       ],
       [
         "Step 3 - Assign the CB risk level",
-        "Rate the finding high (EK 2.2.C.2), moderate (EK 2.2.C.3), or low (EK 2.2.C.4) using asset value and likelihood of exploitation, and justify the grade — naming the level alone earns half credit."
+        "Rate the finding high, moderate, or low using asset value and likelihood of exploitation, and justify the grade — naming the level alone earns half credit."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
     "enrichmentNote": "Enrichment risk-driver sub-types (NOT required by the CED for Topic 2.2): Crown-jewel exposure = a sensitive system reachable without controlled access (drives HIGH). Foothold exposure = a noncritical asset that could be a pivot into other resources (drives MODERATE). Low-value/low-likelihood exposure = a cheap asset unlikely to be targeted (drives LOW). The skill is knowing WHICH driver applies, not labeling everything high.",
     "fields": [
-      "Sign check (named attack(s) + EK 2.2.A/B):",
+      "Sign check (named attack(s) 2.2.A/B):",
       "Mechanism + asset value:",
-      "CB risk level (EK 2.2.C.2–C.4) + justification:"
+      "CB risk level + justification:"
     ],
     "scenarios": [
       {
@@ -240,12 +240,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - The locked-down server  [EK 2.2.C.1]",
-            "text": "A server has a strong password and sits behind a firewall, yet the security lead insists the unlocked room it sits in still matters. In one sentence your whole group agrees on, explain what physical access lets an adversary do that the password and firewall cannot stop (cite EK 2.2.B.5 for one concrete action).",
+            "label": "Task A - The locked-down server",
+            "text": "A server has a strong password and sits behind a firewall, yet the security lead insists the unlocked room it sits in still matters. In one sentence your whole group agrees on, explain what physical access lets an adversary do that the password and firewall cannot stop.",
             "lines": 2
           },
           {
-            "label": "Task B - Which named attack is hardest to defend?  [EK 2.2.A.2–A.6]",
+            "label": "Task B - Which named attack is hardest to defend?",
             "text": "Debate for about 3 minutes: of the five named attacks — piggybacking, tailgating, shoulder surfing, dumpster diving, card cloning — which is hardest for a normal organization to actually defend against, and what is the realistic cost of getting it wrong? Record your group's ranking and one reason. Note which ones training fixes and which ones need hardware.",
             "lines": 2
           }
@@ -258,7 +258,7 @@
         "items": [
           {
             "label": "The triage call",
-            "text": "Xtensr's assessment turned up three findings: an unlocked server room holding research data, a receptionist PC on the internal network with open USB ports, and badge-access laptops with no sensitive data left out at lunch. Design the triage: which single finding must be fixed FIRST and why, how do EK 2.2.C.2–C.4 justify giving the three findings DIFFERENT risk levels, and what would have to change about the laptops for them to jump from low to a higher level?",
+            "text": "Xtensr's assessment turned up three findings: an unlocked server room holding research data, a receptionist PC on the internal network with open USB ports, and badge-access laptops with no sensitive data left out at lunch. Design the triage: which single finding must be fixed FIRST and why, how do–C.4 justify giving the three findings DIFFERENT risk levels, and what would have to change about the laptops for them to jump from low to a higher level?",
             "lines": 4
           },
           {

@@ -54,9 +54,9 @@
     "title": "Application Attack Identifier",
     "minutes": "25 minutes",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-1-exercise-1",
-    "intro": "You are an application-security analyst. Five requests and symptoms just landed on your desk. For each one you will name the CB application attack, state what it targets, and cite the EK that defines it. Part A works the incident log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.1.A, 5.1.B, and 5.1.C.",
+    "intro": "You are an application-security analyst. Five requests and symptoms just landed on your desk. For each one you will name the CB application attack, state what it targets that defines it. Part A works the incident log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.1.A, 5.1.B, and 5.1.C.",
     "scenarioTitle": "Incident Log: Five Application Events",
-    "narrative": "Five events were flagged across your web stack this week. Your monitoring tools logged each one with where it hit, the request or input observed, the symptom users or admins reported, and the after-effect. Read the log row by row, then answer Part A. Use the method: anchor your first instinct, find what the attack REACHES (database, browser, memory, or file system), then name the attack and its EK.",
+    "narrative": "Five events were flagged across your web stack this week. Your monitoring tools logged each one with where it hit, the request or input observed, the symptom users or admins reported, and the after-effect. Read the log row by row, then answer Part A. Use the method: anchor your first instinct, find what the attack REACHES (database, browser, memory, or file system), then name the attack.",
     "log": {
       "columns": [
         "ID",
@@ -110,7 +110,7 @@
       {
         "ek": "EK 5.1.B.3 / 5.1.B.4",
         "pts": 6,
-        "q": "Incident 1 (login form) and Incident 4 (search box) are different CB attacks that both start with bad input. Name each attack, state what each one TARGETS, and cite the EK that defines each.",
+        "q": "Incident 1 (login form) and Incident 4 (search box) are different CB attacks that both start with bad input. Name each attack, state what each one TARGETS that defines each.",
         "answer": "Incident 1 is an SQL-injection attack (EK 5.1.B.4): control characters and SQL commands were placed into the username field of an application that queries a database with unvalidated user input (EK 5.1.B.3), causing the application to return more information than it should — a confidentiality breach. It TARGETS the database on the server. Incident 4 is a buffer-overflow attack (EK 5.1.B.8): input exceeding the fixed-size buffer overflowed into adjacent memory (EK 5.1.B.7), crashing the app and executing code outside the program's security policy. It TARGETS computer memory. Both share the unvalidated-input root cause but land in completely different places."
       },
       {
@@ -155,29 +155,29 @@
     "minutes": "25 minutes",
     "subtitle": "3 scenarios - Document the Risk (5.1.C)",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-1-exercise-2",
-    "intro": "You are a data-security auditor. Three scenarios describe a vulnerability against some data. For each, name which leg of the CIA triad is threatened (EK 5.1.C.1), document the risk as high, moderate, or low using BOTH sensitivity AND likelihood (EK 5.1.C.2–C.4), and tie it to the underlying attack with its EK. Vague 'it's bad' ratings score zero.",
-    "standard": "CB Standard (required): name the CIA leg + document high/moderate/low with the EK 5.1.C wording + name the underlying attack, for all 3 scenarios. Enrichment (optional): name the single control that most directly lowers the rating.",
+    "intro": "You are a data-security auditor. Three scenarios describe a vulnerability against some data. For each, name which leg of the CIA triad is threatened, document the risk as high, moderate, or low using BOTH sensitivity AND likelihood, and tie it to the underlying attack. Vague 'it's bad' ratings score zero.",
+    "standard": "CB Standard (required): name the CIA leg + document high/moderate/low 5.1.C wording + name the underlying attack, for all 3 scenarios. Enrichment (optional): name the single control that most directly lowers the rating.",
     "methodHeading": "Three-Step Method - use for every scenario",
     "method": [
       [
-        "Step 1 - Name the CIA leg (EK 5.1.C.1)",
+        "Step 1 - Name the CIA leg",
         "Decide whether the threat is to confidentiality (unauthorized read), integrity (data altered), or availability (data destroyed or encrypted so no one can reach it). State which and why."
       ],
       [
-        "Step 2 - Document the level (EK 5.1.C.2–C.4)",
+        "Step 2 - Document the level",
         "Combine data sensitivity AND likelihood of the exploit. High = highly sensitive (e.g., regulated) data via a highly likely exploit; Moderate = sensitive data lacking strong enough encryption or strict enough access controls; Low = less sensitive data with shorter-key encryption or access controls not strict enough."
       ],
       [
-        "Step 3 - Name the attack + EK",
-        "Tie the scenario to the underlying 5.1.A or 5.1.B vulnerability (e.g., unencrypted drive A.1, SQL injection B.4) and cite the EK, so the documentation is traceable."
+        "Step 3 - Name the attack",
+        "Tie the scenario to the underlying 5.1.A or 5.1.B vulnerability (e.g. Unencrypted drive A.1, SQL injection B.4), so the documentation is traceable."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
     "enrichmentNote": "Enrichment (NOT required by the CED for Topic 5.1): for each scenario, name the single control that most directly lowers the rating — strong encryption at rest, strict least-privilege access controls, or input validation/sanitization. The skill is matching the control to the specific factor (sensitivity is fixed by the data; you change the likelihood by closing the exploit path).",
     "fields": [
-      "CIA leg threatened (EK 5.1.C.1):",
-      "Risk level + EK 5.1.C wording (high / moderate / low):",
-      "Underlying attack + EK, and the control that lowers it:"
+      "CIA leg threatened:",
+      "Risk level 5.1.C wording (high / moderate / low):",
+      "Underlying attack, and the control that lowers it:"
     ],
     "scenarios": [
       {
@@ -240,12 +240,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - Same input, different door  [EK 5.1.B.4 / 5.1.B.6]",
+            "label": "Task A - Same input, different door",
             "text": "SQL injection and XSS both start with an adversary typing something malicious into a field, yet they land in different places. In one sentence your whole group agrees on, state what each one targets and why that target — not the typing — is what makes them different attacks.",
             "lines": 2
           },
           {
-            "label": "Task B - Which attack is hardest to defend?  [EK 5.1.B]",
+            "label": "Task B - Which attack is hardest to defend?",
             "text": "Debate for about 3 minutes: of the four CED application attacks — SQL injection (B.4), XSS (B.6), buffer overflow (B.8), directory traversal (B.10) — which is hardest for a normal organization to fully defend against, given they share the unvalidated-input root cause? Record your group's ranking and one reason.",
             "lines": 2
           }
@@ -258,7 +258,7 @@
         "items": [
           {
             "label": "The 'super-sensitive but locked-down' case",
-            "text": "An auditor finds highly sensitive, regulated data — but the only path to exploit it is a near-impossible one. A teammate insists it is automatically HIGH risk because the data is so sensitive. Using EK 5.1.C.2, decide: is sensitivity alone enough to rate it high, what does the likelihood factor change, and when sensitivity and likelihood disagree, what should an auditor conclude — and NOT conclude — about the documented risk level?",
+            "text": "An auditor finds highly sensitive, regulated data — but the only path to exploit it is a near-impossible one. A teammate insists it is automatically HIGH risk because the data is so sensitive. Decide: is sensitivity alone enough to rate it high, what does the likelihood factor change, and when sensitivity and likelihood disagree, what should an auditor conclude — and NOT conclude — about the documented risk level?",
             "lines": 4
           },
           {

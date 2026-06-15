@@ -54,7 +54,7 @@
     "title": "AI Attack Identifier",
     "minutes": "25 minutes",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-exercise-1",
-    "intro": "Part A is an incident table. Each row describes one AI-augmented attack drawn from LO 1.4.A. Your job is to read the report and classify each incident by the CB-specified technique it uses (EK 1.4.A.1 through A.6). Part B extends the same identification skill to reflection items. Everything maps to CB Learning Objectives 1.4.A and 1.4.B.",
+    "intro": "Part A is an incident table. Each row describes one AI-augmented attack drawn from LO 1.4.A. Your job is to read the report and classify each incident by the CB-specified technique it uses. Part B extends the same identification skill to reflection items. Everything maps to CB Learning Objectives 1.4.A and 1.4.B.",
     "scenarioTitle": "Incident Board: Six AI-Augmented Attacks",
     "narrative": "A regional security operations center logged five incidents this week. Every one used an AI-powered tool to augment a familiar attack. For each row, note what the AI tool actually did, what was targeted (a person, a model, or a codebase), and the direction data moved (in to the model, or out of it). You will use those observations in Part A to assign the exact CB technique.",
     "log": {
@@ -110,25 +110,25 @@
       {
         "ek": "EK 1.4.A.1",
         "pts": 4,
-        "q": "Incident I-1: name the CB-specified technique, cite its EK number, and explain why 'but it looked and sounded exactly like the CFO' is the very trust the attacker is exploiting.",
+        "q": "Incident I-1: name the CB-specified technique, and explain why 'but it looked and sounded exactly like the CFO' is the very trust the attacker is exploiting.",
         "answer": "Incident I-1 is EK 1.4.A.1, a deepfake voice-and-video avatar. The adversary used AI tools that leverage existing voice and image samples to create a digital avatar of the CFO and impersonate them on a live call. Appearance- and voice-based trust is exactly what the technique defeats: the clone reproduces how the CFO looks and sounds, so 'it was clearly them' is precisely the false signal the attack manufactures. The danger grows as organizations adopt voice-based authentication, where a cloned voice can become the literal credential."
       },
       {
         "ek": "EK 1.4.A.2",
         "pts": 4,
-        "q": "Incident I-2: name the technique and EK, and explain why the absence of awkward grammar is no longer evidence the message is legitimate.",
+        "q": "Incident I-2: name the technique, and explain why the absence of awkward grammar is no longer evidence the message is legitimate.",
         "answer": "Incident I-2 is EK 1.4.A.2, native-fluent AI phishing. Adversaries use generative AI tools like LLMs to craft phishing in any target language that reads as though written by a native speaker. For years 'unnatural language' was the tell that separated phishing from legitimate mail; an LLM removes that tell on demand, so fluent, error-free writing now proves nothing about legitimacy. The absence of a tell is not evidence the message is real."
       },
       {
         "ek": "EK 1.4.A.3",
         "pts": 4,
-        "q": "Incidents I-3 and I-4 both involve an LLM but move data in opposite directions. Classify EACH by EK number and state, in one phrase per incident, which way the data flows.",
+        "q": "Incidents I-3 and I-4 both involve an LLM but move data in opposite directions. Classify EACH by number and state in one phrase per incident, which way the data flows.",
         "answer": "Incident I-3 is EK 1.4.A.3, prompt extraction — data flows OUT of the model: crafted prompts pull secure or sensitive information (here, a contract another user had entered, or content from the training set) back out. Incident I-4 is EK 1.4.A.4, training-data poisoning — data flows IN to the model: the adversary publishes false information on websites so it is absorbed into the LLM's training set, causing the model to later repeat the falsehood. Extraction = out; poisoning = in. (The 'Data direction' column is the tell.)"
       },
       {
         "ek": "EK 1.4.A.6",
         "pts": 4,
-        "q": "Incident I-5: name the technique and EK, and explain in one sentence what makes this use of AI 'especially concerning' per the CED.",
+        "q": "Incident I-5: name the technique, and explain in one sentence what makes this use of AI 'especially concerning' per the CED.",
         "answer": "Incident I-5 is EK 1.4.A.6, AI-assisted malicious coding. Adversaries use AI-enhanced coding tools to write new malware, modify existing application code for malicious activity, or find vulnerabilities in large code bases. Per the CED, what makes it especially concerning is that it lowers the skill and time an effective attack requires, so a low-skill actor can produce working malware and find exploitable flaws quickly."
       }
     ],
@@ -138,7 +138,7 @@
       {
         "ek": "EK 1.4.A.5",
         "pts": 3,
-        "q": "None of the five incidents above is reconnaissance, yet EK 1.4.A.5 underlies several of them. Describe AI-powered reconnaissance and name one incident it most directly fuels and why.",
+        "q": "None of the five incidents above is reconnaissance, yet that capability underlies several of them. Describe AI-powered reconnaissance and name one incident it most directly fuels and why.",
         "answer": "EK 1.4.A.5, AI-powered reconnaissance, uses AI tools that scan the internet to gather information a target posted on social media and public websites — no account breach required. It most directly fuels I-1 (the deepfake CFO): recon supplies the public voice and image samples and the org-chart knowledge of who to impersonate and who to ask. It could equally feed targeted phishing like I-2. Recon is the profiling phase that makes the later impersonation or phishing convincing."
       },
       {
@@ -150,7 +150,7 @@
       {
         "ek": "Enrichment",
         "pts": 2,
-        "q": "ENRICHMENT: The exam rewards naming a full attack CHAIN, not just one step. Using Scenario 1D, name the two-link chain by EK number and explain why naming both earns more credit than naming one.",
+        "q": "ENRICHMENT: The exam rewards naming a full attack CHAIN, not just one step. Using Scenario 1D, name the two-link chain by number and explain why naming both earns more credit than naming one.",
         "answer": "Scenario 1D chains EK 1.4.A.5 (reconnaissance — scraping social-media videos for voice samples and finding a relative) into EK 1.4.A.1 (the deepfake voice avatar that calls the relative). Naming both shows you understand that recon supplied the raw material the clone needed; naming only the clone misses how the attacker got the voice and the target in the first place. The exam credits identifying the chain because real attacks are sequences, and the defense changes depending on which link you break."
       }
     ]
@@ -161,8 +161,8 @@
     "minutes": "25 minutes",
     "subtitle": "3 scenarios - Break-the-Link Method",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-exercise-2",
-    "intro": "Scenario 1D taught one core idea: a good defense against AI works WITHOUT detecting the fake. For each scenario, identify the AI technique in play (its EK), choose the single CB-specified defense (EK 1.4.B.1–B.4) that breaks that link of the attack, and explain why it works even when the victim cannot tell real from fake. The centerpiece is the shared secret word, EK 1.4.B.1.",
-    "standard": "CB Standard (required): name the technique (EK), name the defense that breaks it (EK 1.4.B.1–B.4), and explain why it works without detecting the fake — for all 3 scenarios.",
+    "intro": "Scenario 1D taught one core idea: a good defense against AI works WITHOUT detecting the fake. For each scenario, identify the AI technique in play (its), choose the single CB-specified defense that breaks that link of the attack, and explain why it works even when the victim cannot tell real from fake. The centerpiece is the shared secret word.",
+    "standard": "CB Standard (required): name the technique, name the defense that breaks it, and explain why it works without detecting the fake — for all 3 scenarios.",
     "methodHeading": "Break-the-Link Method - use for every scenario",
     "method": [
       [
@@ -170,19 +170,19 @@
         "Before analyzing, write your gut read: who or what is being attacked, and what would you instinctively reach for? Anchoring your own answer first keeps a convincing wrong option from swaying you."
       ],
       [
-        "Step 2 - Identify the technique (EK 1.4.A)",
-        "Name the AI technique driving the attack and cite its EK (A.1 deepfake, A.2 phishing, A.3 extraction, A.4 poisoning, A.5 recon, A.6 coding). State what link of the chain it represents."
+        "Step 2 - Identify the technique",
+        "Name the AI technique driving the attack (A.1 deepfake, A.2 phishing, A.3 extraction, A.4 poisoning, A.5 recon, A.6 coding). State what link of the chain it represents."
       ],
       [
-        "Step 3 - Break the link (EK 1.4.B)",
+        "Step 3 - Break the link",
         "Choose the one CB defense that most directly breaks that link — shared secret word (B.1), MFA (B.2), withhold data from AI tools (B.3), or verify AI output (B.4) — and explain why it works without the victim ever detecting the fake."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
     "enrichmentNote": "Enrichment sub-types: 'family-emergency' voice scam = a cloned voice + manufactured crisis aimed at a relative (defeated by B.1). 'Voice-authentication bypass' = a cloned voice used as a login credential on a system (defeated by B.2). 'Data-leak-by-prompt' = sensitive data pasted into a public tool, later extracted (prevented by B.3). 'Poisoned answer' = an AI tool repeating planted falsehood (caught by B.4). Match the sub-type to the defense.",
     "fields": [
-      "Technique used (EK):",
-      "Defense that breaks it (EK):",
+      "Technique used:",
+      "Defense that breaks it:",
       "Why it works without detecting the fake:"
     ],
     "scenarios": [
@@ -221,7 +221,7 @@
   "discussion": {
     "title": "When the Old Tells Stop Working",
     "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
-    "overview": "For years we taught two tells: AI voices sound robotic, and phishing has bad grammar. Both are now obsolete — EK 1.4.A.1 and 1.4.A.2 exist precisely to say so. That creates a dangerous trap: the better the AI gets, the more confident the wrong instinct ('I'd spot a fake') feels. Across three short windows, your group will confront why detection-based defense fails against AI, debate whether a low-tech secret word can really beat a high-tech clone, and decide which CB defense breaks each link of the Scenario 1D voice scam.",
+    "overview": "For years we taught two tells: AI voices sound robotic, and phishing has bad grammar. Both are now obsolete — and 1.4.A.2 exist precisely to say so. That creates a dangerous trap: the better the AI gets, the more confident the wrong instinct ('I'd spot a fake') feels. Across three short windows, your group will confront why detection-based defense fails against AI, debate whether a low-tech secret word can really beat a high-tech clone, and decide which CB defense breaks each link of the Scenario 1D voice scam.",
     "parts": [
       {
         "name": "Part 1: Opening Discussion",
@@ -232,7 +232,7 @@
             "text": "Question 1. The bell ringer call came from your grandmother's real number in her real voice. Most people's instinct is 'I would just know if it were fake.' Why is that instinct now a vulnerability rather than a defense? What would it take to give it up?"
           },
           {
-            "text": "Question 2. For a decade, 'look for bad grammar' caught a lot of phishing. Now an LLM writes flawless phishing in any language (EK 1.4.A.2). When a reliable tell disappears, what should replace it — and why can't the answer be 'just look harder'?"
+            "text": "Question 2. For a decade, 'look for bad grammar' caught a lot of phishing. Now an LLM writes flawless phishing in any language. When a reliable tell disappears, what should replace it — and why can't the answer be 'just look harder'?"
           },
           {
             "label": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share)",
@@ -247,12 +247,12 @@
         "intro": "In your group, complete both tasks below.",
         "items": [
           {
-            "label": "Task A - Why detection can't be the plan  [EK 1.4.A.1 / 1.4.B.1]",
+            "label": "Task A - Why detection can't be the plan",
             "text": "A deepfake detector might flag 90% of clones today and 40% next year as the tech improves. A shared secret word works at 100% no matter how good the clone gets. Why does the secret word win an arms race the detector loses? Agree on the single best one-sentence answer your group can write.",
             "lines": 2
           },
           {
-            "label": "Task B - Which defense is hardest to actually live with?  [EK 1.4.B]",
+            "label": "Task B - Which defense is hardest to actually live with?",
             "text": "Debate for about 3 minutes: of the four CED defenses — shared secret word (B.1), MFA everywhere (B.2), never feeding personal data to AI tools (B.3), verifying AI output against non-AI sources (B.4) — which is hardest for a normal person to sustain, and what is the realistic cost of skipping it? Record your group's ranking and one reason.",
             "lines": 2
           }
@@ -265,7 +265,7 @@
         "items": [
           {
             "label": "Break every link of Scenario 1D",
-            "text": "The Scenario 1D attack was a chain: recon scraped the voice (EK 1.4.A.5), a tool cloned it (EK 1.4.A.1), and the relative got a perfect-sounding emergency call. The relative cannot detect the fake. Decide as a group: which single CB defense is the DECISIVE one at the moment of the call and why, how a different defense (MFA) would matter only if a system login were involved, and what 'a good defense doesn't depend on detecting the fake' means in one sentence you could teach a younger sibling.",
+            "text": "The Scenario 1D attack was a chain: recon scraped the voice, a tool cloned it, and the relative got a perfect-sounding emergency call. The relative cannot detect the fake. Decide as a group: which single CB defense is the DECISIVE one at the moment of the call and why, how a different defense (MFA) would matter only if a system login were involved, and what 'a good defense doesn't depend on detecting the fake' means in one sentence you could teach a younger sibling.",
             "lines": 4
           },
           {

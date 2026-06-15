@@ -116,19 +116,19 @@
       {
         "ek": "EK 5.3.A.5",
         "pts": 4,
-        "q": "Deployments 2 and 3 use the same number of keys but are processed differently. Classify each as block or stream per EK 5.3.A.5, quote the detail that decides it, and explain why these two classifications (key count and processing style) are independent.",
+        "q": "Deployments 2 and 3 use the same number of keys but are processed differently. Classify each as block or stream, quote the detail that decides it, and explain why these two classifications (key count and processing style) are independent.",
         "answer": "Per EK 5.3.A.5 the second classification is by processing: block encryption handles fixed-size chunks called blocks (one output block per input block), stream encryption handles input continuously, one element at a time. Deployment 2 is block ('fixed-size chunks (blocks)'); Deployment 3 is stream ('continuously, one element at a time'). The classifications are independent because key count (A.4) and processing style (A.5) describe different things — an algorithm always has BOTH. Both rows are symmetric, yet one is a block cipher and the other a stream cipher."
       },
       {
         "ek": "EK 5.3.B.1 / 5.3.B.2",
         "pts": 4,
-        "q": "Deployments 1 and 5 are both AES. Name the full algorithm, state its block size from EK 5.3.B.2, and explain why both rows are still AES even though their key lengths differ (256-bit vs. 128-bit).",
+        "q": "Deployments 1 and 5 are both AES. Name the full algorithm, state its block size, and explain why both rows are still AES even though their key lengths differ (256-bit vs. 128-bit).",
         "answer": "Both are the Advanced Encryption Standard (AES), per EK 5.3.B.1 the most common symmetric algorithm, used to secure Wi-Fi, browsing, disk file encryption, and processor-level encryption. Per EK 5.3.B.2 AES is a symmetric key block cipher that always encrypts data in 128-bit blocks (16 bytes) regardless of key length. AES can operate with keys of varying lengths, so a 256-bit deployment and a 128-bit deployment are both AES — the block size (128 bits) is fixed, but the KEY length is what varies between them."
       },
       {
         "ek": "EK 5.3.A.3",
         "pts": 4,
-        "q": "Deployment 1 uses a 256-bit key and Deployment 2 a 128-bit key. Using EK 5.3.A.3, explain why the 256-bit deployment is harder for an adversary to break by random chance, and why this is exactly what protects the stolen laptop's disk.",
+        "q": "Deployment 1 uses a 256-bit key and Deployment 2 a 128-bit key. Explain why the 256-bit deployment is harder for an adversary to break by random chance, and why this is exactly what protects the stolen laptop's disk.",
         "answer": "Per EK 5.3.A.3 the keyspace is the number of possible keys an algorithm can use, and the larger the keyspace, the longer it takes an adversary to discover the correct key by random chance. A 256-bit key has a far larger keyspace than a 128-bit key (each added bit doubles the count), so brute-force guessing takes dramatically longer. This is what protects the stolen disk in Deployment 1: the thief has the ciphertext and unlimited time, but with no key his only option is to try keys, and a 256-bit keyspace makes hitting the right one by chance infeasible."
       }
     ],
@@ -138,13 +138,13 @@
       {
         "ek": "EK 5.3.A.1 / 5.3.A.2",
         "pts": 3,
-        "q": "A student says 'plaintext has to be readable English words.' Using EK 5.3.A.2 and B.1, explain why that is wrong and define plaintext and ciphertext precisely.",
+        "q": "A student says 'plaintext has to be readable English words.', explain why that is wrong and define plaintext and ciphertext precisely.",
         "answer": "Per EK 5.3.A.2 the plaintext is simply the information to be encrypted (the input to the algorithm) and the ciphertext is the output of the encryption algorithm — neither term requires English words. Per EK 5.3.B.1 computer-based encryption algorithms operate on binary data, not just letters, so the plaintext can be any file's bytes and the ciphertext is its scrambled binary output. 'Readable words' confuses an example of plaintext with the definition."
       },
       {
         "ek": "EK 5.3.B.2",
         "pts": 3,
-        "q": "An administrator argues 'just always pick the longest AES key — longer is always better.' Using EK 5.3.B.2, explain the trade-off the administrator is ignoring.",
+        "q": "An administrator argues 'just always pick the longest AES key — longer is always better.', explain the trade-off the administrator is ignoring.",
         "answer": "Per EK 5.3.B.2 longer keys produce more secure encryption but require more time to encrypt and decrypt — it is a real performance trade-off, not a free win. The administrator is ignoring the compute cost: the larger keyspace (EK 5.3.A.3) does resist brute force better, but every encrypt/decrypt operation takes longer, so engineers pick a key length that balances security with speed rather than defaulting to the maximum."
       },
       {
@@ -161,29 +161,29 @@
     "minutes": "~20 min",
     "subtitle": "3 scenarios - Choose the Tool + OpenSSL Steps",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-3-exercise-2",
-    "intro": "You are a security consultant. Three people need to protect files at rest. For each, identify the correct algorithm and classification, recommend a CB tool (OpenSSL, AES Crypt, or a web-based tool), and write the exact OpenSSL commands BY EK to encrypt and decrypt. Vague 'use encryption' advice scores zero.",
+    "intro": "You are a security consultant. Three people need to protect files at rest. For each, identify the correct algorithm and classification, recommend a CB tool (OpenSSL, AES Crypt, or a web-based tool), and write the exact OpenSSL commands BY to encrypt and decrypt. Vague 'use encryption' advice scores zero.",
     "standard": "CB Standard (required): name the algorithm + classification + a CB tool + the correct OpenSSL encrypt/decrypt commands, for all 3. Enrichment (optional): name the key-length trade-off sub-type at play.",
     "methodHeading": "Three-Step Method - use for every scenario",
     "method": [
       [
         "Step 1 - Name the algorithm",
-        "Identify AES as the most common symmetric algorithm (EK 5.3.B.1) and state its two classifications: symmetric (EK 5.3.A.4) and block cipher with 128-bit blocks (EK 5.3.A.5, B.2)."
+        "Identify AES as the most common symmetric algorithm and state its two classifications: symmetric and block cipher with 128-bit blocks."
       ],
       [
         "Step 2 - Pick the tool",
-        "Choose a CB tool that fits the user: command line OpenSSL, the open-source AES Crypt, or a web-based tool (EK 5.3.B.3). Match the tool to the user's comfort and setting."
+        "Choose a CB tool that fits the user: command line OpenSSL, the open-source AES Crypt, or a web-based tool. Match the tool to the user's comfort and setting."
       ],
       [
         "Step 3 - Write the commands",
-        "Give the exact OpenSSL encrypt and decrypt commands (EK 5.3.B.4), noting that the SAME password-derived key is used both ways and a wrong password fails to decrypt."
+        "Give the exact OpenSSL encrypt and decrypt commands, noting that the SAME password-derived key is used both ways and a wrong password fails to decrypt."
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment sub-types (connecting EK 5.3.A.3 to B.2, not separately required): Bigger-keyspace = each added key bit doubles the number of possible keys, so a 256-bit key resists brute force far longer than 128-bit. Security-vs-speed = longer keys cost more compute time per operation. Same-key trap = symmetric means a wrong/different key (or password) cannot decrypt what the right key encrypted.",
+    "enrichmentNote": "Enrichment sub-types: Bigger-keyspace = each added key bit doubles the number of possible keys, so a 256-bit key resists brute force far longer than 128-bit. Security-vs-speed = longer keys cost more compute time per operation. Same-key trap = symmetric means a wrong/different key (or password) cannot decrypt what the right key encrypted.",
     "fields": [
-      "Algorithm + classification (symmetric/asymmetric, block/stream + EK):",
-      "Recommended tool (EK 5.3.B.3):",
-      "OpenSSL encrypt + decrypt commands (EK 5.3.B.4):"
+      "Algorithm + classification (symmetric/asymmetric, block/stream):",
+      "Recommended tool:",
+      "OpenSSL encrypt + decrypt commands:"
     ],
     "scenarios": [
       {
@@ -246,13 +246,13 @@
         "intro": "As a group, complete both tasks below, then one member shares your verdict with the class.",
         "items": [
           {
-            "label": "Task A - The same-key proof  [EK 5.3.A.4 / 5.3.B.4]",
+            "label": "Task A - The same-key proof",
             "text": "We encrypted 'test' with OpenSSL and decrypted it with the SAME password. In one sentence your whole group agrees on, explain what makes this symmetric and what happens — and why — if someone tries to decrypt with a different password.",
             "lines": 2
           },
           {
-            "label": "Task B - Is longer always better?  [EK 5.3.A.3 / 5.3.B.2]",
-            "text": "Debate for about 3 minutes: a longer AES key grows the keyspace and resists brute force (EK 5.3.A.3) but costs compute time on every operation (EK 5.3.B.2). For an archive that must last decades, is the longest key always the right call? Record your group's verdict and one reason, and name one thing about AES that does NOT change when the key gets longer (hint: the block size).",
+            "label": "Task B - Is longer always better?",
+            "text": "Debate for about 3 minutes: a longer AES key grows the keyspace and resists brute force but costs compute time on every operation. For an archive that must last decades, is the longest key always the right call? Record your group's verdict and one reason, and name one thing about AES that does NOT change when the key gets longer (hint: the block size).",
             "lines": 3
           }
         ]

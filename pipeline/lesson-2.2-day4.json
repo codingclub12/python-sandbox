@@ -118,14 +118,44 @@
       "type": "worked_table",
       "heading": "The Xtensr Lab Risk Assessment (Documented)",
       "subheading": "Each identified vulnerability graded with the two-factor method and tied to its EK.",
-      "columns": ["Vulnerability (where)", "What It Enables", "Risk Level", "Why (two factors)"],
+      "columns": [
+        "Vulnerability (where)",
+        "What It Enables",
+        "Risk Level",
+        "Why (two factors)"
+      ],
       "highlightCol": 2,
       "rows": [
-        ["Research-data server in an unlocked room off an unmonitored hallway", "Steal/copy sensitive data; bypass technical controls (EK 2.2.B.4, C.1)", "HIGH (EK 2.2.C.2)", "Sensitive asset + no restricted/controlled access"],
-        ["Unsecured electrical panel in an open utility closet", "Disrupt power; device and services unavailable (EK 2.2.B.3)", "HIGH (EK 2.2.C.2)", "Critical system exposed; takes the whole lab down"],
-        ["Reception PC on internal Wi-Fi with exposed USB ports", "Foothold to internal resources via malicious port access (EK 2.2.B.5)", "MODERATE (EK 2.2.C.3)", "Noncritical itself, but a foothold to bigger resources"],
-        ["Propped badge door / loading dock", "Piggybacking and tailgating into the building (EK 2.2.A.2, A.3)", "MODERATE (EK 2.2.C.3)", "Enables entry that could reach sensitive areas"],
-        ["Unfenced dumpsters in the lot", "Dumpster diving for useful information (EK 2.2.A.5)", "LOW (EK 2.2.C.4)", "Lower-value exposure; exploitation less likely"]
+        [
+          "Research-data server in an unlocked room off an unmonitored hallway",
+          "Steal/copy sensitive data; bypass technical controls (EK 2.2.B.4, C.1)",
+          "HIGH (EK 2.2.C.2)",
+          "Sensitive asset + no restricted/controlled access"
+        ],
+        [
+          "Unsecured electrical panel in an open utility closet",
+          "Disrupt power; device and services unavailable (EK 2.2.B.3)",
+          "HIGH (EK 2.2.C.2)",
+          "Critical system exposed; takes the whole lab down"
+        ],
+        [
+          "Reception PC on internal Wi-Fi with exposed USB ports",
+          "Foothold to internal resources via malicious port access (EK 2.2.B.5)",
+          "MODERATE (EK 2.2.C.3)",
+          "Noncritical itself, but a foothold to bigger resources"
+        ],
+        [
+          "Propped badge door / loading dock",
+          "Piggybacking and tailgating into the building (EK 2.2.A.2, A.3)",
+          "MODERATE (EK 2.2.C.3)",
+          "Enables entry that could reach sensitive areas"
+        ],
+        [
+          "Unfenced dumpsters in the lot",
+          "Dumpster diving for useful information (EK 2.2.A.5)",
+          "LOW (EK 2.2.C.4)",
+          "Lower-value exposure; exploitation less likely"
+        ]
       ],
       "footer": "ASSESSMENT STEP 2 — ASSESS & DOCUMENT: Grade with the two dials (asset sensitivity/value × likelihood). HIGH = sensitive/critical + open. MODERATE = a foothold to more. LOW = low value + unlikely. The documented table IS the deliverable.",
       "script": "Now we grade and document — step two of the assessment, and the table is your actual deliverable. Top, the research-data server in the unlocked room: sensitive asset, no controlled access, and physical access here bypasses the technical controls — that's the textbook high, EK 2.2.C.2. Next, the unsecured electrical panel: it's a critical system, and disrupting it takes the whole lab's services down, so that's high too, EK 2.2.C.2 by way of the power harm in 2.2.B.3. The reception PC with exposed USB ports on the internal network: the machine itself isn't critical, but it's a foothold inward — that's the definition of moderate, EK 2.2.C.3. The propped badge door: it enables piggybacking and tailgating that could reach sensitive areas, also moderate. And the unfenced dumpsters: real, but lower value and less likely to be the decisive exploit, so low, EK 2.2.C.4. Notice every grade rests on the two dials — sensitivity and likelihood — and every row cites its EK. That documented table is what the security team uses to decide what to fix first. That's the whole job."
@@ -175,8 +205,8 @@
       "heading": "Stop and Think — Independent Writing",
       "subheading": "Both questions map to LO 2.2.C, applied to Scenario 2A. Complete on your Guided Notes packet.",
       "prompts": [
-        "Pick any TWO vulnerabilities from the Xtensr assessment table that received DIFFERENT risk levels. For each, name the vulnerability, cite its risk-level EK, and justify the grade using the two factors (asset sensitivity/value and likelihood of exploitation).",
-        "The lab's reception PC is on the internal network with exposed USB ports. Explain why this is graded MODERATE rather than low or high, using the EK 2.2.C.3 idea of a foothold."
+        "Pick any TWO vulnerabilities from the Xtensr assessment table that received DIFFERENT risk levels. For each, name the vulnerability, cite its risk-level, and justify the grade using the two factors (asset sensitivity/value and likelihood of exploitation).",
+        "The lab's reception PC is on the internal network with exposed USB ports. Explain why this is graded MODERATE rather than low or high idea of a foothold."
       ],
       "directions": "Independent. 6 minutes. Full sentences. I will collect Guided Notes at the end of class.",
       "script": "Two questions, six minutes, independent, full sentences. Question one: pick any two Xtensr findings with different grades — say the high server and the low dumpsters — name each, cite its risk EK, and justify with the two factors. Question two: the reception PC — explain why it's moderate, not low or high, using the foothold idea from EK 2.2.C.3: it's noncritical itself but a stepping stone to bigger resources. Be precise; this is exactly the reasoning the scenario and exam want to see."

@@ -57,14 +57,14 @@
     "intro": "Part A works the AI Defense Triage board below, grounded in Scenario 1E (AI-Powered Cyber Defense), the official College Board scenario for this topic. Part B extends the same skills to the detection side. Both map to CB Learning Objectives 1.5.A and 1.5.B — and the human-in-the-loop requirement that runs through every one of them.",
     "scenarioTitle": "Scenario 1E: AI-Powered Cyber Defense — the Triage Board",
     "narrative": "Your team is launching a new web app that lets customers place orders and updates a warehouse database. Before and after launch you point AI-powered tools at the project. The board below logs five things the AI did. For each one, decide which CB-specified defensive use of AI is in play (config review, code analysis, detection-rule suggestion, event triage, or alert/act), and whether the AI's output can ship as-is or must be held for a knowledgeable human to review before it is implemented.",
-    "scenarioNote": "Scenario 1E and the EK behaviors are from the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026); the order-app team and the specific board entries are this course's added teaching detail.",
+    "scenarioNote": "Scenario 1E and the behaviors are from the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026); the order-app team and the specific board entries are this course's added teaching detail.",
     "log": {
       "columns": [
         "Item",
         "Where",
         "What the AI did",
         "What it produced",
-        "Your call: AI use (EK) + ship or hold for human?"
+        "Your call: AI use + ship or hold for human?"
       ],
       "rows": [
         [
@@ -110,19 +110,19 @@
       {
         "ek": "EK 1.5.A.1",
         "pts": 4,
-        "q": "Classify Item A. Name the CB-specified defensive use of AI, cite its EK, and state exactly who must review the recommendation before it is implemented and why.",
+        "q": "Classify Item A. Name the CB-specified defensive use of AI, and state exactly who must review the recommendation before it is implemented and why.",
         "answer": "Item A is configuration review — EK 1.5.A.1: AI reviews current security configurations like firewall rules and access controls and recommends more secure options. It must be HELD: a knowledgeable security technician checks the recommendation before it is implemented, because an AI suggestion can be incomplete or context-blind and could weaken security if applied unverified. Naming the use without the human reviewer earns half credit."
       },
       {
         "ek": "EK 1.5.A.2",
         "pts": 4,
-        "q": "Classify Item B. Name the use and EK, and explain why the AI's ready-to-paste fix is NOT shipped straight to the live site — name the specific human reviewer.",
+        "q": "Classify Item B. Name the use, and explain why the AI's ready-to-paste fix is NOT shipped straight to the live site — name the specific human reviewer.",
         "answer": "Item B is AI code analysis — EK 1.5.A.2: AI-powered tools analyze application code, identify vulnerabilities, and recommend mitigations (here, validating and sanitizing input before it reaches the database). It must be HELD: a knowledgeable programmer — the software development team — reviews the changes before they are implemented, because an unreviewed fix can patch one field and miss another, break a feature, or misread how the app works. This is the model answer for Scenario 1E: name BOTH halves, the find AND the human review."
       },
       {
         "ek": "EK 1.5.A.3",
         "pts": 4,
-        "q": "Classify Item C. Name the use and EK, and identify the named expert the CED requires before these rules go live.",
+        "q": "Classify Item C. Name the use, and identify the named expert the CED requires before these rules go live.",
         "answer": "Item C is detection-rule suggestion — EK 1.5.A.3: AI-powered tools can suggest rules for automated detection systems. It must be HELD: a knowledgeable detection engineer reviews the suggested rules before they are added to a system. Adding every AI-suggested rule to the live system with no review is exactly what the CED prohibits; sending them to the firewall team instead of the detection engineer is also wrong."
       },
       {
@@ -144,7 +144,7 @@
       {
         "ek": "Enrichment",
         "pts": 2,
-        "q": "ENRICHMENT: Item B (code analysis) uses the SAME AI capability adversaries used in Lesson 1.4 (EK 1.4.A.6). What is identical, and what is different, between the two sides?",
+        "q": "ENRICHMENT: Item B (code analysis) uses the SAME AI capability adversaries used in Lesson 1.4. What is identical, and what is different, between the two sides?",
         "answer": "The capability is symmetric: AI code analysis surfaces the same vulnerability whether an adversary runs it (EK 1.4.A.6 — find vulnerabilities to exploit) or a defender runs it (EK 1.5.A.2 — find vulnerabilities to fix). What differs is intent — exploit versus patch — and the defender's REQUIRED human review, which the attacker never bothers with. Practically it is a race: whoever scans and patches first wins."
       }
     ]
@@ -155,8 +155,8 @@
     "minutes": "25 minutes",
     "subtitle": "3 scenarios - Three-Step Method",
     "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-5-exercise-2",
-    "intro": "Three short scenarios from Scenario 1E (AI-Powered Cyber Defense). For each, identify which CB-specified AI capability is in play and its EK, decide whether the AI's output can SHIP automatically or must be HELD for a knowledgeable human to review before implementation, and explain why. Advanced students also name the specific human reviewer the CED requires.",
-    "standard": "CB Standard (required): name the AI use + EK, decide ship-or-hold, and justify for all 3. Enrichment (optional): also name the exact human reviewer the CED specifies.",
+    "intro": "Three short scenarios from Scenario 1E (AI-Powered Cyber Defense). For each, identify which CB-specified AI capability is in play, decide whether the AI's output can SHIP automatically or must be HELD for a knowledgeable human to review before implementation, and explain why. Advanced students also name the specific human reviewer the CED requires.",
+    "standard": "CB Standard (required): name the AI use, decide ship-or-hold, and justify for all 3. Enrichment (optional): also name the exact human reviewer the CED specifies.",
     "methodHeading": "Three-Step Method - use for every scenario",
     "method": [
       [
@@ -164,8 +164,8 @@
         "Before analyzing, write your gut read: ship this automatically, or hold it for a human? Anchoring your own answer first keeps a convincing wrong option from swaying you."
       ],
       [
-        "Step 2 - Name the AI use (EK)",
-        "Identify which CB use is described — config review (1.5.A.1), code analysis (1.5.A.2), detection-rule suggestion (1.5.A.3), event triage (1.5.B.1/B.2), or alert/act (1.5.B.3/B.4) — and cite the EK."
+        "Step 2 - Name the AI use",
+        "Identify which CB use is described — config review, code analysis, detection-rule suggestion, event triage, or alert/act"
       ],
       [
         "Step 3 - Ship or hold + why",
@@ -173,9 +173,9 @@
       ]
     ],
     "enrichmentHeading": "Enrichment — beyond CB-required content",
-    "enrichmentNote": "Enrichment (the named reviewer per use, NOT a separate CED list): EK 1.5.A.1 configuration review = knowledgeable security technician. EK 1.5.A.2 code analysis = knowledgeable programmer (the software development team). EK 1.5.A.3 detection-rule suggestion = knowledgeable detection engineer. On the 1.5.B response side, the human is the threat-detection and response team, and the risk that keeps them in the loop is the false positive.",
+    "enrichmentNote": "Enrichment (the named reviewer per use, NOT a separate CED list): configuration review = knowledgeable security technician. Code analysis = knowledgeable programmer (the software development team). Detection-rule suggestion = knowledgeable detection engineer. On the 1.5.B response side, the human is the threat-detection and response team, and the risk that keeps them in the loop is the false positive.",
     "fields": [
-      "AI capability + EK:",
+      "AI capability:",
       "Ship automatically or hold for human review?:",
       "Why (and which human, if known):"
     ],
@@ -223,7 +223,7 @@
         "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
         "items": [
           {
-            "text": "Question 1. The exact same AI code-analysis capability finds the same vulnerability for an attacker (EK 1.4.A.6, to exploit) and a defender (EK 1.5.A.2, to fix). If the technology is symmetric, what actually decides who comes out ahead — the tool, the intent, or how fast each side moves?"
+            "text": "Question 1. The exact same AI code-analysis capability finds the same vulnerability for an attacker and a defender. If the technology is symmetric, what actually decides who comes out ahead — the tool, the intent, or how fast each side moves?"
           },
           {
             "text": "Question 2. An AI tool flags a vulnerability and hands your team a finished-looking fix, right before a launch deadline. Why is the temptation to 'just apply it' so strong — and what would it realistically take to make a team slow down and review it every time?"
@@ -241,13 +241,13 @@
         "intro": "As a group, work both prompts below, then one member shares your verdict with the class.",
         "items": [
           {
-            "label": "Task A - Why keep a human in the loop?  [EK 1.5.A + EK 1.5.B]",
-            "text": "On the advice side, every 1.5.A use ends with a named expert signing off (technician, programmer, detection engineer). On the response side, AI can alert OR auto-act in milliseconds (EK 1.5.B.3), yet the CED still names a human response team (EK 1.5.B.4). Agree on the single best one-sentence reason a human stays in the loop even when AI is faster and more accurate.",
+            "label": "Task A - Why keep a human in the loop?",
+            "text": "On the advice side, every 1.5.A use ends with a named expert signing off (technician, programmer, detection engineer). On the response side, AI can alert OR auto-act in milliseconds, yet the CED still names a human response team. Agree on the single best one-sentence reason a human stays in the loop even when AI is faster and more accurate.",
             "lines": 3
           },
           {
             "label": "Task B - The verdict  [Attackers or defenders?]",
-            "text": "Debate for about 3 minutes: over time, does AI favor attackers or defenders? Cite the symmetry between EK 1.4.A.6 and EK 1.5.A.2, the scale advantage AI gives detection (EK 1.5.B.1–B.2), and the defender's required human review. Record your group's verdict and one reason — and one condition under which the other side would win instead.",
+            "text": "Debate for about 3 minutes: over time, does AI favor attackers or defenders? Cite the symmetry between 1.5.A.2, the scale advantage AI gives detection, and the defender's required human review. Record your group's verdict and one reason — and one condition under which the other side would win instead.",
             "lines": 3
           }
         ]
