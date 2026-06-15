@@ -29,8 +29,14 @@ function nameLine() {
   return p([run('Name: __________________________   Period: ______   Date: __________', { color: C.GRAY })]);
 }
 function blankLines(n) {
+  // A clean full-width writing rule per line (paragraph bottom border) — never
+  // wraps and never leaves a short leftover stub the way underscore runs do.
   const out = [];
-  for (let i = 0; i < n; i++) out.push(p([run('_'.repeat(96), { color: '999999' })], { after: 140 }));
+  for (let i = 0; i < n; i++) out.push(new Paragraph({
+    spacing: { before: 30, after: 180 },
+    border: { bottom: { style: 'single', size: 6, color: '999999', space: 6 } },
+    children: [ new TextRun({ text: '', size: 18 }) ],
+  }));
   return out;
 }
 function answerBlock(text) {
