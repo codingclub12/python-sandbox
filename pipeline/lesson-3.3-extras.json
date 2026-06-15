@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "lessonId": "3.3",
+    "lessonTitle": "Protecting Networks: Segmentation",
+    "unit": "Unit 3: Securing Networks",
+    "days": 1,
+    "los": "LO 3.3.A, LO 3.3.B"
+  },
+  "map": {
+    "subtitle": "Unit 3: Securing Networks   •   1 day   •   LO 3.3.A, LO 3.3.B",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, single comprehensive deck (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes (student fill-in + answer KEY)",
+      "Exercise 1: Network Segmentation Analyst and Exercise 2: Submarine Network Designer (student + answer KEY)",
+      "Discussion — Walls on the Inside (3-part: Opening, Mid-lesson, Closing)",
+      "Quiz (student + answer KEY — key B-C-A-D-A-B-C-D, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-3-securing-networks"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-3-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-3-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-3-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Section 1 the three techniques, Section 2 why segmentation increases security, plus the Scenario 3C submarine enrichment).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Protecting Networks: Segmentation'; the CED scenario is 'Scenario 3C: Protecting a Network on a Naval Submarine'; the unit hub lists this lesson under 'Securing Networks.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Network Segmentation Analyst",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-3-exercise-1",
+    "intro": "You are a network architect reviewing one organization's flat network. Five setups have been proposed or observed. For each, you will name the CB segmentation technique, cite its EK, and explain the security outcome it produces. Part A works the design table; Part B extends the same skills. Everything maps to CB Learning Objectives 3.3.A and 3.3.B.",
+    "scenarioTitle": "Design Table: Five Network Setups",
+    "narrative": "An organization is replacing one flat network — every laptop, server, printer, and the public web server on the same segment — with a segmented design. Your team logged five setups: where each lives, what it does, the device or boundary involved, and the security outcome the designer is after. Read the table row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the defining action (DMZ at the edge, subnet by IP, VLAN on a switch, or port security), then match the EK to that mechanism.",
+    "log": {
+      "columns": [
+        "ID",
+        "Setup",
+        "Defining detail",
+        "Boundary / device",
+        "Security outcome wanted"
+      ],
+      "rows": [
+        [
+          "1",
+          "Public web server placement",
+          "Server must be reachable from the internet but kept out of the private interior",
+          "Firewall zones and rules at the network edge",
+          "Expose the public server without giving outsiders a path inside"
+        ],
+        [
+          "2",
+          "Finance vs. general staff",
+          "One flat IP range split into separate IP-addressed segments",
+          "Layer-3 division by IP addressing",
+          "If one machine is compromised, fewer other devices are exposed"
+        ],
+        [
+          "3",
+          "Lab instruments + office PCs",
+          "Both groups plug into the same central switch but must stay on separate networks with no re-cabling",
+          "Configuration on a single switch",
+          "Logically separate physically connected devices"
+        ],
+        [
+          "4",
+          "Command systems vs. guest internet",
+          "Sensitive systems need stricter rules than the general-use segment, on the same physical network",
+          "Different policies per segment",
+          "Run a tightly controlled zone and a looser zone side by side"
+        ],
+        [
+          "5",
+          "Switch under MAC flooding",
+          "Attacker floods a port with thousands of fake source MAC addresses to overwhelm the address table",
+          "Per-port control on the switch",
+          "Cap how many addresses a single port will accept"
+        ]
+      ]
+    },
+    "scenarioNote": "Setups adapted from the Lesson 3.3 deck and Scenario 3C; technique names and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026).",
+    "predict": "Before you answer Part A, write one sentence: of the five setups, which one is most often confused with another technique, and what single detail decides it?",
+    "partALabel": "Part A - Technique Identification",
+    "partA": [
+      {
+        "ek": "EK 3.3.A.1",
+        "pts": 5,
+        "q": "Setup 1 (public web server). Name the CB segmentation technique, cite its EK, and explain WHY this technique places the server in a LOWER security zone rather than the most secure one.",
+        "answer": "This is a screened subnet, also called a DMZ (EK 3.3.A.1): firewall zones and rules create a segment that sits between the internet and the internal, private network and holds the organization's publicly facing resources. It is typically a LOWER security zone than the internal network — not the most secure — precisely because the public server must be reachable from the internet, so it is the most exposed. Putting it in the DMZ keeps that exposure out of the trusted interior, so if the DMZ server is compromised the adversary still has not reached the private network. Full credit must state 'lower security zone' rather than calling the DMZ the most secure."
+      },
+      {
+        "ek": "EK 3.3.A.2",
+        "pts": 5,
+        "q": "Setup 2 (finance vs. general staff). Name the technique and EK, and explain WHEN its security value shows up — before a breach or during one — quoting the EK's mechanism.",
+        "answer": "This is subnetting (EK 3.3.A.2): creating different subnets based on IP addressing so devices sit in separate, bounded segments instead of one flat range. Its value shows up DURING a breach, not before it: EK 3.3.A.2 says that if a device is compromised by an adversary, subnets can CONTAIN a security breach to reduce the number of exposed devices. Subnetting does not stop the first device from being compromised — it limits the blast radius so an attacker on one subnet cannot freely reach every device on the network."
+      },
+      {
+        "ek": "EK 3.3.A.3",
+        "pts": 4,
+        "q": "Setup 3 (lab instruments + office PCs) is frequently misclassified as needing separate physical switches. Name the correct technique and EK, and state the single word in the EK that rules out the re-cabling assumption.",
+        "answer": "This is a VLAN (EK 3.3.A.3): switches can be used to create VLANs, which LOGICALLY separate devices that are physically connected to the same central switches. The single decisive word is 'logically' — the separation is configured on the switch, not built by re-cabling, so two devices plugged into the very same switch can sit on different VLANs (e.g., instruments on one VLAN, workstations on another). No separate physical switch is required."
+      },
+      {
+        "ek": "EK 3.3.B.4",
+        "pts": 4,
+        "q": "Setup 5 (switch under MAC flooding). Name the EK 3.3.B.4 control, explain the mechanism by which it stops the flood, and state why a screened subnet or VLAN would NOT stop it.",
+        "answer": "The control is port security (EK 3.3.B.4): port security on a switch prevents MAC flooding by limiting the number of addresses assignable to any single switch port. MAC flooding tries to overwhelm the switch's address table with thousands of fake source MAC addresses; capping how many addresses a single port will accept removes the attacker's ability to fill the table. A screened subnet (EK 3.3.A.1) and a VLAN (EK 3.3.A.3) are segmentation techniques that do not cap MAC addresses on a port, so neither addresses the flooding mechanism."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 3.3.B.2",
+        "pts": 3,
+        "q": "Setup 4's designer claims a single edge firewall already protects everything inside. Using EK 3.3.B.1 and 3.3.B.2, explain why an edge firewall alone does not contain the bell-ringer malware on a flat internal network.",
+        "answer": "EK 3.3.B.1 defines segmentation as dividing a network into smaller, isolated subnets, and EK 3.3.B.2 says isolating traffic prevents an attack on one subnet from impacting devices on other subnets. A single edge firewall does nothing once the adversary is already inside a flat network — malware that lands behind a perfect edge firewall still spreads freely because there are no internal walls. Only internal subnets and VLANs isolate the traffic and confine the compromise, so the edge firewall is necessary but not sufficient."
+      },
+      {
+        "ek": "EK 3.3.B.3",
+        "pts": 3,
+        "q": "Setup 4 puts command systems and guest internet on the same physical network. Using EK 3.3.B.3, explain how segmentation lets one be governed far more strictly than the other.",
+        "answer": "EK 3.3.B.3 says network segmentation can allow different security policies and controls to be applied to different segments, creating higher security zones and lower security zones. Because each segment can carry its own rules, the command-systems segment can be a tightly controlled high-security zone while the guest-internet segment runs looser controls — both on the same physical network. The differentiated policy is the benefit EK 3.3.B.3 names; it is what makes a strict zone and a loose zone coexist."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Beyond the CB-required defenses, name one organizational mitigation that reduces the value of war driving or signal leakage around this network and describe what it changes.",
+        "answer": "Reducing signal leakage (lowering transmit power so coverage stops at the building perimeter), disabling SSID broadcast, or enforcing strong WPA3 encryption are organizational mitigations that shrink what an outside observer can detect and map. They change the network by removing reachable beacons and weak encryption an attacker could survey from outside — an organizational control, distinct from the per-segment EK 3.3.B techniques. (Any one such control earns credit.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Submarine Network Designer",
+    "minutes": "25 minutes",
+    "subtitle": "3 clients - Scenario 3C",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-3-exercise-2",
+    "intro": "You are a network design consultant. Three clients need a segmentation plan. Client 1 is CB Scenario 3C (Protecting a Network on a Naval Submarine). For each client, name the most fitting CB segmentation technique, recommend the design BY NAME AND EK, and explain WHY each choice addresses that client's specific risk. Vague 'just segment it' advice scores zero.",
+    "standard": "CB Standard (required): name the technique + cite the EK 3.3.A/B that fits + tie each to the mechanism, for all 3 clients. Enrichment (optional): name the higher- vs. lower-security zone placement.",
+    "methodHeading": "Three-Step Method - use for every client",
+    "method": [
+      [
+        "Step 1 - Name the technique",
+        "Identify the CB segmentation technique the client most needs (screened subnet/DMZ, subnetting, VLAN, or port security) and cite its EK 3.3.A or 3.3.B number."
+      ],
+      [
+        "Step 2 - Match the benefit",
+        "State the security outcome EK 3.3.B names that this technique delivers: isolate traffic (B.2), apply different policies per zone (B.3), or stop MAC flooding (B.4)."
+      ],
+      [
+        "Step 3 - Justify + place",
+        "Explain why the technique addresses this client's exact risk, and place the resource in a higher- or lower-security zone with the EK that allows it."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 3.3): a good segmentation design is a set of zone decisions. Command/weapons/navigation systems belong in a higher-security internal zone (EK 3.3.B.3); crew morale and general internet belong in a lower-security zone (EK 3.3.B.3); a public-facing shore-comms service belongs in a screened subnet (EK 3.3.A.1). Every divider isolates traffic (EK 3.3.B.2) so one breach can't sink the ship.",
+    "fields": [
+      "Technique(s) recommended (name + EK 3.3.A/B):",
+      "Security benefit / zone placement (EK):",
+      "Limitation or trap to warn the client about:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "CB Scenario 3C — Naval Submarine. The vessel runs command and weapons systems, navigation and engineering controls, a crew-morale internet LAN, and a public-facing shore-comms service, all currently on one flat network. The captain wants a segmentation design that keeps a breach in crew internet from ever reaching weapons systems.",
+        "key": {
+          "signs": "The defining problem is one flat network with mixed-sensitivity LANs: a high-value command/weapons zone, a navigation/engineering zone, a low-trust crew-internet zone, and a public shore-comms service — nothing currently isolates them.",
+          "mechanism": "Subnet the network by IP addressing (EK 3.3.A.2) and isolate traffic between subnets (EK 3.3.B.2) so a breach in crew internet cannot impact the weapons subnet. Apply different policies per segment (EK 3.3.B.3): command/weapons/navigation in a higher-security zone with strict rules, crew morale in a lower-security zone. Place the public shore-comms service in a screened subnet/DMZ (EK 3.3.A.1) so its exposure stays off the interior. Port security (EK 3.3.B.4) caps MAC addresses on shared switches.",
+          "subtype": "Higher-security internal zone (command/weapons/navigation, EK 3.3.B.3) + lower-security zone (crew internet) + screened subnet (shore-comms, EK 3.3.A.1). Trap: calling the DMZ the 'most secure' zone — EK 3.3.A.1 makes it a LOWER security zone for exposed resources."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Hospital Floor — a single central switch serves nurse workstations, networked infusion pumps, and a guest-Wi-Fi access point. Management wants the medical devices kept on a separate network from guest traffic without running new cable, and is worried a guest device could flood the switch.",
+        "key": {
+          "signs": "Everything shares one central switch; medical devices and guest traffic must be separated, and re-cabling is off the table — a logical-separation problem plus a switch-flooding worry.",
+          "mechanism": "Create VLANs on the switch (EK 3.3.A.3) to logically separate physically connected devices: infusion pumps on one VLAN, nurse workstations on another, guest Wi-Fi on a third — no re-cabling required. Add port security (EK 3.3.B.4) to cap the MAC addresses any single port accepts, preventing a guest device from MAC-flooding the switch's address table. Different VLANs can carry different policies (EK 3.3.B.3).",
+          "subtype": "Medical-device VLAN = higher-security zone; guest-Wi-Fi VLAN = lower-security zone (EK 3.3.B.3). Trap: assuming separate networks require separate physical switches — EK 3.3.A.3 separates LOGICALLY on one switch."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "E-Commerce Startup — one flat office network hosts a public storefront web server, an internal customer-database server, employee laptops, and a printer. A consultant says 'just put a firewall at the edge and you're done.' The founder wants the public storefront reachable while the customer database stays protected even if the storefront is breached.",
+        "key": {
+          "signs": "Mixed exposure on a flat network: a must-be-public storefront, a must-be-private database, plus general office devices — and a tempting but wrong 'edge firewall is enough' claim.",
+          "mechanism": "Put the public storefront web server in a screened subnet/DMZ (EK 3.3.A.1) so it is reachable from the internet but isolated from the interior; if the storefront is breached the adversary has not reached the private network. Subnet the internal network (EK 3.3.A.2) and isolate traffic (EK 3.3.B.2) so the customer database is in a higher-security internal zone the storefront breach cannot cross. Apply stricter policy to the database segment (EK 3.3.B.3).",
+          "subtype": "Storefront = lower-security screened subnet (EK 3.3.A.1); customer database = higher-security internal zone (EK 3.3.B.3). Trap: the edge-firewall-only claim — EK 3.3.B.1/B.2 require internal isolation; a single edge firewall does nothing once an adversary is inside a flat network."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Walls on the Inside",
+    "minutes": "~25 min total - 3 parts - Opening + Mid-lesson + Closing",
+    "overview": "Most people picture network defense as one strong wall at the edge — a firewall between the organization and the internet. But a breach almost always starts inside, with one clicked attachment or one compromised laptop, and from there a flat network offers nothing to stop the spread. Across three short windows in this lesson, your group will examine why internal walls matter, debate which segmentation technique is most worth the effort, and decide what an analyst should and should not conclude when a 'firewalled' network is still overrun from within.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. A submarine survives a hull breach because it is built from watertight compartments — flood one and the rest stay dry. Why don't most office networks work that way by default, and what would it actually take to make 'internal walls' the normal way to build a network (not just 'add a firewall')?"
+          },
+          {
+            "text": "Question 2. Whose job is internal segmentation — the network designer who lays out the subnets and VLANs, or the people who keep adding devices to whatever network is closest? Defend your split with one concrete example (e.g., the public web server, a guest Wi-Fi access point)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "~8 min, right after the three-techniques debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The DMZ surprise  [EK 3.3.A.1]",
+            "text": "Most students assume the screened subnet (DMZ) — where the important public servers live — must be the MOST secure zone. EK 3.3.A.1 says it is typically a LOWER security zone. In one sentence your whole group agrees on, explain why putting exposed public servers in a lower-security zone actually protects the internal network.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which technique is hardest to live with?  [LO 3.3.A]",
+            "text": "Debate for about 3 minutes: of the three techniques — screened subnet/DMZ (A.1), subnetting (A.2), and VLANs (A.3) — which is hardest for a small organization to actually set up and maintain every time the network changes, and what is the realistic cost of skipping it? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "~9 min, after Scenario 3C",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'we had a firewall' case",
+            "text": "An organization had a strong edge firewall and still watched malware spread from one infected laptop to the file server and the finance machines on a flat internal network. Design the defense: which single CB technique would most directly have contained this, why did the edge firewall not save them (EK 3.3.B.1 and 3.3.B.2), and when a 'firewalled' network is still overrun from the inside, what should an analyst conclude — and NOT conclude — about where the defense actually failed?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (technique + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

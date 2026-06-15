@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "lessonId": "3.1",
+    "lessonTitle": "Network Vulnerabilities and Attacks",
+    "unit": "Unit 3: Securing Networks",
+    "days": 6,
+    "los": "LO 3.1.A, 3.1.B, 3.1.C"
+  },
+  "map": {
+    "subtitle": "Unit 3: Securing Networks   •   6 days   •   LO 3.1.A, 3.1.B, 3.1.C",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–6 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–6 (student fill-in + answer KEY)",
+      "Exercise 1: Network Attack Identifier and Exercise 2: Network Risk Assessor (student + answer KEY)",
+      "Discussion — The Network Is Listening (3-part: Opening Day 1, Mid-lesson Day 4, Closing Day 6)",
+      "Quiz (student + answer KEY — key A-B-C-D-A-B-C-D, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-3-network-vulnerabilities-and-attacks"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-1-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-1-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-1-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Days 1–4 the four named attacks, Day 5 wired vulnerabilities, Day 6 wireless vulnerabilities + risk rating + quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Network Vulnerabilities and Attacks'; the unit scenario is 'Scenario 3A: Protecting Patient Medical Data'; the unit hub lists this lesson as the threat-side foundation of Unit 3. All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Network Attack Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-1-exercise-1",
+    "intro": "You are a SOC analyst at a medical clinic running the unit anchor, Protecting Patient Medical Data. Five network incidents hit your monitoring board this morning. For each one you will name the CB attack, state what it targets, and name the category of harm. Part A works the incident log; Part B extends the same skills. Everything maps to CB Learning Objectives 3.1.A and 3.1.B.",
+    "scenarioTitle": "Incident Log: Five Clinic Network Events",
+    "narrative": "Five network incidents were captured on the clinic's monitoring board this week. Each row records where it was observed, the technical signature your sensors saw, and the visible effect on staff or patients. Read the log row by row, then answer Part A. Use the two-column habit from class: for every incident, lock onto WHAT it targets and the CATEGORY of harm it causes, then the EK falls right out.",
+    "log": {
+      "columns": [
+        "ID",
+        "Where observed",
+        "Technical signature",
+        "Category of harm",
+        "Visible effect"
+      ],
+      "rows": [
+        [
+          "1",
+          "Clinic LAN gateway",
+          "Falsified ARP packets relink a doctor's IP to an unknown device's MAC; her traffic now flows through that device, which copies each message before forwarding it.",
+          "Interception",
+          "The doctor and the records server both believe they are talking directly; nothing looks wrong to either."
+        ],
+        [
+          "2",
+          "Wiring-closet switch",
+          "Thousands of Ethernet frames, each with a different source MAC address, hit the switch until it can no longer map ports and starts sending every frame to every port.",
+          "Eavesdropping",
+          "An attached laptop quietly records all traffic the switch is now broadcasting, including lab results in transit."
+        ],
+        [
+          "3",
+          "Clinic DNS server",
+          "A device posing as an authoritative name server plants a fake record for the patient-portal hostname; browsers resolve the portal to a malicious look-alike site.",
+          "Credential harvesting",
+          "Staff who type the portal address land on an identical-looking page and enter usernames and passwords that are captured."
+        ],
+        [
+          "4",
+          "Network broadcast address",
+          "Many ICMP requests carrying the records server's address are sent to the broadcast address; every device replies to that server at once.",
+          "Denial of service",
+          "The records server drowns in reply traffic; legitimate lookups time out and clinicians cannot open charts."
+        ],
+        [
+          "5",
+          "Open hallway wall jack",
+          "A visitor physically plugs a laptop into an unused data port and reaches the LAN through the switch port; no port security is enabled.",
+          "Unauthorized LAN access",
+          "From inside the network the visitor begins MAC flooding and MAC spoofing attempts against the switch."
+        ]
+      ]
+    },
+    "scenarioNote": "Incidents adapted from the Lesson 3.1 worked-table and Stop-and-Think items; attack names, targets, and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026). The clinic anchor is this course's added teaching detail.",
+    "predict": "Before you answer Part A, write one sentence: of the five incidents, which two are most often confused with each other, and what is the single detail that tells them apart?",
+    "partALabel": "Part A - Incident Classification",
+    "partA": [
+      {
+        "ek": "EK 3.1.A.1",
+        "pts": 5,
+        "q": "Name the attack in Incident 1, state exactly what it targets, and name the category of harm. Then explain the mechanism: what does the adversary send, and what gets rewritten so traffic flows through them?",
+        "answer": "Incident 1 is an ARP poisoning attack (EK 3.1.A.1). It targets the default gateway's ARP table, which pairs IP addresses with MAC addresses. The adversary sends falsified ARP packets to the gateway so the table now links the doctor's IP address to the adversary's MAC (faking a MAC address this way is MAC spoofing). Category of harm: it is an on-path / man-in-the-middle attack — interception — because the adversary now sits in the data stream, captures both parties' data, and copies or alters it before forwarding, while the doctor and the server each think they are talking directly to the other."
+      },
+      {
+        "ek": "EK 3.1.A.2",
+        "pts": 5,
+        "q": "Incident 2 is frequently confused with Incident 1 because both involve MAC addresses. Name Incident 2's attack, state what it targets (which is NOT the gateway's ARP table), and name its category. Give the one detail that proves it is not ARP poisoning.",
+        "answer": "Incident 2 is a MAC flooding attack (EK 3.1.A.2). It targets the switch, not the gateway's ARP table. The adversary sends the switch many Ethernet frames, each with a different MAC address, until the switch can no longer track which port owns which address and is forced into broadcast mode, sending all frames to every port. The category is eavesdropping (sniffing): the adversary then collects all the broadcast frames. The detail that rules out ARP poisoning: nothing relinks one victim's IP to the adversary's MAC — the switch is exhausted and broadcasts to everyone, so this captures traffic in bulk rather than intercepting one targeted stream on-path."
+      },
+      {
+        "ek": "EK 3.1.A.3",
+        "pts": 5,
+        "q": "Name the attack in Incident 3, state what it targets, and name its category. Then explain why HTTPS on the look-alike site does NOT save the staff who enter their credentials.",
+        "answer": "Incident 3 is a DNS poisoning attack (EK 3.1.A.3). It targets a DNS server's records: the adversary pretends to be an authoritative name server and plants a fake DNS record so the portal hostname resolves to a malicious look-alike. The category is credential harvesting — the fake login site captures the real usernames and passwords users enter. HTTPS does not help because the staff are typing their credentials into the adversary's own page; the connection is faithfully encrypted straight to the attacker's server, so the password is handed over willingly, not intercepted in transit. Verifying the address would catch the redirection; encryption cannot, because the destination itself is malicious."
+      },
+      {
+        "ek": "EK 3.1.A.4",
+        "pts": 5,
+        "q": "Name the attack in Incident 4, state what it targets, and name its category. Explain why this attack can never read a single patient record, and name what it becomes when many devices attack one target at once.",
+        "answer": "Incident 4 is a smurf attack (EK 3.1.A.4). It targets (abuses) the network's broadcast address: the adversary sends many ICMP requests carrying the victim's (the records server's) address to the broadcast address; the gateway forwards them to every device, and each device replies to the victim, flooding it so legitimate messages cannot get through. The category is denial of service (DoS). It can never read a patient record because its only goal is to make a resource unavailable — it floods, it does not intercept or copy data (that is the eavesdropping/interception family, not this one). When many devices attack one target simultaneously it is a distributed denial of service (DDoS) attack."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 3.1.B.3",
+        "pts": 3,
+        "q": "Incident 5 is a vulnerability, not one of the four named attacks. Name the EK 3.1.B vulnerability it shows, name the single safeguard that would most directly have stopped it, and explain why an edge firewall would not have helped.",
+        "answer": "Incident 5 is physical port access (EK 3.1.B.3): an adversary who physically plugs into a data port reaches the LAN through the switch port unless port security is enabled, which then allows DoS, MAC flooding, or MAC spoofing from inside. The safeguard is port security on the switch, which restricts which devices a port will accept. An edge firewall would not help because the firewall guards traffic crossing the network edge, not a device already attached inside the perimeter — once the laptop is plugged into an internal port it is behind the firewall, attacking the switch directly."
+      },
+      {
+        "ek": "EK 3.1.B.6",
+        "pts": 3,
+        "q": "Compare two ways an adversary could reach the clinic's wireless LAN: picking up leaking signals from outside (EK 3.1.B.4) versus planting a rogue access point on an open port (EK 3.1.B.6). How does each work, and which one bypasses the firewall entirely?",
+        "answer": "Leaking signals (EK 3.1.B.4): an access point broadcasting beyond the building's walls lets an adversary standing outside pick up signals and beacon frames to gather information and attempt eavesdropping and cryptographic attacks — passive reconnaissance from outside, with no device planted. A rogue access point (EK 3.1.B.6): the adversary plugs a wireless access point into an open internal network port, creating direct wireless access to the LAN, even from the parking lot. The rogue access point bypasses the firewall entirely, because a device attached inside the network does not cross the edge the firewall guards; leaking signals do not bypass the firewall but expose information that was already radiating outside."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Network Risk Assessor",
+    "minutes": "25 minutes",
+    "subtitle": "3 findings - High / Moderate / Low",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-1-exercise-2",
+    "intro": "You are documenting the security assessment for the clinic's network (unit anchor: Protecting Patient Medical Data). Three findings came back from the assessment. For each, name the vulnerability with its EK 3.1.B number, then rate the risk HIGH, MODERATE, or LOW by weighing impact (confidentiality, integrity, availability) against likelihood of exploitation, and justify the rating. A bare label with no impact-and-likelihood justification scores zero.",
+    "standard": "CB Standard (required): name the vulnerability + EK, rate the risk H/M/L, and justify with impact x likelihood for all 3 findings. Enrichment (optional): name the specific named attack (EK 3.1.A) the vulnerability most directly invites.",
+    "methodHeading": "Three-Step Method - use for every finding",
+    "method": [
+      [
+        "Step 1 - Name the vulnerability + EK",
+        "Identify the EK 3.1.B weakness the finding describes (missing firewall, lateral movement, open port, leaking signals, unauthenticated join, rogue AP, or breakable encryption) and cite its EK number."
+      ],
+      [
+        "Step 2 - Weigh impact (EK 3.1.C.1)",
+        "State which of confidentiality, integrity, and availability the exploit threatens — interception/alteration of data, a DoS, or lateral movement to more sensitive systems — and how severe that impact would be."
+      ],
+      [
+        "Step 3 - Weigh likelihood + rate (EK 3.1.C.3–C.6)",
+        "Judge how hard the exploit is (harder = less likely), combine impact x likelihood, and write the rating HIGH (EK 3.1.C.4), MODERATE (EK 3.1.C.5), or LOW (EK 3.1.C.6) with a one-line justification."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Automated vulnerability scanners (EK 3.1.C.2) check networks, devices, and applications for known vulnerabilities and return a report listing each finding, its severity, and mitigation recommendations — that is where these findings come from. Enrichment naming (NOT required by the CED for the rating): tie each vulnerability to the named EK 3.1.A attack it most directly invites — e.g., an open port invites MAC flooding (A.2) and MAC spoofing; weak Wi-Fi encryption invites eavesdropping after it is broken.",
+    "fields": [
+      "Vulnerability + EK:",
+      "Risk rating (H/M/L):",
+      "Justification (impact x likelihood):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The scanner reports that the clinic runs ONE flat, unsegmented internal network reachable over Wi-Fi secured with outdated WEP encryption, and the proprietary patient-database server sits directly on that same network. Rate the risk and justify it.",
+        "key": {
+          "signs": "Vulnerability: breakable wireless encryption plus a flat, unsegmented network (EK 3.1.B.7, the broken-encryption weakness; the lack of segmentation also enables lateral movement, EK 3.1.B.2). This is the CED's own high-risk example almost word for word.",
+          "mechanism": "Rating: HIGH (EK 3.1.C.4). Impact (EK 3.1.C.1): weak WEP can be broken to get onto the network, and because it is flat and unsegmented the adversary can immediately reach the database server — capturing traffic, spoofing a device, or moving laterally threatens confidentiality, integrity, AND availability of patient records. Likelihood: high — WEP is easily broken with off-the-shelf tools and one foothold reaches everything, so an adversary can EASILY cause significant impact. Easy access plus severe impact equals HIGH.",
+          "subtype": "Most directly invites eavesdropping/cryptographic attacks (EK 3.1.B.4/B.7) once the weak encryption is broken; then on-path interception (ARP poisoning, EK 3.1.A.1) and lateral movement (EK 3.1.B.2) across the flat network."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "The scanner reports that the clinic's external firewall is not configured to block inbound ICMP echo requests, though it blocks the other sensitive inbound traffic. Rate the risk and explain which of confidentiality, integrity, and availability is most affected.",
+        "key": {
+          "signs": "Vulnerability: a misconfigured firewall (EK 3.1.B.1) — specifically one not configured to block inbound ICMP. This is the CED's moderate-risk example.",
+          "mechanism": "Rating: MODERATE (EK 3.1.C.5). Impact (EK 3.1.C.1): allowing inbound ICMP mainly lets an adversary gather information about the systems and devices on the network (mapping the internal structure, reachability) and could contribute to ICMP-based flooding — it leaks information and touches availability more than it directly exposes record contents, so there is no immediate major damage. Confidentiality of the architecture is the property most affected because the leak is reconnaissance information about what is on the network. Likelihood is moderate and impact is limited, so the combined risk is MODERATE.",
+          "subtype": "Most directly enables network mapping/reconnaissance (EK 3.1.B.1) and can feed a smurf-style ICMP flood / DoS (EK 3.1.A.4)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "The scanner flags that a single conference-room display runs slightly outdated firmware with a known but hard-to-reach bug; exploiting it requires advanced technical ability and physical proximity, and the display sits on an isolated guest VLAN with no access to patient systems. Rate the risk and justify it.",
+        "key": {
+          "signs": "Vulnerability: a known software/firmware weakness on a device, but one that is difficult to exploit and isolated — the segmentation (guest VLAN) blocks lateral movement (contrast EK 3.1.B.2), which is what keeps this low.",
+          "mechanism": "Rating: LOW (EK 3.1.C.6). Impact (EK 3.1.C.1): even a successful exploit lands only on an isolated display with no path to patient records, so confidentiality, integrity, and availability of sensitive systems are barely touched — minimal negative impact. Likelihood (EK 3.1.C.3): exploitation requires advanced technical ability AND physical proximity, so it is hard to exploit and therefore unlikely. Difficult-to-exploit plus minimal impact equals LOW. Note the trap: 'known bug' alone does not make it high — the rating is impact x likelihood, and both are low here.",
+          "subtype": "If it were NOT segmented it could invite lateral movement (EK 3.1.B.2); the isolation is exactly what drops the rating from a potential higher tier to LOW."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Network Is Listening",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 4) + Closing (Day 6)",
+    "overview": "A network moves trusted messages between machines that assume the wire, the switch, and the name server are telling the truth. Every attack in this lesson breaks one of those assumptions to steal, disrupt, or destroy that communication. Across three short windows your group will reason about why the same network features that make it useful also make it attackable, debate which vulnerability is most dangerous to leave open, and decide how an analyst should rate and justify the risk a weakness creates.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The bell ringer shows two machines that each believe they are talking directly to one another while an adversary copies everything in between. Why does a network trust an address — an IP, a MAC, a name — instead of the actual identity of the device? What would it take to make a network verify who it is really talking to?"
+          },
+          {
+            "text": "Question 2. Whose job is it to keep a clinic network safe — the staff who use it, the IT team that configures the switches and firewall, or the vendors who built the devices? Defend your split with one concrete example (e.g., an open wall jack, a missing firewall rule)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 4, ~8 min, after the four named attacks are complete",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - It never read a thing  [EK 3.1.A.4]",
+            "text": "A smurf attack can take the clinic's records server completely offline, yet it never reads one patient record. In one sentence your whole group agrees on, explain why a denial-of-service attack is dangerous EVEN THOUGH it steals no data, and why that makes it a different category from MAC flooding (EK 3.1.A.2).",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Same layer, different attack  [EK 3.1.A.1 vs A.2]",
+            "text": "Debate for about 3 minutes: ARP poisoning and MAC flooding both live at Layer 2 and both involve MAC addresses, but they target different things and cause different harm. Agree on the single clearest one-sentence test your group could give a classmate to tell them apart, naming the target and the category for each.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 6, ~9 min, after the risk-rating practice",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "Rate it and defend it",
+            "text": "The clinic runs one flat, unsegmented network reachable over weak Wi-Fi encryption, with the patient-database server on it (EK 3.1.C.4). Design the assessment: rate the risk high, moderate, or low, justify it using BOTH impact (EK 3.1.C.1) and likelihood (EK 3.1.C.3), name the single change that would most reduce the rating, and explain why 'there is a known vulnerability' is not by itself enough to call something high risk.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (rating + the one change that lowers it most + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

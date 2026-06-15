@@ -138,8 +138,39 @@ function pacingBlock() {
   return k;
 }
 
-const MAP = { 'rubric': rubric, 'pacing-year': pacingYear, 'pacing-block': pacingBlock };
-const LABEL = { 'rubric': 'Threat Defense Report — Rubric', 'pacing-year': 'Full-Year Pacing Guide', 'pacing-block': 'Block & Semester Pacing Guide' };
+// ============================================================ START HERE
+function startHere() {
+  const k = [];
+  k.push(...titleBlock('AP Cybersecurity · Complete Course',
+    'Start Here',
+    'A 60-second orientation: where everything lives, and the two documents to open first.'));
+
+  k.push(h2('Open these first'));
+  k.push(bullet([run('How_To_Use_This_Course.docx ', { bold: true, color: C.NAVY }), run('— the full teaching workflow: what every file is, the two tracks, the daily rhythm, and a before/during/after routine.')]));
+  k.push(bullet([run('Course_Resources/ ', { bold: true, color: C.NAVY }), run('— the Full-Year and Block/Semester pacing guides, and the Threat Defense Report project rubric.')]));
+
+  k.push(h2('How the course is organized'));
+  k.push(p('Five units, 24 lessons. Each lesson folder contains:'));
+  k.push(bullet([run('Slide_Decks/ ', { bold: true }), run('— Day#_Deck_TEACHER.pptx (Deep Dive, with speaker notes) + Day#_Deck_STUDENT.pptx (CB Standard).')]));
+  k.push(bullet([run('Guided_Notes/ ', { bold: true }), run('— Day#_Notes_STUDENT.docx (fill-in) + Day#_Notes_KEY.docx (answers).')]));
+  k.push(bullet([run('Quiz/ ', { bold: true }), run('— Quiz_STUDENT.docx + Quiz_KEY.docx.')]));
+  k.push(bullet([run('Teacher_Guide.docx ', { bold: true }), run('— objectives, the day-by-day pacing table, misconceptions, and the answer key.')]));
+  k.push(bullet([run('Supplements/ ', { bold: true }), run('— standalone Exercise 1 & 2 (student + key), a Discussion, and a Lesson Map.')]));
+  k.push(p([run('Each unit also ships ', {}), run('_Unit_<N>_Test_STUDENT.docx', { bold: true }), run(' and ', {}), run('_Unit_<N>_Test_KEY.docx', { bold: true }), run('.')]));
+
+  k.push(h2('Three conventions to know'));
+  k.push(bullet([run('Two tracks — ', { bold: true }), run('CB Standard (green, exam-required) is the student materials; Deep Dive (blue, enrichment) is the teacher materials.')]));
+  k.push(bullet([run('Daily QOTD — ', { bold: true }), run('every day opens with a Question of the Day coded U#/L#.#/Q# (the Q-number is the day number).')]));
+  k.push(bullet([run('Pacing “Slides” column — ', { bold: true }), run('a slide range points into the deck; ', {}), run('Handout', { bold: true }), run(' is a printed packet/lab/quiz; ', {}), run('Website', { bold: true }), run(' is the daily page.')]));
+
+  k.push(callout('Quality standard', [
+    p('Every quiz and unit test passes an automated MCQ audit (four options, balanced key, majority scenario/applied items, complete rationales, exact EK citations), and all content is grounded in the College Board CED. All files are editable .docx and .pptx.'),
+  ], 'tip'));
+  return k;
+}
+
+const MAP = { 'rubric': rubric, 'pacing-year': pacingYear, 'pacing-block': pacingBlock, 'start-here': startHere };
+const LABEL = { 'rubric': 'Threat Defense Report — Rubric', 'pacing-year': 'Full-Year Pacing Guide', 'pacing-block': 'Block & Semester Pacing Guide', 'start-here': 'Start Here' };
 if (!MAP[doc]) { console.error('Unknown --doc=' + doc); process.exit(1); }
 save(buildDoc(LABEL[doc], MAP[doc](), 'Course Resources'), out || ('/tmp/' + doc + '.docx'))
   .then(p2 => console.log('emitted: ' + p2));

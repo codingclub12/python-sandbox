@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "lessonId": "2.4",
+    "lessonTitle": "Detecting Attacks",
+    "unit": "Unit 2: Securing Spaces",
+    "days": 4,
+    "los": "LO 2.4.A, 2.4.B, 2.4.C"
+  },
+  "map": {
+    "subtitle": "Unit 2: Securing Spaces   •   4 days   •   LO 2.4.A, 2.4.B, 2.4.C",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–4 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–4 (student fill-in + answer KEY)",
+      "Exercise 1: Detection Method Identifier and Exercise 2: Xtensr Detection Advisor (student + answer KEY)",
+      "Discussion — Who Is Actually Watching? (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 3)",
+      "Quiz (student + answer KEY — canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-detecting-attacks"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 the four detection methods, Day 2 effective placement, Day 3 Scenario 2A applied detection, Day 4 review and quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Detecting Attacks'; the CED scenario is 'Scenario 2A: Securing Xtensr Labs'; the unit hub lists this lesson as 'Detecting Attacks.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Detection Method Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-1",
+    "intro": "You are on the physical security team at Xtensr Research Labs. Five detection events just landed in the incident log. For each one you will name the CB detection method, state exactly what it detects and the condition it needs, and judge whether it actually caught the adversary. Part A works the log; Part B extends the same skills. Everything maps to CB Learning Objectives 2.4.A, 2.4.B, and 2.4.C.",
+    "scenarioTitle": "Xtensr Labs Incident Log: Five Detection Events",
+    "narrative": "Five things happened at the new Xtensr lab this week. The security operations log recorded each event with where it occurred, what the equipment or person reported, and the outcome. Read the log row by row, then answer Part A. Use the method: name the CB detection method (EK 2.4.A.1–A.4), state what it detects and its blind spot, then judge whether it caught the attack.",
+    "log": {
+      "columns": [
+        "ID",
+        "Location",
+        "What was reported",
+        "Outcome"
+      ],
+      "rows": [
+        [
+          "1",
+          "Server room",
+          "Motion sensor fired at 2:14 a.m. in the normally empty server room; alert said only 'movement detected.'",
+          "Security pulled the paired camera, saw an intruder, and dispatched a response."
+        ],
+        [
+          "2",
+          "Front lobby",
+          "A receptionist noticed a person in a delivery uniform that matched no real vendor and did not have a visitor badge.",
+          "The receptionist alerted security; the adversary was stopped before reaching the offices."
+        ],
+        [
+          "3",
+          "Hallway camera",
+          "A camera recorded footage to a hard drive all night, but no one was assigned to watch the live feed.",
+          "The intrusion was only noticed the next morning when footage was reviewed after the fact."
+        ],
+        [
+          "4",
+          "Records vault",
+          "An authorized researcher badged in at 4:58 p.m.; the door sensor logged the door open 14 seconds (normal is about 3).",
+          "Next-morning entry-log review flagged likely tailgating; vault camera confirmed a second person."
+        ],
+        [
+          "5",
+          "Records vault",
+          "A stationary guard posted at the vault entrance saw an unfamiliar person attempt to follow staff through the door.",
+          "The guard challenged the person on the spot and the entry was blocked immediately."
+        ]
+      ]
+    },
+    "scenarioNote": "Events adapted from the Day 1–3 Xtensr Labs material; detection methods and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026). Scenario 2A names no individuals; the receptionist/researcher roles are this course's added teaching detail.",
+    "predict": "Before you answer Part A, write one sentence: of the five events, which detection method came closest to FAILING, and what single condition decides it?",
+    "partALabel": "Part A - Event Classification",
+    "partA": [
+      {
+        "ek": "EK 2.4.A.3 / EK 2.4.C.2",
+        "pts": 6,
+        "q": "Event 1 (server room) is really two EKs working together. Name the detection method that raised the alert and the technique that confirmed the breach, quote the defining detail of each in the log, and explain exactly what the sensor did and did NOT tell security on its own.",
+        "answer": "The alert came from a motion sensor (EK 2.4.A.3): the log says it reported only 'movement detected' at 2:14 a.m. A motion sensor alerts security to movement in an area but does NOT identify who or what is moving or whether it is a real threat. The confirmation came from pairing the sensor with a camera (EK 2.4.C.2): security pulled the paired camera to check the space visually and verify a real physical security breach, then dispatched a response. Full credit requires noting that the sensor alone could not distinguish an intruder from a false alarm — the camera supplied the verification."
+      },
+      {
+        "ek": "EK 2.4.A.4",
+        "pts": 4,
+        "q": "Event 2 (lobby) was caught with no camera and no sensor involved. Name the CB detection method, explain why a person caught what equipment would have missed, and state the one condition this method requires to work.",
+        "answer": "This is employee awareness (EK 2.4.A.4): employees who work in a physical space are often the first to notice an unauthorized person. The receptionist caught a context cue equipment cannot parse — a delivery uniform matching no real vendor and a missing visitor badge — because a person knows who belongs in the space. The condition: this method only works when employees are present and paying attention; in an empty building (e.g., overnight) it detects nothing, which is exactly where cameras and sensors earn their keep."
+      },
+      {
+        "ek": "EK 2.4.A.1",
+        "pts": 4,
+        "q": "Event 3 (hallway camera) is the trap event: a camera was running yet the intrusion was missed in the moment. Cite EK 2.4.A.1 to explain why recording alone was not enough, and state what the footage WAS still good for.",
+        "answer": "EK 2.4.A.1 says a camera feed should be recorded AND monitored for maximum effect, because those are two different jobs. This camera was only recorded and never monitored, so no one could respond while the attack was happening — recording alone is purely an after-the-fact tool. The footage was still valuable for the after-incident investigation: reviewed the next morning, it could reconstruct the adversary's path, timing, and actions. Recording supports investigation; monitoring is what catches the attack live."
+      },
+      {
+        "ek": "EK 2.4.A.2 / EK 2.4.B.4",
+        "pts": 4,
+        "q": "Events 4 and 5 both involve the vault, but one detected after the fact and one stopped the attack in real time. Name the method in each, and explain why a stationary guard at this entrance (EK 2.4.B.4) is so effective here.",
+        "answer": "Event 4 is badge-log/door-open-time review (EK 2.4.C.3): the door logged open far longer than normal — 14 seconds vs. ~3 — the signature of piggybacking or tailgating, detected after the fact in the entry log. Event 5 is a security guard (EK 2.4.A.2): a guard both monitors an area and can respond to suspicious activity the moment it is detected, so the entry was blocked immediately. A stationary guard (EK 2.4.B.4) is highly effective at the vault because it is a chokepoint that funnels traffic — a specific entrance to a more secure area — exactly where constant, on-the-spot protection pays off."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 2.4.A.1",
+        "pts": 3,
+        "q": "Why is Event 3's 'recorded but never monitored' camera a more dangerous setup than having no camera at all? Cite EK 2.4.A.1.",
+        "answer": "It creates false confidence. The organization believes it is protected because a camera is 'covering' the area, so it stops watching and skips other detection — yet EK 2.4.A.1's monitoring half is missing, so nothing triggers a real-time response. A recorded-only feed detects nothing in the moment; the breach is found only after the damage is done. Believing you are covered when you are not is worse than knowing you have a gap."
+      },
+      {
+        "ek": "EK 2.4.A.4",
+        "pts": 3,
+        "q": "Event 2's success depended on a person being present. Explain why an organization cannot rely on employee awareness (EK 2.4.A.4) alone for detection, and what fills the gap.",
+        "answer": "EK 2.4.A.4 only works when employees are present and paying attention, so it covers business hours but goes blind overnight, on weekends, and in restricted areas few people enter. The Event 1 server-room intrusion happened at 2:14 a.m. precisely when no employee was there. Equipment-based detection — monitored cameras (A.1), motion sensors in unexpected-traffic areas (A.3/B.2), and guards (A.2) — fills the off-hours gap that the human method cannot cover."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Xtensr Detection Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 areas - Scenario 2A",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-2",
+    "intro": "You are on the physical security team conducting the Scenario 2A vulnerability assessment of the new Xtensr lab. Three areas of the building need a detection recommendation. For each, name the CB detection method(s) that fit, place them correctly BY EK, and explain WHY each placement detects that area's specific risk. Vague 'add cameras' advice scores zero.",
+    "standard": "CB Standard (required): name the method + place it per the matching EK 2.4.B rule + apply the EK 2.4.C technique, for all 3 areas. Enrichment (optional): name whether each method detects LIVE, AFTER-THE-FACT, or both.",
+    "methodHeading": "Three-Step Method - use for every area",
+    "method": [
+      [
+        "Step 1 - Name the method",
+        "Identify the CB detection method(s) the area needs — camera (A.1), guard (A.2), motion sensor (A.3), or employees (A.4) — and cite the EK."
+      ],
+      [
+        "Step 2 - Place it correctly",
+        "Apply the EK 2.4.B placement rule: camera coverage/angle/tamper at ingress-egress (B.1), sensor where traffic is unexpected (B.2), locks/vestibule on sensitive entries (B.3), stationary vs. patrolling guard (B.4)."
+      ],
+      [
+        "Step 3 - Apply + verify",
+        "Apply the EK 2.4.C technique that turns the device into detection: facial recognition + footage tracking (C.1), motion+camera verification (C.2), badge-log door-open time (C.3). Name one limitation to warn about."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 2.4): classify each method as LIVE detection (catches the attack as it happens — a monitored camera, a guard, a motion sensor, an alert employee), AFTER-THE-FACT (helps reconstruct what already happened — recorded camera footage, badge-log review), or BOTH. EK 2.4.A.1 insists a feed be recorded AND monitored precisely because those are two different jobs.",
+    "fields": [
+      "Detection method(s) (name + EK 2.4.A):",
+      "Effective placement (EK 2.4.B):",
+      "Applied technique + one limitation (EK 2.4.C):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Scenario 2A — the Xtensr front LOBBY. It is a point of ingress that funnels every visitor and employee into the building, busy all day. The team needs to detect an adversary who enters posing as a visitor and to be able to track them if they get past the lobby. A manager suggests just putting a motion sensor here.",
+        "key": {
+          "signs": "The lobby is a high-traffic point of ingress: everyone funnels through it, so it is ideal for capturing identity but terrible for a movement-only sensor. The risk is an adversary blending in as a visitor.",
+          "mechanism": "Methods: camera (EK 2.4.A.1) plus a stationary guard (EK 2.4.A.2), and the employees there are a first line of detection (EK 2.4.A.4). Placement: mount the camera at the ingress/egress point with good coverage, angle, and tamper-resistance (EK 2.4.B.1); post a STATIONARY guard because the lobby funnels traffic (EK 2.4.B.4). Apply: pair the camera with facial recognition to alert on unauthorized people and use footage to track the adversary's path (EK 2.4.C.1).",
+          "subtype": "Camera = BOTH (monitored feed is live; recorded footage is after-the-fact). Guard and alert employees = LIVE. Trap: a MOTION SENSOR here is wrong (EK 2.4.B.2) — constant lobby traffic creates many false alarms, training people to ignore the alarm."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "The empty SERVER ROOM, normally entered by only two authorized people and almost never at night. The team wants to know the instant anyone is moving in there after hours — and to confirm whether an alert is a real intruder or a false alarm before dispatching a response.",
+        "key": {
+          "signs": "Traffic in the server room is UNEXPECTED — any movement at all is itself suspicious, the exact condition a motion sensor needs to be meaningful. The risk is an after-hours intruder when no employee is present to notice.",
+          "mechanism": "Method: motion sensor (EK 2.4.A.3), since it alerts to movement where nothing should move. Placement: this is the textbook EK 2.4.B.2 location — where traffic is unexpected, not a high-traffic area. Apply: pair the motion detector with a camera (EK 2.4.C.2) so that when the sensor raises an alert, defenders check the space visually and verify a real breach versus a false alarm.",
+          "subtype": "Motion sensor = LIVE (alerts while the intruder is still there); paired camera = BOTH. Trap: a sensor alone cannot identify who is moving (EK 2.4.A.3) — without the paired camera you cannot tell an intruder from a false alarm, which is why the pairing is the whole point."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "The badge-locked records VAULT holding sensitive research. The team's worry is not a forced break-in but someone slipping in BEHIND an authorized employee — no second badge is ever scanned. They also need exterior coverage of the building's perimeter, which an adversary keeps trying to time around.",
+        "key": {
+          "signs": "The defining risk is tailgating/piggybacking: an unauthorized person enters behind a badge holder, so 'whose badge was used' shows one authorized entry and misses the attack. The tell is the DOOR-OPEN TIME, not the badge.",
+          "mechanism": "Placement: a lock on the entry plus an access control vestibule because this is a particularly sensitive area (EK 2.4.B.3), and PATROLLING guards on the exterior perimeter since they are harder to plan around (EK 2.4.B.4). Apply: review the badge entry log — a door logged open far longer than normal flags likely tailgating (EK 2.4.C.3) — then pull the vault camera footage to confirm and identify the second person (EK 2.4.C.1).",
+          "subtype": "Badge-log review = AFTER-THE-FACT; vestibule = LIVE prevention-of-entry; camera footage = BOTH. Trap: checking only whose badge was scanned (one valid entry) over-trusts the badge and misses the tailgater — the door-open TIME is what catches it. Stationary guards would be misplaced on a perimeter; patrolling fits there."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Who Is Actually Watching?",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 3)",
+    "overview": "Detection only matters if someone or something is actually watching and can respond — a camera no one monitors and a sensor no one answers detect nothing. Across three short windows in this lesson, your group will connect the four CB detection methods to real spaces, debate which control is hardest to actually keep working, and decide what an analyst should and should not conclude when a 'covered' space is still breached without anyone noticing.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Cameras, guards, motion sensors, and employees can all detect an intruder — but each only works under a condition (monitored, present, well-placed, paying attention). Which of the four do you trust LEAST to actually be working when it matters, and why?"
+          },
+          {
+            "text": "Question 2. Whose job is detection — the equipment the organization installs, or the people who work in the space? Defend your split with one concrete example (e.g., the overnight server room vs. the daytime lobby)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the placement / false-alarm debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The false-alarm trap  [EK 2.4.B.2]",
+            "text": "A motion sensor in a busy lobby fires hundreds of times a day, so security tunes it out — and the one night an adversary trips it, no one responds. In one sentence your whole group agrees on, explain why a badly placed sensor is WORSE than no sensor at all.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which control is hardest to keep working?  [EK 2.4.A / 2.4.B]",
+            "text": "Debate for about 3 minutes: of the four detection methods — monitored cameras (A.1), guards (A.2), motion sensors (A.3), and alert employees (A.4) — which is hardest for an organization to actually keep working every day, and what is the realistic cost of letting it lapse? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 3, ~9 min, after the Scenario 2A walkthrough",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'we had a camera' case",
+            "text": "At Xtensr, a hallway camera recorded all night but no one watched the feed, and an intrusion was only found the next morning (EK 2.4.A.1). Design the fix: which single change would most directly have caught this live, why did 'having a camera' give false confidence, and when a 'covered' space is breached unnoticed, what should an analyst conclude — and NOT conclude — about whether the control was working?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single change + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

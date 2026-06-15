@@ -1,0 +1,273 @@
+{
+  "meta": {
+    "lessonId": "3.2",
+    "lessonTitle": "Protecting Networks: Managerial Controls",
+    "unit": "Unit 3: Securing Networks",
+    "days": 3,
+    "los": "LO 3.2.A, 3.2.B"
+  },
+  "map": {
+    "subtitle": "Unit 3: Securing Networks   •   3 days   •   LO 3.2.A, 3.2.B",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–3 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–3 (student fill-in + answer KEY)",
+      "Exercise 1: Policy vs. Configuration Identifier and Exercise 2: Secure the Wireless Network (student + answer KEY)",
+      "Discussion — The Rule and the Switch (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 3)",
+      "Quiz (student + answer KEY — key A-B-C-D-A-B-C-D, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-3-managerial-controls"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-2-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-2-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-2-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 the four managerial policies, Day 2 the four wireless configurations, Day 3 Scenario 3B walkthrough and quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Protecting Networks: Managerial Controls'; the CED scenario is 'Scenario 3B: Configuring a Secure Wireless Network'; the unit hub lists this lesson as 'Managerial Controls.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Policy vs. Configuration Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-2-exercise-1",
+    "intro": "The one skill this whole topic tests is telling a managerial control (a written policy, LO 3.2.A) apart from a wireless configuration (a hands-on action, LO 3.2.B). Below is an organization's network-hardening checklist. Part A sorts each item into its layer and names the policy or configuration with its EK; Part B extends the same skills. Everything maps to CB Learning Objectives 3.2.A and 3.2.B.",
+    "scenarioTitle": "Network-Hardening Checklist: Five Items to Sort",
+    "narrative": "An organization's security team has produced a mixed checklist while hardening its network. Some items are written minimum-standard documents (managerial controls, LO 3.2.A); others are settings someone actually turns on at the device (wireless configurations, LO 3.2.B). Read each item, decide which layer it lives in, and name the specific policy (3.2.A.1–A.4) or configuration (3.2.B.1–B.4) it represents. Use the rule from class: a policy says what must be true; a configuration makes it true.",
+    "log": {
+      "columns": [
+        "Item",
+        "Layer",
+        "Device / Target",
+        "EK",
+        "What the item says or does"
+      ],
+      "rows": [
+        [
+          "A",
+          "Policy (3.2.A)",
+          "Routers",
+          "EK 3.2.A.1",
+          "A written document requiring every router login to use the approved authentication server and Telnet to be disabled."
+        ],
+        [
+          "B",
+          "Configuration (3.2.B)",
+          "Wireless AP",
+          "EK 3.2.B.3",
+          "An administrator turns off original WPA on the access point and enables WPA3."
+        ],
+        [
+          "C",
+          "Policy (3.2.A)",
+          "VPN access",
+          "EK 3.2.A.3",
+          "A written document listing which roles may connect remotely, requiring MFA, and forbidding split tunneling."
+        ],
+        [
+          "D",
+          "Configuration (3.2.B)",
+          "Wireless AP",
+          "EK 3.2.B.1",
+          "An administrator switches off beacon-frame broadcasting on the wireless access points."
+        ],
+        [
+          "E",
+          "Policy (3.2.A)",
+          "Wireless network",
+          "EK 3.2.A.4",
+          "A written document requiring EAP authentication, AES encryption at a minimum key length, and disabled beacon frames."
+        ]
+      ]
+    },
+    "scenarioNote": "Checklist items written for this course to exercise the policy-vs-configuration sort; every policy and configuration name and EK follows the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026).",
+    "predict": "Before you answer Part A, write one sentence: which item is the hardest to sort, and what single word in it decides whether it is a policy or a configuration?",
+    "partALabel": "Part A - Sort the Checklist",
+    "partA": [
+      {
+        "ek": "EK 3.2.A.1 / 3.2.A.3",
+        "pts": 6,
+        "q": "Items A and C are both managerial controls, but each is a DIFFERENT policy. Name the policy each one is, cite its EK, and quote the specific requirement in each that proves which policy it is.",
+        "answer": "Item A is a router security policy (EK 3.2.A.1): the requirement that 'every router login use the approved authentication server and Telnet be disabled' is the EK 3.2.A.1 combination of banning local accounts in favor of an authentication server and disabling unnecessary services such as Telnet. Item C is a VPN policy (EK 3.2.A.3): listing 'which roles may connect remotely, requiring MFA, and forbidding split tunneling' is the exact EK 3.2.A.3 trio (allowed roles, authentication such as MFA, prohibition against split/dual tunneling). Both are written documents — the word 'requiring' in a 'document' marks them as policy, not configuration."
+      },
+      {
+        "ek": "EK 3.2.B.1 / 3.2.B.3",
+        "pts": 4,
+        "q": "Items B and D are both wireless configurations performed at the access point, yet they do completely different jobs. Name the configuration and EK for each, and state in one phrase what each accomplishes that the other does NOT.",
+        "answer": "Item B is enabling strong encryption — WPA3 (EK 3.2.B.3): it makes intercepted wireless frames unreadable, but it does NOT hide the network or stop it from being found. Item D is disabling beacon-frame broadcasting (EK 3.2.B.1): it makes the network harder for adversaries to find and learn its basic properties, but it does NOT encrypt any traffic. Both are hands-on actions on the WAP (LO 3.2.B), which is why they belong in the configuration layer, not the policy layer."
+      },
+      {
+        "ek": "EK 3.2.A.4",
+        "pts": 4,
+        "q": "Item E is the trickiest to sort because it names the same features that get configured in 3.2.B. Explain why Item E is still a managerial control (3.2.A), not a configuration, and name the exact policy with its EK.",
+        "answer": "Item E is a wireless security policy (EK 3.2.A.4). It is a written document that REQUIRES EAP authentication through an approved authentication server, AES encryption at a minimum key length, and disabled beacon frames — the three items EK 3.2.A.4 names. The trap is that those same features (encryption, beacon frames, authentication) are also what you configure in EK 3.2.B; but Item E only states the minimum standard, it does not perform any action on a device. It says what must be true (policy) — the actual turning-on lives in 3.2.B."
+      },
+      {
+        "ek": "EK 3.2.A.4 / 3.2.B.1 / 3.2.B.3",
+        "pts": 4,
+        "q": "Item E (wireless policy) and Items B and D (wireless configurations) are deliberately about the SAME features. Pick the 'disabled beacon frames' requirement and trace it across both layers, naming the EK at each layer and explaining why naming the layer matters.",
+        "answer": "Disabled beacon frames appears twice. As a policy line it is part of EK 3.2.A.4 — the wireless security policy that REQUIRES beacon frames be disabled (the written minimum standard, Item E). As a configuration it is EK 3.2.B.1 — the administrator actually switching off beacon-frame broadcasting on the WAP (Item D). Naming the layer matters because the policy protects nothing until the configuration is performed: a wireless policy that says 'disable beacon frames' leaves the network fully discoverable until someone does the EK 3.2.B.1 action. The exam awards the points for correctly citing which layer — A.4 versus B.1 — you are in."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 3.2.A.1 / 3.2.A.2",
+        "pts": 3,
+        "q": "Item A is a router policy. A teammate wants to add 'require port security and use MAC filtering' to Item A. Using EK 3.2.A.1 and EK 3.2.A.2, explain why those two requirements belong in a DIFFERENT policy and name it.",
+        "answer": "Port security and MAC filtering are switch security policy items (EK 3.2.A.2), not router policy items. EK 3.2.A.1 assigns the router policy banning local accounts, disabling services like Telnet, and requiring a firewall; EK 3.2.A.2 assigns the switch policy banning local accounts, requiring port security, and using MAC filtering. The two device policies overlap on banning local accounts in favor of an authentication server, but port security and MAC filtering are specifically the switch policy's requirements, so they belong in a separate switch security policy."
+      },
+      {
+        "ek": "EK 3.2.B.3",
+        "pts": 3,
+        "q": "Item B upgrades to WPA3. An auditor argues that because the old setting was 'WPA,' it was already secure encryption, so the upgrade was unnecessary. Use EK 3.2.B.3 to explain why the auditor is wrong.",
+        "answer": "EK 3.2.B.3 states that WEP, WPS, and the ORIGINAL WPA all have known vulnerabilities and are insecure, and that WPA3 is currently the strongest wireless encryption algorithm. So 'it was already WPA' is not enough — the version number matters, not just the WPA name. Original WPA is on the insecure list, so leaving it in place left intercepted frames vulnerable; moving to WPA3 (Item B) is exactly the fix EK 3.2.B.3 calls for."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Secure the Wireless Network",
+    "minutes": "25 minutes",
+    "subtitle": "3 sites - Scenario 3B",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-2-exercise-2",
+    "intro": "You are a wireless security administrator. Three sites need their wireless network configured to resist attack. Site 1 is CB Scenario 3B (Configuring a Secure Wireless Network). For each site, identify the exposure the site faces, name the EK 3.2.B configuration(s) that fix it BY NAME AND EK, and explain WHY each configuration addresses that specific risk. Vague 'make it more secure' advice scores zero.",
+    "standard": "CB Standard (required): identify the exposure + name the matching EK 3.2.B configuration(s) + tie each to the mechanism, for all 3 sites. Enrichment (optional): name the managerial policy layer (3.2.A) that would REQUIRE the configuration.",
+    "methodHeading": "Three-Step Method - use for every site",
+    "method": [
+      [
+        "Step 1 - Identify the exposure",
+        "State what about the wireless network is exposed: it can be FOUND, the signal REACHES outsiders, intercepted frames are READABLE, or unauthorized DEVICES can join."
+      ],
+      [
+        "Step 2 - Match the configuration",
+        "Pick the EK 3.2.B configuration(s) that fix THIS exposure: disable beacon frames (B.1), control direction/signal strength (B.2), enable WPA3 (B.3), or MAC filtering with required authentication (B.4). Layer them when more than one applies."
+      ],
+      [
+        "Step 3 - Justify + name the policy",
+        "Explain why the configuration addresses this site's exact exposure, and (enrichment) name the 3.2.A policy that would have REQUIRED it (e.g., the wireless security policy, EK 3.2.A.4)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment layer (NOT required to earn the CB-standard points for Topic 3.2): every EK 3.2.B configuration can be traced back to the managerial control that REQUIRES it. The wireless security policy (EK 3.2.A.4) requires EAP authentication, AES encryption, and disabled beacon frames; the switch security policy (EK 3.2.A.2) requires MAC filtering. Naming the policy layer that demands a configuration is the one-requirement-two-layers skill from Day 1.",
+    "fields": [
+      "Exposure (what is at risk?):",
+      "Configuration(s) (name + EK 3.2.B):",
+      "Why it fixes this exposure:",
+      "Enrichment — policy that requires it (EK 3.2.A):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "CB Scenario 3B — Configuring a Secure Wireless Network. You are setting up a new wireless network for a small office. The access point currently broadcasts its network name to everyone in range, uses the original WPA encryption it shipped with, and lets any device that knows the password join. Describe the configurations that would secure this wireless network.",
+        "key": {
+          "signs": "Three exposures at once: the network is easily FOUND (it broadcasts its name/beacon to everyone in range); intercepted frames are READABLE (original WPA, which is insecure); and any DEVICE that learns the password can join (no device-level control).",
+          "mechanism": "Disable beacon-frame broadcasting (EK 3.2.B.1) so the network is harder to find and learn its basic properties; enable WPA3 (EK 3.2.B.3) because WEP, WPS, and original WPA are insecure and WPA3 is currently the strongest wireless encryption algorithm, making intercepted frames unreadable; enable MAC filtering and require authentication when joining (EK 3.2.B.4) so unauthorized devices cannot join even with the password. Optionally control direction/signal strength (EK 3.2.B.2) if the office signal spills outside.",
+          "subtype": "Required by the wireless security policy (EK 3.2.A.4): EAP authentication, AES encryption at a minimum key length, and disabled beacon frames. Trap: stopping at 'use WPA3' misses that EK 3.2.B.3 encrypts frames but does NOT stop an unauthorized device from joining — that needs EK 3.2.B.4."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Corner Café — the café's wireless signal currently reaches the parking lot and the sidewalk across the street, where people sit in cars and connect or scan the network without ever entering the café. The encryption is already WPA3 and authentication is required, so the owner does not understand why outside access is still a problem.",
+        "key": {
+          "signs": "The exposure is the signal's REACH, not encryption: the WAP signal extends well beyond the physical space it is meant to cover (parking lot, sidewalk), giving outsiders a place to attempt connections and reconnaissance even though WPA3 is on.",
+          "mechanism": "Control the WAP's broadcast direction and signal strength (EK 3.2.B.2) so the signal does not extend beyond the café's own space. WPA3 (EK 3.2.B.3) protects the confidentiality of frames but does not shrink the signal's footprint, and MAC filtering (EK 3.2.B.4) blocks unknown devices but still lets the signal reach them — only EK 3.2.B.2 reduces the physical reach. Disabling beacon frames (EK 3.2.B.1) would additionally make it harder to find from outside.",
+          "subtype": "The wireless security policy (EK 3.2.A.4) sets minimum wireless requirements; an organization's policy may also direct controlling signal reach. Trap: assuming WPA3 'already secures it' — encryption strength and signal reach are different jobs (EK 3.2.B.3 vs EK 3.2.B.2)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "District Office — IT finds the guest wireless network is discoverable from the street, runs original WPA, and a former contractor's laptop is still connecting because it knows the old password. Leadership wants both a written rule so this never happens again AND the network fixed today. Separate the policy layer from the configuration layer in your answer.",
+        "key": {
+          "signs": "Three exposures plus a layer question: discoverable from the street (FOUND), original WPA (READABLE frames), and an unauthorized device still joining on a known password (DEVICE control). The twist is that leadership wants BOTH the managerial control (the written rule) and the configurations (the actions).",
+          "mechanism": "Configurations (LO 3.2.B): disable beacon frames (EK 3.2.B.1) to remove street discoverability; enable WPA3 (EK 3.2.B.3) to retire insecure original WPA; enable MAC filtering and require authentication (EK 3.2.B.4) so the former contractor's laptop is blocked at the hardware-address level even though it knows the password. Policy (LO 3.2.A): write or update the wireless security policy (EK 3.2.A.4) requiring EAP authentication through an approved authentication server, AES encryption at a minimum key length, and disabled beacon frames — the minimum standard that makes these configurations mandatory going forward.",
+          "subtype": "This is the one-requirement-two-layers skill: the wireless security policy (EK 3.2.A.4) is the written rule; EK 3.2.B.1/B.3/B.4 are the actions that enforce it. Trap: writing only the policy 'fixes' nothing today — a policy protects the network only once someone performs the configuration."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Rule and the Switch",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 3)",
+    "overview": "Protecting a network takes two layers that look almost identical on paper: a written policy that sets the minimum standard, and the hands-on configuration that actually enforces it. The same words — WPA, MAC filtering, authentication — show up in both, which is exactly why people confuse them. Across three short windows in this lesson, your group will pin down why a policy is not a configuration, debate which wireless configuration buys the most security for the effort, and decide what an organization with a 'complete' policy binder still has to do before its network is actually safe.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your school signs a binder full of network security policies — router, switch, VPN, and wireless — but nobody has touched a single device yet. Is the network any safer the moment the binder is signed? What still has to happen, and whose job is it?"
+          },
+          {
+            "text": "Question 2. The CED splits the topic into managerial controls (3.2.A, the written rules) and configuring wireless features (3.2.B, the actions). Why do you think it is worth testing whether a student can tell these two layers apart? Defend your answer with one concrete example."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the four-wireless-configurations debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Hiding is not encrypting  [EK 3.2.B.1 / 3.2.B.3]",
+            "text": "A classmate says 'we disabled beacon frames, so our wireless traffic is now encrypted.' In one sentence your whole group agrees on, explain exactly what disabling beacon frames does (EK 3.2.B.1) and what it does NOT do, and which separate configuration actually encrypts the frames (EK 3.2.B.3).",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which configuration is worth the most?  [EK 3.2.B]",
+            "text": "Debate for about 3 minutes: of the four wireless configurations — disable beacon frames (B.1), control signal direction/strength (B.2), enable WPA3 (B.3), MAC filtering + authentication (B.4) — which one buys the most real security for the effort, and which is most often skipped? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 3, ~9 min, after the Scenario 3B walkthrough",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'complete binder' case",
+            "text": "A district has a fully written wireless security policy (EK 3.2.A.4) requiring EAP authentication, AES encryption, and disabled beacon frames — but an audit finds the access points still broadcast their name, still run original WPA, and let any device join. Design the fix: which EK 3.2.B configurations close each gap, why did having the policy not protect the network, and when an organization says 'our policy is complete,' what should an analyst conclude — and NOT conclude — about whether the network is actually secure?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single most important takeaway about policy vs. configuration):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}
