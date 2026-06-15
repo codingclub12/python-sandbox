@@ -115,13 +115,13 @@ function pacingBlock() {
 
   k.push(h2('Block schedule (90-minute periods)'));
   k.push(p('Combine two consecutive lesson-days into one block; run the assessment as the back half of the block on quiz days. Roughly half the meetings of a daily schedule.'));
-  const W = [1500, 4030, 1550, 1400, 1400];
-  k.push(dataTable(['Unit', 'Title', 'Lesson-days', 'Blocks', 'Test'], [
-    ['1', 'Introduction to Security',      '14 + 5', '~10', '½ block'],
-    ['2', 'Securing Spaces',               '21 + 4', '~13', '½ block'],
-    ['3', 'Securing Networks',             '20 + 5', '~13', '½ block'],
-    ['4', 'Securing Devices',              '15 + 4', '~10', '½ block'],
-    ['5', 'Securing Applications & Data',  '30 + 6', '~18', '½ block'],
+  const W = [760, 3140, 980, 2100, 1450, 1450]; // = 9880
+  k.push(dataTable(['Unit', 'Title', 'Lessons', 'Class days (teach + quiz)', 'Blocks', 'Test'], [
+    ['1', 'Introduction to Security',      '5', '14 + 5 = 19', '~10', '½ block'],
+    ['2', 'Securing Spaces',               '4', '21 + 4 = 25', '~13', '½ block'],
+    ['3', 'Securing Networks',             '5', '20 + 5 = 25', '~13', '½ block'],
+    ['4', 'Securing Devices',              '4', '15 + 4 = 19', '~10', '½ block'],
+    ['5', 'Securing Applications & Data',  '6', '30 + 6 = 36', '~18', '½ block'],
   ], W));
   k.push(p([run('Total ≈ 64 blocks of content', { bold: true }), run(' (about 13 teaching weeks on an A/B rotation), leaving room for the capstone and AP review within a typical block year.')]));
 
