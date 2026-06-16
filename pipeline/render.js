@@ -11,6 +11,24 @@
 const fs = require('fs');
 const path = require('path');
 const pptxgen = require('pptxgenjs');
+const { stripEK } = require('./helpers');
+
+// EK framework codes are removed from the SLIDE BODY on every deck (overwhelming
+// in-context). Student decks get none; teacher decks get a subtle "CB:" line in
+// the footer. Speaker notes (script) keep their EK references for the teacher.
+function collectEK(o, set) {
+  set = set || new Set();
+  if (typeof o === 'string') { for (const m of o.matchAll(/\bEK\s*(\d+\.\d+\.[A-Z](?:\.\d+)?)/g)) set.add(m[1]); }
+  else if (Array.isArray(o)) o.forEach(v => collectEK(v, set));
+  else if (o && typeof o === 'object') { for (const k in o) if (k !== 'script') collectEK(o[k], set); }
+  return set;
+}
+function deepStripEK(o) {
+  if (typeof o === 'string') return /\bEK\b/.test(o) ? stripEK(o) : o;
+  if (Array.isArray(o)) return o.map(deepStripEK);
+  if (o && typeof o === 'object') { const r = {}; for (const k in o) r[k] = (k === 'script') ? o[k] : deepStripEK(o[k]); return r; }
+  return o;
+}
 
 // ---------- LOCKED DESIGN TOKENS ----------
 const C = {
@@ -105,7 +123,7 @@ pres.company = 'APCSExamPrep.com';
 pres.revision = '1';
 
 // ---------- HELPERS ----------
-function addFooter(slide, slideNum, totalSlides) {
+function addFooter(slide, slideNum, totalSlides, eks) {
   // Footer line
   slide.addShape(pres.shapes.LINE, {
     x: M.edge, y: M.footerY - 0.05, w: W - 2 * M.edge, h: 0,
@@ -113,12 +131,18 @@ function addFooter(slide, slideNum, totalSlides) {
   });
   // Left: branding (with subtle edition tag for the teacher variant only)
   const editionSuffix = variant === 'teacher' ? '  \u00b7  Teacher Edition' : '';
-  slide.addText([
+  const leftRuns = [
     { text: 'APCSExamPrep.com', options: { color: C.primary, bold: true } },
     { text: `  \u00b7  Lesson ${meta.lessonId}  \u00b7  Slide ${slideNum} of ${totalSlides}${editionSuffix}`, options: { color: C.muted } },
-  ], {
+  ];
+  // Teacher-only: a subtle CB-alignment line in the footer (never in the body).
+  if (eks && eks.length) {
+    const shown = eks.slice(0, 6).map(e => 'EK ' + e).join(', ') + (eks.length > 6 ? '\u2026' : '');
+    leftRuns.push({ text: `   \u00b7   CB: ${shown}`, options: { color: C.border, italic: true } });
+  }
+  slide.addText(leftRuns, {
     x: M.edge, y: M.footerY, w: 8, h: 0.3,
-    fontFace: F.body, fontSize: 9, align: 'left', valign: 'top', margin: 0,
+    fontFace: F.body, fontSize: 8.5, align: 'left', valign: 'top', margin: 0,
   });
   // Right: AP trademark + license
   slide.addText('AP\u00ae is a trademark of the College Board, which was not involved in the production of this resource.', {
@@ -240,7 +264,7 @@ function buildTitle(slide, s) {
   // Subtitle
   if (s.subtitle) {
     slide.addText(s.subtitle, {
-      x: M.edge + 0.5, y: 4.5, w: W - 2 * (M.edge + 0.5) - 1, h: 0.7,
+      x: M.edge + 0.5, y: 4.5, w: W - 2 * (M.edge + 0.5) - 1, h: 1.3,
       fontFace: F.body, fontSize: 18, color: 'D8B4FE', italic: true,
       align: 'left', valign: 'top', margin: 0,
     });
@@ -293,9 +317,10 @@ function buildBellRinger(slide, s) {
   });
 
   // Main prompt
+  const _pfs = (s.prompt || '').length > 260 ? 18 : (s.prompt || '').length > 185 ? 20 : 24;
   slide.addText(s.prompt, {
     x: 2.4, y: 2.2, w: W - 2.4 - 1.5, h: 2.0,
-    fontFace: F.header, fontSize: 24, bold: true, color: C.dark,
+    fontFace: F.header, fontSize: _pfs, bold: true, color: C.dark,
     align: 'left', valign: 'top', margin: 0,
   });
 
@@ -534,25 +559,27 @@ function buildTwoColumn(slide, s) {
       x, y: colY, w: colW, h: colH,
       fill: { color: C.cardTint }, line: { color: C.primary, width: 1.5 },
     });
-    // Top header band
+    // Top header band (tall enough for a two-line title above the EK line)
     slide.addShape(pres.shapes.RECTANGLE, {
-      x, y: colY, w: colW, h: 0.7,
+      x, y: colY, w: colW, h: col.ek ? 0.9 : 0.7,
       fill: { color: C.primary }, line: { color: C.primary, width: 0 },
     });
-    // Title
-    slide.addText(col.title, {
-      x: x + 0.2, y: colY + 0.05, w: colW - 0.4, h: 0.4,
-      fontFace: F.header, fontSize: 22, bold: true, color: C.white, align: 'left', valign: 'top', margin: 0,
+    // Title — drop the inline "(EK ...)" (the ek line below shows it) so long
+    // titles fit instead of spilling out of the header band.
+    const colTitle = (col.title || '').replace(/\s*\(EK[^)]*\)/g, '').trim();
+    slide.addText(colTitle, {
+      x: x + 0.2, y: colY + 0.06, w: colW - 0.4, h: 0.56,
+      fontFace: F.header, fontSize: 20, bold: true, color: C.white, align: 'left', valign: 'top', margin: 0,
     });
     if (col.ek) {
       slide.addText(col.ek, {
-        x: x + 0.2, y: colY + 0.45, w: colW - 0.4, h: 0.25,
+        x: x + 0.2, y: colY + 0.63, w: colW - 0.4, h: 0.24,
         fontFace: F.body, fontSize: 10, color: 'E9D5FF', italic: true, align: 'left', margin: 0,
       });
     }
     // Definition
     slide.addText(col.definition, {
-      x: x + 0.25, y: colY + 0.85, w: colW - 0.5, h: 0.65,
+      x: x + 0.25, y: colY + (col.ek ? 1.02 : 0.82), w: colW - 0.5, h: 0.6,
       fontFace: F.body, fontSize: 14, bold: true, color: C.dark, align: 'left', valign: 'top', margin: 0,
     });
     // Examples - use inline bullet character instead of pptxgenjs bullet system
@@ -562,7 +589,7 @@ function buildTwoColumn(slide, s) {
       options: { breakLine: idx < col.examples.length - 1, paraSpaceAfter: 6 },
     }));
     slide.addText(exampleText, {
-      x: x + 0.25, y: colY + 1.55, w: colW - 0.5, h: colH - 1.7,
+      x: x + 0.25, y: colY + (col.ek ? 1.72 : 1.5), w: colW - 0.5, h: colH - (col.ek ? 1.87 : 1.65),
       fontFace: F.body, fontSize: 12, color: C.body, align: 'left', valign: 'top', margin: 0,
     });
   });
@@ -916,27 +943,32 @@ function buildAPStrategy(slide, s) {
     });
   }
 
-  const cardW = (W - 2 * M.edge - 0.6) / 3;
+  const n = s.strategies.length;
+  const gap = 0.3;
+  const cardW = (W - 2 * M.edge - gap * (n - 1)) / n;   // n=3 matches the original layout
   const cardY = 1.95;
   const cardH = 4.5;
+  const numFs = n >= 4 ? 52 : 72;
+  const nameFs = n >= 4 ? 17 : 19;
+  const textFs = n >= 4 ? 11.5 : 12.5;
 
   s.strategies.forEach((st, i) => {
-    const x = M.edge + i * (cardW + 0.3);
+    const x = M.edge + i * (cardW + gap);
     slide.addShape(pres.shapes.RECTANGLE, {
       x, y: cardY, w: cardW, h: cardH,
       fill: { color: C.cardTint }, line: { color: C.border, width: 1 },
     });
     slide.addText(`${i + 1}`, {
       x: x + 0.2, y: cardY + 0.15, w: 1.5, h: 1.4,
-      fontFace: F.header, fontSize: 72, bold: true, color: C.primaryAlt, align: 'left', valign: 'top', margin: 0,
+      fontFace: F.header, fontSize: numFs, bold: true, color: C.primaryAlt, align: 'left', valign: 'top', margin: 0,
     });
     slide.addText(st.name, {
       x: x + 0.2, y: cardY + 1.5, w: cardW - 0.4, h: 0.6,
-      fontFace: F.header, fontSize: 19, bold: true, color: C.dark, align: 'left', valign: 'top', margin: 0,
+      fontFace: F.header, fontSize: nameFs, bold: true, color: C.dark, align: 'left', valign: 'top', margin: 0,
     });
     slide.addText(st.text, {
       x: x + 0.2, y: cardY + 2.2, w: cardW - 0.4, h: cardH - 2.3,
-      fontFace: F.body, fontSize: 12.5, color: C.body, align: 'left', valign: 'top', margin: 0,
+      fontFace: F.body, fontSize: textFs, color: C.body, align: 'left', valign: 'top', margin: 0,
     });
   });
 }
@@ -1017,27 +1049,32 @@ function buildStopAndThink(slide, s) {
     });
   }
 
+  const n = s.prompts.length;
   const startY = 2.0;
-  const cardH = 1.7;
-  const gap = 0.2;
+  const bottom = 7.15;                       // keep cards above the footer
+  const gap = n >= 4 ? 0.12 : 0.2;
+  const cardH = Math.min(1.9, (bottom - startY - gap * (n - 1)) / n);  // shrink to fit, never off-slide
+  const fs = cardH < 1.4 ? 14 : 16;
   s.prompts.forEach((p, i) => {
     const y = startY + i * (cardH + gap);
     slide.addShape(pres.shapes.RECTANGLE, {
       x: M.edge, y, w: W - 2 * M.edge, h: cardH,
       fill: { color: C.white }, line: { color: C.border, width: 1 },
     });
+    const ovS = Math.min(0.85, cardH - 0.34);
+    const ovY = y + Math.max(0.12, (cardH - ovS) / 2);
     slide.addShape(pres.shapes.OVAL, {
-      x: M.edge + 0.3, y: y + 0.4, w: 0.85, h: 0.85,
+      x: M.edge + 0.3, y: ovY, w: ovS, h: ovS,
       fill: { color: C.primary }, line: { color: C.primary, width: 0 },
     });
     slide.addText(String(i + 1), {
-      x: M.edge + 0.3, y: y + 0.4, w: 0.85, h: 0.85,
-      fontFace: F.header, fontSize: 32, bold: true, color: C.white,
+      x: M.edge + 0.3, y: ovY, w: ovS, h: ovS,
+      fontFace: F.header, fontSize: cardH < 1.4 ? 24 : 32, bold: true, color: C.white,
       align: 'center', valign: 'middle', margin: 0,
     });
     slide.addText(p, {
-      x: M.edge + 1.4, y: y + 0.2, w: W - 2 * M.edge - 1.6, h: cardH - 0.4,
-      fontFace: F.body, fontSize: 16, color: C.body,
+      x: M.edge + 1.4, y: y + 0.12, w: W - 2 * M.edge - 1.6, h: cardH - 0.24,
+      fontFace: F.body, fontSize: fs, color: C.body,
       align: 'left', valign: 'middle', margin: 0,
     });
   });
@@ -1162,7 +1199,7 @@ function buildMisconception(slide, s) {
   if (s.example) {
     slide.addText([
       { text: 'Example:  ', options: { bold: true, color: C.green, fontSize: 11 } },
-      { text: s.example, options: { color: C.body, fontSize: 13 } },
+      { text: s.example, options: { color: C.body, fontSize: 11 } },
     ], {
       x: rx + 0.25, y: colY + 3.1, w: colW - 0.5, h: colH - 3.2,
       fontFace: F.body, align: 'left', valign: 'top', margin: 0,
@@ -1222,15 +1259,15 @@ function buildDayClose(slide, s) {
 
   if (s.teaser) {
     slide.addShape(pres.shapes.RECTANGLE, {
-      x: M.edge, y: 6.55, w: W - 2 * M.edge, h: 0.45,
+      x: M.edge, y: 6.42, w: W - 2 * M.edge, h: 0.58,
       fill: { color: C.primaryAlt }, line: { color: C.primaryAlt, width: 0 },
     });
     slide.addText([
       { text: 'TEASER:  ', options: { bold: true, color: C.white } },
       { text: s.teaser, options: { color: C.white, italic: true } },
     ], {
-      x: M.edge + 0.2, y: 6.55, w: W - 2 * M.edge - 0.4, h: 0.45,
-      fontFace: F.body, fontSize: 13, align: 'left', valign: 'middle', margin: 0,
+      x: M.edge + 0.2, y: 6.42, w: W - 2 * M.edge - 0.4, h: 0.58,
+      fontFace: F.body, fontSize: 11, align: 'left', valign: 'middle', margin: 0,
     });
   }
 }
@@ -1465,40 +1502,21 @@ function buildScenarioDebrief(slide, s) {
     fontFace: F.body, fontSize: 11, bold: true, color: C.primary, align: 'left', margin: 0,
   });
 
-  const chips = [
-    { label: 'ATTACK TYPE', value: s.attack,  accent: C.primary },
-    { label: 'ADVERSARY',   value: s.skill,   accent: C.muted },
-    { label: 'CB DEFENSE',  value: s.defense, accent: C.green },
-  ];
-  const chipY0 = cardY + 0.4;
-  const chipH = 0.82;
-  const chipGap = 0.16;
-  chips.forEach((c, i) => {
-    const y = chipY0 + i * (chipH + chipGap);
-    slide.addShape(pres.shapes.RECTANGLE, {
-      x: rx, y, w: rw, h: chipH,
-      fill: { color: C.cardTint }, line: { color: C.border, width: 1 },
-    });
-    slide.addShape(pres.shapes.RECTANGLE, {
-      x: rx, y, w: 0.1, h: chipH,
-      fill: { color: c.accent }, line: { color: c.accent, width: 0 },
-    });
-    slide.addText(c.label, {
-      x: rx + 0.25, y: y + 0.1, w: rw - 0.4, h: 0.24,
-      fontFace: F.body, fontSize: 9.5, bold: true, color: c.accent, align: 'left', margin: 0,
-    });
-    slide.addText(c.value, {
-      x: rx + 0.25, y: y + 0.34, w: rw - 0.4, h: 0.42,
-      fontFace: F.body, fontSize: 15, bold: true, color: C.dark, align: 'left', valign: 'top', margin: 0,
-    });
-  });
-
-  const dfY = chipY0 + 3 * (chipH + chipGap) + 0.05;
-  slide.addText([
-    { text: 'DECIDING FACTOR:  ', options: { bold: true, color: C.primary, fontSize: 10 } },
-    { text: s.deciding, options: { color: C.body, fontSize: 12.5 } },
-  ], {
-    x: rx, y: dfY, w: rw, h: cardY + cardH - dfY,
+  // Verdict as a flowing labeled block — tolerates long debrief text without
+  // overflowing fixed-size chips.
+  const verdict = [];
+  const addLine = (label, val, accent) => {
+    if (!val) return;
+    verdict.push({ text: label + '  ', options: { bold: true, color: accent, fontSize: 11 } });
+    verdict.push({ text: String(val), options: { color: C.body, fontSize: 12.5 } });
+    verdict.push({ text: '', options: { breakLine: true, paraSpaceAfter: 9 } });
+  };
+  addLine('ATTACK TYPE:', s.attack, C.primary);
+  addLine('ADVERSARY:', s.skill, C.muted);
+  addLine('CB DEFENSE:', s.defense, C.green);
+  addLine('DECIDING FACTOR:', s.deciding, C.primary);
+  slide.addText(verdict, {
+    x: rx, y: cardY + 0.4, w: rw, h: cardH - 0.45,
     fontFace: F.body, align: 'left', valign: 'top', margin: 0,
   });
 
@@ -1749,19 +1767,21 @@ const builders = {
 
 // ---------- BUILD ALL SLIDES ----------
 const total = slides.length;
-slides.forEach((s, idx) => {
-  const builder = builders[s.type];
+slides.forEach((rawS, idx) => {
+  const builder = builders[rawS.type];
   if (!builder) {
-    console.error(`Unknown slide type: ${s.type}`);
+    console.error(`Unknown slide type: ${rawS.type}`);
     return;
   }
+  const eks = [...collectEK(rawS)].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  const s = deepStripEK(rawS);   // strip EK codes from everything the slide draws
   const slide = pres.addSlide();
   builder(slide, s);
   if (s.type !== 'title') {
-    addFooter(slide, idx + 1, total);
+    addFooter(slide, idx + 1, total, variant === 'teacher' ? eks : null);
   }
-  if (variant === 'teacher' && s.script) {
-    slide.addNotes(s.script);
+  if (variant === 'teacher' && rawS.script) {
+    slide.addNotes(rawS.script);   // speaker notes keep their EK references
   }
 });
 
