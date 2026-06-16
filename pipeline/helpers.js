@@ -157,14 +157,15 @@ function stripEK(s) {
   t = t.replace(/\bthe\s+EK's\b/gi, 'its');
   t = t.replace(new RegExp('\\b(yet|and|because|since|so|but)\\s+EK\\s*' + _EKC + '\\b(?=\\s+[a-z])', 'gi'), '$1 that capability');
   t = t.replace(/\s*\(EK\)/gi, '').replace(/\s*\+\s*EK\b/gi, '').replace(/\s+EK\s*:/gi, ':');
-  t = t.replace(new RegExp('\\s*\\bEK\\s*' + _EKC + '\\b', 'g'), '');
-  t = t.replace(/\s*\bEK\b/g, '');
+  t = t.replace(new RegExp('\\s*\\bEKs?\\s*' + _EKC + '(?:\\s*,?\\s*(?:and\\s+)?(?:' + _EKC + '|[A-Z]\\.\\d+))*', 'g'), '');
+  t = t.replace(/\s*\bEKs?\b/g, '');
   t = t.replace(/\s{2,}/g, ' ').replace(/\s+([.,;:?!])/g, '$1').replace(/\(\s*\)/g, '').replace(/\[\s*\]/g, '')
        .replace(/,\s*,/g, ',').replace(/,\s*\./g, '.').replace(/\s+,/g, ',')
        .replace(/:\s*\)/g, ')').replace(/\(\s*,/g, '(').replace(/—\s*[,.]/g, '—').replace(/\s+—\s*$/, '').trim();
   // a removed clause can leave a sentence-end glued to a comma, or a dangling comma after a verb
   t = t.replace(/([.?!])\s*,/g, '$1').replace(/\b(state|explain|name|give|identify)\s*,\s+/gi, '$1 ')
        .replace(/—\s*,/g, '—').replace(/,\s*—/g, ' —').replace(/\s{2,}/g, ' ').trim();
+  t = t.replace(/^[\s,;:.\u2014\u2013-]+/, '').trim();
   t = t.replace(/(^|[.?!]\s+)([a-z])/g, (m, p, c) => p + c.toUpperCase());
   return t;
 }

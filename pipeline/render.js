@@ -11,24 +11,6 @@
 const fs = require('fs');
 const path = require('path');
 const pptxgen = require('pptxgenjs');
-const { stripEK } = require('./helpers');
-
-// EK framework codes are removed from the SLIDE BODY on every deck (overwhelming
-// in-context). Student decks get none; teacher decks get a subtle "CB:" line in
-// the footer. Speaker notes (script) keep their EK references for the teacher.
-function collectEK(o, set) {
-  set = set || new Set();
-  if (typeof o === 'string') { for (const m of o.matchAll(/\bEK\s*(\d+\.\d+\.[A-Z](?:\.\d+)?)/g)) set.add(m[1]); }
-  else if (Array.isArray(o)) o.forEach(v => collectEK(v, set));
-  else if (o && typeof o === 'object') { for (const k in o) if (k !== 'script') collectEK(o[k], set); }
-  return set;
-}
-function deepStripEK(o) {
-  if (typeof o === 'string') return /\bEK\b/.test(o) ? stripEK(o) : o;
-  if (Array.isArray(o)) return o.map(deepStripEK);
-  if (o && typeof o === 'object') { const r = {}; for (const k in o) r[k] = (k === 'script') ? o[k] : deepStripEK(o[k]); return r; }
-  return o;
-}
 
 // ---------- LOCKED DESIGN TOKENS ----------
 const C = {
@@ -123,7 +105,7 @@ pres.company = 'APCSExamPrep.com';
 pres.revision = '1';
 
 // ---------- HELPERS ----------
-function addFooter(slide, slideNum, totalSlides, eks) {
+function addFooter(slide, slideNum, totalSlides) {
   // Footer line
   slide.addShape(pres.shapes.LINE, {
     x: M.edge, y: M.footerY - 0.05, w: W - 2 * M.edge, h: 0,
@@ -131,18 +113,12 @@ function addFooter(slide, slideNum, totalSlides, eks) {
   });
   // Left: branding (with subtle edition tag for the teacher variant only)
   const editionSuffix = variant === 'teacher' ? '  \u00b7  Teacher Edition' : '';
-  const leftRuns = [
+  slide.addText([
     { text: 'APCSExamPrep.com', options: { color: C.primary, bold: true } },
     { text: `  \u00b7  Lesson ${meta.lessonId}  \u00b7  Slide ${slideNum} of ${totalSlides}${editionSuffix}`, options: { color: C.muted } },
-  ];
-  // Teacher-only: a subtle CB-alignment line in the footer (never in the body).
-  if (eks && eks.length) {
-    const shown = eks.slice(0, 6).map(e => 'EK ' + e).join(', ') + (eks.length > 6 ? '\u2026' : '');
-    leftRuns.push({ text: `   \u00b7   CB: ${shown}`, options: { color: C.border, italic: true } });
-  }
-  slide.addText(leftRuns, {
+  ], {
     x: M.edge, y: M.footerY, w: 8, h: 0.3,
-    fontFace: F.body, fontSize: 8.5, align: 'left', valign: 'top', margin: 0,
+    fontFace: F.body, fontSize: 9, align: 'left', valign: 'top', margin: 0,
   });
   // Right: AP trademark + license
   slide.addText('AP\u00ae is a trademark of the College Board, which was not involved in the production of this resource.', {
@@ -1767,21 +1743,19 @@ const builders = {
 
 // ---------- BUILD ALL SLIDES ----------
 const total = slides.length;
-slides.forEach((rawS, idx) => {
-  const builder = builders[rawS.type];
+slides.forEach((s, idx) => {
+  const builder = builders[s.type];
   if (!builder) {
-    console.error(`Unknown slide type: ${rawS.type}`);
+    console.error(`Unknown slide type: ${s.type}`);
     return;
   }
-  const eks = [...collectEK(rawS)].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-  const s = deepStripEK(rawS);   // strip EK codes from everything the slide draws
   const slide = pres.addSlide();
   builder(slide, s);
   if (s.type !== 'title') {
-    addFooter(slide, idx + 1, total, variant === 'teacher' ? eks : null);
+    addFooter(slide, idx + 1, total);
   }
-  if (variant === 'teacher' && rawS.script) {
-    slide.addNotes(rawS.script);   // speaker notes keep their EK references
+  if (variant === 'teacher' && s.script) {
+    slide.addNotes(s.script);
   }
 });
 
