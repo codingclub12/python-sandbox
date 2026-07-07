@@ -56,6 +56,34 @@ external curriculum audit's adopted recommendations.
   differentiation (support + extension), 3 discussion prompts, canonical
   `answerKeyNote`.
 
+## Student participation rules (guided notes — owner's standard)
+1. Every vocabulary section: students write EVERY definition (the emitter
+   already blanks definitions in the student packet; the KEY fills them).
+2. Every major concept: at least one meaningful `capture` blank or prompt.
+3. Every worked example (`worked_table`): students complete at least one step
+   themselves — set `"blanks": [[row,col], ...]` on the slide; those cells
+   become writing lines in the packet and purple answers on the KEY.
+4. Every misconception: students explain WHY it's wrong (the emitter renders
+   "Explain why this is wrong:" + writing lines for students; the KEY shows
+   the reality).
+5. Every lesson: 8-15 writing opportunities SPREAD through the packet, never
+   clustered at the end. High-value blanks only (rules, mechanisms,
+   conclusions, diagnosis) — never random nouns.
+
+## Slide-language rule (teacher autonomy)
+Visible slide text is STUDENT-FACING TASK ONLY. No timing, no "independent,"
+no "cold-call," no "collect," no classroom operations on any slide surface —
+teacher or student deck. The split:
+- Slides guide the lesson (task: "Answer in complete sentences.").
+- Speaker notes coach the teacher (suggested timing, cold-call moves,
+  emphasis, misconception alerts).
+- Teacher Guide manages pacing (the segment-by-segment table).
+Student decks are generated automatically from the same source (teacher
+slides minus speaker notes); because operational language never appears on
+slide surfaces, no separate student edit pass is needed. Do not build a
+separately designed student deck — the website is the student workspace;
+student decks exist for review/absent students.
+
 ## Audit-adopted rules (new in v3)
 - **Capture blanks**: reading-heavy `concept`/`two_column` slides carry
   `"capture": [{"q": "… ______ …", "a": "…"}]` — 2-3 high-value cloze lines

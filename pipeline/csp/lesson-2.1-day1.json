@@ -41,10 +41,10 @@
     },
     {
       "type": "bell_ringer",
-      "eyebrow": "Bell Ringer · 5 minutes",
+      "eyebrow": "Bell Ringer",
       "prompt": "You must send a friend tomorrow's temperature — but your only communication channel is a row of 8 light switches, each either ON or OFF. The temperature will be a whole number between 0 and 100.",
       "subprompt": "Write 3–5 sentences: design a scheme your friend could decode. Could your 8 switches handle a temperature of 300? What about 72.5? What breaks?",
-      "directions": "Independent writing. Be ready to share your thinking.",
+      "directions": "Be ready to share your thinking.",
       "script": "Five minutes, on your own. Eight light switches, each on or off, and you need to send a whole number between 0 and 100. Design any scheme you want, as long as your friend could decode it. Then push on it: could your switches carry 300? Could they carry 72.5? Write down exactly where your scheme breaks. Keep your answer — by the end of today you'll know that you just invented binary representation, and the two places your scheme broke are the two consequences the College Board names."
     },
     {
@@ -185,14 +185,14 @@
     },
     {
       "type": "stop_and_think",
-      "heading": "Stop and Think — Independent Writing",
+      "heading": "Stop and Think — Bits and Meaning",
       "subheading": "These map to LO DAT-1.A. Complete on your Guided Notes.",
       "prompts": [
         "A friend claims their computer 'stores photos differently from numbers.' In two sentences, correct them using the word abstraction.",
         "The bit sequence 01000001 shows up in two different files. In one it displays as 'A'; in the other it contributes to a pixel. Explain how both can be true.",
         "A vinyl record is analog; a streaming file is digital. Describe what sampling does in the trip from one to the other."
       ],
-      "directions": "Independent. 6 minutes. Full sentences. Then check yourself with the matching CFUs on the Topic 2.1 page.",
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.1 page.",
       "script": "Stop and think — independent, six minutes, full sentences on your Guided Notes. One: correct the friend who thinks photos and numbers are stored differently, and use the word abstraction while you do it. Two: explain how the exact same bit sequence can be a letter in one file and part of a pixel in another. Three: trace the trip from vinyl to streaming file and say precisely what sampling contributes. These are the three moves DAT-1.A questions make on the exam."
     },
     {
@@ -262,7 +262,25 @@
         ]
       ],
       "highlightCol": 2,
-      "script": "Four real scenarios, same two diagnoses. The 8-bit game score wrapping from 255 to 0 — overflow, the value exceeded what the bits can hold. The famous 0.1 plus 0.2 giving 0.30000000000000004 — round-off, because neither 0.1 nor 0.2 has an exact binary form, and the tiny errors show up in the sum. The video view counter that froze at 2,147,483,647 — that number is the ceiling of a common fixed bit-width, pure overflow, and the site had to widen the storage. And a physics simulation drifting over thousands of steps — accumulated round-off. Notice the diagnosis never requires knowing the programming language: just ask which limit was hit."
+      "script": "Four real scenarios, same two diagnoses. The 8-bit game score wrapping from 255 to 0 — overflow, the value exceeded what the bits can hold. The famous 0.1 plus 0.2 giving 0.30000000000000004 — round-off, because neither 0.1 nor 0.2 has an exact binary form, and the tiny errors show up in the sum. The video view counter that froze at 2,147,483,647 — that number is the ceiling of a common fixed bit-width, pure overflow, and the site had to widen the storage. And a physics simulation drifting over thousands of steps — accumulated round-off. Notice the diagnosis never requires knowing the programming language: just ask which limit was hit.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
     },
     {
       "type": "stop_and_think",
@@ -273,7 +291,7 @@
         "A banking app computes interest and is off by a fraction of a cent after millions of accounts. Which consequence is this, and why does it grow with repetition?",
         "In one sentence: what single fact about binary representation causes BOTH failure modes?"
       ],
-      "directions": "Independent. 5 minutes. Full sentences. Then check yourself with the matching CFUs on the Topic 2.1 page.",
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.1 page.",
       "script": "Three diagnostics, five minutes, full sentences. One: the fitness tracker showing 4,464 after 70,000 steps — name the consequence and explain exactly where 4,464 comes from; it's 70,000 minus 65,536, which is the wrap. Two: the banking app off by a fraction of a cent across millions of accounts — say which failure it is and why repetition makes it grow. Three: compress the whole section into one sentence — what single fact about binary storage causes both failures? The sentence you want involves the word fixed."
     },
     {
@@ -342,7 +360,21 @@
         ]
       ],
       "highlightCol": 0,
-      "script": "Both directions, side by side. Binary to decimal is the easy direction: write the place values 8-4-2-1 under the bits of 1101, keep the values sitting under each 1 — that's 8, 4, and 1 — skip the value under the 0, and add: thirteen. Decimal to binary runs the same logic backward as repeated subtraction: for 22, the largest power of two that fits is 16, take it and mark that place with a 1; 22 minus 16 leaves 6, the largest power that fits is 4, mark it; 6 minus 4 leaves 2, mark the 2s place; nothing remains, so every unused place — the 8s and the 1s — gets a 0. Read it off: 10110. Two directions, one rule."
+      "script": "Both directions, side by side. Binary to decimal is the easy direction: write the place values 8-4-2-1 under the bits of 1101, keep the values sitting under each 1 — that's 8, 4, and 1 — skip the value under the 0, and add: thirteen. Decimal to binary runs the same logic backward as repeated subtraction: for 22, the largest power of two that fits is 16, take it and mark that place with a 1; 22 minus 16 leaves 6, the largest power that fits is 4, mark it; 6 minus 4 leaves 2, mark the 2s place; nothing remains, so every unused place — the 8s and the 1s — gets a 0. Read it off: 10110. Two directions, one rule.",
+      "blanks": [
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ]
+      ]
     },
     {
       "type": "misconception",
@@ -391,7 +423,7 @@
         "A classmate says binary 1000 is 'one thousand.' Give the correct value and name the habit that prevents this mistake.",
         "Without fully converting, order the binary numbers 1010, 111, and 1101 from least to greatest, and explain the place-value shortcut you used."
       ],
-      "directions": "Independent. 6 minutes. Show every step. Then check yourself with the matching CFUs on the Topic 2.1 page.",
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 2.1 page.",
       "script": "Conversion practice, six minutes, and the steps matter more than the answers. One: binary 10110 to decimal — place values first, then add; you should land on 22, which you saw built in the worked table. Two: decimal 41 to binary by repeated subtraction — 32 fits, then 8, then 1, giving 101001. Three: the classmate calling binary 1000 'one thousand' — it's eight, and the habit that prevents the mistake is writing place values under every binary number before reading it. Four: order 1010, 111, and 1101 from least to greatest — the shortcut is that more binary digits means a bigger number, and for equal lengths you compare bit by bit from the left, which is LO DAT-1.C part b. Answers are reviewed as a class before the exit."
     },
     {

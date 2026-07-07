@@ -208,7 +208,9 @@ function emitNotes() {
       case 'misconception':
         k.push(callout('Watch out \u2014 ' + (s.heading || 'Common misconception'), [
           p([run('Myth: ', { bold: true }), run(s.misconception)]),
-          p([run('Reality: ', { bold: true }), run(s.correction)]),
+          ...(isKey
+            ? [p([run('Reality: ', { bold: true }), run(s.correction)])]
+            : [p([run('Explain why this is wrong: ', { bold: true })]), answerPara(''), answerPara('')]),
         ], 'warn'));
         break;
 
@@ -216,7 +218,16 @@ function emitNotes() {
         if (s.heading) k.push(h3(s.heading));
         if (s.context) k.push(p(s.context));
         const widths = s.columns.map(() => Math.floor(9880 / s.columns.length));
-        k.push(dataTable(s.columns, s.rows, widths));
+        // Optional s.blanks [[row,col],...]: those cells become student work
+        // (writing line in the packet, purple answer on the KEY).
+        let rows = s.rows;
+        if (Array.isArray(s.blanks) && s.blanks.length) {
+          const mark = new Set(s.blanks.map(([r, c]) => r + ':' + c));
+          rows = s.rows.map((r, ri) => r.map((cell, ci) =>
+            mark.has(ri + ':' + ci) ? [answerPara(String(cell), { after: 0 })] : cell));
+          if (!isKey) k.push(p([run('Complete the empty cells as we work the examples.', { italics: true, color: C.GRAY })]));
+        }
+        k.push(dataTable(s.columns, rows, widths));
         break;
       }
 
