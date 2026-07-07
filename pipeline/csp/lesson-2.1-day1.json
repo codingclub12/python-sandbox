@@ -16,7 +16,7 @@
       "eyebrow": "Big Idea 2 · Topic 2.1 · Day 1 of 1",
       "title": "Everything Is a Number",
       "subtitle": "How a machine that only knows 0 and 1 stores your photos, your music, and your name — and what it costs to squeeze the world into bits",
-      "footerLeft": "AP Computer Science Principles · College Board CED",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
       "footerRight": "APCSExamPrep.com",
       "script": "Welcome to Big Idea 2, Data. Topic 2.1 is the foundation everything else in this unit stands on: computers store and process exactly one thing, sequences of 0s and 1s, and everything you have ever seen a computer do is built from that. Today has three jobs. First, how bits represent data. Second, what it costs to represent the world with a fixed number of bits — the two famous failure modes. Third, the hands-on skill: converting between binary and decimal in both directions, which the AP exam tests directly."
     },
@@ -34,10 +34,10 @@
         },
         {
           "tag": "CB",
-          "text": "Convert a positive integer from decimal to binary and from binary to decimal — a directly tested AP skill (LO DAT-1.C)"
+          "text": "Convert a positive integer between decimal and binary in both directions, and compare and order binary numbers (LO DAT-1.C)"
         }
       ],
-      "script": "Three targets today, one per learning objective. First, DAT-1.A: explaining how any kind of data can be represented with bits, and the key insight that the same sequence of bits can mean completely different things depending on context. Second, DAT-1.B: what goes wrong when you only have a fixed number of bits — integer overflow and round-off errors, both of which have caused real-world disasters. Third, DAT-1.C: the mechanical skill of converting between base 2 and base 10 in both directions. The exam tests the conversion skill directly, so the back half of class is practice."
+      "script": "Three targets today, one per learning objective. First, DAT-1.A: explaining how any kind of data can be represented with bits, and the key insight that the same sequence of bits can mean completely different things depending on context. Second, DAT-1.B: what goes wrong when you only have a fixed number of bits — integer overflow and round-off errors, both of which have caused real-world disasters. Third, DAT-1.C: the mechanical skill of converting between base 2 and base 10 in both directions, plus using place value to compare and order binary numbers. The exam tests the conversion skill directly, so the back half of class is practice."
     },
     {
       "type": "bell_ringer",
@@ -54,11 +54,11 @@
       "sections": [
         {
           "title": "Representing Data with Bits",
-          "description": "Bits, bytes, abstraction, and analog-to-digital sampling (EK DAT-1.A.1–A.4)."
+          "description": "Bits, bytes, abstraction, and analog-to-digital sampling (EK DAT-1.A.2–A.10)."
         },
         {
           "title": "The Cost of Finite Bits",
-          "description": "Integer overflow and round-off error — what they are and when they strike (EK DAT-1.B.1–B.2)."
+          "description": "Integer overflow and round-off error — what they are and when they strike (EK DAT-1.B.1–B.3)."
         },
         {
           "title": "Binary ↔ Decimal Conversion",
@@ -86,23 +86,23 @@
       "terms": [
         {
           "term": "Bit",
-          "definition": "The smallest unit of data a computer stores — a single binary digit, either 0 or 1 (EK DAT-1.A.1)."
+          "definition": "The smallest unit of data a computer stores — a single binary digit, either 0 or 1 (EK DAT-1.A.3)."
         },
         {
           "term": "Byte",
-          "definition": "A group of 8 bits — the standard chunk size for measuring data (EK DAT-1.A.1)."
+          "definition": "A group of 8 bits — the standard chunk size for measuring data (EK DAT-1.A.4)."
         },
         {
           "term": "Abstraction",
-          "definition": "Grouping bits to represent something more meaningful — numbers, characters, colors — so you can think about the meaning instead of the raw 0s and 1s (EK DAT-1.A.2)."
+          "definition": "Grouping bits to represent something more meaningful — numbers, characters, colors — so you can think about the meaning instead of the raw 0s and 1s (EK DAT-1.A.5)."
         },
         {
           "term": "Analog data",
-          "definition": "Data with values that change smoothly and continuously, like sound waves, temperature, or the position of a spinning dial (EK DAT-1.A.4)."
+          "definition": "Data with values that change smoothly and continuously, like sound waves, temperature, or the position of a spinning dial (EK DAT-1.A.8)."
         },
         {
           "term": "Sampling",
-          "definition": "Measuring an analog signal at regular intervals and storing each measurement as bits — how continuous reality is approximated digitally (EK DAT-1.A.4)."
+          "definition": "Measuring an analog signal at regular intervals and storing each measurement as bits — how continuous reality is approximated digitally (EK DAT-1.A.10)."
         }
       ],
       "script": "Five words that carry this whole section. A bit is the smallest unit of data — one binary digit, 0 or 1. Eight of them make a byte. Abstraction is the big idea hiding in plain sight: bits get grouped to represent numbers, characters, colors — so you can work with the meaning and ignore the raw digits. Analog data is anything that changes smoothly, like a sound wave. And sampling is how we get analog reality into a digital machine: measure at regular intervals, store each measurement as bits. The more often you sample, the closer the digital copy gets to the smooth original."
@@ -112,8 +112,8 @@
       "heading": "One Alphabet, Every Kind of Data",
       "tag": "CB REQUIRED",
       "bullets": [
-        "Bits are grouped to represent abstractions — numbers, characters, colors, sound, and more (EK DAT-1.A.2).",
-        "The SAME sequence of bits can represent different data in different contexts: 01000001 is the number 65, the letter 'A', or a shade in an image — the context decides (EK DAT-1.A.3).",
+        "Bits are grouped to represent abstractions — numbers, characters, colors, sound, and more (EK DAT-1.A.6).",
+        "The SAME sequence of bits can represent different data in different contexts: 01000001 is the number 65, the letter 'A', or a shade in an image — the context decides (EK DAT-1.A.7).",
         "There is no special 'photo storage' or 'music storage' inside a computer — every file is bits, and the file format is the contract for how to interpret them.",
         "This is why opening a file with the wrong program produces garbage: the bits are fine, the interpretation is wrong."
       ],
@@ -122,11 +122,11 @@
     {
       "type": "two_column",
       "heading": "Analog World, Digital Machine",
-      "subheading": "Real-world signals change smoothly; computers store discrete bits. Sampling is the bridge (EK DAT-1.A.4).",
+      "subheading": "Real-world signals change smoothly; computers store discrete bits. Sampling is the bridge (EK DAT-1.A.8, A.10).",
       "left": {
         "title": "Analog",
         "definition": "Values change smoothly, with infinitely many in-between values",
-        "ek": "EK DAT-1.A.4",
+        "ek": "EK DAT-1.A.8",
         "examples": [
           "A sound wave rising and falling continuously",
           "A mercury thermometer sliding between marks",
@@ -136,7 +136,7 @@
       "right": {
         "title": "Digital (sampled)",
         "definition": "The analog signal is measured at regular intervals; each measurement becomes bits",
-        "ek": "EK DAT-1.A.4",
+        "ek": "EK DAT-1.A.10",
         "examples": [
           "An audio file storing thousands of measurements per second",
           "A digital thermometer reporting 72.4 — one number per reading",
@@ -151,7 +151,7 @@
       "heading": "“The Computer Stores a Tiny Picture”",
       "misconception": "Images, sounds, and videos are stored as miniature pictures and recordings inside the computer — only numbers are stored 'in binary.'",
       "whyItHappens": "We see thumbnails and hear playback, so it feels like the media itself lives in the machine. The binary layer is invisible at every level users touch.",
-      "correction": "EVERYTHING is stored as bits — there is no other storage. An image is a grid of numbers (pixel colors), sound is a list of numbers (samples), and text is numbers (character codes), all encoded in binary. The 'picture' only exists when software interprets those bits (EK DAT-1.A.2, DAT-1.A.3).",
+      "correction": "EVERYTHING is stored as bits — there is no other storage. An image is a grid of numbers (pixel colors), sound is a list of numbers (samples), and text is numbers (character codes), all encoded in binary. The 'picture' only exists when software interprets those bits (EK DAT-1.A.6, DAT-1.A.7).",
       "example": "Rename a .png file to .txt and open it: you'll see pages of gibberish characters. Same bits, wrong interpretation — the picture was never 'in there' as a picture.",
       "script": "Here's the trap. Because we see thumbnails and hear playback, it's natural to imagine tiny pictures and recordings living inside the machine, with binary reserved for math. But there is only one kind of storage: bits. An image is a grid of pixel-color numbers. A song is a long list of sample numbers. Text is character-code numbers. The picture appears only at the moment software interprets the bits as a picture. The rename experiment proves it: change a png extension to txt and open it — pages of gibberish. Same bits, wrong contract."
     },
@@ -177,7 +177,7 @@
     {
       "type": "two_column",
       "heading": "Two Failure Modes, One Root Cause",
-      "subheading": "A fixed number of bits can only represent a fixed set of values (EK DAT-1.B.1, DAT-1.B.2).",
+      "subheading": "A fixed number of bits can only represent a fixed set of values (EK DAT-1.B.1, DAT-1.B.3).",
       "left": {
         "title": "Integer overflow",
         "definition": "The value is too LARGE for the bits available",
@@ -185,13 +185,14 @@
         "examples": [
           "Fixed bit-width sets a hard maximum — 8 bits tops out at 255",
           "Push past the max and the value wraps or errors — it cannot 'stretch'",
-          "Your 8 switches couldn't send 300 — that was overflow"
+          "Your 8 switches couldn't send 300 — that was overflow",
+          "AP nuance: the exam's own pseudocode language is an exception — its integers are limited only by memory (EK DAT-1.B.2)"
         ]
       },
       "right": {
         "title": "Round-off error",
         "definition": "The value is too PRECISE for the bits available",
-        "ek": "EK DAT-1.B.2",
+        "ek": "EK DAT-1.B.3",
         "examples": [
           "Real numbers are stored as floating-point approximations",
           "Many values (like 0.1) can't be stored exactly in binary — the stored value is merely close",
@@ -199,7 +200,7 @@
         ]
       },
       "footer": "AP TIP: Overflow = too BIG for the bits. Round-off = too PRECISE for the bits. Name the failure mode by asking which limit was hit.",
-      "script": "Both failure modes come from one root cause: a fixed number of bits can only represent a fixed set of values. Integer overflow is the too-big failure: with 8 bits the ceiling is 255, and pushing past it wraps around or errors out — the bits cannot stretch. Round-off error is the too-precise failure: real numbers are stored as floating-point approximations, and lots of ordinary values, like one-tenth, have no exact binary form, so the machine stores something merely close. Your bell-ringer scheme hit both walls — 300 was overflow, 72.5 was precision. On the exam, diagnose by asking which limit got hit: size or precision."
+      "script": "Both failure modes come from one root cause: a fixed number of bits can only represent a fixed set of values. Integer overflow is the too-big failure: with 8 bits the ceiling is 255, and pushing past it wraps around or errors out — the bits cannot stretch. Round-off error is the too-precise failure: real numbers are stored as floating-point approximations, and lots of ordinary values, like one-tenth, have no exact binary form, so the machine stores something merely close. One AP nuance worth writing down: some languages, including the pseudocode language on the exam reference sheet, abstract this away — their integers are limited only by the computer's memory, which the CED calls out in EK DAT-1.B.2. Your bell-ringer scheme hit both walls — 300 was overflow, 72.5 was precision. On the exam, diagnose by asking which limit got hit: size or precision."
     },
     {
       "type": "worked_table",
@@ -259,8 +260,8 @@
       "heading": "Place Value: The Only Rule You Need",
       "tag": "CB REQUIRED",
       "bullets": [
-        "A number base defines how numbers are written: decimal is base 10 (digits 0–9), binary is base 2 (digits 0–1) (EK DAT-1.C.1).",
-        "In ANY base, each position is worth the base raised to the power of that position, counting from 0 on the right.",
+        "A number base defines how numbers are written: decimal is base 10 (digits 0–9), binary is base 2 (digits 0–1) (EK DAT-1.C.1–C.3).",
+        "In ANY base, each position is worth the base raised to the power of that position, counting from 0 on the right. (EK DAT-1.C.5)",
         "Decimal 234 = 2×100 + 3×10 + 4×1 — powers of ten. You've used place value your whole life.",
         "Binary works identically with powers of two: the positions are worth 1, 2, 4, 8, 16, 32, 64, 128, ..."
       ],
@@ -310,7 +311,7 @@
       "heading": "“Binary 11 Is Eleven”",
       "misconception": "You read a binary number by pronouncing its digits as if they were decimal — so 11 is 'eleven' and 101 is 'one hundred one.'",
       "whyItHappens": "The digits LOOK identical to decimal digits, and a decade of reading base 10 makes the decimal reading automatic.",
-      "correction": "The digits only have meaning relative to their base. Binary 11 is 2+1 = 3, and binary 101 is 4+0+1 = 5. Always run the place values — never pronounce binary as decimal (EK DAT-1.C.1).",
+      "correction": "The digits only have meaning relative to their base. Binary 11 is 2+1 = 3, and binary 101 is 4+0+1 = 5. Always run the place values — never pronounce binary as decimal (EK DAT-1.C.4).",
       "example": "Exam distractors are built from exactly this reflex: for binary 101, the wrong answers will include 101 ('one hundred one') and 6 (adjacent value) — the right answer, 5, requires the place-value habit.",
       "script": "The classic trap, and exam writers know it. Binary digits look exactly like decimal digits, so ten years of reading base 10 makes you want to call binary 11 'eleven.' It's three: a 2 plus a 1. Binary 101 isn't one hundred one, it's five: a 4, no 2, and a 1. The fix is a habit, not a fact — every time you meet a binary number, physically write the place values underneath before you do anything else. Multiple-choice distractors are engineered for the students who skip that step."
     },
@@ -349,19 +350,20 @@
       "prompts": [
         "Convert binary 10110 to decimal. Write the place values under the bits before you add.",
         "Convert decimal 41 to binary using repeated subtraction of powers of 2. Show each subtraction.",
-        "A classmate says binary 1000 is 'one thousand.' Give the correct value and name the habit that prevents this mistake."
+        "A classmate says binary 1000 is 'one thousand.' Give the correct value and name the habit that prevents this mistake.",
+        "Without fully converting, order the binary numbers 1010, 111, and 1101 from least to greatest, and explain the place-value shortcut you used."
       ],
       "directions": "Independent. 6 minutes. Show every step.",
-      "script": "Conversion practice, six minutes, and the steps matter more than the answers. One: binary 10110 to decimal — place values first, then add; you should land on 22, which you saw built in the worked table. Two: decimal 41 to binary by repeated subtraction — 32 fits, then 8, then 1, giving 101001. Three: the classmate calling binary 1000 'one thousand' — it's eight, and the habit that prevents the mistake is writing place values under every binary number before reading it. Answers are reviewed as a class before the exit."
+      "script": "Conversion practice, six minutes, and the steps matter more than the answers. One: binary 10110 to decimal — place values first, then add; you should land on 22, which you saw built in the worked table. Two: decimal 41 to binary by repeated subtraction — 32 fits, then 8, then 1, giving 101001. Three: the classmate calling binary 1000 'one thousand' — it's eight, and the habit that prevents the mistake is writing place values under every binary number before reading it. Four: order 1010, 111, and 1101 from least to greatest — the shortcut is that more binary digits means a bigger number, and for equal lengths you compare bit by bit from the left, which is LO DAT-1.C part b. Answers are reviewed as a class before the exit."
     },
     {
       "type": "final_summary",
       "heading": "Binary Numbers, in One Slide",
       "points": [
-        "Computers store exactly one thing: bits. Grouped bits represent numbers, text, colors, sound — abstraction (EK DAT-1.A.1–A.2).",
-        "The same bits mean different things in different contexts — the file format is the contract (EK DAT-1.A.3).",
-        "Analog signals enter the digital world by sampling: measurements at regular intervals (EK DAT-1.A.4).",
-        "Fixed bits ⇒ two failure modes: overflow (too big) and round-off (too precise) (EK DAT-1.B.1–B.2).",
+        "Computers store exactly one thing: bits. Grouped bits represent numbers, text, colors, sound — abstraction (EK DAT-1.A.2–A.6).",
+        "The same bits mean different things in different contexts — the file format is the contract (EK DAT-1.A.7).",
+        "Analog signals enter the digital world by sampling: measurements at regular intervals (EK DAT-1.A.10).",
+        "Fixed bits ⇒ two failure modes: overflow (too big) and round-off (too precise) (EK DAT-1.B.1–B.3).",
         "Conversion is place value: powers of 2 under the bits, add under the 1s; reverse with repeated subtraction (LO DAT-1.C)."
       ],
       "next": "Topic 2.2, Data Compression: now that everything is bits, how do we use FEWER of them? Lossless vs. lossy — and what you're willing to throw away.",
@@ -370,13 +372,13 @@
   ],
   "quiz": {
     "title": "Topic 2.1 — Binary Numbers — Quiz",
-    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
     "questions": [
       {
         "id": "Q1",
         "kind": "scenario",
         "predictFirst": true,
-        "stem": "A student opens an image file in a text editor and sees pages of random-looking characters instead of the photo. Per EK DAT-1.A.3, what best explains this?",
+        "stem": "A student opens an image file in a text editor and sees pages of random-looking characters instead of the photo. Per EK DAT-1.A.7, what best explains this?",
         "options": [
           "The file was corrupted when it was renamed, destroying the original photo data",
           "The same sequence of bits represents different data in different contexts, and the editor applied a text interpretation",
@@ -384,13 +386,13 @@
           "The text editor converted the image's pixels into characters to save storage space"
         ],
         "answer": "B",
-        "ek": "EK DAT-1.A.3",
-        "rationale": "EK DAT-1.A.3 states that the same sequence of bits may represent different types of data in different contexts. The bits are unchanged; the text editor simply interpreted image bits under a text contract, producing gibberish characters. A is wrong because nothing was corrupted — the image still opens in an image viewer. C invents hidden text that does not exist. D describes a conversion that never happened; editors interpret bits, they do not transform the file."
+        "ek": "EK DAT-1.A.7",
+        "rationale": "EK DAT-1.A.7 states that the same sequence of bits may represent different types of data in different contexts. The bits are unchanged; the text editor simply interpreted image bits under a text contract, producing gibberish characters. A is wrong because nothing was corrupted — the image still opens in an image viewer. C invents hidden text that does not exist. D describes a conversion that never happened; editors interpret bits, they do not transform the file."
       },
       {
         "id": "Q2",
         "kind": "recall",
-        "stem": "Per EK DAT-1.A.1, which statement correctly describes the most basic unit of data in a computer?",
+        "stem": "Per EK DAT-1.A.3, which statement correctly describes the most basic unit of data in a computer?",
         "options": [
           "A byte, which can hold any single character of text",
           "A pixel, which stores one point of color information",
@@ -398,14 +400,14 @@
           "A word, which is the width of the computer's processor"
         ],
         "answer": "C",
-        "ek": "EK DAT-1.A.1",
-        "rationale": "EK DAT-1.A.1 defines the bit — a binary digit with value 0 or 1 — as the smallest unit of data. A byte (option A) is a group of 8 bits, so it is not the most basic unit. A pixel (B) is an abstraction built from many bits. A word (D) is a hardware grouping, larger still. Only the bit is fundamental."
+        "ek": "EK DAT-1.A.3",
+        "rationale": "EK DAT-1.A.3 defines the bit — a binary digit with value 0 or 1 — as the smallest unit of data. A byte (option A) is a group of 8 bits, so it is not the most basic unit. A pixel (B) is an abstraction built from many bits. A word (D) is a hardware grouping, larger still. Only the bit is fundamental."
       },
       {
         "id": "Q3",
         "kind": "applied",
         "predictFirst": true,
-        "stem": "A microphone captures a smooth, continuously varying sound wave, and software stores 44,100 numeric measurements of it per second. Per EK DAT-1.A.4, this process is best described as:",
+        "stem": "A microphone captures a smooth, continuously varying sound wave, and software stores 44,100 numeric measurements of it per second. Per EK DAT-1.A.10, this process is best described as:",
         "options": [
           "Compression of the sound wave into a smaller audio file",
           "Integer overflow of the values the sound wave contains",
@@ -413,8 +415,8 @@
           "Sampling of the analog signal at regular intervals"
         ],
         "answer": "D",
-        "ek": "EK DAT-1.A.4",
-        "rationale": "EK DAT-1.A.4 describes analog data as smoothly varying and explains that it is approximated digitally by measuring at regular intervals — sampling. 44,100 measurements per second is a sampling rate. A is wrong because compression reduces already-digital data. B misuses overflow, which is about fixed-width integer limits. C stretches abstraction past its meaning; the defining feature here is interval measurement, which the EK names sampling."
+        "ek": "EK DAT-1.A.10",
+        "rationale": "EK DAT-1.A.10 describes analog data as smoothly varying and explains that it is approximated digitally by measuring at regular intervals — sampling. 44,100 measurements per second is a sampling rate. A is wrong because compression reduces already-digital data. B misuses overflow, which is about fixed-width integer limits. C stretches abstraction past its meaning; the defining feature here is interval measurement, which the EK names sampling."
       },
       {
         "id": "Q4",
@@ -434,7 +436,7 @@
       {
         "id": "Q5",
         "kind": "applied",
-        "stem": "A program adds 0.1 + 0.2 and prints 0.30000000000000004. Per EK DAT-1.B.2, why does this happen?",
+        "stem": "A program adds 0.1 + 0.2 and prints 0.30000000000000004. Per EK DAT-1.B.3, why does this happen?",
         "options": [
           "The program exceeded the maximum range of integer storage",
           "The keyboard input was misread as slightly different numbers",
@@ -442,8 +444,8 @@
           "Decimal values must be rounded to whole numbers before use"
         ],
         "answer": "C",
-        "ek": "EK DAT-1.B.2",
-        "rationale": "EK DAT-1.B.2 explains that real numbers are represented as floating-point approximations, which produces round-off errors. Neither 0.1 nor 0.2 has an exact binary representation, so the machine stores close approximations whose sum is visibly off. A names the wrong failure mode — nothing exceeded a range. B invents an input problem. D is false — programs handle decimal values constantly, as approximations."
+        "ek": "EK DAT-1.B.3",
+        "rationale": "EK DAT-1.B.3 explains that real numbers are represented as floating-point approximations, which produces round-off errors. Neither 0.1 nor 0.2 has an exact binary representation, so the machine stores close approximations whose sum is visibly off. A names the wrong failure mode — nothing exceeded a range. B invents an input problem. D is false — programs handle decimal values constantly, as approximations."
       },
       {
         "id": "Q6",
@@ -477,7 +479,7 @@
       {
         "id": "Q8",
         "kind": "multi",
-        "stem": "Per EK DAT-1.A.2, grouped bits can represent which of the following? I. Numbers. II. Characters of text. III. Colors in an image.",
+        "stem": "Per EK DAT-1.A.6, grouped bits can represent which of the following? I. Numbers. II. Characters of text. III. Colors in an image.",
         "options": [
           "I only",
           "I and II only",
@@ -485,8 +487,22 @@
           "I, II, and III"
         ],
         "answer": "D",
-        "ek": "EK DAT-1.A.2",
-        "rationale": "EK DAT-1.A.2 states that bits are grouped to represent abstractions including, but not limited to, numbers, characters, and colors — all three items are named by the EK itself. A reflects the misconception that binary is only for math. B wrongly claims colors need analog storage. C is doubly wrong: numbers are stored in binary, and item I clearly belongs."
+        "ek": "EK DAT-1.A.6",
+        "rationale": "EK DAT-1.A.6 states that bits are grouped to represent abstractions including, but not limited to, numbers, characters, and colors — all three items are named by the EK itself. A reflects the misconception that binary is only for math. B wrongly claims colors need analog storage. C is doubly wrong: numbers are stored in binary, and item I clearly belongs."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "stem": "Which list orders the binary numbers 111, 1010, and 1101 from least to greatest?",
+        "options": [
+          "111, 1101, 1010",
+          "1010, 111, 1101",
+          "111, 1010, 1101",
+          "1101, 1010, 111"
+        ],
+        "answer": "C",
+        "ek": "LO DAT-1.C",
+        "rationale": "Converting with place values: 111 is 4+2+1 = 7, 1010 is 8+2 = 10, and 1101 is 8+4+1 = 13, so the order from least to greatest is 111, 1010, 1101 (LO DAT-1.C part b; place value per EK DAT-1.C.4–C.5). A shortcut confirms it: a binary number with more digits is always larger. A and D invent false rules about trailing 0s and leading 1s, and B applies the read-it-as-decimal reflex."
       }
     ]
   },
@@ -494,22 +510,33 @@
     "title": "Topic 2.1 — Binary Numbers — Teacher Guide",
     "subtitle": "Big Idea 2: Data · Topic 2.1 · 1 class period + assessment block",
     "overview": [
-      "Topic 2.1 opens Big Idea 2 with the physical truth underneath all of computing: every kind of data is stored as bits. Students learn the representation story (bits, abstraction, context-dependence, sampling), the two costs of finite representation (integer overflow and round-off error), and the mechanical skill the exam tests directly — converting positive integers between binary and decimal in both directions.",
+      "Topic 2.1 opens Big Idea 2 with the physical truth underneath all of computing: every kind of data is stored as bits. Students learn the representation story (bits, abstraction, context-dependence, sampling), the two costs of finite representation (integer overflow and round-off error), and the mechanical skill the exam tests directly — converting positive integers between binary and decimal in both directions, and comparing and ordering binary numbers.",
       "The through-line is the bell ringer: students design an 8-switch scheme to transmit a temperature, then discover their design already contains binary representation and both of its named failure modes."
     ],
     "los": [
       "LO DAT-1.A — Explain how data can be represented using bits.",
       "LO DAT-1.B — Explain the consequences of using bits to represent data.",
-      "LO DAT-1.C — For binary numbers: calculate the binary (base 2) equivalent of a positive integer (base 10), and vice versa."
+      "LO DAT-1.C — For binary numbers: (a) calculate the binary (base 2) equivalent of a positive integer (base 10) and vice versa; (b) compare and order binary numbers."
     ],
     "eks": [
-      "EK DAT-1.A.1 — The smallest unit of data in a computer is a bit (binary digit), which can be either 0 or 1; a byte is a group of 8 bits.",
-      "EK DAT-1.A.2 — Bits are grouped to represent abstractions, including but not limited to numbers, characters, and colors.",
-      "EK DAT-1.A.3 — The same sequence of bits may represent different types of data in different contexts.",
-      "EK DAT-1.A.4 — Analog data have values that change smoothly; analog data can be approximated digitally by sampling — measuring values at regular intervals.",
-      "EK DAT-1.B.1 — In many programming languages, integers are represented by a fixed number of bits, which limits their range; values exceeding the range cause integer overflow.",
-      "EK DAT-1.B.2 — Real numbers are approximated by floating-point representations, which can result in round-off errors.",
-      "EK DAT-1.C.1 — Number bases, including binary (base 2) and decimal (base 10), define how numbers are represented; the value of each position is the base raised to the power of the position."
+      "EK DAT-1.A.1 — Data values can be stored in variables, lists of items, or standalone constants and can be passed as input to (or output from) procedures.",
+      "EK DAT-1.A.2 — Computing devices represent data digitally, meaning that the lowest-level components of any value are bits.",
+      "EK DAT-1.A.3 — Bit is shorthand for binary digit and is either 0 or 1.",
+      "EK DAT-1.A.4 — A byte is 8 bits.",
+      "EK DAT-1.A.5 — Abstraction is the process of reducing complexity by focusing on the main idea. By hiding details irrelevant to the question at hand and bringing together related and useful details, abstraction reduces complexity and allows one to focus on the idea.",
+      "EK DAT-1.A.6 — Bits are grouped to represent abstractions. These abstractions include, but are not limited to, numbers, characters, and color.",
+      "EK DAT-1.A.7 — The same sequence of bits may represent different types of data in different contexts.",
+      "EK DAT-1.A.8 — Analog data have values that change smoothly, rather than in discrete intervals, over time. Some examples of analog data include pitch and volume of music, colors of a painting, or position of a sprinter during a race.",
+      "EK DAT-1.A.9 — The use of digital data to approximate real-world analog data is an example of abstraction.",
+      "EK DAT-1.A.10 — Analog data can be closely approximated digitally using a sampling technique, which means measuring values of the analog signal at regular intervals called samples. The samples are measured to figure out the exact bits required to store each sample.",
+      "EK DAT-1.B.1 — In many programming languages, integers are represented by a fixed number of bits, which limits the range of integer values and mathematical operations on those values. This limitation can result in overflow or other errors.",
+      "EK DAT-1.B.2 — Other programming languages provide an abstraction through which the size of representable integers is limited only by the size of the computer's memory; this is the case for the language defined in the exam reference sheet.",
+      "EK DAT-1.B.3 — In programming languages, the fixed number of bits used to represent real numbers limits the range and mathematical operations on these values; this limitation can result in round-off and other errors. Some real numbers are represented as approximations in computer storage. (Exclusion: specific range limitations for real numbers are out of scope.)",
+      "EK DAT-1.C.1 — Number bases, including binary and decimal, are used to represent data.",
+      "EK DAT-1.C.2 — Binary (base 2) uses only combinations of the digits zero and one.",
+      "EK DAT-1.C.3 — Decimal (base 10) uses only combinations of the digits 0 – 9.",
+      "EK DAT-1.C.4 — As with decimal, a digit's position in the binary sequence determines its numeric value. The numeric value is equal to the bit's value (0 or 1) multiplied by the place value of its position.",
+      "EK DAT-1.C.5 — The place value of each position is determined by the base raised to the power of the position. Positions are numbered starting at the rightmost position with 0 and increasing by 1 for each subsequent position to the left."
     ],
     "materials": [
       "Projector / slide deck (teacher · deep-dive version).",
@@ -536,7 +563,7 @@
             "slides": "2, 4"
           },
           {
-            "segment": "Representing data with bits: vocab, abstraction, context, sampling (EK DAT-1.A.1–A.4)",
+            "segment": "Representing data with bits: vocab, abstraction, context, sampling (EK DAT-1.A.2–A.10)",
             "min": 12,
             "slides": "5-9"
           },
@@ -546,7 +573,7 @@
             "slides": "10"
           },
           {
-            "segment": "The cost of finite bits: overflow vs round-off + real cases (EK DAT-1.B.1–B.2)",
+            "segment": "The cost of finite bits: overflow vs round-off + real cases (EK DAT-1.B.1–B.3)",
             "min": 9,
             "slides": "11-13"
           },
@@ -556,7 +583,7 @@
             "slides": "14"
           },
           {
-            "segment": "Conversion both directions: place value + worked table + trap (LO DAT-1.C; hex deep-dive optional)",
+            "segment": "Conversion both directions + compare/order: place value, worked table, trap (LO DAT-1.C; hex deep-dive optional)",
             "min": 12,
             "slides": "15-19"
           },
