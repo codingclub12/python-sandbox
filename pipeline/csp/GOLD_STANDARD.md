@@ -100,6 +100,16 @@ student decks exist for review/absent students.
 - **Common AP Traps + I-can checklist**: required on every lesson (see
   skeleton items 7-8).
 
+## Pacing (see PACING.md — binding)
+- Per-topic day counts are fixed in PACING.md (1/2/3-day topics). A 2-3 day
+  topic keeps ONE deck but its `guide.pacing` adds Day 2/3 practice/apply
+  tables (exercises + website CFUs/mastery + labs) and MUST ship the extras
+  bundle (exercise1/exercise2/discussion/map).
+- The course ships BOTH a year-long (60-min, deep-dive track fills the flex
+  pool) and a semester-block (90-min, CB track) pacing guide, plus the
+  Create PT window (>= 9 mandated class hours), 3 innovation investigations,
+  the BI2 data project, and BI3 mini-projects MP1-MP3.
+
 ## Geometry / rendering
 - `stop_and_think` supports up to 4 prompts (cards auto-shrink, bottom bound
   6.90" — clear of the 7.05" footer).
