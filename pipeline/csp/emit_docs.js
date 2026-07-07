@@ -179,15 +179,20 @@ function emitNotes() {
       case 'two_column': {
         if (s.heading) k.push(h3(s.heading));
         if (s.capture && !isKey) {
+          // Student + capture: titles only, then the cloze lines (never print
+          // the definition — it would give the cloze answers away).
           [s.left, s.right].forEach(col => {
             if (!col) return;
-            k.push(p([run(col.title + (col.definition ? ' \u2014 ' + col.definition : ''), { bold: true, color: C.PURPLE })]));
+            k.push(p([run(col.title, { bold: true, color: C.PURPLE })]));
           });
           k.push(...captureParas(s.capture));
         } else {
           [s.left, s.right].forEach(col => {
             if (!col) return;
             k.push(p([run(col.title + (col.ek ? '  (' + col.ek + ')' : ''), { bold: true, color: C.PURPLE })]));
+            // The key idea of each column is student work: writing line in the
+            // packet, purple answer on the KEY.
+            if (col.definition) k.push(answerPara(col.definition));
             (col.examples || []).forEach(ex => k.push(bullet([run(ex)])));
           });
           if (s.capture) k.push(...captureParas(s.capture));
@@ -239,7 +244,14 @@ function emitNotes() {
 
       case 'ap_strategy':
         k.push(h2(s.heading || 'AP exam strategy'));
-        (s.strategies || []).forEach(st => k.push(bullet([run(st.name + ' \u2014 ', { bold: true }), run(st.text)])));
+        (s.strategies || []).forEach(st => {
+          if (isKey) {
+            k.push(bullet([run(st.name + ' \u2014 ', { bold: true }), run(st.text)]));
+          } else {
+            k.push(p([run(st.name + ' \u2014 in your own words:', { bold: true })]));
+            k.push(answerPara(''));
+          }
+        });
         break;
 
       case 'concept':
@@ -254,7 +266,10 @@ function emitNotes() {
 
       case 'stop_and_think':
         k.push(h2('Stop and think'));
-        (s.prompts || []).forEach(pr => k.push(numItem(pr)));
+        (s.prompts || []).forEach(pr => {
+          k.push(numItem(pr));
+          if (!isKey) { k.push(answerPara('')); k.push(answerPara('')); }
+        });
         if (s.directions) k.push(p([run(s.directions, { italics: true, color: C.GRAY })]));
         break;
 

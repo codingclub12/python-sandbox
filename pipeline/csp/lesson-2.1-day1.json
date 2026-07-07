@@ -215,7 +215,21 @@
         ]
       },
       "footer": "AP TIP: Overflow = too BIG for the bits. Round-off = too PRECISE for the bits. Name the failure mode by asking which limit was hit.",
-      "script": "Both failure modes come from one root cause: a fixed number of bits can only represent a fixed set of values. Integer overflow is the too-big failure: with 8 bits the ceiling is 255, and pushing past it wraps around or errors out — the bits cannot stretch. Round-off error is the too-precise failure: real numbers are stored as floating-point approximations, and lots of ordinary values, like one-tenth, have no exact binary form, so the machine stores something merely close. One AP nuance worth writing down: some languages, including the pseudocode language on the exam reference sheet, abstract this away — their integers are limited only by the computer's memory, which the CED calls out in EK DAT-1.B.2. Your bell-ringer scheme hit both walls — 300 was overflow, 72.5 was precision. On the exam, diagnose by asking which limit got hit: size or precision."
+      "script": "Both failure modes come from one root cause: a fixed number of bits can only represent a fixed set of values. Integer overflow is the too-big failure: with 8 bits the ceiling is 255, and pushing past it wraps around or errors out — the bits cannot stretch. Round-off error is the too-precise failure: real numbers are stored as floating-point approximations, and lots of ordinary values, like one-tenth, have no exact binary form, so the machine stores something merely close. One AP nuance worth writing down: some languages, including the pseudocode language on the exam reference sheet, abstract this away — their integers are limited only by the computer's memory, which the CED calls out in EK DAT-1.B.2. Your bell-ringer scheme hit both walls — 300 was overflow, 72.5 was precision. On the exam, diagnose by asking which limit got hit: size or precision.",
+      "capture": [
+        {
+          "q": "Integer overflow: the value is too ______ for its fixed number of bits.",
+          "a": "LARGE — it exceeds the range the bits can represent (EK DAT-1.B.1 on the KEY)"
+        },
+        {
+          "q": "Round-off error: many real numbers are stored as ______.",
+          "a": "floating-point approximations — values like 0.1 have no exact binary form"
+        },
+        {
+          "q": "Both failures share one root cause: ______.",
+          "a": "a fixed number of bits can only represent a fixed set of values"
+        }
+      ]
     },
     {
       "type": "worked_table",

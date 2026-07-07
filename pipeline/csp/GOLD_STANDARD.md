@@ -66,7 +66,11 @@ external curriculum audit's adopted recommendations.
 ## Student participation rules (guided notes — owner's standard)
 1. Every vocabulary section: students write EVERY definition (the emitter
    already blanks definitions in the student packet; the KEY fills them).
-2. Every major concept: at least one meaningful `capture` blank or prompt.
+2. Every `concept` AND every `two_column` slide carries `capture` (2-3 cloze
+   lines). Engine defaults add more student work automatically: two_column
+   definitions render as writing lines (KEY purple), every stop_and_think
+   prompt gets two ruled answer lines, and Common AP Traps ask students to
+   write each trap in their own words.
 3. Every worked example (`worked_table`): students complete at least one step
    themselves — set `"blanks": [[row,col], ...]` on the slide; those cells
    become writing lines in the packet and purple answers on the KEY.
