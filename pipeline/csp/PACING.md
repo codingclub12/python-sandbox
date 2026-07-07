@@ -1,10 +1,24 @@
 # AP CSP Course Pacing — Year-Long and Semester-Block Versions
 
-Authoring-time contract: every topic's day count below drives its
-`guide.pacing` (a 2-day topic gets a Day 2 practice/apply table) and the
-course-level pacing guides emitted in the course-resources phase
-(`emit_course_docs.js` doc types `pacing-year` and `pacing-block`, same
-architecture as Cyber).
+## Governing principle: CONTENT DICTATES LENGTH
+Day counts below are PLANNING ESTIMATES for calendar math, not molds.
+Authoring rule: a topic gets as many days, slides, and notes pages as the
+content genuinely needs — if a section needs 3 or 4 pages, it gets them; if
+a topic needs another teach day, it gets one. Never trim or pad content to
+hit a number. The estimate table is RECONCILED to actual authored day
+counts after each Big Idea is built, and the printable pacing guides
+(`pacing-year` / `pacing-block` in the course-resources phase) are generated
+from the actuals. The CED itself says "most topics can be taught in one or
+two class periods" and leaves pacing to the teacher — our guides suggest,
+never prescribe.
+
+Day-split model (decided): every teaching day gets its own deck, Cyber
+Units 1-2 style. Multi-day topics split as day files
+(`lesson-<id>-day<N>.json`): teach days carry new instruction (LOs split
+across days per meta.los); practice/lab days are lighter decks (retrieval
+bell ringer, exercise launches, work timers, debriefs). Quiz + guide blocks
+live on the day-1 file. Common AP Traps + the I-can exit check close the
+topic's FINAL day; earlier days end with `day_close` teasers.
 
 ## Hard College Board constraints (from ced.txt)
 - **Create Performance Task: a minimum of 9 hours of dedicated class time**
@@ -19,14 +33,14 @@ architecture as Cyber).
 A "day" = one 60-minute period. A "block" = one 90-minute period.
 Topic quizzes run as the OPENER of the class after the topic closes
 (15 min, spaced retrieval) — they consume no extra day.
-- **1-day topic**: teach day (the deck). Quiz next-class opener.
-- **2-day topic**: teach day + practice/apply day (topic exercises,
-  website CFUs + mastery, conversion/code labs — no new deck; the deck's
-  guide gets a Day 2 pacing table).
-- **3-day topic** (BI3 heavyweights): teach + guided practice + programming
-  lab/mini-project day.
+- **1-day topic**: one deck. Quiz next-class opener.
+- **2-day topic**: Day 1 teach deck + Day 2 deck (further instruction and/or
+  practice — whatever the content calls for). One deck per day.
+- **3+ day topic** (BI3 heavyweights): teach decks with LOs split across
+  days + a lab/mini-project day deck. Days are content-driven, never capped.
 
-## Per-topic day counts (60-min days; teach + practice, quiz absorbed)
+## Per-topic day ESTIMATES (60-min days; teach + practice, quiz absorbed)
+(Initial estimates only — see governing principle. Reconciled after authoring.)
 BIG IDEA 1 — Creative Development (7 topic-days)
   1.1 Collaboration 1 · 1.2 Program Function & Purpose 2 ·
   1.3 Program Design & Development 2 · 1.4 Identifying & Correcting Errors 2
@@ -114,11 +128,11 @@ typically covers a 1-2 day topic; pairs of light topics share a block.
   Flex (~24 blocks): practice, reteach, interruptions.
 
 ## Authoring implications (binding for the fan-out)
-1. Topic JSONs stay ONE deck per topic. Multi-day topics express Day 2/3
-   in `guide.pacing` as practice/apply tables (exercises, website CFUs +
-   mastery, labs) — mirroring Cyber's multi-day guide format.
-2. 2-3 day topics MUST ship the extras bundle (exercise1, exercise2,
-   discussion, lesson map) to furnish the practice day.
+1. DAY-SPLIT: multi-day topics ship one deck PER DAY (day files, Cyber
+   Units 1-2 style). Days are content-driven — never capped, never padded.
+   `guide.pacing` carries one table per day.
+2. Multi-day topics MUST ship the extras bundle (exercise1, exercise2,
+   discussion, lesson map) to furnish practice days.
 3. Mini-project specs (MP1-MP3), the Create Practice Task, and the Create
    PT pack (timeline, checkpoints, PPR templates, scoring-row checklist,
    plagiarism/AI policy summary) are course-resource documents, authored

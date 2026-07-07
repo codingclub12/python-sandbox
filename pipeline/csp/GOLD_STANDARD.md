@@ -16,7 +16,13 @@ external curriculum audit's adopted recommendations.
 - Run `node validate.js lesson-<id>-day1.json` until PASS before rendering.
 
 ## Slide skeleton (order)
-1. `title` — vivid hook title; eyebrow `Big Idea N · Topic N.N · Day 1 of 1`;
+0. SIZING IS CONTENT-DRIVEN. A topic takes as many days as it needs (day
+   files like Cyber Units 1-2; every teaching day gets a deck); a section
+   takes as many slides/pages as it needs. Never cut or pad to fit a mold.
+   Multi-day: teach days split the LOs (per-day meta.los + per-day
+   objectives); non-final days end with `day_close`; the FINAL day carries
+   Common AP Traps + final_summary/I-can; quiz + guide live on day 1.
+1. `title` — vivid hook title; eyebrow `Big Idea N · Topic N.N · Day N of M`;
    footerLeft `AP Computer Science Principles · College Board CED (Effective
    Fall 2023)`; footerRight `APCSExamPrep.com`.
 2. `objectives` — one CB item per LO, citing `(LO XXX-n.Z)`; multiple items
@@ -28,9 +34,10 @@ external curriculum audit's adopted recommendations.
    underneath, different entry point (audit: prevents rhythm fatigue).
 4. `guided_notes_preview` — sections matching the lesson; enrichment section
    tagged `"track": "enrichment"`.
-5. Per LO: `section_divider` then 2-4 content slides chosen from `vocab`
-   (EK inside each definition), `concept`, `two_column`, `worked_table`,
-   `impacts_grid`, `misconception`, `case_study`; then a `stop_and_think`.
+5. Per LO: `section_divider` then as many content slides as the LO needs
+   (typically 2-5) chosen from `vocab` (EK inside each definition),
+   `concept`, `two_column`, `worked_table`, `impacts_grid`,
+   `misconception`, `case_study`; then a `stop_and_think`.
 6. Optional 1-2 `track: "enrichment"` slides — the renderer badges them
    "DEEP DIVE · BEYOND THE AP EXAM" automatically.
 7. `ap_strategy` slide titled **"Common AP Traps"** — exactly 3 traps, each an
@@ -100,11 +107,10 @@ student decks exist for review/absent students.
 - **Common AP Traps + I-can checklist**: required on every lesson (see
   skeleton items 7-8).
 
-## Pacing (see PACING.md — binding)
-- Per-topic day counts are fixed in PACING.md (1/2/3-day topics). A 2-3 day
-  topic keeps ONE deck but its `guide.pacing` adds Day 2/3 practice/apply
-  tables (exercises + website CFUs/mastery + labs) and MUST ship the extras
-  bundle (exercise1/exercise2/discussion/map).
+## Pacing (see PACING.md)
+- Content dictates length; PACING.md day counts are planning estimates,
+  reconciled to actuals after authoring. Multi-day topics ship one deck per
+  day plus the extras bundle (exercise1/exercise2/discussion/map).
 - The course ships BOTH a year-long (60-min, deep-dive track fills the flex
   pool) and a semester-block (90-min, CB track) pacing guide, plus the
   Create PT window (>= 9 mandated class hours), 3 innovation investigations,
@@ -115,8 +121,8 @@ student decks exist for review/absent students.
   6.90" — clear of the 7.05" footer).
 - After rendering, run the geometric audit (off-slide shapes = 0, overflow
   risks = 0) before delivering.
-- Render matrix per topic: deck teacher/student × cb/deepdive; notes
-  student/key × cb/deepdive; quiz student/key; guide. 11 documents.
+- Render matrix PER DAY: deck teacher/student × cb/deepdive; notes
+  student/key × cb/deepdive. Plus per topic: quiz student/key; guide.
 
 ## Big Idea 3 note
 Topics 3.1-3.18 use the Exam Reference Sheet pseudocode (see the appendix in
