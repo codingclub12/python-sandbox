@@ -97,6 +97,26 @@ function answerPara(answer, opt = {}) {
   });
 }
 
+// Optional per-slide `capture` [{q, a}]: high-value cloze lines. In the q text,
+// "______" marks the gap. STUDENT: the gap renders as a writing line.
+// KEY: the answer appears in the gap, purple bold.
+function captureParas(cap) {
+  const out = [];
+  (cap || []).forEach(c => {
+    const parts = String(c.q).split('______');
+    const runs = [];
+    parts.forEach((t, i) => {
+      if (t) runs.push(run(t));
+      if (i < parts.length - 1) {
+        if (isKey) runs.push(run(' ' + c.a + ' ', { bold: true, color: C.PURPLE }));
+        else runs.push(run('\u00A0'.repeat(30), { underline: {} }));
+      }
+    });
+    out.push(bullet(runs));
+  });
+  return out;
+}
+
 // ---------- slide -> notes-block transforms ----------
 function emitNotes() {
   const k = [];
@@ -158,11 +178,20 @@ function emitNotes() {
 
       case 'two_column': {
         if (s.heading) k.push(h3(s.heading));
-        [s.left, s.right].forEach(col => {
-          if (!col) return;
-          k.push(p([run(col.title + (col.ek ? '  (' + col.ek + ')' : ''), { bold: true, color: C.PURPLE })]));
-          (col.examples || []).forEach(ex => k.push(bullet([run(ex)])));
-        });
+        if (s.capture && !isKey) {
+          [s.left, s.right].forEach(col => {
+            if (!col) return;
+            k.push(p([run(col.title + (col.definition ? ' \u2014 ' + col.definition : ''), { bold: true, color: C.PURPLE })]));
+          });
+          k.push(...captureParas(s.capture));
+        } else {
+          [s.left, s.right].forEach(col => {
+            if (!col) return;
+            k.push(p([run(col.title + (col.ek ? '  (' + col.ek + ')' : ''), { bold: true, color: C.PURPLE })]));
+            (col.examples || []).forEach(ex => k.push(bullet([run(ex)])));
+          });
+          if (s.capture) k.push(...captureParas(s.capture));
+        }
         if (s.footer) k.push(callout('AP tip', [p(s.footer)], 'tip'));
         break;
       }
@@ -204,7 +233,12 @@ function emitNotes() {
 
       case 'concept':
         if (s.heading) k.push(h3(s.heading));
-        (s.bullets || []).forEach(b => k.push(bullet([run(b)])));
+        if (s.capture && !isKey) {
+          k.push(...captureParas(s.capture));
+        } else {
+          (s.bullets || []).forEach(b => k.push(bullet([run(b)])));
+          if (s.capture) k.push(...captureParas(s.capture));
+        }
         break;
 
       case 'stop_and_think':
@@ -223,6 +257,10 @@ function emitNotes() {
       case 'final_summary':
         k.push(h2(s.heading || 'In one page'));
         (s.points || []).forEach(pt => k.push(bullet([run(pt)])));
+        if (s.ican && s.ican.length) {
+          k.push(p([run('Exit check \u2014 I can\u2026', { bold: true, color: C.NAVY })]));
+          s.ican.forEach(it => k.push(bullet([run('\u2610  ' + it)])));
+        }
         if (s.next) k.push(p([run('Next: ', { bold: true, color: C.PURPLE }), run(s.next)]));
         break;
 

@@ -1027,7 +1027,7 @@ function buildStopAndThink(slide, s) {
 
   const n = s.prompts.length;
   const startY = 2.0;
-  const bottom = 7.15;                       // keep cards above the footer
+  const bottom = 6.90;                       // keep cards clear of the footer (footerY = 7.05)
   const gap = n >= 4 ? 0.12 : 0.2;
   const cardH = Math.min(1.9, (bottom - startY - gap * (n - 1)) / n);  // shrink to fit, never off-slide
   const fs = cardH < 1.4 ? 14 : 16;

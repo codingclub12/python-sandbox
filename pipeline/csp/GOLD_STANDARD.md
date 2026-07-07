@@ -1,0 +1,87 @@
+# CSP Gold-Standard Lesson Template (frozen from Topic 2.1 v3)
+
+Every CSP topic is authored to match `lesson-2.1-day1.json` in structure and
+quality. Consistency beats brilliance: the goal is every lesson EQUAL to 2.1,
+not occasionally better. This file codifies the template, including the
+external curriculum audit's adopted recommendations.
+
+## Grounding (non-negotiable)
+- `ced.txt` in this directory is the verbatim CED (Effective Fall 2023).
+- Every LO/EK cited anywhere must exist in `ced.txt`, with exact codes
+  (e.g. `DAT-1.B.3`, not a from-memory guess).
+- `guide.eks` lists the topic's EK statements verbatim from the CED,
+  including exclusion statements.
+- Cover EVERY part of every LO (e.g. DAT-1.C part b "compare and order" —
+  parts are easy to miss).
+- Run `node validate.js lesson-<id>-day1.json` until PASS before rendering.
+
+## Slide skeleton (order)
+1. `title` — vivid hook title; eyebrow `Big Idea N · Topic N.N · Day 1 of 1`;
+   footerLeft `AP Computer Science Principles · College Board CED (Effective
+   Fall 2023)`; footerRight `APCSExamPrep.com`.
+2. `objectives` — one CB item per LO, citing `(LO XXX-n.Z)`; multiple items
+   always (never a single objective).
+3. `bell_ringer` — an experience that makes students INVENT the lesson's
+   central idea before it is named (2.1: 8 light switches -> binary,
+   overflow, precision). VARY THE OPENER across lessons: puzzle/design task,
+   story, data set, code snippet, or a real-AP-style question — same skeleton
+   underneath, different entry point (audit: prevents rhythm fatigue).
+4. `guided_notes_preview` — sections matching the lesson; enrichment section
+   tagged `"track": "enrichment"`.
+5. Per LO: `section_divider` then 2-4 content slides chosen from `vocab`
+   (EK inside each definition), `concept`, `two_column`, `worked_table`,
+   `impacts_grid`, `misconception`, `case_study`; then a `stop_and_think`.
+6. Optional 1-2 `track: "enrichment"` slides — the renderer badges them
+   "DEEP DIVE · BEYOND THE AP EXAM" automatically.
+7. `ap_strategy` slide titled **"Common AP Traps"** — exactly 3 traps, each an
+   exam-specific confusion (not a generic tip). One minute of class, real
+   exam payoff.
+8. `final_summary` — points recap + `"ican": [...]` exit checklist (renders as
+   checkboxes on the slide and in the notes). 3-5 "I can…" statements tied
+   to the LOs.
+
+## Rules carried from the Cyber standard
+- Every slide has a `script` (2-5 sentence teacher narration). No first-person
+  procedural claims ("I collect…", "I will cold-call…") — use teacher-agnostic
+  phrasing ("Guided Notes are collected…", "A few students will be called on…").
+- Student-facing docs never show EK codes (the emitter strips them); the KEY
+  keeps them. LO codes on section kickers are fine.
+- Quiz: 4 options, balanced answer letters, no 3-in-a-row, no
+  all/none-of-the-above, rationale on every item explaining each distractor
+  from a real misconception, `predictFirst` ONLY on scenario/applied items,
+  bank skewed to harder kinds (scenario/applied/multi), 2-3 items per LO.
+- Guide block: overview, verbatim `los`/`eks`, materials, prereqs, pacing with
+  `QOTD (BIn/Tn.n/Q1) + bell ringer` opener and slide ranges, flex assessment
+  block (`"slides": "Handout"`), 3 misconceptions (myth/reality),
+  differentiation (support + extension), 3 discussion prompts, canonical
+  `answerKeyNote`.
+
+## Audit-adopted rules (new in v3)
+- **Capture blanks**: reading-heavy `concept`/`two_column` slides carry
+  `"capture": [{"q": "… ______ …", "a": "…"}]` — 2-3 high-value cloze lines
+  per section, ONE gap (`______`) per line. Student packet renders a writing
+  line; KEY renders the answer purple-bold. Target ~40% student-generated
+  content in the packet. Do NOT cloze random nouns — capture rules,
+  conclusions, and mechanisms.
+- **Website integration**: every `stop_and_think.directions` ends with
+  "Then check yourself with the matching CFUs on the Topic N.N page." The
+  `guided_notes_preview.note` points to the topic page. The website is the
+  student workspace; slides are the teacher instrument.
+- **Enrichment is visually distinct**: handled by the engine badge — authors
+  just set `track: "enrichment"`.
+- **Common AP Traps + I-can checklist**: required on every lesson (see
+  skeleton items 7-8).
+
+## Geometry / rendering
+- `stop_and_think` supports up to 4 prompts (cards auto-shrink, bottom bound
+  6.90" — clear of the 7.05" footer).
+- After rendering, run the geometric audit (off-slide shapes = 0, overflow
+  risks = 0) before delivering.
+- Render matrix per topic: deck teacher/student × cb/deepdive; notes
+  student/key × cb/deepdive; quiz student/key; guide. 11 documents.
+
+## Big Idea 3 note
+Topics 3.1-3.18 use the Exam Reference Sheet pseudocode (see the appendix in
+`ced.txt`). A `code_block` slide type will be added to the engine when BI3
+authoring starts; pseudocode on slides must match the reference sheet exactly
+(REPEAT n TIMES, aList[i] 1-indexed, <- assignment, etc.).

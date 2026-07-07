@@ -1027,7 +1027,7 @@ function buildStopAndThink(slide, s) {
 
   const n = s.prompts.length;
   const startY = 2.0;
-  const bottom = 7.15;                       // keep cards above the footer
+  const bottom = 6.90;                       // keep cards clear of the footer (footerY = 7.05)
   const gap = n >= 4 ? 0.12 : 0.2;
   const cardH = Math.min(1.9, (bottom - startY - gap * (n - 1)) / n);  // shrink to fit, never off-slide
   const fs = cardH < 1.4 ? 14 : 16;
@@ -1688,15 +1688,33 @@ function buildFinalSummary(slide, s) {
   });
 
   const pts = s.points || [];
+  const hasIcan = Array.isArray(s.ican) && s.ican.length > 0;
   const text = pts.map((p, i) => ({
     text: '\u2022  ' + p,
-    options: { breakLine: i < pts.length - 1, paraSpaceAfter: 12 },
+    options: { breakLine: i < pts.length - 1, paraSpaceAfter: hasIcan ? 8 : 12 },
   }));
   slide.addText(text, {
-    x: M.edge + 0.3, y: 1.9, w: W - 2 * (M.edge + 0.3), h: 4.0,
-    fontFace: F.body, fontSize: 16.5, color: 'E2F0E9',
+    x: M.edge + 0.3, y: 1.9, w: W - 2 * (M.edge + 0.3), h: hasIcan ? 2.55 : 4.0,
+    fontFace: F.body, fontSize: hasIcan ? 14.5 : 16.5, color: 'E2F0E9',
     align: 'left', valign: 'top', margin: 0,
   });
+
+  if (hasIcan) {
+    slide.addText('EXIT CHECK \u2014 I CAN\u2026', {
+      x: M.edge + 0.3, y: 4.55, w: 5, h: 0.3,
+      fontFace: F.body, fontSize: 12, bold: true, color: C.primaryAlt, align: 'left', margin: 0,
+    });
+    const half = Math.ceil(s.ican.length / 2);
+    const colW = (W - 2 * (M.edge + 0.3) - 0.4) / 2;
+    [s.ican.slice(0, half), s.ican.slice(half)].forEach((col, ci) => {
+      if (!col.length) return;
+      const t = col.map((it, i) => ({ text: '\u2610  ' + it, options: { breakLine: i < col.length - 1, paraSpaceAfter: 8 } }));
+      slide.addText(t, {
+        x: M.edge + 0.3 + ci * (colW + 0.4), y: 4.92, w: colW, h: 1.1,
+        fontFace: F.body, fontSize: 12.5, color: C.white, align: 'left', valign: 'top', margin: 0,
+      });
+    });
+  }
 
   if (s.next) {
     slide.addText([
@@ -1751,6 +1769,18 @@ slides.forEach((s, idx) => {
   }
   const slide = pres.addSlide();
   builder(slide, s);
+  // Enrichment slides carry an explicit "beyond the exam" badge (top-right)
+  if (s.track === 'enrichment' && s.type !== 'section_divider') {
+    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
+      x: W - 3.55, y: 0.34, w: 3.05, h: 0.3,
+      fill: { color: 'DBEAFE' }, line: { color: C.enrichBlue, width: 0.75 }, rectRadius: 0.05,
+    });
+    slide.addText('DEEP DIVE \u00b7 BEYOND THE AP EXAM', {
+      x: W - 3.55, y: 0.34, w: 3.05, h: 0.3,
+      fontFace: F.body, fontSize: 10, bold: true, color: C.enrichBlue,
+      align: 'center', valign: 'middle', margin: 0,
+    });
+  }
   if (s.type !== 'title') {
     addFooter(slide, idx + 1, total);
   }
