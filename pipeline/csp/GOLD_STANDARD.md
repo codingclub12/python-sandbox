@@ -117,6 +117,14 @@ student decks exist for review/absent students.
   Locksmith / member tag — whatever the class-login system uses) must be
   verified before publishing. Never import paid notes as a public page.
   Link the gated page from the topic lesson page.
+- **Teacher Resources hub** (primary premium distribution): `node
+  emit_teacher_hub.js --salt=<token> [--template=<suffix>]` regenerates the
+  one gated hub page listing every file for every authored topic
+  (student-safe vs teacher-only groups; KEYs amber-flagged). Files stage in
+  web_out/site_files/ with salted names — Shopify CDN files are public by
+  URL, so the salt keeps links unguessable; keep the salt constant across
+  re-runs. KEYs must sit behind the TEACHER gate, never the student
+  course/name/PIN gate.
 - **Enrichment is visually distinct**: handled by the engine badge — authors
   just set `track: "enrichment"`.
 - **Common AP Traps + I-can checklist**: required on every lesson (see
