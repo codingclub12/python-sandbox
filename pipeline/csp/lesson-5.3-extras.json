@@ -1,0 +1,292 @@
+{
+  "meta": {
+    "lessonId": "5.3",
+    "lessonTitle": "Computing Bias",
+    "unit": "Big Idea 5: Impact of Computing",
+    "days": 1,
+    "los": "LO IOC-1.D"
+  },
+  "map": {
+    "subtitle": "Big Idea 5: Impact of Computing   •   1 day   •   LO IOC-1.D",
+    "intro": "Everything for this topic lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (speaker notes on every slide: timing, share-out cues, misconception alerts)",
+      "Teacher Guide (pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Bias Auditor — The Incident Log and Exercise 2: The Bias Reduction Clinic (student + answer KEY)",
+      "Discussion — The Mirror Problem (3-part: Opening, Mid-lesson, Closing — all inside the single teach day)",
+      "Quiz (student + answer KEY — 7 questions on LO IOC-1.D, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-5-3-computing-bias"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-5-3-guided-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-5-3-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-5-3-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-5-3-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (one teach day: the two channels bias travels through — algorithms and data — then the all-levels rule and the programmer's duty to take action).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Scheduling: Topic 5.3 is a 1-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Topic 5.4 (Crowdsourcing) begins immediately after the quiz."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Bias Auditor — The Incident Log",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-5-3-exercise-1",
+    "intro": "You are the district's independent bias auditor. Five deployed systems have been reported for unfair results, and each incident file tells you what the system does, what went wrong, and how it was built. For each one you will name the channel the bias came through, locate the development level where it entered, and prescribe a deliberate reduction action. Part A works the incident log; Part B extends the same skills. Everything maps to CB Learning Objective IOC-1.D.",
+    "scenarioTitle": "Incident Log: Five Systems Under Audit",
+    "narrative": "The district technology office forwards you five incident files, each awaiting a ruling before the tool can stay in service. Read the log row by row, then answer Part A. Use the three-step method: anchor your first diagnosis, name the channel (algorithm or data) and the level it entered, then prescribe an action the CED would credit — never a bigger pile of the same data.",
+    "log": {
+      "columns": [
+        "ID",
+        "System",
+        "Reported symptom",
+        "How it was built",
+        "Detail worth noticing"
+      ],
+      "rows": [
+        [
+          "1",
+          "AttendanceCast (skip-risk predictor)",
+          "Flags bus riders, working students, and caretakers as likely skippers",
+          "Trained on one dataset: last year's honors students; rolled out school-wide",
+          "The flagged groups share nothing except schedules unlike an honors student's"
+        ],
+        [
+          "2",
+          "HireBrite (résumé screener)",
+          "Auto-rejects strong applicants who paused careers for caregiving",
+          "Developers hand-wrote a rule: any employment gap over 6 months = reject",
+          "No training data is involved — the rule itself does the filtering"
+        ],
+        [
+          "3",
+          "GlowCam (photo auto-enhance)",
+          "Consistently over-brightens or washes out darker skin tones",
+          "Enhancement passed QA using the dev team's own selfies as the test set",
+          "The code passed every test the team wrote — the tests were the problem"
+        ],
+        [
+          "4",
+          "TalkTrack (voice-notes transcriber)",
+          "Mangles transcripts for speakers with certain regional accents",
+          "Training audio came from one region; vendor now proposes 10× more of it",
+          "The vendor's fix collects more audio from the same place"
+        ],
+        [
+          "5",
+          "FitStreak (school fitness challenge)",
+          "Wheelchair users can never earn points — 'activity' counts steps only",
+          "Solo developer framed the problem as step-counting on day one",
+          "The bias predates the code, the data, and the tests"
+        ]
+      ]
+    },
+    "scenarioNote": "Systems adapted from the Day 1 bell ringer and the diagnosis worked table; all terms and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which one system will be HARDEST to fix with a technical change alone, and what in its log row tells you so?",
+    "partALabel": "Part A - Rulings on the Log",
+    "partA": [
+      {
+        "ek": "EK IOC-1.D.1",
+        "pts": 4,
+        "q": "Rows 1 and 2 show the CED's two different channels for bias. Name the channel for each system, and explain in one sentence per system how you can tell them apart from the log alone.",
+        "answer": "Row 1 (AttendanceCast) is bias in the DATA: the code contains no anti-bus-rider rule — it learned 'normal attendance' from a single unrepresentative training set (honors students only), so every unlike schedule reads as risk. Row 2 (HireBrite) is bias written into the ALGORITHM: humans typed the employment-gap rule directly into the logic, and the log says no training data is involved. Per EK IOC-1.D.1, computing innovations can reflect existing human biases because of biases written into the algorithms OR biases in the data used — the tell is 'developers hand-wrote a rule' versus 'trained on one dataset.' Full credit requires both channels named correctly plus the distinguishing phrase from each row."
+      },
+      {
+        "ek": "EK IOC-1.D.3",
+        "pts": 5,
+        "q": "Rows 3 and 5 prove that bias is not just a training-data problem. For each, name the development level where the bias entered, then state the general rule these two rows demonstrate.",
+        "answer": "Row 3 (GlowCam): the bias entered at TESTING — the enhancement code was validated against the dev team's own selfies, so a narrow test set certified a tool that fails everyone unlike the team. Row 5 (FitStreak): the bias entered at PROBLEM FRAMING — defining 'activity' as steps excluded wheelchair users before any code, data, or tests existed. The general rule is EK IOC-1.D.3: biases can be embedded at ALL levels of software development — framing, design, coding, data collection, testing, and deployment. A strong answer notes that neither row's flaw lives in a training dataset, which is exactly why the all-levels rule matters."
+      },
+      {
+        "ek": "EK IOC-1.D.2",
+        "pts": 5,
+        "q": "Row 4: rule on TalkTrack's proposed fix (10× more audio from the same region). Cite the rule from Topic 2.3 that decides the case, then prescribe the action the CED would credit instead.",
+        "answer": "The proposal fails. Per EK DAT-2.C.5 (Topic 2.3), problems of bias are often created by the type or source of data being collected, and bias is NOT eliminated by simply collecting more data — ten times more same-region audio is the same accent skew at higher volume, so the mangled transcripts persist. The credited fix is EK IOC-1.D.2's requirement that programmers take action to reduce bias: change WHAT is collected — gather training audio across regions and accents, then re-test transcript accuracy per accent group before redeploying. Full credit requires the DAT-2.C.5 citation (or its rule stated precisely) plus a source-changing action; any answer that keeps the source and raises the volume scores zero on the prescription."
+      },
+      {
+        "ek": "EK IOC-1.D.2",
+        "pts": 4,
+        "q": "Row 1: prescribe TWO deliberate reduction actions for AttendanceCast — one that fixes the existing tool and one that changes how the district deploys it — and justify each as action rather than accumulation.",
+        "answer": "Fix the tool: rebuild the training set to represent the whole school — every grade level, schedule type, job status, and transportation situation — then retrain and compare flag rates across those groups before trusting any score. Fix the deployment: restrict the tool to populations its data actually covers (or pause school-wide use) until the retrained version passes per-group checks, since using it beyond its data is where the harm happens. Both are deliberate interventions in what the system learns and where it is used — per EK IOC-1.D.2, programmers should take action to reduce bias as a way of combating existing human biases. Neither action is 'collect more of the same,' which is the difference between action and accumulation."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK CRD-1.A.4",
+        "pts": 3,
+        "q": "Row 5 was built by a solo developer. Using the collaboration principle from Topic 1.1, explain how a different kind of team would likely have caught FitStreak's bias — and at which level it would have been caught.",
+        "answer": "Per EK CRD-1.A.4, collaboration that includes diverse perspectives helps avoid bias in the development of computing innovations. A team including (or consulting) users with different mobility needs would almost certainly have challenged the step-counting definition of 'activity' at the PROBLEM-FRAMING level — before any code existed — by asking the question the solo developer never faced: 'who can never earn points under this definition?' That is the cheapest possible bias fix: catching the skewed assumption at the earliest level, rather than repairing a deployed product. Full credit requires the Topic 1.1 principle plus the framing level named."
+      },
+      {
+        "ek": "EK IOC-1.D.1 / EK IOC-1.D.3",
+        "pts": 3,
+        "q": "Explain why 'which channel did the bias come through?' and 'which level did it enter at?' are two different questions. Use one row of the log to show a case where the answers point at different things.",
+        "answer": "The channel names the CARRIER — the algorithm's rules or the data used (EK IOC-1.D.1). The level names the STAGE of development where the bias was embedded — framing, design, coding, data collection, testing, or deployment (EK IOC-1.D.3). Row 3 shows the split: GlowCam's channel is data (a skewed set of faces), but the level is TESTING, not data collection for training — the biased dataset was the QA test set that certified the product. Row 1 works too: the channel is data, yet a second failure happened at DEPLOYMENT, when a tool trained on honors students was used on the whole school. One question diagnoses what carried the bias; the other locates when it got in."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Design a fairness audit for GlowCam in the style of the 2018 face-analysis benchmark. What would your test set contain, what number would you compute for each group, and why can a single overall accuracy score hide the exact skew in Row 3?",
+        "answer": "Build a benchmark of photos deliberately balanced across skin tones (and lighting conditions), then compute the enhancement error rate SEPARATELY for each skin-tone group — the audit's verdict is the gap between the best- and worst-served groups, not the average. A single overall score hides the skew through weighting: if the test set (like the dev team's selfies) over-represents one group, the tool can score superbly overall while failing a minority of the test set badly — high average, terrible worst case. That is what the 2018 benchmark exposed commercially: near-perfect headline accuracy alongside error rates around 35% for darker-skinned women. Publishing per-group numbers is what forced vendors to rebuild their data — measurement is what triggers EK IOC-1.D.2's action."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "The Bias Reduction Clinic",
+    "minutes": "25 minutes",
+    "subtitle": "4 cases - LO IOC-1.D",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-5-3-exercise-2",
+    "intro": "You are the consultant on call at the bias clinic. Four computing innovations arrive accused of treating groups unfairly. For each case, name the channel the bias came through (algorithm or data), locate the development level where it entered, and prescribe one deliberate reduction action with a justification. Advanced students also state the limit of the fix — what it cannot repair. Vague 'fix the data' advice scores zero.",
+    "standard": "CB Standard (required): channel (algorithm or data) + development level + one deliberate reduction action with justification, for all 4 cases. Enrichment (optional): also state the limit of your fix — what it cannot repair.",
+    "methodHeading": "Three-Step Method - use for every case",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your gut diagnosis before analyzing. Writing your own ruling first keeps a convincing wrong option from swaying you."
+      ],
+      [
+        "Step 2 - Name the channel and the level",
+        "Was the unfairness typed into the rules, or learned from skewed inputs? Then locate the stage it entered: problem framing, design, coding, data collection, testing, or deployment."
+      ],
+      [
+        "Step 3 - Prescribe deliberate action",
+        "Programmers take action to reduce bias — rebuild what is collected, audit the rules, measure outcomes per group. More volume from the same source is never the fix. Name the step and justify it."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (limits): strong consultants state what the fix CANNOT do — retraining on balanced data cannot repair a problem framed to exclude people; deleting one proxy rule does not clear the other rules of stand-ins; and no single fix is permanent, since bias can re-enter at every later level (that is why real teams re-audit after every change, and why diverse teams catch skew that any one perspective misses).",
+    "fields": [
+      "Channel + level (algorithm or data; where in development it entered):",
+      "Reduction action + justification (the deliberate step and why it combats the bias):",
+      "Limit to layer (enrichment — what your fix cannot repair):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A translation app renders the gender-neutral sentence 'my friend is a doctor' as 'he is a doctor,' and 'my friend is a nurse' as 'she is a nurse' — every time. The app learned translation patterns from millions of published books and articles spanning several decades.",
+        "key": {
+          "signs": "the channel is DATA, entering at DATA COLLECTION: the app learned from decades of published text in which doctors were usually written as men and nurses as women, so it absorbed the era's associations as translation rules (EK IOC-1.D.1 — biases in the data used by the innovation). No developer typed 'doctor = he'; the corpus taught it.",
+          "mechanism": "take deliberate action on the training side (EK IOC-1.D.2): rebalance or augment the corpus with texts that break the pattern, and add per-case checks — when the source sentence is gender-neutral, the output should present neutral or both options rather than silently guessing. Justification: the association lives in what the model studied, so the fix must change what it studies and how ties are resolved; the developers are correcting an existing human bias the data preserved.",
+          "subtype": "the fix cannot rewrite the source texts themselves — history's skew remains in every archive the app might ever learn from, so this correction is a standing policy, not a one-time patch; each new data ingestion can re-import the association if nobody re-tests the neutral-sentence cases."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A scholarship-matching site contains an eligibility filter its developers wrote by hand: applications without a permanent home address are automatically set aside 'to reduce fraud.' Counselors notice that students in temporary housing — often the students who most need scholarships — never appear in any match list. No machine learning is involved.",
+        "key": {
+          "signs": "the channel is the ALGORITHM, entering at DESIGN/CODING: a human-written rule uses 'permanent home address' as a stand-in for legitimacy, and that proxy lands hardest on students in temporary housing (EK IOC-1.D.1 — biases written into the algorithms). The log's tell is 'developers wrote by hand' plus 'no machine learning' — there is no dataset to blame.",
+          "mechanism": "remove or replace the proxy rule (EK IOC-1.D.2): verify identity through counselor confirmation or school enrollment records instead of address permanence, and audit the remaining filters for other stand-ins that track wealth or housing status. Justification: the bias is a typed-in assumption, so the deliberate action is editing the logic — no amount of additional applications (more data) would change what the rule does to the same students.",
+          "subtype": "the fix cannot undo the seasons of matches already lost, and it does not prove the rest of the filter set is clean — one discovered proxy is evidence the review process missed things, so the credited follow-up is a full rule audit plus outcome tracking, not a declaration of victory after one deletion."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Stretch",
+        "text": "A city pilots sidewalk-monitoring cameras that flag 'suspicious loitering.' The system passed every accuracy check — all run on daytime footage from the business district, where the pilot team works. Deployed citywide and overnight, it generates false alarms overwhelmingly in a few residential neighborhoods. The vendor's response: 'give it time — every month of new footage makes the model smarter.'",
+        "key": {
+          "signs": "the channel is DATA, but the bias entered at TESTING and DEPLOYMENT, not just collection: validation used only daytime business-district footage, so the accuracy checks certified the tool for a world it was never measured against, and citywide overnight rollout pushed it past everything its data covered (EK IOC-1.D.3 — biases can be embedded at all levels, including the checks and the rollout).",
+          "mechanism": "halt expansion and re-validate deliberately (EK IOC-1.D.2): build a test set spanning neighborhoods, lighting, and hours; publish false-alarm rates per neighborhood; and gate redeployment on closing the gaps. Justification: the vendor's 'more footage will fix it' is the volume trap — per EK DAT-2.C.5 (Topic 2.3), bias from the type or source of collection is not eliminated by collecting more, and new footage gathered by the same skewed deployment inherits the same tilt.",
+          "subtype": "the fix cannot neutralize the feedback loop the pilot already started: neighborhoods with more false alarms attract more attention, which generates more flagged footage from those same blocks — so even a re-validated model needs its incoming data audited for self-reinforcement, and the alarm-response policy needs human review independent of the tool."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A wellness-chat app for teenagers escalates messages to a counselor when it detects 'crisis language.' It was framed, designed, coded, and tested by one small, homogeneous team; its phrase list came from transcripts of that team's own role-played conversations. Reviewers find it over-escalates slang from some communities as 'aggression' while missing genuine distress phrased in dialects the team never wrote. The company asks you for a complete reduction plan — not a patch.",
+        "key": {
+          "signs": "BOTH channels, at nearly every level (EK IOC-1.D.1 + D.3): the phrase rules encode one team's idea of 'crisis language' (algorithm), the role-played transcripts are a skewed corpus (data), the framing assumed distress sounds one way, and testing never left the team's own dialect. The homogeneous solo team is the root condition — every level inherited the same blind spot.",
+          "mechanism": "a plan that acts at each level (EK IOC-1.D.2): re-frame with counselors and teens from the communities served; rebuild the corpus from real, consented, dialect-diverse conversations; audit the phrase rules against that corpus; test escalation rates per community and per dialect; and stage deployment with human review of every escalation until per-group rates converge. Justification: bias entered at every level, so a single-level patch relocates the failure instead of reducing it — and diverse collaboration itself is a reduction action (EK CRD-1.A.4, Topic 1.1).",
+          "subtype": "the fix cannot make any phrase list final — language shifts, slang moves, and a list tuned today drifts biased tomorrow, so the plan must include scheduled re-audits; and even a fair detector cannot repair the framing question left open (whether text alone should trigger escalation), which stays a human judgment the team must keep owning."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Mirror Problem",
+    "minutes": "~20 min total - 3 parts - Opening + Mid-lesson + Closing (all Day 1)",
+    "overview": "An innovation never hates anyone — and yet it can flag the bus riders, reject the caregivers, and mishear entire regions. Today's software makes decisions that used to be made by people, and it makes them at scale, with the biases of its builders and its data baked in. Across three short windows in this lesson, your group will decide who owns an algorithm's mistake, whether 'it's just math' ever counts as a defense, and what a fair fix genuinely requires — action, or just more rows.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. AttendanceCast flags a student and the office starts calling home. Rank the responsibility: the programmers who trained it on honors students, the district that bought it, the principal who acts on the flags. Who tops your list — and does 'the software decided' excuse anyone below it?"
+          },
+          {
+            "text": "Question 2. Where have you personally seen technology work worse for someone — a voice assistant, a camera filter, an auto-correct, a game? Pick one example from the group: was the unfairness in the rules someone wrote, or in what the system learned from?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the two-channels comparison",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-phrase test",
+            "text": "Exam items hide the channel in a single phrase. In one sentence your whole group agrees on, state the test that sorts any biased-system story into 'bias in the algorithm' or 'bias in the data' — then prove it works on the bell ringer.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Ship it anyway?",
+            "text": "Debate for about 3 minutes: a study tool works brilliantly for 95% of students but consistently fails one small group, and fixing it delays launch a full year. Ship now or fix first? Record your group's call and the strongest argument from the side you rejected.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The vendor pitch",
+            "text": "A vendor pitches your district: 'Our AI counselor is bias-free — it was trained on two billion messages, and no human ever touches its recommendations.' Build your group's ruling: identify every claim in that sentence the CED contradicts (think two channels, all levels, the more-data rule, and what removing the human actually removes), then write the two questions your district should force the vendor to answer before buying.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the pitch's single weakest claim + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

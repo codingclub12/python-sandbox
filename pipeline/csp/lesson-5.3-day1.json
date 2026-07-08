@@ -1,0 +1,557 @@
+{
+  "meta": {
+    "lessonId": "5.3",
+    "lessonTitle": "Computing Bias",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 5: Impact of Computing",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO IOC-1.D",
+    "anchor": "Computing Bias",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 5 · Topic 5.3 · Day 1 of 1",
+      "title": "The Machine Learned Our Mistakes",
+      "subtitle": "How human bias rides into computing innovations through algorithms and data — and why the fix is action, not more rows",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 5.3, Computing Bias — one day, one learning objective. Topic 5.2 showed that access to computing is unevenly distributed; today's question is sharper: even for people who have access, can the software itself treat them unfairly? The answer is yes, and the CED names exactly two channels the unfairness travels through — the algorithm and the data. By the end of the period, students can trace a biased innovation to its channel, locate the development level where the bias entered, and name the deliberate action that reduces it — which is precisely what LO IOC-1.D asks."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how computing innovations can reflect existing human biases — written into their algorithms or carried in the data they use (LO IOC-1.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Locate where bias can be embedded across all levels of software development, and name the actions programmers take to reduce it (LO IOC-1.D)"
+        }
+      ],
+      "script": "Two targets, both inside IOC-1.D. First, the mechanism: an innovation is never biased on its own — it reflects existing human biases, and there are exactly two doors the bias walks through, the rules programmers write and the data the innovation uses. Second, the responsibility: bias can be embedded at every level of software development, and the CED says programmers should take action to reduce it. Every exam item on this topic tests one of those three sentences in costume."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Riverview High buys AttendanceCast, software that predicts which students will skip class next semester. It was trained on exactly ONE dataset: last year's honors students. This fall it scores every student in the building.",
+      "subprompt": "Predict: which students will it WRONGLY flag as likely skippers — and what, in how the tool was built, causes those mistakes? List two groups and the cause.",
+      "directions": "Write your two predictions and the one build decision you blame. Be ready to defend both.",
+      "script": "A few minutes, on your own — no vocabulary yet, just prediction. Students usually land on the right groups fast: students with after-school jobs, late bus routes, caretaking duties, or schedules that look nothing like an honors student's day. The deeper move is the WHY: nobody typed 'flag bus riders' into the code — the tool learned what 'normal attendance' looks like from a single unrepresentative slice of the school, so everyone unlike that slice looks suspicious to it. Students have just discovered data bias before hearing the term; the whole lesson names and formalizes what they found. Keep the predictions visible — AttendanceCast returns on almost every slide today."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Where Bias Comes From",
+          "description": "The two channels: biases written into algorithms and biases in the data an innovation uses (EK IOC-1.D.1)."
+        },
+        {
+          "title": "Every Level, and the Fix",
+          "description": "Bias embedded at all levels of software development — and the actions programmers take to reduce it (EK IOC-1.D.2–D.3)."
+        },
+        {
+          "title": "Deep Dive: The Benchmark That Caught the Skew",
+          "description": "How one research benchmark exposed uneven face-analysis error rates — and what happened next.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 5.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two are green and CB-required — where bias comes from, with the CED's two channels, then the all-levels rule and the programmer's duty to act. The third is the blue deep dive on the 2018 face-analysis benchmark: beyond the exam, but it shows what taking action against bias actually looked like in industry. Packets stay open all period; a digital copy lives on the Topic 5.3 Guided Notes page at apcsexamprep.com for anyone absent."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Where Bias Comes From",
+      "kicker": "Two Channels Into an Innovation · Learning Objective IOC-1.D",
+      "script": "Section one. Before anyone can reduce bias, they have to know where it enters, and the CED is unusually precise here: exactly two channels — biases written into the algorithms, or biases in the data used by the innovation. Every biased-system story students will ever read sorts into one of those two doors, and the bell ringer already walked them through the second one."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO IOC-1.D)",
+      "terms": [
+        {
+          "term": "Algorithmic bias",
+          "definition": "A systematic, unfair skew in an innovation's results; innovations can reflect existing human biases written into the algorithms or present in the data used (EK IOC-1.D.1)."
+        },
+        {
+          "term": "Training data",
+          "definition": "The collection of past examples a system learns its patterns from; when those examples carry human bias, the innovation reflects that bias in its output (EK IOC-1.D.1)."
+        }
+      ],
+      "script": "Two terms carry the topic. Algorithmic bias is a systematic skew — not a random glitch, but a consistent tilt against some group, and the CED's key insight is that the bias is EXISTING human bias reflected, not invented by the machine. Training data is the set of past examples a system learns from; AttendanceCast's training data was last year's honors students, which is why its idea of normal is so narrow. Students should underline 'existing' and 'reflect' — the innovation is a mirror, and the exam loves testing who the mirror is showing."
+    },
+    {
+      "type": "concept",
+      "heading": "Innovations Mirror Their Makers",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Computing innovations can reflect existing human biases: the bias lives in people and society first, and the innovation absorbs it and repeats it at scale (EK IOC-1.D.1).",
+        "Channel 1 — the algorithm: assumptions and choices get written directly into the rules the innovation follows, by the humans who wrote them (EK IOC-1.D.1).",
+        "Channel 2 — the data: an innovation built on skewed or unrepresentative data learns that skew and treats it as normal (EK IOC-1.D.1).",
+        "AttendanceCast never chose to target bus riders — it faithfully learned an honors-only dataset. Faithful to lopsided data is still biased."
+      ],
+      "script": "The topic's core sentence: computing innovations can REFLECT existing human biases. The word 'reflect' does real work — the machine did not invent the prejudice; it inherited one that already existed, then applied it faster and at larger scale than any human could. Channel one is direct: a programmer's assumption becomes a rule, and the rule executes the assumption forever. Channel two is subtler and drives most modern cases: the code can be flawless while the data teaches it a lopsided world, exactly like AttendanceCast. Students should be able to say which channel a story belongs to before this section ends.",
+      "capture": [
+        {
+          "q": "An innovation can inherit human bias through two channels: rules typed by programmers, or ______.",
+          "a": "the example records it studied while being built"
+        },
+        {
+          "q": "Bias in a computing innovation starts with ______, not with the machine.",
+          "a": "people — the society and builders around the system"
+        },
+        {
+          "q": "A system built on a lopsided sample treats that slice as ______.",
+          "a": "a fair portrait of the entire population"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Two Channels, One Symptom",
+      "subheading": "Both produce unfair results. The difference is the door the bias walked through (EK IOC-1.D.1).",
+      "left": {
+        "title": "Bias in the ALGORITHM",
+        "definition": "Human assumptions written directly into the rules the innovation follows",
+        "ek": "EK IOC-1.D.1",
+        "examples": [
+          "A loan tool's hand-written rule scores certain ZIP codes lower",
+          "A résumé screener coded to reject any gap in employment",
+          "The bias arrived typed in — a human choice became a rule"
+        ]
+      },
+      "right": {
+        "title": "Bias in the DATA",
+        "definition": "Skewed or unrepresentative inputs the innovation learns from or runs on",
+        "ek": "EK IOC-1.D.1",
+        "examples": [
+          "AttendanceCast: trained only on last year's honors students",
+          "A voice assistant trained mostly on one accent mishears the rest",
+          "The code may be flawless — the inputs taught it a lopsided world"
+        ]
+      },
+      "footer": "AP TIP: One phrase gives the channel away — 'the developer wrote a rule…' points to the algorithm; 'the system was trained on…' points to the data.",
+      "script": "Here is the whole diagnostic skill on one slide. Left door: the bias was written in — a ZIP-code rule, an employment-gap filter — some human's assumption, typed into the logic on purpose or not. Right door: the rules are innocent but the inputs are not — an honors-only training set, a one-accent voice corpus — and the innovation faithfully learned the tilt. The symptom is identical from outside, which is why exam items hide the channel in a single phrase: 'the developer wrote' versus 'the system was trained on.' Both bell-ringer discoveries live on the right side of this slide; the left side is the door students have not seen yet today.",
+      "capture": [
+        {
+          "q": "If the unfairness was typed straight into the decision rules, the channel is ______.",
+          "a": "the innovation's own coded logic"
+        },
+        {
+          "q": "If flawless code still produces skewed results, suspect ______.",
+          "a": "whatever inputs the system was raised on"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Name the Channel",
+      "subheading": "These map to LO IOC-1.D. Complete on your Guided Notes.",
+      "prompts": [
+        "AttendanceCast wrongly flags a student who works a night shift. Name the channel the bias came through, and point to the exact build decision that created it.",
+        "A teammate insists a hiring tool cannot be biased since 'the computer just follows math.' Explain the two ways existing human bias can still get in.",
+        "In one sentence, describe how you would rebuild AttendanceCast's dataset so its predictions treat the whole school fairly."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 5.3 page.",
+      "script": "Five minutes, full sentences on the Guided Notes. One: data channel — the build decision was training on a single honors-only slice, so every schedule unlike that slice reads as truancy risk. Two: the 'just math' defense fails both doors — humans wrote the rules, and humans chose and produced the data, so their existing biases can enter through either. Three: strong answers rebuild the training set to include every kind of student — all grade levels, schedules, and transportation situations — not just more honors records. A few students will be called on before the next section."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Every Level, and the Fix",
+      "kicker": "Bias at Every Level · Learning Objective IOC-1.D",
+      "script": "Section two — the two EKs students most often miss. First, bias is not confined to the dataset: it can be embedded at ALL levels of software development, from how the problem is framed to how the product is deployed. Second, the CED assigns responsibility: programmers should take action to reduce bias. This section turns both sentences into a diagnosis skill with five worked cases."
+    },
+    {
+      "type": "concept",
+      "heading": "Embedded Everywhere, Fought on Purpose",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Biases can be embedded at ALL levels of software development — problem framing, design, coding, data collection, testing, deployment (EK IOC-1.D.3).",
+        "Programmers should take action to reduce bias in algorithms as a way of combating existing human biases (EK IOC-1.D.2).",
+        "Action looks like: audit the training data, measure outcomes across different groups, question default assumptions, fix, then re-test.",
+        "Back to Topic 1.1: collaboration that includes diverse perspectives helps avoid bias in development (EK CRD-1.A.4) — more eyes, fewer blind spots."
+      ],
+      "script": "Two rules, one partnership. Rule one: bias is not a data-collection problem alone — a team can frame the wrong problem, design for the wrong user, code a bad proxy, test on a narrow group, or deploy a tool where its data does not apply. Every level is a door. Rule two is a should-statement, and the CED rarely writes those: programmers should take action to reduce bias — action, not apology, and not waiting for the numbers to average out. And this connects straight back to Topic 1.1: teams built from diverse perspectives catch skewed assumptions early, which is the cheapest bias fix in all of software.",
+      "capture": [
+        {
+          "q": "Bias can enter at ______ of building software, not just data collection.",
+          "a": "every single stage, first sketch to launch"
+        },
+        {
+          "q": "The CED expects programmers to ______ bias, not wait for it to dilute.",
+          "a": "deliberately hunt down and shrink"
+        },
+        {
+          "q": "Teams with varied backgrounds help since members ______.",
+          "a": "notice skewed assumptions others overlook"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Diagnose the Bias",
+      "context": "Five systems misbehave. For each: the channel (EK IOC-1.D.1), the level where bias entered (D.3), and one deliberate reduction action (D.2).",
+      "columns": [
+        "Biased system",
+        "Channel",
+        "Level it entered",
+        "One reduction action"
+      ],
+      "rows": [
+        [
+          "Résumé screener trained on ten years of past hires — mostly one group",
+          "Data",
+          "Data collection (training set)",
+          "Rebuild the training set to mirror the real applicant pool"
+        ],
+        [
+          "Loan tool with a hand-written rule: certain ZIP codes score lower",
+          "Algorithm",
+          "Coding (the rule itself)",
+          "Delete the ZIP-code proxy; audit every rule for stand-ins"
+        ],
+        [
+          "Fitness app counts only steps — wheelchair athletes always score zero",
+          "Algorithm",
+          "Problem framing / design",
+          "Bring diverse users into design (Topic 1.1, EK CRD-1.A.4)"
+        ],
+        [
+          "Face unlock tested almost entirely on lighter-skinned users",
+          "Data",
+          "Testing (skewed test set)",
+          "Measure error rates per group; broaden the test set"
+        ],
+        [
+          "AttendanceCast: honors-only training, rolled out to the whole school",
+          "Data",
+          "Deployment (used past its data)",
+          "Retrain on all students before school-wide rollout"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "Five diagnoses, three questions each: which door, which level, what action. The résumé screener is the classic data case — history's hiring bias became training truth. The loan tool is the algorithm door: a human typed the ZIP-code rule, and ZIP code quietly stands in for protected groups. The fitness app is the level students miss most — the bias entered before any code existed, when 'exercise' was framed as steps only; that is why the reduction action is a diverse design team, straight from Topic 1.1. Face unlock shows bias entering at TESTING, and AttendanceCast shows it entering at DEPLOYMENT, when a tool is used beyond the population its data covers. Students fill the blanked cells before answers are revealed — the level column is where the exam separates prepared students from everyone else.",
+      "blanks": [
+        [0, 1],
+        [1, 1],
+        [2, 2],
+        [3, 3],
+        [4, 3]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Just Collect More Data”",
+      "misconception": "AttendanceCast's vendor has a fix ready: next year the tool will train on five times as much data. With enough rows, the bias will average itself out and the flags will become fair.",
+      "whyItHappens": "Volume feels like objectivity — big numbers look neutral, and more samples really do smooth out RANDOM error. It is tempting to assume the same math cures a systematic tilt.",
+      "correction": "Topic 2.3 already ruled: bias comes from the type or source of the data collected and is not eliminated by simply collecting more data (EK DAT-2.C.5). The fix is deliberate programmer action (EK IOC-1.D.2) — change WHAT is collected, not how much.",
+      "example": "Five times more honors-only records is the same tilt, five times over: working students and bus riders are still missing from every new batch, so the flags do not move an inch.",
+      "script": "This is the single most tempting wrong answer in the topic, and the CED refutes it twice. Topic 2.3's data unit said it first: bias comes from the type or source of collection, and more data from the same source is just more of the same skew. Topic 5.3 adds the responsibility clause: the fix is programmer ACTION — rebuild the dataset, audit the rules, test across groups — not passive accumulation. The distinction to hammer: more data cures random noise, never a systematic tilt; when a distractor offers volume as the remedy, it is wrong every time. Students write their explanation of why this fails in the packet."
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: The Benchmark That Caught the Skew",
+      "track": "enrichment",
+      "bullets": [
+        "In 2018, researchers built a face-analysis benchmark deliberately balanced across skin tone and gender — then scored commercial systems against it.",
+        "Headline accuracy hid the story: systems near 99% on lighter-skinned men showed error rates up to roughly 35% on darker-skinned women.",
+        "The cause ran through both channels: training and test sets skewed light-skinned and male, and teams had never measured performance per group.",
+        "Within a year, audited vendors rebuilt their datasets and re-tested — error gaps shrank sharply. Measurement forced the action the CED calls for."
+      ],
+      "script": "A deep dive beyond the exam, but it makes EK IOC-1.D.2 concrete. Researchers assembled a benchmark of faces balanced across skin tone and gender, then evaluated commercial gender-classification systems on it — and the single overall accuracy number every vendor advertised turned out to be hiding wildly uneven per-group error rates. The cause was textbook: skewed training and evaluation data, plus a development process that never asked the per-group question at any level. The ending is the point: after publication, several vendors rebuilt their datasets and error gaps collapsed — a real-world instance of programmers taking action to reduce bias once someone measured it. Fast finishers can design their own balanced benchmark for a school-facing tool.",
+      "capture": [
+        {
+          "q": "The 2018 benchmark exposed skew by scoring accuracy ______ rather than overall.",
+          "a": "group by group, one demographic at a time"
+        },
+        {
+          "q": "Vendors closed the gap only after ______ made the skew visible.",
+          "a": "an outside audit with a balanced face set"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Make the Diagnosis",
+      "subheading": "These map to LO IOC-1.D. Complete on your Guided Notes.",
+      "prompts": [
+        "Pick one row of the diagnosis table. In two sentences: name its channel and level, then defend your reduction action as a deliberate step rather than a bigger data haul.",
+        "A vendor claims its essay-grading tool 'removes human bias entirely — no teacher ever touches the score.' Give two reasons the claim fails.",
+        "Explain why 'add five times more data' fixed nothing for AttendanceCast, but 'change which students the data comes from' would."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 5.3 page.",
+      "script": "Six minutes, full sentences. One: any row works if the action is deliberate — retrain on representative data, delete the proxy rule, diversify the design team — and the defense names why volume alone would not do it. Two: the grading tool fails on both channels — humans wrote its scoring rules and humans produced the essays it learned from, so removing the teacher removed a visible bias while keeping the embedded ones. Three: this is DAT-2.C.5 meeting IOC-1.D.2 — the problem is the SOURCE, honors-only, so the fix changes the source; multiplying it just multiplies the tilt. Answers are reviewed as a class before the traps slide."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 5.3 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "“Bias only enters via data”",
+          "text": "EK IOC-1.D.3 says biases can be embedded at ALL levels of software development — framing, design, coding, testing, deployment — not just at data collection."
+        },
+        {
+          "name": "“More data fixes bias”",
+          "text": "Distractors offer volume as the cure. Bias from a skewed type or source survives any sample size — the credited fix is deliberate programmer action (EK IOC-1.D.2)."
+        },
+        {
+          "name": "“The algorithm is neutral”",
+          "text": "'Computers are objective' is always a distractor. Innovations reflect existing human biases written into algorithms or carried in their data (EK IOC-1.D.1)."
+        }
+      ],
+      "script": "One minute, three traps. Trap one: students anchor on the famous data cases and forget EK IOC-1.D.3 — an option locating bias at problem framing, testing, or deployment can absolutely be the credited answer. Trap two: any option whose remedy is 'collect more of the same' is wrong on two EKs at once — DAT-2.C.5 from the data unit and IOC-1.D.2's action requirement here. Trap three: 'the computer is just math, so it is fair' shows up in nearly every IOC-1.D item as a distractor — the CED's verb is REFLECT, and mirrors are only as fair as what stands in front of them. Students write each trap in their own words in the packet."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Computing Bias, in One Slide",
+      "points": [
+        "Computing innovations can reflect existing human biases — through biases written into the algorithms or biases in the data used (EK IOC-1.D.1).",
+        "Two channels, one test: was the unfairness typed into the rules, or learned from skewed inputs?",
+        "Biases can be embedded at all levels of software development — framing, design, coding, data collection, testing, deployment (EK IOC-1.D.3).",
+        "Programmers should take action to reduce bias — rebuilt datasets, rule audits, per-group testing — combating existing human biases (EK IOC-1.D.2).",
+        "More data is never the fix (EK DAT-2.C.5, Topic 2.3) — and diverse teams help keep bias out from the start (EK CRD-1.A.4, Topic 1.1)."
+      ],
+      "next": "Topic 5.4, Crowdsourcing: what becomes possible when an innovation invites EVERYONE in — and problem-solving happens at the scale of the crowd?",
+      "script": "The whole topic in one slide. Innovations reflect existing human biases through exactly two channels — the algorithms humans write and the data humans produce. That bias can be embedded at any level of development, from the first framing of the problem to the day of deployment, and the CED puts the duty on programmers: take action to reduce it. The two cross-links are exam gold — more data never cures a biased source, and diverse teams are the preventive medicine from Topic 1.1. Next class opens with the Topic 5.3 quiz, then Topic 5.4 turns to crowdsourcing. Before packing up, students run the exit check below — any unchecked box is tonight's review target on the Topic 5.3 page. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain how bias enters innovations through algorithms and through data (LO IOC-1.D)",
+        "locate bias at any level of software development, not just data collection (LO IOC-1.D)",
+        "name deliberate programmer actions that reduce bias — never 'more data' (LO IOC-1.D)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 5.3 — Computing Bias — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 12 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A hospital deploys software that predicts which patients will miss appointments. It was trained entirely on records from one wealthy suburban clinic, and it now wrongly flags most patients at a downtown clinic. Per EK IOC-1.D.1, what best explains the innovation's behavior?",
+        "options": [
+          "The software's hardware cannot process the downtown clinic's records as quickly as the suburban clinic's records",
+          "The innovation reflects bias in the data used — its training records came from a single unrepresentative source",
+          "Prediction software is inherently random, so wrong flags are equally likely at any clinic that uses it",
+          "The downtown patients typed their own records incorrectly, filling the system with invalid data"
+        ],
+        "answer": "B",
+        "ek": "EK IOC-1.D.1",
+        "rationale": "EK IOC-1.D.1: computing innovations can reflect existing human biases through biases written into the algorithms or biases in the data used. Here the giveaway phrase is 'trained entirely on records from one wealthy suburban clinic' — a skewed data source, so the tool learned one population's patterns and misreads everyone else. A invents a hardware speed problem; nothing in the scenario involves processing speed. C is the opposite of what happened — the errors are systematic (concentrated downtown), not random. D shifts blame to the patients with an invalid-data story the stem never supports; the records were accurate, just unrepresentative."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A programmer discovers her team's college-admissions screener rates applicants from rural schools lower than identical applicants from city schools. According to EK IOC-1.D.2, what should she do?",
+        "options": [
+          "Nothing — software merely mirrors society, and programmers are not responsible for biases their tools inherit",
+          "Wait for future admissions cycles to add more rural applicants to the data, letting the bias fade on its own",
+          "Publish a disclaimer noting that scores may vary by region, so users can interpret results with caution",
+          "Take action to reduce the bias — audit the screener's rules and retrain it on a representative applicant pool"
+        ],
+        "answer": "D",
+        "ek": "EK IOC-1.D.2",
+        "rationale": "EK IOC-1.D.2 is a responsibility statement: programmers should take action to reduce bias in algorithms as a way of combating existing human biases. D names concrete deliberate actions — audit the rules, rebuild the training pool. A denies the responsibility the EK assigns. B is the passive-accumulation trap: waiting for more data from a process that under-serves rural applicants just extends the skew (and EK DAT-2.C.5 says more data does not eliminate bias). C discloses the bias without reducing it — a warning label is not the action the EK requires."
+      },
+      {
+        "id": "Q3",
+        "kind": "recall",
+        "stem": "According to EK IOC-1.D.3, at which levels of software development can biases become embedded in a computing innovation?",
+        "options": [
+          "At all levels of development — from how the problem is framed through design, coding, testing, and deployment",
+          "Only at the data-collection stage, since bias always enters through the training data",
+          "Only at the coding stage, when a programmer types the decision rules into the source code",
+          "Only after release, once real users begin interacting with the innovation at scale"
+        ],
+        "answer": "A",
+        "ek": "EK IOC-1.D.3",
+        "rationale": "EK IOC-1.D.3 states it in six words: biases can be embedded at all levels of software development. A is that rule unpacked into the stages. B is the most common student misconception — the famous cases are data cases, but the EK deliberately refuses to limit bias to data collection. C limits bias to the algorithm channel and to one stage; a team can also frame the wrong problem or test on a narrow group without a single biased line of code. D confuses where bias becomes VISIBLE (often after release) with where it was embedded (any level, long before)."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A speech-recognition app performs poorly for users with certain regional accents; its training audio came almost entirely from one region. The vendor proposes collecting ten times more audio from that same region's users. Which evaluation of this plan is best?",
+        "options": [
+          "The plan works — with a large enough total, every accent will eventually appear in the audio collection",
+          "The plan works — larger datasets always reduce bias by averaging out unusual voices",
+          "The plan fails — bias created by the source of the data is not removed by collecting more from it; the vendor must change what is collected",
+          "The plan fails — a speech model's accuracy is fixed at launch and cannot improve with any retraining"
+        ],
+        "answer": "C",
+        "ek": "EK IOC-1.D.2",
+        "rationale": "This is the more-data trap. Topic 2.3's EK DAT-2.C.5 establishes that bias comes from the type or source of data collected and is not eliminated by simply collecting more data; EK IOC-1.D.2 supplies the remedy — programmers must take action, here by changing the collection to cover the missing accents. Ten times more same-region audio is the same skew, ten times over, so C is correct. A quietly assumes other accents will drift into a same-region collection — the proposal keeps the source fixed. B states the exact myth: averaging cures random noise, not a systematic tilt. D invents a technical impossibility; retraining on representative audio is precisely the fix."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "An insurance-pricing program contains a rule its developers wrote by hand: applicants from three named neighborhoods pay a surcharge. No machine learning or training data is involved anywhere in the product. Which statement about bias in this innovation is most accurate?",
+        "options": [
+          "It can still reflect existing human bias — biases can be written directly into an algorithm's rules, not only learned from data",
+          "It cannot be biased, since bias in computing innovations comes only from unrepresentative training data",
+          "It cannot be biased, since a rule applied identically to every applicant is neutral by definition",
+          "It is biased only if the developers intended harm at the moment they wrote the surcharge rule"
+        ],
+        "answer": "A",
+        "ek": "EK IOC-1.D.1",
+        "rationale": "EK IOC-1.D.1 names TWO channels: biases written into the algorithms OR biases in the data used. This scenario is the first channel in pure form — a human assumption typed directly into the pricing rules, no dataset required. B collapses the EK to its second channel; removing training data does not remove the algorithm door. C mistakes consistency for fairness — a discriminatory rule applied uniformly discriminates uniformly. D adds an intent requirement the CED never states: innovations reflect existing human biases whether or not anyone meant harm."
+      },
+      {
+        "id": "Q6",
+        "kind": "multi",
+        "stem": "Which of the following statements about bias in computing innovations are true? I. Innovations can reflect existing human biases written into their algorithms. II. Innovations can reflect existing human biases present in the data they use. III. Biases can be embedded at all levels of software development.",
+        "options": [
+          "I and III only",
+          "II and III only",
+          "I and II only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK IOC-1.D.1",
+        "rationale": "All three are near-verbatim CED statements. I and II are the two channels of EK IOC-1.D.1 — biases written into the algorithms or biases in the data used by the innovation. III is EK IOC-1.D.3 word for word. A drops the data channel that drives most real cases; B drops the algorithm channel, repeating the 'bias is only a data problem' myth; C accepts both channels but rejects the all-levels rule, as if bias could only enter at one stage. Students who internalized all three EKs recognize this as a full-truth item."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "During a design review, a developer argues: 'Our sentencing-recommendation tool is pure math — human bias is impossible, so no bias review is needed.' Which counterargument is most consistent with the CED?",
+        "options": [
+          "Math-based tools are indeed neutral, but a bias review would still reassure the public and improve the tool's reputation",
+          "Human bias can enter through the tool's rules and its data at any level of development, so the team should actively review and reduce it",
+          "The tool is biased only if its outputs disagree with a human judge's decisions on the same set of cases",
+          "A bias review is unnecessary if the team doubles the amount of historical case data before launch"
+        ],
+        "answer": "B",
+        "ek": "EK IOC-1.D.2",
+        "rationale": "B stacks all three EKs: the two channels of IOC-1.D.1 (rules and data), the all-levels rule of IOC-1.D.3, and the action requirement of IOC-1.D.2 — programmers should take action to reduce bias. A concedes the developer's false premise; 'pure math' tools run on human-written rules and human-generated case histories, so neutrality is not established. C sets a human judge as the fairness standard, but historical judicial decisions are exactly where existing human bias lives — matching them can reproduce it. D is the volume trap: doubling data from the same historical source doubles the same tilt (EK DAT-2.C.5) and is not the action the CED requires."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 5.3 — Computing Bias — Teacher Guide",
+    "subtitle": "Big Idea 5: Impact of Computing · Topic 5.3 · 1 class period + assessment block",
+    "overview": [
+      "Topic 5.3 asks how bias exists in computing innovations, and the CED's answer has three moving parts: innovations REFLECT existing human biases through exactly two channels — biases written into the algorithms or biases in the data used (IOC-1.D.1); those biases can be embedded at ALL levels of software development, not just data collection (IOC-1.D.3); and programmers should take deliberate action to reduce bias (IOC-1.D.2). The lesson builds a diagnosis skill: given any biased-system story, name the channel, locate the level, prescribe the action.",
+      "Two cross-references carry real exam weight and are cited on the slides: EK DAT-2.C.5 from Topic 2.3 (bias is not eliminated by simply collecting more data) demolishes the 'just add rows' fix, and EK CRD-1.A.4 from Topic 1.1 (diverse collaboration helps avoid bias) supplies the preventive action. The through-line is the bell ringer: a fictional attendance predictor trained only on last year's honors students. Students predict who it wrongly flags and why, discovering data bias before it is named — and the tool returns in the worked table, the misconception, and both Stop-and-Thinks."
+    ],
+    "los": [
+      "LO IOC-1.D — Explain how bias exists in computing innovations."
+    ],
+    "eks": [
+      "EK IOC-1.D.1 — Computing innovations can reflect existing human biases because of biases written into the algorithms or biases in the data used by the innovation.",
+      "EK IOC-1.D.2 — Programmers should take action to reduce bias in algorithms used for computing innovations as a way of combating existing human biases.",
+      "EK IOC-1.D.3 — Biases can be embedded at all levels of software development."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies).",
+      "Printed Topic 5.3 quiz (student copies) for the assessment block.",
+      "Optional: printed copies of the five diagnosis-table vignettes for group annotation during the worked table."
+    ],
+    "prereqs": [
+      "Topic 2.3 (Extracting Information from Data): students should already know EK DAT-2.C.5 — bias comes from the type or source of data collected and is not eliminated by collecting more. Today's misconception slide leans on it directly.",
+      "Topic 1.1 (Collaboration): EK CRD-1.A.4 — collaboration that includes diverse perspectives helps avoid bias in development. It returns here as a reduction action in the worked table and final summary."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "The two channels of bias, the all-levels rule, and the programmer's duty to act (LO IOC-1.D)",
+        "segments": [
+          {
+            "segment": "QOTD (BI5/T5.3/Q1) + bell ringer (the honors-only attendance predictor)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Where bias comes from: vocab + the two channels (EK IOC-1.D.1)",
+            "min": 12,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think: name the channel",
+            "min": 5,
+            "slides": "9"
+          },
+          {
+            "segment": "Every level, and the fix: diagnosis table + the more-data misconception (EK IOC-1.D.2–D.3)",
+            "min": 14,
+            "slides": "10-13"
+          },
+          {
+            "segment": "Deep dive: the benchmark that caught the skew (optional enrichment)",
+            "min": 5,
+            "slides": "14"
+          },
+          {
+            "segment": "Stop and Think: make the diagnosis",
+            "min": 5,
+            "slides": "15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 5.3 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 5.3 quiz",
+            "min": 12,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“More data fixes bias”",
+        "myth": "A biased system just needs a bigger dataset — with enough rows, the unfairness averages itself out.",
+        "reality": "EK DAT-2.C.5 (Topic 2.3) says it outright: bias comes from the type or source of the data collected and is not eliminated by simply collecting more. More honors-only records is the same tilt at larger volume. The credited fix is EK IOC-1.D.2's deliberate programmer action — change what is collected, audit the rules, test per group."
+      },
+      {
+        "heading": "“Algorithms are neutral — it's just math”",
+        "myth": "A computer has no opinions, so a computed decision cannot be biased; removing the human removes the bias.",
+        "reality": "EK IOC-1.D.1's verb is REFLECT: innovations mirror existing human biases, entering through rules humans wrote or data humans produced. Removing the visible human decision-maker often just hides the embedded ones. On the exam, 'the algorithm is objective' is reliably a distractor."
+      },
+      {
+        "heading": "“Bias only enters at data collection”",
+        "myth": "Bias is a dataset problem — if the training data is clean and representative, the innovation is fair.",
+        "reality": "EK IOC-1.D.3: biases can be embedded at ALL levels of software development. The fitness-app row of the diagnosis table has no dataset at all — the bias entered at problem framing, when 'exercise' was defined as steps. Framing, design, coding, testing, and deployment are all doors."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give the diagnosis as a sentence frame: 'The bias entered through the ______ channel, at the ______ level, so the team should ______.' Students fill it for every vignette before writing free-form answers.",
+        "Anchor every scenario back to AttendanceCast: 'Is this like the honors-only dataset (data door), or like someone typing an unfair rule (algorithm door)?'"
+      ],
+      "extension": [
+        "Have deep-dive students design a balanced benchmark for a school-facing tool (tardy predictor, essay scorer): what groups must the test set cover, what per-group numbers would they publish, and what result would force a retrain?",
+        "Challenge students to find the level EK IOC-1.D.3 predicts but the table's five rows never used twice — then write a sixth vignette where bias enters at that level and trade with a partner to diagnose."
+      ]
+    },
+    "discussion": [
+      "AttendanceCast flags a student and the school starts calling home. Who owns that mistake — the vendor's programmers, the district that bought it, or nobody? Does 'the software decided' ever excuse anyone?",
+      "The CED says programmers 'should take action' to reduce bias. Should that duty be law, like safety codes for engineers who build bridges — or would mandatory bias audits slow innovation too much? Defend the line you draw.",
+      "A perfectly representative dataset still records a world that treats groups unequally. If the data faithfully reflects an unfair reality, is the innovation biased — and should programmers correct for the world, or just for their sample?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}
