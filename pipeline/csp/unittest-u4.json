@@ -1,0 +1,241 @@
+{
+  "meta": { "unitId": "4", "title": "Big Idea 4 Exam — Computer Systems and Networks", "unitLabel": "Big Idea 4: Computer Systems and Networks" },
+  "timeMinutes": 40,
+  "partI": {
+    "instructions": "Choose the single best answer. Show any timing arithmetic in the margin — several items require a calculation.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An esports club is comparing two Internet plans for its practice room. Plan X advertises \"300 megabits per second.\" A new member asks what that number actually measures. Which explanation is correct?",
+        "options": [
+          "The average time a single packet needs to travel from the club to the game server",
+          "The number of packets the plan guarantees will arrive in order every second",
+          "The bandwidth — the maximum amount of data that can be sent in a fixed amount of time, measured in bits per second",
+          "The total amount of data the club is allowed to download each month before extra charges"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-1.A.7 + EK CSN-1.A.8",
+        "rationale": "CSN-1.A.7 defines bandwidth as the maximum amount of data that can be sent in a fixed amount of time, and CSN-1.A.8 says bandwidth is usually measured in bits per second — exactly what \"300 megabits per second\" states. A confuses bandwidth with latency (travel time, which the CED does not define as bandwidth). B is wrong twice: bandwidth counts bits, not packets, and packets are never guaranteed to arrive in order (CSN-1.C.3). D confuses a rate (per second) with a monthly data cap."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A two-person startup builds a solar-powered river-level sensor and wants it to send readings over the Internet. The founders are surprised to learn they need no license, fee, or permission from any central Internet authority to connect their new device. What property of the Internet explains this?",
+        "options": [
+          "The protocols used in the Internet are open and standardized, so anyone can implement them to connect additional computing devices",
+          "The Internet automatically writes a new private protocol for each device that joins it",
+          "Each Internet service provider owns proprietary rules that new devices receive at no cost",
+          "New devices connect through the World Wide Web, which operates without any protocols"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-1.B.3 + EK CSN-1.B.4",
+        "rationale": "CSN-1.B.3 defines a protocol as an agreed-upon set of rules specifying the behavior of a system, and CSN-1.B.4 says Internet protocols are open, which allows users to easily connect additional computing devices. B is backwards — devices adopt the existing shared protocols; nothing is written per device. C is wrong since the protocols are open (nonproprietary), not ISP-owned (CSN-1.B.1). D inverts the layering: the Web uses the Internet and relies on the HTTP protocol (CSN-1.D.2, D.3)."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "While a student downloads an e-book over hotel Wi-Fi, diagnostic software shows the file arriving as dozens of separate packets: some travel different sequences of routers, several arrive out of order, and two never arrive and are re-sent. The finished e-book still opens perfectly. Which statement about packets explains this?",
+        "options": [
+          "TCP guarantees that every packet arrives in order on the first attempt, so nothing was actually lost",
+          "Each packet holds a complete copy of the e-book, so any single packet is enough to open the file",
+          "The hotel's routers reassemble the whole file first and then forward it to the laptop in one piece",
+          "Each packet carries a chunk of data plus metadata used for routing and for reassembly, so the destination can rebuild the data stream correctly"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-1.C.1 + EK CSN-1.C.2 + EK CSN-1.C.3",
+        "rationale": "CSN-1.C.1 says data streams contain chunks of data encapsulated in packets, CSN-1.C.2 says packets carry a data chunk plus metadata for routing and reassembly, and CSN-1.C.3 says packets may arrive in order, out of order, or not at all — the metadata is what lets the destination reassemble them anyway. A contradicts CSN-1.C.3 (arrival is not guaranteed; the two lost packets were re-sent). B is wrong — each packet carries only a chunk, not the whole file. C is wrong — reassembly happens at the destination, not inside intermediate routers."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "Which of the following statements are true? I. HTTP is a protocol used by the World Wide Web. II. The Internet is a system of linked pages, programs, and files. III. The World Wide Web uses the Internet.",
+        "options": [
+          "I and II only",
+          "I and III only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-1.D.1 + EK CSN-1.D.2 + EK CSN-1.D.3",
+        "rationale": "I is true (CSN-1.D.2: HTTP is a protocol used by the World Wide Web) and III is true (CSN-1.D.3: the Web uses the Internet). II is false — it swaps the definitions: the WORLD WIDE WEB is the system of linked pages, programs, and files (CSN-1.D.1), while the Internet is a computer network of interconnected networks using open protocols (CSN-1.B.1). A and D wrongly accept II; C wrongly rejects I, which is a verbatim CED statement."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A ship's anchor severs one of the two undersea cables linking an island nation to the mainland. Islanders' video streams stutter for a moment, then continue playing. Which statement BEST explains why service continued?",
+        "options": [
+          "When a device or connection on the Internet fails, subsequent data is sent via a different route if one exists — the system continued to function, which is what makes it fault-tolerant",
+          "Packets already inside the severed cable turned around and returned to their senders for safekeeping",
+          "The World Wide Web took over routing duties from the Internet until the cable was repaired",
+          "Each islander's device switched to storing all outgoing data locally until a repair ship arrived"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-1.E.4 + EK CSN-1.E.5",
+        "rationale": "CSN-1.E.4 says that if a particular device or connection fails, subsequent data is sent via a different route if possible — here the second undersea cable — and CSN-1.E.5 says a system that supports failures and continues to function is fault-tolerant. B is fiction: packets in a failed link are simply lost or re-sent along the new route; they do not reverse course. C confuses layers — the Web is a system of linked pages that uses the Internet; it performs no routing (CSN-1.D.1, D.3). D did not happen and would not keep live streams playing."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A regional ambulance-dispatch center designs its network with a second, fully independent connection between the dispatch office and each hospital, even though a single connection could carry all of the traffic. Which statement BEST evaluates this design?",
+        "options": [
+          "The duplicate connections are wasted money, since unused capacity provides no benefit to a network",
+          "The duplicate connections automatically double the speed of every message the center sends",
+          "The redundancy requires additional resources, but the extra components can be used to mitigate a failure, giving the benefit of fault tolerance",
+          "The redundancy makes any failure of the dispatch network impossible"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-1.E.2 + EK CSN-1.E.3 + EK CSN-1.E.6",
+        "rationale": "CSN-1.E.2 defines redundancy as extra components included to mitigate failure of the system, CSN-1.E.3 says one way to accomplish it is more than one path between two connected devices, and CSN-1.E.6 says redundancy often requires additional resources but can provide the benefit of fault tolerance — the exact trade-off here. A ignores that benefit. B is wrong — redundancy is about surviving failure, not doubling throughput. D overclaims: fault tolerance means the system can continue functioning through failures, not that failures cannot occur (CSN-1.E.5)."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Halfway through a large photo upload, a router along the path fails. The upload finishes anyway, and the receiving server's log shows the later packets traveled a different sequence of routers and arrived out of order. Which PAIR of facts explains the successful upload?",
+        "options": [
+          "Bandwidth automatically doubled after the failure, and packets need no metadata when routes change",
+          "After a failure, subsequent packets can be routed along a different path, and each packet's metadata lets the destination reassemble the data in the correct order",
+          "TCP prevents routers from ever failing mid-transfer, and the Web reorders any packets that arrive early",
+          "Routing on the Internet is fixed in advance, and every router keeps a permanent copy of each packet it forwards"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-1.E.4 + EK CSN-1.C.2 + EK CSN-1.C.3 + EK CSN-1.B.5",
+        "rationale": "Synthesis of fault tolerance and packet mechanics: CSN-1.E.4 says subsequent data is sent by a different route when a connection fails, and CSN-1.C.2/C.3 say packets may arrive out of order but carry metadata used for reassembly, so the server rebuilt the photo. A is invented — failures do not raise bandwidth, and metadata is exactly what reordering requires. C is false: no protocol prevents hardware failure, and the Web does not manage packets. D contradicts CSN-1.B.5 — routing on the Internet is usually dynamic, not specified in advance."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A photo-processing program must first run a load-and-check step that takes 5 seconds and cannot be split up. It then applies three independent filters taking 8, 12, and 20 seconds. On a machine with enough processors to run all three filters at the same time after the load step, how long does the parallel solution take?",
+        "options": [
+          "45 seconds, since every step still runs one at a time",
+          "13 seconds, the load step plus the shortest filter",
+          "20 seconds, the longest filter alone",
+          "25 seconds, the sequential load step plus the longest of the parallel filters"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-2.A.5 + EK CSN-2.A.6",
+        "rationale": "CSN-2.A.6: a parallel solution takes as long as its sequential tasks plus the LONGEST of its parallel tasks — here 5 + 20 = 25 seconds. A is the sequential time from CSN-2.A.5 (5 + 8 + 12 + 20 = 45 seconds), which the parallel machine beats. B wrongly adds the shortest parallel task (5 + 8 = 13); the solution is not done until the longest filter finishes. C forgets the 5-second sequential portion, which every solution must still pay."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "stem": "A DNA-sequence alignment job takes 150 seconds when run sequentially on one processor and 60 seconds when run in parallel across a cluster. What is the speedup of the parallel solution?",
+        "options": [
+          "2.5, the sequential time divided by the parallel time (150 ÷ 60)",
+          "0.4, the parallel time divided by the sequential time (60 ÷ 150)",
+          "90, the number of seconds saved by running in parallel (150 − 60)",
+          "210, the total processor time consumed by both runs (150 + 60)"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-2.A.7",
+        "rationale": "CSN-2.A.7 defines speedup as the time to complete the task sequentially divided by the time to complete it in parallel: 150 ÷ 60 = 2.5. B inverts the ratio (60 ÷ 150 = 0.4) — a speedup below 1 would mean parallel ran slower. C computes the raw seconds saved (150 − 60 = 90), a difference, not a ratio. D adds the two times (150 + 60 = 210), which measures nothing about efficiency (CSN-2.A.4 compares solutions by the time to perform the same task)."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "A farm-analytics job begins with a 10-minute data-download step that must run alone, followed by three independent field analyses taking 20, 30, and 40 minutes. Compare the job run fully sequentially against running the three analyses in parallel on separate processors. What is the speedup of the parallel solution?",
+        "options": [
+          "2.5, obtained by dividing the sequential time by the longest analysis (100 ÷ 40)",
+          "2.0, since the sequential time is 10 + 20 + 30 + 40 = 100 minutes and the parallel time is 10 + 40 = 50 minutes, and 100 ÷ 50 = 2",
+          "1.25, obtained by dividing the parallel time by the longest analysis (50 ÷ 40)",
+          "4.0, since four steps were compressed onto parallel processors"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-2.A.5 + EK CSN-2.A.6 + EK CSN-2.A.7",
+        "rationale": "Sequential time is the sum of all steps (CSN-2.A.5): 10 + 20 + 30 + 40 = 100 minutes. Parallel time is the sequential task plus the longest parallel task (CSN-2.A.6): 10 + 40 = 50 minutes. Speedup is sequential ÷ parallel (CSN-2.A.7): 100 ÷ 50 = 2.0. A divides by the longest analysis alone (100 ÷ 40), ignoring the 10-minute sequential portion in the parallel run. C divides two parallel-side numbers (50 ÷ 40), which is not the speedup ratio. D assumes speedup equals the number of steps or processors, which the sequential portion makes impossible."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A genealogy platform grows from thousands of users to millions. It expands its record-matching cluster so that searches too large for any single computer now finish in minutes, and all of the new users connect over the Internet without any redesign of the Internet's protocols. Which PAIR of properties does this growth demonstrate?",
+        "options": [
+          "The Internet grants more bandwidth to popular services, and sequential computing scales up as more users join",
+          "The World Wide Web reroutes failed packets, and parallel computing removes any need for additional servers",
+          "Redundant routing shortens every path, and one fast computer is always more efficient than several slower ones",
+          "The Internet was designed to be scalable, and distributed computing allows much larger problems to be solved more quickly than on a single computer"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-1.B.6 + EK CSN-1.B.7 + EK CSN-2.B.3 + EK CSN-2.B.4",
+        "rationale": "Synthesis of scalability and distributed computing: CSN-1.B.6/B.7 say scalability is the capacity to change in size to meet new demands and that the Internet was designed to be scalable — millions of new users connect with no protocol redesign. CSN-2.B.3/B.4 say distributed computing solves problems a single computer could not handle (processing time or storage) and solves large problems more quickly. A is invented — the Internet does not award bandwidth by popularity, and sequential computing is the model that scales poorly (CSN-2.B.2). B misassigns routing to the Web and contradicts the platform adding servers. C is wrong — redundancy increases reliability, not path shortness (CSN-1.E.7), and the scenario shows the opposite of the single-computer claim."
+      },
+      {
+        "id": "Q12",
+        "kind": "multi",
+        "stem": "Which of the following statements are true? I. In sequential computing, operations are performed in order, one at a time. II. Distributed computing is a computational model in which multiple devices are used to run a program. III. Adding more parallel portions to a solution will always continue to produce meaningful efficiency gains.",
+        "options": [
+          "I and III only",
+          "II and III only",
+          "I and II only",
+          "I, II, and III"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-2.A.1 + EK CSN-2.A.3 + EK CSN-2.B.5",
+        "rationale": "I is true (CSN-2.A.1) and II is true (CSN-2.A.3). III is false: CSN-2.B.5 says the efficiency of a parallel solution is still limited by its sequential portion, so at some point adding parallel portions no longer meaningfully increases efficiency. A and B wrongly accept III and each wrongly rejects a verbatim CED definition; D accepts all three, missing the sequential-portion limit."
+      }
+    ]
+  },
+  "partII": {
+    "instructions": "Answer in complete sentences. Show every calculation, label your units, and use CED vocabulary (packets, metadata, routing, redundancy, fault tolerance, sequential portion, speedup).",
+    "questions": [
+      {
+        "id": "FR1",
+        "prompt": "A marine-research institute operates three sensor stations — S1, S2, and S3 — on a remote island. All three stations connect to a single island router, R1. R1 reaches the mainland router R2 over two independent undersea cables, CABLE-NORTH and CABLE-SOUTH, and R2 connects to the institute's data server. One evening S2 begins uploading a large seafloor-survey file to the server over CABLE-NORTH. Halfway through the upload, a fishing trawler's anchor severs CABLE-NORTH — yet the upload completes successfully.",
+        "parts": [
+          "(a) Describe how the survey file travels from S2 to the server: what the file is broken into, what each unit contains, and why the units can arrive out of order or not at all yet still be rebuilt correctly at the server.",
+          "(b) Explain what happened to the data sent after CABLE-NORTH was severed, using the terms routing and redundancy, and explain why this behavior makes the institute's network fault-tolerant.",
+          "(c) Identify ONE remaining vulnerability to failure in this network, describe a change that would address it, and state the trade-off the change requires."
+        ],
+        "points": 8,
+        "sample": [
+          "(a) The file is passed through the network as a data stream whose chunks of data are encapsulated in packets (CSN-1.C.1). Each packet contains a chunk of the survey data plus metadata used for routing the packet between origin and destination and for data reassembly (CSN-1.C.2). Packets may arrive at the server in order, out of order, or not at all (CSN-1.C.3); the reassembly metadata lets the server put the chunks back in the correct order and detect missing packets so they can be re-sent, which is why the file is rebuilt correctly.",
+          "(b) Routing is the process of finding a path from sender to receiver (CSN-1.A.6), and on the Internet routing is usually dynamic — not specified in advance (CSN-1.B.5). The two cables are redundancy: extra components included so that if one component fails, others can mitigate the failure, accomplished here by having more than one path between R1 and R2 (CSN-1.E.2, CSN-1.E.3). When CABLE-NORTH failed, subsequent data was sent via a different route — CABLE-SOUTH (CSN-1.E.4). Because the system supported a failure and still continued to function, it is fault-tolerant (CSN-1.E.5); this matters since elements of complex systems fail at unexpected times, and fault tolerance let the upload continue.",
+          "(c) Router R1 is a remaining vulnerability: every station's only path to the mainland begins at R1, so if R1 fails, all three stations lose connectivity even though both cables may be intact — there is no second path around R1. Adding a second island router (for example, R1B connected to the stations and to one of the cables) would create more than one path between the stations and the mainland (CSN-1.E.3). The trade-off is that redundancy within a system often requires additional resources — buying, powering, and maintaining a second router — but provides the benefit of fault tolerance (CSN-1.E.6), and greater redundancy of routing options increases the reliability of the network (CSN-1.E.7)."
+        ],
+        "rubric": [
+          "1 pt: Part (a) states the file travels as a data stream broken into chunks encapsulated in packets (CSN-1.C.1).",
+          "1 pt: Part (a) states packets contain a data chunk plus metadata used for routing and reassembly (CSN-1.C.2).",
+          "1 pt: Part (a) states packets may arrive out of order or not at all and connects reassembly/re-sending to the metadata (CSN-1.C.3).",
+          "1 pt: Part (b) uses routing correctly — finding a path from sender to receiver, dynamic on the Internet (CSN-1.A.6/CSN-1.B.5).",
+          "1 pt: Part (b) identifies the two cables as redundancy (multiple paths) and states data was re-sent via the other route after the failure (CSN-1.E.2/E.3/E.4).",
+          "1 pt: Part (b) explains fault tolerance — the system supported a failure and continued to function (CSN-1.E.5).",
+          "1 pt: Part (c) identifies R1 (or the stations' single connection point) as a single point of failure with no alternate path.",
+          "1 pt: Part (c) proposes added redundancy AND states its resource cost as the trade-off (CSN-1.E.6/E.7)."
+        ],
+        "ek": "EK CSN-1.C.1 + EK CSN-1.C.2 + EK CSN-1.C.3 + EK CSN-1.A.6 + EK CSN-1.B.5 + EK CSN-1.E.2 + EK CSN-1.E.3 + EK CSN-1.E.4 + EK CSN-1.E.5 + EK CSN-1.E.6 + EK CSN-1.E.7"
+      },
+      {
+        "id": "FR2",
+        "prompt": "A climate-analytics firm runs a nightly forecasting job with five steps. Step 1 downloads and validates the day's data and must run by itself (10 minutes). Steps 2, 3, and 4 analyze three separate ocean regions and are fully independent of one another (30 minutes, 20 minutes, and 10 minutes). Step 5 merges the three analyses into one report and must run by itself (10 minutes). The firm currently runs all five steps one at a time on a single processor, and it is evaluating a machine with enough processors to run Steps 2, 3, and 4 simultaneously.",
+        "parts": [
+          "(a) Compute the total time of the current single-processor run. Name the computational model in use and state the rule you applied.",
+          "(b) Compute the total time on the new machine and the speedup of the parallel solution. Show both calculations and state the rule for timing a parallel solution.",
+          "(c) The firm's manager proposes buying dozens more processors and splitting the region analyses into ever-smaller pieces, expecting the job to keep getting faster without limit. Explain why the manager is wrong, compute the minimum possible total time for this job, and state the largest speedup the firm could ever approach."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) The current run uses sequential computing: operations are performed in order, one at a time (CSN-2.A.1). A sequential solution takes as long as the sum of all of its steps (CSN-2.A.5): 10 + 30 + 20 + 10 + 10 = 80 minutes.",
+          "(b) The new machine uses parallel computing — the program is broken into smaller sequential operations, some performed simultaneously (CSN-2.A.2). A parallel solution takes as long as its sequential tasks plus the longest of its parallel tasks (CSN-2.A.6). The sequential tasks are Step 1 (10) and Step 5 (10); the longest parallel task is Step 2 (30). Parallel time = 10 + 30 + 10 = 50 minutes. Speedup is the sequential time divided by the parallel time (CSN-2.A.7): 80 ÷ 50 = 1.6.",
+          "(c) A parallel computing solution consists of a parallel portion and a sequential portion (CSN-2.B.1), and its efficiency is still limited by the sequential portion — at some point, adding parallel portions no longer meaningfully increases efficiency (CSN-2.B.5). Steps 1 and 5 must always run one at a time, so no number of processors can remove their 10 + 10 = 20 minutes. Even if the 60 minutes of region work were split so finely that the parallel portion took nearly 0 minutes, the job would still take at least 20 minutes. The speedup could therefore only approach 80 ÷ 20 = 4, and can never exceed it — buying dozens more processors moves the job closer to 20 minutes but with smaller and smaller gains each time."
+        ],
+        "rubric": [
+          "1 pt: Part (a) identifies sequential computing and its rule — the sum of all steps (CSN-2.A.1/A.5).",
+          "1 pt: Part (a) computes 10 + 30 + 20 + 10 + 10 = 80 minutes.",
+          "1 pt: Part (b) states the parallel timing rule — sequential tasks plus the longest parallel task (CSN-2.A.6).",
+          "1 pt: Part (b) computes the parallel time 10 + 30 + 10 = 50 minutes (uses the LONGEST region task, 30).",
+          "1 pt: Part (b) defines speedup as sequential time ÷ parallel time (CSN-2.A.7).",
+          "1 pt: Part (b) computes speedup 80 ÷ 50 = 1.6.",
+          "1 pt: Part (c) explains the sequential-portion limit — added parallelism eventually stops producing meaningful gains (CSN-2.B.1/B.5).",
+          "1 pt: Part (c) computes the minimum possible time as the sequential portion, 10 + 10 = 20 minutes.",
+          "1 pt: Part (c) states the speedup can only approach 80 ÷ 20 = 4."
+        ],
+        "ek": "EK CSN-2.A.1 + EK CSN-2.A.2 + EK CSN-2.A.5 + EK CSN-2.A.6 + EK CSN-2.A.7 + EK CSN-2.B.1 + EK CSN-2.B.5"
+      }
+    ]
+  }
+}
