@@ -147,6 +147,23 @@ student decks exist for review/absent students.
 - Render matrix PER DAY: deck teacher/student × cb/deepdive; notes
   student/key × cb/deepdive. Plus per topic: quiz student/key; guide.
 
+## Big Idea 3 exercise scaffold (paper-then-screen)
+Every programming topic's practice is a deliberate two-rung ladder that
+shares ONE through-line scenario:
+- PAPER first (the docx exercise1/exercise2 Supplements): the low rungs —
+  hand-TRACE variable/list values, PREDICT output, and SPOT errors by
+  reading. No typing; works offline; low cognitive load. exercise1 ends
+  with an explicit hand-off: "You traced these by hand. Now type and run
+  the harder versions on the Topic N.N page."
+- SCREEN next (codeex-N.N.json -> the gated coding page): the high rungs —
+  the student TYPES and RUNS progressively harder versions of the SAME
+  scenario, Judge0-graded. The page's meta.intro names the flow: "You
+  warmed these up on paper; now build and run them, hardest last."
+Order problems easy->hard; the first codeex problem should be close to
+what they just did on paper, the last a genuine write-from-scratch.
+Keep the scenario/context shared between paper and screen so the paper
+prep directly feeds the typed problems.
+
 ## Big Idea 3 JavaScript convention
 Runnable JavaScript in code_block panes, codeex starters, and codeex
 references uses `let` (never `var`). Rationale: `var` is legacy

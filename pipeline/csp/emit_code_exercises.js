@@ -81,6 +81,8 @@ ${s} .result.fail{background:#FEF2F2!important;border:1px solid #DC2626!importan
 ${s} .result.wait{background:#F0F7F4!important;border:1px solid #BBE5D2!important;color:#5B7268!important;-webkit-text-fill-color:#5B7268!important;display:block!important}
 ${s} .hintbox{margin-top:8px!important;background:#FFFBEB!important;border-left:4px solid #F59E0B!important;padding:8px 12px!important;font-size:14px!important;display:none!important}
 ${s} .hintbox.show{display:block!important}
+${s} .flow{background:#ECFDF5!important;border:1px solid #BBE5D2!important;border-left:5px solid ${B.mid}!important;border-radius:0 12px 12px 0!important;padding:12px 16px!important;margin:0 0 18px!important;font-size:15px!important}
+${s} .flow b{color:${B.deep}!important;-webkit-text-fill-color:${B.deep}!important}
 ${s} .muted{color:#5B7268!important;-webkit-text-fill-color:#5B7268!important;font-size:13px!important}
 </style>`; }
 
@@ -161,6 +163,7 @@ let body = style() + `\n<div id="${GID}">`;
 body += `<div class="hero"><p class="eyebrow">${esc(EX.meta.unit||'Big Idea 3: Algorithms and Programming')} &middot; Topic ${esc(topic)} &middot; Coding Practice</p>`
   + `<h1>${esc(EX.meta.title)} &mdash; Code It Yourself</h1>`
   + `<p class="sub">Write real code and check it against the expected output. Pick Python or JavaScript; the AP pseudocode reference is there when you need it.</p></div>`;
+if (EX.meta.intro) body += `<div class="flow">${esc(EX.meta.intro)}</div>`;
 body += EX.problems.map(problemHTML).join('');
 body += `<p class="muted">Your code runs on a secure external service. Answers are checked automatically &mdash; nothing is stored.</p>`;
 body += `\n</div>\n` + widgetScript;
