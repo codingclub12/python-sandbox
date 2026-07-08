@@ -73,6 +73,16 @@ function canonical(f){
   if ((m = f.match(/^CSP_(\d+\.\d+)_TeacherGuide\.docx$/)))
     return { topic:m[1], day:0, kind:'guide', aud:'teacher', track:'',
       name:`AP-CSP_${m[1].replace('.','-')}_TeacherGuide.docx`, label:'Teacher Guide' };
+  if ((m = f.match(/^CSP_(\d+\.\d+)_Exercise(\d)_(student|key)\.docx$/)))
+    return { topic:m[1], day:0, kind:'exercise', aud:m[3]==='key'?'teacher':'student', track:'',
+      name:`AP-CSP_${m[1].replace('.','-')}_Exercise${m[2]}_${m[3]==='key'?'KEY':'Student'}.docx`,
+      label:`Exercise ${m[2]} — ${m[3]==='key'?'KEY':'Student'}` };
+  if ((m = f.match(/^CSP_(\d+\.\d+)_Discussion\.docx$/)))
+    return { topic:m[1], day:0, kind:'discussion', aud:'teacher', track:'',
+      name:`AP-CSP_${m[1].replace('.','-')}_Discussion.docx`, label:'Discussion Guide' };
+  if ((m = f.match(/^CSP_(\d+\.\d+)_LessonMap\.docx$/)))
+    return { topic:m[1], day:0, kind:'map', aud:'teacher', track:'',
+      name:`AP-CSP_${m[1].replace('.','-')}_LessonMap.docx`, label:'Lesson Map' };
   return null;
 }
 
