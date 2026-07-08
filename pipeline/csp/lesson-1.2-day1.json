@@ -1,0 +1,640 @@
+{
+  "meta": {
+    "lessonId": "1.2",
+    "lessonTitle": "Program Function and Purpose",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 1: Creative Development",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO CRD-2.A, CRD-2.B",
+    "anchor": "Program Function and Purpose",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 1 · Topic 1.2 · Day 1 of 2",
+      "title": "What Does This Thing Actually Do?",
+      "subtitle": "Why software gets built, what a 'program' really is, and the two-level trick for describing any app — from one sentence to step by step",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 1.2, Program Function and Purpose — the topic where the course stops talking about the people who build software and starts talking about the software itself. We spend two days here. Today, Day 1, answers two questions: WHY do computing innovations get built at all, and what exactly is a program — including the professional skill of describing one at two different levels of detail. Tomorrow, Day 2, opens the machine up: where a program's inputs come from, what triggers code to run, and where the outputs go. Everything in Big Idea 3 — all the actual programming — stands on the vocabulary we nail down in this topic."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Describe the purpose of a computing innovation — solving a problem or pursuing interests through creative expression (LO CRD-2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how a program or code segment functions, describing it broadly by WHAT it does or in detail by what it does AND how its statements accomplish it (LO CRD-2.B)"
+        }
+      ],
+      "script": "Two targets today, one per learning objective. First, CRD-2.A: describing the purpose of a computing innovation — and the College Board names exactly two purposes, solving problems and pursuing interests through creative expression. Second, CRD-2.B: explaining how a program or code segment functions, which includes the two-level description skill you're about to practice in the bell ringer — the one-sentence 'what' and the step-by-step 'what plus how.' Tomorrow's objectives, CRD-2.C and CRD-2.D, cover inputs and outputs."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A mystery app is running, and all you can see is its behavior table: you type 50 → it says \"Too high.\" You type 25 → \"Too low.\" You type 37 → \"Correct — you got it in 3 tries!\" You type banana → \"Whole numbers only, please.\"",
+      "subprompt": "Write TWO descriptions of this app: (1) ONE sentence saying what it does. (2) A numbered list of steps for HOW it might do it — what it checks, what it remembers, what it says back.",
+      "directions": "Be ready to share both descriptions.",
+      "script": "Five minutes, on your own. All anyone can see of this mystery app is its behavior — four inputs and four responses. Two jobs: first, capture what the app does in exactly one sentence; second, write a numbered recipe for how it might pull that off — what it checks, what it counts, what it replies. Keep both answers, because by the end of today you'll learn that you just produced the College Board's two official levels of program description: the broad 'what it does' and the detailed 'what it does and how the statements accomplish it.' Notice one more thing for tomorrow: you never saw a single line of code, only behavior."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "The Purpose of Computing Innovations",
+          "description": "The two purposes the CED names, and why developers need to know which one they're serving (EK CRD-2.A.1–A.2)."
+        },
+        {
+          "title": "Programs, Code Segments, and Behavior",
+          "description": "Program vs. software vs. code segment, working for a variety of inputs, and the two levels of description (EK CRD-2.B.1–B.5)."
+        },
+        {
+          "title": "Deep Dive: How Pros Describe Programs",
+          "description": "READMEs, app-store blurbs, and design docs — the two description levels in the wild.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 1.2 Guided Notes page at apcsexamprep.com.",
+      "script": "Here's today's Guided Notes map — three sections. Two are green and CB-required: the purpose of computing innovations, and programs, code segments, and behavior. The third is the blue deep-dive: how professional developers write both description levels in real documentation — beyond the exam, but it makes the required skill concrete. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 1.2 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Purpose of Computing Innovations",
+      "kicker": "Why Software Gets Built · Learning Objective CRD-2.A",
+      "script": "Section one. In Topic 1.1 the focus was the people — how collaboration builds better innovations. Now we ask the question every innovation starts with: why build it at all? The College Board's answer is surprisingly short — there are exactly two purposes — and knowing which one an innovation serves turns out to be a practical developer skill, not a philosophy question."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CRD-2.A & CRD-2.B)",
+      "terms": [
+        {
+          "term": "Computing innovation",
+          "definition": "An innovation that includes a program as an integral part of its function — it can be physical, non-physical software, or a concept (EK CRD-1.A.1, from Topic 1.1)."
+        },
+        {
+          "term": "Purpose",
+          "definition": "The reason a computing innovation exists: to solve problems or to pursue interests through creative expression (EK CRD-2.A.1)."
+        },
+        {
+          "term": "Program (software)",
+          "definition": "A collection of program statements that performs a specific task when run by a computer — a program is often referred to as software (EK CRD-2.B.1)."
+        },
+        {
+          "term": "Code segment",
+          "definition": "A collection of program statements that is PART of a program — a piece, not the whole (EK CRD-2.B.2)."
+        },
+        {
+          "term": "Program behavior",
+          "definition": "How a program functions during execution, often described by how a user interacts with it (EK CRD-2.B.4)."
+        }
+      ],
+      "script": "Five terms carry both of today's sections. A computing innovation — the phrase from Topic 1.1 — is any innovation with a program as an integral part of its function, physical like a smart speaker or purely software like a photo filter. Purpose is why it exists, and the CED allows exactly two answers: solve problems, or pursue interests through creative expression. A program is a collection of statements that performs a specific task when run — and the CED explicitly says a program is often called software, so those words are interchangeable on the exam. A code segment is a part of a program, never the whole thing. And behavior is how the program functions during execution — described by how a user interacts with it, exactly like the mystery app's behavior table."
+    },
+    {
+      "type": "concept",
+      "heading": "Two Purposes — and Why Developers Care",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The purpose of computing innovations is to solve problems OR to pursue interests through creative expression (EK CRD-2.A.1).",
+        "Many innovations serve both at once — a music app solves 'carrying your library' and enables creative expression through playlists.",
+        "Understanding an innovation's purpose gives developers an IMPROVED ABILITY to develop that innovation (EK CRD-2.A.2).",
+        "Purpose is the WHY; function is the WHAT-IT-DOES. The exam asks about both — and expects you to keep them apart."
+      ],
+      "script": "Every computing innovation exists for one of two reasons, and the CED names them: solving problems, or pursuing interests through creative expression. A ride-sharing app solves the problem of getting home; a music-making app exists so people can create. Plenty of innovations do both, and that's a legitimate answer when you can justify it. The second EK is the practical payoff: developers who understand the purpose have an improved ability to develop the innovation — every design decision, from what the buttons do to what gets built first, flows from knowing why the thing exists. And keep two words separated from day one: purpose is WHY it was built; function is WHAT it does. The exam loves to blur that line.",
+      "capture": [
+        {
+          "q": "The CED names exactly two purposes for computing innovations: ______.",
+          "a": "to solve problems or to pursue interests through creative expression"
+        },
+        {
+          "q": "Understanding an innovation's purpose gives developers ______.",
+          "a": "an improved ability to develop that computing innovation"
+        },
+        {
+          "q": "Purpose is the WHY an innovation exists; function is ______.",
+          "a": "WHAT it does — how it behaves when it runs"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Solve a Problem vs. Creative Expression",
+      "subheading": "Same test for every innovation you meet on the exam: which purpose is it serving? (EK CRD-2.A.1)",
+      "left": {
+        "title": "Solving a problem",
+        "definition": "Built to fix something that is broken, slow, unfair, or impossible without it",
+        "ek": "EK CRD-2.A.1",
+        "examples": [
+          "Navigation apps — the problem of being lost",
+          "Translation software — the problem of language barriers",
+          "Insulin-pump controllers — the problem of constant manual dosing"
+        ]
+      },
+      "right": {
+        "title": "Creative expression",
+        "definition": "Built to pursue an interest — to make, play, or share something",
+        "ek": "EK CRD-2.A.1",
+        "examples": [
+          "Digital art and music-making apps",
+          "Video games built as art or story, not utility",
+          "Photo filters that exist purely for fun and sharing"
+        ]
+      },
+      "footer": "AP TIP: If a free-response asks for an innovation's purpose, answer with WHY it exists (problem or expression) — not a list of its features.",
+      "script": "Two columns, one habit. When an exam question hands you a computing innovation, run the purpose test: is it solving a problem, or is it pursuing an interest through creative expression? Navigation, translation, and medical controllers sit cleanly on the problem side — each one fixes something broken, slow, or dangerous. Art apps, story-driven games, and photo filters sit on the expression side — nobody NEEDS a watercolor filter; people want to make things. When an innovation does both, say so and justify each half. The trap in the footer matters: asked for a purpose, students list features — 'it has GPS, it shows maps.' Those are functions. The purpose is 'so people don't get lost.'",
+      "capture": [
+        {
+          "q": "An innovation built to fix something broken, slow, or unfair serves the ______ purpose.",
+          "a": "solving-a-problem purpose"
+        },
+        {
+          "q": "Asked for a purpose on the exam, answer with WHY it exists — never ______.",
+          "a": "a list of its features (those are functions, not purpose)"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Purpose Check",
+      "subheading": "These map to LO CRD-2.A. Complete on your Guided Notes.",
+      "prompts": [
+        "A city releases an app that reports potholes to the repair department. In one sentence, state its purpose using the CED's language.",
+        "A student codes an animation of falling cherry blossoms 'just because it's beautiful.' Which purpose is this — and why is 'that's not a real purpose' wrong?",
+        "A team is redesigning a food-delivery app. Using EK CRD-2.A.2, explain what the team gains by first agreeing on the app's purpose."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.2 page.",
+      "script": "Stop and think — five minutes, full sentences on the Guided Notes. One: the pothole app — its purpose is to solve a problem, and a strong answer names the problem. Two: the cherry-blossom animation — pursuing interests through creative expression, and the CED makes it an equal, official purpose, so 'not a real purpose' contradicts EK CRD-2.A.1 directly. Three: the redesign team — understanding purpose gives developers an improved ability to develop the innovation; a strong answer gives a concrete example, like knowing which features matter most to hungry customers. These are the exact moves CRD-2.A questions make."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Programs, Code Segments, and Behavior",
+      "kicker": "What a Program Really Is · Learning Objective CRD-2.B",
+      "script": "Section two. You just described a mystery app two different ways in the bell ringer without ever seeing its code. Now we make that official: what exactly counts as a program, what a code segment is, what 'behavior' means, and the two-level description skill the College Board writes directly into EK CRD-2.B.5."
+    },
+    {
+      "type": "concept",
+      "heading": "One Input Is Never Enough",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A program needs to work for a VARIETY of inputs and situations — not just the one you tested (EK CRD-2.B.3).",
+        "The behavior of a program is how it functions during execution — often described by how a user interacts with it (EK CRD-2.B.4).",
+        "A program can be described BROADLY by what it does, or in MORE DETAIL by what it does AND how its statements accomplish it (EK CRD-2.B.5).",
+        "Your bell-ringer sentence was the broad level; your numbered steps were the detailed level. Both are correct — they answer different questions."
+      ],
+      "script": "Three EKs, one big idea: a program is judged by its behavior across many situations, not by one lucky test. EK CRD-2.B.3 says a program needs to work for a variety of inputs and situations — the mystery app handled numbers that were too high, too low, correct, and even the word banana, and a version that crashed on banana would be an unfinished program. Behavior, per B.4, is how the program functions during execution, usually described through user interaction — which is exactly what the bell-ringer table showed. And B.5 is the skill you already performed: describe a program broadly by what it does, or in more detail by what it does AND how the statements accomplish it. Your one sentence was level one; your numbered steps were level two. Neither is 'better' — they answer different questions.",
+      "capture": [
+        {
+          "q": "A program needs to work for ______ — not just the one input you tested.",
+          "a": "a variety of inputs and situations"
+        },
+        {
+          "q": "The broad level of description says WHAT a program does; the detailed level adds ______.",
+          "a": "how the program statements accomplish that function"
+        },
+        {
+          "q": "A program's behavior is how it functions during execution, often described by ______.",
+          "a": "how a user interacts with it"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Program, Code Segment, or Behavior?",
+      "context": "Same weather app, four artifacts. Classify each one using today's vocabulary.",
+      "columns": [
+        "Artifact from the weather app",
+        "Why it fits",
+        "Classification"
+      ],
+      "rows": [
+        [
+          "The complete installed weather app, everything that runs when you open it",
+          "A full collection of statements performing a specific task when run — also called software",
+          "Program (EK CRD-2.B.1)"
+        ],
+        [
+          "The five lines inside it that convert Celsius to Fahrenheit",
+          "A collection of statements that is only PART of the program",
+          "Code segment (EK CRD-2.B.2)"
+        ],
+        [
+          "\"When the user taps refresh, tomorrow's forecast appears in about a second\"",
+          "How the program functions during execution, told through user interaction",
+          "Behavior (EK CRD-2.B.4)"
+        ],
+        [
+          "\"It shows the forecast\" vs. \"It requests data from a weather service, picks tomorrow's entry, and displays it\"",
+          "The same function told broadly, then in detail with how the statements do it",
+          "The two description levels (EK CRD-2.B.5)"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "One weather app, four artifacts, four classifications. The complete installed app is the program — the whole collection of statements performing a task, and remember the CED says program and software are the same word. The five Celsius-to-Fahrenheit lines are a code segment — statements that are part of a program, never standalone. The sentence about tapping refresh is behavior — how the program functions during execution, told through the user's interaction. And the last row shows both description levels side by side: 'it shows the forecast' is the broad what-it-does; the version with requesting, picking, and displaying adds how the statements accomplish it. Exam items hand you artifacts exactly like these and ask which word applies.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“It Worked Once, So It Works”",
+      "misconception": "If a program runs correctly on the input you tried, it works — testing one input proves the program is finished.",
+      "whyItHappens": "Programs feel binary: it ran or it crashed. A successful run FEELS like proof, and students rarely think to attack their own program with weird inputs.",
+      "correction": "A program needs to work for a VARIETY of inputs and situations (EK CRD-2.B.3). One successful input proves exactly one row of the behavior table — the empty input, the huge number, the word where a number belongs are all still unproven.",
+      "example": "The bell-ringer app handled 50, 25, 37 — and banana. A version that crashed on banana would run perfectly for every polite tester and fail the first real user who typed with the caps-lock on.",
+      "script": "Here's the trap, and every programmer falls into it at least once. A program runs correctly on your test input and your brain declares victory — it ran, so it works. But EK CRD-2.B.3 sets the real standard: a program needs to work for a variety of inputs and situations. One good run proves one row of the behavior table and nothing else. The mystery app earned trust precisely because it survived banana — the input nobody was supposed to type. That instinct, hunting for the input that breaks your own program, is the professional habit, and it returns in force in Topic 1.4 when testing becomes its own learning objective."
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: How Pros Describe Programs",
+      "subheading": "EK CRD-2.B.5's two levels aren't just exam skills — the software industry writes both, every day, in different documents.",
+      "track": "enrichment",
+      "left": {
+        "title": "The WHAT layer",
+        "definition": "Broad description — what the program does, for someone deciding whether to use it",
+        "ek": "Deep Dive",
+        "examples": [
+          "App-store blurb: \"Splitwise splits bills with friends\"",
+          "A README's opening line on GitHub",
+          "The one-sentence pitch in a Create Task write-up"
+        ]
+      },
+      "right": {
+        "title": "The WHAT + HOW layer",
+        "definition": "Detailed description — what it does AND how the statements accomplish it",
+        "ek": "Deep Dive",
+        "examples": [
+          "A design doc: \"stores each expense, computes per-person balances, applies debt simplification\"",
+          "Comments walking through a tricky code segment",
+          "Your bell-ringer numbered steps — a how-description of code you never saw"
+        ]
+      },
+      "footer": "Same program, two audiences: users need the WHAT; the developers who maintain it need the WHAT + HOW.",
+      "script": "A deep dive beyond the exam, but it makes the required skill concrete. The software industry writes EK CRD-2.B.5's two levels every single day — it just gives them different homes. The broad what-layer lives in app-store blurbs and the first line of a README: one sentence, written for someone deciding whether to use the program. The detailed what-plus-how layer lives in design documents and code comments: written for the developers who have to maintain and extend the statements. Same program, two audiences, two levels of detail — and when you reach the Create Performance Task, you'll write both layers about your own program.",
+      "capture": [
+        {
+          "q": "The broad WHAT layer is written for ______.",
+          "a": "someone deciding whether to use the program (users)"
+        },
+        {
+          "q": "The detailed WHAT + HOW layer is written for ______.",
+          "a": "the developers who maintain and extend the program's statements"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Speak Like a Developer",
+      "subheading": "These map to LO CRD-2.B. Complete on your Guided Notes.",
+      "prompts": [
+        "A classmate calls the 12 lines that check password strength inside a login app 'a program.' Correct them with the precise term and the reason it applies.",
+        "Write BOTH description levels for a spell-checker: one broad sentence, then a 2–3 step detailed version that includes how it might accomplish the job.",
+        "A ticket-buying program was tested only with the number 2. List two other inputs it must handle, and name the EK that says so."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.2 page.",
+      "script": "Six minutes, full sentences. One: the 12 password-checking lines are a code segment — a collection of statements that is part of a program, not a whole program performing its own task. Two: both description levels for a spell-checker — broadly, 'it finds and flags misspelled words'; in detail, something like 'it compares each word against a dictionary list, flags words with no match, and suggests close spellings.' Three: the ticket program tested only with 2 — strong answers attack it with inputs like 0, a negative number, a huge number, or the word two, and the EK that demands it is CRD-2.B.3, a variety of inputs and situations. Answers are reviewed as a class before the close."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Computing innovations exist for two purposes: solving problems or pursuing interests through creative expression (EK CRD-2.A.1)",
+        "Understanding the purpose gives developers an improved ability to build the innovation (EK CRD-2.A.2)",
+        "A program (software) performs a specific task when run; a code segment is a part of one; behavior is how it functions during execution (EK CRD-2.B.1–B.2, B.4)",
+        "A program must work for a variety of inputs — and can be described broadly (what) or in detail (what + how) (EK CRD-2.B.3, B.5)"
+      ],
+      "nextPoints": [
+        "Day 2: where inputs come from — tactile, audio, visual, text, users, and other programs (LO CRD-2.C)",
+        "Events and event-driven programming: code that runs when TRIGGERED, not when it's 'next in line'",
+        "Outputs: where they go, and why the same input doesn't always produce the same output (LO CRD-2.D)"
+      ],
+      "teaser": "Before tomorrow, notice this: your phone reacts the INSTANT you tap it — no matter what it was doing. Nothing was 'next in line.' So how did your tap jump the queue? Bring a theory.",
+      "script": "That's Day 1. Two purposes — solve problems, pursue interests through creative expression — and knowing which one you're serving makes you a better developer. A program, also called software, performs a specific task when run; a code segment is part of one; behavior is how it functions during execution; it has to survive a variety of inputs; and it can be described at two levels, what versus what-plus-how. Tomorrow we open the machine: where inputs come from and where outputs go. Here's the teaser to sleep on: your phone reacts the instant you tap it, no matter what it was doing — nothing was 'next in line,' so how did your tap jump the queue? Bring a theory. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 1.2 — Program Function and Purpose — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student builds an app that layers falling-snow animations over users' photos, purely so people can make and share winter-themed art. Per EK CRD-2.A.1, which statement best describes this innovation's purpose?",
+        "options": [
+          "It serves no true purpose — it does not address any measurable problem",
+          "Its purpose is to solve a problem, since every computing innovation exists to fix something",
+          "Its purpose is to pursue interests through creative expression, one of the two purposes the CED names",
+          "Its purpose cannot be determined until the app's code segments are examined line by line"
+        ],
+        "answer": "C",
+        "ek": "EK CRD-2.A.1",
+        "rationale": "EK CRD-2.A.1 names exactly two purposes for computing innovations: to solve problems or to pursue interests through creative expression. An art-making, sharing-focused app is squarely the second purpose. A is wrong because creative expression IS an official purpose, not the absence of one. B forces every innovation into the problem-solving box, contradicting the EK's 'or.' D confuses purpose (why it exists) with implementation detail — purpose is visible from what the innovation is for, without reading code."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A development team is about to redesign a ride-sharing app. Per EK CRD-2.A.2, why should the team first make sure everyone understands the app's purpose?",
+        "options": [
+          "An understanding of the purpose of a computing innovation gives developers an improved ability to develop it",
+          "The purpose determines which programming language must be used, so no coding can begin without it",
+          "Knowing the purpose guarantees the finished app will work correctly for every possible input",
+          "App stores require a formal statement of purpose before any update can be published"
+        ],
+        "answer": "A",
+        "ek": "EK CRD-2.A.2",
+        "rationale": "EK CRD-2.A.2 states that an understanding of the purpose of a computing innovation provides developers with an improved ability to develop that computing innovation — design decisions flow from knowing why the product exists. B invents a language requirement; purpose guides decisions but dictates no specific language. C overreaches: purpose helps development, but only testing across a variety of inputs (EK CRD-2.B.3) addresses correctness, and no understanding 'guarantees' it. D invents a publishing regulation that does not exist in the CED."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student's average-calculator program works perfectly when tested with the list [80, 90, 100], so the student declares it finished. The teacher then enters an empty list and the program crashes. Per EK CRD-2.B.3, what is the best conclusion?",
+        "options": [
+          "The program is finished — it behaved correctly on the input it was designed around",
+          "The teacher used the program incorrectly — an empty list is not a meaningful input",
+          "The program's purpose was wrong, so its code segments must be rewritten from scratch",
+          "The program is not finished — a program needs to work for a variety of inputs and situations"
+        ],
+        "answer": "D",
+        "ek": "EK CRD-2.B.3",
+        "rationale": "EK CRD-2.B.3 states that a program needs to work for a variety of inputs and situations — one successful test proves only one situation, and the empty list revealed an unhandled one. A reflects the 'it worked once' misconception the EK exists to correct. B blames the user, but real users produce unexpected inputs constantly; handling them is the program's job. C misdiagnoses: the app's purpose (averaging grades) is fine — the flaw is in robustness, which calls for handling more situations, not starting over."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "Per EK CRD-2.B.1–B.4, which of the following statements are true? I. A program, often referred to as software, is a collection of program statements that performs a specific task when run by a computer. II. A code segment must be a complete program that can run on its own. III. The behavior of a program is how it functions during execution and is often described by how a user interacts with it.",
+        "options": [
+          "I only",
+          "I and III only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "B",
+        "ek": "EK CRD-2.B.1",
+        "rationale": "Statement I is EK CRD-2.B.1 nearly verbatim, including the program-equals-software equivalence. Statement III is EK CRD-2.B.4 nearly verbatim. Statement II inverts EK CRD-2.B.2: a code segment is a collection of statements that is PART of a program — by definition it is not a complete stand-alone program. A wrongly rejects the behavior definition; C wrongly accepts the inverted code-segment claim; D fails to catch that inversion at all."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "In a platformer game, the character stands still until the player presses the spacebar, at which point a jump routine runs immediately — regardless of what else the game was doing. Per EK CRD-2.C.2 and CRD-2.C.5, what best describes what is happening?",
+        "options": [
+          "A key-press event supplies input to the program, and the jump statements execute when triggered rather than through sequential flow",
+          "The game runs sequentially, and the jump statements simply happened to be the next lines in the program",
+          "The spacebar receives output from the program, which the program then stores as its prior state",
+          "The jump is an error — program statements should only ever run in top-to-bottom order"
+        ],
+        "answer": "A",
+        "ek": "EK CRD-2.C.5",
+        "rationale": "EK CRD-2.C.2 says an event is associated with an action and supplies input data to a program, and EK CRD-2.C.5 says that in event-driven programming, statements execute when triggered rather than through the sequential flow of control — exactly what 'runs immediately, regardless of what else was doing' describes. B is the sequential misreading: the jump runs because it was triggered, not because it was next in line. C reverses the data direction — a key press is input to the program, not output. D treats event-driven execution as a bug, but it is a normal, CED-named programming model."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A weather dashboard updates its forecast every hour using temperature data delivered automatically by a government weather service's software — no person types anything in. Per EK CRD-2.C.6, the dashboard's hourly input comes from:",
+        "options": [
+          "No input at all — inputs only count when a human user enters them",
+          "The dashboard's own output, which every program is required to reuse as input",
+          "A tactile input form — a machine physically produced the data",
+          "Another program — input can come from a user or from other programs"
+        ],
+        "answer": "D",
+        "ek": "EK CRD-2.C.6",
+        "rationale": "EK CRD-2.C.6 states that input can come from a user OR other programs — the weather service's software is another program supplying the dashboard's input. A reflects the misconception that only humans provide input, which the EK directly contradicts. B invents a rule; nothing requires programs to consume their own output, and this data came from an outside source. C misuses the form vocabulary: tactile input means touch-based input like a tap or key press (EK CRD-2.C.1), not 'produced by a machine' — this data arrives as text/numeric data."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "A navigation app announces \"Turn left in 500 feet\" through the phone's speaker. Per EK CRD-2.D.1, which statement correctly classifies this announcement?",
+        "options": [
+          "An input in visual form — the driver reacts to what they hear",
+          "Program output in audio form — data sent from the program to a device",
+          "Not an output — true program output must appear as text on a screen",
+          "An event — it interrupts the sequential flow of the drive"
+        ],
+        "answer": "B",
+        "ek": "EK CRD-2.D.1",
+        "rationale": "EK CRD-2.D.1 defines program outputs as any data sent from a program to a device, and names audio as one of the forms output can take — spoken directions through a speaker fit exactly. A is doubly wrong: the data flows FROM the program (output, not input), and sound is audio, not visual. C wrongly narrows output to on-screen text, contradicting the EK's 'variety of forms.' D misapplies event vocabulary: events supply input TO a program (EK CRD-2.C.2); this announcement is data leaving the program."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "A smart thermostat reads the same room temperature, 68°F, on two different evenings. On Monday it turns the heater on; on Tuesday it does nothing, because that afternoon the family had lowered the target temperature to 65°F. Per EK CRD-2.D.2, why did identical inputs produce different outputs?",
+        "options": [
+          "The thermostat malfunctioned, since a program must always map the same input to the same output",
+          "The Tuesday reading counts as an event rather than an input, so it could not produce output",
+          "Program output is usually based on the program's input AND its prior state — the stored target temperature had changed",
+          "The heater hardware, not the thermostat's program, decides when output is produced"
+        ],
+        "answer": "C",
+        "ek": "EK CRD-2.D.2",
+        "rationale": "EK CRD-2.D.2 states that program output is usually based on a program's input or prior state (e.g., internal values). The stored target temperature is prior state: 68°F is below Monday's target but above Tuesday's lowered one, so identical inputs correctly produced different outputs. A asserts a rule the CED never makes — same input does NOT guarantee same output when internal values differ. B misuses vocabulary: a sensor reading is input data, and events supply input rather than blocking output. D dodges the question; the program's stored state, not the heater hardware, explains the difference."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 1.2 — Program Function and Purpose — Teacher Guide",
+    "subtitle": "Big Idea 1: Creative Development · Topic 1.2 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 1.2 moves Big Idea 1 from the people who build software (Topic 1.1) to the software itself. Day 1 establishes why computing innovations exist (solving problems or pursuing interests through creative expression) and what a program actually is — program vs. software vs. code segment, behavior, the variety-of-inputs standard, and the two-level description skill (what vs. what + how). Day 2 opens the machine: input forms (tactile, audio, visual, text), events and event-driven vs. sequential execution, inputs from users and from other programs, and outputs — any data sent to a device, usually based on input or prior state.",
+      "The through-line is the Day 1 bell ringer: students describe a mystery guessing app from its behavior table alone, unknowingly producing both of EK CRD-2.B.5's description levels — and noticing they never needed the code. The Day 1 closer plants Day 2's central puzzle (a phone reacts the instant you tap, so nothing was 'next in line'), which the Day 2 bell ringer pays off with event-driven programming."
+    ],
+    "los": [
+      "LO CRD-2.A — Describe the purpose of a computing innovation.",
+      "LO CRD-2.B — Explain how a program or code segment functions.",
+      "LO CRD-2.C — Identify input(s) to a program.",
+      "LO CRD-2.D — Identify output(s) produced by a program."
+    ],
+    "eks": [
+      "EK CRD-2.A.1 — The purpose of computing innovations is to solve problems or to pursue interests through creative expression.",
+      "EK CRD-2.A.2 — An understanding of the purpose of a computing innovation provides developers with an improved ability to develop that computing innovation.",
+      "EK CRD-2.B.1 — A program is a collection of program statements that performs a specific task when run by a computer. A program is often referred to as software.",
+      "EK CRD-2.B.2 — A code segment is a collection of program statements that is part of a program.",
+      "EK CRD-2.B.3 — A program needs to work for a variety of inputs and situations.",
+      "EK CRD-2.B.4 — The behavior of a program is how a program functions during execution and is often described by how a user interacts with it.",
+      "EK CRD-2.B.5 — A program can be described broadly by what it does, or in more detail by both what the program does and how the program statements accomplish this function.",
+      "EK CRD-2.C.1 — Program inputs are data sent to a computer for processing by a program. Input can come in a variety of forms, such as tactile, audio, visual, or text.",
+      "EK CRD-2.C.2 — An event is associated with an action and supplies input data to a program.",
+      "EK CRD-2.C.3 — Events can be generated when a key is pressed, a mouse is clicked, a program is started, or any other defined action occurs that affects the flow of execution.",
+      "EK CRD-2.C.4 — Inputs usually affect the output produced by a program.",
+      "EK CRD-2.C.5 — In event-driven programming, program statements are executed when triggered rather than through the sequential flow of control.",
+      "EK CRD-2.C.6 — Input can come from a user or other programs.",
+      "EK CRD-2.D.1 — Program outputs are any data sent from a program to a device. Program output can come in a variety of forms, such as tactile, audio, visual, or text.",
+      "EK CRD-2.D.2 — Program output is usually based on a program's input or prior state (e.g., internal values)."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version), Days 1–2.",
+      "Printed Guided Notes (student copies), Days 1–2.",
+      "Printed Topic 1.2 quiz (student copies) for the assessment block.",
+      "Optional: a phone or tablet to demonstrate event-driven reaction live (tap mid-video, press a key mid-scroll) during the Day 2 bell ringer."
+    ],
+    "prereqs": [
+      "Topic 1.1 Collaboration — students should already know that a computing innovation includes a program as an integral part of its function (EK CRD-1.A.1) and can be physical, non-physical software, or a concept; Day 1's vocabulary slide reactivates that definition before attaching purpose to it."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Purpose of computing innovations; programs, code segments, behavior, and the two description levels (LO CRD-2.A, CRD-2.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI1/T1.2/Q1) + bell ringer (describe the mystery app from its behavior table)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Purpose of computing innovations: vocab, two purposes, problem vs. expression (EK CRD-2.A.1–A.2)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.A",
+            "min": 5,
+            "slides": "9"
+          },
+          {
+            "segment": "Programs, code segments, behavior: variety of inputs, classification table, 'it worked once' misconception (EK CRD-2.B.1–B.5)",
+            "min": 14,
+            "slides": "10-13"
+          },
+          {
+            "segment": "Deep dive: how pros describe programs (optional enrichment)",
+            "min": 4,
+            "slides": "14"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.B",
+            "min": 6,
+            "slides": "15"
+          },
+          {
+            "segment": "Day close + the 'tap jumps the queue' teaser for Day 2",
+            "min": 3,
+            "slides": "16"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Inputs, events, and event-driven programming; outputs and prior state (LO CRD-2.C, CRD-2.D)",
+        "segments": [
+          {
+            "segment": "QOTD (BI1/T1.2/Q2) + bell ringer (the tap that jumped the queue)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Inputs and events: vocab, four input forms, users vs. other programs, sequential vs. event-driven (EK CRD-2.C.1–C.6)",
+            "min": 16,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.C",
+            "min": 5,
+            "slides": "10"
+          },
+          {
+            "segment": "Outputs: data sent to a device, output forms, input + prior state, scenario table (EK CRD-2.D.1–D.2)",
+            "min": 11,
+            "slides": "11-13"
+          },
+          {
+            "segment": "Deep dive: the event loop (optional enrichment)",
+            "min": 4,
+            "slides": "14"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.D",
+            "min": 5,
+            "slides": "15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 1.2 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 1.2 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“It worked once, so it works”",
+        "myth": "Testing a program with one input that succeeds proves the program is finished and correct.",
+        "reality": "A program needs to work for a VARIETY of inputs and situations (EK CRD-2.B.3). One successful run proves one situation; the empty input, the huge number, and the word where a number belongs are all still unproven. Cultivate the habit of attacking your own program with hostile inputs — it becomes a scored skill in Topic 1.4."
+      },
+      {
+        "heading": "“Programs always run top to bottom”",
+        "myth": "Program statements always execute in order, first line to last, so whatever code runs next must have been 'next in line.'",
+        "reality": "Sequential flow is only one model. In event-driven programming, statements execute when TRIGGERED by events — a key press, a mouse click, a program starting (EK CRD-2.C.3, C.5). An event-driven program can appear to do nothing for minutes, then run a handler the instant its event fires."
+      },
+      {
+        "heading": "“Same input, same output — always”",
+        "myth": "If a program produces different outputs on two runs with identical input, it must be broken.",
+        "reality": "Program output is usually based on input OR PRIOR STATE — internal values the program remembers (EK CRD-2.D.2). A thermostat with a changed target, a game with a different score, a shuffle feature with a different history can all legitimately answer the same input differently."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students the two-level sentence frames: 'This program ______ (what)' and 'It does this by ______, then ______, then ______ (what + how)' — reuse them for every program discussed across both days.",
+        "For the Day 2 input/output table, provide a word bank of the four CED forms (tactile, audio, visual, text) plus the two sources (user, other program) so classification is a matching task before it is a recall task."
+      ],
+      "extension": [
+        "Have students pick one app from their own home screen and write its purpose, one behavior sentence, both description levels, and a full input/event/output inventory — a miniature of the Create Task's program description.",
+        "Point deep-dive students at the event-loop slide, then have them explain why an event-driven program that runs 'no code at all' for minutes is not frozen — and what the loop is actually doing during the wait."
+      ]
+    },
+    "discussion": [
+      "The CED says innovations exist to solve problems OR to pursue interests through creative expression. Is a game that millions of people use to relax 'solving a problem' or 'creative expression' — and does the answer change who the developers should listen to?",
+      "You described the mystery app perfectly without ever seeing its code. What does that say about how much of a program's 'function' lives in its behavior versus its statements — and which one should reviewers judge?",
+      "Your phone's assistant answers the same question differently depending on your location, history, and settings. Where is the line between 'output based on prior state' (EK CRD-2.D.2) and a program knowing too much about you?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "meta": {
+    "lessonId": "1.2",
+    "lessonTitle": "Program Function and Purpose",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 1: Creative Development",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO CRD-2.C, CRD-2.D",
+    "anchor": "Program Function and Purpose",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 1 · Topic 1.2 · Day 2 of 2",
+      "title": "Nothing Was Next in Line",
+      "subtitle": "Inputs, events, and outputs — how a program can sit perfectly still for an hour, then answer your tap in a millisecond",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Program Function and Purpose. Yesterday was the what and the why: purposes, programs, code segments, behavior, and the two description levels. Today we open the machine and follow the data: where inputs come from and what forms they take, what an event is and why event-driven programs don't run top to bottom, and where outputs go — including the sneaky fact that output depends on more than just the input in front of it. By the end of the period, yesterday's teaser about your tap jumping the queue will have a precise, CED-vocabulary answer."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the input(s) to a program — their forms (tactile, audio, visual, text), their sources (users or other programs), and the events that supply them (LO CRD-2.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify the output(s) produced by a program — data sent to a device, based on the program's input or its prior state (LO CRD-2.D)"
+        }
+      ],
+      "script": "Two targets today, one per learning objective. First, CRD-2.C: identifying a program's inputs — the four forms the CED names, the two sources they can come from, and the events that supply them, including the difference between sequential and event-driven execution. Second, CRD-2.D: identifying outputs — any data a program sends to a device, and the key nuance that output is usually based on input OR prior state. Both LOs are skill 3.A, which means exam questions hand you a scenario and ask you to point at the inputs and outputs correctly."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser: your phone reacts the INSTANT you tap — mid-video, mid-download, mid-anything. Nothing was 'next in line.' Compare: a cake recipe runs step 1, step 2, step 3, and never jumps.",
+      "subprompt": "Write your theory: how does the phone 'know' to run the tap-handling code right now? Is the phone following a recipe? If not, what is it doing while it waits for you?",
+      "directions": "Be ready to defend your theory.",
+      "script": "Pick up yesterday's teaser — a few minutes, on your own. A recipe is strictly sequential: step 1, step 2, step 3, and a baker never leaps to step 9 because the doorbell rang. Your phone is clearly not doing that: whatever it was busy with, your tap gets handled instantly. Write your theory: how does the tap-handling code know to run right now, and what is the phone doing during the minutes you don't touch it? Every theory shared today gets to be tested against the real answer, which has an official College Board name: event-driven programming, where statements run when triggered rather than through the sequential flow of control."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Inputs and Events",
+          "description": "The four input forms, users vs. other programs as sources, and event-driven vs. sequential execution (EK CRD-2.C.1–C.6)."
+        },
+        {
+          "title": "Outputs",
+          "description": "Data sent from a program to a device, the output forms, and why output depends on input or prior state (EK CRD-2.D.1–D.2)."
+        },
+        {
+          "title": "Deep Dive: The Event Loop",
+          "description": "What an event-driven program is actually doing while it 'waits' — the queue-and-dispatch machinery under every app.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 1.2 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map — three sections. Two green and CB-required: inputs and events, then outputs. The third is the blue deep-dive on the event loop: the College Board doesn't require the machinery, but seeing how a program waits makes event-driven execution click. Keep the packet open as we go; a digital copy lives on the Topic 1.2 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Inputs and Events",
+      "kicker": "Where Data Enters · Learning Objective CRD-2.C",
+      "script": "Section one. Yesterday's mystery app proved that behavior is a conversation: something goes in, something comes out. Today we get precise about the going-in half — what counts as input, what forms it takes, who or what supplies it, and the event mechanism that decides WHEN code actually runs."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CRD-2.C & CRD-2.D)",
+      "terms": [
+        {
+          "term": "Program input",
+          "definition": "Data sent to a computer for processing by a program — in forms such as tactile, audio, visual, or text (EK CRD-2.C.1)."
+        },
+        {
+          "term": "Event",
+          "definition": "Associated with an action — a key press, a mouse click, a program starting — and supplies input data to a program (EK CRD-2.C.2, C.3)."
+        },
+        {
+          "term": "Event-driven programming",
+          "definition": "A model where program statements execute when TRIGGERED by events rather than through the sequential flow of control (EK CRD-2.C.5)."
+        },
+        {
+          "term": "Sequential flow of control",
+          "definition": "The default order of execution that event-driven programming replaces — statements running in sequence rather than waiting for a trigger (EK CRD-2.C.5)."
+        },
+        {
+          "term": "Program output",
+          "definition": "Any data sent FROM a program TO a device — also in forms such as tactile, audio, visual, or text (EK CRD-2.D.1)."
+        }
+      ],
+      "script": "Five terms run today's whole lesson, and notice how symmetrical they are. Program input is data sent TO a computer for processing by a program, and the CED names four example forms: tactile — touch, like taps and key presses; audio — sound, like your voice; visual — images and camera data; and text. An event is associated with an action — a key press, a mouse click, a program starting — and its job is to supply input data to a program. Event-driven programming is the model where statements run when triggered rather than through the sequential flow of control — that's the recipe-versus-phone difference from the bell ringer. Sequential flow is that default top-to-bottom order. And program output is the mirror image of input: any data sent FROM a program TO a device, in the same four example forms."
+    },
+    {
+      "type": "concept",
+      "heading": "Input: Four Forms, Two Sources",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Input forms include tactile (touch, key press), audio (voice, sound), visual (camera, images), and text (EK CRD-2.C.1).",
+        "Input can come from a USER — or from OTHER PROGRAMS: a weather service feeding a dashboard, a game server feeding your game (EK CRD-2.C.6).",
+        "Inputs usually affect the output produced by the program — change what goes in, and what comes out changes (EK CRD-2.C.4).",
+        "Exam skill 3.A: given a scenario, point at each input and name its form and its source."
+      ],
+      "script": "Everything a program processes arrived as input, and the CED gives you a four-word form checklist: tactile, audio, visual, text. A tap is tactile input; 'Hey, what's the weather' is audio; the QR code your camera reads is visual; the search you type is text. Just as important is the source: input does not have to come from a human. Other programs supply input constantly — a weather service feeds your dashboard, a game server feeds your game, one app hands data to another. And EK CRD-2.C.4 states the connection students are tempted to skip past: inputs usually affect the output produced. That word 'usually' is doing quiet work — hold onto it, because the outputs section explains what else output can depend on.",
+      "capture": [
+        {
+          "q": "The CED's four example input forms are ______.",
+          "a": "tactile, audio, visual, and text"
+        },
+        {
+          "q": "Input can come from a user or from ______.",
+          "a": "other programs (e.g., a weather service feeding a dashboard)"
+        },
+        {
+          "q": "Per EK CRD-2.C.4, inputs usually ______.",
+          "a": "affect the output produced by the program"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Sequential vs. Event-Driven",
+      "subheading": "Two ways a program can decide what runs next (EK CRD-2.C.3, CRD-2.C.5).",
+      "left": {
+        "title": "Sequential flow of control",
+        "definition": "Statements execute in order — each one runs because it is next",
+        "ek": "EK CRD-2.C.5",
+        "examples": [
+          "A grade calculator: read scores → average them → print the result",
+          "A recipe: step 1, step 2, step 3 — no jumping",
+          "Great for jobs with a fixed beginning, middle, and end"
+        ]
+      },
+      "right": {
+        "title": "Event-driven",
+        "definition": "Statements execute when TRIGGERED by an event — not because they were next in line",
+        "ek": "EK CRD-2.C.5",
+        "examples": [
+          "Key pressed, mouse clicked, program started — each event fires its handler (EK CRD-2.C.3)",
+          "Your phone's home screen: still for minutes, instant on a tap",
+          "Great for programs that must react to a user or the world"
+        ]
+      },
+      "footer": "AP TIP: 'The code runs WHEN the user clicks' = event-driven. 'The code runs AFTER the previous line' = sequential. The trigger word tells you which.",
+      "script": "Here's the bell-ringer answer, side by side. Sequential flow of control is the recipe: statements execute in order, and each line runs for exactly one reason — it was next. A grade calculator that reads, averages, and prints is happily sequential. Event-driven programming replaces 'next in line' with 'when triggered': an event — a key press, a mouse click, a program starting, any defined action — fires, supplies input data, and the statements tied to that event run. That's how your phone answers a tap mid-video: the tap event triggered the handler; the handler never waited in any line. On the exam, listen for the trigger words — 'when the user clicks' is event-driven, 'after the previous step' is sequential.",
+      "capture": [
+        {
+          "q": "In sequential flow, a statement runs because it is ______.",
+          "a": "next in line (the previous statement finished)"
+        },
+        {
+          "q": "In event-driven programming, statements execute when ______.",
+          "a": "triggered by an event, rather than through the sequential flow of control"
+        },
+        {
+          "q": "Events can be generated when ______.",
+          "a": "a key is pressed, a mouse is clicked, a program is started, or any other defined action occurs"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Programs Always Run Top to Bottom”",
+      "misconception": "Program statements always execute in order, first line to last — so whatever code just ran must have been the next line in the program.",
+      "whyItHappens": "Every beginner program IS sequential — three lines, run once, top to bottom. Recipes, directions, and math procedures all reinforce the same one-way picture.",
+      "correction": "Sequential flow is only ONE model. In event-driven programming, statements execute when TRIGGERED — a key press, a mouse click, a program starting (EK CRD-2.C.3, C.5). An event-driven program can run 'no code at all' for minutes, then execute a handler the instant its event fires.",
+      "example": "A drawing app open for an hour draws nothing on its own. The brush code runs only when the 'screen touched' event fires — 400 times during a sketch, zero times during lunch. No line of it was ever 'next.'",
+      "script": "This misconception is completely reasonable — every program most students have ever written IS sequential, and so is every recipe they've ever followed. But top-to-bottom is one model, not the law. In event-driven programming, statements are executed when triggered rather than through the sequential flow of control: the drawing app's brush code has no fixed position in any running order — it runs 400 times during a sketch and zero times during lunch, entirely decided by the 'screen touched' event. When the exam describes code that runs 'when' something happens, that word 'when' is the CED pointing at an event."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Trace the Inputs",
+      "subheading": "These map to LO CRD-2.C. Complete on your Guided Notes.",
+      "prompts": [
+        "You unlock a phone with your fingerprint, then say 'Play my playlist.' Name the form of each of those two inputs, using CED vocabulary.",
+        "A stock-alert app shows no activity for three hours, then instantly pops a notification when a price feed reports a drop. Is this program sequential or event-driven? Name the event and what input it supplied.",
+        "The price data in that alert came from the stock exchange's computers, not a person. Which EK covers this — and what does it say about input sources?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.2 page.",
+      "script": "Five minutes, full sentences on the Guided Notes. One: the fingerprint is tactile input, the spoken command is audio input — two of the four CED forms in a single unlock. Two: the stock-alert app is event-driven — three quiet hours followed by an instant reaction is the signature; the event is the price feed reporting a drop, and it supplied the price data as input. Three: input from the exchange's computers is EK CRD-2.C.6 — input can come from a user or other programs, and here the other program is the exchange's software. These are exactly the identification moves skill 3.A questions demand."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Outputs",
+      "kicker": "Where Data Leaves · Learning Objective CRD-2.D",
+      "script": "Section two, the mirror image. Data went in as input; now we follow what comes out — what counts as output, what forms it takes, and the exam-favorite nuance: what the output actually depends on. Spoiler: it's not only the input in front of the program."
+    },
+    {
+      "type": "concept",
+      "heading": "Output: Data Leaving for a Device",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Program outputs are ANY data sent from a program to a device — screen, speaker, printer, motor, another machine (EK CRD-2.D.1).",
+        "Output takes the same variety of forms as input: tactile (vibration), audio (speech, alerts), visual (graphics, lights), text (EK CRD-2.D.1).",
+        "Output is usually based on the program's INPUT — or on its PRIOR STATE: internal values the program remembers (EK CRD-2.D.2).",
+        "Prior state explains the 'same input, different output' puzzle: the input matched, but a remembered value had changed."
+      ],
+      "script": "Output is any data sent from a program to a device — and 'device' is broader than a screen: speakers, printers, vibration motors, and other machines all receive output. The forms mirror input exactly: a phone vibrating is tactile output, spoken directions are audio, the map on screen is visual, and a text notification is text. Then comes the EK the exam quietly loves: output is usually based on a program's input OR prior state — internal values the program remembers. That's why a thermostat can read the same 68 degrees on two evenings and act differently: the input matched, but the remembered target temperature had changed. When identical inputs produce different outputs, don't call it broken — ask what the program remembers.",
+      "capture": [
+        {
+          "q": "Program outputs are any data sent from a program to ______.",
+          "a": "a device (screen, speaker, printer, motor, another machine)"
+        },
+        {
+          "q": "Output is usually based on a program's input or its ______.",
+          "a": "prior state — internal values the program remembers (EK CRD-2.D.2)"
+        },
+        {
+          "q": "Same input but different output usually means ______.",
+          "a": "the program's prior state (a remembered internal value) changed between runs"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Input In, Output Out — Four Scenarios",
+      "context": "For each scenario: identify the input's source and form, then the output's form (EK CRD-2.C.1, C.6, D.1).",
+      "columns": [
+        "Scenario",
+        "Input — source & form",
+        "Output — form"
+      ],
+      "rows": [
+        [
+          "You say 'What's the capital of Peru?' and the smart speaker answers aloud",
+          "User · audio (spoken question)",
+          "Audio (spoken answer)"
+        ],
+        [
+          "You type a wrong password; the phone shows 'Try again' and buzzes in your hand",
+          "User · tactile/text (typed password)",
+          "Visual (message) + tactile (vibration)"
+        ],
+        [
+          "A weather service's software sends storm data; the dashboard displays a radar map",
+          "Other program · text/data (storm feed)",
+          "Visual (radar map)"
+        ],
+        [
+          "You scan a ticket's QR code; the gate program prints a receipt slip",
+          "User · visual (camera image of the code)",
+          "Text (printed receipt)"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Four scenarios, and the same two questions every time: where did the input come from and in what form, and in what form did the output leave? The smart speaker: audio in from a user, audio out. The wrong password: typed input from a user — tactile key presses carrying text — and TWO outputs, a visual message plus a tactile buzz, because one input can trigger several outputs. The storm dashboard: input from another program, the weather service's software, arriving as data, with a visual map as output. The ticket gate: the camera's image of the QR code is visual input from a user, and the printed receipt is text output to a printer — proof that 'device' includes more than screens. This table is the whole of skill 3.A: point at the data crossing the boundary and name it.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: The Event Loop",
+      "subheading": "The CED says event-driven code runs 'when triggered' — here's the machinery that makes the trigger work.",
+      "track": "enrichment",
+      "left": {
+        "title": "What it looks like",
+        "definition": "An idle app appears to run no code at all while it waits",
+        "ek": "Deep Dive",
+        "examples": [
+          "A drawing app sits still for an hour — zero brush strokes",
+          "The instant you touch the screen, the brush code runs",
+          "It feels like magic: code that knows when to wake up"
+        ]
+      },
+      "right": {
+        "title": "What's really happening",
+        "definition": "A hidden loop runs constantly: check the event queue, dispatch, repeat",
+        "ek": "Deep Dive",
+        "examples": [
+          "Every tap, key, and message is stamped into an event queue",
+          "The loop pulls the next event and calls its handler function",
+          "'Frozen' apps are handlers hogging the loop — events pile up unanswered"
+        ]
+      },
+      "footer": "One loop, millions of apps: nearly every GUI, game, and phone app you've used is an event loop wearing a costume.",
+      "script": "A deep dive beyond the exam for the students who asked the right question earlier: if nothing is 'next in line,' what is the phone DOING while it waits? The answer is that the waiting is itself a loop. Under every event-driven app runs a hidden cycle: check the event queue, dispatch the next event to its handler, repeat, forever. Your taps, key presses, and incoming messages get stamped into that queue the moment they happen, and the loop hands each one to the right handler function. Two satisfying payoffs: the app was never really idle — the loop was spinning the whole time — and a 'frozen' app is usually one greedy handler refusing to return control, while unanswered events pile up in the queue behind it.",
+      "capture": [
+        {
+          "q": "While an event-driven app 'waits,' a hidden loop is constantly ______.",
+          "a": "checking the event queue and dispatching each event to its handler"
+        },
+        {
+          "q": "A 'frozen' app is usually ______.",
+          "a": "one handler hogging the loop while unanswered events pile up in the queue"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Follow the Output",
+      "subheading": "These map to LO CRD-2.D. Complete on your Guided Notes.",
+      "prompts": [
+        "A fitness watch buzzes on your wrist and shows 'Goal reached!' after your 10,000th step. Identify each output and its form.",
+        "A music app's shuffle button is tapped twice, ten minutes apart, and queues a different song each time. Using EK CRD-2.D.2, explain why identical inputs legally produced different outputs.",
+        "A student claims a program that sends data to a printer 'has no output because nothing appeared on screen.' Correct the claim with EK CRD-2.D.1's exact standard."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.2 page.",
+      "script": "Five minutes, full sentences. One: the watch produces tactile output — the buzz — and visual output, the message; two outputs from one milestone. Two: the shuffle taps are identical inputs, but output is usually based on input or prior state, and the app's remembered play history and queue position changed between taps — different prior state, legitimately different output. Three: the printer claim fails EK CRD-2.D.1's standard — output is ANY data sent from a program to a DEVICE, and a printer is a device; the screen holds no monopoly. Answers are reviewed as a class before the AP traps."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 1.2 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Purpose vs. function",
+          "text": "Purpose is WHY the innovation exists (solve a problem / creative expression); function is WHAT it does when it runs. Asked for purpose, students list features — that answer scores zero. Match your answer to the word in the question."
+        },
+        {
+          "name": "Event-driven ≠ sequential",
+          "text": "'The code runs WHEN the user clicks' means triggered, not next-in-line. Don't reason about event-driven programs as if lines execute top to bottom — the handler has no place 'in line' at all."
+        },
+        {
+          "name": "Same input, different output",
+          "text": "Not a malfunction — output is usually based on input AND prior state (EK CRD-2.D.2). A music app shuffles differently because its internal state changed, not because it broke."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: purpose versus function — purpose is why the innovation exists, solving a problem or pursuing creative expression; function is what it does when it runs. Read which word the question uses and answer that word. Trap two: event-driven is not sequential — when a stem says code runs WHEN something happens, stop tracing lines top to bottom; the handler was triggered, it was never next in line. Trap three: identical inputs with different outputs is not a bug — output is usually based on input or prior state, so hunt for the remembered internal value that changed. Dodge these three and Topic 1.2 is fast, secure points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Program Function and Purpose, in One Slide",
+      "points": [
+        "Innovations exist to solve problems or to pursue interests through creative expression — and knowing which improves the developer's work (EK CRD-2.A.1–A.2).",
+        "A program (software) performs a specific task when run; a code segment is part of one; behavior is how it functions during execution (EK CRD-2.B.1–B.4).",
+        "A program must work for a variety of inputs, and can be described broadly (what) or in detail (what + how) (EK CRD-2.B.3, B.5).",
+        "Inputs — tactile, audio, visual, text — come from users or other programs, supplied by events; event-driven code runs when triggered, not in sequence (EK CRD-2.C.1–C.6).",
+        "Outputs are any data sent to a device, usually based on the input or the program's prior state (EK CRD-2.D.1–D.2)."
+      ],
+      "next": "Topic 1.3, Program Design and Development: you can now describe what programs do — next comes how they get built, from investigation and design to iterative development.",
+      "script": "The whole topic in one slide. Innovations exist for two purposes, and developers who know theirs build better. A program — software — performs a task when run; code segments are its parts; behavior is how it functions during execution; it must survive a variety of inputs; and you can describe it at two levels. Inputs arrive in four forms from users or other programs, delivered by events — and event-driven code runs when triggered, never because it was next in line. Outputs are any data sent to a device, based on input or prior state. Next class is Topic 1.3, Program Design and Development — how programs actually get built. Before packing up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you can't honestly check tells you exactly what to review on the Topic 1.2 page tonight. Guided Notes are collected at the end of class.",
+      "ican": [
+        "describe a computing innovation's purpose using the CED's two categories (LO CRD-2.A)",
+        "explain how a program or code segment functions at both description levels — what, and what + how (LO CRD-2.B)",
+        "identify a program's inputs, their forms and sources, and the events that supply them (LO CRD-2.C)",
+        "identify a program's outputs and explain how they depend on input and prior state (LO CRD-2.D)"
+      ]
+    }
+  ]
+}
