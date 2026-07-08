@@ -19,6 +19,9 @@ const { stripEK } = require('./helpers');
 
 const DIR = __dirname;
 const OUT = path.join(DIR, 'web_out');
+// Live lesson-page handles from the store's Matrixify export (2026-07-08).
+// Guided-notes pages join the same family as "<lesson-handle>-notes".
+const LIVE = JSON.parse(fs.readFileSync(path.join(DIR,'live_handles.json'),'utf8'));
 
 // ---------- encoding: no raw byte above ASCII 127 reaches Shopify ----------
 const NAMED = {
@@ -178,6 +181,7 @@ function buildTopicNotesPage(dayFiles){
     `<h1>${esc(meta.lessonTitle)} &mdash; Guided Notes</h1>` +
     `<p class="sub">Fill these in during class or catch up here if you were absent. Print this page or work on paper &mdash; then check yourself with the CFUs on the Topic ${esc(meta.lessonId)} page.</p></div>`;
   body += `<p class="noprint"><a class="btn" href="javascript:window.print()">Print these notes</a>` +
+          (liveLesson ? `<a class="btn" href="/pages/${liveLesson}">Topic ${esc(meta.lessonId)} lesson page</a>` : '') +
           `<a class="btn" href="/pages/ap-csp-course">All CSP topics</a></p>`;
   datas.forEach(d=>{
     const t = d.slides.find(s=>s.type==='title') || {};
@@ -202,10 +206,12 @@ const templateSuffix = tmplArg ? tmplArg.split('=')[1] : '';
 if (!topic){ console.error('Usage: node emit_web.js <topicId e.g. 2.1> [--template=<locked-page-template-suffix>]'); process.exit(1); }
 const dayFiles = fs.readdirSync(DIR).filter(f=>new RegExp('^lesson-'+topic.replace('.','\\.')+'-day\\d+\\.json$').test(f));
 if (!dayFiles.length){ console.error('no day files for topic '+topic); process.exit(1); }
+const liveLesson = LIVE[topic];
 
 fs.mkdirSync(OUT, { recursive: true });
 const { meta, html } = buildTopicNotesPage(dayFiles);
-const handle = 'ap-csp-topic-' + topic.replace('.','-') + '-guided-notes';
+const handle = liveLesson ? liveLesson + '-notes'
+  : 'ap-csp-topic-' + topic.replace('.','-') + '-guided-notes'; // fallback until the topic's live handle is known
 fs.writeFileSync(path.join(OUT, handle + '.html'), html, 'utf8');
 
 // Matrixify MERGE csv (UTF-8 BOM, all quoted, never an empty Body HTML)

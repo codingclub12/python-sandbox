@@ -31,6 +31,7 @@ const OUTD = path.join(DIR, 'out');
 const WEB = path.join(DIR, 'web_out');
 const FILES = path.join(WEB, 'site_files');
 
+const LIVE = JSON.parse(fs.readFileSync(path.join(DIR,'live_handles.json'),'utf8'));
 const argv = process.argv.slice(2);
 const tmplArg = argv.find(a => a.startsWith('--template='));
 const templateSuffix = tmplArg ? tmplArg.split('=')[1] : '';
@@ -145,7 +146,9 @@ for (const t of topics){
   const list = byTopic[t].sort((a,b)=> a.day-b.day || a.label.localeCompare(b.label));
   const student = list.filter(x=>x.aud==='student');
   const teacher = list.filter(x=>x.aud==='teacher');
+  const live = LIVE[t];
   body += `<div class="topic"><h3>Topic ${esc(t)} &mdash; ${esc(TOPIC_TITLES[t] || '')}</h3>`;
+  if (live) body += `<p class="muted"><a href="/pages/${live}">Lesson page</a> &middot; <a href="/pages/${live}-notes">Guided notes (student digital copy)</a></p>`;
   body += `<p class="label">Student-safe (print / post / hand out)</p><div class="files">` +
     student.map(x=>`<a class="f" href="${url(x.name)}">${esc(x.label)}</a>`).join('') + `</div>`;
   body += `<p class="label tonly">Teacher only (keys, guides, teacher decks)</p><div class="files">` +

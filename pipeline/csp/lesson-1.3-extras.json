@@ -26,23 +26,23 @@
       },
       {
         "label": "Topic page",
-        "url": "apcsexamprep.com/pages/ap-csp-topic-1-3-program-design-and-development"
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-program-design-development"
       },
       {
         "label": "Guided Notes (digital copy)",
-        "url": "apcsexamprep.com/pages/ap-csp-topic-1-3-guided-notes"
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-program-design-development-notes"
       },
       {
         "label": "Exercise 1 (auto-graded)",
-        "url": "apcsexamprep.com/pages/ap-csp-topic-1-3-exercise-1"
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-program-design-development"
       },
       {
         "label": "Exercise 2 (auto-graded)",
-        "url": "apcsexamprep.com/pages/ap-csp-topic-1-3-exercise-2"
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-program-design-development"
       },
       {
         "label": "Quiz (auto-graded)",
-        "url": "apcsexamprep.com/pages/ap-csp-topic-1-3-quiz"
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-program-design-development"
       }
     ],
     "surfacesHeading": "How the three surfaces fit together",
@@ -203,8 +203,8 @@
         "text": "A student spends a month building a locker-organizer app for teachers — layout, colors, and features all chosen because 'they seemed obvious.' At launch, zero teachers adopt it: it assumes teachers assign lockers alphabetically, but at this school lockers are assigned by grade and hallway. No teacher was ever consulted at any point.",
         "key": {
           "signs": "the fingerprints of a SKIPPED INVESTIGATING-AND-REFLECTING PHASE. The design of a program incorporates investigation to determine its requirements (EK CRD-2.F.1), and investigation exists precisely to surface program constraints and the concerns and interests of the people who will use the program (EK CRD-2.F.2). 'It seemed obvious' + a wrong core assumption (alphabetical lockers) + zero user contact = requirements that were guessed, not determined. The app isn't buggy — it's a correct build of the wrong program.",
-        "mechanism": "run the missing phase before rebuilding: INTERVIEWS with teachers and DIRECT OBSERVATION of how lockers are actually assigned (EK CRD-2.F.3 lists surveys, user testing, interviews, direct observations), then write the requirements the investigation reveals and a specification that defines them (EK CRD-2.F.4, F.5). The justification is causal: the failure traces to a false belief about users, and investigation is the CED's named tool for replacing beliefs about users with data from users.",
-        "subtype": "the missing-specification layer: because requirements were never determined, there was also no specification for the design phase to accomplish (EK CRD-2.F.6) — so even the month of building had no target to be measured against. 'Done' was undefined from day one. The interview round fixes future requirements but cannot retroactively justify the month already spent."
+          "mechanism": "run the missing phase before rebuilding: INTERVIEWS with teachers and DIRECT OBSERVATION of how lockers are actually assigned (EK CRD-2.F.3 lists surveys, user testing, interviews, direct observations), then write the requirements the investigation reveals and a specification that defines them (EK CRD-2.F.4, F.5). The justification is causal: the failure traces to a false belief about users, and investigation is the CED's named tool for replacing beliefs about users with data from users.",
+          "subtype": "the missing-specification layer: because requirements were never determined, there was also no specification for the design phase to accomplish (EK CRD-2.F.6) — so even the month of building had no target to be measured against. 'Done' was undefined from day one. The interview round fixes future requirements but cannot retroactively justify the month already spent."
         }
       },
       {
@@ -213,8 +213,8 @@
         "text": "A pair divides an escape-room game: one partner writes the entire 700-line game in a four-day marathon, then runs it for the first time. It crashes instantly. Every fix reveals two new failures — the timer breaks the puzzle logic, the puzzle logic breaks the scoring — and after a week of whack-a-mole they can't even say which parts have ever worked.",
         "key": {
           "signs": "a build that was never INCREMENTAL. EK CRD-2.E.4 defines incremental development as breaking the problem into smaller pieces and making sure each piece works BEFORE adding it to the whole. The giveaway symptom is the last sentence: they cannot say which parts have ever worked — in a verified-pieces build that sentence is impossible, because every piece was individually confirmed at the moment it joined.",
-        "mechanism": "rebuild the process, not just the code: isolate the smallest piece (say, the timer), verify it alone, then add the puzzle logic and verify the pair, then scoring, and so on — each piece confirmed before the next joins (EK CRD-2.E.4). The justification is diagnostic power: when a verified-pieces build breaks, the newest piece (or its interaction with the verified whole) is the prime suspect, which converts week-long whack-a-mole into a short, ordered search.",
-        "subtype": "the missing testing strategy: EK CRD-2.F.7 places development of a testing strategy inside the DESIGN phase — this pair's strategy ('run it once at the end') was never designed at all. Note the limit: switching to increments localizes FUTURE bugs but doesn't find the current ones; the honest prescription restarts integration from the smallest verified core rather than patching the monolith."
+          "mechanism": "rebuild the process, not just the code: isolate the smallest piece (say, the timer), verify it alone, then add the puzzle logic and verify the pair, then scoring, and so on — each piece confirmed before the next joins (EK CRD-2.E.4). The justification is diagnostic power: when a verified-pieces build breaks, the newest piece (or its interaction with the verified whole) is the prime suspect, which converts week-long whack-a-mole into a short, ordered search.",
+          "subtype": "the missing testing strategy: EK CRD-2.F.7 places development of a testing strategy inside the DESIGN phase — this pair's strategy ('run it once at the end') was never designed at all. Note the limit: switching to increments localizes FUTURE bugs but doesn't find the current ones; the honest prescription restarts integration from the smallest verified core rather than patching the monolith."
         }
       },
       {
@@ -223,8 +223,8 @@
         "text": "A club's event app gets its first real users at the fall fair. Feedback is loud and consistent: the sign-up flow confuses everyone — people tap the poster image expecting it to be a button. The team logs every comment, thanks everyone warmly... and ships the spring version with the sign-up flow untouched, because 'the design phase ended in October and we're in the testing phase now.'",
         "key": {
           "signs": "a process that refuses to be ITERATIVE. EK CRD-2.E.3: an iterative process requires refinement and revision based on feedback, testing, or reflection — and this may require REVISITING EARLIER PHASES. The team collected exactly the feedback iteration runs on, then let a phase label ('design ended in October') veto the loop. Logging feedback without revising is testing theater: the testing phase ran, but its output went nowhere.",
-        "mechanism": "reopen the design phase deliberately: take the poster-tap confusion back into UI-layout diagrams and storyboards (EK CRD-2.F.7), rework the sign-up flow, and re-test the revised prototype with fair-style users. The justification is definitional: phases are commonly used stages, not one-way gates (EK CRD-2.E.2) — the CED builds the return trip into the definition of iteration, so 'we're past design' misreads the process model itself.",
-        "subtype": "the iteration-as-failure misconception: the team is treating a revisit as an admission that October's design was a mistake, when the CED frames revision from feedback as the process working as designed. Flag also that users tapping the poster IS a requirements discovery — the users are describing an interaction the program must provide (EK CRD-2.F.4)."
+          "mechanism": "reopen the design phase deliberately: take the poster-tap confusion back into UI-layout diagrams and storyboards (EK CRD-2.F.7), rework the sign-up flow, and re-test the revised prototype with fair-style users. The justification is definitional: phases are commonly used stages, not one-way gates (EK CRD-2.E.2) — the CED builds the return trip into the definition of iteration, so 'we're past design' misreads the process model itself.",
+          "subtype": "the iteration-as-failure misconception: the team is treating a revisit as an admission that October's design was a mistake, when the CED frames revision from feedback as the process working as designed. Flag also that users tapping the poster IS a requirements discovery — the users are describing an interaction the program must provide (EK CRD-2.F.4)."
         }
       },
       {
@@ -233,8 +233,8 @@
         "text": "A solo student builds their Create PT project in a block-based environment with no comment feature, so they keep no documentation of any kind — 'not possible in this language.' The program's cleverest procedure was generated by an AI assistant; it appears nowhere in any write-up, and when asked how it works, the student shrugs: 'It works, that's what matters.' Submission is in three weeks.",
         "key": {
           "signs": "two violations wearing one excuse. First, a DOCUMENTATION failure hiding behind a missing feature: EK CRD-2.G.5 says not all programming environments support comments, so OTHER methods of documentation may be required — 'no comments possible' never becomes 'no documentation needed' (documentation is any written description of function and development, EK CRD-2.G.1). Second, an ACKNOWLEDGEMENT failure: the AI-generated procedure is a code segment developed by another source (EK CRD-2.H.1) and it is credited nowhere.",
-        "mechanism": "two fixes, three weeks, in order. (1) Start external documentation NOW and keep it running through the remaining development (EK CRD-2.G.3): a written design log describing each procedure's function and history, exactly the 'other method' EK CRD-2.G.5 calls for. (2) Add the acknowledgement to that documentation, naming the AI tool as the origin of the procedure (EK CRD-2.H.2) — on the Create PT, uncredited use of generative AI scores 0 on the entire task, so this single missing line is the highest-stakes fix in all four cases.",
-        "subtype": "the credited-but-not-understood layer: the College Board permits generative AI as a supplementary resource, but the student remains responsible for understanding and explaining their code — and the written responses will probe exactly that. 'It works, that's what matters' fails even after the credit line is added; the rescue plan must include the student rebuilding or line-by-line studying the AI procedure until they can explain it. Credit satisfies EK CRD-2.H.2; understanding is a separate, non-transferable debt."
+          "mechanism": "two fixes, three weeks, in order. (1) Start external documentation NOW and keep it running through the remaining development (EK CRD-2.G.3): a written design log describing each procedure's function and history, exactly the 'other method' EK CRD-2.G.5 calls for. (2) Add the acknowledgement to that documentation, naming the AI tool as the origin of the procedure (EK CRD-2.H.2) — on the Create PT, uncredited use of generative AI scores 0 on the entire task, so this single missing line is the highest-stakes fix in all four cases.",
+          "subtype": "the credited-but-not-understood layer: the College Board permits generative AI as a supplementary resource, but the student remains responsible for understanding and explaining their code — and the written responses will probe exactly that. 'It works, that's what matters' fails even after the credit line is added; the rescue plan must include the student rebuilding or line-by-line studying the AI procedure until they can explain it. Credit satisfies EK CRD-2.H.2; understanding is a separate, non-transferable debt."
         }
       }
     ]
