@@ -48,7 +48,8 @@ function esc(s){ let o=''; for (const ch of String(s??'')){ const c=ch.codePoint
   o += NAMED[c]!==undefined?NAMED[c]:(c<128?ch:'&#'+c+';'); } return o; }
 
 // ---------- inventory: dev name -> canonical site file name + labels ----------
-const TOPIC_TITLES = { '2.1':'Binary Numbers' }; // extend as topics are authored
+const TOPIC_TITLES = { '2.1':'Binary Numbers', '2.2':'Data Compression',
+  '2.3':'Extracting Information from Data', '2.4':'Using Programs with Data' }; // extend as topics are authored
 const BI_NAMES = {1:'Big Idea 1: Creative Development',2:'Big Idea 2: Data',
   3:'Big Idea 3: Algorithms and Programming',4:'Big Idea 4: Computer Systems and Networks',
   5:'Big Idea 5: Impact of Computing'};

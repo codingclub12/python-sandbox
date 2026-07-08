@@ -39,9 +39,9 @@
       "type": "bell_ringer",
       "eyebrow": "Bell Ringer",
       "prompt": "Here are 3 rows of the class playlist log — Echo · Marlowe · played Mar 3; Lights · Nova · played Mar 5; Gravity · Nova · played Mar 9. Which artist got played most? Easy. Now imagine the log is 2 MILLION rows covering the whole year.",
-      "subprompt": "Write the exact, step-by-step instructions a helper would need to answer 'Which artist did we play most in March?' Your helper follows instructions literally, never gets bored, and never guesses.",
+      "subprompt": "Write the exact steps a helper would follow to answer: 'Which artist did we play most in March?' The helper follows instructions literally and never guesses.",
       "directions": "Number your steps. Be ready to share your thinking.",
-      "script": "A few quiet minutes on your own. Three rows is a glance — Nova, twice. But two million rows is a wall no human reads, so write the literal instructions a tireless helper would need: something like 'go row by row, keep only March rows, tally one mark per artist, report the biggest tally.' Be precise, because your helper does exactly what you say and nothing more. Keep what you write — by the end of today you'll see that you just wrote a program, and that your steps used the exact extraction processes the College Board names."
+      "script": "A few quiet minutes on your own. Three rows is a glance — Nova, twice. But two million rows is a wall no human reads, so write the literal instructions a tireless helper would need: something like 'go row by row, keep only March rows, tally one mark per artist, report the biggest tally.' Be precise, because your helper does exactly what you say and nothing more. Keep what you write — by the end of today you'll see that you just wrote a program, and that your steps used the exact extraction processes the College Board names. Remind them the helper is perfectly obedient and perfectly literal — every fuzzy step will be executed fuzzily, and it never gets bored."
     },
     {
       "type": "guided_notes_preview",
@@ -239,10 +239,22 @@
       ],
       "highlightCol": 2,
       "blanks": [
-        [0, 2],
-        [1, 2],
-        [2, 2],
-        [3, 2]
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
       ],
       "script": "One tiny dataset, all four moves — fill in the result column yourself before it's confirmed. Transform: multiply every play count by 10, and the signature is same five rows, new values. Filter: keep tracks with at least ten plays — the signature flips, fewer rows, untouched values, just Lights and Echo. Combine and compare: total everything and find the leader — five rows collapse to one answer, 46 plays and Nova on top with 21. Visualize: the bar chart adds nothing numerically, but the Nova–Marlowe–Ivy gap becomes something your eye reads in half a second. This exact dataset returns tomorrow, messier and bigger, for the full pipeline."
     },
@@ -296,10 +308,10 @@
         "predictFirst": true,
         "stem": "A school's program reads the full student roster and keeps only the students who signed up for band, leaving each kept record unchanged. Per EK DAT-2.D.6, which extraction process is this?",
         "options": [
-          "Transforming, because the roster the program outputs is different from the roster it read",
-          "Filtering, because the program kept only the records that met a condition and left their values unchanged",
-          "Combining, because the band students were gathered together into one new list",
-          "Visualizing, because the program produced a smaller table that is easier to read"
+          "Transforming — the roster the program outputs is different from the roster it read",
+          "Filtering — only the records that met a condition were kept, with their values unchanged",
+          "Combining — the band students were gathered together into one new list",
+          "Visualizing — the program produced a smaller table that is easier to read"
         ],
         "answer": "B",
         "ek": "EK DAT-2.D.6",
@@ -355,7 +367,7 @@
         "stem": "An analyst charts a city's bike-share data and finds rides peak at 5 p.m. Her supervisor asks, 'Is that true in winter?' — so she filters to December–February and runs the analysis again, which raises a new question about weekends. Per EK DAT-2.E.1, this workflow shows that:",
         "options": [
           "Programs are used in an iterative and interactive way when processing information to gain insight",
-          "The first analysis was invalid because the data should have been filtered before any chart was made",
+          "The first analysis was invalid — the data should have been filtered before any chart was made",
           "The bike-share data set was too small for a program to extract reliable information from it",
           "A program must be rewritten from scratch each time a user asks a new question about the data"
         ],

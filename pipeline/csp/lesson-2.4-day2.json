@@ -156,7 +156,7 @@
     {
       "type": "worked_table",
       "heading": "The Playlist Pipeline, Pass by Pass",
-      "context": "The raw March log types Nova three ways ('Nova', 'nova', 'NOVA') and repeats one row; April's log just arrived in a separate file, and every row carries a date. Trace the data through each pass — what does it look like AFTER the step runs?",
+      "context": "March log: 'Nova' typed three ways plus one duplicate row; April arrived as a separate file. Trace each pass — what changes, and why?",
       "columns": [
         "Step",
         "Pipeline move (EK)",
@@ -197,12 +197,24 @@
       ],
       "highlightCol": 3,
       "blanks": [
-        [0, 3],
-        [1, 3],
-        [3, 3],
-        [4, 3]
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ]
       ],
-      "script": "Walk it with me and fill in the after-column as we go. Pass one, clean and transform: capitalization standardized, duplicate deleted — and notice we already learned something, that our logging is sloppy about names. Pass two, combine sources: March and April become one table, and questions about trends across months exist for the first time. Pass three, filter: weekend rows only — fewer rows, untouched values, yesterday's signature. Pass four, classify and combine: every play tagged by artist, groups totaled, and the table collapses to a handful of summary rows. Pass five, visualize — and the chart shows one artist owning the weekends, a fact that was sitting inside the raw logs all along where nobody could see it. If step one had been skipped, the three Novas would have split that artist into three small bars and the pattern would have lied to us."
+      "script": "Walk it with me and fill in the after-column as we go. Pass one, clean and transform: capitalization standardized, duplicate deleted — and notice we already learned something, that our logging is sloppy about names. Pass two, combine sources: March and April become one table, and questions about trends across months exist for the first time. Pass three, filter: weekend rows only — fewer rows, untouched values, yesterday's signature. Pass four, classify and combine: every play tagged by artist, groups totaled, and the table collapses to a handful of summary rows. Pass five, visualize — and the chart shows one artist owning the weekends, a fact that was sitting inside the raw logs all along where nobody could see it. If step one had been skipped, the three Novas would have split that artist into three small bars and the pattern would have lied to us. Set the scene before tracing: the raw March log spells Nova three different ways and repeats a row, April just arrived as its own file, and every row carries a date — that mess is exactly what the pipeline exists to handle."
     },
     {
       "type": "concept",
@@ -225,8 +237,8 @@
           "a": "emerge — the pattern was already in the data; the transformation made it visible (EK DAT-2.E.5)"
         },
         {
-          "q": "Clustering finds groups of similar records; classifying ______.",
-          "a": "assigns records to named categories chosen in advance (both are parts of gaining insight — EK DAT-2.E.3)"
+          "q": "Clustering lets the groups emerge from the data; classifying instead ______.",
+          "a": "sorts each record into categories you named ahead of time (EK DAT-2.E.3)"
         }
       ]
     },
@@ -263,8 +275,8 @@
           "a": "transform-every-element (same rows, every value changed the same way)"
         },
         {
-          "q": "=SUMIF collapses many rows into one number, which is the ______ move.",
-          "a": "combine/compare"
+          "q": "A spreadsheet SUM over a column is which of the four extraction processes? ______",
+          "a": "combining or comparing data — collapsing many values into one result"
         }
       ]
     },
@@ -313,10 +325,10 @@
       "next": "Next up: the BI2 Data Project — you run this exact pipeline on a real dataset of your own and present a claim plus its limits. Then Big Idea 3 teaches you to write the programs yourself.",
       "script": "The whole topic in one slide. Programs — not people reading — process data to acquire information, and visual tools carry the insight to humans. Search, filter, and spreadsheet are the tool families; transform, filter, combine, visualize are the four moves; and real analysis chains them into an iterative, interactive pipeline where cleaning teaches, merging enables, and transformation makes patterns emerge. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you can't honestly check tells you what to review on the Topic 2.4 page tonight. Next comes the BI2 Data Project, where this pipeline stops being an example and becomes your own work. Guided Notes are collected at the end of class.",
       "ican": [
-        "explain how programs process data to acquire information, and pick the right tool — search, filter, or spreadsheet — for the job (LO DAT-2.D)",
-        "classify any data operation as transforming, filtering, combining/comparing, or visualizing (LO DAT-2.D)",
-        "explain why insight-seeking with programs is iterative and interactive, including how cleaning data yields insight (LO DAT-2.E)",
-        "trace a pipeline — clean, combine sources, filter, classify, visualize — and explain how transformation makes patterns emerge (LO DAT-2.E)"
+        "pick the right tool — search, filter, spreadsheet — to get information from data (LO DAT-2.D)",
+        "classify an operation as transforming, filtering, combining, or visualizing (LO DAT-2.D)",
+        "explain why insight-seeking with programs is iterative, not one-pass (LO DAT-2.E)",
+        "trace a clean-combine-filter-visualize pipeline and spot the emerging pattern (LO DAT-2.E)"
       ]
     }
   ]

@@ -44,7 +44,7 @@ Topic quizzes run as the OPENER of the class after the topic closes
 BIG IDEA 1 — Creative Development (7 topic-days)
   1.1 Collaboration 1 · 1.2 Program Function & Purpose 2 ·
   1.3 Program Design & Development 2 · 1.4 Identifying & Correcting Errors 2
-BIG IDEA 2 — Data (7)
+BIG IDEA 2 — Data (7) [RECONCILED to authored actuals: 2+1+2+2 = 7 — matches]
   2.1 Binary Numbers 2 · 2.2 Data Compression 1 ·
   2.3 Extracting Information from Data 2 · 2.4 Using Programs with Data 2
 BIG IDEA 3 — Algorithms and Programming (34)

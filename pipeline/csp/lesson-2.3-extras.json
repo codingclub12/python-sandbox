@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "lessonId": "2.3",
+    "lessonTitle": "Extracting Information from Data",
+    "unit": "Big Idea 2: Data",
+    "days": 2,
+    "los": "LO DAT-2.A, DAT-2.B, DAT-2.C"
+  },
+  "map": {
+    "subtitle": "Big Idea 2: Data   •   2 days   •   LO DAT-2.A, DAT-2.B, DAT-2.C",
+    "intro": "Everything for Topic 2.3 lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: Claim Checker — The Streaming Survey and Exercise 2: Messy Dataset Rescue (student + answer KEY)",
+      "Discussion — From Data to Truth (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 9 questions across LO DAT-2.A, DAT-2.B, and DAT-2.C, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Topic page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-3-extracting-information-from-data"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-3-guided-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-3-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-3-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-3-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1: data → information, correlation vs. causation, metadata; Day 2: cleaning, bias, size, and scale, closing with Common AP Traps and the exit check).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Extracting Information from Data'; the running example across both days is the fictional class music-streaming survey (Day 1 raw table, Day 2 dirty hometown column). All materials refer to this one topic."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Claim Checker — The Streaming Survey",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-3-exercise-1",
+    "intro": "You are the fact-checker for the school news site, reviewing five rows pulled from the (fictional) student music-streaming survey workbook. For each row you will decide what is data, what is information, what is metadata — and which claims are honest extractions versus leaps. Part A works the log table; Part B extends the same skills. Everything maps to CB Learning Objectives DAT-2.A and DAT-2.B.",
+    "scenarioTitle": "Survey Workbook Log: Five Rows Under Review",
+    "narrative": "The editor forwards you five artifacts from the survey workbook, each proposed for this week's article. Your job is to rule on each one before anything is published. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, name what kind of thing each row is (data, information, or metadata), then test every claim against what the data can actually support.",
+    "log": {
+      "columns": [
+        "ID",
+        "Artifact",
+        "What it contains",
+        "How it was produced",
+        "Detail worth noticing"
+      ],
+      "rows": [
+        [
+          "1",
+          "Streaming totals sheet",
+          "Each student's weekly stream count next to self-reported sleep hours",
+          "Streaming-app export merged with a homeroom survey",
+          "Heavy streamers cluster near 6 hours of sleep; light streamers near 8"
+        ],
+        [
+          "2",
+          "Playlist file 'studybeats'",
+          "The playlist itself, plus: created 11:52 p.m., size 2 MB, owner ID s-114",
+          "Auto-saved by the streaming app",
+          "The three facts after 'plus' describe the file rather than the music"
+        ],
+        [
+          "3",
+          "Genre claim",
+          "'Pop is the school's top genre' — stream counts merged with the music club's concert-ticket log",
+          "Two sources combined",
+          "Neither source alone covers students who stream little but attend concerts"
+        ],
+        [
+          "4",
+          "Grade claim",
+          "'Streaming caused lower grades' — posted by a student who compared two columns",
+          "Same workbook, no additional research",
+          "The two columns do genuinely move together"
+        ],
+        [
+          "5",
+          "'Date added' sort",
+          "The app instantly re-orders 1,400 songs by the day each was added",
+          "One tap in the app",
+          "No audio file was opened or changed during the sort"
+        ]
+      ]
+    },
+    "scenarioNote": "Rows adapted from the Day 1 bell-ringer survey and the Day 1 metadata worked table; all terms and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which one row is most likely to get the news site in trouble if published as-is, and what single word in it is the problem?",
+    "partALabel": "Part A - Rulings on the Log",
+    "partA": [
+      {
+        "ek": "EK DAT-2.A.1",
+        "pts": 4,
+        "q": "Row 1: point to the DATA and then state one piece of INFORMATION that can be extracted from it. Use both terms correctly and explain the difference in one sentence.",
+        "answer": "The DATA are the raw values — each student's weekly stream count and self-reported sleep hours (EK DAT-2.A.1: data is the raw material). A piece of INFORMATION extracted from that data: 'students who stream heavily tend to report less sleep' — a pattern pulled out of the rows. The difference: information is the collection of facts and patterns EXTRACTED from data; the numbers themselves say nothing until a pattern is read out of them. Full credit requires labeling both correctly and stating the extraction relationship, not just giving examples."
+      },
+      {
+        "ek": "EK DAT-2.A.3",
+        "pts": 5,
+        "q": "Row 4: the two columns really do move together, yet the claim 'streaming caused lower grades' should be rejected. Explain the ruling using the CED's exact standard, and name one alternative explanation the data cannot rule out.",
+        "answer": "The columns moving together is a CORRELATION, and per EK DAT-2.A.3 a correlation found in data does not necessarily indicate that a causal relationship exists — additional research is needed to understand the exact nature of the relationship. The claim asserts causation from the pattern alone, so it fails the standard. Alternative explanations the data cannot rule out: causation could run the other way (struggling students unwind with more music), or a hidden third variable (stress, late work schedules) could drive both streaming and grades. Any one alternative earns the point; the key move is naming the correlation-causation gap and the need for additional research."
+      },
+      {
+        "ek": "EK DAT-2.B.1 / EK DAT-2.B.2",
+        "pts": 5,
+        "q": "Row 2: separate the primary data from the metadata in the playlist artifact. Then rule: if the owner deletes all three metadata facts, what happens to the playlist's music? Cite the rule.",
+        "answer": "The PRIMARY DATA is the playlist itself — the actual music content. The METADATA are the three describing facts: created 11:52 p.m., size 2 MB, owner ID s-114 — data about data (EK DAT-2.B.1: the piece of data may be a file, while the metadata include its date of creation or file size). If the owner deletes all three, NOTHING happens to the music: per EK DAT-2.B.2, changes and deletions made to metadata do not change the primary data. Full credit requires the correct split plus the explicit B.2 rule, not just 'nothing happens.'"
+      },
+      {
+        "ek": "EK DAT-2.A.4",
+        "pts": 4,
+        "q": "Row 3: the genre claim was built from TWO sources. Explain why combining the stream counts with the concert-ticket log produces a conclusion neither source could support alone.",
+        "answer": "Per EK DAT-2.A.4, often a single source does not contain the data needed to draw a conclusion, and it may be necessary to combine data from a variety of sources to formulate one. The streaming export misses students who rarely stream but buy concert tickets; the ticket log misses students who stream constantly but never attend concerts. Each source covers a blind spot in the other, so only the combination can support a school-wide 'top genre' claim. A strong answer names the specific gap each source has, not just 'two sources are better than one.'"
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK DAT-2.B.3 / EK DAT-2.B.5",
+        "pts": 3,
+        "q": "Row 5: the app re-ordered 1,400 songs in an instant without opening a single audio file. Name what made that possible and which metadata job — finding, organizing, or managing — the sort performed.",
+        "answer": "The sort ran entirely on METADATA — each song's 'date added' value — which is why no audio file needed to be opened or changed. Per EK DAT-2.B.3, metadata are used for finding, organizing, and managing information; a sort is the ORGANIZING job (metadata allow data to be structured and organized, EK DAT-2.B.5, and increase the data set's effective use, EK DAT-2.B.4). Full credit: name metadata as the mechanism AND identify organizing as the job performed."
+      },
+      {
+        "ek": "EK DAT-2.A.2",
+        "pts": 3,
+        "q": "Using the full survey workbook, give one TREND the school could identify, one CONNECTION it could make, and one PROBLEM it could address — one sentence each.",
+        "answer": "Per EK DAT-2.A.2, data provide opportunities for identifying trends, making connections, and addressing problems. Trend example: streaming volume rises across the semester and peaks near exams. Connection example: heavy late-night streaming lines up with lower self-reported sleep. Problem to address: the school could shift homework-heavy days away from exam week, or run a sleep-awareness campaign aimed at late-night listeners. Any reasonable trio earns credit; each sentence must match its category."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: A student posts a phone photo of the survey whiteboard. List two pieces of metadata that photo probably carries, one thing a stranger could learn from them, and why stripping that metadata leaves the image pixel-for-pixel identical.",
+        "answer": "A phone photo typically carries EXIF metadata such as GPS coordinates, a timestamp, the device model, and camera settings. From GPS plus timestamp, a stranger could learn exactly where and when the student was — the school's location and the class period. Stripping the metadata leaves the image pixel-for-pixel identical because metadata is a describing layer, not the content: per EK DAT-2.B.2, changes and deletions made to metadata do not change the primary data. Strong answers connect this to why platforms strip EXIF on upload."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Messy Dataset Rescue",
+    "minutes": "25 minutes",
+    "subtitle": "3 rescues - LO DAT-2.C",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-3-exercise-2",
+    "intro": "You are the data consultant on call. Three datasets arrive in trouble. For each, name the CED challenge BY NAME (non-uniform, incomplete, invalid, combining sources, bias, size/parallel/scalability), prescribe the fix, and justify why it works. Advanced students also name a second consideration to layer on the same rescue. Vague 'fix the data' advice scores zero.",
+    "standard": "CB Standard (required): challenge named with CED vocabulary + fix + justification, for all 3 rescues. Enrichment (optional): also name a second consideration to layer (a limit of the fix, or a follow-on challenge) for a more complete rescue.",
+    "methodHeading": "Three-Step Method - use for every rescue",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your gut read of the dataset's disease before analyzing. Writing your own diagnosis first keeps a convincing wrong option from swaying you."
+      ],
+      [
+        "Step 2 - Name the challenge",
+        "Match the symptoms to the CED challenge: non-uniform entries, incomplete data, invalid data, sources that must be combined, bias from the type or source of collection, or a dataset that outgrew its tools."
+      ],
+      [
+        "Step 3 - Prescribe within the rules",
+        "Cleaning may make data uniform but never change its meaning; bias is fixed at the source, never by volume; scale problems take parallel, scalable systems. A fix without a justification is an incomplete answer."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (layering and limits): strong rescues state what the fix CANNOT do — cleaning the hometown column fixes counting but cannot conjure the missing rows; changing a survey's source reduces bias but the old skewed data still can't be silently merged with the new; a parallel system processes a billion rows fast, but if the rows are biased, it just reaches the wrong answer sooner.",
+    "fields": [
+      "Challenge named (which CED problem is this):",
+      "Fix + justification (what you would do and why it's allowed):",
+      "Second consideration to layer (enrichment):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The robotics club's sign-up spreadsheet has an open 'grade level' field. The column contains: 9, 9th, ninth, Freshman, 10, tenth, and two empty cells. The club president needs an accurate count of students per grade by Friday.",
+        "key": {
+          "signs": "Two distinct diseases in one column. '9, 9th, ninth, Freshman' are NON-UNIFORM entries — open-field data where abbreviation, spelling, and capitalization vary from user to user (EK DAT-2.C.3). The two empty cells are INCOMPLETE data (EK DAT-2.C.2). Neither is invalid — every filled value is a plausible grade.",
+          "mechanism": "CLEAN the non-uniform entries: replace all equivalents with one form ('9, 9th, ninth, Freshman' → 9; '10, tenth' → 10). This is allowed because cleaning makes the data uniform WITHOUT changing their meaning (EK DAT-2.C.4) — all four spellings mean grade 9. The empty cells must be marked missing and reported as such; filling them with a guess would change meaning, which cleaning never does.",
+          "subtype": "Layer the limit: the Friday count should read 'n students per grade, 2 unknown' — an honest count reports its missing rows. If the president wants zero unknowns, the fix is re-collection (ask the two students), not fabrication."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "The cafeteria surveys students about new menu options — but the survey link is posted only in the athletics team app. 900 responses arrive, overwhelmingly requesting high-protein options. The cafeteria director, thrilled with the turnout, proposes extending the survey two more weeks to 'make the data even stronger.'",
+        "key": {
+          "signs": "This is BIAS created by the source of the data being collected (EK DAT-2.C.5): the athletics-app channel reaches only athletes, whose preferences differ systematically from the whole student body. The tell is the director's plan — extending the survey adds volume from the same skewed source.",
+          "mechanism": "Change the SOURCE, not the amount: distribute the survey through channels that reach all students (homeroom, the general school app, paper in the cafeteria). Per EK DAT-2.C.5, bias is not eliminated by simply collecting more data — two more weeks of athlete responses are just more skewed rows. The justification must name the source as the problem; 'get more responses' in any costume is the wrong answer.",
+          "subtype": "Layer the limit: the original 900 responses can still inform an athletes-only insight, but they cannot be silently merged with the new all-student data — that would re-import the bias. Label them by source (metadata to the rescue) and analyze separately."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "A statewide fitness study collects 200 million sensor readings. The lead researcher's laptop crashes every time the file opens, and the team debates two proposals: (a) delete 90% of the readings so the laptop can cope, or (b) find a better way to process all of them. The grant also requires the study to keep growing for five more years.",
+        "key": {
+          "signs": "The dataset has outgrown a single computer: large data sets are difficult to process using a single computer (EK DAT-2.C.7), and the ability to process data depends on the capabilities of the users and their tools (EK DAT-2.C.1). Proposal (a) is a trap: the size of a data set affects the amount of information that can be extracted from it (EK DAT-2.C.6), so deleting 90% of the readings throws away extractable information — including rare patterns that only large data reveals.",
+          "mechanism": "Choose proposal (b) via a PARALLEL SYSTEM: split the 200 million readings across many machines that process chunks simultaneously and merge the partial results (EK DAT-2.C.7). Because the grant requires five more years of growth, SCALABILITY is a first-class requirement: the computational capacity of the system determines how the growing dataset can be processed and stored (EK DAT-2.C.8), so the team should pick a system that grows by adding machines.",
+          "subtype": "Layer the limit: parallel processing fixes speed, not quality — if the sensors over-sample one region (bias, EK DAT-2.C.5) or log invalid readings (EK DAT-2.C.2), a thousand machines just reach the wrong answer faster. The rescue plan should schedule cleaning and a source audit BEFORE scaling up the hardware."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "From Data to Truth",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "A dataset can be flawlessly stored, beautifully compressed — and still lie to you. A correlation dresses up as a cause, a survey quietly samples only athletes, and a 'clean-up' one keystroke too aggressive rewrites what respondents actually said. Across three short windows in this topic, your group will decide who gets to extract meaning from the data you generate, where the ethical line in data cleaning sits, and whether any dataset big enough can ever buy its way out of bias.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The streaming survey shows heavy streamers sleep less. One group member wants the headline 'Streaming steals sleep'; another insists the data doesn't say that. Who's right — and why do the stronger, wrong headlines spread faster than the careful, right ones?"
+          },
+          {
+            "text": "Question 2. List three kinds of data you generated before first period today (locations, searches, messages, streams...). For one of them: what pattern could someone extract, and would you be comfortable with a stranger — or an advertiser — extracting it?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the hometown-column cleaning table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The cleaner's oath",
+            "text": "Cleaning may make data uniform but must never change its meaning. Test your group on three calls: replacing 'KC' with 'Kansas City'; correcting 'Kansas Citty'; filling a blank with 'Kansas City' because 'most students are from there anyway.' In one sentence your whole group agrees on, state the rule that separates the allowed fixes from the forbidden one.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Where does the mess come from?",
+            "text": "Debate for about 3 minutes: the survey's open text field caused the whole hometown pileup. Should data collectors ever offer open text fields, or should every question force a dropdown choice? Record your group's position and the strongest cost of the side you chose (what dropdowns lose, or what open fields cost).",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~9 min, after the bias and scale section",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'bigger is truer' case",
+            "text": "A streaming platform brags: 'Our recommendations are fair — they're built on two BILLION listening events.' But the data comes only from the platform's own users, who skew young and urban. Build your group's ruling: what can two billion rows genuinely buy (think size, extractable information, and the parallel systems needed to process it) — and what can they never buy? Where should the platform spend next: more data, or different data?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (what the two billion rows can't fix + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}
