@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "lessonId": "2.3",
+    "lessonTitle": "Extracting Information from Data",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 2: Data",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO DAT-2.C",
+    "anchor": "Extracting Information from Data",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 2 · Topic 2.3 · Day 2 of 2",
+      "title": "When Data Gets Messy",
+      "subtitle": "Dirty columns, hidden bias, and datasets too big for one machine — the challenges standing between raw data and honest answers",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Extracting Information from Data. Yesterday was the promise: data yields trends, connections, and conclusions. Today is the fine print: real data arrives misspelled, half-missing, impossible, biased at the source, and sometimes too big for any single computer to chew. This is LO DAT-2.C — identifying the challenges of processing data — and the exam tests every one of these failure modes by name."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the challenges data sets pose regardless of size — non-uniform entries, incomplete and invalid data, combining sources — and explain how cleaning makes data uniform without changing its meaning (LO DAT-2.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how bias, data-set size, parallel systems, and scalability shape what information can be extracted from data (LO DAT-2.C)"
+        }
+      ],
+      "script": "Two targets, both inside DAT-2.C. First, the messy-data toolkit: recognizing non-uniform, incomplete, and invalid values, and knowing what cleaning is allowed to do — make data uniform — and what it must never do — change meaning. Second, the big-picture challenges: why bias comes from the source and survives more collection, how size changes what you can extract, and when processing outgrows a single computer. Diagnosis skills, all of them — exactly how the exam frames this LO."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser, delivered. The survey's 'What city are you from?' column contains: KC · Kansas City · kansas city MO · K.C. · (blank) · Kansas Citty.",
+      "subprompt": "A program counts students per city. What count does it report for Kansas City — and why? List every SEPARATE problem you can find in this column, then write what a fixed version would look like.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Pick up yesterday's teaser. Six survey answers, and every one of those students lives in the same city — but a counting program sees 'KC', 'Kansas City', and 'kansas city MO' as three different cities, so the count for Kansas City comes out wrong. A few minutes on your own: how many does the program actually report, how many separate problems can you find in the column, and what would a fixed version look like? You will find at least three distinct diseases in those six cells, and today the College Board gives each one a name."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Why Real Data Is Messy",
+          "description": "Non-uniform entries, incomplete and invalid values, and cleaning done right (EK DAT-2.C.1–C.4)."
+        },
+        {
+          "title": "Bias, Size, and Scale",
+          "description": "Why more data never fixes bias, what size buys you, and when one computer isn't enough (EK DAT-2.C.5–C.8)."
+        },
+        {
+          "title": "Deep Dive: Counting a Billion Rows",
+          "description": "How real systems split one giant job across thousands of machines.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 2.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two green CB-required sections — why real data is messy, then bias, size, and scale — plus a blue deep-dive on how a billion rows actually get counted when no single machine can do it. Keep the packet open and fill as we go; the digital copy lives on the Topic 2.3 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Why Real Data Is Messy",
+      "kicker": "Non-uniform, Incomplete, Invalid — and the Cleaning Fix · Learning Objective DAT-2.C",
+      "script": "Section one. Textbook datasets arrive clean; real ones never do. Your bell-ringer column is what data actually looks like when humans type into open fields — and before any information can be extracted from it, someone has to diagnose and repair it without distorting what people meant."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO DAT-2.C)",
+      "terms": [
+        {
+          "term": "Cleaning data",
+          "definition": "A process that makes the data uniform WITHOUT changing their meaning — e.g., replacing all equivalent abbreviations, spellings, and capitalizations with the same word (EK DAT-2.C.4)."
+        },
+        {
+          "term": "Invalid data",
+          "definition": "Values that cannot be right — an age of −3, a birth year of 2091. Data sets pose challenges regardless of size, including invalid data and incomplete data (EK DAT-2.C.2)."
+        },
+        {
+          "term": "Bias",
+          "definition": "A slant in results created by the TYPE or SOURCE of data being collected. Bias is not eliminated by simply collecting more data (EK DAT-2.C.5)."
+        },
+        {
+          "term": "Parallel systems",
+          "definition": "Many computers working on pieces of one job at the same time — often required because large data sets are difficult to process using a single computer (EK DAT-2.C.7)."
+        },
+        {
+          "term": "Scalability",
+          "definition": "How well a system can grow to meet demand — an important consideration because computational capacity affects how data sets can be processed and stored (EK DAT-2.C.8)."
+        }
+      ],
+      "script": "Five terms that name today's diseases and cures. Cleaning data makes a dataset uniform without changing its meaning — the without-changing-meaning clause is the whole exam point. Invalid data is a value that cannot be true, like a negative age. Bias is a slant baked in by the type or source of the collection — and the CED warns in advance that more data does not remove it. Parallel systems are many computers sharing one job, the standard answer when data outgrows a single machine. And scalability is whether a system can grow with the data it serves."
+    },
+    {
+      "type": "concept",
+      "heading": "Every Dataset Poses Challenges — Regardless of Size",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The ability to process data depends on the capabilities of the users and their tools (EK DAT-2.C.1).",
+        "Data sets pose challenges regardless of size: the need to clean data, incomplete data, invalid data, and the need to combine data sources (EK DAT-2.C.2).",
+        "Data collected through open fields may not be uniform — users vary in how they abbreviate, spell, and capitalize (EK DAT-2.C.3).",
+        "Your six-cell bell-ringer column already contained non-uniform, incomplete, AND misspelled entries — small does not mean safe."
+      ],
+      "script": "Three facts frame the whole section. First, processing power is not just hardware — it depends on the capabilities of the users and their tools; a spreadsheet wizard extracts more than a novice from the same file. Second, the CED's exact phrase is 'regardless of size': every dataset, tiny or giant, brings the need to clean, incomplete values, invalid values, and the need to combine sources. Third, the mess has a predictable origin — open text fields, where every user abbreviates, spells, and capitalizes their own way. Six cells in the bell ringer were enough to produce three separate diseases.",
+      "capture": [
+        {
+          "q": "Data sets pose challenges ______ of size.",
+          "a": "regardless — cleaning, incomplete data, invalid data, combining sources (EK DAT-2.C.2)"
+        },
+        {
+          "q": "When users type into an open field, the data may not be ______.",
+          "a": "uniform — abbreviation, spelling, and capitalization vary from user to user (EK DAT-2.C.3)"
+        },
+        {
+          "q": "The ability to process data depends on the capabilities of ______.",
+          "a": "the users and their tools (EK DAT-2.C.1)"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Cleaning the Hometown Column",
+      "context": "The bell-ringer column, triaged. For each raw entry: name the disease, then decide what a cleaner may — and may not — do.",
+      "columns": [
+        "Raw entry",
+        "What's wrong",
+        "Cleaning decision"
+      ],
+      "rows": [
+        [
+          "KC · Kansas City · kansas city MO",
+          "Non-uniform: one city, three formats (EK DAT-2.C.3)",
+          "Replace all equivalents with one form — 'Kansas City' (EK DAT-2.C.4)"
+        ],
+        [
+          "Kansas Citty",
+          "Misspelling — still unmistakably the same city",
+          "Correct the spelling to 'Kansas City' — meaning unchanged"
+        ],
+        [
+          "(blank)",
+          "Incomplete data — the value is missing (EK DAT-2.C.2)",
+          "Do NOT invent a city; mark the row as missing"
+        ],
+        [
+          "Age column: −3",
+          "Invalid data — no age can be negative (EK DAT-2.C.2)",
+          "Flag and exclude or re-collect — cleaning never fabricates a value"
+        ]
+      ],
+      "highlightCol": 2,
+      "blanks": [
+        [0, 2],
+        [2, 2],
+        [3, 2]
+      ],
+      "script": "The bell-ringer column, triaged row by row. The three spellings of Kansas City are non-uniform data, and cleaning replaces all equivalents with one form — meaning intact, count fixed. The misspelling gets corrected for the same reason: it is unmistakably the same city. The blank is different: incomplete data gets marked as missing, never guessed, because inventing a value would change meaning. And the negative age is invalid — flag it, exclude it, or re-collect it. Notice the bright line running through the whole table: cleaning standardizes what IS there; it never fabricates what is not. Complete the decision column on your notes as the rows are worked."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Triage the Mess",
+      "subheading": "These map to LO DAT-2.C. Complete on your Guided Notes.",
+      "prompts": [
+        "Define cleaning data in your own words, then explain why replacing 'KC' with 'Kansas City' is cleaning but replacing a BLANK with 'Kansas City' is not.",
+        "A birth-year column contains the value 2091. Is that non-uniform, incomplete, or invalid data? What should a careful cleaner do with it?",
+        "Two clubs kept sign-up lists with different column names and formats, and the school wants one member count. Name the challenge this creates and what must happen before the combined list can be counted."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.3 page.",
+      "script": "Three triage calls, full sentences. One: your own definition of cleaning, plus the bright line — standardizing 'KC' preserves meaning, but filling a blank invents meaning, which cleaning must never do. Two: 2091 hasn't happened, so the value is invalid, and the cleaner flags it rather than quietly 'fixing' it. Three: merging the two club lists is the combining-data-sources challenge, and the formats have to be made uniform before any honest count exists. A few students will be called on to defend their calls."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Bias, Size, and Scale",
+      "kicker": "The Challenges Cleaning Can't Fix · Learning Objective DAT-2.C",
+      "script": "Section two. Cleaning repairs the surface of a dataset. But two challenges live deeper than spelling: bias, which is baked in at the moment of collection, and scale, where the sheer size of the data defeats the machine trying to process it. Neither one can be scrubbed out with find-and-replace."
+    },
+    {
+      "type": "misconception",
+      "heading": "“Just Collect More Data”",
+      "misconception": "If survey results look biased, the fix is collecting more data — with enough responses, the bias will average out.",
+      "whyItHappens": "In math class, bigger samples usually mean better estimates, so 'more is always better' feels like a universal law of data.",
+      "correction": "Problems of bias are often created by the TYPE or SOURCE of data being collected — and bias is NOT eliminated by simply collecting more data (EK DAT-2.C.5). More rows from the same skewed source are just more skewed rows. The fix is changing what or who you collect from, not the amount.",
+      "example": "A school lunch survey delivered only through the athletics team app can triple its responses and still miss every non-athlete. More data, same blind spot — the source, not the sample size, is the problem.",
+      "script": "Here is today's trap, and the CED refutes it in one sentence. Bigger samples improving estimates is real statistics — but only when the source is sound. If the lunch survey only reaches students through the athletics app, then every response, including the next ten thousand, comes from athletes; tripling the volume triples the blind spot. Bias lives in the type or source of the collection, so the credited fix on the exam always changes the source. Watch for the distractors that offer 'run it longer' or 'collect ten times more' — both are this myth wearing a costume."
+    },
+    {
+      "type": "two_column",
+      "heading": "Small Data vs. Big Data",
+      "subheading": "Size changes what you can extract — and what it takes to process it (EK DAT-2.C.6–C.8).",
+      "left": {
+        "title": "A small data set",
+        "definition": "Limits the amount of information that can be extracted from it",
+        "ek": "EK DAT-2.C.6",
+        "examples": [
+          "A 5-student survey can hint at a pattern, never establish a school-wide one",
+          "Rare patterns simply never show up in tiny samples",
+          "Fits comfortably on one laptop — processing is the easy part"
+        ]
+      },
+      "right": {
+        "title": "A large data set",
+        "definition": "Holds more extractable information — but strains a single computer",
+        "ek": "EK DAT-2.C.7",
+        "examples": [
+          "Millions of rows may require parallel systems — many machines sharing one job",
+          "Scalability decides everything: computational capacity governs how data can be processed and stored (EK DAT-2.C.8)",
+          "And yet: a billion biased rows are still biased (EK DAT-2.C.5)"
+        ]
+      },
+      "footer": "AP TIP: Size changes HOW MUCH information you can extract and WHAT SYSTEMS you need. It never repairs a biased source.",
+      "script": "Two columns, one honest trade. Small data is easy to process and hard to trust for big conclusions — the CED says size affects the amount of information that can be extracted, and five students cannot speak for a school. Big data reverses the deal: far more extractable information, but now a single computer struggles, and the job may require parallel systems — many machines splitting the work. That makes scalability a first-class design question: the computational capacity of a system decides how a growing dataset can be processed and stored at all. And the right column ends with the warning from the misconception: a billion rows from a biased source are a billion biased rows.",
+      "capture": [
+        {
+          "q": "The size of a data set affects ______.",
+          "a": "the amount of information that can be extracted from it (EK DAT-2.C.6)"
+        },
+        {
+          "q": "Large data sets are difficult to process on a single computer and may require ______.",
+          "a": "parallel systems (EK DAT-2.C.7)"
+        },
+        {
+          "q": "Scalability matters because a system's computational capacity affects ______.",
+          "a": "how data sets can be processed and stored (EK DAT-2.C.8)"
+        }
+      ]
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: How a Billion Rows Get Counted",
+      "track": "enrichment",
+      "bullets": [
+        "The trick behind big-data processing: SPLIT the dataset into chunks, hand each chunk to a different machine, then MERGE the partial results.",
+        "A search company counting a year of queries might give 1,000 machines one-thousandth of the log each; every machine counts its slice at the same time.",
+        "A coordinator combines the 1,000 partial counts into one answer — the pattern behind frameworks like MapReduce.",
+        "This is why companies 'scale out' (add more ordinary machines) instead of 'scaling up' (buying one impossibly large computer)."
+      ],
+      "script": "A deep dive past the exam line, but it makes parallel systems concrete. The strategy is split, work, merge: carve the billion rows into a thousand chunks, give every machine one chunk, let them all count simultaneously, then have a coordinator fold the thousand partial answers into one. That pattern — popularized as MapReduce — is how search engines, streaming platforms, and social networks process data no single machine could touch. It also explains a real industry habit: when the data grows, you add more ordinary machines rather than hunting for one heroic computer, because scaling out is the shape the problem wants.",
+      "capture": [
+        {
+          "q": "The big-data pattern is: split the data into chunks, ______, then merge the partial results.",
+          "a": "let many machines process their chunks at the same time"
+        },
+        {
+          "q": "Companies handle growing datasets by 'scaling out,' which means ______.",
+          "a": "adding more ordinary machines instead of buying one giant computer"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Bias and Scale",
+      "subheading": "These map to LO DAT-2.C. Complete on your Guided Notes.",
+      "prompts": [
+        "A fitness app reports 'teenagers exercise 90 minutes a day' using data only from people who chose to install a fitness app. Explain the bias — and why doubling the number of users would not fix it.",
+        "A five-row dataset and a five-million-row dataset both track music streaming. What does the size difference change about the information that can be extracted from each?",
+        "A biologist's laptop cannot process a genome dataset. Name the challenge, the kind of system that addresses it, and what scalability has to do with choosing that system."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.3 page.",
+      "script": "Three diagnostics, full sentences. One: the fitness-app claim is biased at the source — people who install a fitness app already exercise more than average, and doubling the users doubles the same slant. Two: size affects extractable information — five million rows can surface school-wide and rare patterns that five rows cannot, though processing them costs more. Three: the genome dataset has outgrown a single computer, the answer is a parallel system, and scalability is the question of whether that system can keep growing as the data does. Answers are reviewed as a class before the traps."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 2.3 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Correlation ≠ causation",
+          "text": "When a stem shows two variables moving together, the credited answer says causation is NOT established and additional research is needed. Any option claiming X caused Y from the pattern alone is the trap (EK DAT-2.A.3)."
+        },
+        {
+          "name": "Metadata edits touch the file",
+          "text": "Changes and deletions made to metadata never change the primary data. Deleting a photo's location tag or a document's edit history leaves the pixels and text untouched (EK DAT-2.B.2)."
+        },
+        {
+          "name": "More data cures bias",
+          "text": "Bias comes from the TYPE or SOURCE of the collection and is not eliminated by simply collecting more data. The credited fix changes the source — 'run it longer' and 'collect 10× more' are distractors (EK DAT-2.C.5)."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: correlation versus causation — the credited answer on these items almost always contains the phrase 'additional research,' and the trap options assert cause from a pattern. Trap two: metadata edits — the primary data never changes when metadata is edited or deleted, and the distractors imply damage, loss, or compression of the file. Trap three: more data curing bias — the source is the problem, so the credited fix changes the source, while the volume-based options are bait. Write each trap in your own words on the notes; May-you will thank you."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Extracting Information from Data, in One Slide",
+      "points": [
+        "Information is the collection of facts and patterns extracted from data — data is the raw material (EK DAT-2.A.1–A.2).",
+        "Correlation never proves causation by itself; conclusions often need combined sources (EK DAT-2.A.3–A.4).",
+        "Metadata is data about data: it powers finding, organizing, and managing — and editing it never changes the primary data (EK DAT-2.B.1–B.5).",
+        "Every dataset needs cleaning judgment: make non-uniform data uniform WITHOUT changing meaning; never invent missing or 'fix' invalid values silently (EK DAT-2.C.2–C.4).",
+        "Bias comes from the source and survives more collection; size changes what's extractable and may demand parallel, scalable systems (EK DAT-2.C.5–C.8)."
+      ],
+      "next": "Topic 2.4, Using Programs with Data: you become the extractor — using programs, filters, and visualizations to pull information out of real datasets yourself.",
+      "script": "The whole topic in one slide. Data is raw; information is what you extract from it — and extraction has rules: correlation alone proves nothing, and thin sources get combined, not over-read. Metadata describes data and powers every find-sort-organize feature, without ever touching the primary data. Real datasets arrive messy, and cleaning makes them uniform without changing meaning — the bright line the exam tests. And the deep challenges: bias survives volume, while size determines both what you can learn and what machinery you need. Next class is Topic 2.4, where programs do the extracting and you drive them. Before packing up, run the exit check: four 'I can' statements — any box you can't honestly tick is tonight's review on the Topic 2.3 page. Guided Notes are collected at the end of class.",
+      "ican": [
+        "tell data from information and extract a defensible claim from a raw table (LO DAT-2.A)",
+        "explain why a correlation alone never proves causation, and when sources must be combined (LO DAT-2.A)",
+        "identify a file's metadata and explain what changing it does — and doesn't do — to the primary data (LO DAT-2.B)",
+        "spot non-uniform, incomplete, invalid, and biased data, and choose the right response — from cleaning to parallel systems (LO DAT-2.C)"
+      ]
+    }
+  ]
+}

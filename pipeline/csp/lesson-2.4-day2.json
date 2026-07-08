@@ -1,0 +1,323 @@
+{
+  "meta": {
+    "lessonId": "2.4",
+    "lessonTitle": "Using Programs with Data",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 2: Data",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO DAT-2.E",
+    "anchor": "Using Programs with Data",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 2 · Topic 2.4 · Day 2 of 2",
+      "title": "The Insight Pipeline",
+      "subtitle": "Clean it, merge it, filter it, chart it — one messy dataset traced end to end, until a pattern nobody could see jumps out",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Using Programs with Data, and today is an application day. Yesterday named the four extraction moves; today chains them into a pipeline and runs one dataset through it, spreadsheet-style, start to finish. Along the way you'll meet the two ideas the College Board tests from learning objective DAT-2.E: insight-seeking is iterative and interactive, and patterns emerge when data are transformed. By the end, the playlist log from yesterday will have confessed a pattern that is completely invisible in its raw rows."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain why gaining insight from data is an iterative, interactive process of filtering and cleaning — one pass is never the whole analysis (LO DAT-2.E)"
+        },
+        {
+          "tag": "CB",
+          "text": "Trace how combining data sources, clustering, classifying, and transforming data make patterns emerge from a real dataset (LO DAT-2.E)"
+        }
+      ],
+      "script": "Two targets, both inside DAT-2.E: explain how programs are used to gain insight and knowledge from data. First, the rhythm of real analysis — iterative and interactive, where every answer raises the next question and cleaning the data is itself a source of insight. Second, the pipeline moves the CED names — combining sources, clustering, classifying, translating and transforming — traced concretely on the playlist log until a pattern emerges. Notice the verb in this LO is explain: the exam asks you to narrate why these steps produce insight, not just label them."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser: the gym's program charted 50,000 check-ins and found 6 p.m. is the busiest hour. The manager immediately asked, 'Is that true on weekends too?' One classmate says the analysis is already done — the program ran, the chart exists.",
+      "subprompt": "Is the analysis finished? Write the exact next steps the program must take to answer the manager's new question — then predict the question the manager will ask after THAT one is answered.",
+      "directions": "Write your steps, then your prediction. Be ready to share your thinking.",
+      "script": "Pick up yesterday's teaser. The chart exists, so is the analysis done? A few minutes on your own: write the program's next steps — something like filter the check-ins to Saturday and Sunday, re-total by hour, re-chart — and then the interesting part: predict the manager's NEXT question. Maybe 'is the weekend pattern seasonal?' or 'is it the same for new members?' If you can feel the questions multiplying, you've discovered the exact idea the College Board writes as EK DAT-2.E.1: programs are used iteratively and interactively, because insight breeds questions."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Insight Is Iterative",
+          "description": "Why one pass never finishes an analysis; filtering and cleaning as a source of insight (EK DAT-2.E.1–E.2)."
+        },
+        {
+          "title": "The Pipeline, Worked End to End",
+          "description": "Clean → combine sources → filter → classify → visualize on the playlist log; patterns emerge under transformation (EK DAT-2.E.3–E.5)."
+        },
+        {
+          "title": "Deep Dive: The Formula View",
+          "description": "The real spreadsheet formulas behind each pipeline step — beyond the AP exam.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 2.4 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two green and CB-required — insight is iterative, then the full pipeline walkthrough on the playlist data. The third is the blue deep-dive: the actual spreadsheet formulas that perform each pipeline step, which the exam never requires but which makes the whole topic concrete. Keep the packet open; a digital copy lives on the Topic 2.4 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Insight Is Iterative",
+      "kicker": "Iterate, Filter, Clean · Learning Objective DAT-2.E",
+      "script": "Section one. Before we run the pipeline, we need the mindset that makes pipelines necessary: real analysis is a loop, not a straight line. The gym teaser already showed you the shape — answer, new question, another pass. The College Board names that shape, and it also names something stranger: cleaning the data is itself a way of gaining insight."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO DAT-2.E)",
+      "terms": [
+        {
+          "term": "Iterative processing",
+          "definition": "Running a program over the data again and again, refining the question after each pass — how users actually gain insight and knowledge (EK DAT-2.E.1)."
+        },
+        {
+          "term": "Cleaning data",
+          "definition": "Using programs to filter out or fix flawed records — duplicates, typos, inconsistent spellings — thereby gaining insight and knowledge (EK DAT-2.E.2)."
+        },
+        {
+          "term": "Combining data sources",
+          "definition": "Merging two or more datasets so questions no single source could answer become answerable — part of gaining insight with programs (EK DAT-2.E.3)."
+        },
+        {
+          "term": "Clustering data",
+          "definition": "Grouping similar records together so the structure of a dataset becomes visible — part of gaining insight with programs (EK DAT-2.E.3)."
+        },
+        {
+          "term": "Classifying data",
+          "definition": "Assigning records to named categories, like tagging each play as weekday or weekend — part of gaining insight with programs (EK DAT-2.E.3)."
+        }
+      ],
+      "script": "Five terms, and they are today's pipeline steps in disguise. Iterative processing is the loop from the bell ringer — pass, answer, sharper question, another pass. Cleaning data is fixing or filtering out flawed records, and notice the CED's claim that the cleaning itself yields insight — you learn things about your data by discovering what's wrong with it. Combining data sources merges datasets so new questions become answerable. Clustering groups similar records to expose structure; classifying assigns records to named categories you chose in advance. Keep clustering and classifying distinct: clustering finds groups, classifying files records into groups you named."
+    },
+    {
+      "type": "concept",
+      "heading": "One Pass Is Never Enough",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Programs are used in an ITERATIVE and INTERACTIVE way when processing information — each answer raises a sharper question, so the user runs the data again (EK DAT-2.E.1).",
+        "Real data arrives messy: duplicates, typos, three spellings of one artist. Programmers filter and clean digital data, and the cleaning itself yields insight (EK DAT-2.E.2).",
+        "The gym chart wasn't an ending: 'busiest hour' → 'busiest weekend hour' → 'busiest weekend hour for new members' — every insight invites the next pass.",
+        "Interactive means the human stays in the loop: a person reads each result and decides what to ask the program next."
+      ],
+      "script": "Here's the idea in one line: analysis is a conversation with the data, and programs are how you keep asking. EK DAT-2.E.1 gives you both adjectives — iterative, because you process the data repeatedly, and interactive, because a human reads each result and steers the next pass. EK DAT-2.E.2 adds the twist students miss: filtering and cleaning aren't chores before the real work — discovering that one artist is spelled three ways, or that a row is duplicated, IS learning something about your data. The gym sequence on this slide is the pattern to remember: every answer is the parent of the next question.",
+      "capture": [
+        {
+          "q": "Programs are used in an ______ and interactive way when processing information for insight.",
+          "a": "iterative (EK DAT-2.E.1)"
+        },
+        {
+          "q": "Programmers gain insight and knowledge by using programs to ______ digital data.",
+          "a": "filter and clean (EK DAT-2.E.2)"
+        },
+        {
+          "q": "Each answer a pass produces usually triggers ______.",
+          "a": "a sharper follow-up question — and another pass through the data"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“One Pass Gives the Insight”",
+      "misconception": "Run the program once, produce the chart, and the analysis is complete — asking more questions means the first run failed.",
+      "whyItHappens": "School problems train it: one worksheet, one computation, one answer, done. Charts also look final — a polished bar chart feels like a conclusion, not a draft.",
+      "correction": "Real analysis is iterative and interactive by design (EK DAT-2.E.1): each result is read by a person who refines the question and sends the program back through the data with new filters, groupings, or transformations. The follow-up question is evidence the first pass WORKED — it produced enough insight to sharpen the next ask.",
+      "example": "The gym: pass 1 found 6 p.m. is busiest; that insight created the weekend question; the weekend answer will create the seasonal question. Three passes in, the analysis is healthier — not slower.",
+      "script": "This is the Day 2 trap, and the exam pokes at it. A polished chart looks like a conclusion, so students assume more questions mean the analysis failed. Flip it: the follow-up question is proof the pass worked — it taught you enough to ask better. When you explain why this is wrong on your notes, anchor on EK DAT-2.E.1's two adjectives: iterative, many passes; interactive, a human steering between passes. An analysis that ends after one run usually means nobody looked at the result carefully enough to have a question."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Iterate the Question",
+      "subheading": "These map to LO DAT-2.E. Complete on your Guided Notes.",
+      "prompts": [
+        "A weather dataset stores 'rain', 'Rain', and 'RAIN' as three different values. Explain what cleaning does here, and what insight becomes possible only after it.",
+        "A program reports 'most-photographed event: homecoming.' Write the yearbook adviser's next TWO questions, and name what each new pass needs (a filter? a new grouping? another source?).",
+        "In one sentence: why does the CED call insight-seeking interactive and not just automatic?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.4 page.",
+      "script": "Three checks on the iterative mindset, full sentences. One: cleaning collapses the three rains into one value, and only then can a program count rainy days correctly — the true rain total is the insight cleaning unlocked. Two: invent the adviser's next two questions — maybe 'which events are under-photographed?' needing a comparison across all events, then 'is it a scheduling problem?' needing the event-time source merged in. Three: interactive means a human reads each result and chooses the next pass — automation runs the steps, but a person steers the loop. That distinction is pure EK DAT-2.E.1."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Pipeline, Worked End to End",
+      "kicker": "Clean · Combine · Filter · Classify · Visualize · Learning Objective DAT-2.E",
+      "script": "Section two — the walkthrough this day exists for. Yesterday's playlist log returns, but the way real data actually shows up: inconsistent spellings, a duplicated row, and a second month's log sitting in a separate file. We run the full pipeline one pass at a time, and your job is to track exactly what the data looks like after every step."
+    },
+    {
+      "type": "worked_table",
+      "heading": "The Playlist Pipeline, Pass by Pass",
+      "context": "The raw March log types Nova three ways ('Nova', 'nova', 'NOVA') and repeats one row; April's log just arrived in a separate file, and every row carries a date. Trace the data through each pass — what does it look like AFTER the step runs?",
+      "columns": [
+        "Step",
+        "Pipeline move (EK)",
+        "What the program does",
+        "Data after this pass"
+      ],
+      "rows": [
+        [
+          "1",
+          "Clean + transform (EK DAT-2.E.2, E.4)",
+          "Standardize every artist name's capitalization; delete the duplicated row",
+          "One consistent March table — 'nova' and 'NOVA' now count as the same artist"
+        ],
+        [
+          "2",
+          "Combine data sources (EK DAT-2.E.3)",
+          "Merge the March table with the April log",
+          "One two-month table — cross-month questions become answerable for the first time"
+        ],
+        [
+          "3",
+          "Filter (EK DAT-2.D.6)",
+          "Keep only the rows whose date falls on a weekend",
+          "Fewer rows, values untouched — only the weekend story remains"
+        ],
+        [
+          "4",
+          "Classify + combine (EK DAT-2.E.3)",
+          "Group the weekend plays by artist and total each group",
+          "A small summary table: total weekend plays per artist"
+        ],
+        [
+          "5",
+          "Visualize (EK DAT-2.E.5)",
+          "Chart the weekend totals per artist",
+          "A pattern emerges: one artist dominates weekends — invisible in the raw rows"
+        ]
+      ],
+      "highlightCol": 3,
+      "blanks": [
+        [0, 3],
+        [1, 3],
+        [3, 3],
+        [4, 3]
+      ],
+      "script": "Walk it with me and fill in the after-column as we go. Pass one, clean and transform: capitalization standardized, duplicate deleted — and notice we already learned something, that our logging is sloppy about names. Pass two, combine sources: March and April become one table, and questions about trends across months exist for the first time. Pass three, filter: weekend rows only — fewer rows, untouched values, yesterday's signature. Pass four, classify and combine: every play tagged by artist, groups totaled, and the table collapses to a handful of summary rows. Pass five, visualize — and the chart shows one artist owning the weekends, a fact that was sitting inside the raw logs all along where nobody could see it. If step one had been skipped, the three Novas would have split that artist into three small bars and the pattern would have lied to us."
+    },
+    {
+      "type": "concept",
+      "heading": "Patterns Emerge Under Transformation",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Insight and knowledge can be obtained from TRANSLATING and TRANSFORMING digitally represented information (EK DAT-2.E.4).",
+        "Patterns can emerge when data are transformed using programs — the pattern was in the data all along; the transformation made it visible (EK DAT-2.E.5).",
+        "Raw dates show nothing; translate each date to weekday-or-weekend, total by group, chart it — 'one artist dominates weekends' leaps out.",
+        "Combining sources, clustering, and classifying are all parts of the same insight process (EK DAT-2.E.3) — the pipeline is the CED's EK list in working order."
+      ],
+      "script": "Here's the payoff idea, and it's two EKs joined at the hip. DAT-2.E.4 says insight comes from translating and transforming information — turning a raw date into the category 'weekend' is a translation. DAT-2.E.5 says patterns can emerge when data are transformed — and be precise about the verb: emerge. The program didn't invent the weekend pattern; the plays happened when they happened. The transformation changed the representation until a structure that was always present became visible to a human eye. That's the sentence to carry into the exam: transformation changes how data are represented, never what happened.",
+      "capture": [
+        {
+          "q": "Insight and knowledge can be obtained from translating and ______ digitally represented information.",
+          "a": "transforming (EK DAT-2.E.4)"
+        },
+        {
+          "q": "Patterns can ______ when data are transformed using programs.",
+          "a": "emerge — the pattern was already in the data; the transformation made it visible (EK DAT-2.E.5)"
+        },
+        {
+          "q": "Clustering finds groups of similar records; classifying ______.",
+          "a": "assigns records to named categories chosen in advance (both are parts of gaining insight — EK DAT-2.E.3)"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: The Formula View",
+      "subheading": "The exam never asks for formula syntax — but every pipeline pass is one real spreadsheet move.",
+      "track": "enrichment",
+      "left": {
+        "title": "The pipeline step",
+        "definition": "What we said in plain English",
+        "ek": "Deep Dive",
+        "examples": [
+          "Standardize every artist name (pass 1)",
+          "Keep only weekend rows (pass 3)",
+          "Total the plays for one artist (pass 4)"
+        ]
+      },
+      "right": {
+        "title": "The spreadsheet formula",
+        "definition": "The same step as a formula a spreadsheet actually runs",
+        "ek": "Deep Dive",
+        "examples": [
+          "=PROPER(B2), copied down the column — a transform of every element",
+          "A filter condition on the Day column: Day = \"Sat\" OR Day = \"Sun\"",
+          "=SUMIF(Artist, \"Nova\", Plays) — many rows combined into one number"
+        ]
+      },
+      "footer": "Beyond the exam: recognizing the four moves inside real tools makes AP scenarios feel instantly familiar — and it's the head start for the BI2 Data Project.",
+      "script": "A deep dive for the curious — the AP exam will never ask you to write PROPER or SUMIF, but watch how exactly the formulas mirror the pipeline. PROPER copied down a column touches every element the same way: that's a transform, and 'copied down the column' is what 'every element' looks like in a real tool. The weekend condition on the Day column is a filter, verbatim. SUMIF collapses many rows into one number: combine. Insert a chart and you've visualized. When you open a spreadsheet for the BI2 Data Project, you won't be learning a new skill — you'll be recognizing this slide.",
+      "capture": [
+        {
+          "q": "=PROPER(B2) copied down a whole column is the ______ move.",
+          "a": "transform-every-element (same rows, every value changed the same way)"
+        },
+        {
+          "q": "=SUMIF collapses many rows into one number, which is the ______ move.",
+          "a": "combine/compare"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Redesign the Pipeline",
+      "subheading": "These map to LO DAT-2.E. Complete on your Guided Notes.",
+      "prompts": [
+        "The chart shows one artist dominating weekends. Design pass #2: write the follow-up question a manager would ask, and name the pipeline moves that would answer it.",
+        "A classmate reorders the pipeline: total plays per artist FIRST, then clean the three spellings of Nova. Predict specifically what the totals get wrong.",
+        "April's log writes dates as '04/12' while March used 'Apr 12'. Name the pipeline move that fixes this, and explain what happens to the weekend filter if the merge runs before the fix."
+      ],
+      "directions": "Show the pipeline order in each answer. Then check yourself with the matching CFUs on the Topic 2.4 page.",
+      "script": "Application checks — these are the day's exit skills, so show the pipeline order in every answer. One: a good pass 2 might ask 'is the weekend dominance new or long-standing?', answered by classifying plays by month and re-charting per month. Two: totaling before cleaning splits Nova into three fragments — three small bars instead of one leading bar — so the 'top artist' answer is simply wrong; clean before you combine. Three: unifying the two date formats is a translation — a transform — and if the merge runs first, the weekend filter can't read half the dates and silently drops or misfiles April; every later pass inherits the damage. Order isn't style; it's correctness."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 2.4 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Filtering vs. transforming",
+          "text": "Opposite signatures: filtering drops rows and leaves surviving values untouched; transforming keeps every row and changes each value the same way. Run the row-count check before touching the answer choices — distractors swap the labels."
+        },
+        {
+          "name": "Insight in one pass",
+          "text": "Options claiming an analysis is 'complete' after a single run or a single chart contradict EK DAT-2.E.1: programs are used iteratively and interactively. The follow-up question is the sign of a working analysis, not a failed one."
+        },
+        {
+          "name": "The chart proves causation",
+          "text": "Visualizing makes a pattern visible; it never explains the pattern. Two quantities moving together on a chart show correlation only — options leaping from a chart to 'X causes Y' are the Topic 2.3 trap wearing Topic 2.4 clothes."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: filtering versus transforming — check the row count first; if rows dropped it's a filter, if every value changed in place it's a transform, and the distractors are built by swapping those labels. Trap two: any option declaring the analysis finished after one pass fights the CED directly — iterative and interactive is the tested phrase, and new questions are evidence of success. Trap three: a chart that shows two things rising together shows correlation, full stop — the exam loves planting a causal claim on top of a visualization, and it's the same trap you learned to dodge in Topic 2.3."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Using Programs with Data, in One Slide",
+      "points": [
+        "Programs process data to acquire information; tables, diagrams, and visual tools communicate it (EK DAT-2.D.1–D.2).",
+        "Search finds efficiently; filters find and reveal patterns; spreadsheets organize and surface trends (EK DAT-2.D.3–D.5).",
+        "Every extraction is one of four moves: transform every element, filter, combine/compare, visualize (EK DAT-2.D.6).",
+        "Insight is iterative and interactive: clean, combine sources, cluster, classify — then ask the next question (EK DAT-2.E.1–E.3).",
+        "Patterns emerge when data are translated and transformed by programs — the pipeline changes the representation, never the events (EK DAT-2.E.4–E.5)."
+      ],
+      "next": "Next up: the BI2 Data Project — you run this exact pipeline on a real dataset of your own and present a claim plus its limits. Then Big Idea 3 teaches you to write the programs yourself.",
+      "script": "The whole topic in one slide. Programs — not people reading — process data to acquire information, and visual tools carry the insight to humans. Search, filter, and spreadsheet are the tool families; transform, filter, combine, visualize are the four moves; and real analysis chains them into an iterative, interactive pipeline where cleaning teaches, merging enables, and transformation makes patterns emerge. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you can't honestly check tells you what to review on the Topic 2.4 page tonight. Next comes the BI2 Data Project, where this pipeline stops being an example and becomes your own work. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain how programs process data to acquire information, and pick the right tool — search, filter, or spreadsheet — for the job (LO DAT-2.D)",
+        "classify any data operation as transforming, filtering, combining/comparing, or visualizing (LO DAT-2.D)",
+        "explain why insight-seeking with programs is iterative and interactive, including how cleaning data yields insight (LO DAT-2.E)",
+        "trace a pipeline — clean, combine sources, filter, classify, visualize — and explain how transformation makes patterns emerge (LO DAT-2.E)"
+      ]
+    }
+  ]
+}

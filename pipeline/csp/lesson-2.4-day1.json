@@ -1,0 +1,579 @@
+{
+  "meta": {
+    "lessonId": "2.4",
+    "lessonTitle": "Using Programs with Data",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 2: Data",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO DAT-2.D",
+    "anchor": "Using Programs with Data",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 2 · Topic 2.4 · Day 1 of 2",
+      "title": "Two Million Rows, One Question",
+      "subtitle": "Why nobody reads big data — and the four moves a program makes to pull an answer out of it",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 2.4 closes the instruction in Big Idea 2, and it answers the question 2.3 left hanging: if information lives inside data, how do you actually get it out? The answer is never 'read the data' — at real scale no human can. The answer is a program, and today, Day 1, names the tools programs give us and the four extraction processes the College Board lists explicitly. Tomorrow, Day 2, chains those moves into a full insight pipeline on one dataset, start to finish."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how programs — search tools, filtering systems, and spreadsheets — process data to acquire information and communicate it with tables, diagrams, and visual tools (LO DAT-2.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Classify any data operation as one of the four extraction processes: transforming every element, filtering, combining/comparing, or visualizing (LO DAT-2.D)"
+        }
+      ],
+      "script": "Two targets today, both inside learning objective DAT-2.D: extract information from data using a program. First, the toolbox: how programs turn stored data into usable information, and which tool — search, filter, spreadsheet — fits which job. Second, the four extraction processes the CED names one by one: transform every element, filter, combine or compare, and visualize. By the end of class you should be able to look at any data operation on the exam and name its process in seconds."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Here are 3 rows of the class playlist log — Echo · Marlowe · played Mar 3; Lights · Nova · played Mar 5; Gravity · Nova · played Mar 9. Which artist got played most? Easy. Now imagine the log is 2 MILLION rows covering the whole year.",
+      "subprompt": "Write the exact, step-by-step instructions a helper would need to answer 'Which artist did we play most in March?' Your helper follows instructions literally, never gets bored, and never guesses.",
+      "directions": "Number your steps. Be ready to share your thinking.",
+      "script": "A few quiet minutes on your own. Three rows is a glance — Nova, twice. But two million rows is a wall no human reads, so write the literal instructions a tireless helper would need: something like 'go row by row, keep only March rows, tally one mark per artist, report the biggest tally.' Be precise, because your helper does exactly what you say and nothing more. Keep what you write — by the end of today you'll see that you just wrote a program, and that your steps used the exact extraction processes the College Board names."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "From Data to Information",
+          "description": "Programs process data to acquire information; search tools, filtering systems, and spreadsheets (EK DAT-2.D.1–D.5)."
+        },
+        {
+          "title": "The Four Extraction Processes",
+          "description": "Transform every element, filter, combine/compare, visualize — applied to one real dataset (EK DAT-2.D.6)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 2.4 Guided Notes page at apcsexamprep.com.",
+      "script": "Here's the map for today's Guided Notes — two sections, both green and CB-required. Section one is the toolbox: how programs turn data into information, and what search tools, filtering systems, and spreadsheets each contribute. Section two is the heart of the topic: the four extraction processes, worked on a real dataset. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 2.4 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "From Data to Information",
+      "kicker": "Programs, Search, Filters, Spreadsheets · Learning Objective DAT-2.D",
+      "script": "Section one. Topic 2.3 taught you that data and information are different things — the rows are data; what you learn from them is information. This section answers the follow-up: what actually does the extracting? The College Board's answer is one word — programs — plus three named tool families you already use every day without noticing."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO DAT-2.D)",
+      "terms": [
+        {
+          "term": "Information",
+          "definition": "What you learn when programs process data — the answer extracted from the rows, not the rows themselves (EK DAT-2.D.1)."
+        },
+        {
+          "term": "Search tool",
+          "definition": "A tool for efficiently finding information — a roster search box, Ctrl+F, or a web search engine (EK DAT-2.D.3)."
+        },
+        {
+          "term": "Data filtering system",
+          "definition": "An important tool for finding information and recognizing patterns in data by keeping only the rows that meet a condition (EK DAT-2.D.4)."
+        },
+        {
+          "term": "Spreadsheet",
+          "definition": "A program that helps efficiently organize and find trends in information — rows, columns, formulas, and charts in one tool (EK DAT-2.D.5)."
+        },
+        {
+          "term": "Visualization",
+          "definition": "A chart, graph, or other visual representation of a data set; tables, diagrams, and text are also visual tools for communicating insight gained from data (EK DAT-2.D.6, DAT-2.D.2)."
+        }
+      ],
+      "script": "Five terms that carry the day. Information is the extracted answer, not the stored rows — keep that separation from 2.3 alive. A search tool efficiently finds the records that match what you asked for. A data filtering system keeps only the rows that meet a condition, and the CED gives it a second job: recognizing patterns. A spreadsheet bundles organizing and trend-finding into one program — it's the tool the whole topic leans on. And a visualization is a chart, graph, or other visual representation; note that the CED also counts tables, diagrams, and text as tools for communicating insight."
+    },
+    {
+      "type": "concept",
+      "heading": "Programs Turn Data into Information",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Programs can be used to process data to acquire information — the rows never answer a question by themselves (EK DAT-2.D.1).",
+        "Tables, diagrams, text, and other visual tools communicate the insight and knowledge gained from data (EK DAT-2.D.2).",
+        "The bell-ringer instructions you wrote — scan rows, keep March, tally per artist, report the max — ARE a program; at 2 million rows only a computer can follow them fast enough.",
+        "Storage is not analysis: a computer that merely holds the playlist log 'knows' which artist tops it exactly as much as a filing cabinet does."
+      ],
+      "script": "Here's the central claim of the whole topic, and it's EK DAT-2.D.1 nearly verbatim: programs process data to acquire information. The data just sits there — two million rows hold the answer the way a haystack holds a needle. Your bell-ringer instructions were a program in plain English: scan, keep March, tally, report the max. And once the program has extracted the answer, EK DAT-2.D.2 covers the last step: tables, diagrams, text, and other visual tools are how that insight gets communicated to humans. Storage without processing is a filing cabinet.",
+      "capture": [
+        {
+          "q": "Programs can be used to process data to ______.",
+          "a": "acquire information (EK DAT-2.D.1)"
+        },
+        {
+          "q": "Insight and knowledge gained from data are communicated using ______.",
+          "a": "tables, diagrams, text, and other visual tools (EK DAT-2.D.2)"
+        },
+        {
+          "q": "The step-by-step instructions from the bell ringer are really ______.",
+          "a": "a program — precise steps a computer can follow at any scale"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Search Finds. Filters Reveal.",
+      "subheading": "Two everyday tools, two different jobs — and the CED names each one (EK DAT-2.D.3, DAT-2.D.4).",
+      "left": {
+        "title": "Search tool",
+        "definition": "Efficiently FINDS the specific records that match what you asked for",
+        "ek": "EK DAT-2.D.3",
+        "examples": [
+          "Typing 'Okafor' into a 2,300-row roster — 3 matches, instantly",
+          "Ctrl+F in a document; a search engine across the web",
+          "You already know WHAT you're looking for — the tool finds WHERE it is"
+        ]
+      },
+      "right": {
+        "title": "Data filtering system",
+        "definition": "KEEPS only the rows that meet a condition — and the surviving subset reveals patterns",
+        "ek": "EK DAT-2.D.4",
+        "examples": [
+          "Show only March rows; only students who signed up for band",
+          "The filtered view exposes patterns the full table buries",
+          "You may not know what you'll find — the subset shows you"
+        ]
+      },
+      "footer": "AP TIP: Spreadsheets bundle both jobs — plus formulas and charts — which is why the CED credits them with organizing information and finding trends (EK DAT-2.D.5).",
+      "script": "Two tools that both 'find things,' but the exam expects you to tell them apart. A search tool answers a pointed question efficiently: you know what you want — a name, a word — and the tool locates it in a huge dataset instantly. A filtering system is subtler: it keeps only the rows meeting a condition, and the CED assigns it a second power — recognizing patterns — because a filtered subset often shows you something you weren't looking for. The footer matters too: spreadsheets bundle search, filters, formulas, and charts into one program, which is exactly why EK DAT-2.D.5 names them for organizing and finding trends in information.",
+      "capture": [
+        {
+          "q": "Search tools are useful for ______ finding information.",
+          "a": "efficiently (EK DAT-2.D.3)"
+        },
+        {
+          "q": "Data filtering systems help with finding information AND ______.",
+          "a": "recognizing patterns in data (EK DAT-2.D.4)"
+        },
+        {
+          "q": "Spreadsheets help efficiently organize and ______.",
+          "a": "find trends in information (EK DAT-2.D.5)"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Pick the Tool",
+      "subheading": "These map to LO DAT-2.D. Complete on your Guided Notes.",
+      "prompts": [
+        "A librarian types 'Baldwin' into the catalog and instantly gets every matching title out of 40,000 records. Name the tool category and explain what the word 'efficiently' is doing in the CED's description of it.",
+        "You have a spreadsheet of 600 club signups. Describe one filter you could apply, and one pattern the filtered view could reveal that the full table hides.",
+        "A friend says the computer 'already has' the answer to 'which artist did we play most.' Correct them in two sentences using the words data, program, and information."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.4 page.",
+      "script": "Three checks on section one, full sentences on your Guided Notes. One: the library catalog — that's a search tool, and 'efficiently' is the whole point: 40,000 records checked faster than a human could read one shelf. Two: invent a filter on the club-signup sheet and say what pattern the subset could expose — maybe filtering to one grade reveals that grade avoids afternoon clubs. Three: the friend's claim confuses storage with processing — the computer holds data, a program must process it, and information is what comes out. That's DAT-2.D.1 in your own words."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Four Extraction Processes",
+      "kicker": "Transform · Filter · Combine · Visualize · Learning Objective DAT-2.D",
+      "script": "Section two, the heart of the topic and the part the exam quotes almost word for word. EK DAT-2.D.6 lists four processes that extract or modify information from data, complete with its own examples. Your bell-ringer instructions already used most of them without knowing their names — now we name them."
+    },
+    {
+      "type": "concept",
+      "heading": "Four Moves Behind Every Answer",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "TRANSFORMING every element: change each value the same way — double every number in a list, or add a parent's email to every student record (EK DAT-2.D.6).",
+        "FILTERING: keep only what passes a test — only the positive numbers, only the students who signed up for band. Rows drop out; surviving values don't change (EK DAT-2.D.6).",
+        "COMBINING or COMPARING: collapse many rows into one answer — add up a list of numbers, or find the student with the highest GPA (EK DAT-2.D.6).",
+        "VISUALIZING: present the data set through a chart, graph, or other visual representation so patterns show at a glance (EK DAT-2.D.6)."
+      ],
+      "script": "Four moves, and the CED supplies the examples itself, which means exam items reuse them. Transforming touches every element the same way — doubling every number, adding a parent's email to every student record — the row count never changes, the values do. Filtering is the opposite signature: rows drop out, but every surviving value is untouched. Combining or comparing collapses many rows into one answer — a sum, or the single student with the highest GPA. Visualizing turns the dataset into a chart or graph so a pattern is visible at a glance. The fastest way to classify any operation is the row-count check: values changed in place, rows dropped, rows collapsed to one, or data became a picture.",
+      "capture": [
+        {
+          "q": "Transforming changes ______.",
+          "a": "every element of the data set the same way — the row count stays the same"
+        },
+        {
+          "q": "Filtering keeps ______.",
+          "a": "only the rows that pass a test — the surviving values are unchanged"
+        },
+        {
+          "q": "Combining or comparing collapses many rows into ______.",
+          "a": "one answer, like a total or a maximum (the highest GPA)"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Four Moves on One Playlist",
+      "context": "The class playlist log, 5 rows: Lights·Nova·12 plays — Gravity·Nova·9 — Echo·Marlowe·15 — Drift·Marlowe·4 — Anthem·Ivy·6. Each row below runs ONE extraction process on it. What comes back?",
+      "columns": [
+        "Process (EK DAT-2.D.6)",
+        "Instruction to the program",
+        "What comes back"
+      ],
+      "rows": [
+        [
+          "Transform every element",
+          "Convert every play count to points: multiply each by 10",
+          "Same 5 rows, every value changed: 120, 90, 150, 40, 60"
+        ],
+        [
+          "Filter",
+          "Keep only tracks with at least 10 plays",
+          "Fewer rows, values untouched: only Lights (12) and Echo (15) survive"
+        ],
+        [
+          "Combine / compare",
+          "Total all plays; report the artist with the most",
+          "One summary answer: 46 total plays; Nova leads with 21"
+        ],
+        [
+          "Visualize",
+          "Chart total plays per artist",
+          "A bar chart — Nova 21, Marlowe 19, Ivy 6 — the gap is visible at a glance"
+        ]
+      ],
+      "highlightCol": 2,
+      "blanks": [
+        [0, 2],
+        [1, 2],
+        [2, 2],
+        [3, 2]
+      ],
+      "script": "One tiny dataset, all four moves — fill in the result column yourself before it's confirmed. Transform: multiply every play count by 10, and the signature is same five rows, new values. Filter: keep tracks with at least ten plays — the signature flips, fewer rows, untouched values, just Lights and Echo. Combine and compare: total everything and find the leader — five rows collapse to one answer, 46 plays and Nova on top with 21. Visualize: the bar chart adds nothing numerically, but the Nova–Marlowe–Ivy gap becomes something your eye reads in half a second. This exact dataset returns tomorrow, messier and bigger, for the full pipeline."
+    },
+    {
+      "type": "misconception",
+      "heading": "“The Data Already Contains the Answer”",
+      "misconception": "Programs just store data — to actually find information, a person eventually has to read through the data themselves.",
+      "whyItHappens": "At homework scale it's true: five rows, you glance, you answer. Every dataset students meet in school is small enough to eyeball, so reading feels like the real method and programs feel like fancy storage.",
+      "correction": "Programs don't just store data — they PROCESS data to acquire information (EK DAT-2.D.1). At real-world scale, processing by program is the only method that exists: search tools, filtering systems, and spreadsheets are how anyone finds anything (EK DAT-2.D.3–D.5).",
+      "example": "The 2-million-row playlist log: no human will ever read it, yet a program answers 'top artist in March' in milliseconds — by filtering, combining, and comparing, not by reading.",
+      "script": "Here's the trap this topic exists to break. School datasets fit on one screen, so reading feels like the method and the computer feels like a filing cabinet with a glow. But scale kills reading: nobody reads two million rows, ever, and yet the answer comes back in milliseconds. That's because programs process data — filter, tally, compare — rather than read it. When you explain why this is wrong on your notes, use the storage-versus-processing distinction: storing data is not extracting information from it."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Name That Process",
+      "subheading": "These map to LO DAT-2.D. Complete on your Guided Notes.",
+      "prompts": [
+        "Classify each gradebook operation: (a) 5 bonus points are added to every quiz score; (b) all scores below 60 are hidden; (c) the class average is reported. Name the extraction process for each.",
+        "Filtering and transforming both 'change the table.' State the difference in one sentence using row count and values.",
+        "The bar chart made Nova's lead obvious. Explain what visualizing communicated that the summary number '21 plays' alone did not."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.4 page.",
+      "script": "Three classification drills, full sentences. One: bonus points to every score is transforming — every element, same change; hiding scores below 60 is filtering — rows drop, values survive; the class average is combining — many rows, one number. Two: the one-sentence difference should say transforming keeps every row and changes the values, while filtering drops rows and changes nothing inside the survivors. Three: the chart question targets EK DAT-2.D.2 — 21 was one fact, but the chart communicated the whole comparison, Nova against Marlowe against Ivy, in a single glance. If all three felt quick, you're ready for tomorrow's pipeline."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Programs process data to acquire information — rows never answer questions by themselves (EK DAT-2.D.1–D.2)",
+        "Search tools find efficiently; filtering systems find AND reveal patterns; spreadsheets organize and surface trends (EK DAT-2.D.3–D.5)",
+        "Four extraction processes: transform every element, filter, combine/compare, visualize (EK DAT-2.D.6)",
+        "Fast classification: check whether values changed in place, rows dropped, rows collapsed to one answer, or data became a picture"
+      ],
+      "nextPoints": [
+        "Day 2: chain the four moves into an insight pipeline on one messy, real dataset — clean it, merge it, and watch a pattern emerge (LO DAT-2.E)",
+        "Why one pass through the data is never the whole analysis",
+        "Deep dive: the actual spreadsheet formulas behind each pipeline step"
+      ],
+      "teaser": "Before tomorrow: a gym's program charted its 50,000 check-ins and found 6 p.m. is the busiest hour. The manager instantly asks, 'Is that true on weekends too?' Is the analysis finished? Write down what has to happen next — bring your answer.",
+      "script": "That's Day 1. Programs process data to acquire information; search, filters, and spreadsheets are the tool families; and every extraction is one of four moves — transform, filter, combine or compare, visualize. Tomorrow those moves stop being a menu and become a pipeline: one messy dataset cleaned, merged, and transformed until a pattern nobody could see in the raw rows jumps out. Here's the teaser: the gym charted 50,000 check-ins, found 6 p.m. is busiest, and the manager immediately asked whether that holds on weekends. Is the analysis done? Write down what has to happen next and bring it. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 2.4 — Using Programs with Data — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A school's program reads the full student roster and keeps only the students who signed up for band, leaving each kept record unchanged. Per EK DAT-2.D.6, which extraction process is this?",
+        "options": [
+          "Transforming, because the roster the program outputs is different from the roster it read",
+          "Filtering, because the program kept only the records that met a condition and left their values unchanged",
+          "Combining, because the band students were gathered together into one new list",
+          "Visualizing, because the program produced a smaller table that is easier to read"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-2.D.6",
+        "rationale": "EK DAT-2.D.6 defines filtering as keeping only the elements that meet a condition, and 'keeping only students who signed up for band' is the EK's own example. The signature is fewer rows with unchanged values. A is wrong because transforming changes EVERY element's value while keeping all rows — here values never changed. C misreads combining, which collapses or aggregates data into a result like a total or a maximum, not a subset. D misuses visualizing, which means a chart, graph, or other visual representation — a smaller table is not one."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "Per EK DAT-2.D.4, data filtering systems are important tools because they help users:",
+        "options": [
+          "Store larger data sets by permanently deleting rows nobody has asked about yet",
+          "Convert analog measurements into digital records automatically",
+          "Find information and recognize patterns in data",
+          "Guarantee that a data set contains no biased or invalid records"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-2.D.4",
+        "rationale": "EK DAT-2.D.4 states that data filtering systems are important tools for finding information and recognizing patterns in data. A is wrong because filtering displays a matching subset; it is not a storage strategy and does not permanently delete the rest. B confuses filtering with sampling, the analog-to-digital bridge from Topic 2.1. D overpromises — bias comes from the type and source of data collected (Topic 2.3), and no filter can certify a data set bias-free."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A teacher's program adds a parent's email address to every student record in the gradebook. Per EK DAT-2.D.6, this is best described as:",
+        "options": [
+          "Transforming every element of the data set, since each record is changed in the same way",
+          "Filtering the data set, since parent emails determine which records are kept",
+          "Comparing data, since student records are checked against parent contact records",
+          "Searching the data set, since the program had to locate every student record"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-2.D.6",
+        "rationale": "Adding a parent's email to every student record is the verbatim example EK DAT-2.D.6 gives for transforming every element: all rows remain, and each one is modified the same way. B fails the filtering signature — no condition was tested and no rows were dropped. C is wrong because comparing produces a result such as a maximum or a match report; nothing here was reduced to an answer. D confuses modification with lookup — search tools find records efficiently (EK DAT-2.D.3), they do not change them."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "Per EK DAT-2.D.6, which of the following are processes that can be used to extract or modify information from a data set? I. Keeping only the positive numbers from a list. II. Finding the student who has the highest GPA. III. Presenting the data set as a chart or graph.",
+        "options": [
+          "I only",
+          "I and II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-2.D.6",
+        "rationale": "All three are named processes in EK DAT-2.D.6, each with these exact examples: I is filtering (keeping only the positive numbers from a list), II is combining/comparing (finding the student with the highest GPA), and III is visualizing (a chart, graph, or other visual representation). A and B reflect the misconception that only operations that shrink the table 'extract' information. C wrongly excludes filtering, which the EK lists explicitly."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An analyst charts a city's bike-share data and finds rides peak at 5 p.m. Her supervisor asks, 'Is that true in winter?' — so she filters to December–February and runs the analysis again, which raises a new question about weekends. Per EK DAT-2.E.1, this workflow shows that:",
+        "options": [
+          "Programs are used in an iterative and interactive way when processing information to gain insight",
+          "The first analysis was invalid because the data should have been filtered before any chart was made",
+          "The bike-share data set was too small for a program to extract reliable information from it",
+          "A program must be rewritten from scratch each time a user asks a new question about the data"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-2.E.1",
+        "rationale": "EK DAT-2.E.1 says programs are used in an iterative and interactive way when processing information to allow users to gain insight — each answer provokes a sharper question and another pass, exactly this workflow. B is wrong because the first pass was a legitimate step whose result PROMPTED the refinement; nothing about it was invalid. C invents a data-size problem the scenario never suggests. D contradicts 'interactive' — the same program is re-run with new settings, not rebuilt for every question."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A survey data set contains duplicated submissions, and one city appears as 'NYC,' 'nyc,' and 'New York City.' Before analyzing, a programmer removes the duplicates and standardizes the names. Per EK DAT-2.E.2, the programmer is:",
+        "options": [
+          "Visualizing the data so that invalid records are easier for readers to spot",
+          "Classifying the data by assigning every survey response to a named category",
+          "Combining data sources so the three different city spellings merge into one record",
+          "Filtering and cleaning the digital data, which is itself a way of gaining insight and knowledge"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-2.E.2",
+        "rationale": "EK DAT-2.E.2 states that programmers can use programs to filter and clean digital data, thereby gaining insight and knowledge — removing duplicates and standardizing inconsistent values is the canonical cleaning move. A is wrong because no chart or graph was produced. B misuses classifying, which assigns records to categories rather than repairing inconsistencies. C misuses combining data sources, which merges different data SETS — three spellings inside one data set are a cleaning problem, not a second source."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "To study attendance dips, a district merges its attendance records with a public weather data set, then groups school days into similar-weather clusters to compare absence rates. Per EK DAT-2.E.3, these steps are best described as:",
+        "options": [
+          "Search tools locating information efficiently within a single database",
+          "Round-off errors introduced by storing two data sets inside one file",
+          "Combining data sources and clustering data — parts of using programs to gain insight",
+          "Transforming every element, since both data sets end up stored in a different format"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-2.E.3",
+        "rationale": "EK DAT-2.E.3 names combining data sources, clustering data, and classifying data as parts of the process of using programs to gain insight and knowledge — merging attendance with weather is combining sources, and grouping similar-weather days is clustering. A is wrong because nothing here is a lookup, and two sources are involved. B drags in round-off error from Topic 2.1, a floating-point storage issue irrelevant to merging. D fails the transforming signature: merging and grouping do not modify every element's value."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A log of 100,000 raw purchase timestamps looks patternless. A program translates each timestamp into a day of the week, totals purchases per day, and a strong Saturday spike becomes obvious. Per EK DAT-2.E.5, the best conclusion is:",
+        "options": [
+          "The program created the Saturday pattern by changing what the customers actually bought",
+          "Patterns can emerge when data are transformed using programs — the spike was in the data, and the transformation made it visible",
+          "The raw timestamps must have been corrupted, since correct data would show its patterns immediately",
+          "The total number of purchases changed when the timestamps were translated into days"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-2.E.5",
+        "rationale": "EK DAT-2.E.5 states that patterns can emerge when data are transformed using programs: translating timestamps to days and totaling per day changed the representation, which made an existing pattern visible. A is wrong because transformation changes how data are represented, never the underlying events. C reflects the misconception that honest data displays its patterns raw — hidden structure is normal, not corruption. D is false: totaling reorganizes the same purchases; the count of purchases is unchanged."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 2.4 — Using Programs with Data — Teacher Guide",
+    "subtitle": "Big Idea 2: Data · Topic 2.4 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 2.4 closes the instruction in Big Idea 2 by answering the question Topic 2.3 raises: how does anyone actually get information OUT of data at real-world scale? Day 1 establishes that programs — not people reading — process data to acquire information, tours the CED's named tool families (search tools, filtering systems, spreadsheets), and drills the four extraction processes of EK DAT-2.D.6: transforming every element, filtering, combining/comparing, and visualizing. Day 2 is deliberately an application day: students trace one messy dataset through a full spreadsheet-style insight pipeline — clean, combine sources, filter, classify, visualize — and see that insight-seeking is iterative and interactive, with patterns emerging only under transformation (LO DAT-2.E).",
+      "The through-line is a class playlist log: trivially readable at 3 rows, impossible at 2 million, cleaned and merged on Day 2 until a weekend pattern nobody could see in the raw rows appears. This topic feeds directly into the BI2 Data Project (2 days, per the course pacing guides), where students run the same pipeline on a real dataset of their own and present a claim plus its limits."
+    ],
+    "los": [
+      "LO DAT-2.D — Extract information from data using a program.",
+      "LO DAT-2.E — Explain how programs can be used to gain insight and knowledge from data."
+    ],
+    "eks": [
+      "EK DAT-2.D.1 — Programs can be used to process data to acquire information.",
+      "EK DAT-2.D.2 — Tables, diagrams, text, and other visual tools can be used to communicate insight and knowledge gained from data.",
+      "EK DAT-2.D.3 — Search tools are useful for efficiently finding information.",
+      "EK DAT-2.D.4 — Data filtering systems are important tools for finding information and recognizing patterns in data.",
+      "EK DAT-2.D.5 — Programs such as spreadsheets help efficiently organize and find trends in information.",
+      "EK DAT-2.D.6 — Some processes that can be used to extract or modify information from data include the following: • transforming every element of a data set, such as doubling every element in a list, or adding a parent's email to every student record • filtering a data set, such as keeping only the positive numbers from a list, or keeping only students who signed up for band from a record of all the students • combining or comparing data in some way, such as adding up a list of numbers, or finding the student who has the highest GPA • visualizing a data set through a chart, graph, or other visual representation",
+      "EK DAT-2.E.1 — Programs are used in an iterative and interactive way when processing information to allow users to gain insight and knowledge about data.",
+      "EK DAT-2.E.2 — Programmers can use programs to filter and clean digital data, thereby gaining insight and knowledge.",
+      "EK DAT-2.E.3 — Combining data sources, clustering data, and classifying data are parts of the process of using programs to gain insight and knowledge from data.",
+      "EK DAT-2.E.4 — Insight and knowledge can be obtained from translating and transforming digitally represented information.",
+      "EK DAT-2.E.5 — Patterns can emerge when data are transformed using programs."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies), Days 1–2.",
+      "Printed Topic 2.4 quiz (student copies) for the assessment block.",
+      "Optional: a projected spreadsheet with the 5-row playlist log pre-typed, for live filtering/sorting/charting during the worked tables."
+    ],
+    "prereqs": [
+      "Topic 2.3 (Extracting Information from Data): the data-vs-information distinction, correlation vs. causation, and how size and bias limit what data can tell you — 2.4 turns those ideas into program moves.",
+      "Topics 2.1–2.2 supply the substrate: everything being bits (2.1) explains why one program can process any data; compression trade-offs (2.2) preview the idea that representation choices change what you can do with data."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Programs turn data into information; the tool families; the four extraction processes (LO DAT-2.D)",
+        "segments": [
+          {
+            "segment": "QOTD (BI2/T2.4/Q1) + bell ringer (instructions for the 2-million-row playlist question)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "From data to information: vocab, programs process data, search vs. filter vs. spreadsheets (EK DAT-2.D.1–D.5)",
+            "min": 14,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think — pick the tool",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "The four extraction processes + the playlist worked table (EK DAT-2.D.6)",
+            "min": 13,
+            "slides": "10-12"
+          },
+          {
+            "segment": "Misconception (storage is not analysis) + Stop and Think classification drills",
+            "min": 8,
+            "slides": "13-14"
+          },
+          {
+            "segment": "Day close + gym check-in teaser for Day 2",
+            "min": 3,
+            "slides": "15"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Application day: the iterative insight pipeline traced end to end on one dataset (LO DAT-2.E)",
+        "segments": [
+          {
+            "segment": "QOTD (BI2/T2.4/Q2) + bell ringer (the gym manager's follow-up question)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Insight is iterative: vocab, one pass is never enough, misconception (EK DAT-2.E.1–E.2)",
+            "min": 12,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think — iterate the question",
+            "min": 5,
+            "slides": "9"
+          },
+          {
+            "segment": "The pipeline worked end to end: clean → combine → filter → classify → visualize (EK DAT-2.E.3–E.5)",
+            "min": 14,
+            "slides": "10-12"
+          },
+          {
+            "segment": "Deep dive: the spreadsheet formula view (optional enrichment)",
+            "min": 5,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think — redesign the pipeline",
+            "min": 6,
+            "slides": "14"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "15-16"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 2.4 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The BI2 Data Project (2 days) follows this topic.",
+        "segments": [
+          {
+            "segment": "Topic 2.4 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Programs just store data”",
+        "myth": "To actually find information, a person eventually has to read through the data themselves — the computer only holds it.",
+        "reality": "Programs PROCESS data to acquire information (EK DAT-2.D.1). At real scale, program processing is the only method that exists: nobody reads 2 million rows, yet search tools, filters, and spreadsheets answer questions about them in milliseconds. Storage without processing is a filing cabinet."
+      },
+      {
+        "heading": "“Filtering and transforming are the same move”",
+        "myth": "Both 'change the table,' so exam options describing them are interchangeable.",
+        "reality": "They have opposite signatures. Transforming changes EVERY element's value and keeps every row (add a parent's email to every record); filtering drops rows by a condition and leaves surviving values untouched (keep only band students). Teach the row-count check: values changed in place vs. rows removed — exam distractors swap the two labels."
+      },
+      {
+        "heading": "“One pass through the data gives the insight”",
+        "myth": "Run the program once, produce the chart, and the analysis is complete.",
+        "reality": "Per EK DAT-2.E.1, programs are used in an iterative and interactive way: each answer raises a sharper question that sends the user back through the data with new filters, groupings, or transformations. The Day 2 pipeline dramatizes this — the first chart triggers the second question."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a four-process decision card: 'Did values change in place (transform)? Did rows drop out (filter)? Did many rows collapse to one answer (combine/compare)? Did the data become a picture (visualize)?' Have them run the card on every example before naming the process.",
+        "For the Day 2 pipeline, provide the five step names on cards to physically order before writing — the pipeline order (clean → combine → filter → classify → visualize) is the hard part, not the vocabulary."
+      ],
+      "extension": [
+        "Have students build the Day 2 pipeline in a real spreadsheet on the playlist data: PROPER/TRIM to clean, a merge of two sheets, a filter, SUMIF totals, and an inserted chart — then screenshot each pass for the BI2 Data Project warm-up.",
+        "Challenge deep-dive students to design 'pass 3': after the weekend pattern appears, what classification (weekday/weekend, month, artist tenure) would confirm or complicate it, and what could the chart still not prove (correlation vs. causation, from Topic 2.3)?"
+      ]
+    },
+    "discussion": [
+      "Every app you use — music, maps, shopping — quietly runs the four extraction processes on data about you. Which of the four moves does a recommendation feed lean on hardest, and what would you lose if it stopped?",
+      "A filter shows you less so you can see more. When does filtering cross from revealing a pattern to hiding the rows someone doesn't want examined — and who should get to inspect the filter?",
+      "The CED says patterns 'emerge' when data are transformed. Is the pattern discovered or manufactured? Defend your answer with the Saturday-spike example: the spike was always in the timestamps, but no one could see it."
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}
