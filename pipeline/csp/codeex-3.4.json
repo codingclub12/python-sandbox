@@ -1,0 +1,65 @@
+{
+  "meta": { "topic": "3.4", "title": "Strings", "unit": "Big Idea 3: Algorithms and Programming" },
+  "problems": [
+    {
+      "prompt": "Given name = \"Computer\", print the first 4 characters followed by the last 4 characters, separated by a space.",
+      "promptHtml": "Given <code>name = \"Computer\"</code>, print the first 4 characters followed by the last 4 characters, separated by a space.",
+      "expected": "Comp uter",
+      "starter": {
+        "python": "name = \"Computer\"\n# print the first 4 characters, a space, then the last 4\n",
+        "javascript": "let name = \"Computer\";\n// print the first 4 characters, a space, then the last 4\n"
+      },
+      "reference": {
+        "pseudocode": "DISPLAY(SUBSTRING(name,1,4) + \" \" + SUBSTRING(name,5,8))\n(illustrative; the exam treats substrings conceptually)",
+        "python": "print(name[0:4] + \" \" + name[4:8])",
+        "javascript": "console.log(name.slice(0,4) + \" \" + name.slice(4,8));"
+      },
+      "hint": "name[0:4] = 'Comp', name[4:8] = 'uter'. Concatenate them with a space in the middle."
+    },
+    {
+      "prompt": "Build the string \"AP: 5\" from course = \"AP\" and score = 5.",
+      "promptHtml": "Build the string <code>AP: 5</code> from <code>course = \"AP\"</code> and <code>score = 5</code>.",
+      "expected": "AP: 5",
+      "starter": {
+        "python": "course = \"AP\"\nscore = 5\n# print them as \"AP: 5\"\n",
+        "javascript": "let course = \"AP\";\nlet score = 5;\n// print them as \"AP: 5\"\n"
+      },
+      "reference": {
+        "pseudocode": "DISPLAY(course + \": \" + score)",
+        "python": "print(course + \": \" + str(score))",
+        "javascript": "console.log(course + \": \" + score);"
+      },
+      "hint": "In Python, str(score) converts the integer to a string before you can join it with +."
+    },
+    {
+      "prompt": "Print the number of vowels (a, e, i, o, u) in \"programming\".",
+      "promptHtml": "Print the number of vowels (a, e, i, o, u) in <code>\"programming\"</code>.",
+      "expected": "3",
+      "starter": {
+        "python": "word = \"programming\"\n# count and print how many vowels it has\n",
+        "javascript": "let word = \"programming\";\n// count and print how many vowels it has\n"
+      },
+      "reference": {
+        "pseudocode": "count <- 0\nFOR EACH ch IN word\n{\n  IF(ch is a vowel) { count <- count + 1 }\n}\nDISPLAY(count)",
+        "python": "word = \"programming\"\ncount = 0\nfor ch in word:\n    if ch in \"aeiou\":\n        count += 1\nprint(count)",
+        "javascript": "let word = \"programming\", count = 0;\nfor (const ch of word) { if (\"aeiou\".includes(ch)) count++; }\nconsole.log(count);"
+      },
+      "hint": "Loop over each character; check whether \"aeiou\" contains it, and add 1 when it does."
+    },
+    {
+      "prompt": "Spot the error: this should print the 3rd character of \"science\" (which is 'i') but prints the wrong one. Fix it.",
+      "promptHtml": "Spot the error: this should print the <strong>3rd</strong> character of <code>\"science\"</code> (which is <code>i</code>) but prints the wrong one. Fix it.",
+      "expected": "i",
+      "starter": {
+        "python": "s = \"science\"\nprint(s[3])   # BUG: prints the wrong character. Fix it.\n",
+        "javascript": "let s = \"science\";\nconsole.log(s[3]);   // BUG: prints the wrong character. Fix it.\n"
+      },
+      "reference": {
+        "pseudocode": "DISPLAY(s[3])\n(exam lists are 1-indexed, so the 3rd item is index 3)",
+        "python": "s = \"science\"\nprint(s[2])",
+        "javascript": "let s = \"science\";\nconsole.log(s[2]);"
+      },
+      "hint": "In Python and JavaScript, string positions start at 0 — so the 3rd character is index 2, not 3."
+    }
+  ]
+}
