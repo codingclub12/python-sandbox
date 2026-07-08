@@ -195,8 +195,11 @@ function buildTopicNotesPage(dayFiles){
 }
 
 // ---------- main ----------
-const topic = (process.argv[2]||'').trim();
-if (!topic){ console.error('Usage: node emit_web.js <topicId e.g. 2.1>'); process.exit(1); }
+const argv = process.argv.slice(2);
+const topic = (argv.find(a=>!a.startsWith('--'))||'').trim();
+const tmplArg = argv.find(a=>a.startsWith('--template='));
+const templateSuffix = tmplArg ? tmplArg.split('=')[1] : '';
+if (!topic){ console.error('Usage: node emit_web.js <topicId e.g. 2.1> [--template=<locked-page-template-suffix>]'); process.exit(1); }
 const dayFiles = fs.readdirSync(DIR).filter(f=>new RegExp('^lesson-'+topic.replace('.','\\.')+'-day\\d+\\.json$').test(f));
 if (!dayFiles.length){ console.error('no day files for topic '+topic); process.exit(1); }
 
@@ -209,16 +212,20 @@ fs.writeFileSync(path.join(OUT, handle + '.html'), html, 'utf8');
 const cell = v=>'"'+String(v).replace(/"/g,'""')+'"';
 const title = `AP CSP Topic ${meta.lessonId} Guided Notes - ${meta.lessonTitle}`;
 const csvPath = path.join(OUT,'pages.csv');
+// ACCESS CONTROL: these notes are paid product. The row ships Published=false
+// and a Template Suffix (gated page template) so a raw Matrixify import is
+// never world-readable. Verify the store's access gate before publishing.
+const HEADERS = ['Handle','Title','Body HTML','Template Suffix','Published','Command'];
 let csv;
 if (fs.existsSync(csvPath)){
   csv = fs.readFileSync(csvPath,'utf8');
   const re = new RegExp('^"'+handle+'".*\r?\n','m');
   if (re.test(csv)) csv = csv.replace(re,'');   // idempotent re-runs
 } else {
-  csv = '﻿' + ['Handle','Title','Body HTML','Command'].map(cell).join(',') + '\r\n';
+  csv = '﻿' + HEADERS.map(cell).join(',') + '\r\n';
 }
 if (!html.trim()) throw new Error('empty body');
-csv += [handle,title,html,'MERGE'].map(cell).join(',') + '\r\n';
+csv += [handle,title,html,templateSuffix,'false','MERGE'].map(cell).join(',') + '\r\n';
 fs.writeFileSync(csvPath, csv, 'utf8');
 
 // self-check: pure ASCII, no EK codes leaked, no answers from capture
@@ -226,4 +233,6 @@ const bad = html.match(/[^\x00-\x7F]/);
 const ek = html.match(/\bEK\s+(?:CRD|DAT|AAP|CSN|IOC)-/);
 console.log(`emitted ${handle}.html (${Math.round(html.length/1024)}kb) + pages.csv row`);
 console.log(`  ascii-clean: ${!bad}  ek-stripped: ${!ek}`);
+console.log(`  gating: Published=false, Template Suffix=${templateSuffix ? JSON.stringify(templateSuffix) : '(none set -- pass --template=<suffix> for your locked page template)'}`);
+console.log('  IMPORTANT: paid content -- verify the access gate before publishing.');
 if (bad || ek) process.exit(1);
