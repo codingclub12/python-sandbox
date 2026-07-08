@@ -1,0 +1,374 @@
+{
+  "meta": {
+    "lessonId": "5.6",
+    "lessonTitle": "Safe Computing",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 5: Impact of Computing",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO IOC-2.B, IOC-2.C",
+    "anchor": "Safe Computing",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 5 · Topic 5.6 · Day 2 of 2",
+      "title": "Locks, Layers, and Lures",
+      "subtitle": "Passwords, factors, and encryption meet phishing, keyloggers, and rogue hotspots — how systems are protected, and how they fall",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Safe Computing. Yesterday the stranger only watched — recording, aggregating, building the dossier. Today the stranger acts, and so do we. The first half is LO IOC-2.B, the defense kit: authentication factors, two approaches to encryption, certificates, scanning software, updates, and permissions. The second half is LO IOC-2.C, the attacker's playbook: phishing, keylogging, rogue access points, disguised links, and poisoned downloads. We close the whole topic with the Common AP Traps and the exit check — this pair of LOs is heavily represented on the exam."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how computing resources are protected: authentication factors, encryption, certificates, scanning, updates, permissions (LO IOC-2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how unauthorized access is gained: phishing, keylogging, rogue access points, malicious links and downloads (LO IOC-2.C)"
+        }
+      ],
+      "script": "Two targets, one per learning objective, and they are mirror images. IOC-2.B is the protection side — how authentication measures, encryption, certificate authorities, scanning software, updates, and permission settings each add a layer of defense. IOC-2.C is the access side — how attackers get in anyway, almost always by tricking the person instead of breaking the math. The skill the exam wants is matching: given a scenario, name the attack, and name the layer that would have stopped it."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's stranger has your dossier — and ONE email to trick you into handing over your password. Write that email: subject line plus two sentences.",
+      "subprompt": "Then switch sides: write the single rule that would have protected you from the exact email you just wrote.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, and this one has teeth. Yesterday's teaser becomes the task: armed with your dossier, the stranger sends exactly one email designed to make you type your password somewhere. Write it — subject line, two sentences. Notice what your own brain reaches for: your team, your school portal, a package, urgency, fear. Then flip: write the one rule that beats the email you just wrote. A few students will be asked to read theirs aloud, and the class names the tricks. You have just invented phishing — and the defense half of your page is where today's second half lives."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Protecting Computing Resources",
+          "description": "Authentication factors, strong passwords, encryption two ways, certificates, scanning, updates, permissions (EK IOC-2.B.1–B.11)."
+        },
+        {
+          "title": "How Unauthorized Access Happens",
+          "description": "Phishing, keylogging, interception, rogue access points, disguised links, risky downloads (EK IOC-2.C.1–C.7)."
+        },
+        {
+          "title": "Deep Dive: Inside HTTPS",
+          "description": "How one padlock combines both encryption approaches and a certificate authority.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 5.6 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two green and CB-required — protecting computing resources, then how unauthorized access happens. The blue deep dive shows how HTTPS quietly combines both encryption approaches and a certificate authority every time a padlock appears in the address bar. Keep the packet open; the digital copy lives on the Topic 5.6 Guided Notes page for anyone who falls behind."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Protecting Computing Resources",
+      "kicker": "Authentication and Encryption · Learning Objective IOC-2.B",
+      "script": "Section one: the defense kit. The College Board organizes protection in layers — proving who you are, scrambling what you send, trusting who you talk to, and maintaining the system underneath. Every layer in this section shows up as its own exam item, so we name each one precisely."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary — Protection (LO IOC-2.B)",
+      "terms": [
+        {
+          "term": "Multifactor authentication",
+          "definition": "Access control granting entry only after several separate pieces of evidence, typically from at least two categories: knowledge, possession, and inherence (EK IOC-2.B.3)."
+        },
+        {
+          "term": "Encryption",
+          "definition": "The process of encoding data to prevent unauthorized access; decryption is decoding it. Two common approaches: symmetric key and public key (EK IOC-2.B.5)."
+        }
+      ],
+      "script": "Two definitions to write precisely. Multifactor authentication is a method of computer access control in which a user is granted access only after presenting several separate pieces of evidence — typically from at least two of three categories the CED names, which we unpack on the next slide. Encryption is the process of encoding data to prevent unauthorized access, and decryption is decoding it; the CED names two approaches, symmetric key and public key, and the difference between them is a guaranteed exam target. Definitions go in the packet now — the next two slides make both of them concrete."
+    },
+    {
+      "type": "concept",
+      "heading": "Three Kinds of Proof",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Authentication measures protect devices and information from unauthorized access — the CED's named examples are strong passwords and multifactor authentication (EK IOC-2.B.1).",
+        "A strong password is easy for its user to remember but hard for someone else to guess based on knowledge of that user (EK IOC-2.B.2).",
+        "The three factor categories: knowledge (something they know), possession (something they have), inherence (something they are) (EK IOC-2.B.3).",
+        "Multifactor authentication requires at least two steps to unlock protected information; each step adds a new layer of security that must be broken (EK IOC-2.B.4)."
+      ],
+      "capture": [
+        {
+          "q": "A fingerprint is a different factor from a password: it proves ______.",
+          "a": "what your body is rather than what you remember"
+        },
+        {
+          "q": "Passwords built from a pet's name or a birthday are weak, since ______.",
+          "a": "anyone who researches the owner can work them out"
+        },
+        {
+          "q": "A second factor matters even after a password is stolen: the thief still faces ______.",
+          "a": "one more independent barrier before getting in"
+        }
+      ],
+      "script": "The authentication ladder, straight from the CED. Authentication measures protect devices and information, and the named examples are strong passwords and multifactor authentication. A strong password has a precise definition — easy for the USER to remember, hard for someone ELSE to guess from what they know about that user — which is why the dog's name fails; yesterday's dossier probably contains the dog. Then the three categories: knowledge, something they know; possession, something they have; inherence, something they are. Multifactor means at least two steps, and the CED's logic is layering — each step is a separate wall the attacker must break. Two of the SAME category is not multifactor, and that distinction is a favorite exam trap."
+    },
+    {
+      "type": "misconception",
+      "heading": "“A Strong Password Is Enough”",
+      "misconception": "If your password is long, random, and unique, your account is safe — extra login steps are just inconvenience theater.",
+      "whyItHappens": "Password advice dominates security talk, so the password feels like the whole defense instead of a single layer of it.",
+      "correction": "A password is ONE piece of evidence from ONE category — knowledge. Multifactor authentication requires evidence from at least two different categories (knowledge, possession, inherence), and each added step is a fresh layer an attacker must separately break (EK IOC-2.B.3–B.4).",
+      "example": "A phishing page captures a student's perfect 16-character password. With multifactor enabled, the thief still fails the login — they don't hold the student's phone, and they aren't the student's fingerprint.",
+      "script": "Here is the myth today's bell ringer already cracked. However strong a password is, a phishing page captures it in one keystroke of cooperation — strength does nothing when the owner types it into the wrong box. The CED's answer is layering: multifactor authentication demands evidence from at least two different categories, so the stolen password is only one of the walls. The example makes it land: perfect password, phished anyway, login still fails — the attacker has the knowledge factor but not the possession or inherence one. Students explain in the packet why the myth fails; the word to listen for is layers."
+    },
+    {
+      "type": "two_column",
+      "heading": "Two Ways to Lock Data",
+      "subheading": "Both encode data against unauthorized access; they differ in how the keys work (EK IOC-2.B.5).",
+      "left": {
+        "title": "Symmetric key",
+        "definition": "ONE key does both jobs: encrypting and decrypting",
+        "ek": "EK IOC-2.B.5",
+        "examples": [
+          "Sender and receiver must both hold the same secret key",
+          "Challenge: sharing that key without an eavesdropper capturing it",
+          "Like a single physical key that both locks and unlocks one door"
+        ]
+      },
+      "right": {
+        "title": "Public key",
+        "definition": "A key PAIR: public key encrypts, private key decrypts",
+        "ek": "EK IOC-2.B.5",
+        "examples": [
+          "Anyone can use your public key to send you an encrypted message",
+          "The sender does NOT need the receiver's private key to encrypt",
+          "Only the receiver's private key can decrypt — it never leaves them"
+        ]
+      },
+      "footer": "AP TIP: The math is officially EXCLUDED from the exam (EK IOC-2.B.5). Questions test who needs which key — not how the scrambling works.",
+      "capture": [
+        {
+          "q": "Symmetric encryption's classic weakness is ______.",
+          "a": "delivering the shared secret to the other side safely"
+        },
+        {
+          "q": "To send an encrypted message with public key encryption, you need ______.",
+          "a": "just the recipient's openly published key, nothing secret"
+        },
+        {
+          "q": "Only the intended receiver can read a public-key message, thanks to ______.",
+          "a": "a decryption key that stays in their hands alone"
+        }
+      ],
+      "script": "Two approaches, one purpose. Symmetric key encryption uses one key for both encryption and decryption — simple and fast, but both sides must hold the same secret, and sharing that secret across an open network is exactly the problem encryption was supposed to solve. Public key encryption breaks the deadlock with a pair: a public key that encrypts, spread freely, and a private key that decrypts, never shared. The CED spells out the sentence the exam loves to test: the sender does NOT need the receiver's private key to encrypt, but the receiver's private key IS required to decrypt. And note the exclusion — no math will ever be asked; every encryption item is really a who-holds-which-key item."
+    },
+    {
+      "type": "concept",
+      "heading": "The Rest of the Defense Kit",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Certificate authorities issue digital certificates that validate the ownership of encryption keys used in secure communications — a trust model (EK IOC-2.B.6).",
+        "Virus and malware scanning software helps protect a computing system against infection (EK IOC-2.B.7).",
+        "A virus is a malicious program that copies itself, often attaching to legitimate programs; malware is software intended to damage a system or take partial control (EK IOC-2.B.8–B.9).",
+        "All real-world systems have exploitable errors or design flaws — regular software updates fix errors that could compromise the system (EK IOC-2.B.10).",
+        "Users control the permissions programs have for collecting information; review permission settings to protect privacy (EK IOC-2.B.11)."
+      ],
+      "capture": [
+        {
+          "q": "You can trust a site's padlock ultimately since ______.",
+          "a": "a signed certificate vouches for who owns the keys"
+        },
+        {
+          "q": "Updates are a security tool: each patch ______.",
+          "a": "closes a flaw an attacker could otherwise use to break in"
+        },
+        {
+          "q": "Before granting an app access, check ______.",
+          "a": "what the program is permitted to collect about you"
+        }
+      ],
+      "script": "Five more layers, rapid fire. Certificate authorities issue digital certificates that validate who owns the encryption keys in a secure conversation — a trust model, which is why your browser trusts a padlock it has never met. Scanning software protects against infection by the two named threats: a virus, a malicious program that copies itself and often rides inside legitimate programs, and malware, the umbrella term for software built to damage a system or seize partial control. Updates are the least glamorous and most tested layer — every real-world system has exploitable flaws, and patches close the known ones, which is why postponing updates is a standing invitation. Finally, permissions: users control what programs may collect, and the CED explicitly says to review those settings."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Layer the Defense",
+      "subheading": "These map to LO IOC-2.B. Complete on your Guided Notes.",
+      "prompts": [
+        "A bank login asks for a password, then a code texted to your phone. Name each factor's category and explain what the second step adds (EK IOC-2.B.3–B.4).",
+        "Aisha wants to send Ben a message only Ben can read, using public key encryption. Whose key does she encrypt with, and why doesn't she need Ben's private key (EK IOC-2.B.5)?",
+        "Your laptop has nagged about a security update for two weeks. Using EK IOC-2.B.10, explain what stays open until you click install."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 5.6 page.",
+      "script": "Five minutes, three diagnostics on the defense kit. One: password plus texted code — knowledge plus possession, and the second step means a phished password alone no longer opens the account; the answer should name both categories. Two: Aisha encrypts with BEN'S PUBLIC key, and she never needs his private one — encryption and decryption use different halves of the pair; watch for students who reach for Aisha's own keys. Three: the postponed update leaves known, exploitable flaws open — the patch exists precisely because a compromising error was found. Answers are compared with a neighbor before the class review."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "How Unauthorized Access Happens",
+      "kicker": "The Attacker's Playbook · Learning Objective IOC-2.C",
+      "script": "Section two: the other side of the chessboard. Notice as we go that almost nothing in this section attacks the mathematics — every technique attacks a human habit: trust, hurry, curiosity, or the love of free things. That observation is not a moral; it is the pattern that makes exam scenarios easy to diagnose."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary — Attacks (LO IOC-2.C)",
+      "terms": [
+        {
+          "term": "Phishing",
+          "definition": "A technique that attempts to trick a user into providing personal information, which can then be used to access sensitive online resources like bank accounts and emails (EK IOC-2.C.1)."
+        },
+        {
+          "term": "Keylogging",
+          "definition": "The use of a program to record every keystroke made by a computer user, in order to gain fraudulent access to passwords and other confidential information (EK IOC-2.C.2)."
+        }
+      ],
+      "script": "Two attack terms, defined precisely because the exam separates them. Phishing tricks the user into PROVIDING personal information — the victim types credentials into a fake resource, voluntarily; your bell-ringer email was a phishing lure. Keylogging plants a PROGRAM that records every keystroke, harvesting passwords and confidential information without any cooperation beyond the initial infection. The distinction to hold onto: phishing exploits a decision, keylogging exploits a machine. Scenario questions hinge on which one happened — who did the capturing, a fake page or an installed program."
+    },
+    {
+      "type": "concept",
+      "heading": "Ways In Without a Password",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Data sent over public networks can be intercepted, analyzed, and modified in transit (EK IOC-2.C.3).",
+        "A rogue access point is a wireless access point that gives unauthorized access to secure networks — one way interception happens (EK IOC-2.C.3–C.4).",
+        "A malicious link can be disguised on a web page or in an email message (EK IOC-2.C.5).",
+        "Unsolicited emails, attachments, links, and forms can compromise a system — from unknown senders OR known senders whose security has been compromised (EK IOC-2.C.6).",
+        "Untrustworthy downloads — often free, from freeware or shareware sites — can contain malware (EK IOC-2.C.7)."
+      ],
+      "capture": [
+        {
+          "q": "Traffic on an open network risks being ______.",
+          "a": "read, studied, and even altered on its way through"
+        },
+        {
+          "q": "An attachment from a friend can still be dangerous when ______.",
+          "a": "the friend's own account has already been taken over"
+        },
+        {
+          "q": "'Free' software carries a hidden price when shareware sites ______.",
+          "a": "bundle hostile code inside the download itself"
+        }
+      ],
+      "script": "The rest of the playbook, and each line is its own EK. Data on public networks can be intercepted, analyzed, and modified — and the CED's named mechanism is the rogue access point, a wireless access point that grants unauthorized access to secure networks; the fake coffee-shop hotspot is the classic case. Malicious links hide in plain sight on web pages and in email. Unsolicited emails, attachments, links, and forms compromise systems — and the CED is explicit that these can come from KNOWN senders whose security has been compromised, so 'it's from my friend' proves nothing. And free downloads from freeware and shareware sites can carry malware in the box. Every one of these has a defense from section one; the worked table next makes the pairing explicit."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Attack Triage: Name It, Block It",
+      "context": "Five incidents. Fill in the attack's CED name and the defense layer that blocks it (LO IOC-2.B, IOC-2.C).",
+      "columns": [
+        "Incident",
+        "Attack (CED name)",
+        "Defense that blocks it"
+      ],
+      "rows": [
+        [
+          "'Account locked!' email links to a look-alike login page",
+          "Phishing via a disguised link (EK IOC-2.C.1, C.5)",
+          "Never log in from email links — go to the real site yourself"
+        ],
+        [
+          "After a free 'game booster' install, saved passwords leak one by one",
+          "Keylogging malware from freeware (EK IOC-2.C.2, C.7)",
+          "Malware scanning software; download only from trusted sources"
+        ],
+        [
+          "A second 'Free_Cafe_WiFi' network appears; traffic is being read",
+          "Rogue access point interception (EK IOC-2.C.3–C.4)",
+          "No sensitive logins on public networks; encrypted connections only"
+        ],
+        [
+          "A teammate's hacked account emails you an 'invoice' attachment",
+          "Compromised known sender (EK IOC-2.C.6)",
+          "Confirm by another channel before opening; scan attachments"
+        ],
+        [
+          "A stolen password still fails to open a student's email account",
+          "Attack stopped at the login (EK IOC-2.B.4)",
+          "Multifactor authentication — a second category of evidence required"
+        ]
+      ],
+      "highlightCol": 1,
+      "blanks": [
+        [0, 1],
+        [1, 1],
+        [2, 1],
+        [3, 2],
+        [4, 2]
+      ],
+      "script": "Five incidents, and the two right-hand columns are the exam skill — most of them are yours to fill. The locked-account email is phishing through a disguised link, blocked by refusing to authenticate from email links at all. The free game booster that leaks passwords is keylogging malware from a freeware download — scanning software finds it, trusted sources prevent it. The duplicate cafe network is a rogue access point intercepting traffic, beaten by keeping sensitive logins off public networks. The teammate's invoice is the compromised-known-sender case from C.6 — verify through another channel, since the FROM line proves nothing. And the last row is the good news: a stolen password failing anyway is multifactor authentication doing its job — the second category of evidence held."
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: Inside the Padlock (HTTPS)",
+      "track": "enrichment",
+      "bullets": [
+        "Problem: symmetric encryption is fast but needs a shared secret — and strangers on the open internet have no safe way to whisper one.",
+        "HTTPS solution: the browser encrypts a fresh session key with the site's PUBLIC key; only the site's private key can unwrap it.",
+        "From then on both sides use that symmetric session key — public key for the handshake, symmetric for the conversation.",
+        "A certificate authority signs the site's certificate, so the browser knows the public key really belongs to the site (EK IOC-2.B.6 in action)."
+      ],
+      "capture": [
+        {
+          "q": "HTTPS opens with public key encryption so both sides can ______.",
+          "a": "agree on a fast session secret no eavesdropper learns"
+        },
+        {
+          "q": "The browser believes a public key is genuine when ______.",
+          "a": "an authority the browser already trusts has signed off on it"
+        }
+      ],
+      "script": "A deep dive that snaps the whole section together. Symmetric encryption is fast but has yesterday's problem: how do two strangers share a secret over a wire everyone can tap? HTTPS answers with a relay: the browser invents a fresh session key, encrypts it with the site's public key, and sends it — only the site's private key can unwrap it, so the eavesdropper watching the handshake learns nothing. From that moment the conversation runs on fast symmetric encryption. And the trust question — is this public key really the bank's? — is answered by a certificate authority's signature on the site's certificate. One padlock, both CED encryption approaches, plus B.6's trust model, cooperating in under a second."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Attack Triage",
+      "subheading": "These map to LO IOC-2.C. Complete on your Guided Notes.",
+      "prompts": [
+        "Write two tells that separate a phishing email from a real notice, and name the resource the attacker is actually after (EK IOC-2.C.1, C.5).",
+        "At an airport you see 'Airport_WiFi' and 'Airport_WiFi_FREE.' Explain the risk of choosing wrong and what an attacker could do with your traffic (EK IOC-2.C.3–C.4).",
+        "A pop-up on a free-downloads site says 'Update your video player now.' Predict what EK IOC-2.C.5 and C.7 say happens next — and name two defenses from LO IOC-2.B that would stop it."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 5.6 page.",
+      "script": "Five minutes, three triage calls. One: phishing tells — urgency plus a link that doesn't match the real address are the classic pair, and the attacker is after credentials to sensitive resources like bank accounts and email. Two: the airport twin network — pick the rogue one and your traffic can be intercepted, analyzed, and modified, which includes captured logins. Three: the fake update pop-up chains two EKs — a disguised malicious link delivering a freeware-site malware download — and the blocking defenses include scanning software and updating only through official channels. Strong answers name the EK mechanism, not just 'be careful.'"
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 5.6 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Two passwords ≠ multifactor",
+          "text": "Multifactor means at least two DIFFERENT categories — knowledge, possession, inherence. A password plus a security question is still one category: knowledge twice."
+        },
+        {
+          "name": "Whose key encrypts?",
+          "text": "In public key encryption the sender uses the receiver's PUBLIC key and never needs the private one. Only decryption requires the receiver's private key."
+        },
+        {
+          "name": "One field vs. the dossier",
+          "text": "Privacy-risk answers hinge on AGGREGATION — disparate, individually harmless data combined into knowledge about a person — not on a single leaked field."
+        }
+      ],
+      "script": "One minute, three traps, all of them harvested from real exam distractors. Trap one: multifactor is about different CATEGORIES of evidence — a password plus a security question is knowledge twice, one factor, and the exam will offer it as a wrong answer. Trap two: in public key encryption the sender needs only the receiver's public key; any option that hands the sender a private key is wrong on sight. Trap three: when a question asks where the privacy risk is, look for the aggregation answer — the combination of harmless pieces — rather than the single dramatic leak. Dodge these three and this topic pays for itself in May."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Safe Computing, in One Slide",
+      "points": [
+        "PII identifies, links, relates to, or describes you; searches, page views, and locations are recorded (EK IOC-2.A.1–A.4)",
+        "Aggregated disparate data becomes knowledge about you — and online information is hard to delete (EK IOC-2.A.7, A.13)",
+        "Protection layers: strong passwords + multifactor (two of knowledge / possession / inherence), encryption, certificates (EK IOC-2.B.1–B.6)",
+        "Maintenance is defense: scanning software, regular updates, permission reviews (EK IOC-2.B.7–B.11)",
+        "Attacks target people: phishing, keylogging, rogue access points, disguised links, risky downloads (EK IOC-2.C.1–C.7)"
+      ],
+      "next": "Topic 5.6 closes Big Idea 5. Next: the BI5 review and unit exam — then the full-course spiral review begins.",
+      "ican": [
+        "define PII and describe how everyday activity is recorded and stored (LO IOC-2.A)",
+        "explain how aggregation turns scattered data into privacy risk (LO IOC-2.A)",
+        "match authentication factors and encryption approaches to what they protect (LO IOC-2.B)",
+        "name the attack in a scenario and the defense that blocks it (LO IOC-2.C)"
+      ],
+      "script": "The whole topic in one slide. Your data is recorded as you live; aggregation turns the scatter into a dossier, and deletion rarely deletes. Against that: layered authentication across different factor categories, two approaches to encryption with the who-holds-which-key rule, certificates for trust, and the maintenance trio of scanning, updates, and permissions. Against THAT: attacks that target the person — phishing, keylogging, rogue access points, disguised links, and free downloads with passengers. That closes Big Idea 5; next class opens the unit review, and the topic quiz runs as the opener after that. Before packing up, run the exit check — four I-can statements; any box you can't honestly tick is tonight's review target on the Topic 5.6 page. Guided Notes are collected at the end of class."
+    }
+  ]
+}

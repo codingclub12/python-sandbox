@@ -53,7 +53,10 @@ const TOPIC_TITLES = { '1.1':'Collaboration', '1.2':'Program Function and Purpos
   '2.1':'Binary Numbers', '2.2':'Data Compression',
   '2.3':'Extracting Information from Data', '2.4':'Using Programs with Data',
   '4.1':'The Internet', '4.2':'Fault Tolerance',
-  '4.3':'Parallel and Distributed Computing' }; // extend as topics are authored
+  '4.3':'Parallel and Distributed Computing',
+  '5.1':'Beneficial and Harmful Effects', '5.2':'Digital Divide',
+  '5.3':'Computing Bias', '5.4':'Crowdsourcing',
+  '5.5':'Legal and Ethical Concerns', '5.6':'Safe Computing' }; // extend as topics are authored
 const BI_NAMES = {1:'Big Idea 1: Creative Development',2:'Big Idea 2: Data',
   3:'Big Idea 3: Algorithms and Programming',4:'Big Idea 4: Computer Systems and Networks',
   5:'Big Idea 5: Impact of Computing'};

@@ -57,10 +57,11 @@ BIG IDEA 3 — Algorithms and Programming (34)
   3.18 Undecidable Problems 1
 BIG IDEA 4 — Computer Systems and Networks (4) [RECONCILED: 2+1+1 = 4 — matches]
   4.1 The Internet 2 · 4.2 Fault Tolerance 1 · 4.3 Parallel & Distributed 1
-BIG IDEA 5 — Impact of Computing (7)
+BIG IDEA 5 — Impact of Computing (7) [RECONCILED to actuals: 2+1+1+1+1+2 = 8 —
+  one day over estimate: 5.6's 33 EKs earned a second day, per the governing principle]
   5.1 Beneficial & Harmful Effects 2 · 5.2 Digital Divide 1 ·
   5.3 Computing Bias 1 · 5.4 Crowdsourcing 1 ·
-  5.5 Legal & Ethical Concerns 1 · 5.6 Safe Computing 1
+  5.5 Legal & Ethical Concerns 1 · 5.6 Safe Computing 2
 
 ## Projects & investigations (where they land)
 - **Innovation Investigation #1** (1 day) — end of BI1: pick an innovation,

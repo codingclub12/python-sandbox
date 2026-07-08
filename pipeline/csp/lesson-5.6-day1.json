@@ -1,0 +1,619 @@
+{
+  "meta": {
+    "lessonId": "5.6",
+    "lessonTitle": "Safe Computing",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 5: Impact of Computing",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO IOC-2.A",
+    "anchor": "Safe Computing",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 5 · Topic 5.6 · Day 1 of 2",
+      "title": "The Trail You Can't See",
+      "subtitle": "Every search, tap, and step leaves data behind — what a stranger can assemble from your trail, and why it never fully disappears",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 5.6, Safe Computing — the biggest topic in Big Idea 5, and the one that is personally about every student in the room. We spend two days here. Today, Day 1, is the risk side: what personally identifiable information is, how ordinary activity gets recorded, and how scattered, harmless-looking data gets assembled into knowledge about a person. Tomorrow is the fight: the defenses that protect computing resources and the attacks that get around them. Today's through-line is a stranger with ten minutes and your public profiles — and how much that stranger can build."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Define personally identifiable information (PII) and describe how searches, page visits, and locations are recorded and stored (LO IOC-2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how disparate data can be aggregated into knowledge about a person — and why online information is hard to delete (LO IOC-2.A)"
+        }
+      ],
+      "script": "Both of today's targets come from one learning objective, IOC-2.A: describing the risks to privacy from collecting and storing personal data. First, the raw material: what counts as PII, and the quiet recording of searches, page views, and locations that happens as you simply use your devices. Second, the mechanism that turns raw material into risk: aggregation — combining scattered data into a picture nobody ever posted — plus the hard truth that online information resists deletion. Tomorrow, IOC-2.B and IOC-2.C cover protection and attack."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A total stranger gets 10 minutes with ONLY your public profiles — the bios, posts, tags, and photos anyone on the internet can see.",
+      "subprompt": "List everything they could learn or DEDUCE: school, neighborhood, schedule, friends, habits. Star the deductions — things you never actually posted.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own. Give a stranger nothing but what is already public about you — bios, posts, tags, photos other people took — and list what they could learn. Then push into deductions: things you never typed anywhere, but that follow from combining what is visible. The gym check-ins imply a schedule. The hoodie in a friend's photo implies a school. Star every deduction, and count the stars. By the end of class you will have the College Board's name for how those stars got there — and it is the exact idea privacy questions test."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "The Recorded Life",
+          "description": "PII, search and browsing histories, location trails, and PII's double life (EK IOC-2.A.1–A.6, A.8–A.12, A.14)."
+        },
+        {
+          "title": "Aggregation & Permanence",
+          "description": "How scattered data becomes a dossier, and why deleting rarely deletes (EK IOC-2.A.7, A.11, A.13, A.15)."
+        },
+        {
+          "title": "Deep Dive: Data Brokers",
+          "description": "The industry that buys, assembles, and resells your trail — beyond the AP exam.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 5.6 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes: three sections. Two are green and CB-required — the recorded life, then aggregation and permanence. The third is a blue deep dive on the data-broker industry: not tested, but it shows today's mechanism operating at industrial scale. Keep the packet open and fill as we go; a digital copy lives on the Topic 5.6 Guided Notes page at apcsexamprep.com for anyone absent."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Recorded Life",
+      "kicker": "PII and the Recorded Life · Learning Objective IOC-2.A",
+      "script": "Section one. Before we can talk about privacy risk, we need two ingredients: the vocabulary for what personal data IS, and an honest inventory of how much of it gets recorded during a completely ordinary day. Most students underestimate the second part by an order of magnitude."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO IOC-2.A)",
+      "terms": [
+        {
+          "term": "Personally identifiable information (PII)",
+          "definition": "Information about an individual that identifies, links, relates, or describes them — e.g., Social Security number, age, race, phone number(s), medical, financial, or biometric data (EK IOC-2.A.1)."
+        },
+        {
+          "term": "Aggregation",
+          "definition": "Combining disparate personal data — such as geolocation, cookies, and browsing history — to create knowledge about an individual that no single piece reveals (EK IOC-2.A.7)."
+        }
+      ],
+      "script": "Two terms carry the whole day. PII — personally identifiable information — is any information about an individual that identifies, links, relates, or describes them. Learn the CED's own example list: Social Security number, age, race, phone numbers, medical information, financial information, biometric data. Notice how ordinary some of those are — age and race are PII. Aggregation is the verb of this lesson: combining disparate data like geolocation, cookies, and browsing history to create knowledge about a person. Your starred bell-ringer deductions were aggregation — you just did it by hand."
+    },
+    {
+      "type": "concept",
+      "heading": "Recorded While You Browse",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Search engines can record and keep a history of every search you make (EK IOC-2.A.2) — usable to suggest websites or for targeted marketing (EK IOC-2.A.6).",
+        "Websites can record and keep a history of the individuals who have viewed their pages (EK IOC-2.A.3).",
+        "Devices, websites, and networks can collect your location (EK IOC-2.A.4); programs can record where you went, how you got there, and how long you stayed (EK IOC-2.A.14).",
+        "Technology enables the collection, use, and exploitation of information about, by, and for individuals, groups, and institutions (EK IOC-2.A.5)."
+      ],
+      "script": "Four recording systems, all named by the CED, all running right now. Search engines keep your query history — and put it to work suggesting sites and targeting ads, which is why the shoes you searched once follow you for weeks. Websites keep a history of who viewed their pages, so reading is itself a recorded act. Location is the deepest trail: devices, websites, and networks all collect it, and programs reconstruct not just where you were but your route and how long you stayed — a diary you never wrote. The umbrella statement is A.5: technology enables collection, use, and exploitation of information about, by, and for individuals, groups, and institutions. Exploitation is the CED's word, not ours.",
+      "capture": [
+        {
+          "q": "A search engine can turn your query history into ______.",
+          "a": "site suggestions and advertising aimed specifically at you"
+        },
+        {
+          "q": "Location-aware programs can log not just where you went but ______.",
+          "a": "your route there and the length of every stop"
+        },
+        {
+          "q": "Websites can quietly build a record of ______.",
+          "a": "which visitors have opened each of their pages"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "The Double Life of PII",
+      "subheading": "The same stored data powers convenience and crime — the exam expects you to argue both sides (EK IOC-2.A.8–A.12).",
+      "left": {
+        "title": "PII enhances",
+        "definition": "Stored details tune your experience and speed things up",
+        "ek": "EK IOC-2.A.8–A.9",
+        "examples": [
+          "Information placed online personalizes your experiences (EK IOC-2.A.8)",
+          "Stored PII simplifies making online purchases (EK IOC-2.A.9)",
+          "Search history powers useful suggestions (EK IOC-2.A.6)"
+        ]
+      },
+      "right": {
+        "title": "PII endangers",
+        "definition": "The same details can be turned against their owner",
+        "ek": "EK IOC-2.A.10–A.12",
+        "examples": [
+          "Stalking, identity theft, planning of other criminal acts (EK IOC-2.A.12)",
+          "Curated commercial or government data can be exploited if protections are ignored (EK IOC-2.A.10)",
+          "Posts forwarded, retweeted, viewed by employers — uses never intended (EK IOC-2.A.11)"
+        ]
+      },
+      "footer": "AP TIP: The exam pairs these — the storage that makes checkout instant is what identity thieves want. Judge the CONTEXT, not the data.",
+      "script": "Here is the tension the College Board builds questions around: the exact same stored PII lives a double life. On the convenience side, information placed online enhances your experiences — feeds tuned to your taste — and stored PII simplifies online purchases; one tap, card and address already on file. On the danger side, the same data can be used to stalk a person, steal their identity, or aid the planning of other criminal acts; curated commercial and governmental information can be exploited when protections are ignored; and information gets used in ways never intended — an email forwarded, a tweet retweeted, a post viewed by a potential employer. Exam answers hinge on context: the data didn't change, the hands holding it did.",
+      "capture": [
+        {
+          "q": "Companies keep PII partly so that shopping feels ______.",
+          "a": "nearly effortless, with card and address already on file"
+        },
+        {
+          "q": "In criminal hands, the identical profile could support ______.",
+          "a": "following someone, impersonating them, or setting up a crime"
+        },
+        {
+          "q": "A post meant for friends can still reach ______.",
+          "a": "a future boss, long after, through shares and reposts"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — The Recorded Life",
+      "subheading": "These map to LO IOC-2.A. Complete on your Guided Notes.",
+      "prompts": [
+        "Name three systems that recorded data about you before school today, and state exactly what each one stored.",
+        "A friend says: 'I never post my address, so nobody online knows where I live.' Use location collection (EK IOC-2.A.4, A.14) to challenge that.",
+        "Give one way stored PII makes your life easier and one way the SAME data could harm you — same data, both directions."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 5.6 page.",
+      "script": "Six minutes, full sentences on the Guided Notes. One: inventory your own morning — three systems that recorded you before first period, and what each stored; phones, apps, and networks all count. Two: the friend who never posts an address — location collection makes the claim false, since devices and programs record where you've been, your routes, and your stop durations, and home is the place every route returns to. Three: the double life in your own words — one benefit and one harm from the SAME stored data. That both-directions move is exactly what LO IOC-2.A free-response style questions reward."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Aggregation and Permanence",
+      "kicker": "From Scattered Data to a Dossier · Learning Objective IOC-2.A",
+      "script": "Section two. Individually, your data points look boring — a jog, a search, a tagged photo. This section is about the two properties that turn boring into dangerous: scattered data can be COMBINED into a dossier, and once information is online, it is remarkably hard to make it go away."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Five Trails, One Dossier",
+      "context": "Each trail looks harmless alone. Fill in what the pieces reveal once they are combined (EK IOC-2.A.7).",
+      "columns": [
+        "Data trail",
+        "What gets collected",
+        "Aggregated, it reveals..."
+      ],
+      "rows": [
+        [
+          "Search engine history",
+          "Every query you have typed (EK IOC-2.A.2)",
+          "Health worries, plans, and interests you never posted"
+        ],
+        [
+          "Websites you visit",
+          "A log of who viewed which pages (EK IOC-2.A.3)",
+          "Your reading habits, politics, and hobbies"
+        ],
+        [
+          "Phone location services",
+          "Where you went, your route, how long you stayed (EK IOC-2.A.14)",
+          "Home address, school, and weekly schedule"
+        ],
+        [
+          "Cookies + browsing history",
+          "Disparate records of activity across many sites (EK IOC-2.A.7)",
+          "One cross-site profile of your behavior"
+        ],
+        [
+          "Social media posts and tags",
+          "What you AND others post about you (EK IOC-2.A.15)",
+          "Private facts deduced by combining posts with other sources"
+        ]
+      ],
+      "highlightCol": 2,
+      "blanks": [
+        [0, 2],
+        [2, 2],
+        [3, 2],
+        [4, 2]
+      ],
+      "script": "Five trails, and the third column is where the lesson lives — that's why most of it is yours to fill in. Search history reveals what you wonder about: health worries, plans, interests that never became posts. Page-view logs reveal reading habits. Location services are the heavyweight: routes that all end at one address publish your home, your school, your weekly rhythm. Cookies and browsing history stitch your behavior across sites into one profile — the CED's own examples of disparate data that aggregates. And social media adds a twist from A.15: information OTHERS post about you combines with other sources to deduce private facts, so your own restraint is not enough. No row is scary alone; the dossier is the sum."
+    },
+    {
+      "type": "misconception",
+      "heading": "“Deleted Means Gone”",
+      "misconception": "If you delete an embarrassing post or photo, it is erased from the internet and can no longer hurt you.",
+      "whyItHappens": "The delete button removes it from YOUR view instantly, so it feels destroyed — the surviving copies live on servers and screens you can't see.",
+      "correction": "Once information is placed online, it is difficult to delete (EK IOC-2.A.13). Copies persist in screenshots, forwards, retweets, backups, and archives — and can resurface in ways never intended, before audiences never chosen, like potential employers (EK IOC-2.A.11).",
+      "example": "A student deletes a party photo within an hour. A classmate's screenshot, a group-chat forward, and a web-archive copy all survive — and one surfaces during a scholarship review three years later.",
+      "script": "This is the misconception with the longest consequences. Deleting feels final because the post vanishes from your own screen — but you only deleted your copy. The CED states it flatly: once information is placed online, it is difficult to delete. Screenshots, forwards, retweets, platform backups, and archive services all hold copies outside your control, and A.11 adds that information gets used in ways never intended, in front of audiences never chosen — the potential-employer example is the College Board's own. Students should explain WHY this is wrong in the packet: the mechanism is copies, and copies don't obey your delete button."
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: The Data Broker Economy",
+      "track": "enrichment",
+      "bullets": [
+        "Data brokers are companies that buy scattered trails — purchases, locations, browsing — and assemble them into individual profiles for sale.",
+        "Buyers include advertisers, insurers, landlords, and political campaigns; scores built from your trail help decide which offers you ever see.",
+        "Brokers rarely need a single 'secret' — their product is pure aggregation, the EK IOC-2.A.7 mechanism operating at industrial scale.",
+        "Some laws (GDPR in Europe, CCPA in California) grant rights to see or delete broker files; enforcement is uneven and re-collection is constant."
+      ],
+      "capture": [
+        {
+          "q": "A data broker's actual product is ______.",
+          "a": "a resold profile stitched together from scattered trails"
+        },
+        {
+          "q": "Aggregated broker scores can quietly shape ______.",
+          "a": "the ads, rates, and offers a person is ever shown"
+        }
+      ],
+      "script": "A deep dive, beyond the exam but squarely on today's mechanism. Data brokers run aggregation as a business: they buy purchase records, location pings, and browsing trails, assemble them into profiles on individual people, and sell access. Advertisers, insurers, landlords, and campaigns buy those profiles, and broker-built scores quietly shape which offers a person is ever shown. Notice what's missing: no hack, no stolen secret — the product is assembly, A.7 at industrial scale. Laws like GDPR and CCPA give some people a right to see or delete their file, but enforcement is patchy and the trails regrow. The AP takeaway stands: aggregation is where privacy risk concentrates."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Build the Dossier",
+      "subheading": "These map to LO IOC-2.A. Complete on your Guided Notes.",
+      "prompts": [
+        "Using the worked table, explain how a stranger could find your school without you ever posting its name (EK IOC-2.A.7, A.15).",
+        "Why does 'I deleted it' fail as a privacy strategy? Cite what happens to online information over time (EK IOC-2.A.13).",
+        "An app's terms say it may share data with 'partners.' Predict one unintended use of that shared data and who might end up seeing it (EK IOC-2.A.11)."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 5.6 page.",
+      "script": "Six minutes, three diagnostics. One: route a stranger to your school using only aggregation — friends' tags, location patterns, a hoodie in a photo; the point is that A.7 plus A.15 gets there without you posting the name once. Two: dismantle 'I deleted it' with A.13 — the mechanism to cite is surviving copies. Three: read the 'partners' clause like an examiner — data shared onward gets used in ways never intended, and the audience can grow to advertisers, brokers, or employers. Answers are reviewed as a class before the close."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "PII identifies, links, relates to, or describes you — SSN, age, race, phone, medical, financial, biometric (EK IOC-2.A.1)",
+        "Searches, page views, and locations are recorded and stored as you move through an ordinary day (EK IOC-2.A.2–A.4, A.14)",
+        "Aggregating disparate data creates knowledge — the dossier is the danger, not any single field (EK IOC-2.A.7, A.15)",
+        "The same PII that enhances experiences enables stalking and identity theft — and it is hard to delete (EK IOC-2.A.8–A.13)"
+      ],
+      "nextPoints": [
+        "Day 2: the defense kit — strong passwords, multifactor authentication, encryption, updates, permissions (LO IOC-2.B)",
+        "The attack kit — phishing, keylogging, rogue access points, malicious links and downloads (LO IOC-2.C)",
+        "Deep dive: how HTTPS combines both kinds of encryption behind one padlock"
+      ],
+      "teaser": "The stranger who built your dossier now wants your password — using ONE email. Before tomorrow, think: what would that email need to say to fool you?",
+      "script": "That's Day 1. PII is information that identifies, links, relates to, or describes a person; ordinary life is recorded through searches, page views, and location trails; aggregation assembles scattered data into knowledge nobody posted; and the same data that makes life convenient can be turned against its owner — permanently, since deletion rarely deletes. Tomorrow the stranger stops watching and starts acting: one email, aimed at your password, and the full defense kit for stopping it. The teaser is the setup — think about what that email would have to say to fool YOU specifically, dossier in hand. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 5.6 — Safe Computing — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A fitness app publicly posts a student's running routes. Separately, a friend's photo tag names her school, and a review site shows her favorite cafe. None of these alone includes her address, yet a stranger works out where she lives and when she is out. Per EK IOC-2.A.7, what made this possible?",
+        "options": [
+          "The fitness app leaked her street address in the route map's hidden settings",
+          "Disparate personal data were aggregated to create knowledge about her that no single source contained",
+          "The stranger guessed the address at random using public census records",
+          "One of the three services stored her full PII profile and displayed it publicly"
+        ],
+        "answer": "B",
+        "ek": "EK IOC-2.A.7",
+        "rationale": "EK IOC-2.A.7 states that disparate personal data, such as geolocation, cookies, and browsing history, can be aggregated to create knowledge about an individual. Routes that start and end at one point, a school name, and a cafe habit combine into an address and a schedule. A and D invent a single leaking source — the scenario says no single source held the address. C replaces the mechanism with luck; the deduction was systematic combination, not guessing."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A student deletes an embarrassing post 20 minutes after publishing it. Per EK IOC-2.A.13, why can the post still cause harm years later?",
+        "options": [
+          "Deleting a post is only permitted after a site-mandated waiting period ends",
+          "Social media platforms are required to submit all posts to a public registry",
+          "Deletion hides the post from new followers but keeps it visible to existing ones",
+          "Once information is placed online, it is difficult to delete — copies and forwards can persist"
+        ],
+        "answer": "D",
+        "ek": "EK IOC-2.A.13",
+        "rationale": "EK IOC-2.A.13 states that once information is placed online, it is difficult to delete: in 20 minutes the post can be screenshotted, forwarded, and archived, and those copies are outside the author's control (EK IOC-2.A.11 adds that such information can be used in unintended ways). A invents a waiting period that does not exist. B invents a registry. C describes a visibility rule no platform uses — the danger is copies held by others, not follower settings."
+      },
+      {
+        "id": "Q3",
+        "kind": "multi",
+        "stem": "Per EK IOC-2.A.1, which of the following are examples of personally identifiable information (PII)? I. Biometric data. II. Age. III. Medical information.",
+        "options": [
+          "I, II, and III",
+          "I and III only",
+          "I only",
+          "II and III only"
+        ],
+        "answer": "A",
+        "ek": "EK IOC-2.A.1",
+        "rationale": "EK IOC-2.A.1's own example list of PII includes Social Security number, age, race, phone number(s), medical information, financial information, and biometric data — all three items are named by the CED. B and D reflect the common belief that ordinary attributes like age are 'too public' to be PII; the CED disagrees, since age helps link and describe an individual. C wrongly treats only exotic data as PII."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A college applicant never posts about her job. A friend uploads a tagged photo of her in a work uniform, and a teammate's comment names the store and their shift. Per EK IOC-2.A.15, what should the applicant conclude?",
+        "options": [
+          "Only information she posts herself can be used by others, so she has nothing to track",
+          "Tagged photos count as metadata and cannot reveal anything about the people in them",
+          "Information others post to social media can be combined with other sources to deduce private information about her",
+          "The photo is harmless as long as her own profile is set to private"
+        ],
+        "answer": "C",
+        "ek": "EK IOC-2.A.15",
+        "rationale": "EK IOC-2.A.15 states that information posted to social media services can be used by others, and combining information posted on social media and other sources can be used to deduce private information about you. The friend's photo plus the teammate's comment expose her workplace and schedule without her posting anything. A and D fail for the same reason — her own restraint and her own privacy settings do not govern what OTHERS post. B misuses the term metadata; a tagged photo is content that directly identifies her."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A banking app requires users to type a password and then approve the login with a fingerprint scan. Per EK IOC-2.B.3, which two authentication categories does this combine?",
+        "options": [
+          "Possession and inherence — an object the user carries and a fact the user memorized",
+          "Knowledge and inherence — something the user knows and something the user is",
+          "Knowledge and possession — two separate facts the user has memorized",
+          "Inherence and inherence — both steps measure a feature of the user's body"
+        ],
+        "answer": "B",
+        "ek": "EK IOC-2.B.3",
+        "rationale": "EK IOC-2.B.3 names three categories: knowledge (something they know), possession (something they have), and inherence (something they are). A password is knowledge; a fingerprint is inherence — so this is knowledge + inherence. A mislabels both steps: a password is not a carried object, and it calls a memorized fact possession. C treats the fingerprint as a memorized fact — it is a body characteristic, not knowledge. D treats the password as a body characteristic. Multifactor questions are answered by categorizing each step, never by counting steps alone."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "Maya wants to send Leo a message that only Leo can decrypt, using public key encryption. Per EK IOC-2.B.5, which statement is correct?",
+        "options": [
+          "Maya encrypts with Leo's public key; only Leo's private key can decrypt the message",
+          "Maya must first obtain Leo's private key in order to encrypt the message",
+          "Maya encrypts with her own private key so that Leo can decrypt with her public key",
+          "Maya and Leo must already share one secret key that both encrypts and decrypts"
+        ],
+        "answer": "A",
+        "ek": "EK IOC-2.B.5",
+        "rationale": "EK IOC-2.B.5: public key encryption pairs a public key for encryption with a private key for decryption — the sender does not need the receiver's private key to encrypt, but the receiver's private key is required to decrypt. So Maya uses Leo's public key, and only Leo's private key opens it. B is the classic trap the EK explicitly rules out: the sender never needs the private key. C reverses the pair's roles and would let anyone with the public key read the message. D describes symmetric key encryption, the other approach — one shared key for both jobs."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "A laptop shows 'Security update available' every day for a month while the owner clicks 'Remind me later.' Per EK IOC-2.B.10, what risk does postponing create?",
+        "options": [
+          "The laptop's virus scanner is disabled until the pending update is installed",
+          "Updates only change cosmetic features, so postponing carries no security risk",
+          "The laptop will lose its encryption keys when the update finally installs",
+          "Known errors and design flaws remain exploitable until the update fixes them"
+        ],
+        "answer": "D",
+        "ek": "EK IOC-2.B.10",
+        "rationale": "EK IOC-2.B.10 states that all real-world systems have errors or design flaws that can be exploited to compromise them, and regular software updates help fix errors that could compromise a computing system. A postponed patch leaves a publicly known flaw open — exactly what attackers scan for. A invents a link between updates and the scanner being disabled. B contradicts the EK — security updates exist precisely to fix compromising errors. C invents a key-loss mechanism that is not how updates work."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An email styled like the school portal says 'Grade error detected — log in within 24 hours,' linking to a page that looks identical to the portal but sits at a strange web address. A student enters a username and password there. Per EK IOC-2.C.1, which technique captured the credentials?",
+        "options": [
+          "Keylogging — the fake page recorded every keystroke through the school network",
+          "A rogue access point — the email created an unauthorized wireless network",
+          "Phishing — the student was tricked into providing personal information to a fake resource",
+          "A computer virus — the email copied itself into the student's account"
+        ],
+        "answer": "C",
+        "ek": "EK IOC-2.C.1",
+        "rationale": "EK IOC-2.C.1 defines phishing as a technique that attempts to trick a user into providing personal information, which can then be used to access sensitive online resources. The look-alike page and urgent deadline are the trick; the student volunteers the credentials (via a disguised link, EK IOC-2.C.5). A is wrong: keylogging (EK IOC-2.C.2) is a program recording keystrokes on the victim's machine — here the victim typed into an attacker's form. B misuses rogue access point, which is a wireless hardware attack. D misuses virus, a self-copying malicious program — no program installed itself."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "At a coffee shop, an attacker sets up a wireless network named 'CafeGuest' that customers join by mistake, and routes their traffic through a laptop. Per EK IOC-2.C.3–C.4, what is this setup, and what does it enable?",
+        "options": [
+          "A rogue access point — data sent through it can be intercepted, analyzed, and modified",
+          "A certificate authority — it validates the ownership of customers' encryption keys",
+          "Freeware distribution — the free network's downloads may contain hidden malware",
+          "Multifactor authentication — the network adds an extra step before granting access"
+        ],
+        "answer": "A",
+        "ek": "EK IOC-2.C.4",
+        "rationale": "EK IOC-2.C.4 defines a rogue access point as a wireless access point that gives unauthorized access to secure networks, and EK IOC-2.C.3 warns that data sent over public networks can be intercepted, analyzed, and modified — this fake hotspot is the CED's named example of how that happens. B inverts the roles: a certificate authority (EK IOC-2.B.6) is a trusted issuer of digital certificates, not an attack. C confuses the rogue network with freeware downloads (EK IOC-2.C.7), a different vector. D mislabels an attack as a protection measure."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 5.6 — Safe Computing — Teacher Guide",
+    "subtitle": "Big Idea 5: Impact of Computing · Topic 5.6 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 5.6 closes Big Idea 5 with the CED's largest single topic: 26 essential-knowledge statements across three learning objectives. Day 1 covers the risk side (LO IOC-2.A): what PII is, how searches, page views, and locations are recorded, how disparate data aggregates into knowledge about a person, PII's double life as convenience and weapon, and why online information resists deletion. Day 2 covers the conflict (LO IOC-2.B and IOC-2.C): authentication factors, encryption approaches, certificates, scanning, updates, and permissions on the defense side; phishing, keylogging, rogue access points, disguised links, compromised senders, and freeware malware on the attack side.",
+      "The through-line is a single stranger: on Day 1 students discover how much of a dossier that stranger can aggregate from public trails alone; overnight the teaser turns the stranger active, and Day 2 opens with students writing the one phishing email that would fool them — then building the layered defense that beats it."
+    ],
+    "los": [
+      "LO IOC-2.A — Describe the risks to privacy from collecting and storing personal data on a computer system.",
+      "LO IOC-2.B — Explain how computing resources can be protected and can be misused.",
+      "LO IOC-2.C — Explain how unauthorized access to computing resources is gained."
+    ],
+    "eks": [
+      "EK IOC-2.A.1 — Personally identifiable information (PII) is information about an individual that identifies, links, relates, or describes them. Examples of PII include: Social Security number • age • race • phone number(s) • medical information • financial information • biometric data.",
+      "EK IOC-2.A.2 — Search engines can record and maintain a history of searches made by users.",
+      "EK IOC-2.A.3 — Websites can record and maintain a history of individuals who have viewed their pages.",
+      "EK IOC-2.A.4 — Devices, websites, and networks can collect information about a user's location.",
+      "EK IOC-2.A.5 — Technology enables the collection, use, and exploitation of information about, by, and for individuals, groups, and institutions.",
+      "EK IOC-2.A.6 — Search engines can use search history to suggest websites or for targeted marketing.",
+      "EK IOC-2.A.7 — Disparate personal data, such as geolocation, cookies, and browsing history, can be aggregated to create knowledge about an individual.",
+      "EK IOC-2.A.8 — PII and other information placed online can be used to enhance a user's online experiences.",
+      "EK IOC-2.A.9 — PII stored online can be used to simplify making online purchases.",
+      "EK IOC-2.A.10 — Commercial and governmental curation of information may be exploited if privacy and other protections are ignored.",
+      "EK IOC-2.A.11 — Information placed online can be used in ways that were not intended and that may have a harmful impact. For example, an email message may be forwarded, tweets can be retweeted, and social media posts can be viewed by potential employers.",
+      "EK IOC-2.A.12 — PII can be used to stalk or steal the identity of a person or to aid in the planning of other criminal acts.",
+      "EK IOC-2.A.13 — Once information is placed online, it is difficult to delete.",
+      "EK IOC-2.A.14 — Programs can collect your location and record where you have been, how you got there, and how long you were at a given location.",
+      "EK IOC-2.A.15 — Information posted to social media services can be used by others. Combining information posted on social media and other sources can be used to deduce private information about you.",
+      "EK IOC-2.B.1 — Authentication measures protect devices and information from unauthorized access. Examples of authentication measures include strong passwords and multifactor authentication.",
+      "EK IOC-2.B.2 — A strong password is something that is easy for a user to remember but would be difficult for someone else to guess based on knowledge of that user.",
+      "EK IOC-2.B.3 — Multifactor authentication is a method of computer access control in which a user is only granted access after successfully presenting several separate pieces of evidence to an authentication mechanism, typically in at least two of the following categories: knowledge (something they know), possession (something they have), and inherence (something they are).",
+      "EK IOC-2.B.4 — Multifactor authentication requires at least two steps to unlock protected information; each step adds a new layer of security that must be broken to gain unauthorized access.",
+      "EK IOC-2.B.5 — Encryption is the process of encoding data to prevent unauthorized access. Decryption is the process of decoding the data. Two common encryption approaches are: • Symmetric key encryption involves one key for both encryption and decryption. • Public key encryption pairs a public key for encryption and a private key for decryption. The sender does not need the receiver's private key to encrypt a message, but the receiver's private key is required to decrypt the message. (Exclusion: specific mathematical procedures for encryption and decryption are beyond the scope of this course and the AP Exam.)",
+      "EK IOC-2.B.6 — Certificate authorities issue digital certificates that validate the ownership of encryption keys used in secure communications and are based on a trust model.",
+      "EK IOC-2.B.7 — Computer virus and malware scanning software can help protect a computing system against infection.",
+      "EK IOC-2.B.8 — A computer virus is a malicious program that can copy itself and gain access to a computer in an unauthorized way. Computer viruses often attach themselves to legitimate programs and start running independently on a computer.",
+      "EK IOC-2.B.9 — Malware is software intended to damage a computing system or to take partial control over its operation.",
+      "EK IOC-2.B.10 — All real-world systems have errors or design flaws that can be exploited to compromise them. Regular software updates help fix errors that could compromise a computing system.",
+      "EK IOC-2.B.11 — Users can control the permissions programs have for collecting user information. Users should review the permission settings of programs to protect their privacy.",
+      "EK IOC-2.C.1 — Phishing is a technique that attempts to trick a user into providing personal information. That personal information can then be used to access sensitive online resources, such as bank accounts and emails.",
+      "EK IOC-2.C.2 — Keylogging is the use of a program to record every keystroke made by a computer user in order to gain fraudulent access to passwords and other confidential information.",
+      "EK IOC-2.C.3 — Data sent over public networks can be intercepted, analyzed, and modified. One way that this can happen is through a rogue access point.",
+      "EK IOC-2.C.4 — A rogue access point is a wireless access point that gives unauthorized access to secure networks.",
+      "EK IOC-2.C.5 — A malicious link can be disguised on a web page or in an email message.",
+      "EK IOC-2.C.6 — Unsolicited emails, attachments, links, and forms in emails can be used to compromise the security of a computing system. These can come from unknown senders or from known senders whose security has been compromised.",
+      "EK IOC-2.C.7 — Untrustworthy (often free) downloads from freeware or shareware sites can contain malware."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies, Days 1–2).",
+      "Printed Topic 5.6 quiz (student copies) for the assessment block.",
+      "Optional: side-by-side screenshots of a real login page and a phishing look-alike for the Day 2 tell-hunt."
+    ],
+    "prereqs": [
+      "Topic 5.5 (Legal and Ethical Concerns) supplies the ethics frame this topic sharpens into personal risk; Topic 4.1's packet model helps students picture interception on public networks. Neither is strictly required — both connections are re-taught in context."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "PII and the recorded life; aggregation and permanence (LO IOC-2.A)",
+        "segments": [
+          {
+            "segment": "QOTD (BI5/T5.6/Q1) + bell ringer (the 10-minute stranger dossier)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "The recorded life: PII vocab, recording systems, PII's double life (EK IOC-2.A.1–A.6, A.8–A.12, A.14)",
+            "min": 15,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on the recorded life",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Aggregation + permanence: five-trails worked table, the delete myth (EK IOC-2.A.7, A.11, A.13, A.15)",
+            "min": 13,
+            "slides": "10-12"
+          },
+          {
+            "segment": "Deep dive: the data broker economy (optional enrichment)",
+            "min": 5,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think — build the dossier",
+            "min": 6,
+            "slides": "14"
+          },
+          {
+            "segment": "Day close + the one-email teaser for Day 2",
+            "min": 3,
+            "slides": "15"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Protection: factors, encryption, maintenance (LO IOC-2.B); unauthorized access: the attacker's playbook (LO IOC-2.C)",
+        "segments": [
+          {
+            "segment": "QOTD (BI5/T5.6/Q2) + bell ringer (write the ONE email — then the rule that beats it)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Authentication: vocab, three factor categories, the strong-password myth (EK IOC-2.B.1–B.4)",
+            "min": 10,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Encryption two ways + certificates, scanning, updates, permissions (EK IOC-2.B.5–B.11)",
+            "min": 10,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Stop and Think on protection",
+            "min": 5,
+            "slides": "11"
+          },
+          {
+            "segment": "Unauthorized access: phishing, keylogging, rogue APs, disguised links, freeware + attack-triage table (EK IOC-2.C.1–C.7)",
+            "min": 12,
+            "slides": "12-15"
+          },
+          {
+            "segment": "Deep dive: inside the HTTPS padlock (optional enrichment)",
+            "min": 4,
+            "slides": "16"
+          },
+          {
+            "segment": "Stop and Think — attack triage",
+            "min": 5,
+            "slides": "17"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "18-19"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 5.6 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 5.6 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Deleted means gone”",
+        "myth": "Deleting a post or photo erases it from the internet, so a fast delete undoes a bad decision.",
+        "reality": "Once information is placed online it is difficult to delete (EK IOC-2.A.13): screenshots, forwards, retweets, backups, and archives hold copies outside the author's control, and those copies can resurface before unintended audiences like employers (EK IOC-2.A.11). The delete button removes only the author's copy."
+      },
+      {
+        "heading": "“A strong password is enough”",
+        "myth": "A long, unique password fully protects an account; extra login steps are redundant inconvenience.",
+        "reality": "A password is one piece of evidence from one category (knowledge). Multifactor authentication requires evidence from at least two different categories — knowledge, possession, inherence — and each step adds a layer that must be separately broken (EK IOC-2.B.3–B.4). A phished password alone then no longer opens the account."
+      },
+      {
+        "heading": "“Harmless pieces stay harmless”",
+        "myth": "Data that contains no secrets — a jog route, a tagged photo, a search — carries no privacy risk.",
+        "reality": "Disparate personal data can be aggregated to create knowledge about an individual (EK IOC-2.A.7): routes reveal a home address, tags reveal a school, searches reveal intentions. Exam questions reward locating the risk in the COMBINATION, not in any single field."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Provide a factor-sorting mat: students place example cards (password, texted code, fingerprint, ID badge, PIN, face scan) under knowledge / possession / inherence before the term multifactor is used.",
+        "For both worked tables, post a word bank (aggregation, phishing, keylogging, rogue access point, malware) so working memory goes to matching mechanisms, not recalling labels."
+      ],
+      "extension": [
+        "Have deep-dive students diagram a real HTTPS connection: which step uses public key encryption, which uses symmetric, and where the certificate authority's signature is checked.",
+        "Ask students to audit one real app's permission settings and defend, in CED terms, one permission they would revoke and one they would keep (EK IOC-2.B.11)."
+      ]
+    },
+    "discussion": [
+      "Companies argue that targeted ads pay for free services. Where is the line between personalization you welcome and aggregation that feels like surveillance — and who should get to draw it?",
+      "Multifactor authentication makes every login slower for everyone to stop attacks on a few. When is added friction worth it, and who should bear the cost when it isn't?",
+      "If most successful attacks trick a person rather than break the encryption, should a school spend its next security dollar on software or on training people? Defend the split."
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}
