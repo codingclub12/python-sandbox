@@ -147,6 +147,16 @@ student decks exist for review/absent students.
 - Render matrix PER DAY: deck teacher/student × cb/deepdive; notes
   student/key × cb/deepdive. Plus per topic: quiz student/key; guide.
 
+## Big Idea 3 JavaScript convention
+Runnable JavaScript in code_block panes, codeex starters, and codeex
+references uses `let` (never `var`). Rationale: `var` is legacy
+(function-scoped, hoisting footguns); `let` is the modern idiom AND it
+matches AAP-1.B's concept that a variable's value changes through
+reassignment. Use `let` uniformly at intro level (avoid mixing in
+`const` early). The exam is language-neutral, so this only sets the
+habit the runnable code models. Python stays the primary runnable
+language; AP pseudocode (left-arrow assignment) stays primary on slides.
+
 ## Big Idea 3 note
 Topics 3.1-3.18 use the Exam Reference Sheet pseudocode (see the appendix in
 `ced.txt`). A `code_block` slide type will be added to the engine when BI3
