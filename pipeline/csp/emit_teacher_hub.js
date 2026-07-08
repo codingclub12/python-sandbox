@@ -57,7 +57,8 @@ const TOPIC_TITLES = { '1.1':'Collaboration', '1.2':'Program Function and Purpos
   '4.3':'Parallel and Distributed Computing',
   '5.1':'Beneficial and Harmful Effects', '5.2':'Digital Divide',
   '5.3':'Computing Bias', '5.4':'Crowdsourcing',
-  '5.5':'Legal and Ethical Concerns', '5.6':'Safe Computing' }; // extend as topics are authored
+  '5.5':'Legal and Ethical Concerns', '5.6':'Safe Computing',
+  '1.99':'Big Idea 1 Exam','2.99':'Big Idea 2 Exam','4.99':'Big Idea 4 Exam','5.99':'Big Idea 5 Exam' }; // extend as topics are authored
 const BI_NAMES = {1:'Big Idea 1: Creative Development',2:'Big Idea 2: Data',
   3:'Big Idea 3: Algorithms and Programming',4:'Big Idea 4: Computer Systems and Networks',
   5:'Big Idea 5: Impact of Computing'};
@@ -91,6 +92,10 @@ function canonical(f){
   if ((m = f.match(/^CSP_(\d+\.\d+)_LessonMap\.docx$/)))
     return { topic:m[1], day:0, kind:'map', aud:'teacher', track:'',
       name:`AP-CSP_${m[1].replace('.','-')}_LessonMap.docx`, label:'Lesson Map' };
+  if ((m = f.match(/^CSP_Exam_BI(\d)_(student|KEY)\.docx$/)))
+    return { topic:m[1]+'.99', day:0, kind:'exam', aud:m[2]==='KEY'?'teacher':'student', track:'',
+      name:`AP-CSP_BigIdea${m[1]}_Exam_${m[2]==='KEY'?'KEY':'Student'}.docx`,
+      label:`Big Idea ${m[1]} Exam — ${m[2]==='KEY'?'KEY':'Student'}` };
   return null;
 }
 

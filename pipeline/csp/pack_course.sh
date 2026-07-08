@@ -19,6 +19,12 @@ def title(topic):
     return topic
 root=os.path.join(stage,'AP_CSP_Course')
 for f in sorted(os.listdir('out')):
+    me=re.match(r'^CSP_Exam_BI(\d)_(student|KEY)\.docx$',f)
+    if me:
+        u,mode=me.groups()
+        edir=os.path.join(root,BI[u],'_Big_Idea_Exam'); os.makedirs(edir,exist_ok=True)
+        shutil.copyfile(os.path.join('out',f),os.path.join(edir,f'AP-CSP_BigIdea{u}_Exam_{mode.replace("student","Student")}.docx'))
+        continue
     m=re.match(r'^CSP_(\d+\.\d+)_(.+)$',f)
     if not m: continue
     topic,rest=m.groups()

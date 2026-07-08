@@ -1,0 +1,286 @@
+{
+  "meta": { "unitId": "2", "title": "Big Idea 2 Exam — Data", "unitLabel": "Big Idea 2: Data" },
+  "timeMinutes": 45,
+  "partI": {
+    "instructions": "Choose the single best answer for each question.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "The same eight bits, 01000001, are delivered to three different programs on a tablet: a calculator utility displays the number 65, a text viewer displays the letter A, and an image tool paints a single pixel a particular shade of gray. Which statement BEST explains this result?",
+        "options": [
+          "Two of the three programs contain logic errors, since one sequence of bits can hold only one value",
+          "The tablet corrupted the bits in transit, so each of the three programs actually received a different sequence",
+          "Bits are grouped to represent abstractions such as numbers, characters, and color, and the same sequence of bits may represent different types of data in different contexts",
+          "Eight bits is too little storage to represent a character, so the text viewer substituted a default letter in place of the real data"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-1.A.6 + EK DAT-1.A.7",
+        "rationale": "DAT-1.A.6 says bits are grouped to represent abstractions including numbers, characters, and color, and DAT-1.A.7 says the same sequence of bits may represent different types of data in different contexts; each program interprets the identical byte through its own context. A is wrong: a logic error is incorrect program behavior (CRD-2.I.1); all three programs behave correctly for their own data type. B is wrong: no corruption is needed to explain the result; identical bits legitimately yield different interpretations. D is wrong: a byte is 8 bits (DAT-1.A.4) and is a standard grouping for representing a character; no substitution occurred."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "SproutBot, a greenhouse controller, accepts vent-opening percentages as binary values. Which binary value should be sent so that the vents open to 41 percent?",
+        "options": [
+          "101001",
+          "110001",
+          "100101",
+          "101010"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-1.C.4 + EK DAT-1.C.5",
+        "rationale": "Positions are numbered from 0 at the rightmost bit, and each digit contributes its bit value times the base raised to the power of its position (DAT-1.C.4, DAT-1.C.5). 41 = 32 + 8 + 1, so the bits for place values 32, 8, and 1 are set: 101001. B is wrong: 110001 = 32 + 16 + 1 = 49. C is wrong: 100101 = 32 + 4 + 1 = 37. D is wrong: 101010 = 32 + 8 + 2 = 42, a common off-by-one from misnumbering the rightmost position as 1 instead of 0."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A water-tank monitor reports fill levels from two sensors as binary numbers: sensor P reports 1111 and sensor Q reports 10010. A technician assumes P shows the higher level because its value contains more 1s. Which statement is correct?",
+        "options": [
+          "P is higher: a binary value that contains more 1s always represents a larger number than one with fewer 1s",
+          "P is higher: the binary value 1111 equals 16 in decimal, while the binary value 10010 equals only 15",
+          "Q is higher: the binary value 10010 equals 22 in decimal, while the binary value 1111 equals 15",
+          "Q is higher: 10010 equals 18 while 1111 equals 15, since a digit's place value, not the count of 1s, determines its contribution"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-1.C.4 + EK DAT-1.C.5",
+        "rationale": "Each digit contributes its bit value multiplied by the place value of its position, with place values determined by the base raised to the position number starting at 0 on the right (DAT-1.C.4, DAT-1.C.5): 10010 = 16 + 2 = 18 and 1111 = 8 + 4 + 2 + 1 = 15, so Q is higher. A is wrong: magnitude depends on which positions hold 1s, not how many 1s appear; a single 1 in a high position outweighs several 1s in low positions. B is wrong: both conversions are incorrect; 1111 is 15, not 16, and 10010 is 18, not 15. C is wrong: the conclusion is right but the arithmetic is wrong; 10010 is 18, not 22."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "RidgeWind, a mountain weather station, must record wind speed, a quantity that changes smoothly and continuously throughout the day. The station's datalogger reads the current speed at regular two-second intervals and stores each measurement as bits. Which statement BEST describes this approach?",
+        "options": [
+          "The station stores the analog signal itself, since bits are able to hold continuously varying values directly",
+          "The station uses sampling, measuring values of the analog signal at regular intervals, to approximate real-world analog data digitally, which is an example of abstraction",
+          "The two-second gaps between readings make the data invalid, since analog phenomena cannot be represented digitally in any useful way",
+          "The station's approach guarantees a perfect record, since measuring at regular intervals captures every value the wind speed ever takes"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-1.A.8 + EK DAT-1.A.9 + EK DAT-1.A.10",
+        "rationale": "Wind speed is analog data: its values change smoothly rather than in discrete intervals (DAT-1.A.8). Measuring the signal at regular intervals is sampling (DAT-1.A.10), and using digital data to approximate real-world analog data is an example of abstraction (DAT-1.A.9). A is wrong: computing devices represent data digitally, so continuously varying values must be converted to discrete bit-encoded samples (DAT-1.A.2). C is wrong: analog data can be closely approximated digitally through sampling; regular gaps are how the technique works, not a flaw that invalidates it. D is wrong: sampling produces a close approximation, not a perfect record; values between samples are not captured."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "SplitJar, an allowance-tracking app, has two open bugs. Bug 1: the lifetime-deposits counter, stored as an integer with a fixed number of bits, reports a wildly wrong value after passing its largest representable number. Bug 2: after summing many small amounts, the balance displays 27.550000000000004 instead of 27.55. Which diagnosis pairs the bugs correctly?",
+        "options": [
+          "Bug 1 is a round-off error in the counter; Bug 2 is an overflow error in the balance display",
+          "Both bugs are syntax errors that were introduced by mistakes in the programmer's arithmetic statements",
+          "Both bugs are caused by sampling the analog deposit amounts at intervals that are spaced too far apart",
+          "Bug 1 is an overflow error from the fixed-bit integer limit; Bug 2 is a round-off error, since some real numbers are stored as approximations"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-1.B.1 + EK DAT-1.B.3",
+        "rationale": "DAT-1.B.1 says fixed-bit integer representations limit the range of values and can result in overflow errors, which matches the counter failing past its largest representable number. DAT-1.B.3 says the fixed number of bits used for real numbers can cause round-off errors and that some real numbers are stored as approximations, which matches the 27.550000000000004 display. A is wrong: it swaps the two diagnoses. B is wrong: a syntax error breaks the language's rules and prevents normal execution (CRD-2.I.2); both programs run. C is wrong: sampling concerns approximating analog signals (DAT-1.A.10); typed-in money amounts are already digital data."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "ReefSnap, a coral-survey app, uploads photos from a research boat over a satellite link that allows at most 500,000 bytes per photo. Each uncompressed photo is 4,000,000 bytes. The team's lossless compressor typically achieves about half the original size, and reviewers agree that a close approximation of each photo is acceptable. Which choice BEST fits the CED?",
+        "options": [
+          "Lossy compression: it can usually reduce the number of bits more than lossless compression can, and minimizing transmission size matters most here while an approximation is acceptable",
+          "Lossless compression: at roughly 2,000,000 bytes per photo, its typical result would already satisfy the satellite link's 500,000-byte limit",
+          "No compression: satellite links transmit uncompressed data faster than compressed data of the same original size",
+          "Either algorithm works equally well: fewer bits always means less information, so the two choices cannot differ in any way that matters"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-1.D.6 + EK DAT-1.D.8 + EK DAT-1.A.4",
+        "rationale": "The photo must shrink from 4,000,000 bytes to at most 500,000 bytes, an eight-fold reduction. Lossless typically reaches only about 2,000,000 bytes here, four times over budget, while lossy algorithms can usually reduce size more than lossless ones (DAT-1.D.6), and when minimizing data size or transmission time matters most, lossy is typically chosen (DAT-1.D.8); the reviewers' tolerance for approximation removes the case for lossless. B is wrong on the arithmetic: 2,000,000 bytes is four times the 500,000-byte limit, not within it. C is wrong: compression reduces the size of transmitted data (DAT-1.D.1), which shortens, not lengthens, transmission. D is wrong: fewer bits does not necessarily mean less information (DAT-1.D.2), and lossy versus lossless differ fundamentally in whether the original can be fully reconstructed (DAT-1.D.4, DAT-1.D.5)."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "CodeCrate archives teams' program source files. If even one character of a restored file differs from the original, the program it contains may fail to run. Storage costs matter to the company, but faithful restoration matters more. Which compression policy BEST fits this situation?",
+        "options": [
+          "Lossy compression for every file, since it reduces the archive's total size more than any alternative approach",
+          "Lossy compression for large files and lossless for small files, since file size alone determines which algorithm is correct",
+          "Lossless compression for every file, since it can usually reduce the number of bits stored while guaranteeing complete reconstruction of the original data",
+          "No compression for any file, since data that have been compressed can never be restored to their exact original form"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-1.D.4 + EK DAT-1.D.7",
+        "rationale": "DAT-1.D.4 says lossless algorithms can usually reduce the number of bits stored while guaranteeing complete reconstruction of the original data, and DAT-1.D.7 says lossless is typically chosen when the ability to reconstruct the original is maximally important, exactly the case for source files where one changed character breaks a program. A is wrong: lossy reconstruction is only an approximation (DAT-1.D.5), unacceptable when exactness is required. B is wrong: the deciding factor is the need for exact reconstruction, not file size (DAT-1.D.7, DAT-1.D.8). D is wrong: lossless compression exists precisely to shrink data while allowing exact restoration, so forgoing compression sacrifices storage savings for nothing."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A town's open-data portal shows that households with rooftop solar panels are far more likely to own electric cars. A council member proposes subsidizing solar panels, reasoning that installing panels causes residents to buy electric cars. What is the strongest objection to this reasoning?",
+        "options": [
+          "Digitally processed data are never capable of revealing any relationship between two different variables",
+          "The data show a correlation, which does not necessarily indicate a causal relationship exists; additional research is needed to understand the exact nature of the relationship",
+          "The conclusion would only become valid if the portal's data set had first been compressed with a lossless algorithm",
+          "The portal's data must be biased, since publicly available data sets always undercount the number of car owners"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-2.A.3",
+        "rationale": "DAT-2.A.3 says digitally processed data may show correlation between variables, but a correlation does not necessarily indicate a causal relationship; additional research is needed. Wealth, for example, could drive both purchases. A is wrong: data absolutely can reveal relationships (correlations); the caution is about interpreting them as causes. C is wrong: compression changes how data are stored or transmitted (DAT-1.D.1); it has no bearing on the validity of a causal inference. D is wrong: bias arises from the type or source of data collected (DAT-2.C.5); nothing establishes that this portal undercounts car owners, and the core flaw is the causal leap, not a counting problem."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "FieldFinder manages thousands of drone photos for farms. Each photo file carries the capture date, GPS coordinates, and altitude alongside the image itself. Without opening a single image, the app's search tool instantly returns every photo of a given field taken in October. Which statement BEST explains why this works?",
+        "options": [
+          "Metadata are used for finding and organizing information, and search tools can use them to locate information efficiently without processing the primary data",
+          "The search tool decompresses every image and scans its pixels for visual evidence of the month in which it was taken",
+          "Deleting the GPS coordinates from a photo would also delete the image itself, since metadata and primary data are stored as a single value",
+          "The app's search feature can only work after every photo has been converted from a binary representation to a decimal one"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-2.B.1 + EK DAT-2.B.3 + EK DAT-2.D.3",
+        "rationale": "The capture date, GPS coordinates, and altitude are metadata, data about the image data (DAT-2.B.1). Metadata are used for finding, organizing, and managing information (DAT-2.B.3), and search tools are useful for efficiently finding information (DAT-2.D.3), so the app filters on metadata without touching the images. B is wrong: the scenario says no image is opened; pixel scanning is unnecessary when metadata carry the date. C is wrong: changes and deletions made to metadata do not change the primary data (DAT-2.B.2); removing coordinates leaves the image intact. D is wrong: number bases are ways of representing values (DAT-1.C.1); computers process binary directly and no base conversion is required for search."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "FunRunForms collects 5K race registrations with an open text field for T-shirt size, producing entries such as 'M', 'med', 'Medium', and 'MEDIUM'. Before ordering shirts, an organizer considers two actions: Action 1 replaces all equivalent size entries with the single word 'Medium'; Action 2 deletes the registrations of runners the organizer suspects will not attend. Which evaluation of the two actions is correct?",
+        "options": [
+          "Both actions qualify as data cleaning, since each one reduces the number of distinct values present in the data set",
+          "Action 1 is invalid, since changing any recorded entry in a data set always changes the meaning of the data",
+          "Action 2 is data cleaning, while Action 1 introduces bias into the results by favoring one spelling over the others",
+          "Action 1 is data cleaning, making the data uniform without changing their meaning, while Action 2 alters what the data say and is not cleaning"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-2.C.3 + EK DAT-2.C.4",
+        "rationale": "Open-field entry produces nonuniform abbreviations, spellings, and capitalizations (DAT-2.C.3), and cleaning is the process of making data uniform without changing their meaning, such as replacing all equivalent entries with the same word (DAT-2.C.4); 'M', 'med', 'Medium', and 'MEDIUM' all mean the same size, so Action 1 is cleaning. Deleting real registrations on a hunch changes what the data set says, so Action 2 is not cleaning. A is wrong: shrinking the number of distinct values is not the test; preserving meaning is, and Action 2 discards genuine records. B is wrong: replacing equivalent forms with one canonical form is the CED's own example of cleaning; the meaning is unchanged. C is wrong: it reverses the two actions; Action 1 preserves meaning while Action 2 distorts the data set."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "To report on citywide air quality, a startup installs its sensors only in the downtown core, where the sensors are easy to maintain, and averages their readings. Reviewers object that the results misrepresent the outlying neighborhoods. The startup responds by offering to double the number of downtown sensors. Which principle shows why this response fails?",
+        "options": [
+          "Data sets as large as a full year of sensor readings can only be processed using parallel computing systems",
+          "Averages of numeric readings can only be computed after the readings have been imported into a spreadsheet program",
+          "Problems of bias are often created by the type or source of the data being collected, and bias is not eliminated by simply collecting more data",
+          "Sensor readings are a form of metadata, so they are not capable of describing the air quality itself"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-2.C.5",
+        "rationale": "DAT-2.C.5 says problems of bias are often created by the type or source of data being collected and that bias is not eliminated by simply collecting more data. The source, downtown-only sensors, is the problem; doubling those sensors doubles the same skewed source. A is wrong: parallel systems address the processing burden of large data sets (DAT-2.C.7), not representativeness. B is wrong: spreadsheets help organize data and find trends (DAT-2.D.5) but are not a prerequisite for computing an average, and the objection is about coverage, not arithmetic. D is wrong: the readings are the primary data about air quality; metadata would be data about those readings, such as a sensor's install date (DAT-2.B.1)."
+      },
+      {
+        "id": "Q12",
+        "kind": "multi",
+        "stem": "A university lab receives a nationwide pothole-report data set containing millions of user-submitted rows. Which of the following statements about processing it are consistent with the CED? I. Challenges such as incomplete data, invalid data, and the need to clean or combine data apply to data sets regardless of their size. II. Once a data set is large enough, cleaning becomes unnecessary, since the errors cancel each other out. III. If the set is too large to process on a single computer, parallel systems may be required, and the scalability of a system affects how the data can be processed and stored.",
+        "options": [
+          "I and II only",
+          "I and III only",
+          "III only",
+          "I, II, and III"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-2.C.2 + EK DAT-2.C.7 + EK DAT-2.C.8",
+        "rationale": "Statement I matches DAT-2.C.2: data sets pose challenges regardless of size, including the need to clean data, incomplete data, invalid data, and the need to combine sources. Statement III matches DAT-2.C.7 and DAT-2.C.8: large data sets may require parallel systems, and scalability affects how data sets can be processed and stored. Statement II is false: no EK says errors cancel out at scale, and DAT-2.C.2 states the cleaning challenge applies regardless of size. A is wrong: it accepts false statement II and rejects true statement III. C is wrong: it rejects true statement I. D is wrong: it accepts false statement II."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "ParkPath stores every hiking trail in a county as a record that includes the trail's length in miles. To prepare a metric edition of its trail map, a program multiplies the length field of every record by 1.609 and stores the result. Which extraction or modification process is this?",
+        "options": [
+          "Transforming every element of a data set",
+          "Filtering the data set to keep only a subset of the records",
+          "Combining or comparing data to produce a single summary value",
+          "Visualizing the data set through a chart, graph, or other representation"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-2.D.6",
+        "rationale": "DAT-2.D.6 defines transforming as changing every element of a data set, such as doubling every element in a list; multiplying every record's length field by 1.609 applies the same operation to all elements. B is wrong: filtering keeps a subset that meets a condition, like keeping only band students; here every record is kept and modified. C is wrong: combining or comparing produces results like a sum or a maximum from many values; this operation produces a new value per record, not one summary. D is wrong: visualizing presents data as a chart or graph; no visual representation is produced by the unit conversion."
+      },
+      {
+        "id": "Q14",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "ShelfShare, a food bank, wants to know which neighborhoods donate the most per drive. Records from its three donation drives arrive in separate files: dates appear as '3/14/26', '14 March', and '2026-03-14'; some rows are missing the neighborhood; and no single file covers every neighborhood. Which plan BEST reflects the CED?",
+        "options": [
+          "Analyze only the largest of the three files, since combining multiple sources always introduces bias into the results",
+          "Delete the date column from every file, since data that vary in format can never be made uniform afterward",
+          "Use a program to clean the data by standardizing the date formats, handle the incomplete rows, and then combine the three sources, since a single source may not contain the data needed for a conclusion",
+          "Skip the cleaning step and average across all rows as they are, since programs extract correct insight regardless of the condition of the data"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-2.C.2 + EK DAT-2.E.2 + EK DAT-2.A.4",
+        "rationale": "The scenario contains the CED's named challenges: incomplete data and the need to clean and combine sources (DAT-2.C.2). Programmers can use programs to filter and clean digital data to gain insight (DAT-2.E.2), and often a single source does not contain the data needed, so sources must be combined to formulate a conclusion (DAT-2.A.4). A is wrong: combining sources is a normal, often necessary step (DAT-2.A.4); it is the collection source, not combination itself, that creates bias (DAT-2.C.5). B is wrong: cleaning exists precisely to make nonuniform data uniform without changing meaning (DAT-2.C.4); the dates are equivalent values in different formats. D is wrong: incomplete and nonuniform rows distort results; the ability to process data depends on the users and their tools (DAT-2.C.1), not on programs magically correcting flawed inputs."
+      },
+      {
+        "id": "Q15",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "CourtCount, a youth basketball league, logs every timeout, substitution, and injury in a spreadsheet. Organizing the injury records by week produces a table showing injuries climbing steadily in weeks with three or more games, and a line chart of the same totals convinces the league's board to add rest days. Which statement BEST matches the CED?",
+        "options": [
+          "Spreadsheet programs can store rows of data but are not capable of revealing any trends within that data",
+          "Presenting totals in a chart changes the underlying data, so the board was shown different values than the table contained",
+          "Insight extracted from a data set becomes trustworthy only after the data have first been compressed to remove redundancy",
+          "Programs such as spreadsheets help efficiently organize and find trends in information, tables and charts can communicate the insight gained, and patterns can emerge when data are transformed"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-2.D.2 + EK DAT-2.D.5 + EK DAT-2.E.5",
+        "rationale": "DAT-2.D.5 says programs such as spreadsheets help efficiently organize and find trends in information; DAT-2.D.2 says tables, diagrams, and other visual tools can communicate insight and knowledge gained from data; and DAT-2.E.5 says patterns can emerge when data are transformed, here by grouping raw logs into weekly totals. A is wrong: it directly contradicts DAT-2.D.5. B is wrong: a chart is a visual presentation of the same values; visualizing does not alter the underlying data (DAT-2.D.6 treats it as a way to communicate, and per DAT-2.B.2 even metadata edits leave primary data unchanged). C is wrong: compression concerns reducing the size of stored or transmitted data (DAT-1.D.1) and has nothing to do with whether extracted insight is valid."
+      }
+    ]
+  },
+  "partII": {
+    "instructions": "Answer in complete sentences; use precise data-representation and data-processing vocabulary from Big Idea 2.",
+    "questions": [
+      {
+        "id": "FR1",
+        "prompt": "GlacierLog runs on a mountain research station's dataloggers. A wind sensor transmits each reading as a binary value; yesterday's peak gust arrived as the binary value 101101. The station's older datalogger stores its running storm-event counter as an integer with a fixed number of bits, and after an unusually stormy season the counter passed its largest representable value and began reporting nonsense. Separately, the station's temperature summary displays an average of 3.7000000000000004 degrees instead of 3.7.",
+        "parts": [
+          "(a) Calculate the decimal value of the binary reading 101101, and explain how a digit's position determines its contribution to the value.",
+          "(b) Explain why storing the storm-event counter in a fixed number of bits led to the failure, name the error that occurred, and explain how a language like the one on the exam reference sheet avoids this failure for integers.",
+          "(c) Explain why the temperature average displays as 3.7000000000000004, and why this is a consequence of how real numbers are represented rather than a mistake in the averaging algorithm."
+        ],
+        "points": 8,
+        "sample": [
+          "(a) The binary value 101101 equals 45 in decimal. In binary, a digit's numeric value equals the bit's value (0 or 1) multiplied by the place value of its position, and the place value of each position is the base, 2, raised to the power of the position, with positions numbered starting at 0 at the rightmost digit and increasing to the left (DAT-1.C.4, DAT-1.C.5). Reading 101101 from the right: 1x1 + 0x2 + 1x4 + 1x8 + 0x16 + 1x32 = 1 + 4 + 8 + 32 = 45.",
+          "(b) In many programming languages, integers are represented by a fixed number of bits, which limits the range of integer values and the mathematical operations on those values (DAT-1.B.1). When the storm-event counter was incremented past the largest value its fixed bits can represent, the computer attempted to handle a number outside the defined range, producing an overflow error (DAT-1.B.1). Other languages provide an abstraction in which the size of representable integers is limited only by the size of the computer's memory; this is the case for the language defined on the exam reference sheet, so an integer counter in that language would not overflow at a fixed-bit boundary (DAT-1.B.2).",
+          "(c) The fixed number of bits used to represent real numbers limits their range and the mathematical operations on them, and some real numbers can only be stored as approximations (DAT-1.B.3). Each temperature reading and each intermediate sum is stored as a close approximation, and the tiny representation differences accumulate, so the computed average displays as 3.7000000000000004. This is a round-off error, a consequence of representing real numbers in a fixed number of bits, not a logic error: the averaging algorithm's steps are correct, and the same algorithm performed with exact arithmetic would produce exactly 3.7 (DAT-1.B.3)."
+        ],
+        "rubric": [
+          "1 pt: Part (a) computes the correct decimal value, 45.",
+          "1 pt: Part (a) explains place value: each digit contributes its bit value times the base raised to the power of its position, with positions numbered from 0 at the rightmost digit (DAT-1.C.4, DAT-1.C.5).",
+          "1 pt: Part (b) explains that a fixed number of bits limits the range of representable integer values (DAT-1.B.1).",
+          "1 pt: Part (b) names the failure as an overflow error, occurring when the counter passed the largest representable value (DAT-1.B.1).",
+          "2 pts: Part (b) explains the abstraction in other languages: the size of representable integers is limited only by the computer's memory, as in the exam reference sheet language, so the fixed-bit overflow cannot occur (DAT-1.B.2).",
+          "2 pts: Part (c) attributes the display to round-off error from the fixed number of bits used for real numbers, notes that some real numbers are stored as approximations (DAT-1.B.3), and distinguishes this representation limit from a logic error in the algorithm."
+        ],
+        "ek": "EK DAT-1.C.4 + EK DAT-1.C.5 + EK DAT-1.B.1 + EK DAT-1.B.2 + EK DAT-1.B.3"
+      },
+      {
+        "id": "FR2",
+        "prompt": "CoastWatch invites volunteers to log beach-litter sightings through a web form with open text fields. After one season, the city has 12,000 rows of data: item descriptions appear as 'plastic bottle,' 'PET bottle,' and 'bottle (plastic)'; hundreds of rows are missing the beach name; and 70 percent of all submissions come from the one beach that has easy parking. The city also maintains a separate tide-and-weather data set and wants to learn which conditions produce the most litter.",
+        "parts": [
+          "(a) Describe a sequence of processes a program could apply to the CoastWatch data to extract the information the city wants. Include at least THREE distinct processes named in the CED and connect each one to this data set.",
+          "(b) Identify TWO challenges present in the CoastWatch data other than bias, and for each, explain how a program could address it without changing the data's meaning.",
+          "(c) Explain why the 70 percent skew toward one beach is a bias problem, why collecting more submissions in the same way will not fix it, and why combining the litter data with the tide-and-weather data set is necessary to answer the city's question."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) A program could first FILTER the data set, keeping only rows that include a beach name, just as a filter can keep only the students who signed up for band from a full roster (DAT-2.D.6). It could then TRANSFORM every element by standardizing each item description to one canonical term, so that 'PET bottle' and 'bottle (plastic)' both become 'plastic bottle' (DAT-2.D.6). Next it could COMBINE and COMPARE data by matching each sighting's date with that day's tide and weather records and totaling litter counts per condition (DAT-2.D.6, DAT-2.E.3). Finally it could VISUALIZE the results as a chart of litter per weather condition to communicate the insight (DAT-2.D.6, DAT-2.D.2). This processing would be iterative and interactive: each result suggests new questions, such as filtering to a single season, and the program is run again to gain more insight (DAT-2.E.1).",
+          "(b) One challenge is nonuniform data: volunteers typed descriptions into an open field, so equivalent items appear with different spellings, abbreviations, and formats (DAT-2.C.3). A program addresses this by cleaning, replacing all equivalent descriptions with the same word, which makes the data uniform without changing their meaning (DAT-2.C.4). A second challenge is incomplete data, the rows missing a beach name (DAT-2.C.2). A program can filter those rows out of location-based analysis, or flag them for follow-up, so conclusions rest only on complete records; setting incomplete rows aside does not alter what any remaining record says (DAT-2.C.2, DAT-2.E.2).",
+          "(c) The skew is a bias problem created by the source of the data: sightings come disproportionately from whichever beach is easiest to reach, not from where litter actually accumulates, so the data set represents volunteer convenience as much as litter (DAT-2.C.5). Collecting more submissions the same way will not fix it, since bias is not eliminated by simply collecting more data; more rows from the same over-represented source deepen the same skew (DAT-2.C.5). Finally, the litter data alone contain no tide or weather information, and often a single source does not contain the data needed to draw a conclusion, so the city must combine its litter records with the tide-and-weather data set to connect conditions to litter levels (DAT-2.A.4, DAT-2.E.3)."
+        ],
+        "rubric": [
+          "3 pts: Part (a) names and applies at least three distinct DAT-2.D.6 processes (transforming every element, filtering, combining/comparing, visualizing), each tied to a concrete step on the CoastWatch data. 1 pt per process, max 3.",
+          "1 pt: Part (a) or elsewhere conveys that processing is iterative and interactive, with results prompting further runs or refinements to gain insight (DAT-2.E.1), or that combining/clustering/classifying is part of gaining insight (DAT-2.E.3).",
+          "2 pts: Part (b) identifies two valid non-bias challenges from the scenario, such as nonuniform open-field entries (DAT-2.C.3) and incomplete data or the need to combine sources (DAT-2.C.2). 1 pt per challenge.",
+          "1 pt: Part (b) describes cleaning correctly: making the data uniform without changing their meaning, such as replacing equivalent descriptions with one term (DAT-2.C.4).",
+          "1 pt: Part (c) explains the bias as created by the type or source of collection, and that collecting more data the same way does not eliminate it (DAT-2.C.5).",
+          "1 pt: Part (c) explains that a single source may not contain the data needed for the conclusion, so the litter and tide-and-weather sources must be combined (DAT-2.A.4)."
+        ],
+        "ek": "EK DAT-2.D.6 + EK DAT-2.D.2 + EK DAT-2.E.1 + EK DAT-2.E.2 + EK DAT-2.E.3 + EK DAT-2.C.2 + EK DAT-2.C.3 + EK DAT-2.C.4 + EK DAT-2.C.5 + EK DAT-2.A.4"
+      }
+    ]
+  }
+}
