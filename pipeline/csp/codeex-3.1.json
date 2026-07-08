@@ -1,0 +1,65 @@
+{
+  "meta": { "topic": "3.1", "title": "Variables and Assignments", "unit": "Big Idea 3: Algorithms and Programming" },
+  "problems": [
+    {
+      "prompt": "Create a variable name holding \"Ada\" and a variable age holding 15, then print exactly: Ada is 15",
+      "promptHtml": "Create a variable <code>name</code> holding <code>\"Ada\"</code> and a variable <code>age</code> holding <code>15</code>, then print exactly: <code>Ada is 15</code>",
+      "expected": "Ada is 15",
+      "starter": {
+        "python": "# make a variable called name that holds \"Ada\"\n# make a variable called age that holds 15\n# print them as: Ada is 15\n",
+        "javascript": "// make a variable called name that holds \"Ada\"\n// make a variable called age that holds 15\n// print them as: Ada is 15\n"
+      },
+      "reference": {
+        "pseudocode": "name ← \"Ada\"\nage ← 15\nDISPLAY(name + \" is \" + age)",
+        "python": "name = \"Ada\"\nage = 15\nprint(name + \" is \" + str(age))",
+        "javascript": "let name = \"Ada\";\nlet age = 15;\nconsole.log(name + \" is \" + age);"
+      },
+      "hint": "Store each value in its own variable, then join them. In Python, str(age) turns the number 15 into text so it can be joined with +."
+    },
+    {
+      "prompt": "Predict first, then verify the classic trace. Set a to 1, set b to a, set a to 2, then print b. What single value does it print?",
+      "promptHtml": "Predict first, then verify the classic trace. Set <code>a</code> to 1, set <code>b</code> to <code>a</code>, set <code>a</code> to 2, then print <code>b</code>. What single value does it print?",
+      "expected": "1",
+      "starter": {
+        "python": "# Predict the output BEFORE you run it.\n# a becomes 1, then b becomes a, then a becomes 2.\n# Then print b.\n",
+        "javascript": "// Predict the output BEFORE you run it.\n// a becomes 1, then b becomes a, then a becomes 2.\n// Then print b.\n"
+      },
+      "reference": {
+        "pseudocode": "a ← 1\nb ← a\na ← 2\nDISPLAY(b)",
+        "python": "a = 1\nb = a\na = 2\nprint(b)",
+        "javascript": "let a = 1;\nlet b = a;\na = 2;\nconsole.log(b);"
+      },
+      "hint": "b ← a copies a's value (1) at that moment; changing a to 2 afterward does not touch b. A variable keeps its most recent assigned value."
+    },
+    {
+      "prompt": "x is 4 and y is 9. Swap their values using a temporary variable, then print them on one line as: 9 4",
+      "promptHtml": "<code>x</code> is 4 and <code>y</code> is 9. Swap their values using a temporary variable, then print them on one line as: <code>9 4</code>",
+      "expected": "9 4",
+      "starter": {
+        "python": "x = 4\ny = 9\n# swap x and y using a temp variable\n# then print them as: 9 4\n",
+        "javascript": "let x = 4;\nlet y = 9;\n// swap x and y using a temp variable\n// then print them as: 9 4\n"
+      },
+      "reference": {
+        "pseudocode": "temp ← x\nx ← y\ny ← temp\nDISPLAY(x + \" \" + y)",
+        "python": "x = 4\ny = 9\ntemp = x\nx = y\ny = temp\nprint(str(x) + \" \" + str(y))",
+        "javascript": "let x = 4, y = 9;\nlet temp = x;\nx = y;\ny = temp;\nconsole.log(x + \" \" + y);"
+      },
+      "hint": "Save x in temp before you overwrite it: temp gets x, then x gets y, then y gets temp. Without temp, x's original value is lost."
+    },
+    {
+      "prompt": "Spot the bug: this program should print 8 (total starts at 5, then 3 more is added), but it prints the wrong value. Fix it.",
+      "promptHtml": "Spot the bug: this program should print <code>8</code> (total starts at 5, then 3 more is added), but it prints the wrong value. Fix it.",
+      "expected": "8",
+      "starter": {
+        "python": "total = 5\ntotal = 3   # BUG: this REPLACES total instead of adding 3 to it. Fix it.\nprint(total)\n",
+        "javascript": "let total = 5;\ntotal = 3;   // BUG: this REPLACES total instead of adding 3 to it. Fix it.\nconsole.log(total);\n"
+      },
+      "reference": {
+        "pseudocode": "total ← 5\ntotal ← total + 3\nDISPLAY(total)",
+        "python": "total = 5\ntotal = total + 3\nprint(total)",
+        "javascript": "let total = 5;\ntotal = total + 3;\nconsole.log(total);"
+      },
+      "hint": "A variable keeps only its most recent value, so plain total = 3 throws away the 5. To ADD instead of replace, put total's current value on the right side of the assignment and add 3 to it."
+    }
+  ]
+}

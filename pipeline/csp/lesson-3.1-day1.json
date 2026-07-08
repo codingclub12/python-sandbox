@@ -1,0 +1,596 @@
+{
+  "meta": {
+    "lessonId": "3.1",
+    "lessonTitle": "Variables and Assignments",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-1.A",
+    "anchor": "Variables and Assignments",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.1 · Day 1 of 2",
+      "title": "Giving Data a Name",
+      "subtitle": "The first idea in every program you will ever write: a variable — a named box that holds one value — and how choosing the right name and the right type makes code readable and correct",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Big Idea 3, Algorithms and Programming — the largest part of the course and the biggest slice of the exam. This is where we stop talking ABOUT computing and start writing code, and everything begins here, with the variable. A variable is simply a named place that holds a value while a program runs. Today, Day 1, we answer two questions: what exactly is a variable, and how do we pick a good name and the right type for what we want to store. Tomorrow, Day 2, we learn how the value inside a variable changes — the assignment operator — and the trace puzzles the exam loves."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain that a variable is an abstraction that holds one value at a time, and why a meaningful name makes a program readable (LO AAP-1.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Name the four data types the CED lists — numbers, Booleans, lists, and strings — and choose the type best suited to a given value (LO AAP-1.A)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-1.A, representing a value with a variable. First: explain what a variable really is — an abstraction that holds one value at a time — and why the name you give it matters for anyone reading the code, including future you. Second: know the four types the College Board names, numbers, Booleans, lists, and strings, and be able to pick the type that fits a value. Tomorrow's objective, AAP-1.B, is the other half: how assignment changes the value a variable holds."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Follow this recipe EXACTLY as written, out loud, with a partner: 'Take the number. Add the number to itself. To that result, add the number again. Now double the whole thing. Report the answer.' Use the number 7.",
+      "subprompt": "Write 2–4 sentences: Where did you lose track of which 'the number' meant what? Rewrite the recipe so a stranger could follow it with zero confusion. What did you have to add to make it clear?",
+      "directions": "Be ready to share your rewritten recipe.",
+      "script": "Five minutes, with a partner. Read that recipe out loud and actually try to follow it with the number seven — 'the number,' 'the result,' 'the whole thing.' It is deliberately painful: nothing has a name, so you keep losing your place. Then rewrite it so a total stranger could execute it with zero confusion. Watch what you naturally do — almost every group invents names: 'let n be the number, let r be n plus n,' and so on. Hold onto that instinct. You just discovered why variables exist: a program that has to hold and reuse values needs to give them names. That is today's entire first idea."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "What a Variable Is",
+          "description": "A variable as an abstraction that holds one value, and why meaningful names matter (EK AAP-1.A.1–A.2)."
+        },
+        {
+          "title": "Types and Choosing a Type",
+          "description": "The four types — numbers, Booleans, lists, strings — and matching a value to the right one (EK AAP-1.A.3–A.4)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.1 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required: what a variable is, then types and choosing a type. Keep the packet open and fill it in as we go; if you were absent or lost the packet, a digital copy of these notes lives on the Topic 3.1 Guided Notes page at apcsexamprep.com. This is also the first topic with interactive coding practice — write-and-run problems live on the Topic 3.1 page too."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "What a Variable Is",
+      "kicker": "Variables as Abstractions · Learning Objective AAP-1.A",
+      "script": "Section one. Your bell-ringer recipe was miserable because values had no names. A variable fixes that. Before we can loop, branch, or build anything, we need this one idea rock-solid: a variable is a named place that holds a value while the program runs — and the College Board is precise about what that means."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-1.A)",
+      "terms": [
+        {
+          "term": "Variable",
+          "definition": "A named abstraction inside a program that can hold one value at a time — though that single value may itself be a list or other collection (EK AAP-1.A.1)."
+        },
+        {
+          "term": "Value",
+          "definition": "The specific piece of data a variable is holding right now, such as 15, true, or \"Ada\" (EK AAP-1.A.1)."
+        },
+        {
+          "term": "Data type",
+          "definition": "The category of value a variable holds; the CED names numbers, Booleans, lists, and strings (EK AAP-1.A.3)."
+        },
+        {
+          "term": "Boolean",
+          "definition": "A type whose value can only be true or false — perfect for yes/no facts (EK AAP-1.A.3)."
+        },
+        {
+          "term": "Meaningful name",
+          "definition": "A variable name that describes the value it stores, which improves the readability of the code and what the value represents (EK AAP-1.A.2)."
+        }
+      ],
+      "script": "Five words carry this topic. A variable is a named abstraction that holds one value at a time — and note the College Board's careful wording: one value, but that value can itself be a whole list. A value is just whatever is in the box right now: 15, true, the text 'Ada.' A data type is the category of value; the CED names exactly four — numbers, Booleans, lists, and strings. A Boolean is the true-or-false type, ideal for yes/no facts. And a meaningful name is one that tells the reader what the value represents, which the CED explicitly ties to readable code."
+    },
+    {
+      "type": "concept",
+      "heading": "A Named Box That Holds One Value",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A variable is an ABSTRACTION: you use the name and ignore where or how the value is physically stored in memory (EK AAP-1.A.1).",
+        "Each variable has storage that represents exactly ONE value at a time — put a new value in and the old one is gone.",
+        "That one value can be a single number, OR a collection like a list that itself holds many values (EK AAP-1.A.1).",
+        "Think of it as a labeled box: the label is the name, whatever is inside is the value."
+      ],
+      "script": "Here is the mental model to keep for the rest of the year. A variable is an abstraction — you refer to it by its name and never worry about which memory address is holding the bits. Each variable has storage for exactly one value at a time; the moment you put a new value in, the previous one is gone. The College Board adds one subtlety worth writing down: that single value can itself be a collection, like a list of many numbers, but the variable still holds one thing — one list. The labeled-box picture captures it: the label is the name, the contents are the value.",
+      "capture": [
+        {
+          "q": "A variable is an abstraction because you use its name and ______.",
+          "a": "ignore where or how the value is physically stored in memory"
+        },
+        {
+          "q": "At any moment a variable's storage represents ______.",
+          "a": "exactly one value at a time — a new value replaces the old one"
+        },
+        {
+          "q": "That one value is allowed to be ______.",
+          "a": "a single item or a whole collection such as a list of many values"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Variables",
+      "heading": "Store a Value, Then Use It",
+      "caption": "The name 'score' holds the value 5; DISPLAY then shows what's inside.",
+      "pseudocode": "score ← 5\nDISPLAY(score)",
+      "python": "score = 5\nprint(score)",
+      "output": "5",
+      "script": "Your first real code, in two columns. On the left is the exam's pseudocode, the language the AP reference sheet defines; on the right is Python, which actually runs. The left-arrow means assignment: put the value 5 into the box named score. DISPLAY of score then shows what is inside — five. On the exam you read and write the pseudocode on the left; in the coding practice on the website you run the Python on the right. Same idea, two notations. Notice the name score tells you what the value means without any comment."
+    },
+    {
+      "type": "two_column",
+      "heading": "Names Are for Humans",
+      "subheading": "The computer runs either way — but a meaningful name makes a program readable and its intent obvious (EK AAP-1.A.2).",
+      "left": {
+        "title": "Vague names",
+        "definition": "Single letters or generic words that hide what the value means",
+        "ek": "EK AAP-1.A.2",
+        "examples": [
+          "x ← 19.99  — nineteen ninety-nine of WHAT?",
+          "a, b, temp2, data1 sprinkled through a long program",
+          "Six months later even the author has to guess"
+        ]
+      },
+      "right": {
+        "title": "Meaningful names",
+        "definition": "Names that describe the value, so the code reads like its intent",
+        "ek": "EK AAP-1.A.2",
+        "examples": [
+          "itemPrice ← 19.99  — now the meaning is obvious",
+          "studentCount, isLoggedIn, quizScores explain themselves",
+          "Readable code is easier to test, fix, and hand off"
+        ]
+      },
+      "footer": "AP TIP: The machine does not care about names — readability is entirely for the humans who read, test, and fix the code (EK AAP-1.A.2).",
+      "script": "The computer does not care what you name your variables; it would happily run a program full of x, a, and temp2. Names exist entirely for humans. Compare x arrow nineteen ninety-nine with itemPrice arrow nineteen ninety-nine — the second one tells you what the number means the instant you read it. Across a long program, meaningful names like studentCount, isLoggedIn, and quizScores make the code read like a description of what it does, which is exactly what makes it easier to test, fix, and hand to someone else. The College Board calls this out directly in EK AAP-1.A.2: meaningful names improve readability and understanding of what the values represent.",
+      "capture": [
+        {
+          "q": "A meaningful variable name improves ______.",
+          "a": "the readability of the code and understanding of what the value represents"
+        },
+        {
+          "q": "Meaningful vs vague names run identically, so good names exist to help ______.",
+          "a": "people read, test, and debug the code — the machine does not care"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Variables and Names",
+      "subheading": "These map to LO AAP-1.A. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain what it means to say a variable is an 'abstraction that holds one value at a time.' Use the labeled-box idea.",
+        "A program uses a variable named d for a person's date of birth. Rename it to something meaningful and explain, using the word readability, why your name is better.",
+        "A classmate says 'a variable can hold lots of values at once, like all the quiz scores.' Correct the wording precisely — what one thing does the variable actually hold?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.1 page.",
+      "script": "Stop and think — independent, six minutes, full sentences on your Guided Notes. One: put the abstraction idea in your own words using the labeled box — one value at a time, name on the outside. Two: rename the variable d for date of birth to something meaningful and justify it with the word readability. Three: fix the classmate's wording — a variable does not hold many values at once; it holds one value, which may be one list. That precise distinction is exactly what AAP-1.A questions test."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Types and Choosing a Type",
+      "kicker": "The Four Types · Learning Objective AAP-1.A",
+      "script": "Section two. Every value has a kind — a type. The College Board names four you must know, and the exam expects you to match a value to the type that fits it best. Getting this right prevents a whole family of bugs before they happen."
+    },
+    {
+      "type": "concept",
+      "heading": "Four Types the CED Names",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Some languages provide TYPES to represent data, referenced through variables (EK AAP-1.A.3).",
+        "The four the CED lists: NUMBERS (15, 3.4), BOOLEANS (true / false), LISTS ([88, 92, 79]), and STRINGS (\"Ada\") (EK AAP-1.A.3).",
+        "Numbers are for quantities you calculate with; Booleans for yes/no facts; strings for text; lists for many values held together.",
+        "Some values fit one type far better than another — that judgment is EK AAP-1.A.4."
+      ],
+      "script": "Four types, and you should be able to recite them. Numbers, like 15 or 3.4, are for quantities you do math on. Booleans are true or false — perfect for a yes/no fact like whether a user is logged in. Strings are ordered text, like a name in quotes. Lists hold many values together in order under one name. The College Board says some languages provide these types, referenced through variables, and — crucially for the exam — that some values are better suited to one type than another. That last point, EK AAP-1.A.4, is the one they turn into questions.",
+      "capture": [
+        {
+          "q": "Some values fit one type better than another, so the programmer ______.",
+          "a": "picks the type that matches how the value will be used (e.g. a ZIP code as a string)"
+        },
+        {
+          "q": "A Boolean is best suited to a value that is ______.",
+          "a": "a yes/no or true/false fact, such as whether a user is logged in"
+        },
+        {
+          "q": "EK AAP-1.A.4's key idea is that ______.",
+          "a": "some values are better represented by one type of datum than another"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Types",
+      "heading": "One Variable Per Type",
+      "caption": "A number, a string, a Boolean, and a list — each variable holds one value of its kind.",
+      "pseudocode": "age ← 15\nname ← \"Ada\"\nready ← true\nscores ← [88, 92]\nDISPLAY(name)",
+      "python": "age = 15\nname = \"Ada\"\nready = True\nscores = [88, 92]\nprint(name)",
+      "output": "Ada",
+      "script": "Four variables, one of each type. Age holds the number 15. Name holds the string 'Ada' — text always goes in quotes. Ready holds the Boolean true. Scores holds a list, two numbers together in one variable. Notice scores is a single variable holding one value that happens to be a collection — exactly the subtlety from EK AAP-1.A.1. One thing to flag between the two columns: the pseudocode Boolean is lowercase true, while Python capitalizes it as True. Small notation differences like that are why we always anchor to the exam's reference sheet on the left."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Match the Value to the Type",
+      "context": "For each value, pick the type that fits best. The tricky ones are values that LOOK like numbers but should not be.",
+      "columns": [
+        "Value to store",
+        "Best type",
+        "Why this type"
+      ],
+      "rows": [
+        [
+          "A final exam score, like 88",
+          "Number",
+          "Scores get averaged and compared, so arithmetic must work on them"
+        ],
+        [
+          "Whether a user is logged in",
+          "Boolean",
+          "There are only two states — true or false"
+        ],
+        [
+          "A person's full name",
+          "String",
+          "A name is ordered text, not a quantity you calculate with"
+        ],
+        [
+          "Everyone's quiz grades together",
+          "List",
+          "Many values must be held in order under one variable name"
+        ],
+        [
+          "A phone number like 5551234567",
+          "String",
+          "It is never added or averaged, and leading digits and format must be preserved"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "Match each value to its best type. A final exam score is a number — you average and compare scores, so arithmetic has to work. Whether a user is logged in is a Boolean, only two states. A full name is a string, ordered text you never do math on. Everyone's quiz grades together is a list, many values under one name. And the trap the exam loves: a phone number is a string, not a number, even though it is all digits — you never add phone numbers, and treating it as a number would drop a leading zero and destroy the format. The test for 'number' is not 'does it contain digits,' it is 'do I calculate with it.'",
+      "blanks": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“If It's All Digits, It's a Number”",
+      "misconception": "Any value made of digits — a phone number, a ZIP code, a student ID — should be stored as a number type.",
+      "whyItHappens": "The value LOOKS numeric, and years of math class trained us to treat digit strings as quantities to compute with.",
+      "correction": "The right test is whether you do ARITHMETIC on the value, not whether it contains digits. Phone numbers, ZIP codes, and IDs are labels — you never add or average them, and storing them as numbers can drop leading zeros and mangle formatting. They belong in strings (EK AAP-1.A.4).",
+      "example": "Store the ZIP code 02139 as a number and it becomes 2139 — the leading zero vanishes. As a string, \"02139\" stays exactly right. Same digits, wrong type, real bug.",
+      "script": "Here is the trap, and the exam uses it. Because a phone number or a ZIP code is all digits, it feels like a number. But the real test is arithmetic: do you ever add, subtract, or average this value? You never add two phone numbers. These are labels, and labels are strings. The consequence is concrete: store the ZIP code oh-two-one-three-nine as a number and the leading zero disappears — it becomes 2139, a different, wrong ZIP. Stored as the string 'zero two one three nine' it stays perfect. Same digits, wrong type, real bug. That is EK AAP-1.A.4 in one example: some values are better suited to one type than another."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Choose the Type",
+      "subheading": "These map to LO AAP-1.A. Complete on your Guided Notes.",
+      "prompts": [
+        "For each value, name the best type and one sentence of justification: (a) a thermostat's current temperature, (b) whether it is raining, (c) a shopping list of item names.",
+        "A programmer stores a student ID '00847' as a number and later it prints as 847. Explain the bug and the type that fixes it.",
+        "In one sentence, state the test you use to decide whether a digit-filled value should be a number or a string."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.1 page.",
+      "script": "Choose the type, five minutes, full sentences. One: temperature is a number, raining-or-not is a Boolean, a shopping list of names is a list of strings — justify each in a sentence. Two: the student ID printing as 847 lost its leading zeros because it was stored as a number; the fix is a string. Three: distill the rule into one sentence — if you do arithmetic on it, number; otherwise, string. These are exactly the AAP-1.A.4 moves the exam makes."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A variable is an abstraction that holds exactly one value at a time — the value may itself be a list (EK AAP-1.A.1)",
+        "Meaningful names improve readability and show what a value represents; the machine does not care (EK AAP-1.A.2)",
+        "The four types the CED names: numbers, Booleans, lists, and strings (EK AAP-1.A.3)",
+        "Some values fit one type better than another — digit labels like ZIP codes belong in strings (EK AAP-1.A.4)"
+      ],
+      "nextPoints": [
+        "Day 2: how the value inside a variable CHANGES — the assignment operator ← (LO AAP-1.B)",
+        "Why a ← expression evaluates the expression first, then stores a copy",
+        "The trace puzzles: after a ← 1; b ← a; a ← 2, what does b hold?"
+      ],
+      "teaser": "Before tomorrow, predict it: a ← 1, then b ← a, then a ← 2. Now DISPLAY(b). Write down your answer and, more importantly, your reasoning.",
+      "script": "That is Day 1. A variable is an abstraction holding one value at a time; meaningful names are for the humans; the CED names four types — numbers, Booleans, lists, strings; and some values fit one type better than another, which is why a ZIP code is a string. Tomorrow we make the value MOVE: the assignment operator, how the right side is evaluated before it is stored, and the trace puzzles the exam builds from them. Here is the teaser, and it is the exact puzzle we open with tomorrow: a gets 1, then b gets a, then a gets 2 — now display b. Write your answer and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.1 — Variables and Assignments — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student says, 'My variable scores holds all five of my quiz grades, so it holds five values at once.' Per EK AAP-1.A.1, what is the most precise correction?",
+        "options": [
+          "The variable actually holds no values until the program finishes running",
+          "The variable can only hold five values if it is declared as a Boolean",
+          "The variable holds exactly one value at a time — that single value is one list, which in turn contains the grades",
+          "The variable holds five separate values because each grade needs its own storage"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-1.A.1",
+        "rationale": "EK AAP-1.A.1 states a variable's storage represents one value at a time, but that value can be a list or other collection that contains multiple values. So scores holds one value — a list — and the list contains the grades. A is false; the variable holds its value while the program runs. B invents a Boolean rule and misnames the type. D contradicts the EK by claiming the variable holds five separate values rather than one collection."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Two programs are identical except that one uses the variable name t and the other uses timeRemaining. Per EK AAP-1.A.2, which statement is true?",
+        "options": [
+          "Both run the same way, but timeRemaining makes the code more readable and its intent clearer",
+          "The program using t runs faster because shorter names use less memory",
+          "The program using timeRemaining will produce a different output because the name is longer",
+          "Only single-letter names like t are valid variable names in the exam pseudocode"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-1.A.2",
+        "rationale": "EK AAP-1.A.2 says meaningful names help the readability of code and understanding of what values represent — they do not change how the program runs. A captures exactly that. B invents a speed/memory effect names do not have at this level. C is false; the name does not affect output. D fabricates a rule; descriptive names are perfectly valid."
+      },
+      {
+        "id": "Q3",
+        "kind": "recall",
+        "stem": "Per EK AAP-1.A.3, which list contains only data types the CED names for representing data?",
+        "options": [
+          "Numbers, Booleans, pixels, and folders",
+          "Integers, decimals, colors, and files",
+          "Numbers, characters, images, and sounds",
+          "Numbers, Booleans, lists, and strings"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-1.A.3",
+        "rationale": "EK AAP-1.A.3 names numbers, Booleans, lists, and strings as the types, so D is correct. A includes pixels and folders, which are not CED types. B lists integers and decimals (kinds of numbers) plus colors and files, which the EK does not name. C mixes in images and sounds, which are represented using these types but are not themselves the listed types."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A registration program must store each student's ID, such as 00847, and IDs are never added or averaged. Per EK AAP-1.A.4, which type best suits this value and why?",
+        "options": [
+          "A number, because the ID is written entirely with digits",
+          "A string, because the ID is a label whose leading zeros and format must be preserved",
+          "A Boolean, because each ID is either valid or invalid",
+          "A list, because the ID contains several digits"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-1.A.4",
+        "rationale": "EK AAP-1.A.4 states some values are better suited to one type than another. An ID is a label, not a quantity: no arithmetic is done on it, and storing 00847 as a number drops the leading zeros to 847. A string preserves it exactly, so B is correct. A applies the digit-means-number reflex the EK warns against. C misuses Boolean for a multi-valued label. D confuses 'many digits' with 'many values.'"
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "In exam pseudocode a program runs: count ← 5, then count ← count + 3, then DISPLAY(count). Per EK AAP-1.B.1, what is displayed?",
+        "options": [
+          "8",
+          "5",
+          "53",
+          "count + 3"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-1.B.1",
+        "rationale": "EK AAP-1.B.1 says the assignment operator changes the value a variable represents. count starts at 5; count ← count + 3 evaluates 5 + 3 and stores 8, so DISPLAY shows 8. B ignores the second assignment. C treats + as text joining, which is not what the numeric expression does. D fails to evaluate the expression before assigning."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "On the exam reference sheet, what does the statement a ← b + 2 do, per EK AAP-1.B.2?",
+        "options": [
+          "It permanently links a to b, so any later change to b also changes a",
+          "It checks whether a is equal to b + 2 and returns true or false",
+          "It evaluates b + 2 first and then assigns a copy of that result to a",
+          "It moves the value out of b into a, leaving b empty"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-1.B.2",
+        "rationale": "EK AAP-1.B.2 defines a ← expression as evaluating the expression and then assigning a copy of the result to the variable. So b + 2 is computed first, and a copy of the result is stored in a. A describes a permanent link, which assignment does not create — a copy is independent. B confuses assignment with an equality comparison. D wrongly claims b is emptied; b is only read, not cleared."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "A program runs: a ← 1, then b ← a, then a ← 2, then DISPLAY(b). Per EK AAP-1.B.3, what is displayed?",
+        "options": [
+          "2, since a and b remain linked",
+          "1, the value b was assigned",
+          "0, a later reassignment clears b",
+          "Nothing; b was never assigned a value"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-1.B.3",
+        "rationale": "EK AAP-1.B.3 gives this exact example: the value stored is the most recent value assigned. b ← a copies 1 into b; changing a to 2 afterward does not touch b, so DISPLAY(b) shows 1. A assumes a live link between a and b, which does not exist. C invents a reset. D is false; b was assigned the copy 1."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "A program swaps two variables: x ← 4, y ← 9, temp ← x, x ← y, y ← temp. After it runs, what do x and y hold?",
+        "options": [
+          "x holds 4 and y holds 9, unchanged",
+          "x holds 9 and y holds 9; temp was lost",
+          "x holds 4 and y holds 4; temp overwrote y",
+          "x holds 9 and y holds 4, a completed swap"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-1.B.3",
+        "rationale": "Tracing with most-recent-value semantics (EK AAP-1.B.3): temp saves x's 4; x ← y makes x hold 9; y ← temp makes y hold the saved 4. The result is x = 9, y = 4 — a correct swap, option D. A ignores the assignments entirely. B and C come from forgetting that temp preserved the original x so it could be placed into y."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.1 — Variables and Assignments — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.1 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.1 is the PILOT for Big Idea 3 — the first topic in the course where students read and write code. It introduces the single idea every later program depends on: the variable. Day 1 (LO AAP-1.A) builds the concept — a variable is an abstraction that holds one value at a time, meaningful names make code readable, and the CED's four types (numbers, Booleans, lists, strings) each suit different values. Day 2 (LO AAP-1.B) makes the value change: the assignment operator, the evaluate-then-assign-a-copy rule, and the most-recent-value trace puzzles the exam builds from.",
+      "Because this opens the programming strand, all code on slides uses the AP Exam Reference Sheet pseudocode (← for assignment, DISPLAY, 1-indexed lists) shown side by side with runnable Python. The interactive, auto-graded coding practice lives on the Topic 3.1 page: students write real code and check it against expected output, so the mechanical skill is rehearsed online rather than on paper.",
+      "The through-line is the Day 1 bell ringer: students try to follow a nameless recipe, invent variable names to fix it, and thereby discover why variables exist before the word is defined."
+    ],
+    "los": [
+      "LO AAP-1.A — Represent a value with a variable.",
+      "LO AAP-1.B — Determine the value of a variable as a result of an assignment."
+    ],
+    "eks": [
+      "EK AAP-1.A.1 — A variable is an abstraction inside a program that can hold a value. Each variable has associated data storage that represents one value at a time, but that value can be a list or other collection that in turn contains multiple values.",
+      "EK AAP-1.A.2 — Using meaningful variable names helps with the readability of program code and understanding of what values are represented by the variables.",
+      "EK AAP-1.A.3 — Some programming languages provide types to represent data, which are referenced using variables. These types include numbers, Booleans, lists, and strings.",
+      "EK AAP-1.A.4 — Some values are better suited to representation using one type of datum rather than another.",
+      "EK AAP-1.B.1 — The assignment operator allows a program to change the value represented by a variable.",
+      "EK AAP-1.B.2 — The exam reference sheet provides the \"<-\" operator to use for assignment: a <- expression evaluates expression and then assigns a copy of the result to the variable a.",
+      "EK AAP-1.B.3 — The value stored in a variable will be the most recent value assigned. For example: a <- 1; b <- a; a <- 2; DISPLAY(b) still displays 1."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.1 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.1 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: index cards labeled as 'boxes' for a physical variable/assignment demonstration."
+    ],
+    "prereqs": [
+      "Big Ideas 1 and 2 (creative development and data) provide the framing — students know what a program is and that data is stored as bits — but no prior programming is assumed. This topic OPENS the programming strand; everything students write in Big Idea 3 stands on the variable defined here. Comfort with basic algebra notation (a variable standing for a value) transfers directly."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "What a variable is; meaningful names; the four types and choosing among them (LO AAP-1.A)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.1/Q1) + bell ringer (the nameless recipe)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "What a variable is: vocab, the abstraction, first code_block, meaningful names (EK AAP-1.A.1–A.2)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on variables and names",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Types and choosing a type: four types, code_block, match-the-type table, digit trap (EK AAP-1.A.3–A.4)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on choosing the type",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + assignment teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "The assignment operator; evaluate-then-assign-a-copy; most-recent-value and trace puzzles (LO AAP-1.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.1/Q2) + bell ringer (predict a ← 1; b ← a; a ← 2; DISPLAY(b))",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "The assignment operator: change the value, evaluate-then-copy, ← vs = (EK AAP-1.B.1–B.2)",
+            "min": 13,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on assignment basics",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Most recent value and copies: concept, the classic code_block, swap trace table (EK AAP-1.B.3)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.1 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.1 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.1 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“A variable holds many values at once”",
+        "myth": "A variable like scores holds all the quiz grades as separate values simultaneously.",
+        "reality": "A variable's storage represents exactly one value at a time (EK AAP-1.A.1). That one value CAN be a list that contains many grades, but the variable still holds a single thing — one list. Enforce the precise wording: one value, which may be one collection."
+      },
+      {
+        "heading": "“If it's all digits, store it as a number”",
+        "myth": "Phone numbers, ZIP codes, and IDs are numeric values and belong in a number type.",
+        "reality": "The test is whether you do arithmetic on the value, not whether it contains digits (EK AAP-1.A.4). Labels like 00847 are strings; stored as numbers they lose leading zeros and break formatting. Some values are simply better suited to one type than another."
+      },
+      {
+        "heading": "“b ← a links b to a”",
+        "myth": "After b ← a, the two variables are tied together, so changing a later also changes b.",
+        "reality": "Assignment stores a COPY of the value (EK AAP-1.B.2), and a variable keeps the most recent value assigned (EK AAP-1.B.3). b ← a copies a's current value into b; a later a ← 2 does not touch b. This is the exam's a ← 1; b ← a; a ← 2 trace."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students physical labeled boxes (or index cards): write the name on the outside, drop in a slip for the value, and physically replace the slip on each assignment so 'one value at a time' is concrete.",
+        "Provide a fill-in trace table for Day 2: one column per variable, one row per line, so students rewrite each variable's value after every assignment."
+      ],
+      "extension": [
+        "Have students explain why the swap needs a temp variable by predicting what x ← y; y ← x (without temp) produces, then proving it with a trace.",
+        "Point deep-dive students at the Topic 3.1 coding practice to implement the swap and the a/b/a trace in real Python, then explain how the language's output confirms most-recent-value semantics."
+      ]
+    },
+    "discussion": [
+      "Your bell-ringer recipe was unusable until values had names. What does that suggest about why naming — of variables, files, functions — is one of the hardest and most important skills in programming?",
+      "The computer runs identically whether you name a variable x or timeRemaining. If the machine does not care, who exactly are meaningful names FOR, and what does that tell you about who reads code?",
+      "A ZIP code and a quiz score are both 'just digits,' yet one is a string and one is a number. What single question separates them, and where else in everyday data does that same question decide the right type?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}
