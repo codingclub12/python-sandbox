@@ -74,6 +74,8 @@ ${s} .wcell{display:block!important;border-bottom:1.5px solid ${B.line}!importan
 ${s} .gap{display:inline-block!important;min-width:170px!important;border-bottom:1.5px solid ${B.line}!important;height:1.1em!important;vertical-align:baseline!important}
 ${s} .chk{list-style:none!important;padding-left:4px!important}
 ${s} .chk li{padding-left:0!important}
+${s} pre.code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace!important;font-size:14px!important;background:#F0F7F4!important;border:1px solid #BBE5D2!important;border-radius:10px!important;padding:12px 14px!important;margin:6px 0 12px!important;overflow-x:auto!important;white-space:pre!important;color:#022C22!important;-webkit-text-fill-color:#022C22!important;line-height:1.45!important}
+${s} pre.code.out{background:#022C22!important;color:#D1FAE5!important;-webkit-text-fill-color:#D1FAE5!important;border-color:#022C22!important}
 ${s} .muted{color:#5B7268!important;-webkit-text-fill-color:#5B7268!important;font-size:14px!important}
 ${s} a,${s} a:link,${s} a:visited{color:${B.deep}!important;-webkit-text-fill-color:${B.deep}!important;text-decoration:underline!important}
 ${s} .btn,${s} .btn:link,${s} .btn:visited{display:inline-block!important;background:${B.mid}!important;color:#fff!important;-webkit-text-fill-color:#fff!important;text-decoration:none!important;font-weight:700!important;border-radius:10px!important;padding:10px 16px!important;border:0!important;cursor:pointer!important;font-size:15px!important;margin:4px 8px 4px 0!important}
@@ -147,6 +149,16 @@ function renderSlide(s){
       let h = `<h3>${esc(strip(s.heading||'Common AP Traps'))}</h3>`;
       if (s.subheading) h += `<p class="muted">${esc(strip(s.subheading))}</p>`;
       (s.strategies||[]).forEach(st=>{ h += `<p><strong>${esc(st.name)}</strong> &mdash; in your own words:</p>${lines(1)}`; });
+      return h;
+    }
+    case 'code_block': {
+      const pre = (label, code, cls) => `<p class="label">${esc(label)}</p><pre class="code ${cls}">${esc(strip(code||''))}</pre>`;
+      let h = `<h3>${esc(strip(s.heading||'Code'))}</h3>`;
+      if (s.caption) h += `<p class="muted">${esc(strip(s.caption))}</p>`;
+      h += pre('AP Pseudocode (what the exam tests)', s.pseudocode, 'ps');
+      h += pre('Python (the runnable version)', s.python, 'py');
+      if (s.output) h += `<p class="label">Output</p><pre class="code out">${esc(strip(s.output))}</pre>`;
+      h += `<p class="muted">Run and edit this yourself in the coding exercises for this topic.</p>`;
       return h;
     }
     case 'final_summary': {

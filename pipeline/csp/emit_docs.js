@@ -280,6 +280,20 @@ function emitNotes() {
         ])));
         break;
 
+      case 'code_block': {
+        if (s.heading) k.push(h3(s.heading));
+        if (s.caption) k.push(p([run(s.caption, { italics: true, color: C.GRAY })]));
+        const codeLines = (label, code) => {
+          k.push(p([run(label, { bold: true, color: C.PURPLE })]));
+          (code || '').split('\n').forEach(ln =>
+            k.push(new Paragraph({ spacing: { after: 0 }, children: [ run(ln || '\u00A0', { font: 'Courier New', size: 18 }) ] })));
+        };
+        codeLines('AP Pseudocode (exam):', s.pseudocode);
+        codeLines('Python (runnable):', s.python);
+        if (s.output) k.push(p([run('Output: ', { bold: true }), run(s.output, { font: 'Courier New' })]));
+        break;
+      }
+
       case 'final_summary':
         k.push(h2(s.heading || 'In one page'));
         (s.points || []).forEach(pt => k.push(bullet([run(pt)])));

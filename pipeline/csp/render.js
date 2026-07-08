@@ -1728,9 +1728,80 @@ function buildFinalSummary(slide, s) {
   }
 }
 
+
+function buildCodeBlock(slide, s) {
+  slide.background = { color: C.white };
+  addTopBar(slide);
+  addSlideHeader(slide, s.eyebrow || 'Code', s.heading);
+
+  if (s.caption) {
+    slide.addText(s.caption, {
+      x: M.edge, y: 1.45, w: W - 2 * M.edge, h: 0.4,
+      fontFace: F.body, fontSize: 13, italic: true, color: C.muted, align: 'left', margin: 0,
+    });
+  }
+
+  // Two code panes: left = AP pseudocode (exam reference), right = Python (runnable).
+  const panes = [
+    { label: 'AP PSEUDOCODE  ·  what the exam tests', code: s.pseudocode || '', badge: C.primary },
+    { label: 'PYTHON  ·  the runnable version',       code: s.python || '',      badge: C.teal },
+  ];
+  const top = s.caption ? 1.95 : 1.7;
+  const gap = 0.3;
+  const paneW = (W - 2 * M.edge - gap) / 2;
+  const bottom = s.output ? 5.75 : 6.85;
+  const paneH = bottom - top;
+  // font auto-shrink by longest line across both panes
+  const allLines = panes.flatMap(p => (p.code || '').split('\n'));
+  const maxLen = allLines.reduce((m, l) => Math.max(m, l.length), 0);
+  const nLines = panes.reduce((m, p) => Math.max(m, (p.code || '').split('\n').length), 0);
+  let fs = 13;
+  if (maxLen > 42 || nLines > 15) fs = 11;
+  if (maxLen > 52 || nLines > 19) fs = 10;
+
+  panes.forEach((p, i) => {
+    const x = M.edge + i * (paneW + gap);
+    // label bar
+    slide.addShape(pres.shapes.RECTANGLE, {
+      x, y: top, w: paneW, h: 0.32,
+      fill: { color: p.badge }, line: { color: p.badge, width: 0 },
+    });
+    slide.addText(p.label, {
+      x: x + 0.12, y: top, w: paneW - 0.24, h: 0.32,
+      fontFace: F.body, fontSize: 9.5, bold: true, color: C.white,
+      align: 'left', valign: 'middle', margin: 0,
+    });
+    // code area
+    slide.addShape(pres.shapes.RECTANGLE, {
+      x, y: top + 0.32, w: paneW, h: paneH - 0.32,
+      fill: { color: C.cardTint }, line: { color: C.border, width: 1 },
+    });
+    slide.addText(p.code || '(see reference)', {
+      x: x + 0.14, y: top + 0.44, w: paneW - 0.28, h: paneH - 0.56,
+      fontFace: F.mono, fontSize: fs, color: C.dark,
+      align: 'left', valign: 'top', margin: 0, lineSpacingMultiple: 1.08,
+    });
+  });
+
+  if (s.output) {
+    slide.addShape(pres.shapes.RECTANGLE, {
+      x: M.edge, y: bottom + 0.12, w: W - 2 * M.edge, h: 0.78,
+      fill: { color: C.dark }, line: { color: C.dark, width: 0 },
+    });
+    slide.addText([
+      { text: 'OUTPUT   ', options: { bold: true, color: C.tealSoft, fontFace: F.body, fontSize: 10 } },
+      { text: s.output, options: { color: C.white, fontFace: F.mono, fontSize: 12 } },
+    ], {
+      x: M.edge + 0.16, y: bottom + 0.12, w: W - 2 * M.edge - 0.32, h: 0.78,
+      align: 'left', valign: 'middle', margin: 0,
+    });
+  }
+}
+
 // ---------- DISPATCH ----------
 const builders = {
   title: buildTitle,
+  code_block: buildCodeBlock,
   worked_table: buildWorkedTable,
   scenario_intro: buildScenarioIntro,
   your_turn: buildYourTurn,
