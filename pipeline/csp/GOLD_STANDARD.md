@@ -104,8 +104,14 @@ student decks exist for review/absent students.
   conclusions, and mechanisms.
 - **Website integration**: every `stop_and_think.directions` ends with
   "Then check yourself with the matching CFUs on the Topic N.N page." The
-  `guided_notes_preview.note` points to the topic page. The website is the
-  student workspace; slides are the teacher instrument.
+  `guided_notes_preview.note` points to the Topic Guided Notes page. The
+  website is the student workspace; slides are the teacher instrument.
+- **Guided notes are FINDABLE ON THE SITE** (per-topic deliverable): run
+  `node emit_web.js <topic>` to publish the student packet as a Shopify page
+  at handle `ap-csp-topic-N-N-guided-notes` (all days combined, same student
+  semantics as the docx: blanks/cloze/explain-why, EK-stripped, print
+  button, deep-dive badges). web_out/pages.csv imports via Matrixify MERGE.
+  Link the page from the topic lesson page.
 - **Enrichment is visually distinct**: handled by the engine badge — authors
   just set `track: "enrichment"`.
 - **Common AP Traps + I-can checklist**: required on every lesson (see
