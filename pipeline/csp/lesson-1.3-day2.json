@@ -1,0 +1,351 @@
+{
+  "meta": {
+    "lessonId": "1.3",
+    "lessonTitle": "Program Design and Development",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 1: Creative Development",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO CRD-2.G, CRD-2.H",
+    "anchor": "Program Design and Development",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 1 · Topic 1.3 · Day 2 of 2",
+      "title": "The Note You Leave for Future You",
+      "subtitle": "Documentation, comments, and giving credit for borrowed code — the habits that save your September self and protect your Create Performance Task score",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Program Design and Development. Yesterday ended with a mystery: the brilliant June program that Septem­ber-you can't read, even though every line still runs. Today has the answer — documentation — plus the second habit that lives right next to it: acknowledging code you didn't write. Both objectives today connect straight to the Create Performance Task: documentation habits are what the written responses reward, and the acknowledgement rule is backed by the harshest penalty in the entire course — uncredited code, including AI-generated code, zeroes the whole task. Light content, heavy stakes."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Describe the purpose of a code segment or program by writing documentation — and explain why comments never affect how a program runs (LO CRD-2.G)"
+        },
+        {
+          "tag": "CB",
+          "text": "Acknowledge code segments used from other sources correctly — origin or author's name, in the program documentation (LO CRD-2.H)"
+        }
+      ],
+      "script": "Two targets today. First, CRD-2.G: documentation — what it is, the special form of it called comments, why programmers document throughout development rather than at the end, and what to do in environments that don't support comments at all. Second, CRD-2.H: acknowledging code from other sources — what counts as sufficient credit and where that credit has to live. By the end of the period you'll also know the Create Performance Task plagiarism policy cold, because it is the single most expensive rule in this course to learn the hard way."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "The June mystery, solved by you: in June you wrote a 300-line program — your best ever. In September you open it and find variables named x, temp2, and stuff, no notes of any kind, and you cannot follow your own logic. Every line still runs perfectly.",
+      "subprompt": "Write 3–4 sentences: what exactly went wrong, if nothing is broken? Then list three specific things June-you could have left behind that would rescue September-you.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own — this is yesterday's teaser, and now you get to solve it. Nothing in the program is broken; the computer is perfectly happy. So what failed? Push past 'the code is messy' to the real answer: the program carried instructions for the COMPUTER but no explanation for a HUMAN — and June-you wrongly assumed the two audiences were the same. Then get concrete: what three artifacts would rescue September-you? Most lists converge on the same items — notes explaining what each part does, real names instead of x and stuff, a description of the overall plan. Keep the list: the College Board has one word that covers everything on it, and it's the word of the day."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Documentation & Comments",
+          "description": "What documentation is, why comments never affect execution, and documenting throughout development (EK CRD-2.G.1–G.5)."
+        },
+        {
+          "title": "Giving Credit: Acknowledging Code",
+          "description": "What must be acknowledged, what sufficient credit looks like, and the Create PT plagiarism/AI policy (EK CRD-2.H.1–H.2)."
+        },
+        {
+          "title": "Deep Dive: How the Pros Document",
+          "description": "READMEs, commit messages, and docstrings — the documentation layers of real software teams.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 1.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two green and CB-required — documentation and comments, then acknowledging code, which includes the Create PT policy table. The third is a blue deep dive on how professional teams layer their documentation: READMEs, commit messages, docstrings. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 1.3 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Documentation: Writing for Humans",
+      "kicker": "Documentation & Comments · Learning Objective CRD-2.G",
+      "script": "Section one. Every program has two audiences: the computer, which reads the code, and the humans — teammates, graders, and future-you — who have to understand it. Documentation is everything written for the second audience, and the College Board has five specific things to say about it, including the one fact students get wrong most often: comments have zero effect on how a program runs."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CRD-2.G)",
+      "terms": [
+        {
+          "term": "Program documentation",
+          "definition": "A written description of the function of a code segment, event, procedure, or program — and how it was developed (EK CRD-2.G.1)."
+        },
+        {
+          "term": "Comment",
+          "definition": "A form of program documentation written into the program itself, to be read by people; comments do not affect how a program runs (EK CRD-2.G.2)."
+        }
+      ],
+      "script": "Two terms that carry the whole day. Program documentation is the umbrella: a written description of what a code segment, event, procedure, or program does — and how it was developed. Notice it covers pieces, not just whole programs, and it covers the development story, not just the finished behavior. A comment is documentation with a specific address: written INTO the program, for people, and — memorize this clause — it does not affect how a program runs. Section two adds a third word, acknowledgement, which is documentation doing justice work: credit for someone else's code. All of these come back on the quiz and on the real exam."
+    },
+    {
+      "type": "concept",
+      "heading": "Document Throughout — Not at the End",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Programmers should document a program THROUGHOUT its development — not in one heroic session after the code is done (EK CRD-2.G.3).",
+        "Documentation helps in developing and maintaining correct programs — whether you work alone or in a collaborative programming environment (EK CRD-2.G.4).",
+        "It's a development tool, not a chore: yesterday's design storyboards and testing strategy ARE early documentation of how the program was developed.",
+        "Not all programming environments support comments — block-based languages, for example — so other methods may be required: written design logs, video walk-throughs, README files (EK CRD-2.G.5)."
+      ],
+      "script": "The when and the why. When: throughout development — the CED says so directly, and September-you now knows why: the person who best understands a chunk of code is the person who wrote it TODAY, not that person three months later. Why: documentation helps in developing and maintaining CORRECT programs — it's how you catch that a procedure doesn't do what its description says, and it's how a teammate builds on your work without re-deciphering it; the EK covers both the solo case and the collaborative one. Notice that yesterday's design artifacts — the storyboard, the testing strategy — already count as documentation of how the program was developed. And the edge case the exam likes: some environments, like block-based languages, don't support comments at all, so documentation moves to other methods — a written design log, a recorded walk-through, a README. No comment feature is never an excuse for no documentation.",
+      "capture": [
+        {
+          "q": "Programmers should document a program ______ its development.",
+          "a": "throughout — not in one session at the end"
+        },
+        {
+          "q": "Documentation pays off later: it helps whoever maintains the program keep it ______.",
+          "a": "working as intended, whether that maintainer is a teammate or future you"
+        },
+        {
+          "q": "When an environment doesn't support comments, ______.",
+          "a": "other methods of documentation may be required (design logs, videos, READMEs)"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Comments Slow the Program Down”",
+      "misconception": "Comments are extra lines the computer has to wade through, so a heavily commented program runs slower — serious programmers strip comments to make code fast.",
+      "whyItHappens": "More lines looks like more work, and students transfer intuition from essays — where extra words really do cost the reader time — onto code, where the 'reader' that matters for speed is the machine.",
+      "correction": "Comments are written for PEOPLE and do not affect how a program runs — at all (EK CRD-2.G.2). The computer skips them entirely; their whole job is helping the next human (including future you) develop and maintain correct programs (EK CRD-2.G.4).",
+      "example": "Take a 300-line program, add 300 lines of comments, and run both versions: identical behavior, identical output, no measurable difference. The only thing that changed is that a human can now understand it.",
+      "script": "Here's today's trap, and it feels so reasonable: more lines, more work, slower program — so 'serious' programmers should strip comments. The College Board's definition kills it in one clause: comments are written into the program TO BE READ BY PEOPLE and do not affect how a program runs. The machine skips them completely — they cost nothing at execution time, not speed, not output, nothing. So the student who deletes every comment before submitting has made a perfectly one-sided trade: zero performance gained, all future readability lost — and if that program is a Create PT submission, they've also deleted the natural home of their acknowledgements. When you explain why this is wrong on your notes, use the phrase 'read by people' — that's the load-bearing clause."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Documentation Diagnostics",
+      "subheading": "These map to LO CRD-2.G. Complete on your Guided Notes.",
+      "prompts": [
+        "Using the word 'documentation,' explain precisely what June-you failed to do — and name the TWO audiences every program has.",
+        "A teammate wants to delete all comments before submission 'to speed the program up.' In two sentences, explain what will and won't change, citing what comments are for.",
+        "Your little cousin's block-based coding app has no comment feature. Give two other methods their team could use to document the program — and explain why 'no comments possible' doesn't mean 'no documentation needed.'"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.3 page.",
+      "script": "Stop and think — six minutes, full sentences. One: June-you wrote for one audience, the computer, and documented nothing for the other audience, humans — including future-you; a strong answer names both audiences explicitly. Two: the comment-deleting teammate — nothing about execution changes, speed included, because comments are read by people, not run by the machine; what changes is that humans lose the description of the code. Three: the block-based app — written design logs, a recorded walk-through, a README-style description all work; the requirement to document survives the missing feature, per the CED. A few students will be called on before we switch to giving credit."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Credit Where Code Is Due",
+      "kicker": "Acknowledging Code from Other Sources · Learning Objective CRD-2.H",
+      "script": "Section two, and the stakes go up. Modern programming is built on other people's code — teammates', libraries', forums', and now AI's. The College Board's position is simple: using it is fine; hiding it is not. Two EKs define what sufficient credit looks like, and one College Board policy — the Create Performance Task plagiarism rule — makes this the most expensive lesson in the course to skip."
+    },
+    {
+      "type": "two_column",
+      "heading": "What Needs Credit vs. What Credit Requires",
+      "subheading": "Two halves of the acknowledgement rule (EK CRD-2.H.1, CRD-2.H.2).",
+      "left": {
+        "title": "What must be acknowledged",
+        "definition": "Any code segment developed collaboratively or by another source",
+        "ek": "EK CRD-2.H.1",
+        "examples": [
+          "A partner's procedure you merged into your program",
+          "A code segment adapted from a forum, tutorial, or textbook",
+          "Starter code a teacher provided to the whole class",
+          "Code produced by a generative AI tool"
+        ]
+      },
+      "right": {
+        "title": "What the credit requires",
+        "definition": "In the program documentation, including the origin OR the original author's name",
+        "ek": "EK CRD-2.H.2",
+        "examples": [
+          "A comment above the segment: source named, done",
+          "Origin (where it came from) or author (who wrote it) — either satisfies the EK",
+          "A verbal mention or a private text is NOT documentation",
+          "Editing or renaming variables does not erase the debt"
+        ]
+      },
+      "footer": "AP TIP: Sufficient acknowledgement = IN the documentation + origin or author's name. Both parts, every time — 'I changed it a little' is not a third option.",
+      "script": "The whole learning objective in two columns. Left: what triggers the rule — any code segment developed collaboratively or by another source. That's broader than 'copied from the internet': a partner's procedure, forum code you adapted, teacher-provided starter code, and AI-generated code all qualify. Right: what sufficient credit looks like — the acknowledgement can live in the program documentation, and it should include the origin or the original author's name. Two requirements: right place, right content. A comment above the borrowed segment naming its source satisfies both in one line. What never satisfies it: telling someone verbally, thanking a friend by text, or the ever-popular 'I renamed the variables, so it's mine now' — modification does not erase origin. Note the OR in the EK: origin or author's name; the exam has tested that exact word.",
+      "capture": [
+        {
+          "q": "You must acknowledge any code segment that was ______.",
+          "a": "developed collaboratively or by another source"
+        },
+        {
+          "q": "A sufficient acknowledgement must state ______.",
+          "a": "where the code came from — its source, or who originally wrote it"
+        },
+        {
+          "q": "Renaming variables in borrowed code ______.",
+          "a": "does not remove the need to acknowledge it — modification doesn't erase origin"
+        }
+      ]
+    },
+    {
+      "type": "concept",
+      "heading": "The Create PT Rule: Credit or Zero",
+      "tag": "CREATE PT POLICY",
+      "bullets": [
+        "The Create Performance Task — the project every AP CSP student submits — enforces CRD-2.H with a hard penalty: UNCREDITED use of others' work or of generative AI = a score of 0 on the entire task.",
+        "Generative AI is PERMITTED as a supplementary resource — but AI-produced code must be acknowledged like any other outside source, and you remain responsible for understanding and explaining every line of it.",
+        "'Credited but can't explain it' still fails you in practice: the written responses require you to explain how your code works.",
+        "The safe habit, starting now: the moment borrowed or AI code enters your program, write the acknowledgement comment — documenting throughout (EK CRD-2.G.3) makes the credit automatic."
+      ],
+      "script": "Here is where this topic stops being abstract. The Create Performance Task is worth 30 percent of your AP score, and College Board's plagiarism policy is one sentence with no soft edges: uncredited use of someone else's work — including generative AI — earns a score of zero on the whole task. Not the borrowed part; the whole task. Now the flip side, because it matters just as much: AI is not banned. College Board explicitly permits generative AI as a supplementary resource. The conditions are the two things today's lesson taught: credit it like any other source, in your documentation, and understand it — because the written responses make you explain how your code works, and 'the AI wrote that part' is a confession, not an answer. The habit that makes all of this automatic is yesterday-plus-today in one move: document throughout development, and the acknowledgement gets written the moment the borrowed code arrives, not reconstructed in a panic the night before submission.",
+      "capture": [
+        {
+          "q": "On the Create PT, uncredited use of others' work or generative AI = ______.",
+          "a": "a score of 0 on the entire task"
+        },
+        {
+          "q": "Generative AI is permitted as a supplementary resource, but its code must be ______.",
+          "a": "credited (acknowledged in the documentation) AND understood — you must be able to explain it"
+        },
+        {
+          "q": "The habit that makes credit automatic: write the acknowledgement ______.",
+          "a": "the moment the borrowed or AI code enters your program (document throughout)"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Is the Credit Enough?",
+      "context": "Four borrowed-code scenarios, one standard (EK CRD-2.H.2): credit in the documentation, naming the origin or author.",
+      "columns": [
+        "Scenario",
+        "Acknowledgement given",
+        "Sufficient? Why / why not"
+      ],
+      "rows": [
+        [
+          "Your program is built on starter code the teacher gave the whole class",
+          "A comment at the top: 'Built on the class starter project provided by the teacher'",
+          "SUFFICIENT — the origin is named, in the program documentation"
+        ],
+        [
+          "You adapt a 10-line code segment from an online API tutorial",
+          "None — 'I rewrote the variable names, so it's basically mine now'",
+          "NOT sufficient — modification doesn't erase origin; the tutorial must be named in the documentation"
+        ],
+        [
+          "A generative AI tool writes your sorting procedure for the Create PT",
+          "A comment naming the AI tool as the source — and you can explain how the procedure works",
+          "SUFFICIENT — origin credited in documentation; and 'understood' is what the written responses will test"
+        ],
+        [
+          "A friend sends you a working code segment and you paste it in",
+          "You thank the friend in a text message that night",
+          "NOT sufficient — a text isn't program documentation; the friend's name belongs in the code's documentation"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Four scenarios, one standard — fill in the ruling column as we go, and hold every case against both halves of EK CRD-2.H.2: in the documentation, naming the origin or the author. Row one, teacher starter code, comment names the origin: sufficient — yes, even teacher-provided code gets credited; 'developed by another source' includes the teacher. Row two, the adapted tutorial segment with renamed variables and no credit: not sufficient — modification does not erase origin, and on a Create PT this exact move is the one that zeroes projects. Row three, the AI-written procedure with the tool named in a comment, and the student can explain the code: sufficient on both counts — origin credited, understanding intact for the written responses. Row four, the friend's code and the thank-you text: the gratitude is lovely and the acknowledgement is worthless, because a private message is not program documentation — the friend's name belongs in a comment where the code lives.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Rule on the Credit",
+      "subheading": "These map to LO CRD-2.H. Complete on your Guided Notes.",
+      "prompts": [
+        "State the two things a sufficient acknowledgement requires, per the CED — the place it lives and the content it includes.",
+        "A classmate says: 'The Create PT allows AI now, so I can just have it write my procedures.' What TWO obligations did they skip, and what does each one cost?",
+        "Your partner wrote half the procedures in your shared program. Nothing was 'copied' from anywhere. Does anything need acknowledging? Cite the EK's exact trigger."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.3 page.",
+      "script": "Last stop and think of the topic — six minutes, full sentences. One: place and content — in the program documentation, including the origin or the original author's name; both halves required. Two: the AI shortcut classmate skipped two obligations — crediting the AI as a source, which uncredited costs the entire task a zero, and understanding the code, which the written responses test directly. Three is the subtle one: the partner's procedures were never 'copied,' but EK CRD-2.H.1's trigger is code developed COLLABORATIVELY or by another source — so yes, the partner's contribution gets acknowledged by name. Collaboration is celebrated in this course, from Topic 1.1 on — and credited, always."
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: How the Pros Document",
+      "subheading": "Real teams layer documentation far beyond comments. Not tested — but this is what CRD-2.G looks like at a software company.",
+      "track": "enrichment",
+      "left": {
+        "title": "Inside the code",
+        "definition": "Documentation that travels with the lines it describes",
+        "ek": "Deep Dive",
+        "examples": [
+          "Comments — the CED's example, for tricky lines and borrowed-code credits",
+          "Docstrings — structured descriptions attached to each procedure (purpose, inputs, output)",
+          "Meaningful names — 'playerScore' documents itself; 'x' documents nothing"
+        ]
+      },
+      "right": {
+        "title": "Around the code",
+        "definition": "Documentation that describes the project and its history",
+        "ek": "Deep Dive",
+        "examples": [
+          "README — the front-door file: what the program does and how to run it",
+          "Commit messages — a sentence per change: a searchable diary of 'how it was developed'",
+          "Issue trackers and changelogs — bugs found, decisions made, versions shipped"
+        ]
+      },
+      "footer": "Deep-dive connection: EK CRD-2.G.1 says documentation describes function AND how it was developed — commit messages are literally that second half, automated.",
+      "script": "A deep dive to see where this topic goes after AP. Professional teams document in two layers. Inside the code: comments, exactly as the CED defines them; docstrings, which are structured mini-documents attached to each procedure stating its purpose, inputs, and outputs; and meaningful names, the quietest form of documentation — playerScore explains itself forever, x explains nothing. Around the code: the README, the front-door file telling a stranger what the program does and how to run it; commit messages, a one-sentence diary entry attached to every saved change — which is the CED's 'how it was developed' clause running automatically; and issue trackers recording every bug and decision. Notice something: none of this is busywork bolted onto programming. At real companies, unreadable-but-working code is treated as broken — because the next developer, like September-you, still can't use it.",
+      "capture": [
+        {
+          "q": "Two documentation layers at real companies: inside the code (comments, docstrings, names) and ______.",
+          "a": "around the code (READMEs, commit messages, issue trackers)"
+        },
+        {
+          "q": "Commit messages quietly satisfy the documentation definition because they record ______.",
+          "a": "the development story, step by step, as it happened"
+        }
+      ]
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 1.3 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Iterative vs. incremental swap",
+          "text": "Iterative = LOOPS (refine from feedback, revisit phases). Incremental = PIECES (verify each part before adding it). The exam swaps them on you (EK CRD-2.E.3-E.4)."
+        },
+        {
+          "name": "Specification ← requirements",
+          "text": "The SPECIFICATION defines the requirements; the DESIGN PHASE outlines how to accomplish it (EK CRD-2.F.5-F.6). Distractors reverse the direction."
+        },
+        {
+          "name": "The acknowledgement bar",
+          "text": "Sufficient credit = in the program documentation, naming the ORIGIN or the AUTHOR (EK CRD-2.H.2). A verbal thanks or a vague 'found online' fails the bar."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: the iterative-incremental swap — the question describes verified pieces and offers 'iterative,' or describes feedback loops and offers 'incremental.' Tag the scenario with one word first — loops or pieces — then look at the choices. Trap two: the specification-requirements reversal — the specification defines the requirements, never the other way around, and the design phase outlines how to accomplish the specification; distractors love flipping those arrows. Trap three: the acknowledgement bar — two parts, in the documentation and naming origin or author, and the exam's wrong answers are precisely the almost-credits: a verbal mention, a private message, a modification excuse. Write each trap in your own words on the notes — the writing is what makes them stick in May."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Program Design and Development, in One Slide",
+      "points": [
+        "Development processes: ordered-and-intentional or exploratory; four common phases — investigating and reflecting, designing, prototyping, testing (EK CRD-2.E.1–E.2)",
+        "Iterative = loops (refine, revise, revisit phases); incremental = pieces (verify each before adding to the whole) (EK CRD-2.E.3–E.4)",
+        "Design pipeline: investigation (surveys, user testing, interviews, direct observations) → requirements → specification defines them → design phase outlines how (EK CRD-2.F.1–F.7)",
+        "Documentation describes function and development; comments are for people and never affect execution; document THROUGHOUT — even where comments aren't supported (EK CRD-2.G.1–G.5)",
+        "Credit borrowed code in the documentation with origin or author's name — on the Create PT, uncredited work or AI = score of 0 (EK CRD-2.H.1–H.2)"
+      ],
+      "next": "Topic 1.4, Identifying and Correcting Errors: what testing actually catches — syntax, run-time, logic, and overflow — and how to hunt each one.",
+      "script": "The whole topic in one slide, and notice it's really one story: a process with four phases, run in loops and pieces; a design pipeline that turns investigation into a specification; documentation written throughout for the humans who come later; and credit given whenever the code came from someone else — teammate, forum, or AI. Every item on this slide is Create PT equipment you now own. Next class is Topic 1.4, Identifying and Correcting Errors — your process has a testing phase, so it's time to learn what testing actually catches: syntax errors, run-time errors, and logic errors, and how to hunt each one. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide. Any box you can't honestly check tells you exactly what to review on the Topic 1.3 page tonight. Guided Notes are collected at the end of class.",
+      "ican": [
+        "run a development process and tell iterative from incremental (LO CRD-2.E)",
+        "trace investigation → requirements → specification → design (LO CRD-2.F)",
+        "write documentation that helps the next person — including future me (LO CRD-2.G)",
+        "credit borrowed and AI code the way the Create PT requires (LO CRD-2.H)"
+      ]
+    }
+  ]
+}

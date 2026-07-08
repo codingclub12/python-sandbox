@@ -1,0 +1,640 @@
+{
+  "meta": {
+    "lessonId": "4.3",
+    "lessonTitle": "Parallel and Distributed Computing",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 4: Computer Systems and Networks",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO CSN-2.A, CSN-2.B",
+    "anchor": "Parallel and Distributed Computing",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 4 · Topic 4.3 · Day 1 of 1",
+      "title": "Sixty Dishes, Three Washers, One Rack",
+      "subtitle": "Why more processors never buy proportionally more speed — and how to compute exactly what they do buy",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 4.3, Parallel and Distributed Computing — one day, two learning objectives, and the most math of any topic in Big Idea 4. Topics 4.1 and 4.2 built the network; today asks how to make many processors and many machines attack one problem. The headline students must leave with: splitting a job three ways almost never makes it three times faster, and the CED gives an exact model for computing what really happens. By the end of the period, students can compute a sequential time, a parallel time, and a speedup — the three numbers every 4.3 exam item is built from."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Compare sequential, parallel, and distributed solutions — and tell the last two apart by counting devices (LO CSN-2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Compute totals and speedup: sum for sequential, sequential-plus-longest-parallel, sequential ÷ parallel (LO CSN-2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Describe the benefits and limits of parallel and distributed computing (LO CSN-2.B)"
+        }
+      ],
+      "script": "Three targets. First, the vocabulary skill: three computing models, and the exam's favorite confusion — parallel versus distributed — settled by counting devices. Second, the math skill, and it is genuinely computed on the exam: total time for a sequential solution, total time for a parallel solution, and the speedup ratio between them. Third, the judgment skill: what going parallel or distributed buys, and the sequential-portion ceiling that limits the purchase. LO CSN-2.A explicitly has two parts — compare solutions AND determine efficiency — so the arithmetic is not optional enrichment; it is the objective."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "The class must wash 60 dishes after the lab breakfast. One student working alone takes 60 minutes: 45 minutes of scrubbing plus 15 minutes loading the single drying rack, which only one person can use at a time. Today THREE students share the job — the scrubbing splits evenly, but the rack line still moves one person at a time.",
+      "subprompt": "Predict first: is the answer 20 minutes? Now compute the real finish time. Then find the time that NO number of extra washers could ever beat.",
+      "directions": "Write your prediction, your computed time, and the never-beatable minimum. Be ready to defend the arithmetic.",
+      "script": "A few minutes, working alone, and the trap is set on purpose: 60 minutes divided by 3 washers feels like 20 minutes. Then the rack ruins it. Treat the job as two phases: the 45 minutes of scrubbing splits three ways into 15 simultaneous minutes, but the 15 minutes of rack loading cannot be shared — one person at a time — so the real finish is 15 + 15 = 30 minutes. Students who compute 30 have just discovered that a job has a parallel portion and a sequential portion, and that the sequential portion is untouchable. The kicker question drives it home: hire 45 washers, hire a thousand — the rack still takes 15 minutes, so 15 minutes is the floor forever. Hold onto the numbers 60, 30, and 15; the entire lesson, including the speedup formula, is hiding in them."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 4 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Three Ways to Compute",
+          "description": "Sequential, parallel, and distributed computing — the definitions and how to tell them apart (EK CSN-2.A.1–A.4)."
+        },
+        {
+          "title": "Do the Math: Time and Speedup",
+          "description": "Sum of all steps vs. sequential-plus-longest, and the speedup ratio, computed by hand (EK CSN-2.A.5–A.7)."
+        },
+        {
+          "title": "Benefits, Limits, and When Distributed Wins",
+          "description": "Scaling, the sequential-portion ceiling, and the problems no single computer can solve (EK CSN-2.B.1–B.5)."
+        },
+        {
+          "title": "Deep Dive: The Speedup Ceiling",
+          "description": "Push the washer count to infinity and meet Amdahl's Law — the formula engineers use for the ceiling you just discovered.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 4.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: four sections. Three are green and CB-required — the three computing models, the time-and-speedup arithmetic, and the benefits-and-limits section. The blue deep dive names the ceiling from the bell ringer: Amdahl's Law, which the AP exam never names but constantly tests the idea behind. The math section is the heart of the packet — the worked table there reappears on the quiz, on the exercises, and on the real exam. Packets stay open all period; a digital copy lives on the Topic 4.3 Guided Notes page at apcsexamprep.com for anyone absent."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Three Ways to Compute",
+      "kicker": "Sequential, Parallel, Distributed · Learning Objective CSN-2.A",
+      "script": "Section one. Before any arithmetic, students need the three models the arithmetic describes: one worker in order, several workers sharing one machine's job, and many machines sharing one program. The section ends with the single test that untangles the exam's favorite confusion — parallel versus distributed comes down to counting devices."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CSN-2.A)",
+      "terms": [
+        {
+          "term": "Sequential computing",
+          "definition": "A computational model in which operations are performed in order one at a time (EK CSN-2.A.1)."
+        },
+        {
+          "term": "Parallel computing",
+          "definition": "A computational model where the program is broken into multiple smaller sequential computing operations, some of which are performed simultaneously (EK CSN-2.A.2)."
+        },
+        {
+          "term": "Distributed computing",
+          "definition": "A computational model in which multiple devices are used to run a program (EK CSN-2.A.3)."
+        },
+        {
+          "term": "Speedup",
+          "definition": "The measure of a parallel solution: the time it took to complete the task sequentially divided by the time it took to complete the task when done in parallel (EK CSN-2.A.7)."
+        }
+      ],
+      "script": "Four terms carry the topic. Sequential computing is the lone dishwasher: operations in order, one at a time. Parallel computing is subtle and worth reading slowly — the program is broken into multiple SMALLER SEQUENTIAL operations, some of which run simultaneously; each washer still scrubs one dish at a time, but three washers scrub at once. Distributed computing changes what gets counted: multiple DEVICES run one program. And speedup is a division, never a subtraction: sequential time divided by parallel time. Students should circle 'one at a time,' 'simultaneously,' 'multiple devices,' and 'divided' — each circled phrase is a future exam answer."
+    },
+    {
+      "type": "concept",
+      "heading": "Same Job, Three Models",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Sequential: operations run in order, one at a time — the total time is simply everything added up (EK CSN-2.A.1).",
+        "Parallel: one program is broken into smaller sequential operations, and SOME of them run simultaneously — usually on the multiple cores inside one computer (EK CSN-2.A.2).",
+        "Distributed: multiple devices — different computers, phones, or servers — are used to run one program (EK CSN-2.A.3).",
+        "Comparing efficiency of solutions can be done by comparing the time it takes them to perform the same task (EK CSN-2.A.4) — same job, race the clock."
+      ],
+      "script": "One job, three ways to run it. Sequential is the baseline: everything in order, so time is just the sum. Parallel keeps the work inside one machine but splits it across cores that run at the same time — note the CED's careful wording that only SOME operations run simultaneously, because some part of every real program refuses to be split, exactly like the drying rack. Distributed recruits multiple devices to run one program — the moment a second machine joins, the model's name changes. And when the exam asks which solution is more efficient, the CED gives the referee's rule: time them performing the same task. That rule is why today's lesson is full of arithmetic — efficiency claims are settled with a clock, not an opinion.",
+      "capture": [
+        {
+          "q": "The sequential model's defining rule: nothing starts until ______.",
+          "a": "the step before it has finished — one operation at a time"
+        },
+        {
+          "q": "Parallel computing saves time because some of the smaller operations run ______.",
+          "a": "at the same moment on different cores"
+        },
+        {
+          "q": "To compare the efficiency of two solutions, compare ______.",
+          "a": "the time it takes them to perform the same task"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Parallel vs. Distributed — The Classic Mix-Up",
+      "subheading": "Both attack one problem with many workers. The difference is what you count (EK CSN-2.A.2–A.3).",
+      "left": {
+        "title": "Parallel computing",
+        "definition": "ONE program split into smaller operations, some simultaneous — think cores in one machine",
+        "ek": "EK CSN-2.A.2",
+        "examples": [
+          "A quad-core laptop applying one photo filter on all 4 cores at once",
+          "The bell ringer's three washers sharing one sink and one rack",
+          "Count the machines: still ONE device"
+        ]
+      },
+      "right": {
+        "title": "Distributed computing",
+        "definition": "MULTIPLE devices used to run one program",
+        "ek": "EK CSN-2.A.3",
+        "examples": [
+          "100,000 volunteers' home computers folding proteins for one research project",
+          "A search engine answering one query across thousands of servers",
+          "Count the machines: MANY devices"
+        ]
+      },
+      "footer": "AP TIP: Count the devices. One machine, many cores = PARALLEL. Many machines, one program = DISTRIBUTED.",
+      "script": "This slide settles the confusion the exam loves most. Both models throw many workers at one problem, so students conflate them — the separator is the device count. Parallel computing lives inside one machine: one laptop, several cores, all scrubbing simultaneously. Distributed computing crosses the case boundary: multiple devices — machines that could sit on different continents — run one program. The volunteer protein-folding project is the canonical distributed example: a hundred thousand separate computers, one program. When a 4.3 item describes a setup, the first move is always the same: count the machines. One means parallel; more than one means distributed.",
+      "capture": [
+        {
+          "q": "Parallel computing splits one program across the cores of ______.",
+          "a": "a single machine (one device)"
+        },
+        {
+          "q": "You know it's DISTRIBUTED (not parallel) when the program runs across ______.",
+          "a": "more than one physical machine, not just cores in one box"
+        },
+        {
+          "q": "The fastest way to tell the two models apart on the exam is to count ______.",
+          "a": "the devices involved"
+        }
+      ]
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Do the Math: Time and Speedup",
+      "kicker": "Sum · Sequential-plus-Longest · Ratio · Learning Objective CSN-2.A",
+      "script": "Section two — the exam math, and the centerpiece of the topic. The CED gives three computational rules and the exam uses all three: a sequential solution takes the sum of all its steps; a parallel solution takes its sequential tasks plus the LONGEST of its parallel tasks; and speedup is the sequential time divided by the parallel time. Students who can execute those three rules on any task set have banked the most predictable points in Big Idea 4."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Do the Math: Total Time and Speedup",
+      "context": "The CED's model: sequential time = SUM of all steps; parallel time = sequential tasks + LONGEST parallel task; speedup = sequential ÷ parallel.",
+      "columns": [
+        "Task set (each parallel task gets its own processor)",
+        "Sequential time (sum of all steps)",
+        "Parallel time (sequential tasks + longest parallel task)",
+        "Speedup (sequential ÷ parallel)"
+      ],
+      "rows": [
+        [
+          "Two parallel tasks: 30 s and 50 s (no sequential task)",
+          "30 + 50 = 80 s",
+          "50 s (longest parallel task; nothing sequential to add)",
+          "80 ÷ 50 = 1.6"
+        ],
+        [
+          "Sequential task: 20 s, then parallel tasks: 40 s and 60 s",
+          "20 + 40 + 60 = 120 s",
+          "20 + 60 = 80 s",
+          "120 ÷ 80 = 1.5"
+        ],
+        [
+          "Three parallel tasks: 30 s, 60 s, 30 s (no sequential task)",
+          "30 + 60 + 30 = 120 s",
+          "60 s (longest parallel task)",
+          "120 ÷ 60 = 2.0"
+        ],
+        [
+          "Sequential task: 60 s, then parallel tasks: 20 s, 20 s, 20 s",
+          "60 + 20 + 20 + 20 = 120 s",
+          "60 + 20 = 80 s",
+          "120 ÷ 80 = 1.5"
+        ]
+      ],
+      "highlightCol": 3,
+      "blanks": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "script": "This table is the lesson's centerpiece — work it slowly and let students compute before revealing anything. Row one is the model: sequentially the tasks sum to 80 seconds; in parallel, each task gets its own processor, both start together, and the job ends when the 50-second task ends — you wait for the longest, not the total. Speedup is 80 divided by 50: 1.6. Row two adds the drying rack: the 20-second sequential task is paid in full in BOTH columns, so parallel time is 20 plus the longest parallel task, 60 — never just 60 alone. Row three is the clean win: three tasks, and only the 60-second straggler matters. Row four is the trap row and the whole exam in miniature: three processors working simultaneously, yet the speedup is only 1.5 — identical to row two — because the 60-second sequential task dominates everything. Students complete the blanked cells themselves; the number that decides every answer is the sequential portion."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Run the Numbers",
+      "subheading": "These map to LO CSN-2.A. Complete on your Guided Notes.",
+      "prompts": [
+        "A program has one 15-second sequential task, then two parallel tasks of 25 seconds and 35 seconds. Compute the sequential time, the parallel time, and the speedup. Show the arithmetic.",
+        "In the table's last row, THREE processors produced a speedup of only 1.5. Name the number in that task set that kept the speedup low, and state what would have to change for the speedup to rise.",
+        "A tablet applies one video filter using all 8 cores of its chip. A weather service runs one forecast model across 2,000 separate computers. Classify each as parallel or distributed and name the one question that decides it."
+      ],
+      "directions": "Show your work and answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.3 page.",
+      "script": "Five to six minutes, work shown on the Guided Notes. One: sequential is the sum — 15 + 25 + 35 = 75 seconds; parallel is the sequential task plus the longest parallel task — 15 + 35 = 50 seconds; speedup is 75 divided by 50 = 1.5. Watch for the two classic errors: answering 35 (forgot the sequential task) or 60 (added both parallel tasks). Two: the 60-second sequential task is the anchor — shrinking IT is the only path to a better speedup; the parallel tasks are already as cheap as they can get. Three: the tablet is parallel — one device, many cores; the weather service is distributed — 2,000 devices; the deciding question is how many machines are involved. A few students will be called on to walk their arithmetic before the next section."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Benefits, Limits, and When Distributed Wins",
+      "kicker": "Scaling and Its Ceiling · Learning Objective CSN-2.B",
+      "script": "Section three — the judgment objective. The math section computed what parallelism buys on one task set; this section states the general laws. Parallel solutions scale better than sequential ones, but every parallel solution drags a sequential portion behind it, and that portion caps the gains forever. Distributed computing has a different superpower entirely: it makes problems solvable that no single computer could touch — because of processing time or storage — and solves large problems faster than one machine ever could."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "When Parallel and Distributed Win",
+      "subheading": "The benefit side of LO CSN-2.B — what you buy when you leave one-worker-at-a-time behind.",
+      "items": [
+        {
+          "ek": "EK CSN-2.B.2",
+          "title": "Parallel scales",
+          "summary": "Parallel solutions scale more effectively than sequential ones — more of the work can ride on added cores (EK CSN-2.B.2).",
+          "ekRef": "LO CSN-2.B"
+        },
+        {
+          "ek": "EK CSN-2.B.3",
+          "title": "Distributed does the impossible",
+          "summary": "Distributed computing solves problems no single computer could — too much processing time or storage for one machine (EK CSN-2.B.3).",
+          "ekRef": "LO CSN-2.B"
+        },
+        {
+          "ek": "EK CSN-2.B.4",
+          "title": "Distributed does it faster",
+          "summary": "Even when one computer could finish, distributed computing solves much larger problems faster (EK CSN-2.B.4).",
+          "ekRef": "LO CSN-2.B"
+        }
+      ],
+      "script": "Three benefit cards, three EKs. First card: scaling — parallel solutions grow gracefully because new work can be split across new processors, while a sequential solution just gets slower in direct proportion to the job. Second card: the distributed superpower, and the exam quotes this one nearly verbatim — distributed computing solves problems that could not be solved on a single computer because of either the PROCESSING TIME or the STORAGE needs involved; both limits are worth memorizing as a pair. Third card: even for problems one computer could eventually finish, distributed computing solves much larger problems quicker. The distinction between cards two and three shows up in answer choices: 'impossible on one machine' versus 'just faster than one machine' — both are real CED benefits."
+    },
+    {
+      "type": "misconception",
+      "heading": "“Doubling the Processors Halves the Time”",
+      "misconception": "If 2 processors make a program twice as fast, then 4 processors will make it four times as fast, and 64 will make it sixty-four times as fast — speedup simply tracks the processor count.",
+      "whyItHappens": "Linear intuition from chores: two people rake a yard twice as fast, so more workers should keep paying off forever. The intuition silently assumes EVERY part of the job can be shared — and real programs always have a part that cannot.",
+      "correction": "Parallel computing has a parallel portion AND a sequential portion (EK CSN-2.B.1). Extra processors only shrink the parallel share — the sequential share is a floor, so at some point adding processors no longer meaningfully helps (EK CSN-2.B.5).",
+      "example": "A job with a 60-second sequential task plus 60 seconds of splittable work: 1 processor = 120 s, 2 processors = 90 s, 4 = 75 s, 60 processors = 61 s. The time creeps toward 60 seconds and never crosses it — the speedup can never reach 2.0, no matter how much hardware is added.",
+      "script": "This is the misconception the bell ringer was built to break, and the College Board wrote EK CSN-2.B.5 specifically to test it. Walk the example series out loud and let students watch the returns shrink: the first extra processor saves 30 seconds, the next two save 15 more, and the next fifty-six save 14. The sequential portion is the drying rack — it runs at the same speed whether the program owns two processors or two thousand, so it becomes the floor under the total time. On the exam, any option claiming that doubling processors always halves run time, or that speedup equals the processor count, is a distractor built from this exact myth."
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: The Speedup Ceiling (Amdahl's Law)",
+      "subheading": "The CED never names Amdahl's Law — but it tests the idea. Here is the ceiling, computed.",
+      "track": "enrichment",
+      "left": {
+        "title": "Push the washers to infinity",
+        "definition": "Bell-ringer job: 15 min rack (sequential) + 45 min scrubbing (parallel)",
+        "ek": "Deep Dive",
+        "examples": [
+          "1 washer: 15 + 45 = 60 min · 3 washers: 15 + 15 = 30 min",
+          "9 washers: 15 + 5 = 20 min · 45 washers: 15 + 1 = 16 min",
+          "Infinite washers: the scrubbing vanishes — but the rack still takes 15 min"
+        ]
+      },
+      "right": {
+        "title": "Amdahl's idea, one formula",
+        "definition": "Max speedup = total time ÷ sequential-portion time — a hard ceiling",
+        "ek": "Deep Dive",
+        "examples": [
+          "Dish-job ceiling: 60 ÷ 15 = 4× — even with infinite washers",
+          "The engineering move that actually works: shrink the SEQUENTIAL portion (add a second rack)",
+          "The exam-ready version of the idea: efficiency is limited by the sequential portion (EK CSN-2.B.5)"
+        ]
+      },
+      "footer": "Deep dive only — the AP exam never asks for Amdahl's Law by name; it tests the idea behind it: the sequential portion sets the ceiling.",
+      "script": "A deep dive for the students who asked the right question during the bell ringer: what happens with a hundred washers? Run the series — 60, 30, 20, 16 — and watch it flatten against the 15-minute rack. Dividing 60 by 15 gives the ceiling: no army of washers can ever deliver more than a 4-times speedup, because the sequential portion never shrinks. That division — total sequential time over sequential-portion time — is Gene Amdahl's 1967 argument, and it still governs how engineers spend money today: past a point, buying processors is buying almost nothing, and the winning move is redesigning the job so the sequential portion gets smaller. The College Board only requires the qualitative version, which is EK CSN-2.B.5 — but students who can compute the ceiling will never miss those items.",
+      "capture": [
+        {
+          "q": "In the dish job, no number of washers can ever finish faster than ______.",
+          "a": "15 minutes — the sequential (rack) portion"
+        },
+        {
+          "q": "The maximum possible speedup equals the total sequential time divided by ______.",
+          "a": "the time of the sequential portion"
+        },
+        {
+          "q": "When processor-buying stops paying off, the engineering fix is to shrink ______.",
+          "a": "the sequential portion of the job"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Limits and Payoffs",
+      "subheading": "These map to LO CSN-2.B. Complete on your Guided Notes.",
+      "prompts": [
+        "A program spends 30 seconds in its sequential portion and 90 seconds in work that can be split into as many parallel tasks as you like. What total time does the solution approach as processors are added, and what maximum speedup does that put a ceiling at? Show the division.",
+        "A hospital network's imaging archive is too large for any single computer to store, and one machine would need decades to analyze it. Name the computing model that solves this, and the TWO single-computer limits the CED says it overcomes.",
+        "A classmate says: 'Parallel computing scales exactly like sequential computing — both just get faster when you buy better hardware.' Correct the claim using the CED's comparison of how the two models scale."
+      ],
+      "directions": "Show your work and answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.3 page.",
+      "script": "Five minutes, work shown. One: with enough processors the 90 splittable seconds shrink toward zero, so the total time approaches the 30-second sequential portion; the ceiling is the full sequential time over the floor — 120 divided by 30 — a maximum speedup of 4. Two: distributed computing, and the CED names exactly two single-computer limits it overcomes: processing time and storage needs — this scenario has both. Three: the claim erases the actual difference — solutions that use parallel computing can scale more effectively than sequential solutions, because new processors can absorb new work, while a sequential solution's time is always the sum of every step regardless of the hardware generation. Answers are reviewed as a class before the traps slide."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 4.3 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "The forgotten sequential task",
+          "text": "Parallel time = sequential tasks PLUS the longest parallel task (EK CSN-2.A.6). Ignoring the sequential share is the built-in wrong answer."
+        },
+        {
+          "name": "Speedup is a ratio",
+          "text": "Speedup = sequential ÷ parallel (EK CSN-2.A.7). 120 s → 80 s is 1.5×, not '40 seconds faster.' Subtraction answers are distractors."
+        },
+        {
+          "name": "Parallel ≠ distributed",
+          "text": "Count the devices: one machine with many cores is PARALLEL; multiple machines running one program is DISTRIBUTED (EK CSN-2.A.2-A.3)."
+        }
+      ],
+      "script": "One minute, three traps, all of them arithmetic-adjacent. Trap one: on any timing item, hunt for the sequential task first — it is paid in full in the parallel column, and the most tempting distractor is always the answer that leaves it out. Trap two: speedup divides, never subtracts — sequential over parallel — and a quick unit check catches it, since a true speedup is a unitless ratio. Trap three: before reasoning about any scenario, count machines; one machine means parallel no matter how many cores it brags about, and two or more machines means distributed no matter how small they are. Students write each trap in their own words in the packet."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Parallel and Distributed Computing, in One Slide",
+      "points": [
+        "Sequential = operations in order, one at a time; parallel = one program broken into smaller sequential operations, some simultaneous; distributed = multiple devices running one program (EK CSN-2.A.1–A.3).",
+        "Compare efficiency by comparing the time solutions take to perform the same task (EK CSN-2.A.4).",
+        "Sequential time = the SUM of all steps; parallel time = the sequential tasks + the LONGEST parallel task (EK CSN-2.A.5–A.6).",
+        "Speedup = sequential time ÷ parallel time — a ratio, never a subtraction (EK CSN-2.A.7).",
+        "Parallel scales better than sequential but is still limited by its sequential portion — at some point more processors stop helping; distributed computing solves larger problems faster, and problems no single computer could solve at all (EK CSN-2.B.1–B.5)."
+      ],
+      "next": "Big Idea 5, Impact of Computing: the systems and networks are built — Topic 5.1 asks who they help, who they harm, and why the same innovation usually does both.",
+      "script": "The whole topic in one slide, and four of the five bullets are computable. Three models, separated by counting devices. Efficiency settled by timing the same task. The two timing rules — sum for sequential, sequential-plus-longest for parallel — and the speedup ratio that compares them. Then the laws: parallel scales better but the sequential portion is a permanent ceiling, and distributed computing exists for the problems that outgrow any single machine. Next class opens with the Topic 4.3 quiz, then Big Idea 5 begins. Before packing up, students run the exit check below — any unchecked box is tonight's review target on the Topic 4.3 page. Guided Notes are collected at the end of class.",
+      "ican": [
+        "tell sequential, parallel, and distributed apart by counting devices (LO CSN-2.A)",
+        "compute totals: sum for sequential; sequential + longest parallel task (LO CSN-2.A)",
+        "compute speedup as sequential time ÷ parallel time (LO CSN-2.A)",
+        "explain the sequential-portion ceiling and when only distributed works (LO CSN-2.B)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 4.3 — Parallel and Distributed Computing — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 12 minutes, no notes. Calculators are not needed — every computation uses simple arithmetic.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A research project sends small chunks of one protein-folding program to 100,000 volunteers' home computers, which all work on the problem at the same time. Per EK CSN-2.A.3, which computing model is this, and what identifies it?",
+        "options": [
+          "Parallel computing, since parts of the program are running simultaneously on the multiple cores of one machine",
+          "Sequential computing, since each volunteer's computer performs its own chunk's operations in order",
+          "Distributed computing, since multiple devices are being used to run a program",
+          "Distributed computing, since the program is guaranteed to finish exactly 100,000 times faster than on one computer"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-2.A.3",
+        "rationale": "EK CSN-2.A.3 defines distributed computing as a computational model in which multiple devices are used to run a program — and 100,000 separate home computers is the textbook case. A misreads the setup: parallel computing (EK CSN-2.A.2) describes simultaneous operations within a program, classically on one machine's cores; here the workers are one hundred thousand distinct devices. B confuses the inside of each chunk (which does run in order) with the model of the whole solution — the chunks run at the same time across machines. D picks the right model for a fabricated reason: nothing guarantees speedup equal to the device count; EK CSN-2.B.5 says efficiency is still limited by the sequential portion."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program has one sequential task that takes 10 seconds, followed by two tasks that can run in parallel, taking 30 seconds and 50 seconds. Per EK CSN-2.A.6, how long does the parallel solution take?",
+        "options": [
+          "60 seconds — the sequential task plus the longest of the parallel tasks (10 + 50)",
+          "90 seconds — the sum of every task in the program (10 + 30 + 50)",
+          "50 seconds — the longest parallel task, with the sequential task absorbed into it",
+          "40 seconds — the sequential task plus the shortest of the parallel tasks (10 + 30)"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-2.A.6",
+        "rationale": "EK CSN-2.A.6: a parallel computing solution takes as long as its sequential tasks plus the longest of its parallel tasks. The 30-s and 50-s tasks start together on separate processors; the job ends when the 50-s task ends, but only after the 10-s sequential task already ran: 10 + 50 = 60 seconds. B is the SEQUENTIAL solution's time (EK CSN-2.A.5, the sum of all steps: 10 + 30 + 50 = 90) — the number you divide by, not the parallel time. C commits the most common 4.3 error: dropping the sequential task, which no processor count can erase. D waits for the wrong parallel task — the solution is not done when the faster task finishes; the 50-second task is still running."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "A rendering job takes 120 seconds when run sequentially and 80 seconds when run in parallel. Per EK CSN-2.A.7, what is the speedup of the parallel solution?",
+        "options": [
+          "40 — the number of seconds the parallel solution saved compared with the sequential one",
+          "0.67 — the parallel time divided by the sequential time (80 ÷ 120)",
+          "2.0 — the number of processors the parallel solution must have used to finish sooner",
+          "1.5 — the sequential time divided by the parallel time (120 ÷ 80)"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-2.A.7",
+        "rationale": "EK CSN-2.A.7: the speedup of a parallel solution is measured in the time it took to complete the task sequentially divided by the time it took to complete the task when done in parallel — 120 ÷ 80 = 1.5. A treats speedup as a subtraction; 40 has units of seconds, and a true speedup is a unitless ratio. B inverts the division — 80 ÷ 120 ≈ 0.67 would absurdly claim the parallel solution is slower than itself; the sequential time always goes on top. C invents a rule connecting speedup to processor count: nothing in the stem says how many processors ran, and EK CSN-2.B.5 shows speedup routinely falls short of the processor count."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "Which of the following statements about computing solutions are true? I. A sequential solution takes as long as the sum of all of its steps. II. A parallel computing solution takes as long as the sum of all of its parallel tasks. III. Solutions that use parallel computing can scale more effectively than solutions that use sequential computing.",
+        "options": [
+          "I and II only",
+          "I and III only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-2.A.5",
+        "rationale": "Statement I is EK CSN-2.A.5 verbatim — a sequential solution takes as long as the sum of all of its steps. Statement III is EK CSN-2.B.2 — parallel solutions can scale more effectively than sequential ones. Statement II corrupts EK CSN-2.A.6: a parallel solution takes its sequential tasks plus the LONGEST of its parallel tasks, not the sum of them — summing the parallel tasks would erase the entire benefit of running them simultaneously. Every option containing II (A, C, D) fails on that one word, and the pairing of I with III is exactly the sum-versus-longest contrast the worked table drilled."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A studio upgrades the same video-processing program from 2 to 4 to 8 processors. The first upgrade cut the run time substantially, the second helped only a little, and the third barely changed anything. Per EK CSN-2.B.5, what best explains this pattern?",
+        "options": [
+          "The solution's efficiency is still limited by its sequential portion, so at some point adding parallel portions no longer meaningfully increases efficiency",
+          "The newer processors must have been defective, since doubling the processor count should always cut the run time in half",
+          "The program silently became a distributed solution once it passed four processors, and distributed solutions run slower than parallel ones",
+          "The parallel portion of the program grew larger with each upgrade until there was no work left for the added processors to share"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-2.B.5",
+        "rationale": "EK CSN-2.B.5 describes exactly this curve: when increasing the use of parallel computing, the efficiency of the solution is still limited by the sequential portion, so at some point adding parallel portions no longer meaningfully increases efficiency. The sequential portion runs at full length on 2 processors or 8, so each doubling shaves a smaller slice of the total. B restates the misconception this EK exists to kill — the halving intuition assumes the whole job is parallelizable. C is fiction on both counts: adding cores does not change the model to distributed (that requires multiple devices, EK CSN-2.A.3), and the CED makes no such speed claim. D reverses the logic — a GROWING parallel portion would give added processors more to share, not less; the flattening comes from the fixed sequential portion."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A genomics lab's dataset is far too large to store on any single computer, and one machine would need decades of processing time to analyze it. Per EK CSN-2.B.3, why does the lab turn to distributed computing?",
+        "options": [
+          "Distributed computing compresses the dataset until it fits comfortably on a single machine after all",
+          "Distributed computing converts the analysis into a sequential solution, and sequential solutions are always the most efficient",
+          "Distributed computing eliminates the sequential portion of a program, removing the usual limit on efficiency",
+          "Distributed computing allows problems to be solved that could not be solved on a single computer, given the processing time or storage needs involved"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-2.B.3",
+        "rationale": "EK CSN-2.B.3 is nearly quoted by the correct option: distributed computing allows problems to be solved that could not be solved on a single computer because of either the processing time or storage needs involved — and this scenario explicitly presents BOTH limits. A confuses Big Idea 2's compression with a computing model; distributed computing spreads the data and work across devices, it does not shrink the data onto one machine. B is doubly wrong: distributed computing is the opposite of retreating to one-at-a-time execution, and EK CSN-2.A.5 makes sequential the slowest model, not the most efficient. C overpromises — no model erases the sequential portion; EK CSN-2.B.1 says parallel solutions always contain one, and distributed programs face the same coordination reality."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "Which statement correctly describes parallel computing (EK CSN-2.A.2)?",
+        "options": [
+          "A computational model in which operations are performed in order, one at a time",
+          "A computational model where the program is broken into multiple smaller sequential operations, some of which are performed simultaneously",
+          "A computational model in which multiple devices are used to run a program",
+          "A computational model in which the speedup always equals the number of processors being used"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-2.A.2",
+        "rationale": "EK CSN-2.A.2 defines parallel computing: the program is broken into multiple smaller sequential computing operations, some of which are performed simultaneously — note that the pieces are themselves small SEQUENTIAL operations; only their overlap is simultaneous. A is sequential computing (EK CSN-2.A.1), the model parallel computing improves on. C is distributed computing (EK CSN-2.A.3) — the classic definition swap; parallel describes simultaneous work typically within one machine, distributed requires multiple devices. D is a false law: speedup is measured as sequential time divided by parallel time (EK CSN-2.A.7) and is limited by the sequential portion (EK CSN-2.B.5), so it routinely falls short of the processor count."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 4.3 — Parallel and Distributed Computing — Teacher Guide",
+    "subtitle": "Big Idea 4: Computer Systems and Networks · Topic 4.3 · 1 class period + assessment block",
+    "overview": [
+      "Topic 4.3 closes Big Idea 4 with the most computational topic outside of Big Idea 3. Students learn the three computing models (sequential, parallel, distributed), then the CED's exact timing arithmetic: a sequential solution takes the SUM of all its steps, a parallel solution takes its sequential tasks PLUS the LONGEST of its parallel tasks, and speedup is the sequential time DIVIDED by the parallel time. The second learning objective supplies the judgment layer: parallel solutions scale better than sequential ones but are permanently limited by their sequential portion, while distributed computing solves larger problems faster — and problems no single computer could solve at all because of processing time or storage.",
+      "The through-line is the bell ringer: 60 dishes, one washer, 60 minutes — but three washers do NOT finish in 20 minutes, because the single drying rack is a forced sequential step. Students compute the real answer (30 minutes), discover the sequential-portion limit themselves, and meet the same numbers again in the worked table, the misconception slide, the deep-dive ceiling computation, and the quiz. Every exam item in this topic is one of three moves: count the devices, find the sequential portion, or do the division."
+    ],
+    "los": [
+      "LO CSN-2.A — For sequential, parallel, and distributed computing: a. Compare problem solutions. b. Determine the efficiency of solutions.",
+      "LO CSN-2.B — Describe benefits and challenges of parallel and distributed computing."
+    ],
+    "eks": [
+      "EK CSN-2.A.1 — Sequential computing is a computational model in which operations are performed in order one at a time.",
+      "EK CSN-2.A.2 — Parallel computing is a computational model where the program is broken into multiple smaller sequential computing operations, some of which are performed simultaneously.",
+      "EK CSN-2.A.3 — Distributed computing is a computational model in which multiple devices are used to run a program.",
+      "EK CSN-2.A.4 — Comparing efficiency of solutions can be done by comparing the time it takes them to perform the same task.",
+      "EK CSN-2.A.5 — A sequential solution takes as long as the sum of all of its steps.",
+      "EK CSN-2.A.6 — A parallel computing solution takes as long as its sequential tasks plus the longest of its parallel tasks.",
+      "EK CSN-2.A.7 — The \"speedup\" of a parallel solution is measured in the time it took to complete the task sequentially divided by the time it took to complete the task when done in parallel.",
+      "EK CSN-2.B.1 — Parallel computing consists of a parallel portion and a sequential portion.",
+      "EK CSN-2.B.2 — Solutions that use parallel computing can scale more effectively than solutions that use sequential computing.",
+      "EK CSN-2.B.3 — Distributed computing allows problems to be solved that could not be solved on a single computer because of either the processing time or storage needs involved.",
+      "EK CSN-2.B.4 — Distributed computing allows much larger problems to be solved quicker than they could be solved using a single computer.",
+      "EK CSN-2.B.5 — When increasing the use of parallel computing in a solution, the efficiency of the solution is still limited by the sequential portion. This means that at some point, adding parallel portions will no longer meaningfully increase efficiency."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies).",
+      "Printed Topic 4.3 quiz (student copies) for the assessment block.",
+      "Optional: a stack of paper 'dishes' and one desk marked as the drying rack to act out the bell ringer with three volunteers.",
+      "No calculators needed — every computation in the topic uses one-step addition and division."
+    ],
+    "prereqs": [
+      "Topics 4.1–4.2 (The Internet, Fault Tolerance): students already reason about systems of many cooperating devices, so 'multiple devices running one program' lands as a natural next step rather than a new idea.",
+      "Topic 2.3 (Extracting Information from Data) planted the seed: large datasets are difficult to process on a single computer and require parallel, scalable systems (EK DAT-2.C.7–C.8). Today names those systems, defines them precisely, and puts numbers on what they buy.",
+      "Math prerequisites are minimal by design: adding task times and dividing two numbers. The challenge is conceptual — knowing WHICH numbers to add and which to divide."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Three computing models, the time-and-speedup arithmetic, and the benefits/limits of parallel and distributed computing (LO CSN-2.A, CSN-2.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI4/T4.3/Q1) + bell ringer (sixty dishes, three washers, one drying rack)",
+            "min": 7,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Three ways to compute: vocab, the three models, parallel vs. distributed (EK CSN-2.A.1–A.4)",
+            "min": 11,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Do the math: total time and speedup worked table (EK CSN-2.A.5–A.7)",
+            "min": 10,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Stop and Think: run the numbers",
+            "min": 5,
+            "slides": "11"
+          },
+          {
+            "segment": "Benefits and limits: when distributed wins + the sequential-portion misconception (EK CSN-2.B.1–B.5)",
+            "min": 9,
+            "slides": "12-14"
+          },
+          {
+            "segment": "Deep dive: the speedup ceiling / Amdahl's Law (optional enrichment)",
+            "min": 5,
+            "slides": "15"
+          },
+          {
+            "segment": "Stop and Think: limits and payoffs",
+            "min": 5,
+            "slides": "16"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 4.3 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. Big Idea 5 (Topic 5.1) begins immediately after the quiz.",
+        "segments": [
+          {
+            "segment": "Topic 4.3 quiz",
+            "min": 12,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Doubling the processors halves the time”",
+        "myth": "Speedup tracks the processor count: 2 processors means twice as fast, 64 means sixty-four times as fast, forever.",
+        "reality": "Parallel computing consists of a parallel portion AND a sequential portion (EK CSN-2.B.1), and only the parallel portion benefits from more processors. Efficiency is still limited by the sequential portion, so at some point adding parallel portions no longer meaningfully increases efficiency (EK CSN-2.B.5). The bell ringer proves it physically: the drying rack takes 15 minutes whether three students or three hundred are scrubbing."
+      },
+      {
+        "heading": "“Parallel and distributed are the same thing”",
+        "myth": "Both mean 'lots of computers working together,' so the terms are interchangeable on the exam.",
+        "reality": "The CED separates them by device count. Parallel computing breaks one program into smaller sequential operations that run simultaneously — classically the cores of ONE machine (EK CSN-2.A.2). Distributed computing uses MULTIPLE devices to run a program (EK CSN-2.A.3). Distractors quote each definition under the other name; 'count the machines' resolves every such item."
+      },
+      {
+        "heading": "“Parallel time is the sum of the parallel tasks — and speedup is what you subtract”",
+        "myth": "To find a parallel solution's time, add up all its parallel tasks; to find speedup, subtract the parallel time from the sequential time.",
+        "reality": "Both operations are wrong. A parallel solution takes its sequential tasks plus the LONGEST of its parallel tasks — simultaneous tasks overlap, so only the straggler counts (EK CSN-2.A.6). Speedup is the sequential time DIVIDED by the parallel time (EK CSN-2.A.7): 120 s → 80 s is a speedup of 1.5, never '40.' A 'speedup' with units of seconds is a wrong answer by inspection."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give the three formulas as a fill-in frame students run for every task set: 'Sequential time = sum = ______. Parallel time = sequential tasks (______) + longest parallel task (______) = ______. Speedup = ______ ÷ ______ = ______.' The frame forces the two most-missed moves: including the sequential task and dividing instead of subtracting.",
+        "Anchor every problem to the bell ringer before computing: 'Find the drying rack' (the sequential portion) and 'find the slowest scrubber' (the longest parallel task). Students who can point to those two numbers can always finish the arithmetic."
+      ],
+      "extension": [
+        "Have deep-dive students compute the speedup ceiling (total sequential time ÷ sequential-portion time) for several splits — 10 s/110 s, 30 s/90 s, 60 s/60 s — then sketch speedup versus processor count for each and explain why the curves flatten at different heights. Close by having them state Amdahl's Law in their own words.",
+        "Challenge students to beat the dish job's 15-minute floor by redesigning the JOB rather than adding washers (a second drying rack, drying while scrubbing continues) — then connect it to real engineering: when hardware stops paying, engineers attack the sequential portion itself."
+      ]
+    },
+    "discussion": [
+      "Your phone almost certainly has 8 processor cores, yet apps rarely run 8 times faster than they did on old single-core phones. Where do sequential portions hide in a real app (loading screens, sign-ins, saving), and which one annoys you most?",
+      "Volunteer distributed-computing projects borrow millions of people's idle devices to fold proteins and search for signals from space. If your phone's spare hours are a donation, who deserves them — medical research, climate modeling, cryptocurrency mining — and who should get to decide?",
+      "Distributed systems in giant data centers solve larger problems faster, but every added machine burns electricity. When is 'faster on a bigger problem' worth the energy bill — and is there a problem you think would justify almost any amount of computing?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

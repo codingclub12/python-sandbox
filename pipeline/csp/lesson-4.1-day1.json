@@ -1,0 +1,639 @@
+{
+  "meta": {
+    "lessonId": "4.1",
+    "lessonTitle": "The Internet",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 4: Computer Systems and Networks",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO CSN-1.A, CSN-1.B",
+    "anchor": "The Internet",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 4 · Topic 4.1 · Day 1 of 2",
+      "title": "The Network With No Center",
+      "subtitle": "How billions of devices with no boss, no headquarters, and no master plan deliver your message across the planet in under a second",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Big Idea 4, Computer Systems and Networks. Topic 4.1 is the Internet itself — the largest machine humans have ever built, and it has no owner, no center, and no headquarters. We spend two days here. Today, Day 1, builds the vocabulary of networks — devices, systems, networks, paths, routing, bandwidth — and then answers the big question: what exactly IS the Internet, and why does a system nobody runs actually work? Tomorrow, Day 2, follows your data through it, one packet at a time."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how computing devices work together in a network: devices, systems, networks, paths, routing, and bandwidth (LO CSN-1.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how the Internet works: interconnected networks, standardized open protocols, dynamic routing, and scalability by design (LO CSN-1.B)"
+        }
+      ],
+      "script": "Two targets today, one per learning objective. First, CSN-1.A: the precise vocabulary of networks — what counts as a computing device, how devices form systems and networks, what a path is, what routing means, and what bandwidth actually measures. Second, CSN-1.B: how the Internet works — a network of networks held together by open protocols, with routing that nobody plans in advance and a design that scales to billions of devices. Tomorrow, CSN-1.C and CSN-1.D follow the data itself: packets, and the difference between the Internet and the Web."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Seven devices, one message. A connects to B and C; B connects to D; C connects to D and E; D connects to F; E connects to F and G. All connections work in both directions. Device A must send a message to device F.",
+      "subprompt": "Sketch the network, then list EVERY route from A to F that never revisits a device. Then pick the route YOU would send data on — and defend your rule.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own. Sketch the seven devices, draw the connections, and hunt down every route from A to F — there are exactly four, and the fourth hides from most people: A to B to D, then back through C and E to F. Then comes the interesting part: pick the best route and write down your rule, because 'best' isn't obvious — fewest devices? avoid the crowded ones? most backup options? That debate is the whole lesson: by choosing a route and defending a criterion, students are doing the exact job the Internet's routers do billions of times per second — it's called routing, and it gets its official name in about ten minutes. G is bait: it sits on the network but on no A-to-F route, proof that a network contains devices your message never touches."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Devices, Systems, Networks, Paths",
+          "description": "The network vocabulary ladder, paths, routing, and bandwidth (EK CSN-1.A.1–A.8)."
+        },
+        {
+          "title": "The Internet: A Network of Networks",
+          "description": "Open protocols, dynamic routing, and scalability by design (EK CSN-1.B.1–B.7)."
+        },
+        {
+          "title": "Deep Dive: Who Writes the Rulebook?",
+          "description": "RFCs, the IETF, and why nobody needs permission to join the Internet.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 4.1 Guided Notes page at apcsexamprep.com.",
+      "script": "Here's the map for today's Guided Notes — three sections. Two are green and CB-required: the network vocabulary ladder with paths, routing, and bandwidth, then the Internet's design — open protocols, dynamic routing, scalability. The third is the blue deep-dive: who actually writes the Internet's rules, which is not required by the College Board but answers the question everyone asks. Keep the packet open and fill it in as we go; if you were absent or lost the packet, a digital copy lives on the Topic 4.1 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Devices, Systems, Networks, Paths",
+      "kicker": "The Vocabulary of Networks · Learning Objective CSN-1.A",
+      "script": "Section one. Before we can say what the Internet is, we need the College Board's precise ladder of terms: computing device, computing system, computer network. Each term contains the one before it, and the exam tests whether you can tell them apart. Then we make your bell-ringer work official: paths, routing, and the speed limit called bandwidth."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CSN-1.A)",
+      "terms": [
+        {
+          "term": "Computing device",
+          "definition": "A physical artifact that can run a program — computers and tablets, but also servers, routers, and smart sensors (EK CSN-1.A.1)."
+        },
+        {
+          "term": "Computing system",
+          "definition": "A group of computing devices AND programs working together for a common purpose (EK CSN-1.A.2)."
+        },
+        {
+          "term": "Computer network",
+          "definition": "A group of interconnected computing devices capable of sending or receiving data — and itself a type of computing system (EK CSN-1.A.3–A.4)."
+        },
+        {
+          "term": "Routing",
+          "definition": "The process of finding a path from sender to receiver (EK CSN-1.A.6)."
+        },
+        {
+          "term": "Bandwidth",
+          "definition": "The maximum amount of data that can be sent in a fixed amount of time — usually measured in bits per second (EK CSN-1.A.7–A.8)."
+        }
+      ],
+      "script": "Five terms that carry the whole section, and the first three form a ladder. A computing device is any physical artifact that can run a program — and the CED deliberately lists unglamorous examples: servers, routers, smart sensors, not just laptops. A computing system is devices plus programs working toward a common purpose. A computer network is interconnected devices that can send or receive data — and here's the exam's favorite fine print: a network IS a type of computing system. Routing is the official name for the bell-ringer job — finding a path from sender to receiver. And bandwidth is a network's speed limit: the maximum amount of data per fixed amount of time, in bits per second — every word of that definition will matter."
+    },
+    {
+      "type": "concept",
+      "heading": "Paths and Routing: What You Just Invented",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A path is a sequence of DIRECTLY connected computing devices that begins at the sender and ends at the receiver (EK CSN-1.A.5).",
+        "Between most senders and receivers there are MANY paths — your seven-device network had four from A to F.",
+        "Routing is the process of finding a path from sender to receiver (EK CSN-1.A.6) — the 'which route is best?' debate you just had.",
+        "Bandwidth caps how much data flows per unit of time: the MAXIMUM amount in a fixed amount of time, measured in bits per second (EK CSN-1.A.7–A.8). It is a ceiling, not a promise."
+      ],
+      "script": "Everything from the bell ringer, now with official names. A path is a sequence of directly connected devices starting at the sender and ending at the receiver — 'directly connected' is the load-bearing phrase, because A-B-E-F fails the test the moment B and E share no connection. Most sender-receiver pairs have many paths; your network had four, and that abundance is a feature we'll exploit tomorrow and in Topic 4.2. Routing is the process of finding a path — when the class argued about the best route, that argument WAS routing. And bandwidth is the capacity limit: the maximum data per fixed time, in bits per second. Underline maximum — an advertised bandwidth is the ceiling on the best day, never a guarantee.",
+      "capture": [
+        {
+          "q": "A path is a sequence of ______ that begins at the sender and ends at the receiver.",
+          "a": "directly connected computing devices"
+        },
+        {
+          "q": "Routing answers one question for every message: ______.",
+          "a": "which sequence of connected devices should carry it from sender to receiver"
+        },
+        {
+          "q": "Bandwidth is a capacity, so it's measured as an amount ______.",
+          "a": "of data per fixed time — usually counted in bits each second"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Device, System, or Network?",
+      "context": "Classify each item with the CED's exact term — then count the paths. Watch for the item that earns TWO terms at once.",
+      "columns": [
+        "Item",
+        "Reasoning",
+        "Classification / answer"
+      ],
+      "rows": [
+        [
+          "A smart doorbell camera",
+          "A single physical artifact that runs a program",
+          "Computing device (EK CSN-1.A.1)"
+        ],
+        [
+          "The attendance setup: office computer + ID scanner + attendance software",
+          "Devices AND programs working together for a common purpose",
+          "Computing system (EK CSN-1.A.2)"
+        ],
+        [
+          "The bell ringer's seven lettered devices exchanging data",
+          "Interconnected devices that send or receive data",
+          "Computer network — which also makes it a computing system (EK CSN-1.A.3–A.4)"
+        ],
+        [
+          "Device D from the diagram, considered on its own",
+          "One physical artifact running a program — a router counts",
+          "Computing device (EK CSN-1.A.1)"
+        ],
+        [
+          "Number of distinct paths from A to F in the bell ringer",
+          "A path = directly connected devices, sender to receiver (EK CSN-1.A.5)",
+          "Four: A–B–D–F, A–C–D–F, A–C–E–F, A–B–D–C–E–F"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Five classifications, and the distinctions are exactly what exam items test. The doorbell camera: one artifact, runs a program — computing device, and notice the CED's device list already includes sensors and routers, not just computers. The attendance setup: devices plus software with a shared purpose — that's a computing system. The bell-ringer network is the double answer: interconnected devices sending and receiving data make a computer network, and because a network is a type of computing system, both labels are true — the exam loves that containment. Device D alone drops back down to computing device. And the path count is four, including the sneaky A-B-D-C-E-F route that doubles back through C — every consecutive pair directly connected, sender at the start, receiver at the end, so it qualifies.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Devices, Networks, Paths",
+      "subheading": "These map to LO CSN-1.A. Complete on your Guided Notes.",
+      "prompts": [
+        "A classmate claims A–B–E–F is a path in the bell-ringer network. Use the CED's definition of a path to accept or reject the claim.",
+        "Your phone + your wireless earbuds + the fitness app tracking your run: device, system, or network? Defend your classification — more than one term may apply.",
+        "An internet plan advertises '300 megabits per second.' Which CED term is being described, and why is 'maximum' the most important word in its definition?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.1 page.",
+      "script": "Stop and think — six minutes, full sentences on the Guided Notes. One: A-B-E-F must be rejected, because B and E are not directly connected, and a path requires every consecutive pair to be directly connected. Two: the phone-earbuds-app combination — each piece is a computing device, together with the software they form a computing system, and since they're interconnected and exchanging data, a case for computer network holds too; the defense matters more than the label. Three: 300 megabits per second is bandwidth, and 'maximum' matters because it's a ceiling — real transfers share the link and rarely touch it. These are the three moves CSN-1.A questions make."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Internet: A Network of Networks",
+      "kicker": "Open Protocols and Scale · Learning Objective CSN-1.B",
+      "script": "Section two. Your bell-ringer diagram was one network. Now connect that network to your neighbor's network, and theirs to a thousand more, until every network on Earth can reach every other. That — literally — is the Internet: interconnected networks. The question this section answers is how a system with no owner and no center manages to work, and the answer is one of the great ideas in engineering: shared, open rules."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CSN-1.B)",
+      "terms": [
+        {
+          "term": "Protocol",
+          "definition": "An agreed-upon set of rules that specify the behavior of a system (EK CSN-1.B.3). The Internet's protocols are open — nonproprietary — so anyone can build a device that speaks them (EK CSN-1.B.4)."
+        },
+        {
+          "term": "Scalability",
+          "definition": "The capacity for a system to change in size and scale to meet new demands (EK CSN-1.B.6). The Internet was designed to be scalable (EK CSN-1.B.7)."
+        }
+      ],
+      "script": "Two terms, and they explain each other. A protocol is an agreed-upon set of rules that specify the behavior of a system — think of the rules of the road: nobody's car is physically forced to stop at red, but because everyone agrees on the rules, strangers can share an intersection safely. The Internet's protocols have one crucial extra property: they are open, nonproprietary — published for anyone, owned by no one — which is why a device built by any company anywhere can join. Scalability is the capacity of a system to change in size and scale to meet new demands, and the CED makes the historical point directly: the Internet was DESIGNED to be scalable. These two ideas together are the answer to 'how does a network with no boss grow to billions of devices?'"
+    },
+    {
+      "type": "two_column",
+      "heading": "One Network vs. THE Internet",
+      "subheading": "Your seven-device diagram is a computer network. The Internet is what happens when networks connect to each other (EK CSN-1.B.1).",
+      "left": {
+        "title": "A single network (your diagram)",
+        "definition": "One group of interconnected devices, typically run by one owner",
+        "ek": "EK CSN-1.A.3",
+        "examples": [
+          "The owner decides the rules and who joins",
+          "A handful of known paths — routing could be planned by hand",
+          "Growth means the owner buys and wires new devices"
+        ]
+      },
+      "right": {
+        "title": "The Internet",
+        "definition": "Interconnected NETWORKS using standardized, open (nonproprietary) protocols",
+        "ek": "EK CSN-1.B.1",
+        "examples": [
+          "No owner — shared open protocols let additional devices connect easily (EK CSN-1.B.4)",
+          "Routing is dynamic: paths are not specified in advance (EK CSN-1.B.5)",
+          "Designed to be scalable — it changes size to meet new demands (EK CSN-1.B.6–B.7)"
+        ]
+      },
+      "footer": "AP TIP: Access to the Internet just means connecting your device to an Internet-connected device (EK CSN-1.B.2) — there is no center to sign in to.",
+      "script": "Two columns, one leap of scale. On the left, a single network like your diagram: one owner, rules set by that owner, few enough paths that routing could be planned by hand. On the right, the Internet — and the CED's definition is worth memorizing verbatim: a computer network consisting of interconnected networks that use standardized, open, nonproprietary communication protocols. Three consequences follow. No owner: the open protocols are the glue, so any device that speaks them can join easily. Dynamic routing: with millions of possible paths and links failing and recovering constantly, routes are found at send time, never specified in advance. And scalability by design: the Internet grows by welcoming new networks, which is how it went from a lab experiment to billions of devices without a redesign. Getting access is nothing magical either — connecting your device to any Internet-connected device is the whole trick.",
+      "capture": [
+        {
+          "q": "The Internet isn't one big network — it's ______.",
+          "a": "many separate networks agreeing to connect to each other"
+        },
+        {
+          "q": "Dynamic routing means the path is chosen ______.",
+          "a": "on the fly, hop by hop, as conditions change"
+        },
+        {
+          "q": "Because the Internet's protocols are open, users can easily ______.",
+          "a": "connect additional computing devices to the Internet"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The Internet Is a Big Computer Somewhere”",
+      "misconception": "The Internet is a single central computer — or a product run by one company — and everybody connects to that one place.",
+      "whyItHappens": "We say 'the Internet is down,' pay one company for access, and picture a headquarters. Almost every other service in daily life — a game, an app, a bank — really is run by one company, so the pattern feels universal.",
+      "correction": "The Internet is a network of INTERCONNECTED NETWORKS on standardized, OPEN protocols (EK CSN-1.B.1) — no central computer, no owner. Openness is why anyone can connect a new device (EK CSN-1.B.4), and routing is decided dynamically, not in advance (EK CSN-1.B.5).",
+      "example": "When the school Wi-Fi fails, the rest of the Internet keeps running — phones on cellular data reach it instantly. You never lost 'the Internet'; you lost your link to an Internet-connected device.",
+      "script": "Here's the misconception that quietly breaks exam answers. Because we pay one company for access and say 'the Internet is down,' students picture a central computer or a company running the whole thing. There isn't one. The Internet is interconnected networks agreeing on open protocols — the glue is rules, not a building. Two EKs kill the myth precisely: B.1 says interconnected networks with open, nonproprietary protocols, and B.2 says access is just connecting your device to an Internet-connected device. The school Wi-Fi test proves it: when it dies, phones on cellular data are still on the Internet — the school lost its link, the Internet lost nothing."
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: Who Writes the Internet's Rulebook?",
+      "track": "enrichment",
+      "bullets": [
+        "The Internet's protocols are published as RFCs — 'Request for Comments' documents — free for anyone on Earth to read and implement.",
+        "The IETF (Internet Engineering Task Force) maintains them: a volunteer community, not a government or a company. Its motto: 'rough consensus and running code.'",
+        "No manufacturer asks permission to join the Internet — building a device that follows the open rules IS the permission.",
+        "This is exactly why the CED stresses 'open (nonproprietary)': a licensed, closed protocol could never have scaled to billions of devices from thousands of makers."
+      ],
+      "script": "A deep dive for the question someone always asks: if nobody owns the Internet, who writes the rules? The answer is disarmingly humble. The protocols live in public documents called RFCs — Request for Comments — free for anyone to read, and maintained by the IETF, a volunteer engineering community whose motto is 'rough consensus and running code.' No company needs a license and no maker asks permission: building hardware that correctly follows the open rules is the entire admission ticket. That's the machinery behind the CED's phrase 'open, nonproprietary' — and it's worth pausing on how radical it is that the world's most important infrastructure runs on documents anyone can download.",
+      "capture": [
+        {
+          "q": "Internet protocols are published openly in documents called ______.",
+          "a": "RFCs (Request for Comments), maintained by the volunteer IETF"
+        },
+        {
+          "q": "A new device maker 'joins' the Internet by ______.",
+          "a": "building a device that follows the open protocols — no permission or license needed"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — How the Internet Works",
+      "subheading": "These map to LO CSN-1.B. Complete on your Guided Notes.",
+      "prompts": [
+        "Define protocol in your own words, then explain why the Internet's protocols being OPEN matters to a startup building a brand-new kind of device.",
+        "Two messages sent seconds apart from the same laptop to the same server travel different routes. Name the CED concept, and explain why 'nobody planned the route' is a feature rather than a bug.",
+        "The Internet grew from a few thousand devices to billions without being redesigned. Which CED term does that demonstrate, and what design choice (think: who is allowed to connect) made it possible?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.1 page.",
+      "script": "Stop and think — six minutes, full sentences. One: a protocol is an agreed-upon set of rules specifying a system's behavior, and openness matters to the startup because no license or permission stands between their new device and the Internet — the rules are free to implement. Two: different routes seconds apart is dynamic routing — not specified in advance — and it's a feature because routes adapt instantly to congestion and failures no human could track. Three: the growth story demonstrates scalability, and the enabling choice is open protocols: anyone may connect, so the system grows itself. These three answers are the core of every CSN-1.B item."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Computing device → computing system → computer network: each term builds on the last, and a network IS a type of computing system (EK CSN-1.A.1–A.4)",
+        "A path is a sequence of directly connected devices from sender to receiver; routing is finding one (EK CSN-1.A.5–A.6)",
+        "Bandwidth = the MAXIMUM amount of data per fixed amount of time, measured in bits per second (EK CSN-1.A.7–A.8)",
+        "The Internet is interconnected networks running standardized OPEN protocols — dynamic routing, scalable by design, no center and no owner (EK CSN-1.B.1–B.7)"
+      ],
+      "nextPoints": [
+        "Day 2: how your data actually travels — streams, chunks, and packets (LO CSN-1.C)",
+        "Why packets arriving out of order is NORMAL — and how metadata rebuilds your message",
+        "The Internet vs. the World Wide Web: the AP exam's favorite mix-up (LO CSN-1.D)"
+      ],
+      "teaser": "Tonight you'll stream a video that arrives as thousands of separate pieces, possibly out of order — some pieces may not arrive at all. Why does it still play smoothly? Bring a theory tomorrow.",
+      "script": "That's Day 1. The vocabulary ladder — device, system, network — with a network being a type of system; paths as sequences of directly connected devices; routing as finding a path; bandwidth as the maximum data per fixed time in bits per second; and the Internet itself: interconnected networks glued together by open protocols, routing dynamically, scaling by design. Tomorrow we ride along with the data. Here's the teaser to take home: tonight you'll stream a video that arrives as thousands of separate pieces, possibly out of order, some missing entirely — and it plays smoothly anyway. Bring a theory about how. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 4.1 — The Internet — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "On a school network, device A connects to B and C; B connects to D; C connects to E; D connects to F; E connects to F. Per EK CSN-1.A.5, which of the following is a valid path from sender A to receiver F?",
+        "options": [
+          "A → B → E → F",
+          "A → D → F",
+          "A → C → E → F",
+          "B → D → F"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-1.A.5",
+        "rationale": "EK CSN-1.A.5 defines a path as a sequence of DIRECTLY connected devices that begins at the sender and ends at the receiver. In option C every consecutive pair (A–C, C–E, E–F) is directly connected, and it runs sender to receiver. A fails because B and E are not directly connected. B fails because A and D are not directly connected — 'eventually reaches D' is not a direct connection. D is a valid sequence of connections but begins at B, not at the sender A, so it is not a path from A to F."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "Per EK CSN-1.A.7, which statement correctly describes the bandwidth of a computer network?",
+        "options": [
+          "The total number of devices that can join the network at one time",
+          "The maximum amount of data that can be sent in a fixed amount of time, usually measured in bits per second",
+          "The average time a single message takes to travel from sender to receiver",
+          "The physical length of the longest connection between two devices"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-1.A.7",
+        "rationale": "EK CSN-1.A.7 defines bandwidth as the maximum amount of data that can be sent in a fixed amount of time, and EK CSN-1.A.8 adds that it is usually measured in bits per second. A confuses capacity for data with capacity for devices. C describes latency (travel time), a different quantity the CED does not name — bandwidth is about amount, not delay. D invents a physical-distance meaning; bandwidth has nothing to do with cable length."
+      },
+      {
+        "id": "Q3",
+        "kind": "multi",
+        "stem": "Per EK CSN-1.A.1, which of the following are computing devices? I. A router directing traffic on a school network. II. A smart sensor reporting temperature readings. III. A tablet running a streaming app.",
+        "options": [
+          "III only",
+          "I and III only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-1.A.1",
+        "rationale": "EK CSN-1.A.1 defines a computing device as a physical artifact that can run a program and explicitly lists computers, tablets, servers, ROUTERS, and SMART SENSORS as examples — all three items are named by the EK itself. A reflects the misconception that only screen-and-keyboard machines count. B admits the router but wrongly excludes the sensor. C admits the sensor but wrongly excludes the router, which students often file as 'just wiring' when it is a program-running device."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student sends two identical messages one minute apart from the same laptop to the same server. Network monitoring shows they traveled through different sequences of routers, yet both arrived correctly. Per EK CSN-1.B.5, what best explains this?",
+        "options": [
+          "Routing on the Internet is usually dynamic, so the path is not specified in advance",
+          "The first message reserved its path, forcing the second onto a different route",
+          "The server requested the second message over a new route to verify the first",
+          "One of the messages contained an addressing error that sent it the wrong way"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-1.B.5",
+        "rationale": "EK CSN-1.B.5 states that routing on the Internet is usually dynamic — paths are not specified in advance, so two messages between the same endpoints can legitimately take different routes depending on current conditions. B invents a reservation system; Internet routing does not hold paths for senders. C invents a verification protocol that does not exist. D is contradicted by the scenario — both messages arrived correctly, so nothing was mis-addressed. Different routes with successful delivery is normal, designed behavior."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "The Internet grew from connecting a few thousand academic computers in the 1980s to billions of devices today without being redesigned from scratch. Per EK CSN-1.B.6 and B.7, this growth is possible primarily due to the Internet's:",
+        "options": [
+          "Bandwidth — its maximum amount of data per fixed amount of time",
+          "Metadata — the extra information attached to every message",
+          "Central registry of connected devices, expanded year by year",
+          "Scalability — its capacity to change in size and scale to meet new demands"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-1.B.7",
+        "rationale": "EK CSN-1.B.6 defines scalability as the capacity of a system to change in size and scale to meet new demands, and EK CSN-1.B.7 states that the Internet was designed to be scalable — precisely the property the growth story demonstrates. A misuses bandwidth, which measures data per time on a network, not the ability to grow. B drags in metadata, which serves packet routing and reassembly (Topic 4.1 Day 2), not growth. C contradicts the Internet's design: there is no central registry of devices — a central anything is what the design avoids."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A phone receives the packets of a photo in the order 1, 3, 2, 5, 4 — yet displays the photo perfectly. Per EK CSN-1.C.2, what makes the correct reassembly possible?",
+        "options": [
+          "The phone requests the entire photo again whenever packets arrive out of order",
+          "Each packet carries metadata that is used for reassembling the data at the destination",
+          "Routers along the way sort the packets so they arrive in the correct order",
+          "The packets all follow one identical path, which preserves their original order"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-1.C.2",
+        "rationale": "EK CSN-1.C.2 states that packets contain a chunk of data plus metadata used for routing AND for data reassembly — sequence information in the metadata lets the destination rebuild the original order no matter how packets arrive. A describes a wasteful mechanism that does not exist; out-of-order arrival needs no re-send of everything. C credits the routers, but routers forward packets — they do not sort a stream back into order. D is contradicted by the scenario: the arrival order 1, 3, 2, 5, 4 shows order was NOT preserved, yet reassembly still succeeded."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "Per EK CSN-1.C.4, which of the following lists three common protocols used on the Internet?",
+        "options": [
+          "IP, TCP, and UDP",
+          "URL, ISP, and LAN",
+          "HTML, CSS, and RAM",
+          "WWW, CPU, and GPS"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-1.C.4",
+        "rationale": "EK CSN-1.C.4 names IP, TCP, and UDP as common protocols used on the Internet. B collects Internet-adjacent abbreviations that are not protocols: a URL is an address format, an ISP is a company, a LAN is a kind of network. C mixes web-page languages (HTML, CSS) with computer memory (RAM) — none is a communication protocol. D mixes a system of linked pages (WWW), a hardware processor (CPU), and a satellite positioning system (GPS); none is an Internet communication protocol."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A classmate says: 'The Internet and the World Wide Web are just two names for the same thing.' Which response best applies EK CSN-1.D.1–D.3?",
+        "options": [
+          "The classmate is right — every service that moves data between computers is part of the Web",
+          "The classmate is wrong — the Web is the physical network of routers, and the Internet is the linked pages",
+          "The classmate is wrong — the Web is a system of linked pages, programs, and files that USES the Internet, a network of interconnected networks",
+          "The classmate is right — HTTP is the shared protocol that defines both of them equally"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-1.D.3",
+        "rationale": "EK CSN-1.D.1 defines the World Wide Web as a system of linked pages, programs, and files; EK CSN-1.D.3 states the Web USES the Internet — they are different things in a layered relationship. A is false: many Internet services (email, online games, app traffic) involve no linked pages and are not the Web. B has the right verdict but swaps the definitions — the Internet is the network infrastructure, the Web is the linked content. D is doubly wrong: HTTP is a protocol used by the WEB (EK CSN-1.D.2), not a definition of the Internet."
+      },
+      {
+        "id": "Q9",
+        "kind": "multi",
+        "stem": "Which of the following statements about the World Wide Web are true? I. The World Wide Web is a system of linked pages, programs, and files. II. HTTP is a protocol used by the World Wide Web. III. The World Wide Web uses the Internet.",
+        "options": [
+          "I and II only",
+          "II and III only",
+          "I and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "LO CSN-1.D",
+        "rationale": "All three statements are the CED's own words: EK CSN-1.D.1 (a system of linked pages, programs, and files), EK CSN-1.D.2 (HTTP is a protocol used by the World Wide Web), and EK CSN-1.D.3 (the World Wide Web uses the Internet). A wrongly drops III, usually from the misconception that the Web and the Internet are peers rather than layered. B wrongly drops the definition in I. C wrongly drops II, often from confusing HTTP with an Internet-wide protocol like IP — HTTP belongs to the Web layer."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 4.1 — The Internet — Teacher Guide",
+    "subtitle": "Big Idea 4: Computer Systems and Networks · Topic 4.1 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 4.1 opens Big Idea 4 with the architecture of networks and of the Internet itself. Day 1 builds the vocabulary ladder (computing device → computing system → computer network), makes paths, routing, and bandwidth concrete, then assembles the Internet: interconnected networks on standardized open protocols, dynamic routing, scalability by design. Day 2 follows the data — streams split into chunks, chunks encapsulated in packets, metadata doing double duty for routing and reassembly, IP/TCP/UDP — and closes with the exam's favorite distinction: the World Wide Web is a service that USES the Internet, not a synonym for it. The through-line is invention-before-naming: the Day 1 bell ringer hands students a seven-node network to find every path from A to F and defend a 'best' one — they are doing routing before the word appears — and the Day 1 closer teases tonight's streamed video arriving as thousands of out-of-order pieces, which Day 2 pays off with packets and metadata.",
+      "Per the course pacing guide (PACING.md), Innovation Investigation #2 attaches to this topic: one class day, placed naturally right after Day 2, in which students trace how an Internet-scale innovation moves and gathers data using this topic's vocabulary (packets, protocols, bandwidth, scalability). The investigation itself is a course-resource document; the pacing tables below cover the two teaching days, and the closing discussion (Part 3) is written to seed the investigation."
+    ],
+    "los": [
+      "LO CSN-1.A — Explain how computing devices work together in a network.",
+      "LO CSN-1.B — Explain how the Internet works.",
+      "LO CSN-1.C — Explain how data are sent through the Internet via packets.",
+      "LO CSN-1.D — Describe the differences between the Internet and the World Wide Web."
+    ],
+    "eks": [
+      "EK CSN-1.A.1 — A computing device is a physical artifact that can run a program. Some examples include computers, tablets, servers, routers, and smart sensors.",
+      "EK CSN-1.A.2 — A computing system is a group of computing devices and programs working together for a common purpose.",
+      "EK CSN-1.A.3 — A computer network is a group of interconnected computing devices capable of sending or receiving data.",
+      "EK CSN-1.A.4 — A computer network is a type of computing system.",
+      "EK CSN-1.A.5 — A path between two computing devices on a computer network (a sender and a receiver) is a sequence of directly connected computing devices that begins at the sender and ends at the receiver.",
+      "EK CSN-1.A.6 — Routing is the process of finding a path from sender to receiver.",
+      "EK CSN-1.A.7 — The bandwidth of a computer network is the maximum amount of data that can be sent in a fixed amount of time.",
+      "EK CSN-1.A.8 — Bandwidth is usually measured in bits per second.",
+      "EK CSN-1.B.1 — The Internet is a computer network consisting of interconnected networks that use standardized, open (nonproprietary) communication protocols.",
+      "EK CSN-1.B.2 — Access to the Internet depends on the ability to connect a computing device to an Internet-connected device.",
+      "EK CSN-1.B.3 — A protocol is an agreed-upon set of rules that specify the behavior of a system.",
+      "EK CSN-1.B.4 — The protocols used in the Internet are open, which allows users to easily connect additional computing devices to the Internet.",
+      "EK CSN-1.B.5 — Routing on the Internet is usually dynamic; it is not specified in advance.",
+      "EK CSN-1.B.6 — The scalability of a system is the capacity for the system to change in size and scale to meet new demands.",
+      "EK CSN-1.B.7 — The Internet was designed to be scalable.",
+      "EK CSN-1.C.1 — Information is passed through the Internet as a data stream. Data streams contain chunks of data, which are encapsulated in packets.",
+      "EK CSN-1.C.2 — Packets contain a chunk of data and metadata used for routing the packet between the origin and the destination on the Internet, as well as for data reassembly.",
+      "EK CSN-1.C.3 — Packets may arrive at the destination in order, out of order, or not at all.",
+      "EK CSN-1.C.4 — IP, TCP, and UDP are common protocols used on the Internet.",
+      "EK CSN-1.D.1 — The World Wide Web is a system of linked pages, programs, and files.",
+      "EK CSN-1.D.2 — HTTP is a protocol used by the World Wide Web.",
+      "EK CSN-1.D.3 — The World Wide Web uses the Internet."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies).",
+      "Printed Topic 4.1 quiz (student copies) for the assessment block.",
+      "Optional: printed copies of the seven-node bell-ringer network (or draw it on the board) and string/yarn for a human-network path demonstration."
+    ],
+    "prereqs": [
+      "None within Big Idea 4 — this is its opening topic. Students should recall from Topic 2.1 that all data is ultimately bits: bandwidth in bits per second and packets as chunks of binary data both lean on that idea."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Devices, systems, networks, paths, routing, bandwidth; how the Internet works (LO CSN-1.A, CSN-1.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI4/T4.1/Q1) + bell ringer (the seven-node path hunt)",
+            "min": 8,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Devices, systems, networks, paths: vocab, concept, classification table (EK CSN-1.A.1–A.8)",
+            "min": 14,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on CSN-1.A",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "The Internet: open protocols, dynamic routing, scalability + central-computer misconception (EK CSN-1.B.1–B.7)",
+            "min": 13,
+            "slides": "10-13"
+          },
+          {
+            "segment": "Deep dive: who writes the rulebook (optional enrichment)",
+            "min": 4,
+            "slides": "14"
+          },
+          {
+            "segment": "Stop and Think on CSN-1.B + day close and streaming teaser",
+            "min": 8,
+            "slides": "15-16"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Data streams, chunks, packets, metadata, IP/TCP/UDP; the Internet vs. the World Wide Web (LO CSN-1.C, CSN-1.D)",
+        "segments": [
+          {
+            "segment": "QOTD (BI4/T4.1/Q2) + bell ringer (design the piece-tracking scheme)",
+            "min": 7,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Packets: data streams, chunks, metadata (EK CSN-1.C.1–C.2)",
+            "min": 10,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Five packets, three fates + IP/TCP/UDP (EK CSN-1.C.3–C.4)",
+            "min": 10,
+            "slides": "8-9"
+          },
+          {
+            "segment": "Stop and Think on CSN-1.C",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "The Internet vs. the World Wide Web (EK CSN-1.D.1–D.3)",
+            "min": 10,
+            "slides": "11-14"
+          },
+          {
+            "segment": "Deep dive: one click, two layers (optional enrichment)",
+            "min": 4,
+            "slides": "15"
+          },
+          {
+            "segment": "Stop and Think on CSN-1.D + Common AP Traps + exit check",
+            "min": 10,
+            "slides": "16-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 4.1 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. Innovation Investigation #2 (course-resource document) attaches to this topic and runs as its own class day after Day 2.",
+        "segments": [
+          {
+            "segment": "Topic 4.1 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“The Internet is a big computer somewhere”",
+        "myth": "The Internet is a single central computer, or a product operated by one company, and everyone connects to that one place.",
+        "reality": "The Internet is a network of interconnected networks held together by standardized, open (nonproprietary) protocols — shared rules, not a shared owner (EK CSN-1.B.1, B.4). Access is nothing more than connecting a device to an Internet-connected device (EK CSN-1.B.2). The school-Wi-Fi-vs-cellular demonstration makes this land: when Wi-Fi dies, phones on cellular data are still on the Internet."
+      },
+      {
+        "heading": "“The Internet and the Web are the same thing”",
+        "myth": "'Internet' and 'World Wide Web' are interchangeable names for one thing, and everything online runs on the Web.",
+        "reality": "They are different layers. The Internet is the packet-moving infrastructure of interconnected networks; the World Wide Web is a system of linked pages, programs, and files (EK CSN-1.D.1) that speaks HTTP (EK CSN-1.D.2) and USES the Internet (EK CSN-1.D.3). Online games, smart-home devices, and email use the Internet with no Web involved. Exam items test the direction of the relationship: the Web uses the Internet, never the reverse."
+      },
+      {
+        "heading": "“Out-of-order packets mean something broke”",
+        "myth": "If packets arrive out of order — or a packet goes missing — the network malfunctioned.",
+        "reality": "EK CSN-1.C.3 says packets may arrive in order, out of order, or not at all: all three are expected outcomes of dynamic routing. Packet metadata exists precisely to reassemble out-of-order arrivals (EK CSN-1.C.2), and protocols like TCP recover missing pieces. Exam distractors routinely dress normal packet behavior up as a failure — students must recognize it as the design working."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Hand out the seven-node diagram pre-drawn; students trace each path in a different highlighter color before counting. Give the physical rule: a path never lifts the pen and never revisits a device.",
+        "Anchor packets with the postcard analogy: a long letter mailed as numbered postcards — the address is the routing metadata, the number is the reassembly metadata, and a lost postcard can be asked for again."
+      ],
+      "extension": [
+        "Add an eighth device to the bell-ringer network and ask how many NEW paths from A to F it creates — then connect the answer to why the Internet was designed to be scalable (EK CSN-1.B.6–B.7).",
+        "Have deep-dive students design the metadata fields for a packet (origin, destination, sequence number, total count, ...) and defend which fields serve routing versus reassembly; then have them choose TCP or UDP for a live call, a file download, and an online game, defending each trade-off."
+      ]
+    },
+    "discussion": [
+      "Nobody owns the Internet, no company runs it, and no law forces anyone to follow its protocols — yet it works across every border on Earth. What actually holds it together, and how fragile is that?",
+      "Your group picked a 'best' path from A to F, but a hospital, an esports team, and a movie-streamer might pick differently. Should the network itself ever decide whose traffic matters most?",
+      "If the World Wide Web disappeared tonight but the Internet stayed up, what would still work at your school tomorrow? What does that list tell you about the difference between the two?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

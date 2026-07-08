@@ -1,0 +1,603 @@
+{
+  "meta": {
+    "lessonId": "1.4",
+    "lessonTitle": "Identifying and Correcting Errors",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 1: Creative Development",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO CRD-2.I",
+    "anchor": "Identifying and Correcting Errors",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 1 · Topic 1.4 · Day 1 of 2",
+      "title": "It Ran Perfectly. It's Still Wrong.",
+      "subtitle": "Four ways a program can fail, five tools that catch them — and why the scariest bug is the one that never shows an error message",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 1.4 closes Big Idea 1 with the skill every programmer uses every single day: finding and fixing errors. We spend two days here. Today, Day 1, has two jobs: learning the College Board's four named error types — because they fail in four recognizably different ways — and learning the five tools the CED names for hunting errors down. Tomorrow is the testing discipline: how professionals choose the exact inputs that prove a program wrong before users do. The title is today's central warning: a program can run flawlessly, print no error message at all, and still be completely wrong."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify an error in an algorithm or program and classify it as a logic, syntax, run-time, or overflow error (LO CRD-2.I)"
+        },
+        {
+          "tag": "CB",
+          "text": "Correct errors by choosing from the five effective ways: test cases, hand tracing, visualizations, debuggers, and extra output statements (LO CRD-2.I)"
+        }
+      ],
+      "script": "Two targets today, both from LO CRD-2.I, which has two parts the exam takes seriously: identify the error, then correct it. First target: given a description of a failure, name which of the four error types it is — logic, syntax, run-time, or overflow. The classification matters because each type leaves a different fingerprint. Second target: the five ways the CED lists for finding and correcting errors. Tomorrow, LO CRD-2.J turns error-hunting into a science: choosing test inputs deliberately instead of hopefully."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A pancake recipe has been sabotaged. Step 1: Stir flour, milk, and two eggs into a smooth batter. Step 2: Wozzle the batter frimly until it grebbles. Step 3: Divide the batter evenly among zero bowls. Step 4: Add 2 cups of salt so the pancakes taste sweet. Step 5: Cook three minutes per side and serve.",
+      "subprompt": "Three steps are broken — find all three, and write HOW each fails differently: one can't be understood, one can't be carried out, and one 'works' but ruins breakfast.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own. The recipe is an algorithm, and someone broke three of its steps — but here's the key: they broke each one in a DIFFERENT way. Step 2 is gibberish; you can't even understand the instruction, let alone follow it. Step 3 reads like perfect English, but the moment you actually try to divide batter among zero bowls, the step is impossible to carry out. Step 4 is the sneaky one: you CAN do it, every action succeeds, and the result is ruined anyway. Keep your answers — by the end of today you'll know that you just invented three of the College Board's four error types: syntax, run-time, and logic. Computing adds a fourth, and it's coming."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "The Four Error Types",
+          "description": "Logic, syntax, run-time, and overflow errors — four failures, four fingerprints (EK CRD-2.I.1–I.4)."
+        },
+        {
+          "title": "Five Ways to Find and Fix",
+          "description": "Test cases, hand tracing, visualizations, debuggers, extra output statements (EK CRD-2.I.5)."
+        },
+        {
+          "title": "Deep Dive: Inside a Debugger",
+          "description": "Breakpoints, stepping, and watches — what a debugger actually does, beyond the exam.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 1.4 Guided Notes page at apcsexamprep.com.",
+      "script": "Here's the map for today's Guided Notes — three sections. Two are green and CB-required: the four error types, then the five ways to find and correct them. The third is a blue deep dive inside a real debugger — not required by the College Board, but it turns one of the five ways from a vocabulary word into a tool you can actually picture. Keep the packet open and fill it in as we go; if you were absent or lost the packet, a digital copy lives on the Topic 1.4 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Four Error Types",
+      "kicker": "Naming the Failure · Learning Objective CRD-2.I",
+      "script": "Section one. Your recipe broke in three different ways, and that difference is the whole point: before you can fix an error, you have to recognize WHAT KIND of error you're facing, because each kind is found differently. The College Board names exactly four types, and exam questions expect you to tell them apart from a description of the failure alone."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CRD-2.I)",
+      "terms": [
+        {
+          "term": "Logic error",
+          "definition": "A mistake in the algorithm or program that causes it to behave incorrectly or unexpectedly (EK CRD-2.I.1). The program still runs — its behavior during execution (EK CRD-2.B.4) is simply wrong."
+        },
+        {
+          "term": "Syntax error",
+          "definition": "A mistake in the program where the rules of the programming language are not followed (EK CRD-2.I.2). The program statements (EK CRD-2.B.1) can't be understood by the language, so the program won't run at all."
+        },
+        {
+          "term": "Run-time error",
+          "definition": "A mistake in the program that occurs during the execution of a program; programming languages define their own run-time errors (EK CRD-2.I.3). A program needs to work for a variety of inputs and situations (EK CRD-2.B.3) — run-time errors strike when execution meets one it can't handle."
+        },
+        {
+          "term": "Overflow error",
+          "definition": "An error that occurs when a computer attempts to handle a number that is outside of the defined range of values (EK CRD-2.I.4). The fixed-bit machinery behind it — integer overflow — arrives in Topic 2.1 (EK DAT-1.B.1)."
+        },
+        {
+          "term": "Hand tracing",
+          "definition": "Stepping through a program on paper, line by line, tracking every variable's value by hand — one of the CED's effective ways to find and correct errors (EK CRD-2.I.5). It exposes in detail how the statements accomplish the function (EK CRD-2.B.5)."
+        }
+      ],
+      "script": "Five terms that carry the whole topic, and notice how each error type is defined against vocabulary you already own from Topic 1.2. A logic error causes the program to behave incorrectly or unexpectedly — the program RUNS; its behavior is just wrong. A syntax error breaks the rules of the programming language itself, so the statements can't even be understood and nothing runs. A run-time error occurs during execution — the code was legal, but a situation arose mid-run that the language couldn't survive, and each language defines its own. An overflow error is a number problem: the computer attempts to handle a value outside the defined range — you'll meet the binary machinery behind that in Topic 2.1. And hand tracing is the first of our five hunting tools: running the program yourself, on paper, one line at a time."
+    },
+    {
+      "type": "concept",
+      "heading": "Four Failures, Four Fingerprints",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Logic error: the program runs and finishes — the behavior is just wrong. \"avg <- (q1 + q2 + q3) / 2\" happily grades everyone too high (EK CRD-2.I.1).",
+        "Syntax error: the language's rules are broken — a statement like \"score <- score +\" can't be understood, so the program never runs (EK CRD-2.I.2).",
+        "Run-time error: legal code that fails DURING execution — \"share <- total / people\" is fine until people is 0 (EK CRD-2.I.3).",
+        "Overflow error: the computer attempts to handle a number outside the defined range of values — a counter pushed past its maximum (EK CRD-2.I.4)."
+      ],
+      "script": "Here are the four fingerprints, each with a one-line specimen. The logic error is your salt-for-sugar step: dividing three quiz scores by 2 executes flawlessly and produces a wrong average every single time — no message, no crash, just a lie. The syntax error is your wozzle-the-batter step: 'score arrow score plus' just stops — plus WHAT? The language can't understand the statement, so nothing runs. The run-time error is your zero-bowls step: dividing the total by the number of people is perfectly legal code that works at every table until somebody enters zero, and then execution itself fails. And the overflow error is the one the recipe couldn't show you: a number grows past the range the computer can handle. Sort any exam description into one of these four by asking what the failure looked like: never ran, died mid-run, number left its range, or ran fine and lied.",
+      "capture": [
+        {
+          "q": "A logic error still ______.",
+          "a": "runs — the program behaves incorrectly or unexpectedly instead of stopping"
+        },
+        {
+          "q": "A syntax error breaks ______.",
+          "a": "the rules of the programming language, so the program won't run at all"
+        },
+        {
+          "q": "A run-time error occurs ______.",
+          "a": "during the execution of the program"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“If It Runs, It's Correct”",
+      "misconception": "A program that runs from start to finish without a single error message has no errors in it.",
+      "whyItHappens": "Syntax and run-time errors announce themselves loudly — red underlines, crash messages, halted programs. After enough of those, silence starts to feel like proof of success.",
+      "correction": "Logic errors run in silence. Per EK CRD-2.I.1, a logic error causes the program to behave incorrectly or unexpectedly — and 'behaving' requires running.",
+      "example": "\"avg <- (quiz1 + quiz2 + quiz3) / 2\" runs flawlessly forever. No crash, no warning — every average it prints is simply wrong. The error message you're waiting for will never come.",
+      "script": "Here is the trap this whole topic exists to break. Students learn early that errors mean red text and crash messages, so a clean, quiet run feels like a certificate of correctness. But look at the definition: a logic error causes the program to behave incorrectly — which means the program IS running. Logic errors are invisible to the language itself; the language did exactly what the code said, and the code said the wrong thing. Dividing three quizzes by two is legal arithmetic — the machine has no idea you meant three. That's why the fix requires a human standard of correctness: known inputs with known right answers. Hold that thought, because it's precisely where tomorrow's lesson begins."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Name That Error",
+      "context": "Five bug reports from student projects. Classify each one using the four CED error types (EK CRD-2.I.1–I.4).",
+      "columns": [
+        "Bug report",
+        "What execution looked like",
+        "Error type"
+      ],
+      "rows": [
+        [
+          "The statement \"score <- score +\" is missing its second operand",
+          "The language cannot understand the statement; the program never starts",
+          "Syntax error"
+        ],
+        [
+          "A trip-cost app runs \"each <- cost / people\" and a user enters 0 people",
+          "The program halts with an error message in the middle of execution",
+          "Run-time error"
+        ],
+        [
+          "A gradebook averages three quizzes with \"avg <- (q1 + q2 + q3) / 2\"",
+          "Runs cleanly every time; every printed average is higher than it should be",
+          "Logic error"
+        ],
+        [
+          "A step counter's daily total passes the largest value its storage allows",
+          "The computer attempts to handle a number outside the defined range",
+          "Overflow error"
+        ],
+        [
+          "A password checker approves some incorrect passwords",
+          "Runs cleanly for every input; the accept/reject behavior is wrong",
+          "Logic error"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Five real-style bug reports, and the classification drill the exam loves. Row one: 'score arrow score plus' — the statement is incomplete, the language can't understand it, nothing ever runs: syntax. Row two: dividing cost by people is legal code that dies the moment someone enters zero people, mid-execution: run-time. Row three: the gradebook that divides three quizzes by two — runs perfectly, lies constantly: logic. Row four: a step total that climbs past the largest value its storage can represent — a number outside the defined range: overflow. Row five is the subtle one: a password checker that approves wrong passwords never crashes at all — wrong behavior on a clean run is logic again. Notice the diagnostic questions doing all the work: did it ever run, did it die mid-run, did a number leave its range, or did it run fine and lie?",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Classify the Failure",
+      "subheading": "These map to LO CRD-2.I. Complete on your Guided Notes.",
+      "prompts": [
+        "A weather app crashes the moment a user taps 'refresh' while the phone is offline. A teammate calls it a logic error. Correct the classification if needed, and defend your answer in one sentence.",
+        "Explain how a program can be completely free of syntax errors and still be wrong. Name the error type that survives a clean, message-free run.",
+        "A scoreboard suddenly shows 0 right after a team's score passes the largest value the program can store. Which error type is this, and what makes it different from a logic error?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.4 page.",
+      "script": "Stop and think — independent, six minutes, full sentences on your Guided Notes. One: the weather app that crashes mid-run when the phone is offline — that's a failure DURING execution, so it's a run-time error, not logic; the defense should name when the failure happens. Two: a program with perfect syntax can still divide by the wrong number or test the wrong condition — the error type that survives a clean run is the logic error, and the sentence should say why the language can't see it. Three: the scoreboard that wraps to zero past its maximum is overflow — and the difference from a logic error is that the algorithm was right; the number left the range the computer could handle. A few students will be called on to share before we move to the toolkit."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Five Ways to Find and Fix",
+      "kicker": "The Debugging Toolkit · Learning Objective CRD-2.I",
+      "script": "Section two. Naming the error type is diagnosis; now comes treatment. The College Board lists exactly five effective ways to find and correct errors, and the exam expects you to know the list AND to pick the right tool for a given symptom. Here's the toolkit."
+    },
+    {
+      "type": "two_column",
+      "heading": "The CED's Five-Tool Debugging Kit",
+      "subheading": "Effective ways to find and correct errors: test cases, hand tracing, visualizations, debuggers, adding extra output statements (EK.",
+      "left": {
+        "title": "Watch the values",
+        "definition": "Tools that expose what the variables are actually doing",
+        "ek": "EK CRD-2.I.5",
+        "examples": [
+          "Hand tracing: run the program on paper, tracking each variable line by line",
+          "Extra output statements: print a value mid-run to see exactly where it goes wrong",
+          "Visualizations: graph or animate the data so the wrong value jumps out"
+        ]
+      },
+      "right": {
+        "title": "Probe the behavior",
+        "definition": "Tools that compare what the program does to what it should do",
+        "ek": "EK CRD-2.I.5",
+        "examples": [
+          "Test cases: defined inputs paired with known expected outputs",
+          "Debuggers: pause a live run at any line and inspect every variable",
+          "Match tool to symptom: silent wrong answers call for traces and test cases; a crash points you at the crashing line"
+        ]
+      },
+      "footer": "AP TIP: If a question asks how to FIND an error, the answer comes from this list of five — memorize them as a set.",
+      "script": "Five tools, one shared goal: making the invisible visible. On the left, tools that watch values. Hand tracing is you being the computer — paper, pencil, one line at a time, writing down what every variable holds; it's slow and it is devastatingly effective on short code. Extra output statements are the quick version: print the variable mid-run and watch where it goes wrong. Visualizations turn data into pictures so an absurd value is impossible to miss. On the right, tools that probe behavior. Test cases pair a defined input with the output you KNOW should come back — the only reliable logic-error detector, and tomorrow's entire lesson. Debuggers pause a live program so you can inspect it mid-flight — the deep dive next slide shows you how. Exam questions on this EK are usually straight recall: know all five as a set.",
+      "capture": [
+        {
+          "q": "The CED's five ways to find and correct errors are test cases, hand tracing, visualizations, debuggers, and ______.",
+          "a": "adding extra output statement(s) (EK CRD-2.I.5)"
+        },
+        {
+          "q": "A test case pairs a defined input with ______.",
+          "a": "the output or behavior the program is expected to produce"
+        },
+        {
+          "q": "Hand tracing means ______.",
+          "a": "stepping through the program on paper, tracking each variable's value line by line"
+        }
+      ]
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: Inside a Debugger",
+      "track": "enrichment",
+      "bullets": [
+        "A breakpoint marks a line where the debugger pauses a LIVE run — the program freezes mid-execution with every variable open for inspection.",
+        "Step controls advance one statement at a time: 'step over' runs a line and stops again; 'step into' follows a call to watch it from the inside.",
+        "A 'watch' pins a variable — like score — so its value updates on screen at every pause. It's hand tracing, automated.",
+        "Beyond the exam: the AP test only asks you to NAME debuggers as one of the five ways (EK CRD-2.I.5) — but every professional language ships one, and fluency with it transfers everywhere."
+      ],
+      "script": "A deep dive for the curious — the exam only needs the word 'debugger' on the list of five, but here's what the tool actually does. A breakpoint is a flag on a line of code: run the program normally, and the debugger freezes it alive the instant execution reaches that line — every variable inspectable, mid-flight. Then you step: one statement at a time, watching each line change the program's state, exactly like hand tracing except the computer does the bookkeeping. A watch pins any variable to the screen so you can see the precise line where a right value turns wrong. Students who go on to any programming language will meet this tool within weeks — and it will feel like x-ray vision.",
+      "capture": [
+        {
+          "q": "A breakpoint makes the debugger ______.",
+          "a": "pause a live run at that line so every variable can be inspected"
+        },
+        {
+          "q": "A debugger is essentially hand tracing ______.",
+          "a": "automated — the computer tracks the values while you step line by line"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Pick the Right Tool",
+      "subheading": "These map to LO CRD-2.I. Complete on your Guided Notes.",
+      "prompts": [
+        "A program's final answer is wrong but nothing ever crashes. Which two of the five ways would you reach for first, and what would each one reveal?",
+        "A teammate keeps pasting extra output statements into 300 lines of code to hunt one bug. Name the tool from the five that does the same job without editing the program, and give one advantage it has.",
+        "Write one complete test case for a program that converts total minutes into hours-and-minutes form: give the defined input AND the exact expected output."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.4 page.",
+      "script": "Second stop and think — five minutes, full sentences. One: a silent wrong answer is the logic-error fingerprint, so the tools are test cases, to prove which inputs produce wrong outputs, and hand tracing, to find the line where the values drift — extra output statements earn credit too. Two: the tool that inspects values without editing code is the debugger; advantages worth naming include stepping anywhere without touching the program and no cleanup of leftover print statements afterward. Three: a complete test case must carry BOTH halves — something like input 130 minutes, expected output 2 hours 10 minutes; an input without its expected output is not a test case, which is the exact idea tomorrow builds on. Answers are reviewed together before the close."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Four error types, four fingerprints: logic (runs, behaves incorrectly), syntax (language rules broken, never runs), run-time (fails during execution), overflow (number outside the defined range) (EK CRD-2.I.1–I.4)",
+        "Logic errors are the silent ones — a clean, message-free run proves nothing (EK CRD-2.I.1)",
+        "Five ways to find and correct errors: test cases, hand tracing, visualizations, debuggers, extra output statements (EK CRD-2.I.5)",
+        "Overflow's fixed-bit machinery is waiting for you in Topic 2.1 (EK DAT-1.B.1)"
+      ],
+      "nextPoints": [
+        "Day 2: testing with defined inputs and expected outputs (LO CRD-2.J)",
+        "Choosing inputs at and just beyond the extremes — the minimum and the maximum",
+        "Why the program's requirements decide what a 'correct' output even means"
+      ],
+      "teaser": "A grade calculator works perfectly for 85, 92, and 74 — ship it? Tomorrow: the three numbers that break it.",
+      "script": "That's Day 1. Four error types, told apart by their fingerprints: never ran is syntax, died mid-run is run-time, a number left its range is overflow, and ran-fine-but-lied is logic — the silent one. Five tools hunt them: test cases, hand tracing, visualizations, debuggers, and extra output statements. Here's the teaser to sleep on: a grade calculator averages three scores and it works perfectly for 85, 92, and 74 — so, ship it? Tomorrow you'll learn why those three passing tests prove almost nothing, and exactly which three numbers a professional would type to break it. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 1.4 — Identifying and Correcting Errors — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A field-trip signup program runs from start to finish without any error messages, but it approves students who are on the not-permitted list. Per EK CRD-2.I.1, what kind of error is this?",
+        "options": [
+          "A syntax error — the program violated a rule of the programming language",
+          "A logic error — the program runs but behaves incorrectly or unexpectedly",
+          "A run-time error — the program stopped during execution when it reached the mistake",
+          "An overflow error — the program handled a number outside its defined range of values"
+        ],
+        "answer": "B",
+        "ek": "EK CRD-2.I.1",
+        "rationale": "EK CRD-2.I.1 defines a logic error as a mistake in the algorithm or program that causes it to behave incorrectly or unexpectedly — here the program runs cleanly and produces wrong approval behavior, the classic silent logic error. A is wrong: a syntax error prevents the program from running at all, and this one runs. C is wrong: nothing stopped during execution; the program finished. D invents a number-range problem the scenario never describes — the failure is wrong decision behavior, not a value outside a range."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "Per EK CRD-2.I.2, which situation is a syntax error?",
+        "options": [
+          "A program computes an average with the wrong divisor and reports values that are too high",
+          "A program crashes while running when it divides a total by zero",
+          "A program produces a value larger than the range its storage can represent",
+          "A program statement is written in a way that breaks the rules of the programming language, so the program will not run"
+        ],
+        "answer": "D",
+        "ek": "EK CRD-2.I.2",
+        "rationale": "EK CRD-2.I.2 defines a syntax error as a mistake in the program where the rules of the programming language are not followed — the language cannot understand the statement, so the program does not run. A describes a logic error (EK CRD-2.I.1): it runs and behaves incorrectly. B describes a run-time error (EK CRD-2.I.3): the failure happens during execution. C describes an overflow error (EK CRD-2.I.4): a number outside the defined range of values."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A cost-splitting program computes each person's share as the total divided by the number of people. It works in every rehearsal, but during a live demo a user enters 0 people and the program halts with an error message mid-execution. Per EK CRD-2.I.3, this is best classified as:",
+        "options": [
+          "A run-time error — a mistake that occurs during the execution of the program",
+          "A syntax error — the division statement broke the programming language's rules",
+          "An overflow error — the computer handled a number outside the defined range",
+          "A logic error — the program ran to completion but produced the wrong output"
+        ],
+        "answer": "A",
+        "ek": "EK CRD-2.I.3",
+        "rationale": "EK CRD-2.I.3 defines a run-time error as a mistake that occurs during the execution of a program — the division statement is legal code that fails only when execution reaches it with people equal to 0, and programming languages define their own run-time errors like division by zero. B is wrong: the statement follows the language's rules, which is why it ran for weeks. C is wrong: zero is not outside a defined range of values; the problem is an impossible operation. D is wrong: the program did not run to completion — it halted mid-execution."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "stem": "A game stores the player's gem count, which has a defined maximum value. When a player's total passes that maximum, the program cannot handle the new number and the count fails. On the CED's error taxonomy (EK CRD-2.I.4), this is:",
+        "options": [
+          "A logic error — the algorithm used incorrect arithmetic to add the gems",
+          "A syntax error — the statement adding gems violated the language's rules",
+          "An overflow error — the computer attempted to handle a number outside the defined range of values",
+          "A round-off error — the gem count was stored as an imprecise approximation"
+        ],
+        "answer": "C",
+        "ek": "EK CRD-2.I.4",
+        "rationale": "EK CRD-2.I.4 defines an overflow error as one that occurs when a computer attempts to handle a number that is outside of the defined range of values — exactly what happens when the gem total passes its defined maximum. A is wrong: the addition algorithm was correct; the value simply left the range the program can handle. B is wrong: the code runs fine below the maximum, so the language's rules were followed. D names round-off, a precision problem with real-number approximations — it is not one of the four error types this LO names, and nothing here involves approximation."
+      },
+      {
+        "id": "Q5",
+        "kind": "multi",
+        "stem": "Per EK CRD-2.I.5, which of the following are effective ways to find and correct errors in a program? I. Running test cases with known expected outputs. II. Hand tracing the program's variables line by line. III. Deleting the program and rewriting it from scratch.",
+        "options": [
+          "I and II only",
+          "II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "A",
+        "ek": "EK CRD-2.I.5",
+        "rationale": "EK CRD-2.I.5 lists the effective ways to find and correct errors: test cases, hand tracing, visualizations, debuggers, and adding extra output statement(s). Items I and II are on that list. Item III is not — rewriting from scratch abandons the error hunt entirely and is just as likely to introduce new errors as to remove old ones. B wrongly excludes test cases, which the EK names explicitly. C and D both accept item III, which the EK does not include."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A program's requirements state that it accepts ticket orders of 1 to 10 tickets. A student has time to run exactly four test inputs. Per EK CRD-2.J.2, which set best demonstrates the expected outcomes at or just beyond the extremes of the input data?",
+        "options": [
+          "2, 4, 6, and 8",
+          "1, 2, 9, and 10",
+          "0, 5, 6, and 11",
+          "0, 1, 10, and 11"
+        ],
+        "answer": "D",
+        "ek": "EK CRD-2.J.2",
+        "rationale": "EK CRD-2.J.2 says defined test inputs should demonstrate the different expected outcomes at or just beyond the extremes (minimum and maximum) of the input data. Option D covers all four boundary points: just below the minimum (0), the minimum (1), the maximum (10), and just beyond it (11). A tests only comfortable middle values, exactly what the EK warns against. B tests at the extremes but never goes just beyond them, so rejection behavior is never checked. C goes beyond the extremes but wastes two inputs on mid-range values and never tests the legal boundaries 1 and 10 themselves."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "During development, a programmer runs a program on a set of defined inputs and compares each result to the expected outcome. Several results do not match. Per EK CRD-2.J.1, what should the programmer do with these results?",
+        "options": [
+          "Discard the failing inputs, since defined inputs must produce expected outcomes",
+          "Use the results from testing to revise the algorithm or program, then test again",
+          "Reclassify the mismatches as run-time errors and record them in the documentation",
+          "Update the expected outcomes so they match what the program actually produced"
+        ],
+        "answer": "B",
+        "ek": "EK CRD-2.J.1",
+        "rationale": "EK CRD-2.J.1 states that testing uses defined inputs to ensure a program is producing the expected outcomes, and that programmers use the results from testing to revise their algorithms or programs — failures are the signal that revision is needed. A gets it backward: failing inputs are the most valuable ones, not trash. C is wrong: a wrong result on a clean run is a logic error, not a run-time error, and relabeling fixes nothing. D destroys the entire point of testing — the expected outcome is the standard of correctness, so bending it to match wrong output hides the error instead of correcting it."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "A teammate asks you to 'go test the new discount program' but cannot tell you what the program is supposed to output for any input. Per EK CRD-2.J.3, why is testing stuck until that changes?",
+        "options": [
+          "Testing requires a debugger, and a debugger cannot open an undocumented program",
+          "Test inputs can only be selected after every syntax error has been corrected",
+          "Program requirements are needed to identify appropriate defined inputs for testing",
+          "A program cannot be tested until it has produced at least one run-time error"
+        ],
+        "answer": "C",
+        "ek": "EK CRD-2.J.3",
+        "rationale": "EK CRD-2.J.3 states that program requirements are needed to identify appropriate defined inputs for testing — without knowing what the program is supposed to do, you cannot choose meaningful inputs or know the expected outcome for any of them, so no run can be judged right or wrong. A is wrong: debuggers are one of five error-finding tools (EK CRD-2.I.5), not a prerequisite for testing, and documentation is not what they require. B confuses error types with test planning — inputs can be planned before any code exists. D is backward: testing hunts for errors; it does not wait for them."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 1.4 — Identifying and Correcting Errors — Teacher Guide",
+    "subtitle": "Big Idea 1: Creative Development · Topic 1.4 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 1.4 closes Big Idea 1 with the two skills every programmer exercises daily: recognizing WHAT KIND of error a failure is, and choosing inputs that expose errors on purpose. Day 1 builds the CED's four-type error taxonomy (logic, syntax, run-time, overflow) plus the five effective ways to find and correct errors; Day 2 builds the testing discipline of CRD-2.J — defined inputs with expected outcomes, chosen at or just beyond the extremes that the program requirements define.",
+      "The through-line is a two-part con: Day 1 opens with a sabotaged pancake recipe whose three broken steps fail in three different ways — students invent the syntax/run-time/logic distinction before it is named — and closes by daring the class to ship a grade calculator that passed tests at 85, 92, and 74. Day 2's bell ringer pays that off: the three numbers that break it are 0, 100, and 101 — the extremes and one step beyond."
+    ],
+    "los": [
+      "LO CRD-2.I — For errors in an algorithm or program: a. Identify the error. b. Correct the error.",
+      "LO CRD-2.J — Identify inputs and corresponding expected outputs or behaviors that can be used to check the correctness of an algorithm or program."
+    ],
+    "eks": [
+      "EK CRD-2.I.1 — A logic error is a mistake in the algorithm or program that causes it to behave incorrectly or unexpectedly.",
+      "EK CRD-2.I.2 — A syntax error is a mistake in the program where the rules of the programming language are not followed.",
+      "EK CRD-2.I.3 — A run-time error is a mistake in the program that occurs during the execution of a program. Programming languages define their own run-time errors.",
+      "EK CRD-2.I.4 — An overflow error is an error that occurs when a computer attempts to handle a number that is outside of the defined range of values.",
+      "EK CRD-2.I.5 — The following are effective ways to find and correct errors: test cases, hand tracing, visualizations, debuggers, adding extra output statement(s).",
+      "EK CRD-2.J.1 — In the development process, testing uses defined inputs to ensure that an algorithm or program is producing the expected outcomes. Programmers use the results from testing to revise their algorithms or programs.",
+      "EK CRD-2.J.2 — Defined inputs used to test a program should demonstrate the different expected outcomes that are at or just beyond the extremes (minimum and maximum) of input data.",
+      "EK CRD-2.J.3 — Program requirements are needed to identify appropriate defined inputs for testing."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies).",
+      "Printed Topic 1.4 quiz (student copies) for the assessment block.",
+      "Optional: printed copies of the sabotaged pancake recipe for the Day 1 bell ringer (works fine projected)."
+    ],
+    "prereqs": [
+      "Topics 1.2–1.3: students should already speak the language of program behavior, inputs, and outputs (LO CRD-2.B–2.D) and know that program requirements come out of the design and investigation phases (LO CRD-2.E–2.F) — Day 2 leans on requirements directly (EK CRD-2.J.3).",
+      "Overflow (EK CRD-2.I.4) is deliberately cross-referenced to Topic 2.1's integer overflow (EK DAT-1.B.1), which is taught AFTER 1.4 in course order. Day 1 needs only the definition — a number outside the defined range of values; the fixed-bit binary mechanics arrive in Big Idea 2 and land harder for having been foreshadowed here."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Classify errors as logic, syntax, run-time, or overflow; know the five ways to find and correct them (LO CRD-2.I)",
+        "segments": [
+          {
+            "segment": "QOTD (BI1/T1.4/Q1) + bell ringer (the sabotaged pancake recipe)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "The four error types: vocab, fingerprints, the silent-logic-error misconception (EK CRD-2.I.1–I.4)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Name That Error classification table",
+            "min": 7,
+            "slides": "9"
+          },
+          {
+            "segment": "Stop and Think on error classification",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Five ways to find and correct errors (EK CRD-2.I.5)",
+            "min": 7,
+            "slides": "11-12"
+          },
+          {
+            "segment": "Deep dive: inside a debugger (optional enrichment)",
+            "min": 4,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think on choosing tools",
+            "min": 5,
+            "slides": "14"
+          },
+          {
+            "segment": "Day close + grade-calculator teaser for Day 2",
+            "min": 3,
+            "slides": "15"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Test with defined inputs and expected outputs; choose inputs at or just beyond the extremes that requirements define (LO CRD-2.J)",
+        "segments": [
+          {
+            "segment": "QOTD (BI1/T1.4/Q2) + bell ringer (break the grade calculator)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Testing with defined inputs: vocab + the testing loop (EK CRD-2.J.1)",
+            "min": 10,
+            "slides": "5-7"
+          },
+          {
+            "segment": "At and just beyond the extremes + the normal-values misconception (EK CRD-2.J.2)",
+            "min": 9,
+            "slides": "8-9"
+          },
+          {
+            "segment": "Reading requirements, choosing inputs — worked table (EK CRD-2.J.2–J.3)",
+            "min": 9,
+            "slides": "10"
+          },
+          {
+            "segment": "Stop and Think diagnosis practice",
+            "min": 8,
+            "slides": "11"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "12-13"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 1.4 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 1.4 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“If it runs, it's correct”",
+        "myth": "A program that runs start-to-finish with no error message has no errors.",
+        "reality": "Logic errors run in silence — the program behaves incorrectly or unexpectedly while running cleanly (EK CRD-2.I.1). The language cannot flag them; only comparing actual behavior against expected behavior (test cases with known outcomes) exposes them. The gradebook that divides three quizzes by 2 makes this land."
+      },
+      {
+        "heading": "“Crash and lie are the same kind of bug”",
+        "myth": "Run-time error and logic error are interchangeable names for 'the program misbehaved.'",
+        "reality": "They are distinct, separately named types with one diagnostic question between them: did it STOP, or did it LIE? A failure during execution (crash, halt, error message mid-run) is a run-time error (EK CRD-2.I.3); a clean run with wrong behavior is a logic error (EK CRD-2.I.1). Exam distractors are built from swapping them."
+      },
+      {
+        "heading": "“Typical inputs make good tests”",
+        "myth": "Testing means running a few normal, middle-of-the-range values — if they pass, the program works.",
+        "reality": "Per EK CRD-2.J.2, defined test inputs should demonstrate expected outcomes at or JUST BEYOND the extremes — the minimum, the maximum, and one step outside each. Boundary mistakes (a > that should be ≥) are invisible to middle values; 85, 92, and 74 all passing proves almost nothing about 0, 100, and 101."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students the three-question classification flowchart: Did the language refuse to run it at all? → syntax. Did it stop or crash mid-run? → run-time (or overflow, if a number passed its range). Did it finish and behave wrong? → logic.",
+        "For Day 2, provide the test-case sentence frame: 'Input ____ should produce ____, because the requirements say ____.' Requiring all three slots enforces EK CRD-2.J.1 and J.3 in one sentence."
+      ],
+      "extension": [
+        "Have students write a one-sentence requirements statement for a program of their choice, trade with a partner, and build each other's boundary test sets (minimum, maximum, one step beyond each) — then defend why each input earns its place.",
+        "Deep-dive students can open a real debugger in any language, set a breakpoint, step through a short loop with a watch on one variable, and map each feature they used back to one of the CED's five ways (EK CRD-2.I.5)."
+      ]
+    },
+    "discussion": [
+      "In 1996 the Ariane 5 rocket exploded 37 seconds after launch when a velocity value grew too large for its storage — software inherited from a slower rocket and never re-tested at the new speeds. Which half of this topic failed: the error taxonomy, or the choice of test inputs?",
+      "A logic error never announces itself. What team habits would catch logic errors anyway — and what real-world pressures (deadlines, demos, 'it worked for me') push teams to skip exactly those habits?",
+      "Testing at the extremes can prove a program wrong, but no amount of passing tests can prove it fully correct. Is that asymmetry a flaw in testing — or just honesty about what evidence can do? What should a team ship on?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

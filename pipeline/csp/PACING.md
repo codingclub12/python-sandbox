@@ -41,7 +41,7 @@ Topic quizzes run as the OPENER of the class after the topic closes
 
 ## Per-topic day ESTIMATES (60-min days; teach + practice, quiz absorbed)
 (Initial estimates only — see governing principle. Reconciled after authoring.)
-BIG IDEA 1 — Creative Development (7 topic-days)
+BIG IDEA 1 — Creative Development (7 topic-days) [RECONCILED: 1+2+2+2 = 7 — matches]
   1.1 Collaboration 1 · 1.2 Program Function & Purpose 2 ·
   1.3 Program Design & Development 2 · 1.4 Identifying & Correcting Errors 2
 BIG IDEA 2 — Data (7) [RECONCILED to authored actuals: 2+1+2+2 = 7 — matches]
@@ -55,7 +55,7 @@ BIG IDEA 3 — Algorithms and Programming (34)
   3.13 Developing Procedures 3 · 3.14 Libraries 1 · 3.15 Random Values 1 ·
   3.16 Simulations 2 · 3.17 Algorithmic Efficiency 1 ·
   3.18 Undecidable Problems 1
-BIG IDEA 4 — Computer Systems and Networks (4)
+BIG IDEA 4 — Computer Systems and Networks (4) [RECONCILED: 2+1+1 = 4 — matches]
   4.1 The Internet 2 · 4.2 Fault Tolerance 1 · 4.3 Parallel & Distributed 1
 BIG IDEA 5 — Impact of Computing (7)
   5.1 Beneficial & Harmful Effects 2 · 5.2 Digital Divide 1 ·

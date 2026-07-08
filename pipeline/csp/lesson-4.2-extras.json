@@ -1,0 +1,292 @@
+{
+  "meta": {
+    "lessonId": "4.2",
+    "lessonTitle": "Fault Tolerance",
+    "unit": "Big Idea 4: Computer Systems and Networks",
+    "days": 1,
+    "los": "LO CSN-1.E"
+  },
+  "map": {
+    "subtitle": "Big Idea 4: Computer Systems and Networks   •   1 day   •   LO CSN-1.E",
+    "intro": "Everything for this topic lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (speaker notes on every slide: timing, share-out cues, misconception alerts)",
+      "Teacher Guide (pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Outage Post-Mortem and Exercise 2: Redundancy Audit (student + answer KEY)",
+      "Discussion — The Price of Staying Up (3-part: Opening, Mid-lesson, Closing — all inside the single teach day)",
+      "Quiz (student + answer KEY — 7 questions on LO CSN-1.E, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-4-2-fault-tolerance"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-4-2-guided-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-4-2-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-4-2-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-4-2-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (one teach day: how redundancy builds fault tolerance — extra components, extra paths, rerouting — then the benefits, the costs, and hunting single points of failure).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Scheduling: Topic 4.2 is a 1-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Topic 4.3 (Parallel and Distributed Computing) begins immediately after the quiz."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Outage Post-Mortem: The SnackDash Blackout",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-4-2-exercise-1",
+    "intro": "You are the reliability consultant hired after SnackDash — a snack-delivery startup — lost four hours of business to a single backhoe. The company's incident timeline is below. For each stage you will find the single point of failure that let the outage spread, and name the redundancy that would have saved that stage. Part A works the timeline; Part B extends the same skills. Everything maps to CB Learning Objective CSN-1.E.",
+    "scenarioTitle": "Incident Timeline: Four Hours, One Backhoe",
+    "narrative": "The operations team logged the outage minute by minute. Your job is the post-mortem. Read the timeline row by row, then answer Part A. Use the three-question audit from class: what failed, what single component did every path depend on, and what extra component or independent path would have kept the system functioning.",
+    "log": {
+      "columns": [
+        "ID",
+        "Time",
+        "What happened",
+        "What went down",
+        "Detail worth noticing"
+      ],
+      "rows": [
+        [
+          "1",
+          "2:14 p.m.",
+          "A construction backhoe cuts the fiber line between the warehouse and its ISP",
+          "The warehouse loses all Internet access at once",
+          "The warehouse had exactly ONE line to its ISP"
+        ],
+        [
+          "2",
+          "2:31 p.m.",
+          "Staff activate the 'backup': the office network next door — which reaches the Internet through the same underground conduit the backhoe hit",
+          "The backup fails the moment it is tried",
+          "Two networks on paper, but both paths ran through one physical trench"
+        ],
+        [
+          "3",
+          "2:55 p.m.",
+          "Customers nationwide can still browse snacks but cannot pay: the only payment server is a single machine inside the warehouse",
+          "Checkout fails for every customer, even those nowhere near the cut",
+          "One machine, with no copy of it running anywhere else"
+        ],
+        [
+          "4",
+          "3:40 p.m.",
+          "An engineer tethers the payment server's traffic through a cellular hotspot",
+          "Checkout limps back to life at reduced speed",
+          "A different route existed after all — nobody had planned for it"
+        ],
+        [
+          "5",
+          "6:05 p.m.",
+          "The fiber is spliced and full service is restored; leadership schedules this post-mortem",
+          "Total outage: about 4 hours; checkout degraded for 2 more",
+          "The repair cost less than the sales lost in the first hour"
+        ]
+      ]
+    },
+    "scenarioNote": "Timeline adapted from the Day 1 bell ringer and the network-triage worked table; terminology and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which single stage reveals the company's most dangerous assumption about its 'backup,' and what was that assumption?",
+    "partALabel": "Part A - Stage-by-Stage Findings",
+    "partA": [
+      {
+        "ek": "EK CSN-1.E.2 / CSN-1.E.3",
+        "pts": 4,
+        "q": "Stage 1: name the single point of failure that started the outage, then state — using the CED's definition of redundancy — exactly what SnackDash was missing. What would 'more than one path' have looked like here?",
+        "answer": "The single point of failure is the one fiber line between the warehouse and its ISP — every path to the Internet depended on it, so one cut disconnected everything. What was missing is redundancy: the inclusion of extra components that can be used to mitigate failure of a system if other components fail (EK CSN-1.E.2). Per EK CSN-1.E.3, one way to accomplish network redundancy is by having more than one path between any two connected devices — here, a second line to a different ISP, leaving the building by a different physical route, so the warehouse and the Internet stay connected even with one line cut. Full credit requires naming the line as the SPOF, defining redundancy in CED terms, and describing a genuinely independent second path."
+      },
+      {
+        "ek": "EK CSN-1.E.5",
+        "pts": 4,
+        "q": "Stage 2: the office network was supposed to be the backup, yet it failed at the same instant as the main line. Using EK CSN-1.E.5's warning about HOW complex systems fail, explain why this 'backup' was never real redundancy.",
+        "answer": "EK CSN-1.E.5 warns that elements of complex systems fail at unexpected times, OFTEN IN GROUPS — and components fail in groups when they secretly share a dependency. Both 'separate' networks reached the Internet through the same underground conduit, so physically they were one path wearing two names: a single backhoe swing was one failure that took out both. Real redundancy requires independent paths — routes that share no line, trench, or device — so that no single event can remove them together. The 'backup' was an extra component on paper, but it could not mitigate the failure (EK CSN-1.E.2) because it failed WITH the component it was supposed to back up. Full credit: names the shared conduit, uses the fail-in-groups idea, and states the independence requirement."
+      },
+      {
+        "ek": "EK CSN-1.E.4",
+        "pts": 4,
+        "q": "Stage 4: rerouting checkout traffic through a cellular hotspot brought payments back. State the CED rule this demonstrates — including its crucial two-word condition — and explain what stage 4 proves about the difference between a system that HAS failures and a system that STOPS FUNCTIONING.",
+        "answer": "Stage 4 demonstrates EK CSN-1.E.4: if a particular device or connection on the Internet fails, subsequent data will be sent via a different route, IF POSSIBLE. From 2:14 to 3:40 rerouting was impossible — no second path existed — so the system did not merely have a failure, it stopped functioning. The moment the hotspot created a different route, subsequent payment data flowed again and the system continued functioning, even degraded. That is the definition of fault tolerance in EK CSN-1.E.5: supporting failures while continuing to function. The fiber was still cut at 3:40 — the failure had not been fixed, yet checkout worked — proving that fault tolerance is about surviving failure, not preventing or repairing it. Full credit: quotes the rule with 'if possible' and draws the functioning-vs-failing distinction."
+      },
+      {
+        "ek": "EK CSN-1.E.6",
+        "pts": 4,
+        "q": "Stage 5: the post-mortem notes that the repair cost less than the first hour of lost sales. Write the two-sentence recommendation you would give SnackDash's leadership, using EK CSN-1.E.6's cost-for-benefit trade to justify paying for redundancy that may sit idle.",
+        "answer": "Sample recommendation: 'SnackDash should buy a second Internet connection on a physically separate route and run a duplicate payment server outside the warehouse; per EK CSN-1.E.6, this redundancy requires additional resources — equipment, contracts, and maintenance for components that may sit idle — but provides the benefit of fault tolerance. Four hours of lost nationwide sales already cost more than years of that idle capacity, so the spare components are not waste: they are the price of continuing to function during the next unexpected failure (EK CSN-1.E.5).' Full credit requires BOTH halves of the E.6 trade stated explicitly (additional resources AND the fault-tolerance benefit) and a cost comparison grounded in the timeline — answers that promise the fix is free, or that skip the benefit, are incomplete."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK CSN-1.E.1 / CSN-1.E.7",
+        "pts": 3,
+        "q": "During the whole outage, customers across the country could still BROWSE the SnackDash website, hosted on cloud servers far from the warehouse — packets kept arriving even while a regional fiber line was down. Explain how the Internet's engineering made that possible, and name the TWO payoffs EK CSN-1.E.7 says redundant routing provides.",
+        "answer": "The Internet has been engineered to be fault-tolerant, with abstractions for routing and transmitting data (EK CSN-1.E.1): between each customer and the cloud servers there are many routing options, so packets simply traveled routes that avoided the damaged region (EK CSN-1.E.3/E.4). Per EK CSN-1.E.7, that redundancy of routing options between two points provides two payoffs: it increases the RELIABILITY of the Internet, and it helps the Internet SCALE to more devices and more people. Both must be named — students usually remember reliability and forget that the same spare capacity is what lets the network grow."
+      },
+      {
+        "ek": "EK CSN-1.E.3 / CSN-1.E.5",
+        "pts": 3,
+        "q": "A teammate proposes buying the second fiber line but laying it in the same trench as the first, 'so the crew only has to dig once.' Rule on the proposal.",
+        "answer": "Rejected. Redundancy through more than one path (EK CSN-1.E.3) only works if the paths are independent — sharing the trench recreates stage 2's disaster: one backhoe becomes a single event that removes both lines, the exact 'fail in groups' pattern EK CSN-1.E.5 warns about. Two cables in one trench are one path against the most likely physical failure. The separate route costs more to dig (EK CSN-1.E.6's additional resources), but that extra cost is precisely what purchases the fault tolerance; the shared-trench version pays for a second line while buying almost none of the benefit. Strong answers name the shared trench as a hidden single point of failure."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: In graph terms, a link whose removal disconnects part of a network is called a bridge. Identify the bridge in SnackDash's original network, explain how the stage-4 hotspot changed the graph, and describe the cheapest set of additions that would leave the company with NO bridges.",
+        "answer": "The bridge was the warehouse–ISP fiber line (with the shared conduit, even the 'two' lines formed one bridge in disguise): removing it disconnected the warehouse — and the lone payment server inside it — from everything. The stage-4 hotspot added a second, independent path from the payment server to the Internet, turning that bridge into part of a loop: from then on, no SINGLE cut could isolate checkout. Cheapest no-bridge plan: (1) a second Internet connection leaving the building on a physically separate route, and (2) a replica of the payment server hosted outside the warehouse (in the cloud), so even the building itself stops being a single point of failure. Every critical point then has two independent paths — the zero-bridge condition — which is EK CSN-1.E.3's 'more than one path' stated as geometry."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Redundancy Audit",
+    "minutes": "25 minutes",
+    "subtitle": "4 systems - audit and prescribe",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-4-2-exercise-2",
+    "intro": "You are the reliability auditor. Four organizations below believe their systems are safe. For each one, find the vulnerability (the single point of failure), deliver the fault-tolerance verdict, then prescribe the redundancy that fixes it — naming the resource cost the client must accept. Advanced students also state the reliability-and-scale payoff of the fix. Vague 'add more equipment' advice scores zero.",
+    "standard": "CB Standard (required): the vulnerability named + a fault-tolerance verdict + a redundancy prescription with its resource cost, for all 4 systems. Enrichment (optional): also state the reliability/scaling payoff of the fix (EK CSN-1.E.7).",
+    "methodHeading": "Three-Step Method - use for every system",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your gut read before analyzing: where would YOU aim the backhoe? Writing your own answer first keeps a safe-looking system from swaying you."
+      ],
+      [
+        "Step 2 - Find the single point of failure",
+        "Trace every path the system depends on. The vulnerability is the component ALL paths share — one device, one line, or one hidden common dependency — not just any part that could break."
+      ],
+      [
+        "Step 3 - Prescribe redundancy and price it",
+        "Name the extra component or independent second path that lets the system keep functioning, AND the additional resources it costs (EK CSN-1.E.6). A fix without its price is an incomplete audit."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (reliability and scale): strong audits also state what the redundancy buys long-term. Per EK CSN-1.E.7, redundant routing between two points increases reliability AND helps a network scale to more devices and more people — a well-placed second path is rarely just insurance; it is future capacity. And watch for FAKE redundancy: two of everything means nothing if both share one trench, one power feed, or one provider — components that share a dependency fail in groups (EK CSN-1.E.5).",
+    "fields": [
+      "Vulnerability found (the single point of failure + the fault-tolerance verdict):",
+      "Redundancy prescription + the resource cost accepted:",
+      "Enrichment — the reliability/scaling payoff of your fix:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Jefferson Middle School's morning announcements, bell schedule, and hallway clocks all run through one control box in the main office. Every classroom speaker is wired directly to that box in a star layout. Last week, the failure of a single power strip silenced the entire building for a day. The principal asks whether the system is fault-tolerant.",
+        "key": {
+          "signs": "the star layout is the giveaway — every speaker wire converges on ONE control box, so every path in the system depends on a single component (and even on that component's power strip, an upstream dependency). Verdict: NOT fault-tolerant. One failure silenced the whole building, which is the opposite of supporting failures while continuing to function (EK CSN-1.E.5). The vulnerability is the control box, not the forty speaker wires — losing one wire silences one room; losing the box silences everything.",
+          "mechanism": "prescribe a redundant controller — a second control box, on a separate power circuit, with speakers able to fail over to it. That is redundancy by the CED definition: extra components included to mitigate failure if other components fail (EK CSN-1.E.2). Cost accepted: buying, wiring, powering, and maintaining a second box that sits idle almost every day (EK CSN-1.E.6) — the additional resources ARE the price of fault tolerance, and the audit must say so out loud.",
+          "subtype": "with two controllers, the school also gains room to GROW: a new wing can attach to whichever box is closer, so the fix is capacity as well as insurance — the scaling half of the redundancy payoff (EK CSN-1.E.7). Even a modest system shows both benefits: reliability now, headroom later."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "County General Hospital proudly reports 'full network redundancy': two separate fiber lines run from the building to two different Internet providers. Walking the property, an auditor notices that both lines exit the hospital through the same utility conduit under the parking-lot entrance — the exact spot where a contractor is scheduled to dig next month.",
+        "key": {
+          "signs": "the two lines LOOK like more than one path (EK CSN-1.E.3), but redundancy is only real when the paths are independent. Sharing one conduit collapses both lines into a single point of failure: the trench itself. Verdict: NOT fault-tolerant against the most likely real-world failure — one dig cuts both lines at once, a textbook case of components failing in groups (EK CSN-1.E.5). The two-provider contract bought the appearance of redundancy, not the substance.",
+          "mechanism": "reroute one line through a physically separate exit on the far side of the building, so that no single cut can touch both paths — then, when either line fails, subsequent data can genuinely be sent via the different route (EK CSN-1.E.4). Cost accepted: trenching a second route is expensive and disruptive (EK CSN-1.E.6), far more than the paper redundancy cost — and that is exactly the argument to make to the hospital board: the extra digging is what converts two bills into actual fault tolerance.",
+          "subtype": "grouped failures hide behind shared dependencies — one conduit, one power substation, one vendor, one software provider. A real audit traces each path PHYSICALLY end to end before calling anything redundant. Bonus payoff once the routes are truly independent: reliability rises for daily telemedicine and records traffic, not just during disasters (EK CSN-1.E.7)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "A rural county links its six mountain fire-lookout towers by point-to-point radio in a chain: Tower 1 relays to Tower 2, Tower 2 to Tower 3, and so on down the line until Tower 6 reaches the ranger station. During last summer's storms, Tower 3 lost power — and every report from Towers 1 and 2 vanished for six hours at the height of fire season.",
+        "key": {
+          "signs": "a chain is the weakest shape a network can take: between any tower and the ranger station there is exactly ONE path, so every intermediate tower and link is a single point of failure. Verdict: NOT fault-tolerant. When Tower 3 failed, no different route existed for the upstream reports — EK CSN-1.E.4's rerouting rule failed at its two-word condition, 'if possible,' and the system stopped functioning exactly where lives depended on it.",
+          "mechanism": "close the chain into a loop: one added radio link from Tower 1 back to the ranger station gives every tower two independent paths, so any single tower or link failure reroutes reports the long way around (more than one path between any two connected devices, EK CSN-1.E.3). Cost accepted: one more radio link to purchase, power, and maintain on a remote peak (EK CSN-1.E.6) — real money for a link that is idle whenever nothing is broken, which is precisely its job.",
+          "subtype": "the loop is the cheapest zero-weak-link design there is — N links for N nodes, and any ONE failure is survivable. It also scales gracefully: a seventh tower splices into the ring without redesigning anything, the growth half of EK CSN-1.E.7. Chains, by contrast, get MORE fragile as they grow — every added relay is another single point of failure."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A delivery startup brags that it is 'redundant everywhere': two web servers, two Internet providers, two power feeds, and servers in two cities. But every customer login flows through one authentication database in the Dallas office — and the CFO, pointing at the bills, wants to cancel the second Internet provider, arguing that it 'carried almost no traffic all year.'",
+        "key": {
+          "signs": "two findings. First, the hidden vulnerability: despite doubles everywhere else, EVERY login depends on the single Dallas authentication database — the one component all paths share — so the system as a whole is NOT fault-tolerant; a redundant network with one irreplaceable database fails exactly as hard as a network with no redundancy at all. Second, the CFO's evidence is upside down: a redundant line carrying little traffic is not failing to earn its keep — standing ready IS its job.",
+          "mechanism": "replicate the authentication database in the second city so logins survive a Dallas failure — extra components mitigating failure if others fail (EK CSN-1.E.2) — and KEEP the second provider: cancelling it removes the different route data must take when the first provider fails (EK CSN-1.E.4). Defend the bill with EK CSN-1.E.6 stated in full: redundancy often requires additional resources but can provide the benefit of fault tolerance. The audit prices both: the replica costs licenses and sync engineering; the second provider costs its annual contract; one outage of nationwide logins costs more than either.",
+          "subtype": "rank findings by blast radius: the login database takes down 100% of customers, so it outranks every already-doubled component — audits fix the biggest single point of failure first. And the 'idle' second provider is quietly a growth asset: redundant routing helps a system scale to more devices and more people (EK CSN-1.E.7), so the line the CFO calls waste is also the capacity the startup's expansion will need."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Price of Staying Up",
+    "minutes": "~20 min total - 3 parts - Opening + Mid-lesson + Closing (all Day 1)",
+    "overview": "Every system you rely on is quietly making a bet: how much is it worth paying for failures that may never happen? The hospital buys a second fiber line; your group project lives in one file on one laptop. Across three short windows in this lesson, your group will connect the redundancy trade-off to your own backups, hunt the hidden single points of failure in everyday systems, and decide — like a town council with one budget line — what is genuinely worth paying to keep alive.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. In the Cedar Bend map, most groups aim the backhoe at the same line. What made that one cut so much worse than the others — and what does your answer suggest a network's 'weak point' actually is?"
+          },
+          {
+            "text": "Question 2. Where in your own life do you already pay for redundancy — a spare key, a charger in two bags, cloud backup for photos? Pick one: name what it costs you and the failure it protects against. Now name something important you have NO backup for. Why not?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the benefits-vs-costs comparison",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The three-question audit",
+            "text": "The whole topic reduces to three questions you can ask of ANY system: Is it fault-tolerant? Where is the single point of failure? Where would one addition create redundancy? In one sentence your whole group agrees on, explain why the SECOND question is the one the other two depend on.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Fake redundancy hunt",
+            "text": "Debate for about 3 minutes: two of everything is not always redundancy. Invent (or recall) an example where a 'backup' secretly shares a component with the original — same trench, same power strip, same account, same person. Record your group's example and the hidden shared component.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The council budget",
+            "text": "Cedar Bend's council can fund exactly ONE upgrade: (a) the new fiber line that closes the town's network into a loop, surviving any single cut; (b) a faster main line that halves everyone's load times but adds no new paths; or (c) a duplicate server for the clinic's patient records. Build your group's ruling: which upgrade wins, which single points of failure knowingly remain, and what would have to be true about the town for a DIFFERENT option to win? Justify each call with the cost-for-benefit trade.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the upgrade you funded + the vulnerability you knowingly left open, in one sentence):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

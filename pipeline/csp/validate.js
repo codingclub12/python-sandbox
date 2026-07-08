@@ -21,8 +21,8 @@ const { auditQuiz } = require('./quiz_audit');
 const REQUIRED_META = ['lessonId', 'lessonTitle', 'course', 'unit', 'day', 'totalDays', 'los', 'author'];
 const CANON_AUTHOR = 'AP CS Exam Prep';
 const EYEBROW_RE = /^Big Idea\s+(\d+)\s+\u00b7\s+Topic\s+(\d+\.\d+)\s+\u00b7\s+Day\s+(\d+)\s+of\s+(\d+)$/;
-const LO_RE = /\b((?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-G])\b/g;          // e.g. DAT-1.A
-const EK_IN_DEF_RE = /\(EK\s+(?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-G]/;    // an "(EK XXX-n.Z" citation inside a vocab definition
+const LO_RE = /\b((?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-Z])\b/g;          // e.g. DAT-1.A
+const EK_IN_DEF_RE = /\(EK\s+(?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-Z]/;    // an "(EK XXX-n.Z" citation inside a vocab definition
 
 // ---- allowed slide types: parse render.js's `const builders = { ... };` ----
 function allowedSlideTypes() {
@@ -198,8 +198,8 @@ function validateLesson(file) {
 
   // ---- lesson-level guide block ----
   if (data.guide) {
-    (data.guide.los || []).forEach((lo, j) => { if (!/LO\s+(?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-G]/.test(lo)) W(`guide.los[${j}] doesn't look like "LO XXX-n.Z ...": "${lo}"`); });
-    (data.guide.eks || []).forEach((ek, j) => { if (!/EK\s+(?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-G]/.test(ek)) W(`guide.eks[${j}] doesn't look like "EK XXX-n.Z.n ...": "${ek.slice(0, 40)}..."`); });
+    (data.guide.los || []).forEach((lo, j) => { if (!/LO\s+(?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-Z]/.test(lo)) W(`guide.los[${j}] doesn't look like "LO XXX-n.Z ...": "${lo}"`); });
+    (data.guide.eks || []).forEach((ek, j) => { if (!/EK\s+(?:CRD|DAT|AAP|CSN|IOC)-\d+\.[A-Z]/.test(ek)) W(`guide.eks[${j}] doesn't look like "EK XXX-n.Z.n ...": "${ek.slice(0, 40)}..."`); });
     if (Array.isArray(data.guide.misconceptions))
       data.guide.misconceptions.forEach((mc, j) => { if (!mc.myth || !mc.reality) F(`guide.misconceptions[${j}] needs both "myth" and "reality"`); });
   }
