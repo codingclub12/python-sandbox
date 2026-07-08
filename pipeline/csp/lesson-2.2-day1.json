@@ -1,0 +1,573 @@
+{
+  "meta": {
+    "lessonId": "2.2",
+    "lessonTitle": "Data Compression",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 2: Data",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO DAT-1.D",
+    "anchor": "Data Compression",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 2 · Topic 2.2 · Day 1 of 1",
+      "title": "Smaller, Faster — What Would You Give Up?",
+      "subtitle": "How the same information can ride on fewer bits, and the one question that decides between lossless and lossy compression",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 2.2, Data Compression — one day, one learning objective. Topic 2.1 established that everything a computer stores is bits; today's question is how to use fewer of them, because bits cost storage space and transmission time. There are two families of answers: compression that keeps everything, and compression that deliberately throws detail away. By the end of the period, students can pick the right family for any context the exam describes — which is exactly what LO DAT-1.D asks."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how compression reduces the number of bits stored or transmitted, and why the amount of reduction depends on both the redundancy in the data and the algorithm applied (LO DAT-1.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Compare lossless and lossy compression algorithms and determine which is best in a particular context, using the reconstruction guarantee as the deciding line (LO DAT-1.D)"
+        }
+      ],
+      "script": "Two targets, both inside DAT-1.D. First, the mechanism: what compression actually does to the bit count, and why the same algorithm shrinks one file dramatically and another barely at all — the answer is redundancy. Second, the decision skill the exam tests directly: given a context, choose lossless or lossy and defend the choice. Every DAT-1.D exam item is ultimately that one decision dressed in a different story."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Your phone plan charges 1¢ per character. You must text a friend this update: \"Practice is cancelled today because the gym flooded. Coach says bring your uniform tomorrow because we play Riverside at four.\" (122 characters!)",
+      "subprompt": "Write two cheaper versions: (1) one your friend can expand back to the EXACT original, and (2) the cheapest that keeps the point. What did each cost you?",
+      "directions": "Write both versions and their character counts. Be ready to defend your price.",
+      "script": "A few minutes, on your own — every character costs a penny, so shrink the message two different ways. Version 1 must be perfectly recoverable: most students invent abbreviations like 'prac cncld 2day' plus an agreed decoding scheme, which is exactly a lossless algorithm — fewer characters, zero lost information. Version 2 is allowed to lose detail: 'no prac. game tmrw 4' drops the flooded gym and the uniform, and that information is gone forever — that's lossy. Keep both versions visible; today's entire lesson is the trade-off between them, and by the end students will know the College Board's names for what they just invented. Version one must be perfectly expandable — what trick makes that possible? Version two is the cheapest message that still works — name exactly what it permanently gave up."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Why Compression Works",
+          "description": "Bits, redundancy, and why fewer bits does not have to mean less information (EK DAT-1.D.1–D.3)."
+        },
+        {
+          "title": "Lossless vs. Lossy",
+          "description": "The reconstruction guarantee, the size trade-off, and how to choose in context (EK DAT-1.D.4–D.8)."
+        },
+        {
+          "title": "Deep Dive: Run-Length Encoding",
+          "description": "One real lossless algorithm, worked by hand — how a computer actually cashes in redundancy.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 2.2 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two are green and CB-required — why compression works, then the lossless-versus-lossy decision. The third is the blue deep dive on run-length encoding: not required by the College Board, but it turns the abstract word 'algorithm' into something students can run with a pencil. Packets stay open all period; a digital copy lives on the Topic 2.2 Guided Notes page at apcsexamprep.com for anyone absent."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Why Compression Works",
+      "kicker": "Redundancy and the Fewer-Bits Principle · Learning Objective DAT-1.D",
+      "script": "Section one. Before choosing between compression families, students need the mechanism underneath both: compression shrinks the bit count, and it can only do that because real data is full of repetition. This section also plants the single most-tested sentence in the topic — fewer bits does not necessarily mean less information."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO DAT-1.D)",
+      "terms": [
+        {
+          "term": "Data compression",
+          "definition": "Reducing the size — the number of bits — of data that is transmitted or stored (EK DAT-1.D.1)."
+        },
+        {
+          "term": "Redundancy",
+          "definition": "Repetition or predictability in how data is represented; the more redundancy in the original data, the more a compression algorithm can reduce its size (EK DAT-1.D.3)."
+        },
+        {
+          "term": "Lossless compression",
+          "definition": "Compression that usually reduces the number of bits stored or transmitted while guaranteeing complete reconstruction of the original data (EK DAT-1.D.4)."
+        },
+        {
+          "term": "Lossy compression",
+          "definition": "Compression that can significantly reduce the number of bits stored or transmitted, but only allows reconstruction of an approximation of the original data (EK DAT-1.D.5)."
+        }
+      ],
+      "script": "Four terms carry the whole topic. Data compression is simply reducing the number of bits stored or transmitted — nothing mystical. Redundancy is the fuel compression runs on: repetition and predictability in the data. Then the two families, separated by one word each: lossless guarantees complete reconstruction of the original, lossy only reconstructs an approximation. Students should underline 'guarantee' and 'approximation' — the entire exam decision hangs on those two words."
+    },
+    {
+      "type": "concept",
+      "heading": "Fewer Bits, Same Information",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Compression reduces the size — the number of bits — of transmitted or stored data, which saves storage space and transmission time (EK DAT-1.D.1).",
+        "Fewer bits does not necessarily mean less information: 'prac cncld' carries the same message as 'practice cancelled' if the receiver knows the scheme (EK DAT-1.D.2).",
+        "The amount of size reduction depends on BOTH the amount of redundancy in the original data AND the compression algorithm applied (EK DAT-1.D.3).",
+        "That is why a repetitive text file shrinks to a fraction of its size while a file of random characters barely shrinks at all — same algorithm, different redundancy."
+      ],
+      "script": "Three EKs on one slide, and the middle one is the most-tested sentence in this topic. First, the point of compression: fewer bits means less storage and faster transmission — that's the whole motivation. Second, the counterintuitive part: fewer bits does not necessarily mean less information, exactly like the bell-ringer abbreviations — the message survived intact in fewer characters. Third, the two-factor rule: how much a file shrinks depends on both the redundancy in the data and the algorithm applied. A file of the same sentence repeated a thousand times collapses; a file of random characters barely budges, even under the identical algorithm, because there is no repetition to exploit.",
+      "capture": [
+        {
+          "q": "Compression reduces the ______ of transmitted or stored data.",
+          "a": "size (the number of bits)"
+        },
+        {
+          "q": "Fewer bits does not necessarily mean less information, because compression removes ______.",
+          "a": "redundancy — repeated patterns the receiver can rebuild, not the information itself"
+        },
+        {
+          "q": "The amount of size reduction depends on both ______.",
+          "a": "the amount of redundancy in the original data and the compression algorithm applied"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Fewer Bits Means Less Information”",
+      "misconception": "If a compressed file is 40% of its original size, then 60% of the information must have been thrown away — shrinking a file always shrinks its content.",
+      "whyItHappens": "In the physical world, smaller almost always means less — half the pizza is half the food. It feels natural to carry that intuition over to files.",
+      "correction": "The CED states it directly: fewer bits does not necessarily mean less information (EK DAT-1.D.2). Lossless compression removes REDUNDANCY — wasted repetition in the representation — not information. Unzip the file and every bit of the original comes back, guaranteed (EK DAT-1.D.4).",
+      "example": "A 100 KB essay zips to 40 KB, and unzipping reproduces the essay character-for-character. The 60 KB that vanished was repetition in the representation, not sentences from the essay.",
+      "script": "This is the misconception the College Board wrote an entire EK to kill, so expect it on the exam. The physical-world intuition — smaller container, less stuff — fails for data because a file's size measures its representation, not its meaning. Lossless compression squeezes out redundancy, the wasted repetition in how the data was written down, and the unzip proves nothing was lost: the essay comes back character for character. The distinction to hammer: lossy compression really does discard information, but compression in general does not — which is why 'fewer bits' can never, by itself, tell you information was lost."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — The Fewer-Bits Principle",
+      "subheading": "These map to LO DAT-1.D. Complete on your Guided Notes.",
+      "prompts": [
+        "Your bell-ringer version 1 used fewer characters than the original message, yet your friend could recover every word. Explain how this demonstrates that fewer bits does not necessarily mean less information.",
+        "One song file and one spreadsheet are both compressed with the same lossless tool. The spreadsheet shrinks by 80%, the song file by 3%. Using the word redundancy, explain how the same algorithm can produce such different results.",
+        "A classmate says a compressed file must be 'missing something.' In one sentence, state what lossless compression removes — and what it never removes."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.2 page.",
+      "script": "Five minutes, full sentences on the Guided Notes. One: connect the bell ringer to EK DAT-1.D.2 — the abbreviations cut characters, not meaning, because the decoding scheme recovers everything. Two: the same-algorithm puzzle — the spreadsheet is full of repeated labels and predictable patterns, the song file has already had its redundancy squeezed out, so there is little left to exploit. Three: the one-sentence version of the whole section — lossless compression removes redundancy, never information. A few students will be called on to share before the next section."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Lossless vs. Lossy: The Decision",
+      "kicker": "Choosing in Context · Learning Objective DAT-1.D",
+      "script": "Section two — the decision the exam actually tests. Both compression families shrink files; they differ in what they promise afterward. The skill is reading a context, deciding what matters most in it, and naming the family that fits. Every scenario in this section maps to one question: does the original need to come back perfectly, or does small-and-fast win?"
+    },
+    {
+      "type": "two_column",
+      "heading": "Two Families, One Trade-off",
+      "subheading": "Both reduce bits. They differ in what you can reconstruct afterward (EK DAT-1.D.4–D.6).",
+      "left": {
+        "title": "Lossless",
+        "definition": "Usually reduces bits while GUARANTEEING complete reconstruction of the original data",
+        "ek": "EK DAT-1.D.4",
+        "examples": [
+          "Unzip a zipped essay: every character returns, guaranteed",
+          "Your bell-ringer abbreviations — the scheme decodes back to the exact message",
+          "The safe choice when the original must survive perfectly"
+        ]
+      },
+      "right": {
+        "title": "Lossy",
+        "definition": "Can SIGNIFICANTLY reduce bits, but only reconstructs an APPROXIMATION of the original",
+        "ek": "EK DAT-1.D.5",
+        "examples": [
+          "A streamed video: detail your eye barely misses is discarded forever",
+          "Your bell-ringer version 2 — the flooded gym is gone for good",
+          "Usually reduces MORE bits than lossless can (EK DAT-1.D.6)"
+        ]
+      },
+      "footer": "AP TIP: Lossy usually shrinks data MORE than lossless — that extra reduction is exactly what you buy by giving up perfect reconstruction.",
+      "script": "Here is the whole comparison. Lossless usually reduces the bit count while guaranteeing complete reconstruction — unzip and the original is back, bit for bit. Lossy can significantly reduce the bit count, but the price is permanent: only an approximation can be reconstructed, because the discarded detail is gone forever. And the CED adds the third fact students often miss: lossy usually reduces MORE than lossless can, which is precisely what the approximation buys you. Notice both bell-ringer versions live on this slide — version 1 on the left, version 2 on the right. Nobody 'wins' this comparison in general; the winner is decided by context, which is the next slide.",
+      "capture": [
+        {
+          "q": "Lossless compression guarantees ______.",
+          "a": "complete reconstruction of the original data"
+        },
+        {
+          "q": "Lossy compression only allows reconstruction of ______.",
+          "a": "an approximation of the original data"
+        },
+        {
+          "q": "Lossy compression usually shrinks data more than lossless because it ______.",
+          "a": "permanently discards detail, so only an approximation can be reconstructed"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Choosing in Context",
+      "context": "The exam names a situation; you name what matters most, then the winning family (EK DAT-1.D.7–D.8). Ask ONE question: must the original come back perfectly?",
+      "columns": [
+        "Context",
+        "What matters most here",
+        "Best choice"
+      ],
+      "rows": [
+        [
+          "A hospital archives X-ray scans that radiologists must re-read pixel-for-pixel",
+          "Quality / ability to reconstruct the original",
+          "Lossless (EK DAT-1.D.7)"
+        ],
+        [
+          "A video-chat app must keep a live call smooth on weak cellular data",
+          "Minimizing data size and transmission time",
+          "Lossy (EK DAT-1.D.8)"
+        ],
+        [
+          "A programmer backs up source code — one changed character breaks the program",
+          "Ability to reconstruct the original exactly",
+          "Lossless (EK DAT-1.D.7)"
+        ],
+        [
+          "A photo-sharing app shows phone-screen previews of millions of pictures",
+          "Minimizing data size and transmission time",
+          "Lossy (EK DAT-1.D.8)"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Four contexts, one question each: must the original come back perfectly? The X-ray scans — a radiologist's diagnosis can hang on a few pixels, so the ability to reconstruct the original is maximally important, and the CED says lossless is typically chosen. The live video call — a slightly softer picture is invisible at conversation speed, but lag kills the call, so minimizing transmission time wins and lossy is typically chosen. Source code — one approximated character breaks the build, so lossless, no debate. Phone-screen previews — millions of tiny images where nobody can perceive the lost detail, so lossy. Students fill the blanked cells themselves before answers are revealed; the reasoning column matters more than the verdict column.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: Run-Length Encoding by Hand",
+      "subheading": "The CED never asks HOW an algorithm compresses — but running one by hand makes redundancy concrete.",
+      "track": "enrichment",
+      "left": {
+        "title": "The redundant original",
+        "definition": "One row of a black-and-white image, pixel by pixel",
+        "ek": "Deep Dive",
+        "examples": [
+          "W W W W W W W W W W W W B B B W W W W W W W W W W W W",
+          "27 symbols, one for every pixel",
+          "Long runs of identical values = pure redundancy"
+        ]
+      },
+      "right": {
+        "title": "The run-length version",
+        "definition": "Store each RUN as a count plus a value",
+        "ek": "Deep Dive",
+        "examples": [
+          "12W 3B 12W — just 3 count-value pairs",
+          "Decodes back to the exact original row: lossless",
+          "On data with no runs (WBWBWB...), RLE can even make the file BIGGER"
+        ]
+      },
+      "footer": "Deep dive only — the AP exam asks you to CHOOSE between algorithms, never to trace how one works internally.",
+      "script": "A deep dive to make 'algorithm' tangible — this is beyond what the exam requires. Run-length encoding compresses by replacing each run of identical values with a count and the value: twenty-seven pixels collapse to three pairs, and decoding reproduces the original row exactly, so it is lossless. The punchline is the failure case: alternate the pixels W-B-W-B and every run has length one, so the encoded version is longer than the original. That is EK DAT-1.D.3 made physical — the algorithm did not change, the redundancy did, and the size reduction followed the redundancy. Fast finishers can encode their own initials drawn as pixel grids.",
+      "capture": [
+        {
+          "q": "Run-length encoding replaces each run of identical values with ______.",
+          "a": "a count plus the value (e.g., 12W)"
+        },
+        {
+          "q": "RLE is lossless because decoding it reproduces ______.",
+          "a": "the exact original data"
+        },
+        {
+          "q": "On data with no runs, RLE can actually make the file ______.",
+          "a": "bigger — no redundancy means nothing to compress"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Make the Call",
+      "subheading": "These map to LO DAT-1.D. Complete on your Guided Notes.",
+      "prompts": [
+        "An author emails a novel manuscript to an editor. A musician uploads a song preview for fans to stream on phones. For each, name the compression family that fits and the single context clue that decided it.",
+        "A friend says: 'Lossless is guaranteed and lossy is only an approximation, so lossless is always the better choice.' Using the video-call row of the table, explain what the friend's rule ignores.",
+        "Write the one question you should ask about ANY compression scenario on the exam — and state what each answer to that question tells you to choose."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.2 page.",
+      "script": "Six minutes, full sentences. One: the manuscript needs every character back, so lossless; the streamed preview needs to move fast to phones, so lossy — the context clue is what each user would notice going wrong. Two: the friend's rule ignores that contexts exist where minimizing size or transmission time is maximally important, and there lossy is typically chosen — 'guaranteed' does not help a call that keeps freezing. Three: the exam question in one line — does the original need to come back perfectly? Yes means lossless, no-but-small-and-fast means lossy. Answers are reviewed as a class before the traps slide."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 2.2 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "“Lossless is always better”",
+          "text": "The exam asks which is BEST IN A CONTEXT. When minimizing data size or transmission time matters most, lossy is the correct answer — picking lossless 'to be safe' loses the point."
+        },
+        {
+          "name": "Fewer bits ≠ less information",
+          "text": "A file shrinking proves nothing was lost. Lossless compression removes redundancy and still guarantees complete reconstruction — only lossy discards information."
+        },
+        {
+          "name": "Reduction is not a fixed percentage",
+          "text": "How much a file shrinks depends on BOTH its redundancy AND the algorithm. A low-redundancy file may barely shrink; distractors claiming a guaranteed ratio are wrong."
+        }
+      ],
+      "script": "One minute, three traps. Trap one: students who memorize 'lossless is the guaranteed one' pick it everywhere — but DAT-1.D items reward matching the family to the context, and lossy is the right answer whenever size or transmission time is what matters most. Trap two: the shrink-means-loss reflex — a smaller file does not mean less information; only lossy discards content. Trap three: no algorithm promises a fixed percentage — reduction depends on the file's redundancy and the algorithm together, so any option claiming compression 'always' shrinks data by some amount is a distractor. Students write each trap in their own words in the packet."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Data Compression, in One Slide",
+      "points": [
+        "Compression reduces the number of bits stored or transmitted — saving space and time (EK DAT-1.D.1).",
+        "Fewer bits does not necessarily mean less information — lossless removes redundancy, not content (EK DAT-1.D.2, D.4).",
+        "Size reduction depends on BOTH the redundancy in the data and the algorithm applied (EK DAT-1.D.3).",
+        "Lossless guarantees complete reconstruction; lossy reconstructs only an approximation but usually shrinks more (EK DAT-1.D.4–D.6).",
+        "The decision is contextual: quality/perfect reconstruction ⇒ lossless; minimum size/transmission time ⇒ lossy (EK DAT-1.D.7–D.8)."
+      ],
+      "next": "Topic 2.3, Extracting Information from Data: you can store it and shrink it — now what can millions of data points actually TELL you, and where does that reasoning go wrong?",
+      "script": "The whole topic in one slide. Compression cuts the bit count to save space and time. Fewer bits does not necessarily mean less information, because lossless compression removes only redundancy and guarantees the original comes back. How much any file shrinks depends on its redundancy and the algorithm together. Lossy trades perfect reconstruction for bigger savings, and the exam decision is pure context: perfect reconstruction required means lossless, minimum size or time means lossy. Next class opens with the Topic 2.2 quiz, then Topic 2.3 asks what stored data can actually tell us. Before packing up, students run the exit check below — any unchecked box is tonight's review target on the Topic 2.2 page. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain how compression reduces the bits stored or transmitted, and why reduction depends on redundancy and the algorithm (LO DAT-1.D)",
+        "explain why fewer bits does not necessarily mean less information (LO DAT-1.D)",
+        "tell lossless from lossy by the reconstruction guarantee (LO DAT-1.D)",
+        "choose the best compression type for a given context and justify it (LO DAT-1.D)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 2.2 — Data Compression — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 12 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A video-chat app must keep a live call running smoothly over a weak cellular connection, and minimizing transmission time matters far more than a perfect picture. Per EK DAT-1.D.8, which approach should the app use?",
+        "options": [
+          "Lossless compression, so that the call is reconstructed exactly as it was captured",
+          "No compression, since compressing the video would add extra bits to every frame it sends",
+          "Lossy compression, which can significantly reduce the bits transmitted when minimizing transmission time matters most",
+          "Lossy compression, which guarantees complete reconstruction of the original video"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-1.D.8",
+        "rationale": "EK DAT-1.D.8 says that when minimizing data size or transmission time is maximally important, lossy compression algorithms are typically chosen — a live call on a weak connection is the textbook case, and EK DAT-1.D.5 explains the payoff: significant bit reduction. A applies the 'lossless is always safer' misconception; the context explicitly deprioritizes perfect quality. B reverses what compression does — it removes bits, never adds them. D names the right family for the wrong reason: the reconstruction guarantee belongs to lossless (EK DAT-1.D.4), and a rationale built on a false property earns no credit."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "Two files are each exactly 1 MB. File X contains the same sentence repeated thousands of times; File Y contains randomly generated characters. The same lossless algorithm shrinks X by 90% but Y by almost nothing. Per EK DAT-1.D.3, why?",
+        "options": [
+          "File X has far more redundancy, and the amount of size reduction depends on the redundancy in the original data as well as the algorithm applied",
+          "File X contains less information than File Y, and files with less information always compress down to fewer bits",
+          "Lossless algorithms work only on repeated text, so File Y must have secretly been compressed with a lossy algorithm instead",
+          "The algorithm permanently deleted the repeated sentences from File X, so File X can no longer be fully reconstructed"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-1.D.3",
+        "rationale": "EK DAT-1.D.3 states that size reduction depends on both the amount of redundancy in the original data representation and the algorithm applied. Same algorithm, wildly different results — so the difference must be redundancy, and a repeated sentence is redundancy in its purest form. B confuses representation with information and invents a false 'always' rule (and contradicts EK DAT-1.D.2). C is fiction: lossless algorithms accept any data; they simply find little to exploit in randomness. D contradicts EK DAT-1.D.4 — lossless compression guarantees complete reconstruction, so nothing was permanently deleted."
+      },
+      {
+        "id": "Q3",
+        "kind": "recall",
+        "stem": "Which statement correctly describes the key difference between lossless and lossy data compression (EK DAT-1.D.4, DAT-1.D.5)?",
+        "options": [
+          "Lossless compression reduces the number of bits more than lossy compression in nearly every situation",
+          "Lossless compression guarantees complete reconstruction of the original data, while lossy compression allows reconstruction of only an approximation",
+          "Lossy compression can be used only on images and sound, while lossless compression can be used only on text",
+          "Lossless compression stores data without converting it to binary, while lossy compression first converts the data into bits"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-1.D.4",
+        "rationale": "EK DAT-1.D.4 gives lossless its defining guarantee — complete reconstruction of the original data — and EK DAT-1.D.5 limits lossy to reconstructing an approximation. That reconstruction line IS the difference. A inverts EK DAT-1.D.6: lossy usually reduces bits MORE than lossless, not less. C invents a media-type restriction that no EK states — the choice is driven by context, not file type. D is impossible: per Topic 2.1, all stored data is bits regardless of compression."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A hospital archives medical scans that radiologists must later reconstruct exactly, pixel for pixel, to make diagnoses. Per EK DAT-1.D.7, which compression choice is best, and why?",
+        "options": [
+          "Lossy, since medical scans are very large and lossy compression reduces the most bits",
+          "Lossy, since an approximation of a scan is always close enough for a trained radiologist",
+          "Lossless, since it always produces smaller files than lossy compression would",
+          "Lossless, since the ability to reconstruct the original is maximally important in this context"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-1.D.7",
+        "rationale": "EK DAT-1.D.7: when quality or the ability to reconstruct the original is maximally important, lossless is typically chosen — and 'reconstruct exactly, pixel for pixel' states that priority outright. A picks the family by file size alone, ignoring that the context makes exact reconstruction non-negotiable. B waves the approximation away, but a diagnosis can hinge on the exact pixels lossy discards. C reaches the right family through a false claim — EK DAT-1.D.6 says lossy usually shrinks files MORE, so 'lossless is always smaller' is backwards."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A student zips an essay with lossless compression and the file shrinks from 100 KB to 40 KB. A classmate says, 'You just lost 60% of your essay — fewer bits means less information.' Per EK DAT-1.D.2, what is the best response?",
+        "options": [
+          "The classmate is right: any reduction in bits removes a proportional amount of the information stored",
+          "The classmate is wrong: fewer bits does not necessarily mean less information, and unzipping will reconstruct the complete essay",
+          "The classmate is right, but the missing information gets re-downloaded from the internet when the file is unzipped",
+          "The classmate is wrong — zipping a file adds new information to it rather than removing any bits"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-1.D.2",
+        "rationale": "EK DAT-1.D.2 is nearly a direct quote of the correct option: fewer bits does not necessarily mean less information. The zip removed redundancy in the representation, and EK DAT-1.D.4's guarantee means unzipping restores the essay completely. A restates the misconception the EK exists to refute, upgraded with a fake proportionality rule. C invents a mechanism — decompression rebuilds the original from the compressed bits alone, no download involved. D defends the right verdict with a false premise: compression removed bits (100 KB became 40 KB); it added nothing."
+      },
+      {
+        "id": "Q6",
+        "kind": "multi",
+        "stem": "Which of the following statements about lossy compression are true? I. It allows reconstruction of only an approximation of the original data. II. It can usually reduce the number of bits stored or transmitted more than lossless compression can. III. It guarantees complete reconstruction of the original data.",
+        "options": [
+          "I and II only",
+          "I only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-1.D.5",
+        "rationale": "Statement I is EK DAT-1.D.5 verbatim in spirit — lossy allows reconstruction of only an approximation. Statement II is EK DAT-1.D.6 — lossy usually reduces bits more than lossless. Statement III is the lossless guarantee from EK DAT-1.D.4, so attaching it to lossy is false, which eliminates C and D. B undersells lossy by rejecting II — students who assume the 'guaranteed' family must also be the stronger compressor miss that the approximation is exactly what buys lossy its extra reduction."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "A photographer compresses the same photo with two different algorithms and gets very different file sizes. A friend compresses two different photos with the same algorithm and also gets very different size reductions. Per EK DAT-1.D.3, what determines the amount of size reduction from compression?",
+        "options": [
+          "Only the compression algorithm applied — the content of the file itself has no effect on the reduction",
+          "Only the amount of redundancy in the file — every algorithm reduces a given file by the same amount",
+          "The number of bits the computer's operating system reserves for the file's name and type",
+          "Both the amount of redundancy in the original data representation and the compression algorithm applied"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-1.D.3",
+        "rationale": "EK DAT-1.D.3 names exactly two factors: the redundancy in the original data representation and the compression algorithm applied. The two mini-experiments in the stem each isolate one factor — same photo, different algorithms shows the algorithm matters; same algorithm, different photos shows redundancy matters. A explains the friend's result but not the photographer's; B explains the photographer's result but not the friend's — each half-right option is refuted by half the evidence. C is a distractor from file-system trivia; metadata bookkeeping is not what the EK is about."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 2.2 — Data Compression — Teacher Guide",
+    "subtitle": "Big Idea 2: Data · Topic 2.2 · 1 class period + assessment block",
+    "overview": [
+      "Topic 2.2 answers the question Topic 2.1 sets up: everything is bits, so how do we use fewer of them? Students learn the mechanism (compression removes redundancy from the representation, so fewer bits does not necessarily mean less information), the two-factor rule for how much a file shrinks (redundancy × algorithm), and the exam's core decision skill — comparing lossless and lossy compression and choosing which is best in a particular context.",
+      "The through-line is the bell ringer: paying a penny per character, students invent an abbreviation scheme a friend can decode perfectly (lossless) and a stripped-down message that permanently drops detail (lossy). Every later slide names, formalizes, and tests the trade-off they already made themselves."
+    ],
+    "los": [
+      "LO DAT-1.D — Compare data compression algorithms to determine which is best in a particular context."
+    ],
+    "eks": [
+      "EK DAT-1.D.1 — Data compression can reduce the size (number of bits) of transmitted or stored data.",
+      "EK DAT-1.D.2 — Fewer bits does not necessarily mean less information.",
+      "EK DAT-1.D.3 — The amount of size reduction from compression depends on both the amount of redundancy in the original data representation and the compression algorithm applied.",
+      "EK DAT-1.D.4 — Lossless data compression algorithms can usually reduce the number of bits stored or transmitted while guaranteeing complete reconstruction of the original data.",
+      "EK DAT-1.D.5 — Lossy data compression algorithms can significantly reduce the number of bits stored or transmitted but only allow reconstruction of an approximation of the original data.",
+      "EK DAT-1.D.6 — Lossy data compression algorithms can usually reduce the number of bits stored or transmitted more than lossless compression algorithms.",
+      "EK DAT-1.D.7 — In situations where quality or ability to reconstruct the original is maximally important, lossless compression algorithms are typically chosen.",
+      "EK DAT-1.D.8 — In situations where minimizing data size or transmission time is maximally important, lossy compression algorithms are typically chosen."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies).",
+      "Printed Topic 2.2 quiz (student copies) for the assessment block.",
+      "Optional: graph paper for the run-length-encoding deep dive (students encode pixel-grid initials)."
+    ],
+    "prereqs": [
+      "Topic 2.1 (Binary Numbers): students should already know that all data is stored as bits and that file size is a bit count — compression is framed as 'fewer of the bits you already understand.' The bell ringer assumes no prior compression knowledge."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Why compression works, then the lossless-vs-lossy decision in context (LO DAT-1.D)",
+        "segments": [
+          {
+            "segment": "QOTD (BI2/T2.2/Q1) + bell ringer (the pay-per-character text message)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Why compression works: vocab, fewer-bits principle, redundancy, misconception (EK DAT-1.D.1–D.3)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on the fewer-bits principle",
+            "min": 5,
+            "slides": "9"
+          },
+          {
+            "segment": "Lossless vs. lossy + choosing in context (EK DAT-1.D.4–D.8)",
+            "min": 14,
+            "slides": "10-12"
+          },
+          {
+            "segment": "Deep dive: run-length encoding by hand (optional enrichment)",
+            "min": 6,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think: make the call",
+            "min": 6,
+            "slides": "14"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "15-16"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 2.2 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 2.2 quiz",
+            "min": 12,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Fewer bits means less information”",
+        "myth": "If a compressed file is smaller, some of its content must have been thrown away — shrinking a file shrinks what it says.",
+        "reality": "EK DAT-1.D.2 refutes this directly: fewer bits does not necessarily mean less information. Lossless compression removes redundancy in the representation and guarantees complete reconstruction. The zip-and-unzip demonstration (100 KB essay → 40 KB → identical essay) makes it land."
+      },
+      {
+        "heading": "“Lossless is always the better choice”",
+        "myth": "Since lossless guarantees the original and lossy only approximates it, lossless is objectively superior and the safe exam answer.",
+        "reality": "The LO says 'best in a particular context.' When minimizing data size or transmission time is maximally important — live calls, streaming, previews — lossy is typically chosen (EK DAT-1.D.8), and it usually reduces more bits than lossless can (EK DAT-1.D.6). Exam items punish the 'always lossless' reflex."
+      },
+      {
+        "heading": "“Compression shrinks every file by the same amount”",
+        "myth": "A compression tool has a fixed power — say 50% — that it applies to any file you feed it.",
+        "reality": "EK DAT-1.D.3: reduction depends on BOTH the redundancy in the original data AND the algorithm. A repetitive spreadsheet may collapse by 90% while a random or already-compressed file barely shrinks under the identical tool. Distractors claiming guaranteed ratios are built from this myth."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give the decision flowchart as a sentence frame: 'In this context, ______ matters most, so I choose ______ compression, accepting ______.' Students fill it for every scenario before writing free-form answers.",
+        "Anchor every scenario back to the two bell-ringer texts: 'Is this a version-1 situation (must decode exactly) or a version-2 situation (small and fast wins)?'"
+      ],
+      "extension": [
+        "Have deep-dive students run-length-encode a 16×16 pixel drawing of their initials, compute the compression ratio, then engineer the worst-case image that makes RLE grow the file — and connect that result to EK DAT-1.D.3.",
+        "Challenge students to explain why zipping a .jpg or .mp4 barely shrinks it: the lossy step already removed most redundancy, leaving the lossless zipper nothing to exploit."
+      ]
+    },
+    "discussion": [
+      "Streaming platforms pick how much detail lossy compression throws away from the music and video you watch. Who should control that dial — the platform, the artist, or the viewer — and would you even notice if it moved?",
+      "Your bell-ringer abbreviation scheme only works if your friend knows the decoding rules. What does that suggest a compression 'algorithm' really is — and why must sender and receiver share it?",
+      "Storage keeps getting cheaper and networks keep getting faster. Does compression eventually become obsolete, or does something keep growing just as fast? Defend your answer with one real example."
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

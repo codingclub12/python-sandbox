@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "lessonId": "2.2",
+    "lessonTitle": "Data Compression",
+    "unit": "Big Idea 2: Data",
+    "days": 1,
+    "los": "LO DAT-1.D"
+  },
+  "map": {
+    "subtitle": "Big Idea 2: Data   •   1 day   •   LO DAT-1.D",
+    "intro": "Everything for this topic lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (speaker notes on every slide: timing, share-out cues, misconception alerts)",
+      "Teacher Guide (pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Compression Triage and Exercise 2: Bandwidth Budget Advisor (student + answer KEY)",
+      "Discussion — Worth the Loss? (3-part: Opening, Mid-lesson, Closing — all inside the single teach day)",
+      "Quiz (student + answer KEY — 7 questions on LO DAT-1.D, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-2-data-compression"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-2-guided-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-2-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-2-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-2-2-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (one teach day: why compression works — redundancy and the fewer-bits principle — then the lossless-vs-lossy decision in context).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Scheduling: Topic 2.2 is a 1-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Topic 2.3 (Extracting Information from Data) begins immediately after the quiz."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Compression Triage",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-2-exercise-1",
+    "intro": "You are the storage-and-transfer consultant for your school's student media team. Five files are waiting for a decision before the team's shared drive fills up. For each file you will read what is inside it and what its owner needs, then reason about redundancy, choose lossless or lossy compression, and justify the choice. Part A works the file log; Part B extends the same skills. Everything maps to CB Learning Objective DAT-1.D.",
+    "scenarioTitle": "File Log: Five Files Awaiting a Compression Decision",
+    "narrative": "The media team's advisor exported the drive's five largest files with notes from each owner. Your job is to triage them. Read the log row by row, then answer Part A. Use the three-step method: name what matters most to the owner, decide lossless or lossy, then state the trade-off you accepted.",
+    "log": {
+      "columns": [
+        "ID",
+        "File",
+        "What is inside",
+        "Redundancy clue",
+        "What the owner needs"
+      ],
+      "rows": [
+        [
+          "1",
+          "podcast_master.wav (interview master recording)",
+          "Two hours of raw interview audio the editors will cut and re-cut",
+          "Long stretches of near-silence between answers",
+          "Editors must be able to reconstruct the original take exactly for future edits"
+        ],
+        [
+          "2",
+          "team_logo.png (400×400 logo image)",
+          "The team logo: large single-color regions with sharp edges",
+          "Thousands of identical adjacent pixels",
+          "Crisp, identical edges everywhere the logo is reused"
+        ],
+        [
+          "3",
+          "highlight_reel.mp4 (3-minute game video)",
+          "A highlights video bound for social media",
+          "Already dense video data; viewers watch on small phone screens",
+          "Must upload fast on stadium Wi-Fi; slight quality loss is invisible to viewers"
+        ],
+        [
+          "4",
+          "season_stats.csv (spreadsheet)",
+          "Every game statistic for the season; the team name repeats on every row",
+          "Repeated names, labels, and predictable number formats",
+          "Every number must stay exact — the records feed the school's official totals"
+        ],
+        [
+          "5",
+          "hotline_greeting.mp3 (20-second phone greeting)",
+          "A short spoken greeting for the team's info line",
+          "Ordinary speech; callers hear it through a phone speaker",
+          "Smallest possible size; an approximation of the voice is completely acceptable"
+        ]
+      ]
+    },
+    "scenarioNote": "Files adapted from the Day 1 bell ringer and the choosing-in-context worked table; terminology and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which one file is the trickiest call, and what single detail in its log row decides between lossless and lossy?",
+    "partALabel": "Part A - File-by-File Decisions",
+    "partA": [
+      {
+        "ek": "EK DAT-1.D.1 / DAT-1.D.3",
+        "pts": 4,
+        "q": "File 2 (team_logo.png) shrinks dramatically under lossless compression, while File 3 (highlight_reel.mp4) barely shrinks when zipped with the same lossless tool. Using its redundancy clue, explain why the logo compresses so well — and name BOTH factors the CED says the amount of size reduction depends on.",
+        "answer": "The logo is full of redundancy: thousands of identical adjacent pixels are pure repetition, so a lossless algorithm can describe them in far fewer bits (compression reduces the size — the number of bits — of stored or transmitted data, EK DAT-1.D.1). Per EK DAT-1.D.3, the amount of size reduction depends on BOTH the amount of redundancy in the original data representation AND the compression algorithm applied. The .mp4 barely shrinks under a zip tool because its lossy encoding already removed most redundancy — same algorithm, different redundancy, different result. Full credit requires naming both factors, not just 'the logo repeats a lot.'"
+      },
+      {
+        "ek": "EK DAT-1.D.4 / DAT-1.D.7",
+        "pts": 4,
+        "q": "Files 1 (podcast master) and 4 (season stats) both get LOSSLESS compression. State the guarantee lossless provides, and explain — using each owner's stated need — why that guarantee is what makes lossless the typical choice in both contexts.",
+        "answer": "Lossless compression usually reduces the number of bits stored or transmitted while GUARANTEEING complete reconstruction of the original data (EK DAT-1.D.4). File 1: editors must reconstruct the original take exactly for future edits — an approximation would permanently bake in artifacts before editing even starts. File 4: the statistics feed official totals, so every number must come back exactly; an 'approximately right' spreadsheet is wrong. Per EK DAT-1.D.7, in situations where quality or the ability to reconstruct the original is maximally important, lossless algorithms are typically chosen — both owners' needs state that priority explicitly."
+      },
+      {
+        "ek": "EK DAT-1.D.5 / DAT-1.D.8",
+        "pts": 4,
+        "q": "File 3 (highlight_reel.mp4) gets LOSSY compression. Explain what lossy compression permanently gives up, what it buys in return, and why that trade is the right one in this specific context (cite the owner's need).",
+        "answer": "Lossy compression can significantly reduce the number of bits stored or transmitted, but only allows reconstruction of an APPROXIMATION of the original — the discarded detail is gone forever (EK DAT-1.D.5). What it buys is size and speed: lossy usually reduces more bits than lossless can (EK DAT-1.D.6). Here the owner needs a fast upload on stadium Wi-Fi and says slight quality loss is invisible on phone screens — so minimizing data size and transmission time is what matters most, and per EK DAT-1.D.8 lossy is typically chosen in exactly that situation. A complete answer names the loss, the payoff, and the context clue."
+      },
+      {
+        "ek": "EK DAT-1.D.2",
+        "pts": 4,
+        "q": "After compression, File 4's zipped spreadsheet is 30% of its original size, and File 5's lossy .mp3 is 20% of its original size. A teammate says both files 'lost most of their information.' The teammate is wrong about one file and right about the other — sort it out, citing the CED principle involved.",
+        "answer": "Wrong about File 4: fewer bits does not necessarily mean less information (EK DAT-1.D.2). The zip is lossless, so it removed only redundancy in the representation; unzipping reconstructs every cell of the spreadsheet exactly (EK DAT-1.D.4) — 70% fewer bits, zero lost information. Partially right about File 5: the .mp3 is lossy, so information about the original sound really was discarded and only an approximation can be reconstructed (EK DAT-1.D.5) — but that was an acceptable, deliberate trade given the owner's need for the smallest possible size. The key distinction: a smaller file proves nothing by itself; the ALGORITHM family determines whether information was lost."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK DAT-1.D.6",
+        "pts": 3,
+        "q": "Lossy algorithms can usually reduce the number of bits MORE than lossless algorithms. Explain why that advantage follows directly from what each family is allowed to do with the original data.",
+        "answer": "Lossless compression is constrained by its guarantee: it must keep enough in the compressed file to reconstruct the original completely (EK DAT-1.D.4), so it can only remove redundancy — repetition the decoder can rebuild. Lossy compression has no such constraint: it may discard actual information (detail humans barely perceive) and reconstruct only an approximation (EK DAT-1.D.5). Being allowed to throw content away, not just repetition, is exactly why lossy usually reduces more bits (EK DAT-1.D.6). The trade-off is one-directional: the discarded detail can never be recovered."
+      },
+      {
+        "ek": "EK DAT-1.D.3",
+        "pts": 3,
+        "q": "A classmate zips a folder of vacation .jpg photos expecting it to halve in size, but the zip is barely smaller than the originals. Using EK DAT-1.D.3, explain the result — and what it reveals about files that have already been compressed.",
+        "answer": "Per EK DAT-1.D.3, the amount of size reduction depends on both the redundancy in the original data representation and the algorithm applied. A .jpg has already been through lossy compression, which stripped out most of the redundancy (and some detail) — so when the lossless zip algorithm looks for repetition to exploit, there is almost none left, and the reduction is tiny. The general lesson: compression is not a fixed-percentage machine; an already-compressed, low-redundancy file barely shrinks no matter which tool is applied second."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Run-length encoding stores each run of identical values as a count plus the value (the pixel row W W W W W W W W W W W W B B B W W W W W W W W W W W W becomes 12W 3B 12W). Is RLE lossless or lossy, and how do you know? Then describe one input that would make RLE ENLARGE a file instead of shrinking it, and connect that to EK DAT-1.D.3.",
+        "answer": "RLE is LOSSLESS: decoding 12W 3B 12W reproduces the original 27-pixel row exactly, symbol for symbol, so the original is completely reconstructed (the EK DAT-1.D.4 guarantee). A worst-case input is data with no runs — an alternating row like W B W B W B... — where every 'run' has length one, so each single pixel becomes a count-value pair and the encoded file is LARGER than the original. That is EK DAT-1.D.3 in action: the algorithm stayed the same, but with zero redundancy to exploit, the 'compression' produced no reduction at all — size reduction depends on the redundancy in the data as much as on the algorithm."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Bandwidth Budget Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 contexts - choose and justify",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-2-exercise-2",
+    "intro": "You are the technology advisor for three clients, each stuck on a compression decision. For each context, name what matters most (perfect reconstruction vs. minimum size/transmission time), recommend LOSSLESS or LOSSY by name, and state the trade-off your choice accepts. Advanced students also predict which data would shrink the most, reasoning from redundancy. Vague 'just compress it' advice scores zero.",
+    "standard": "CB Standard (required): what matters most in the context + the compression family (lossless or lossy) + the trade-off accepted, for all 3 contexts. Enrichment (optional): also predict the size reduction using redundancy (EK DAT-1.D.3).",
+    "methodHeading": "Three-Step Method - use for every context",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your gut choice before analyzing. Writing your own answer first keeps a convincing wrong option from swaying you."
+      ],
+      [
+        "Step 2 - Name what matters most",
+        "Decide the context's priority: must the original be reconstructed perfectly, or is minimizing data size / transmission time the top concern? The CED decides the family from that one answer."
+      ],
+      [
+        "Step 3 - Choose and state the trade-off",
+        "Name lossless or lossy AND the cost you accepted (fewer bits saved, or permanent approximation). A family named without its trade-off is an incomplete recommendation."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (redundancy reasoning): Strong answers also predict HOW MUCH each file will shrink. Size reduction depends on both the redundancy in the data and the algorithm (EK DAT-1.D.3): repetitive text and flat-color images collapse; random or already-compressed data barely budges. A mixed collection deserves a split decision — one family per data type, not one family for everything.",
+    "fields": [
+      "What matters most in this context (perfect reconstruction vs. size/time):",
+      "Compression choice (lossless or lossy) + the trade-off accepted:",
+      "Enrichment — which data shrinks most, and why (redundancy):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "An author has finished a 900-page novel and must email the manuscript to an editor tonight, but the attachment is over the mail server's size limit. Every character of the manuscript must arrive exactly as written — the editor's contract requires the submitted text to be the text. Recommend a compression approach.",
+        "key": {
+          "signs": "What matters most: the ability to reconstruct the original exactly. The contract makes every character non-negotiable, so quality/reconstruction is maximally important — the EK DAT-1.D.7 situation.",
+          "mechanism": "Recommend LOSSLESS compression (e.g., zipping the manuscript). It usually reduces the number of bits stored or transmitted while guaranteeing complete reconstruction of the original data (EK DAT-1.D.4) — the editor unzips and gets the manuscript character for character. Trade-off accepted: less size reduction than lossy could achieve (EK DAT-1.D.6), which is fine because text compresses well and correctness beats size here.",
+          "subtype": "The manuscript will shrink a lot: natural-language text is highly redundant (repeated words, letters, and patterns), and per EK DAT-1.D.3 high redundancy plus a lossless algorithm yields a large reduction — typically enough to clear an attachment limit without losing a single character."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A school is live-streaming its graduation ceremony to relatives overseas on a weak uplink connection. During a test run, the full-quality stream kept freezing and dropping out. Families care that the stream keeps moving in real time; nobody will study individual frames. Recommend a compression approach.",
+        "key": {
+          "signs": "What matters most: minimizing data size and transmission time — the stream must keep up with real time on a weak uplink. Freezing is the failure families actually notice; slightly softer video is not. This is the EK DAT-1.D.8 situation.",
+          "mechanism": "Recommend LOSSY compression for the stream. It can significantly reduce the number of bits transmitted (EK DAT-1.D.5) and usually reduces more than lossless can (EK DAT-1.D.6), which is what lets the video fit the weak connection in real time. Trade-off accepted: only an approximation of the original video can ever be reconstructed — the discarded detail is permanent. In this context that cost is invisible and the smooth stream is the whole point.",
+          "subtype": "Enrichment contrast: even the best LOSSLESS algorithm would not save this stream — video has enormous data volume and (after capture) limited exploitable redundancy, so lossless cannot cut deep enough for the weak uplink (EK DAT-1.D.3 + D.6). Choosing the family that CAN meet the constraint is the recommendation; a school archive copy at higher quality can be kept separately."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "A student's phone storage is nearly full. Two things are eating the space: a folder of scanned legal documents for a family court case (the lawyer says every page must remain exact), and about 2,000 vacation photos the student browses on the phone screen. One compression setting will not fit both. Recommend a complete plan.",
+        "key": {
+          "signs": "What matters most differs BY DATA TYPE, so this is a split decision. Legal documents: ability to reconstruct the original is maximally important (the lawyer's 'every page exact' requirement) — the EK DAT-1.D.7 situation. Vacation photos: minimizing data size is the priority, and phone-screen viewing means an approximation is fine — the EK DAT-1.D.8 situation.",
+          "mechanism": "Recommend LOSSLESS for the legal documents — the guarantee of complete reconstruction (EK DAT-1.D.4) is what 'every page must remain exact' requires; accept the smaller size savings. Recommend LOSSY for the 2,000 photos — it significantly reduces bits (EK DAT-1.D.5) and usually reduces more than lossless (EK DAT-1.D.6), which is where the real storage recovery is; accept that the full-detail originals become unrecoverable approximations. One family for everything fails: all-lossless leaves the phone nearly full, all-lossy risks the court case.",
+          "subtype": "Prioritize where the bits are: 2,000 photos dwarf a folder of document scans, so the lossy photo pass recovers almost all the space — the split plan gets nearly the storage of all-lossy with none of its legal risk. Trap to name: 'lossless is always better' would leave the storage problem unsolved; the CED grades the choice against the CONTEXT, and this context contains two different ones."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Worth the Loss?",
+    "minutes": "~20 min total - 3 parts - Opening + Mid-lesson + Closing (all Day 1)",
+    "overview": "Every day, the apps you use quietly decide how much of your world to throw away: the streamed song is not the studio master, the shared photo is not the sensor's original, and nobody asked you. Across three short windows in this lesson, your group will connect the compression trade-off to your own media, argue about who should control the quality dial, and decide — like the engineers do — what is genuinely worth the loss when the bits run short.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your bell-ringer abbreviation scheme only works if your friend knows the rules for expanding it. What happens if they don't — and what does that tell you about what a compression 'algorithm' really is, and why the sender and receiver must share it?"
+          },
+          {
+            "text": "Question 2. In your cheapest version, you chose which details of the message were disposable. Who should make that call for the photos and music on YOUR phone — you, or the app? Give one example where you would want the choice back."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the lossless-vs-lossy comparison",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-question rule",
+            "text": "The whole lossless/lossy decision reduces to one question about the context. In one sentence your whole group agrees on, write that question — and state what each possible answer tells you to choose.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - What would YOU refuse to lose?",
+            "text": "Debate for about 3 minutes: name one file each group member would refuse to compress lossily, and one file none of you would mind approximating. What separates the two lists — sentiment, money, the ability to redo it, or something else? Record the group's dividing line.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The full-phone problem",
+            "text": "A phone is nearly out of storage. It holds: original vacation photos, scanned legal documents that must stay exact, downloaded lossy music, and the source code for a coding-class project. Design the plan: which items get lossy compression, which must stay lossless, which would barely shrink anyway (say why, using redundancy) — and justify each call with what matters most in that item's context.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the one item people most often get wrong + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}
