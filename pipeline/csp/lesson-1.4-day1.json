@@ -315,65 +315,68 @@
       {
         "id": "Q1",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A field-trip signup program runs from start to finish without any error messages, but it approves students who are on the not-permitted list. Per EK CRD-2.I.1, what kind of error is this?",
+        "predictFirst": false,
+        "stem": "A signup program runs without any error message but approves students who are on the not-permitted list. What kind of error is this?",
         "options": [
-          "A syntax error — the program violated a rule of the programming language",
-          "A logic error — the program runs but behaves incorrectly or unexpectedly",
-          "A run-time error — the program stopped during execution when it reached the mistake",
-          "An overflow error — the program handled a number outside its defined range of values"
+          "A syntax error — it broke a rule of the programming language",
+          "A logic error — it runs but behaves incorrectly",
+          "A run-time error — it stopped during execution at the mistake",
+          "An overflow error — it handled a number outside its defined range"
         ],
         "answer": "B",
         "ek": "EK CRD-2.I.1",
-        "rationale": "EK CRD-2.I.1 defines a logic error as a mistake in the algorithm or program that causes it to behave incorrectly or unexpectedly — here the program runs cleanly and produces wrong approval behavior, the classic silent logic error. A is wrong: a syntax error prevents the program from running at all, and this one runs. C is wrong: nothing stopped during execution; the program finished. D invents a number-range problem the scenario never describes — the failure is wrong decision behavior, not a value outside a range."
+        "rationale": "CRD-2.I.1: a logic error causes a program to behave incorrectly or unexpectedly — here it runs cleanly but produces wrong approvals, a silent logic error. A is wrong; a syntax error stops the program from running, and this one runs. C is wrong; nothing halted — it finished. D invents a number-range problem the scenario never describes."
       },
       {
         "id": "Q2",
         "kind": "recall",
-        "stem": "Per EK CRD-2.I.2, which situation is a syntax error?",
+        "predictFirst": false,
+        "stem": "Which of the following best describes a syntax error?",
         "options": [
           "A program computes an average with the wrong divisor and reports values that are too high",
           "A program crashes while running when it divides a total by zero",
-          "A program produces a value larger than the range its storage can represent",
-          "A program statement is written in a way that breaks the rules of the programming language, so the program will not run"
+          "A program produces a value larger than its storage can represent",
+          "A statement breaks the rules of the programming language, so the program will not run"
         ],
         "answer": "D",
         "ek": "EK CRD-2.I.2",
-        "rationale": "EK CRD-2.I.2 defines a syntax error as a mistake in the program where the rules of the programming language are not followed — the language cannot understand the statement, so the program does not run. A describes a logic error (EK CRD-2.I.1): it runs and behaves incorrectly. B describes a run-time error (EK CRD-2.I.3): the failure happens during execution. C describes an overflow error (EK CRD-2.I.4): a number outside the defined range of values."
+        "rationale": "CRD-2.I.2: a syntax error breaks the language's rules, so the program does not run. A describes a logic error (CRD-2.I.1) — it runs but behaves incorrectly. B describes a run-time error (CRD-2.I.3) — the failure happens during execution. C describes an overflow error (CRD-2.I.4) — a number outside the defined range."
       },
       {
         "id": "Q3",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A cost-splitting program computes each person's share as the total divided by the number of people. It works in every rehearsal, but during a live demo a user enters 0 people and the program halts with an error message mid-execution. Per EK CRD-2.I.3, this is best classified as:",
+        "predictFirst": false,
+        "stem": "A cost-splitting program divides the total by the number of people. It works for weeks, then halts mid-run with an error when a user enters 0 people. This is best classified as:",
         "options": [
-          "A run-time error — a mistake that occurs during the execution of the program",
-          "A syntax error — the division statement broke the programming language's rules",
-          "An overflow error — the computer handled a number outside the defined range",
-          "A logic error — the program ran to completion but produced the wrong output"
+          "A run-time error — a mistake that occurs during execution",
+          "A syntax error — the division statement broke the language's rules",
+          "An overflow error — the program handled a number outside the defined range",
+          "A logic error — it ran to completion but gave the wrong output"
         ],
         "answer": "A",
         "ek": "EK CRD-2.I.3",
-        "rationale": "EK CRD-2.I.3 defines a run-time error as a mistake that occurs during the execution of a program — the division statement is legal code that fails only when execution reaches it with people equal to 0, and programming languages define their own run-time errors like division by zero. B is wrong: the statement follows the language's rules, which is why it ran for weeks. C is wrong: zero is not outside a defined range of values; the problem is an impossible operation. D is wrong: the program did not run to completion — it halted mid-execution."
+        "rationale": "CRD-2.I.3: a run-time error occurs during execution — the legal division statement fails only when reached with 0 people (division by zero). B is wrong; the statement follows the rules, which is why it ran for weeks. C is wrong; zero is not outside a defined range — it is an impossible operation. D is wrong; the program did not finish — it halted mid-run."
       },
       {
         "id": "Q4",
         "kind": "applied",
-        "stem": "A game stores the player's gem count, which has a defined maximum value. When a player's total passes that maximum, the program cannot handle the new number and the count fails. On the CED's error taxonomy (EK CRD-2.I.4), this is:",
+        "predictFirst": false,
+        "stem": "Which term names the error when a number goes past the maximum value its storage can represent?",
         "options": [
-          "A logic error — the algorithm used incorrect arithmetic to add the gems",
-          "A syntax error — the statement adding gems violated the language's rules",
-          "An overflow error — the computer attempted to handle a number outside the defined range of values",
-          "A round-off error — the gem count was stored as an imprecise approximation"
+          "A logic error, from incorrect arithmetic in the algorithm",
+          "A syntax error, from a statement that breaks the language's rules",
+          "An overflow error, from a number outside the defined range of values",
+          "A round-off error, from storing an imprecise approximation"
         ],
         "answer": "C",
         "ek": "EK CRD-2.I.4",
-        "rationale": "EK CRD-2.I.4 defines an overflow error as one that occurs when a computer attempts to handle a number that is outside of the defined range of values — exactly what happens when the gem total passes its defined maximum. A is wrong: the addition algorithm was correct; the value simply left the range the program can handle. B is wrong: the code runs fine below the maximum, so the language's rules were followed. D names round-off, a precision problem with real-number approximations — it is not one of the four error types this LO names, and nothing here involves approximation."
+        "rationale": "CRD-2.I.4: an overflow error occurs when a number is outside the defined range of values — exactly a total passing its maximum. A is wrong; the arithmetic is correct, the value simply left the range. B is wrong; the code runs below the maximum, so the rules were followed. D names a precision problem with approximations — not one of this topic's four error types, and no approximation is involved."
       },
       {
         "id": "Q5",
         "kind": "multi",
-        "stem": "Per EK CRD-2.I.5, which of the following are effective ways to find and correct errors in a program? I. Running test cases with known expected outputs. II. Hand tracing the program's variables line by line. III. Deleting the program and rewriting it from scratch.",
+        "predictFirst": false,
+        "stem": "Which of the following are effective ways to find and correct errors? I. Running test cases with known expected outputs. II. Hand tracing variables line by line. III. Deleting the program and rewriting it from scratch.",
         "options": [
           "I and II only",
           "II only",
@@ -382,13 +385,13 @@
         ],
         "answer": "A",
         "ek": "EK CRD-2.I.5",
-        "rationale": "EK CRD-2.I.5 lists the effective ways to find and correct errors: test cases, hand tracing, visualizations, debuggers, and adding extra output statement(s). Items I and II are on that list. Item III is not — rewriting from scratch abandons the error hunt entirely and is just as likely to introduce new errors as to remove old ones. B wrongly excludes test cases, which the EK names explicitly. C and D both accept item III, which the EK does not include."
+        "rationale": "CRD-2.I.5 lists test cases, hand tracing, visualizations, debuggers, and adding output statements — I and II are on it. III is not; rewriting from scratch abandons the error hunt and can introduce new errors. B wrongly drops test cases, which the framework names. C and D both wrongly accept III."
       },
       {
         "id": "Q6",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A program's requirements state that it accepts ticket orders of 1 to 10 tickets. A student has time to run exactly four test inputs. Per EK CRD-2.J.2, which set best demonstrates the expected outcomes at or just beyond the extremes of the input data?",
+        "predictFirst": false,
+        "stem": "A program accepts ticket orders of 1 to 10. You can run four test inputs. Which set best checks the outcomes at and just beyond the extremes?",
         "options": [
           "2, 4, 6, and 8",
           "1, 2, 9, and 10",
@@ -397,35 +400,37 @@
         ],
         "answer": "D",
         "ek": "EK CRD-2.J.2",
-        "rationale": "EK CRD-2.J.2 says defined test inputs should demonstrate the different expected outcomes at or just beyond the extremes (minimum and maximum) of the input data. Option D covers all four boundary points: just below the minimum (0), the minimum (1), the maximum (10), and just beyond it (11). A tests only comfortable middle values, exactly what the EK warns against. B tests at the extremes but never goes just beyond them, so rejection behavior is never checked. C goes beyond the extremes but wastes two inputs on mid-range values and never tests the legal boundaries 1 and 10 themselves."
+        "rationale": "CRD-2.J.2: test inputs should show expected outcomes at or just beyond the extremes. D covers all four boundary points — below the minimum (0), the minimum (1), the maximum (10), and beyond it (11). A tests only comfortable middle values. B tests the extremes but never just beyond them, so rejection is unchecked. C wastes inputs on mid-range values and skips the legal boundaries 1 and 10."
       },
       {
         "id": "Q7",
         "kind": "applied",
-        "stem": "During development, a programmer runs a program on a set of defined inputs and compares each result to the expected outcome. Several results do not match. Per EK CRD-2.J.1, what should the programmer do with these results?",
+        "predictFirst": false,
+        "stem": "A programmer runs defined inputs, and several results do not match the expected outcomes. What should be done with these results?",
         "options": [
           "Discard the failing inputs, since defined inputs must produce expected outcomes",
-          "Use the results from testing to revise the algorithm or program, then test again",
-          "Reclassify the mismatches as run-time errors and record them in the documentation",
-          "Update the expected outcomes so they match what the program actually produced"
+          "Use the results to revise the algorithm or program, then test again",
+          "Relabel the mismatches as run-time errors and note them in the documentation",
+          "Change the expected outcomes to match what the program actually produced"
         ],
         "answer": "B",
         "ek": "EK CRD-2.J.1",
-        "rationale": "EK CRD-2.J.1 states that testing uses defined inputs to ensure a program is producing the expected outcomes, and that programmers use the results from testing to revise their algorithms or programs — failures are the signal that revision is needed. A gets it backward: failing inputs are the most valuable ones, not trash. C is wrong: a wrong result on a clean run is a logic error, not a run-time error, and relabeling fixes nothing. D destroys the entire point of testing — the expected outcome is the standard of correctness, so bending it to match wrong output hides the error instead of correcting it."
+        "rationale": "CRD-2.J.1: testing uses defined inputs to check expected outcomes, and programmers use the results to revise their algorithms or programs — failures signal needed revision. A is backward; failing inputs are the most valuable. C is wrong; a wrong result on a clean run is a logic error, and relabeling fixes nothing. D destroys the point of testing — bending the standard to match wrong output hides the error."
       },
       {
         "id": "Q8",
-        "kind": "scenario",
-        "stem": "A teammate asks you to 'go test the new discount program' but cannot tell you what the program is supposed to output for any input. Per EK CRD-2.J.3, why is testing stuck until that changes?",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which statement best explains why testing cannot begin until the program's expected outputs are known?",
         "options": [
-          "Testing requires a debugger, and a debugger cannot open an undocumented program",
-          "Test inputs can only be selected after every syntax error has been corrected",
-          "Program requirements are needed to identify appropriate defined inputs for testing",
+          "A debugger cannot open a program that has no documentation",
+          "Test inputs can be chosen only after every syntax error is fixed",
+          "Program requirements are needed to choose appropriate defined inputs for testing",
           "A program cannot be tested until it has produced at least one run-time error"
         ],
         "answer": "C",
         "ek": "EK CRD-2.J.3",
-        "rationale": "EK CRD-2.J.3 states that program requirements are needed to identify appropriate defined inputs for testing — without knowing what the program is supposed to do, you cannot choose meaningful inputs or know the expected outcome for any of them, so no run can be judged right or wrong. A is wrong: debuggers are one of five error-finding tools (EK CRD-2.I.5), not a prerequisite for testing, and documentation is not what they require. B confuses error types with test planning — inputs can be planned before any code exists. D is backward: testing hunts for errors; it does not wait for them."
+        "rationale": "CRD-2.J.3: program requirements are needed to identify appropriate defined inputs — without knowing what the program should do, you cannot pick meaningful inputs or expected outcomes, so no run can be judged. A is wrong; debuggers are one of five error-finding tools (CRD-2.I.5), not a testing prerequisite. B confuses error types with test planning; inputs can be planned before code exists. D is backward — testing hunts for errors, it does not wait for them."
       }
     ]
   },
