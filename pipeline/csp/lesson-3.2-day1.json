@@ -325,7 +325,7 @@
         "predictFirst": true,
         "stem": "A program builds names ← [\"Ada\", \"Grace\", \"Alan\"], then a classmate reorders it to [\"Alan\", \"Ada\", \"Grace\"] and says 'it's the same list — same three names.' Per EK AAP-1.C.1, why is that wrong?",
         "options": [
-          "The two are the same list because a list only cares about which values it contains, not their order",
+          "The two are the same list; only which values it contains matters, not their order",
           "The two differ only if the names are stored as numbers instead of strings",
           "A list is an ordered sequence, so changing the order produces a different list even with the same elements",
           "Reordering is impossible; once a list is created its elements can never move"
@@ -339,10 +339,10 @@
         "kind": "applied",
         "stem": "For scores ← [88, 92, 79, 95], a student needs 'the value stored at index 3.' Per EK AAP-1.C.2–C.3, what is the element at that index, and what does the index itself represent?",
         "options": [
-          "The element is 3, because the index and the element are the same thing",
+          "The element is 3 — the index and the element are the same thing",
           "The element is 79, and the index 3 represents that element's position in the list",
-          "The element is 95, because index 3 counts from the end of the list",
-          "There is no element at index 3, because indices label the gaps between values"
+          "The element is 95, counting index 3 from the end of the list",
+          "There is no element at index 3; indices label the gaps between values"
         ],
         "answer": "B",
         "ek": "EK AAP-1.C.2",
@@ -354,10 +354,10 @@
         "predictFirst": true,
         "stem": "On the AP exam reference sheet, a program runs temps ← [68, 72, 75, 70] and then DISPLAY(temps[1]). Per EK AAP-1.C.3, what is displayed?",
         "options": [
-          "72, because the exam sheet numbers the first element as index 0 and index 1 is the second",
+          "72 — the exam sheet numbers the first element as index 0, making index 1 the second",
           "Nothing; temps[1] is out of range for a four-element list",
-          "70, because index 1 wraps around to the last element",
-          "68, because the exam sheet is 1-indexed and index 1 is the first element"
+          "70 — index 1 wraps around to the last element",
+          "68 — the exam sheet is 1-indexed, so index 1 is the first element"
         ],
         "answer": "D",
         "ek": "EK AAP-1.C.3",
@@ -383,14 +383,14 @@
         "predictFirst": true,
         "stem": "A weather program must handle a year of daily highs. One version uses 365 separate variables (day1, day2, ...); another stores them in one list, temperatures. Per EK AAP-1.D.2, why does the list version better manage complexity?",
         "options": [
-          "The list runs faster because a computer stores lists in a special kind of memory",
+          "The list runs faster; a computer stores lists in a special kind of memory",
+          "The list version is better only when 365 is too many variables for a language to allow",
           "The list gives the whole collection one name, so the program can work with the data without referencing every individual variable",
-          "The list version is better only because 365 is too many variables for any language to allow",
           "The list removes the need to keep the temperatures in any particular order"
         ],
-        "answer": "B",
+        "answer": "C",
         "ek": "EK AAP-1.D.2",
-        "rationale": "EK AAP-1.D.2 says data abstractions manage complexity by giving a collection a name without referencing the specific details of the representation. One name, temperatures, replaces 365 references — B is correct. A invents a speed/memory claim not made by the EK. C is false; the benefit is management, not a hard limit. D contradicts the ordered nature of a list."
+        "rationale": "EK AAP-1.D.2 says data abstractions manage complexity by giving a collection a name without referencing the specific details of the representation. One name, temperatures, replaces 365 references — C is correct. A invents a speed/memory claim not made by the EK. B is false; the benefit is management, not a hard limit. D contradicts the ordered nature of a list."
       },
       {
         "id": "Q6",
@@ -411,7 +411,7 @@
         "kind": "scenario",
         "stem": "A student reads that lists 'allow multiple related items to be treated as a single value' and are called arrays in some languages. Per EK AAP-1.D.6, which follow-up statement is accurate for this course?",
         "options": [
-          "Because lists are sometimes called arrays, the AP course requires learning the linked-list version as well",
+          "Since lists are sometimes called arrays, the AP course requires learning the linked-list version as well",
           "A list lets many related items be treated as one value, though linked lists are outside the scope of this course",
           "'List' and 'array' name unrelated structures that never behave alike",
           "Treating items as a single value only works if every item is the same type"
@@ -426,10 +426,10 @@
         "predictFirst": true,
         "stem": "On the exam reference sheet a program runs nums ← [10, 20, 30] and then tries DISPLAY(nums[4]). Per EK AAP-1.D.8, what happens?",
         "options": [
-          "It displays 30, because index 4 is rounded down to the last valid index",
+          "It displays 30; index 4 is rounded down to the last valid index",
           "It displays 0, a default value used when an index is missing",
           "It displays nothing and the program continues silently to the next line",
-          "An error is produced and the program terminates, because index 4 is greater than the list's length"
+          "An error is produced and the program terminates, since index 4 is greater than the list's length"
         ],
         "answer": "D",
         "ek": "EK AAP-1.D.8",
@@ -460,7 +460,7 @@
       "EK AAP-1.D.4 — Developing a data abstraction to implement in a program can result in a program that is easier to develop and maintain.",
       "EK AAP-1.D.5 — Data abstractions often contain different types of elements.",
       "EK AAP-1.D.6 — The use of lists allows multiple related items to be treated as a single value. Lists are referred to by different names, such as array, depending on the programming language. X EXCLUSION (EK AAP-1.D.6): The use of linked lists is outside the scope of this course and the AP Exam.",
-      "EK AAP-1.D.7 — The exam reference sheet provides the notation [value1, value2, value3, ...] to create a list with those values as the first, second, and so on items. aList <- [value1, value2, value3] creates a new list; aList <- [] creates a new empty list; aList <- bList assigns a copy of the list bList to the list aList.",
+      "EK AAP-1.D.7 — The exam reference sheet provides the notation [value1, value2, value3, ...] to create a list with those values as the first, second, third, and so on items. aList <- [value1, value2, value3] creates a new list; aList <- [] creates a new empty list; aList <- bList assigns a copy of the list bList to the list aList.",
       "EK AAP-1.D.8 — The exam reference sheet describes a list structure whose index values are 1 through the number of elements in the list, inclusive. For all list operations, if a list index is less than 1 or greater than the length of the list, an error message is produced and the program will terminate."
     ],
     "materials": [

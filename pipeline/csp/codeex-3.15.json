@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.15",
+    "title": "Random Values",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in Read the Random Rolls and Design the Random Range, listing the possible results of GameNight's RANDOM calls. Now build and run them, hardest last. One rule makes random code testable: because a RANDOM value changes every run, these programs never print the raw random number — they print a PROPERTY that is always true (is it in range? how many outcomes are possible?), so there is one fixed expected output to check. Predict that output first, then run."
+  },
+  "problems": [
+    {
+      "prompt": "GameNight rolls one six-sided die with RANDOM(1, 6). You cannot print the roll (it changes every run), so instead roll the die and print exactly: in range — if the roll is between 1 and 6 inclusive; otherwise print: out of range",
+      "promptHtml": "GameNight rolls one six-sided die with <code>RANDOM(1, 6)</code>. You cannot print the roll (it changes every run), so instead roll the die and print exactly <code>in range</code> if the roll is between 1 and 6 inclusive; otherwise print <code>out of range</code>.",
+      "expected": "in range",
+      "starter": {
+        "python": "import random\n# roll a die: a random integer from 1 to 6 (randint is inclusive of both ends)\n# then, if the roll is >= 1 AND <= 6, print exactly: in range\n# otherwise print exactly: out of range\n",
+        "javascript": "// roll a die: a random integer from 1 to 6, inclusive\n// Math.floor(Math.random() * (6 - 1 + 1)) + 1 gives 1..6\n// then, if the roll is >= 1 AND <= 6, print exactly: in range\n// otherwise print exactly: out of range\n"
+      },
+      "reference": {
+        "pseudocode": "die ← RANDOM(1, 6)\nIF(die ≥ 1 AND die ≤ 6)\n{\n  DISPLAY(\"in range\")\n}\nELSE\n{\n  DISPLAY(\"out of range\")\n}",
+        "python": "import random\ndie = random.randint(1, 6)\nif die >= 1 and die <= 6:\n    print(\"in range\")\nelse:\n    print(\"out of range\")",
+        "javascript": "let die = Math.floor(Math.random() * 6) + 1;\nif (die >= 1 && die <= 6) {\n  console.log(\"in range\");\n} else {\n  console.log(\"out of range\");\n}"
+      },
+      "hint": "Every possible value of RANDOM(1, 6) is between 1 and 6, so the condition is always true and the program always prints 'in range'. That is the point: you check a property of the roll, not the roll itself."
+    },
+    {
+      "prompt": "GameNight's color spinner uses RANDOM(0, 3). Without rolling anything, compute and print how many DIFFERENT values that call could return. Use the count b - a + 1 so it works for any bounds.",
+      "promptHtml": "GameNight's color spinner uses <code>RANDOM(0, 3)</code>. Without rolling anything, compute and print how many DIFFERENT values that call could return. Use the count <code>b - a + 1</code> so it works for any bounds.",
+      "expected": "4",
+      "starter": {
+        "python": "a = 0\nb = 3\n# the possible results are 0, 1, 2, 3 -- how many is that?\n# print the COUNT of possible outcomes using b - a + 1\n",
+        "javascript": "let a = 0;\nlet b = 3;\n// the possible results are 0, 1, 2, 3 -- how many is that?\n// print the COUNT of possible outcomes using b - a + 1\n"
+      },
+      "reference": {
+        "pseudocode": "a ← 0\nb ← 3\ncount ← b - a + 1\nDISPLAY(count)",
+        "python": "a = 0\nb = 3\ncount = b - a + 1\nprint(count)",
+        "javascript": "let a = 0;\nlet b = 3;\nlet count = b - a + 1;\nconsole.log(count);"
+      },
+      "hint": "The number of possible results of RANDOM(a, b) is b - a + 1 because both bounds are included. For RANDOM(0, 3): 3 - 0 + 1 = 4 (the values 0, 1, 2, 3)."
+    },
+    {
+      "prompt": "GameNight rolls TWO six-sided dice, RANDOM(1, 6) each, and adds them. The possible totals run from 2 to 12. Roll both, add them, and print exactly: valid sum — if the total is between 2 and 12 inclusive; otherwise print: bad sum",
+      "promptHtml": "GameNight rolls TWO six-sided dice, <code>RANDOM(1, 6)</code> each, and adds them. The possible totals run from 2 to 12. Roll both, add them, and print exactly <code>valid sum</code> if the total is between 2 and 12 inclusive; otherwise print <code>bad sum</code>.",
+      "expected": "valid sum",
+      "starter": {
+        "python": "import random\n# roll two dice, each a random integer from 1 to 6\n# add them to get the total\n# the smallest possible total is 1+1=2, the largest is 6+6=12\n# print exactly 'valid sum' if the total is between 2 and 12, else 'bad sum'\n",
+        "javascript": "// roll two dice, each a random integer from 1 to 6\n// add them to get the total\n// the smallest possible total is 1+1=2, the largest is 6+6=12\n// print exactly 'valid sum' if the total is between 2 and 12, else 'bad sum'\n"
+      },
+      "reference": {
+        "pseudocode": "d1 ← RANDOM(1, 6)\nd2 ← RANDOM(1, 6)\ntotal ← d1 + d2\nIF(total ≥ 2 AND total ≤ 12)\n{\n  DISPLAY(\"valid sum\")\n}\nELSE\n{\n  DISPLAY(\"bad sum\")\n}",
+        "python": "import random\nd1 = random.randint(1, 6)\nd2 = random.randint(1, 6)\ntotal = d1 + d2\nif total >= 2 and total <= 12:\n    print(\"valid sum\")\nelse:\n    print(\"bad sum\")",
+        "javascript": "let d1 = Math.floor(Math.random() * 6) + 1;\nlet d2 = Math.floor(Math.random() * 6) + 1;\nlet total = d1 + d2;\nif (total >= 2 && total <= 12) {\n  console.log(\"valid sum\");\n} else {\n  console.log(\"bad sum\");\n}"
+      },
+      "hint": "Each die is at least 1 and at most 6, so the sum is at least 2 and at most 12 — always. The total varies every run, but the property 'total is between 2 and 12' is guaranteed, so 'valid sum' always prints."
+    },
+    {
+      "prompt": "Write a fairness check from scratch for GameNight's 4-sided die, RANDOM(1, 4). Roll it 1000 times in a loop. If EVERY roll is between 1 and 4 inclusive, print exactly: all fair — otherwise print: unfair",
+      "promptHtml": "Write a fairness check from scratch for GameNight's 4-sided die, <code>RANDOM(1, 4)</code>. Roll it 1000 times in a loop. If EVERY roll is between 1 and 4 inclusive, print exactly <code>all fair</code>; otherwise print <code>unfair</code>.",
+      "expected": "all fair",
+      "starter": {
+        "python": "import random\n# start by assuming the die is fair\n# roll RANDOM(1, 4) one thousand times in a loop\n# if any roll is < 1 or > 4, the die is not fair\n# after the loop, print exactly 'all fair' or 'unfair'\n",
+        "javascript": "// start by assuming the die is fair\n// roll a random integer from 1 to 4 one thousand times in a loop\n// if any roll is < 1 or > 4, the die is not fair\n// after the loop, print exactly 'all fair' or 'unfair'\n"
+      },
+      "reference": {
+        "pseudocode": "result ← \"all fair\"\nREPEAT 1000 TIMES\n{\n  roll ← RANDOM(1, 4)\n  IF(roll < 1 OR roll > 4)\n  {\n    result ← \"unfair\"\n  }\n}\nDISPLAY(result)",
+        "python": "import random\nresult = \"all fair\"\nfor i in range(1000):\n    roll = random.randint(1, 4)\n    if roll < 1 or roll > 4:\n        result = \"unfair\"\nprint(result)",
+        "javascript": "let result = \"all fair\";\nfor (let i = 0; i < 1000; i++) {\n  let roll = Math.floor(Math.random() * 4) + 1;\n  if (roll < 1 || roll > 4) {\n    result = \"unfair\";\n  }\n}\nconsole.log(result);"
+      },
+      "hint": "Assume 'all fair' before the loop, and only switch to 'unfair' if a roll ever lands outside 1..4. Because RANDOM(1, 4) can only return 1, 2, 3, or 4, no roll is ever out of range — so across all 1000 independent, differing rolls the result stays 'all fair' every run. That guaranteed property is what the grader checks."
+    }
+  ]
+}

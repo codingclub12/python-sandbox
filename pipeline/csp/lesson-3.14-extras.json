@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "lessonId": "3.14",
+    "lessonTitle": "Libraries",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 1,
+    "los": "LO AAP-3.D"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   1 day   •   LO AAP-3.D",
+    "intro": "Everything for this topic lives in this folder. Topic 3.14 teaches selecting and using libraries — so its practice hands students a documented library (GradeKit) and asks them to USE it, not rebuild it. The paper exercises and the online coding practice share that one library. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (libraries and existing code; APIs and documentation). Speaker notes on every slide.",
+      "Teacher Guide (one-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Read the GradeKit Doc and Exercise 2: Pick the Library (student + answer KEY)",
+      "Discussion — Trusting Code You Cannot See (3-part: Opening, Mid-lesson, Closing)",
+      "Quiz (student + answer KEY — 7 questions on LO AAP-3.D, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions that CALL the provided GradeKit library; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-14-libraries"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-14-libraries-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-14-libraries-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-14-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-14-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-14-libraries"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (libraries and reuse, then APIs and documentation). All code is shown in exam pseudocode next to runnable Python, and every library call is read from GradeKit's documentation, never from its internal code.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page hands students the GradeKit library and checks the output of their calls against expected results, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.14 is a 1-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Topic 3.15 (Random Values) begins after the quiz and treats RANDOM as its own library-style procedure read from a specification."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Read the GradeKit Doc",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-14-exercise-1",
+    "intro": "You are a developer handed a library called GradeKit. You will NEVER see the code inside its procedures — only the documentation below. Your job is to use that documentation the way a real programmer does: predict what each call returns, spot calls that misuse the API, and explain how the docs let you use code you cannot see. This is the single most tested skill for LO AAP-3.D: an API is a specification, and documentation is necessary to use it correctly.",
+    "scenarioTitle": "The GradeKit API Documentation",
+    "narrative": "GradeKit is an external library for building gradebook apps. Below is its complete API documentation — the specification of how each procedure behaves and how to call it. Read it carefully; every question is answered from the doc alone, not from any code inside the library. Assume all scores are whole numbers.",
+    "log": {
+      "columns": [
+        "Procedure",
+        "Parameters (in order)",
+        "Returns",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Average(scores)",
+          "scores: a list of numbers",
+          "the average of the list, rounded DOWN to a whole number",
+          "Average([80, 90, 100]) → 90"
+        ],
+        [
+          "Highest(scores)",
+          "scores: a list of numbers",
+          "the largest number in the list",
+          "Highest([12, 45, 7]) → 45"
+        ],
+        [
+          "Passing(score, cutoff)",
+          "score, then cutoff (both numbers)",
+          "true if score ≥ cutoff, otherwise false",
+          "Passing(83, 70) → true"
+        ],
+        [
+          "Curve(score, points)",
+          "score, then points (both numbers)",
+          "score + points, but never more than 100",
+          "Curve(88, 15) → 100"
+        ]
+      ]
+    },
+    "scenarioNote": "GradeKit is a fictional library created for this exercise; call notation follows the AP Computer Science Principles Exam Reference Sheet procName(arg1, arg2) form (Effective Fall 2023).",
+    "predict": "Before you answer Part A, predict in one sentence: for the call Passing(60, 80), which number is the score and which is the cutoff — and how did the documentation tell you?",
+    "partALabel": "Part A - Use the Documentation",
+    "partA": [
+      {
+        "ek": "EK AAP-3.D.5",
+        "pts": 4,
+        "q": "Using ONLY the GradeKit doc, give the return value of each call and one phrase of justification from the doc: (a) Average([70, 85, 90]), (b) Highest([9, 9, 4]), (c) Curve(96, 9).",
+        "answer": "(a) Average([70, 85, 90]) → 81. The three numbers sum to 245; 245 / 3 = 81.67, and the doc says the average is rounded DOWN to a whole number, so 81. (b) Highest([9, 9, 4]) → 9, the largest number in the list (ties are fine — 9 is still the largest). (c) Curve(96, 9) → 100. The doc says score + points but never more than 100; 96 + 9 = 105, which is capped at 100. Full credit requires the values (81, 9, 100) AND that each is justified from the documented behavior, not from any assumed internal code."
+      },
+      {
+        "ek": "EK AAP-3.D.5",
+        "pts": 4,
+        "q": "The doc lists Passing(score, cutoff). A student wants to ask 'did a score of 68 pass a cutoff of 75?' and writes Passing(75, 68). Explain what this call actually computes, what it returns, and how the student should have written it.",
+        "answer": "Passing(75, 68) uses the documented order (score, cutoff), so it treats 75 as the score and 68 as the cutoff. It computes 75 ≥ 68, which is true, so it returns true — but that answers the WRONG question (it asks whether a 75 passed a 68 cutoff). To ask whether a 68 passed a 75 cutoff, the student should write Passing(68, 75), which computes 68 ≥ 75 and correctly returns false. The bug comes from ignoring the documented parameter order (EK AAP-3.D.5); the call runs without error but gives a meaningless-for-the-intent result."
+      },
+      {
+        "ek": "EK AAP-3.D.4",
+        "pts": 4,
+        "q": "A classmate says, 'I can't predict what Average returns until someone shows me the actual code inside GradeKit.' Using the CED's definition of an API, explain why the classmate is wrong.",
+        "answer": "The classmate is wrong because an API is a specification for how the procedures behave and can be used (EK AAP-3.D.4). The GradeKit doc already specifies Average's behavior completely: it takes a list of numbers and returns their average rounded down to a whole number. That is exactly what you need to predict any call — the internal code is hidden on purpose and is not required. Knowing WHAT a procedure does is enough to use it; knowing HOW it does it is not necessary. That separation is the whole point of an API."
+      },
+      {
+        "ek": "EK AAP-3.D.4",
+        "pts": 3,
+        "q": "GradeKit's authors later rewrite the inside of Average to run faster, but the documentation for Average does not change. Will your predicted return values from Part A(a) change? Explain using the idea that an API is a specification.",
+        "answer": "No, the predicted values do not change. Because the API is a specification of behavior (EK AAP-3.D.4), as long as the documented behavior stays the same — average of the list, rounded down — the return values stay the same, no matter how the internal code is rewritten. A faster internal implementation that still meets the specification produces identical results. This is exactly why callers rely on the API and not the code: the specification is the promise, and the hidden implementation can change beneath it."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-3.D.3",
+        "pts": 3,
+        "q": "A programmer needs to average a list, find its highest value, and check a pass/fail cutoff. Explain how using GradeKit rather than writing all three procedures from scratch 'simplifies the task of creating complex programs.'",
+        "answer": "GradeKit already provides Average, Highest, and Passing as tested procedures, so the programmer calls three documented procedures instead of designing, writing, and debugging three algorithms themselves (EK AAP-3.D.3). That reduces how much code must be written, cuts the testing burden, and lowers the chance of new bugs, letting the programmer spend effort on the parts of the program that are actually new. Reusing a library turns three sub-problems into three one-line calls, which is what 'simplifies creating complex programs' means."
+      },
+      {
+        "ek": "EK AAP-3.D.2",
+        "pts": 3,
+        "q": "GradeKit is an EXTERNAL library. Give an example of an INTERNAL source of existing code the same programmer might reuse in this project, and state the difference between the two sources.",
+        "answer": "An internal source would be a procedure the programmer (or a teammate) wrote earlier in this same project — for example, a formatGrade procedure built last week for another screen that is now reused here. The difference is where the code comes from: an external source like GradeKit comes from outside the project (often usable only as documented, with its internals hidden), while an internal source is previously written code from within the programmer's own work, which they typically own and could edit (EK AAP-3.D.2). Both are 'existing code segments' the programmer reuses instead of writing from scratch."
+      },
+      {
+        "ek": "EK AAP-3.D.5",
+        "pts": 2,
+        "q": "ENRICHMENT: Imagine GradeKit shipped with NO documentation — just the procedure names Average, Highest, Passing, and Curve. Identify two specific things you would be unable to know, and explain why that makes the documentation 'necessary.'",
+        "answer": "With names only, you could not know (1) the parameter order — e.g., whether Passing expects (score, cutoff) or (cutoff, score) — and (2) the exact return behavior, such as whether Average rounds down, rounds to the nearest, or keeps decimals, or that Curve caps at 100. Without those, any call is a guess that may run but return the wrong value. That is precisely why EK AAP-3.D.5 calls documentation necessary: the behaviors and how to use them are unknowable from a name alone, so the documentation is what makes correct use possible."
+      },
+      {
+        "ek": "LO AAP-3.D",
+        "pts": 0,
+        "q": "Next step: you predicted these calls on paper using the doc. Now head to the Topic 3.14 page and type and run the harder versions, where GradeKit is provided for you and the computer checks your output.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Pick the Library",
+    "minutes": "25 minutes",
+    "subtitle": "5 tasks - choose reuse-or-build and the source",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-14-exercise-2",
+    "intro": "You are planning a new app and deciding, for each task, whether to REUSE existing code or write it yourself — and if you reuse, whether the code comes from an internal or an external source. The judgment that trips people up is treating 'existing code' as only downloaded libraries, or assuming you can use a library without its documentation. Vague answers like 'just find a library' score zero — name the source and say what documentation you would need.",
+    "standard": "CB Standard (required): reuse-or-build decision + the source (internal / external) + what the API/documentation must tell you, for all 5 tasks. Enrichment (optional): note a subtler trade-off or trust consideration (EK AAP-3.D.2, D.4, D.5).",
+    "methodHeading": "Three-Step Method - use for every task",
+    "method": [
+      [
+        "Step 1 - Reuse or build?",
+        "Is this a well-solved, general problem (sorting, dates, graphics, math)? If tested code already exists, reusing it simplifies a complex program (EK AAP-3.D.3). Build from scratch only when nothing suitable exists."
+      ],
+      [
+        "Step 2 - Name the source: internal or external",
+        "Internal = code you or your team already wrote in this project. External = a published library or code from outside. Both are 'existing code segments' (EK AAP-3.D.2) — do not assume only downloaded libraries count."
+      ],
+      [
+        "Step 3 - Say what the docs must tell you",
+        "To call a reused procedure you need its API: the parameters in order, and the return value (EK AAP-3.D.4). State the specific thing the documentation must specify so you can use it correctly (EK AAP-3.D.5)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler trade-offs): Reuse is not automatically the right call. Weigh trust (can you rely on an unseen external library?), fit (does the documented behavior match what you need?), and stability (an API is a promise, so its internals can change beneath you without breaking your call — EK AAP-3.D.4). When you finish, move to the Topic 3.14 coding page to call the provided GradeKit library and build a small report.",
+    "fields": [
+      "Reuse or build (and why):",
+      "Source if reused (internal / external) + what the API must specify:",
+      "Enrichment — a subtler trade-off or trust consideration:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Your app must sort a list of student names alphabetically before displaying them. Reliable, well-tested sorting libraries already exist for your language.",
+        "key": {
+          "signs": "Sorting is a classic, well-solved general problem with tested library procedures available. Reusing one simplifies the program and avoids reintroducing bugs that were solved long ago (EK AAP-3.D.3).",
+          "mechanism": "REUSE, from an EXTERNAL source — a published sorting library. To call it correctly you need its API: what it takes (the list, and whether it sorts in place or returns a new list) and what it returns (EK AAP-3.D.4). The documentation must specify the parameter(s) and the return value so you use it correctly (EK AAP-3.D.5).",
+          "subtype": "Writing your own sort from scratch is possible but wasteful here; a tested external library is the appropriate selection, which is exactly the skill LO AAP-3.D names."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Last month, for a different screen in THIS same project, you wrote a procedure formatName(first, last) that returns a nicely formatted full name. The new screen needs the same formatting.",
+        "key": {
+          "signs": "The exact code you need already exists inside your own project. Rewriting it would duplicate work and risk two versions drifting apart.",
+          "mechanism": "REUSE, from an INTERNAL source — previously written code from within your own work (EK AAP-3.D.2). Because you wrote it, you already know its API, but you still rely on knowing its parameters in order (first, then last) and its return value to call it correctly (EK AAP-3.D.4).",
+          "subtype": "This is the headline EK AAP-3.D.2 point: 'existing code' is not only downloaded libraries. Reusing your own earlier procedure is an internal source of existing code, and preferring reuse keeps the formatting consistent across screens."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "Your app must compute the number of days between two calendar dates, correctly handling leap years and month lengths. A well-documented external date library provides a daysBetween procedure.",
+        "key": {
+          "signs": "Date arithmetic is notoriously easy to get wrong (leap years, month lengths). A tested library has already handled the edge cases, so reuse both saves time and avoids subtle bugs (EK AAP-3.D.3).",
+          "mechanism": "REUSE, from an EXTERNAL source. The API must specify the parameter order (which date comes first) and the return value, and whether the count includes or excludes the end date (EK AAP-3.D.4). You depend on the documentation to use it correctly, since you cannot see the internal leap-year logic (EK AAP-3.D.5).",
+          "subtype": "Note how much the documentation must pin down here — parameter order AND an edge-case detail (inclusive vs exclusive). This is why the CED calls documentation necessary, not optional."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "Your app needs a very specific feature unique to your project: matching students to lab partners using your school's own custom fairness rules. No existing library does this.",
+        "key": {
+          "signs": "This is a novel, project-specific problem. The matching rules are your own and are not a general, already-solved task, so no suitable existing procedure exists to reuse.",
+          "mechanism": "BUILD it from scratch (write your own procedure), since selecting a library only makes sense when appropriate existing code exists. LO AAP-3.D is about choosing WHEN reuse fits; here it does not, so the right choice is to author a new procedure — which you might then document as an internal source for later reuse.",
+          "subtype": "The lesson cuts both ways: 'select appropriate libraries or existing code' includes recognizing when nothing appropriate exists. Once written, documenting your own procedure turns it into a reusable internal source for the rest of the project."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "Your app must draw charts of student progress. A popular external charting library exists, but its documentation is sparse and you are unsure of the parameter order for its drawBar procedure.",
+        "key": {
+          "signs": "A capable external library exists, so reuse is attractive — drawing charts from scratch is a lot of complex work. But the weak documentation is a real obstacle to using it correctly.",
+          "mechanism": "REUSE from an EXTERNAL source is the sensible plan, BUT you cannot safely call drawBar until you know its API — specifically the parameter order and what each parameter means (EK AAP-3.D.4). Because documentation is necessary to use the library correctly (EK AAP-3.D.5), the action item is to find clearer docs or test the procedure to establish its documented behavior before relying on it.",
+          "subtype": "This is the D.5 trap in the real world: a great library is only usable to the extent its behavior is documented. Guessing the parameter order could silently draw the wrong chart, so the missing documentation, not the library's power, is the blocker."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Trusting Code You Cannot See",
+    "minutes": "~20 min total - 3 parts - Opening + Mid-lesson + Closing",
+    "overview": "Real programs are built mostly from code someone else already wrote. That is a superpower — you reuse tested procedures and finish faster — but it also means trusting procedures whose internals you never see, relying entirely on their API and documentation. Across three short windows, your group will argue about what you really need to know to reuse code, decide when reuse is and is not the right call, and pin down why the College Board says documentation is necessary rather than merely helpful.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "After the bell ringer, ~6 min",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. In the bell ringer you correctly used Curve without seeing its code — just one documented line. What exactly did that line give you that the procedure's name alone did not? What is the smallest amount of information you need to use a procedure someone else wrote?"
+          },
+          {
+            "text": "Question 2. Every big app you use is built on libraries the developers did not write themselves. What do programmers gain by standing on that prewritten code, and what do they give up or risk by trusting code they cannot see?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "After the internal-vs-external table, ~6 min",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Reuse or build?",
+            "text": "Name one task in an app your group would clearly REUSE a library for, and one task you would clearly BUILD yourselves. In one sentence the whole group agrees on, state the test you used to decide between reuse and build.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Internal or external?",
+            "text": "The CED says existing code can come from internal OR external sources. Debate for about 3 minutes: give one realistic example of each in a project you might build, and record the one difference that best distinguishes an internal source from an external one.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "After Common AP Traps, ~8 min",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "Why 'necessary,' not just 'helpful'?",
+            "text": "The doc for Passing(score, cutoff) fits on one line, yet without it a caller can swap the arguments and get the opposite answer with no error. As a group, write the clearest one-paragraph explanation you can of WHY the CED calls documentation NECESSARY — using the words 'API,' 'specification,' and 'parameter order.' Then invent one more short GradeKit-style procedure whose documentation would be necessary to use correctly, and say what the doc must specify.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best explains why an API is a specification and not the code):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

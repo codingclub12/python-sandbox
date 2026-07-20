@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.14",
+    "title": "Libraries",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You read the GradeKit API doc on paper in the Read the GradeKit Doc and Pick the Library exercises. Now use the real library: GradeKit is already written for you at the top of each problem — do NOT rewrite it, just CALL its procedures. The problems get harder as you go, ending with a grade report you build from scratch. Predict the output first, then run it."
+  },
+  "problems": [
+    {
+      "prompt": "GradeKit is provided for you. Call its Average procedure on the list [80, 90, 100] and print the class average. Do NOT rewrite the averaging logic yourself.",
+      "promptHtml": "GradeKit is provided for you. Call its <code>Average</code> procedure on the list <code>[80, 90, 100]</code> and print the class average. Do NOT rewrite the averaging logic yourself.",
+      "expected": "90",
+      "starter": {
+        "python": "# ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\ndef Average(scores):\n    return sum(scores) // len(scores)\ndef Highest(scores):\n    return max(scores)\ndef Passing(score, cutoff):\n    return score >= cutoff\ndef Curve(score, points):\n    return min(score + points, 100)\n# =======================================================================================\n\nscores = [80, 90, 100]\n# call Average(scores) and print the result\n",
+        "javascript": "// ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\nfunction Average(scores){ let s = 0; for (let v of scores){ s += v; } return Math.floor(s / scores.length); }\nfunction Highest(scores){ return Math.max(...scores); }\nfunction Passing(score, cutoff){ return score >= cutoff; }\nfunction Curve(score, points){ return Math.min(score + points, 100); }\n// =======================================================================================\n\nlet scores = [80, 90, 100];\n// call Average(scores) and print the result\n"
+      },
+      "reference": {
+        "pseudocode": "scores ← [80, 90, 100]\nclassAvg ← Average(scores)\nDISPLAY(classAvg)",
+        "python": "scores = [80, 90, 100]\nclassAvg = Average(scores)\nprint(classAvg)",
+        "javascript": "let scores = [80, 90, 100];\nlet classAvg = Average(scores);\nconsole.log(classAvg);"
+      },
+      "hint": "The doc says Average(scores) returns the average rounded down to a whole number. You do not write the math — just pass the list to Average and print what it returns. (80 + 90 + 100) / 3 = 90."
+    },
+    {
+      "prompt": "Using the provided GradeKit, print the highest score in [72, 95, 88] on the first line. Then, on the second line, print PASS if that top score meets a cutoff of 90 (use Passing), otherwise FAIL.",
+      "promptHtml": "Using the provided GradeKit, print the highest score in <code>[72, 95, 88]</code> on the first line. Then, on the second line, print <code>PASS</code> if that top score meets a cutoff of 90 (use <code>Passing</code>), otherwise <code>FAIL</code>.",
+      "expected": "95\nPASS",
+      "starter": {
+        "python": "# ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\ndef Average(scores):\n    return sum(scores) // len(scores)\ndef Highest(scores):\n    return max(scores)\ndef Passing(score, cutoff):\n    return score >= cutoff\ndef Curve(score, points):\n    return min(score + points, 100)\n# =======================================================================================\n\nscores = [72, 95, 88]\n# 1) call Highest(scores) and print it\n# 2) use Passing(top, 90) to print PASS or FAIL\n",
+        "javascript": "// ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\nfunction Average(scores){ let s = 0; for (let v of scores){ s += v; } return Math.floor(s / scores.length); }\nfunction Highest(scores){ return Math.max(...scores); }\nfunction Passing(score, cutoff){ return score >= cutoff; }\nfunction Curve(score, points){ return Math.min(score + points, 100); }\n// =======================================================================================\n\nlet scores = [72, 95, 88];\n// 1) call Highest(scores) and print it\n// 2) use Passing(top, 90) to print PASS or FAIL\n"
+      },
+      "reference": {
+        "pseudocode": "scores ← [72, 95, 88]\ntop ← Highest(scores)\nDISPLAY(top)\nIF(Passing(top, 90))\n{\n  DISPLAY(\"PASS\")\n}\nELSE\n{\n  DISPLAY(\"FAIL\")\n}",
+        "python": "scores = [72, 95, 88]\ntop = Highest(scores)\nprint(top)\nif Passing(top, 90):\n    print(\"PASS\")\nelse:\n    print(\"FAIL\")",
+        "javascript": "let scores = [72, 95, 88];\nlet top = Highest(scores);\nconsole.log(top);\nif (Passing(top, 90)) {\n  console.log(\"PASS\");\n} else {\n  console.log(\"FAIL\");\n}"
+      },
+      "hint": "Highest([72, 95, 88]) returns 95. Then Passing(95, 90) checks 95 ≥ 90, which is true — so print PASS. Print the boolean as PASS/FAIL with an if-statement; do not print the raw true/false."
+    },
+    {
+      "prompt": "A student scored 68. Using the provided GradeKit, first Curve their score by 5 points and print the curved score. Then print PASS or FAIL for the curved score against a cutoff of 70 (use Passing). Watch the documented parameter order.",
+      "promptHtml": "A student scored 68. Using the provided GradeKit, first <code>Curve</code> their score by 5 points and print the curved score. Then print <code>PASS</code> or <code>FAIL</code> for the curved score against a cutoff of 70 (use <code>Passing</code>). Watch the documented parameter order.",
+      "expected": "73\nPASS",
+      "starter": {
+        "python": "# ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\ndef Average(scores):\n    return sum(scores) // len(scores)\ndef Highest(scores):\n    return max(scores)\ndef Passing(score, cutoff):\n    return score >= cutoff\ndef Curve(score, points):\n    return min(score + points, 100)\n# =======================================================================================\n\nscore = 68\n# 1) curved = Curve(score, 5); print curved\n# 2) use Passing(curved, 70) to print PASS or FAIL\n",
+        "javascript": "// ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\nfunction Average(scores){ let s = 0; for (let v of scores){ s += v; } return Math.floor(s / scores.length); }\nfunction Highest(scores){ return Math.max(...scores); }\nfunction Passing(score, cutoff){ return score >= cutoff; }\nfunction Curve(score, points){ return Math.min(score + points, 100); }\n// =======================================================================================\n\nlet score = 68;\n// 1) curved = Curve(score, 5); print curved\n// 2) use Passing(curved, 70) to print PASS or FAIL\n"
+      },
+      "reference": {
+        "pseudocode": "score ← 68\ncurved ← Curve(score, 5)\nDISPLAY(curved)\nIF(Passing(curved, 70))\n{\n  DISPLAY(\"PASS\")\n}\nELSE\n{\n  DISPLAY(\"FAIL\")\n}",
+        "python": "score = 68\ncurved = Curve(score, 5)\nprint(curved)\nif Passing(curved, 70):\n    print(\"PASS\")\nelse:\n    print(\"FAIL\")",
+        "javascript": "let score = 68;\nlet curved = Curve(score, 5);\nconsole.log(curved);\nif (Passing(curved, 70)) {\n  console.log(\"PASS\");\n} else {\n  console.log(\"FAIL\");\n}"
+      },
+      "hint": "Curve(68, 5) returns 68 + 5 = 73 (below the 100 cap). Then Passing(curved, 70) must be called in the order (score, cutoff): Passing(73, 70) checks 73 ≥ 70 → true → PASS."
+    },
+    {
+      "prompt": "Build a grade report from scratch using ONLY the provided GradeKit procedures. For the list [55, 91, 78, 64], print three lines: (1) the average, (2) the highest score, and (3) PASS if the average meets a cutoff of 70, otherwise FAIL.",
+      "promptHtml": "Build a grade report from scratch using ONLY the provided GradeKit procedures. For the list <code>[55, 91, 78, 64]</code>, print three lines: (1) the average, (2) the highest score, and (3) <code>PASS</code> if the average meets a cutoff of 70, otherwise <code>FAIL</code>.",
+      "expected": "72\n91\nPASS",
+      "starter": {
+        "python": "# ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\ndef Average(scores):\n    return sum(scores) // len(scores)\ndef Highest(scores):\n    return max(scores)\ndef Passing(score, cutoff):\n    return score >= cutoff\ndef Curve(score, points):\n    return min(score + points, 100)\n# =======================================================================================\n\nscores = [55, 91, 78, 64]\n# Print three lines using GradeKit:\n#   1) the average of scores\n#   2) the highest score\n#   3) PASS or FAIL for the average vs a cutoff of 70\n",
+        "javascript": "// ===== GradeKit library (provided) — do NOT change this. Just CALL its procedures. =====\nfunction Average(scores){ let s = 0; for (let v of scores){ s += v; } return Math.floor(s / scores.length); }\nfunction Highest(scores){ return Math.max(...scores); }\nfunction Passing(score, cutoff){ return score >= cutoff; }\nfunction Curve(score, points){ return Math.min(score + points, 100); }\n// =======================================================================================\n\nlet scores = [55, 91, 78, 64];\n// Print three lines using GradeKit:\n//   1) the average of scores\n//   2) the highest score\n//   3) PASS or FAIL for the average vs a cutoff of 70\n"
+      },
+      "reference": {
+        "pseudocode": "scores ← [55, 91, 78, 64]\navg ← Average(scores)\nDISPLAY(avg)\nDISPLAY(Highest(scores))\nIF(Passing(avg, 70))\n{\n  DISPLAY(\"PASS\")\n}\nELSE\n{\n  DISPLAY(\"FAIL\")\n}",
+        "python": "scores = [55, 91, 78, 64]\navg = Average(scores)\nprint(avg)\nprint(Highest(scores))\nif Passing(avg, 70):\n    print(\"PASS\")\nelse:\n    print(\"FAIL\")",
+        "javascript": "let scores = [55, 91, 78, 64];\nlet avg = Average(scores);\nconsole.log(avg);\nconsole.log(Highest(scores));\nif (Passing(avg, 70)) {\n  console.log(\"PASS\");\n} else {\n  console.log(\"FAIL\");\n}"
+      },
+      "hint": "Average([55, 91, 78, 64]) = 288 // 4 = 72. Highest is 91. Passing(72, 70) checks 72 ≥ 70 → true → PASS. Call each GradeKit procedure once and print its result on its own line; never reimplement them."
+    }
+  ]
+}
