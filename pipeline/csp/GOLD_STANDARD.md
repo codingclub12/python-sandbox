@@ -55,8 +55,30 @@ external curriculum audit's adopted recommendations.
   keeps them. LO codes on section kickers are fine.
 - Quiz: 4 options, balanced answer letters, no 3-in-a-row, no
   all/none-of-the-above, rationale on every item explaining each distractor
-  from a real misconception, `predictFirst` ONLY on scenario/applied items,
-  bank skewed to harder kinds (scenario/applied/multi), 2-3 items per LO.
+  from a real misconception, 2-3 items per LO.
+- **Question STEMS read like a real AP CSP exam question — natural, about the
+  topic itself.** (owner's standard, v4)
+  - NEVER reference the framework in a stem: no "According to the CED", no
+    "EK"/"LO"/EK codes, no "the exam reference sheet provides…", no meta
+    language about the curriculum. Ask about the concept directly. (EK codes
+    still live on the KEY via the item's `ek` field for teacher alignment —
+    just never in the visible `stem`.)
+  - **Mix the question TYPES like the real exam.** CSP is vocabulary-heavy:
+    include plain definition / concept-recall / "which term…" / read-this-
+    short-code items, NOT a multi-sentence real-world scenario every time.
+    Rough target per bank: ~40% straightforward concept/vocabulary, ~35%
+    short applied/trace, ~25% real-world scenario. Keep real-world examples
+    (they're valuable) but trim the heavy reading — most stems ≤ ~35 words.
+  - `predictFirst` is OCCASIONAL, not the default: set it ONLY on genuine
+    "trace this code / predict the output" items, roughly ≤ 25% of a bank.
+    A concept or vocabulary item never gets `predictFirst`.
+  - **Difficulty is calibrated to the real AP MCQ, and eased for early
+    material.** Big Idea 1 especially should be accessible (foundational,
+    low-code) — no trick stems, no dense multi-clause setups; assess the idea
+    cleanly. Later/among heavier topics may go harder, but never via reading
+    load — via the concept.
+  - Run `python3 quiz_style_audit.py <file>` and clear it before shipping a
+    quiz/exam.
 - Guide block: overview, verbatim `los`/`eks`, materials, prereqs, pacing with
   `QOTD (BIn/Tn.n/Q1) + bell ringer` opener and slide ranges, flex assessment
   block (`"slides": "Handout"`), 3 misconceptions (myth/reality),
