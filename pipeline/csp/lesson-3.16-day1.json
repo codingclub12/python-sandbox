@@ -340,7 +340,7 @@
       {
         "id": "Q1",
         "kind": "recall",
-        "stem": "Per EK AAP-3.F.1, which statement best describes what a simulation IS?",
+        "stem": "Which of the following best describes a simulation?",
         "options": [
           "A complete, detail-for-detail copy of a real object or phenomenon",
           "A program that always produces the same output every time it is run",
@@ -349,57 +349,54 @@
         ],
         "answer": "C",
         "ek": "EK AAP-3.F.1",
-        "rationale": "EK AAP-3.F.1 defines a simulation as an abstraction of a more complex object or phenomenon for a specific purpose, so C is correct. A is the classic error — a simulation is a simplification, not a full copy. B describes a deterministic program; simulations typically use random values and vary between runs (EK AAP-3.F.2). D overclaims: simulations support inferences and hypotheses, they do not guarantee exact real-world outcomes."
+        "rationale": "A simulation is a purpose-built abstraction that simplifies reality, so C is correct. A demands full detail, which abstraction removes. B ignores that many simulations use randomness. D overstates a simulation as a certain prediction."
       },
       {
         "id": "Q2",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A student building a traffic simulation removes pedestrians, weather, and car colors, keeping only how many cars arrive per minute. Per EK AAP-3.F.4, how should this be described?",
+        "stem": "A student building a traffic simulation removes pedestrians, weather, and car colors, keeping only how many cars arrive per minute. How should this be described?",
         "options": [
-          "Appropriate development of a simulation by removing detail and simplifying for the purpose",
+          "Appropriate development, since a simulation removes detail and simplifies for its purpose",
           "A mistake, because a trustworthy simulation must include every real-world factor",
           "Pointless, because removing detail always makes a simulation less accurate than reality",
           "Impossible, because a simulation cannot leave out any element of the real system"
         ],
         "answer": "A",
         "ek": "EK AAP-3.F.4",
-        "rationale": "EK AAP-3.F.4 states that developing an abstract simulation involves removing specific details or simplifying functionality, which is exactly what the student did, so A is correct. B is the 'more detail is always better' misconception the EK contradicts. C is false — deleting irrelevant detail (car color) does not reduce accuracy for a traffic-flow purpose. D is wrong; leaving elements out is required, not forbidden."
+        "rationale": "Simulations deliberately omit irrelevant detail to focus on their purpose, so A is correct. B, C, and D all assume a simulation must copy reality completely, which contradicts what a model is meant to do."
       },
       {
         "id": "Q3",
         "kind": "applied",
-        "stem": "In a dice-game simulation, a programmer writes roll ← RANDOM(1, 6) inside a loop that runs many times. Per EK AAP-3.F.8, what is the purpose of RANDOM here?",
+        "stem": "In a dice-game simulation, a programmer writes roll ← RANDOM(1, 6) inside a loop that runs many times. What is the purpose of RANDOM here?",
         "options": [
           "To make the program run faster than using fixed numbers",
           "To guarantee every face of the die appears an equal number of times",
           "To store the results of the simulation so they can be reused later",
-          "To simulate the real-world variability of an unpredictable die roll"
+          "To model the real-world variability of an unpredictable die roll"
         ],
         "answer": "D",
         "ek": "EK AAP-3.F.8",
-        "rationale": "EK AAP-3.F.8 says random number generators can be used to simulate the variability that exists in the real world, so D is correct. A invents a speed benefit RANDOM does not provide. B misstates RANDOM: each result is equally LIKELY per call, but nothing guarantees equal counts in a finite run. C confuses generating values with storing them."
+        "rationale": "RANDOM introduces the unpredictability that mirrors a real die, so D is correct. A claims a speed benefit that does not exist. B confuses equal likelihood with guaranteed equal counts. C misdescribes RANDOM as storage."
       },
       {
         "id": "Q4",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "Engineers want to study how a bridge design behaves in a once-in-500-years earthquake before building it. Per EK AAP-3.F.6, why is a simulation the appropriate tool here?",
+        "stem": "Engineers want to study how a bridge design behaves in a once-in-500-years earthquake before building it. Why is a simulation the appropriate tool here?",
         "options": [
           "Because a simulation will predict the exact date the real earthquake occurs",
-          "Because the real experiment is impractical — too dangerous, expensive, and slow to reproduce",
+          "Because the real experiment is impractical, being too dangerous, expensive, and slow to reproduce",
           "Because simulations are always cheaper and more accurate than any physical test",
           "Because building the real bridge first would make the simulation unnecessary"
         ],
         "answer": "B",
         "ek": "EK AAP-3.F.6",
-        "rationale": "EK AAP-3.F.6 says simulations are most useful when real events are impractical for experiments — too big, small, fast, slow, expensive, or dangerous; a rare, destructive earthquake is all three, so B is correct. A overclaims prediction power. C is a blanket claim the CED never makes — simulations are not universally cheaper or more accurate. D reverses the logic; the point is to test BEFORE building."
+        "rationale": "Simulations shine when the real experiment is too dangerous, costly, or slow, so B is correct. A overstates prediction. C overclaims that simulations always beat physical tests. D reverses the logic of testing before building."
       },
       {
         "id": "Q5",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A city's evacuation simulation is built entirely from data collected on weekday mornings and predicts smooth traffic. During a real weekend evacuation, roads jam badly. Per EK AAP-3.F.5, what is the best explanation?",
+        "stem": "An evacuation simulation built only from weekday-morning data predicts smooth traffic, but a real weekend evacuation jams badly. What is the best explanation?",
         "options": [
           "The simulation contains bias from excluding weekend and off-peak conditions",
           "The simulation used too few random numbers to be statistically valid",
@@ -408,50 +405,49 @@
         ],
         "answer": "A",
         "ek": "EK AAP-3.F.5",
-        "rationale": "EK AAP-3.F.5 says simulations can contain bias derived from which real-world elements were included or excluded; building only from weekday-morning data excluded weekend conditions, biasing the result, so A is correct. B blames sample size, but the flaw is the excluded scenario, not randomness. C is an overgeneralization. D treats reality as a run of the model, ignoring that the model never represented weekends at all."
+        "rationale": "Leaving out weekend conditions biases the model toward its input data, so A is correct. B blames randomness rather than the missing data. C dismisses all simulation. D treats a systematic gap as bad luck."
       },
       {
         "id": "Q6",
         "kind": "applied",
-        "stem": "A weather model with a fixed 30% rain chance is run 100 times, then 100,000 times. The rain fraction is 0.24 in the short run and 0.301 in the long run. Per EK AAP-3.F.2 and AAP-3.F.3, what does this show?",
+        "stem": "A weather model with a fixed 30% rain chance gives a rain fraction of 0.24 over 100 runs and 0.301 over 100,000 runs. What does this show?",
         "options": [
           "The model is broken because the two runs disagree",
-          "Each run varies, and running more trials yields a more reliable inference about the phenomenon",
+          "Each run varies, and running more trials yields a more reliable estimate",
           "The rain chance built into the model must have secretly changed between runs",
           "A single run of 100 is enough to draw a trustworthy conclusion"
         ],
         "answer": "B",
         "ek": "EK AAP-3.F.2",
-        "rationale": "EK AAP-3.F.2 describes a simulation moving through varying sets of values, and AAP-3.F.3 says simulations let us draw inferences; more trials average out the noise, landing near the true 30%, so B is correct. A misreads normal variation as breakage. C invents a changing parameter — the chance was fixed. D ignores that 100 trials is a noisy sample, which is why 0.24 drifted far from 0.30."
+        "rationale": "More trials converge toward the true 30%, so B is correct. A misreads normal variation as a defect. C invents a hidden change. D trusts a small sample that clearly deviated."
       },
       {
         "id": "Q7",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A biologist runs a population simulation, changes one value — the predator birth rate — reruns it, and compares the outcomes. Per EK AAP-3.F.7, what does this activity best illustrate?",
+        "stem": "A biologist runs a population simulation, changes one value, the predator birth rate, reruns it, and compares the outcomes. Which best describes what this activity illustrates?",
         "options": [
-          "Proving with certainty what the real animal population will do next year",
+          "Proving with certainty what the real population will do next year",
           "Removing randomness so the simulation becomes fully predictable",
-          "Using the simulation to formulate and refine a hypothesis about the phenomenon",
+          "Using the simulation to form and refine a hypothesis about the phenomenon",
           "Replacing the need to ever observe the real population again"
         ],
         "answer": "C",
         "ek": "EK AAP-3.F.7",
-        "rationale": "EK AAP-3.F.7 says simulations facilitate the formulation and refinement of hypotheses; changing one variable and comparing outcomes is a cheap experiment that refines a hypothesis, so C is correct. A overclaims certainty. B is false — the reruns still use randomness. D overstates the role; simulations inform hypotheses, they do not replace real observation entirely."
+        "rationale": "Changing an input and comparing outcomes is how simulations help form and test hypotheses, so C is correct. A overstates certainty. B misdescribes the activity. D wrongly says simulation replaces real observation."
       },
       {
         "id": "Q8",
         "kind": "scenario",
-        "stem": "Two teams model the same disease outbreak. Team 1 includes travel between cities; Team 2 excludes it to keep the model simpler. Which comparison of the simulations to the real world is most accurate?",
+        "stem": "Two teams model the same disease outbreak. Team 1 includes travel between cities; Team 2 excludes it to keep the model simpler. Which comparison to the real world is most accurate?",
         "options": [
           "Team 2's simpler model is automatically more trustworthy because it removed detail",
           "Both models are exact copies of the outbreak, so they must produce identical results",
           "Team 1's model is guaranteed to be perfectly accurate because it includes more detail",
-          "Each model reflects its designers' choices; excluding travel is a simplification that can also introduce bias"
+          "Each model reflects its designers' choices; excluding travel is a simplification that can introduce bias"
         ],
         "answer": "D",
         "ek": "EK AAP-3.F.5",
-        "rationale": "This tests the tension between AAP-3.F.4 (simplifying is normal) and AAP-3.F.5 (exclusions can bias results). Excluding travel is a legitimate simplification that may also bias the spread pattern, so D is correct. A wrongly treats 'simpler' as 'more trustworthy.' B contradicts AAP-3.F.1 — neither is a copy. C repeats the 'more detail guarantees accuracy' misconception; more detail helps only if it serves the purpose and is correct."
+        "rationale": "Each model embodies design choices, and omissions can bias results, so D is correct. A assumes simpler is always better. B calls models exact copies. C assumes more detail guarantees accuracy."
       }
     ]
   },

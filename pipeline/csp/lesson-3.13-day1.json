@@ -326,95 +326,91 @@
       {
         "id": "Q1",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A team copies the same 'unit price times quantity' formula into 12 different places. A reviewer says 'wrap it in one procedure and call it.' Per EK AAP-3.B.4, what is the main way this manages complexity?",
+        "stem": "A team copied the same 'unit price times quantity' formula into 12 different places. A reviewer says, 'Wrap it in one procedure and call it.' How does this mainly manage complexity?",
         "options": [
           "It makes the program run measurably faster because there is less code to execute",
-          "It extracts the shared feature into one place so the code is reused instead of duplicated",
-          "It removes the need for parameters, since the procedure now stores every product's price",
-          "It guarantees the program can never contain a bug in the pricing calculation"
+          "It extracts the shared logic into one place so the code is reused instead of duplicated",
+          "It removes the need for parameters, since the procedure stores every product's price",
+          "It guarantees the pricing calculation can never contain a bug"
         ],
         "answer": "B",
         "ek": "EK AAP-3.B.4",
-        "rationale": "EK AAP-3.B.4 says a procedural abstraction may extract shared features to generalize functionality instead of duplicating code, allowing code reuse that helps manage complexity — exactly option B. A invents a speed claim; abstraction is about maintainability, not raw speed. C is backwards — parameters are how the one procedure serves many products, not something removed. D overpromises; reuse reduces duplicated bugs but cannot guarantee zero bugs."
+        "rationale": "Replacing duplication with one reusable procedure is the core complexity benefit, so B is correct. A overstates a speed effect. C misunderstands parameters, which are still needed. D overpromises; a single procedure can still contain a bug, but only in one place."
       },
       {
         "id": "Q2",
-        "kind": "applied",
-        "stem": "Per EK AAP-3.B.1, which statement best describes what procedural abstraction lets a programmer do?",
+        "kind": "recall",
+        "stem": "Which statement best describes what procedural abstraction lets a programmer do?",
         "options": [
-          "Use a procedure by knowing exactly how its internal code is written, line by line",
+          "Use a procedure only by reading its internal code line by line",
           "Combine several programs into a single file with no separate parts",
-          "Use a procedure by name, knowing only what it does and not how it does it",
-          "Guarantee that a procedure will always return the same value for every input"
+          "Guarantee that a procedure returns the same value for every input",
+          "Use a procedure by name, knowing what it does but not how it does it"
         ],
-        "answer": "C",
+        "answer": "D",
         "ek": "EK AAP-3.B.1",
-        "rationale": "EK AAP-3.B.1 defines procedural abstraction as providing a name for a process so a procedure can be used knowing only what it does, not how it does it — option C. A is the opposite; the point is that you do NOT need the internal code. B describes the loss of modularity, not abstraction. D confuses abstraction with a determinism guarantee, which is unrelated."
+        "rationale": "Procedural abstraction lets you use a procedure by name, knowing its purpose but not its internals, so D is correct. A is the opposite of abstraction. B describes the loss of modularity. C is unrelated to hiding implementation detail."
       },
       {
         "id": "Q3",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A developer rewrites the inside of a tested convertUnits procedure to run faster, keeping every returned value identical. Per EK AAP-3.B.7, what must the programs that call convertUnits do?",
+        "stem": "A developer rewrites the inside of a tested convertUnits procedure to run faster, keeping every returned value identical. What must the programs that call convertUnits do?",
         "options": [
-          "Nothing — as long as what the procedure does is preserved, callers are unaffected",
-          "Every call site must be rewritten to match the new internal code",
-          "Each caller must be notified in a comment before the procedure will still run",
-          "All callers must add a parameter to account for the faster version"
+          "Nothing, as long as what the procedure does is preserved",
+          "Rewrite every call site to match the new internal code",
+          "Add a comment at each caller before the procedure will run again",
+          "Add a parameter to account for the faster version"
         ],
         "answer": "A",
         "ek": "EK AAP-3.B.7",
-        "rationale": "EK AAP-3.B.7 says a programmer can change the internals of a procedure without notifying users as long as what the procedure does is preserved — so callers do nothing (A). B contradicts the EK; the whole benefit is that call sites are untouched. C invents a notification requirement. D adds a parameter that the behavior-preserving change never called for."
+        "rationale": "Because the procedure's behavior is unchanged, callers are unaffected, so A is correct. Abstraction hides the internals, so B, C, and D all assume callers depend on implementation detail they never see."
       },
       {
         "id": "Q4",
-        "kind": "applied",
-        "stem": "Per EK AAP-3.B.3, the term 'modularity' refers to which of the following?",
+        "kind": "recall",
+        "stem": "Which of the following best defines modularity?",
         "options": [
           "The number of parameters a single procedure is allowed to take",
           "The rule that lists are indexed starting at 1",
-          "The process of copying a formula into many places for speed",
-          "The subdivision of a computer program into separate subprograms"
+          "Dividing a program into separate subprograms, or modules",
+          "Copying a formula into many places to gain speed"
         ],
-        "answer": "D",
+        "answer": "C",
         "ek": "EK AAP-3.B.3",
-        "rationale": "EK AAP-3.B.3 defines modularity as the subdivision of a computer program into separate subprograms — option D, word for word. A invents a parameter-count meaning. B is the list-indexing rule from a different topic. C describes duplication, which is the opposite of the reuse modularity enables."
+        "rationale": "Modularity is subdividing a program into separate parts, so C is correct. A and B name unrelated ideas, and D describes duplication, which is the opposite of clean modular design."
       },
       {
         "id": "Q5",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A single procedure area(width, height) is used to compute the area of dozens of different rectangles across a program. Per EK AAP-3.B.5, what makes one procedure able to serve all of them?",
+        "stem": "One procedure area(width, height) computes the area of dozens of different rectangles across a program. What lets a single procedure serve all of them?",
         "options": [
-          "The procedure stores a separate copy of itself for each rectangle",
+          "It stores a separate copy of itself for each rectangle",
           "Its parameters generalize it, so it is reused with a range of input values",
           "It must be rewritten each time a new rectangle size is needed",
-          "The rectangles must all have the same width and height to share it"
+          "All the rectangles must share the same width and height"
         ],
         "answer": "B",
         "ek": "EK AAP-3.B.5",
-        "rationale": "EK AAP-3.B.5 says using parameters allows procedures to be generalized, enabling reuse with a range of input values or arguments — option B. A invents copies that do not exist. C contradicts reuse; the point is you do NOT rewrite it. D would defeat the purpose — parameters exist precisely so the sizes can differ."
+        "rationale": "Parameters generalize a procedure so one definition handles many inputs, so B is correct. A imagines needless copies. C denies reuse entirely. D would defeat the purpose of accepting width and height as inputs."
       },
       {
         "id": "Q6",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A large program is broken into small procedures, each solving one subproblem (validate input, compute total, format output). Per EK AAP-3.B.2, how does this help solve the large problem?",
+        "stem": "A large program is split into small procedures that each solve one subproblem: validate input, compute total, format output. How does this help solve the whole problem?",
         "options": [
           "It removes the need to ever test the program before shipping it",
           "It forces every subproblem to be solved by the exact same procedure",
-          "The solution to the large problem is built from the solutions to the smaller subproblems",
-          "It makes the large problem impossible to change once the procedures exist"
+          "The whole solution is built from the solutions to the smaller subproblems",
+          "It makes the program impossible to change once the procedures exist"
         ],
         "answer": "C",
         "ek": "EK AAP-3.B.2",
-        "rationale": "EK AAP-3.B.2 says procedural abstraction allows a solution to a large problem to be based on the solutions of smaller subproblems, accomplished by creating a procedure for each — option C. A overstates the benefit; abstraction does not remove testing. B is false; different subproblems get different procedures. D is the reverse of the truth — modular code is easier, not impossible, to change."
+        "rationale": "Decomposition builds the large solution from smaller solved pieces, so C is correct. A ignores that each piece still needs testing. B misstates decomposition. D is backward; modular code is usually easier to change."
       },
       {
         "id": "Q7",
         "kind": "applied",
-        "stem": "Per EK AAP-3.B.6, choosing to replace repeated inline arithmetic with a well-named procedure most directly improves which quality of the program?",
+        "stem": "Replacing repeated inline arithmetic with a well-named procedure most directly improves which quality of the program?",
         "options": [
           "Its readability, because the code reads more like what it does",
           "Its clock speed, because named procedures execute faster than arithmetic",
@@ -423,21 +419,21 @@
         ],
         "answer": "A",
         "ek": "EK AAP-3.B.6",
-        "rationale": "EK AAP-3.B.6 states that using procedural abstraction helps improve code readability — option A, and a well-named call reads like the task it performs. B and C invent performance and storage guarantees the EK does not make. D is unrelated; naming a process does not add randomness."
+        "rationale": "A meaningful name makes the code express its intent, improving readability, so A is correct. B and C claim performance and size benefits that naming does not provide, and D confuses procedures with random generation."
       },
       {
         "id": "Q8",
         "kind": "scenario",
-        "stem": "Two designs price products identically today: Design 1 copies the pricing formula into each of 10 product blocks; Design 2 calls one priceLabel procedure 10 times. Next week the pricing rule changes. Which best explains the difference, per EK AAP-3.B.3–B.4?",
+        "stem": "Design 1 copies the pricing formula into each of 10 product blocks; Design 2 calls one priceLabel procedure 10 times. Next week the pricing rule changes. Which best explains the difference?",
         "options": [
           "Design 1 is better because duplicated code is always easier to read",
-          "There is no difference; both require editing exactly one line to change the rule",
+          "There is no difference; both require editing exactly one line",
           "Design 2 will stop working because a procedure cannot be called more than once",
-          "Design 2 localizes the rule in one module, so the change is made once; Design 1 needs all 10 copies edited and risks a missed one"
+          "Design 2 keeps the rule in one place, so the change is made once; Design 1 needs all 10 copies edited and risks a missed one"
         ],
         "answer": "D",
         "ek": "EK AAP-3.B.3",
-        "rationale": "Modularity and reuse (EK AAP-3.B.3–B.4) put the shared rule in one procedure, so a change is made once; the duplicated design needs all 10 edits and a single miss creates a silent bug — option D. A is false; duplication hurts readability and maintenance. B ignores that Design 1 has 10 copies to edit. C is nonsense — procedures are meant to be called many times."
+        "rationale": "Centralizing the rule means one edit for Design 2, while Design 1 must be changed in 10 places, so D is correct. A praises duplication wrongly. B ignores the 10 edits Design 1 needs. C is false; procedures can be called repeatedly."
       }
     ]
   },

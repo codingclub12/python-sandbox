@@ -342,80 +342,78 @@
       {
         "id": "Q1",
         "kind": "recall",
-        "stem": "On the AP exam reference sheet, what does RANDOM(1, 6) generate and return?",
+        "stem": "Which of the following best describes what RANDOM(1, 6) returns?",
         "options": [
-          "A random integer that could be 1, 2, 3, 4, 5, or 6, each equally likely",
+          "A random integer equally likely to be 1, 2, 3, 4, 5, or 6",
           "A random decimal somewhere between 1 and 6",
           "The number 6 every time, since 6 is the upper bound",
           "A random integer from 1 to 5, since the upper bound is excluded"
         ],
         "answer": "A",
         "ek": "EK AAP-3.E.1",
-        "rationale": "EK AAP-3.E.1 says RANDOM(a, b) returns a random integer from a to b, inclusive, each result equally likely, so RANDOM(1, 6) yields one of 1–6 — option A. B is wrong because RANDOM returns an integer, not a decimal. C treats the top bound as a fixed answer rather than one of several equally likely outcomes. D applies the exclusive-upper-bound reflex the CED explicitly contradicts — 6 is included."
+        "rationale": "RANDOM(a, b) returns an integer from a to b inclusive, each equally likely, so A is correct. B returns a decimal. C fixes the result. D excludes the upper bound, which reference-sheet RANDOM includes."
       },
       {
         "id": "Q2",
         "kind": "scenario",
-        "predictFirst": true,
         "stem": "A spinner app uses RANDOM(2, 5) to pick a slice. Which statement correctly describes the possible results?",
         "options": [
-          "The only possible results are 2, 3, and 4 — the top bound 5 is excluded",
-          "The possible results are 2 and 5 only, the two bounds",
-          "The possible results are 2, 3, 4, and 5 — four equally likely outcomes",
-          "The possible results are 1, 2, 3, 4, and 5, starting from 1"
+          "Only 2, 3, and 4, since the top bound 5 is excluded",
+          "Only 2 and 5, the two bounds",
+          "2, 3, 4, and 5, four equally likely outcomes",
+          "1, 2, 3, 4, and 5, starting from 1"
         ],
         "answer": "C",
         "ek": "EK AAP-3.E.1",
-        "rationale": "RANDOM(2, 5) is inclusive of both ends, so the outcomes are 2, 3, 4, and 5 — four of them, 5 − 2 + 1 — each equally likely (EK AAP-3.E.1), which is option C. A wrongly excludes the top bound 5. B lists only the endpoints and drops the values between them. D starts at 1, but the low bound is 2, so 1 is not possible."
+        "rationale": "Both bounds are included, so the results are 2, 3, 4, and 5; C is correct. A drops the upper bound. B keeps only the endpoints. D adds 1, which is below the lower bound."
       },
       {
         "id": "Q3",
         "kind": "applied",
         "stem": "A die-roll program should have exactly six equally likely outcomes. How many possible results does RANDOM(1, 6) produce, and why?",
         "options": [
-          "Five — you subtract the bounds, 6 − 1",
-          "Six — inclusive bounds make the count b − a + 1",
-          "Six, but only from a die having six sides, not from the bounds",
-          "Seven — both endpoints plus every value between them"
+          "Five, because you subtract the bounds, 6 minus 1",
+          "Six, because inclusive bounds make the count b minus a plus 1",
+          "Six, but only because a die has six sides, not because of the bounds",
+          "Seven, both endpoints plus every value between them"
         ],
         "answer": "B",
         "ek": "EK AAP-3.E.1",
-        "rationale": "Both bounds are included, so the number of outcomes is b − a + 1 = 6 − 1 + 1 = 6 (EK AAP-3.E.1), and B is correct. A forgets the '+ 1' and undercounts by leaving out one endpoint. C gets the right number for the wrong reason — it is the bounds, not the physical die, that fix the count. D double-counts by adding the endpoints on top of a range that already includes them."
+        "rationale": "Inclusive bounds give b − a + 1 = 6 − 1 + 1 = 6 outcomes, so B is correct. A forgets the +1 for inclusive endpoints. C credits the die instead of the range. D double-counts the endpoints."
       },
       {
         "id": "Q4",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A student runs a program containing DISPLAY(RANDOM(1, 100)) on Monday and sees 42, then runs the identical program Tuesday and sees 7. What best explains this?",
+        "stem": "A student runs a program with DISPLAY(RANDOM(1, 100)) on Monday and sees 42, then runs the identical program Tuesday and sees 7. What best explains this?",
         "options": [
-          "The program has a bug — identical code must always produce identical output",
-          "The second run was affected by the first; RANDOM remembers previously returned values",
+          "The program has a bug; identical code must always produce identical output",
+          "The second run was affected by the first; RANDOM remembers previous values",
           "The value 42 was cached and 7 is an error code",
-          "This is expected: using random number generation means each execution may produce a different result"
+          "This is expected; random generation may produce a different result each run"
         ],
         "answer": "D",
         "ek": "EK AAP-3.E.2",
-        "rationale": "EK AAP-3.E.2 states that using random number generation means each execution may produce a different result, so different outputs from identical code are expected — option D. A assumes all code is deterministic, which random code is not. B invents memory between runs; each RANDOM call is independent. C fabricates caching and an error where a normal second outcome occurred."
+        "rationale": "Random generation can yield a different value each execution, so D is correct. A assumes determinism that RANDOM breaks. B invents memory between runs. C misreads a normal random value as an error."
       },
       {
         "id": "Q5",
         "kind": "applied",
-        "stem": "Evaluate: what is the complete set of possible results of RANDOM(4, 4)?",
+        "predictFirst": true,
+        "stem": "Evaluate the complete set of possible results of RANDOM(4, 4).",
         "options": [
           "The values 0, 1, 2, 3, and 4",
           "Any of the values 1, 2, 3, or 4",
-          "Exactly one value, 4 — the equal bounds leave only 4",
-          "An error — equal bounds a and b are not allowed"
+          "Exactly one value, 4, since the equal bounds leave only 4",
+          "An error, since equal bounds a and b are not allowed"
         ],
         "answer": "C",
         "ek": "EK AAP-3.E.1",
-        "rationale": "With a = b = 4, the only integer from a to b inclusive is 4 itself, so the set has exactly one result (count 4 − 4 + 1 = 1), which is option C. A invents a range down to 0 that the bounds do not define. B starts at 1, but the low bound is 4. D is false — equal bounds are legal and simply yield a single possible outcome."
+        "rationale": "When both bounds are 4, the only integer from 4 to 4 inclusive is 4, so C is correct. A and B include values below the lower bound. D is false; equal bounds are allowed and simply give one result."
       },
       {
         "id": "Q6",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A programmer wants a random integer that could be any value from 1 to 6, but wrote RANDOM(1, 5). What is wrong, and how should it be fixed?",
+        "stem": "A programmer wants a random integer that could be any value from 1 to 6 but wrote RANDOM(1, 5). What is wrong, and how should it be fixed?",
         "options": [
           "The call can never return 6; change it to RANDOM(1, 6) so all six values are possible",
           "Nothing is wrong; RANDOM(1, 5) already includes 6 through its inclusive bounds",
@@ -424,36 +422,35 @@
         ],
         "answer": "A",
         "ek": "EK AAP-3.E.1",
-        "rationale": "RANDOM(1, 5) has outcomes 1–5 only, so 6 can never appear; to include 6 the high bound must be 6, giving RANDOM(1, 6) — option A. B is self-contradictory: inclusive bounds include 5, not 6, since 6 is above the stated top bound. C misapplies exclusivity — the reference sheet's RANDOM includes the top bound, so RANDOM(1, 7) would wrongly allow 7. D invents a rule that ranges start at 0."
+        "rationale": "RANDOM(1, 5) tops out at 5, so it can never return 6; RANDOM(1, 6) fixes it and A is correct. B misreads the upper bound. C assumes an excluded endpoint that does not apply. D shifts the range downward incorrectly."
       },
       {
         "id": "Q7",
-        "kind": "applied",
-        "stem": "In RANDOM(1, 4), how likely is each individual outcome to occur?",
+        "kind": "recall",
+        "stem": "Which statement best describes how likely each outcome of RANDOM(1, 4) is?",
         "options": [
           "1 is the most likely, as the first-listed value",
           "The middle values 2 and 3 are more likely than 1 and 4",
           "It cannot be determined without running the program many times",
-          "All four values are equally likely, each with the same chance of occurring"
+          "All four values are equally likely, each with the same chance"
         ],
         "answer": "D",
         "ek": "EK AAP-3.E.1",
-        "rationale": "EK AAP-3.E.1 states each result is equally likely to occur, so all four outcomes share the same chance — option D. A invents a first-listed bias. B imports the 'middle is more common' intuition from two-dice totals, which does not apply to a single RANDOM call. C is wrong: the equal-likelihood property is guaranteed by the definition, not something you must measure."
+        "rationale": "RANDOM produces a uniform distribution, so every value is equally likely; D is correct. A and B invent a bias toward certain positions. C is wrong; the equal likelihood is known from the definition, not measured."
       },
       {
         "id": "Q8",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "An auto-grader must check a program that uses RANDOM(1, 6). Because the raw output changes every run, which approach lets the grader compare against a single fixed expected output?",
+        "stem": "An auto-grader must check a program that uses RANDOM(1, 6), but its raw output changes every run. Which approach lets the grader compare against a single fixed expected result?",
         "options": [
           "Require the program to always print 3, the middle value of the range",
-          "Grade a PROPERTY instead — have the program print whether the result is within 1 to 6, which is always true",
-          "Run the program only once and accept whatever number happens to appear",
+          "Grade a property instead, checking that the result is within 1 to 6, which is always true",
+          "Run the program only once and accept whatever number appears",
           "It is impossible to grade any program that uses RANDOM"
         ],
         "answer": "B",
         "ek": "EK AAP-3.E.2",
-        "rationale": "Since each execution may differ (EK AAP-3.E.2), the raw number is not a stable expected value; printing a property that is always true — such as 'the result is in range' — gives a fixed output the grader can check, option B. A would force a non-random result, defeating the purpose. C makes the expected output depend on chance, so a correct program could fail. D is false — grading a guaranteed property is exactly how random code is tested."
+        "rationale": "Testing a property that holds for every random value gives a stable check, so B is correct. A defeats the purpose of randomness. C is unreliable across runs. D is too pessimistic; property-based checks work fine."
       }
     ]
   },

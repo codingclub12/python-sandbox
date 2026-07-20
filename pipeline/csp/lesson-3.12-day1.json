@@ -341,119 +341,117 @@
     "questions": [
       {
         "id": "Q1",
-        "kind": "applied",
-        "stem": "A student has used 'functions' in another language and now sees the word 'procedure' on the AP reference sheet. Per EK AAP-3.A.1–A.2, which statement is correct?",
+        "kind": "recall",
+        "stem": "In exam pseudocode, what is a procedure?",
         "options": [
-          "A procedure and a function are fundamentally different: a procedure can take inputs but a function cannot",
-          "A function is a faster, specially compiled kind of code that a procedure cannot be",
-          "A procedure is a named group of instructions that may have parameters and return values; 'function' and 'method' are other languages' words for the same idea",
-          "The word 'procedure' only applies to code that displays output, while 'function' applies to code that does math"
+          "A named group of programming instructions that can be run by calling its name",
+          "A single variable that stores one value",
+          "A list of related data values",
+          "A condition that evaluates to true or false"
         ],
-        "answer": "C",
+        "answer": "A",
         "ek": "EK AAP-3.A.1",
-        "rationale": "EK AAP-3.A.1 defines a procedure as a named group of programming instructions that may have parameters and return values, and EK AAP-3.A.2 says procedures are called methods or functions in other languages — same idea, different word, so C is correct. A invents a distinction the CED does not make; both may take inputs. B fabricates a speed difference. D makes up a display-versus-math split that does not exist."
+        "rationale": "A procedure is a named, reusable block of instructions invoked by name, so A is correct. B describes a variable, C a list, and D a Boolean condition. Only A matches the meaning of a procedure."
       },
       {
         "id": "Q2",
-        "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A definition reads PROCEDURE mix(base, add). A program calls mix(\"milk\", \"cocoa\"). Per EK AAP-3.A.3, which pairing is correct?",
+        "kind": "applied",
+        "stem": "A procedure is defined as PROCEDURE mix(base, add). A program calls mix(\"milk\", \"cocoa\"). Which pairing is correct?",
         "options": [
-          "\"milk\" is assigned to base and \"cocoa\" is assigned to add; base and add are the parameters, and the two strings are the arguments",
           "base and add are the arguments, and \"milk\" and \"cocoa\" are the parameters",
-          "\"milk\" and \"cocoa\" are assigned alphabetically, so \"cocoa\" goes to base",
-          "The call fails outright, since the arguments are not named base and add"
+          "\"milk\" is assigned to base and \"cocoa\" to add; base and add are the parameters, and the two strings are the arguments",
+          "The values are assigned alphabetically, so \"cocoa\" goes to base",
+          "The call fails, since the arguments are not named base and add"
         ],
-        "answer": "A",
+        "answer": "B",
         "ek": "EK AAP-3.A.3",
-        "rationale": "EK AAP-3.A.3 says parameters are the input variables of a procedure and arguments specify their values when it is called; arguments bind by position, so \"milk\" (first) goes to base and \"cocoa\" (second) goes to add — A is correct. B reverses the two terms. C invents alphabetical assignment; pairing is by position, not spelling. D repeats the name-matching myth — arguments need not share the parameters' names."
+        "rationale": "Arguments are matched to parameters by position, so \"milk\" goes to base and \"cocoa\" to add; B is correct. A swaps the terms parameter and argument. C invents alphabetical matching. D is false; arguments need not share the parameter names."
       },
       {
         "id": "Q3",
         "kind": "code-error",
-        "stem": "PROCEDURE showItem(item, price) displays item then price. A program calls showItem(5, \"Gum\") but the programmer wanted the name shown before the number. Per EK AAP-3.A.5, what went wrong?",
+        "stem": "PROCEDURE showItem(item, price) displays item then price. A programmer calls showItem(5, \"Gum\") but wanted the name shown before the number. What went wrong?",
         "options": [
-          "Nothing — the procedure automatically prints the string before the number",
-          "The procedure needs to be rewritten; a call can never control the order values appear",
-          "The two DISPLAY statements ran in the wrong order on their own",
-          "The arguments are in the wrong order: 5 was assigned to item and \"Gum\" to price, so the call should be showItem(\"Gum\", 5)"
+          "Nothing; the procedure prints the string before the number automatically",
+          "A call can never control the order that values appear",
+          "The arguments are in the wrong order: 5 went to item and \"Gum\" to price, so it should be showItem(\"Gum\", 5)",
+          "The two DISPLAY statements reordered themselves"
         ],
-        "answer": "D",
+        "answer": "C",
         "ek": "EK AAP-3.A.5",
-        "rationale": "EK AAP-3.A.5 states arg1 is assigned to parameter1, arg2 to parameter2, and so on. Here 5 landed in item and \"Gum\" in price because of their positions, so the output order is wrong; fixing the argument ORDER to showItem(\"Gum\", 5) solves it — D is correct. A invents automatic reordering. B is false; the caller controls order via argument position. C blames the procedure, but the DISPLAY lines ran in their written order on the values they were given."
+        "rationale": "Arguments bind by position, so 5 became item and \"Gum\" became price; swapping them to showItem(\"Gum\", 5) fixes it, so C is correct. A ignores that order matters. B is false; argument order controls the output. D blames the procedure instead of the call."
       },
       {
         "id": "Q4",
-        "kind": "scenario",
+        "kind": "applied",
         "predictFirst": true,
-        "stem": "A main program runs: DISPLAY(\"1\"); doStuff(); DISPLAY(\"3\"), where doStuff displays \"2\". Per EK AAP-3.A.4, what prints and why?",
+        "stem": "A program runs DISPLAY(\"1\"), then calls doStuff (which displays \"2\"), then DISPLAY(\"3\"). What is displayed?",
         "options": [
-          "1 3 2  (the call is saved for last)",
-          "1 2 3  (the call runs, then control returns)",
-          "1 3  (a no-argument call displays nothing)",
-          "2 1 3  (the procedure always runs first)"
+          "1 3 2, because the call is saved for last",
+          "1 3, because a call displays nothing",
+          "2 1 3, because the procedure always runs first",
+          "1 2 3, because the call runs, then control returns"
         ],
-        "answer": "B",
+        "answer": "D",
         "ek": "EK AAP-3.A.4",
-        "rationale": "EK AAP-3.A.4 says a call interrupts sequential execution, runs the procedure's statements, then returns control to the point immediately after the call. So 1 prints, control jumps into doStuff and prints 2, then returns and prints 3: output 1 2 3, making B correct. A delays the call, which never happens. C wrongly claims a no-argument call displays nothing; doStuff still runs its own DISPLAY. D reverses the order; the main program starts first."
+        "rationale": "When doStuff is called it runs immediately, displaying 2, then control returns to display 3, giving 1 2 3; D is correct. A delays the call, B ignores its output, and C runs it before the first line. Calls execute in place and return afterward."
       },
       {
         "id": "Q5",
         "kind": "applied",
         "predictFirst": true,
-        "stem": "In exam pseudocode, DISPLAY(\"Hi\") runs, then DISPLAY(7) runs. Per EK AAP-3.A.6, exactly what appears on screen?",
+        "stem": "In exam pseudocode, DISPLAY(\"Hi\") runs, then DISPLAY(7) runs. What appears on screen?",
         "options": [
-          "Hi 7  (each value is shown followed by a space)",
-          "Hi7  (the values are joined with no space)",
+          "Hi 7, because each value is shown followed by a space",
+          "Hi7, because the values are joined with no space",
           "Hi and 7 on two separate lines",
-          "7 Hi  (numbers are always displayed first)"
+          "7 Hi, because numbers are displayed first"
         ],
         "answer": "A",
         "ek": "EK AAP-3.A.6",
-        "rationale": "EK AAP-3.A.6 says DISPLAY(expression) displays the value of expression followed by a space. Two DISPLAY calls therefore produce Hi then a space then 7 then a space, i.e. 'Hi 7' on one line — A is correct. B forgets the trailing space the reference sheet specifies. C invents automatic line breaks; DISPLAY adds a space, not a newline. D reorders the output; DISPLAY shows values in the order the statements run."
+        "rationale": "Each DISPLAY shows its value followed by a space, so the output is Hi 7; A is correct. B omits the space, C invents line breaks, and D reorders the output. DISPLAY does not reorder or line-break on its own."
       },
       {
         "id": "Q6",
-        "kind": "scenario",
-        "stem": "A teacher says, 'When you call a procedure, think of it like pressing a button on a microwave.' Per EK AAP-3.A.1 and A.4, which part of that analogy is most accurate?",
+        "kind": "recall",
+        "stem": "Which statement best describes what happens when a procedure is called?",
         "options": [
-          "You must fully understand the microwave's internal wiring before you press the button",
-          "Pressing the button physically copies all of the microwave's parts into your kitchen",
-          "You trigger a named, prewritten process by its name, and control returns to you once it finishes",
-          "The labeled button can only ever be pressed one single time per whole program"
+          "The program permanently replaces the main code with the procedure's code",
+          "The procedure runs only if it has no parameters",
+          "The procedure's statements run, then control returns to where the call was made",
+          "The call displays the procedure's name on the screen"
         ],
         "answer": "C",
         "ek": "EK AAP-3.A.1",
-        "rationale": "A procedure is a named group of instructions (EK AAP-3.A.1), and calling it runs that process and returns control when done (EK AAP-3.A.4) — you invoke it by name without rewriting it, exactly like pressing a labeled button, so C is correct. A contradicts abstraction; you need not know the internals to call it. B misreads a call as copying code. D invents a one-call limit; procedures are reusable."
+        "rationale": "A call runs the procedure's statements and then returns control to the caller, so C is correct. A misdescribes a temporary transfer as a permanent replacement. B invents a no-parameter rule. D confuses calling with printing a name."
       },
       {
         "id": "Q7",
         "kind": "applied",
-        "predictFirst": true,
         "stem": "PROCEDURE greet(name, times) displays name, then displays times. What is the exact output of greet(\"Al\", 3)?",
         "options": [
-          "Al Al Al  (times means repeat the name that many times)",
-          "Al 3  (name is \"Al\", times is 3, each shown followed by a space)",
-          "3 Al  (the number parameter is always shown first)",
-          "name times  (the parameter names are displayed literally)"
+          "Al Al Al, because times means repeat the name that many times",
+          "3 Al, because the number is always shown first",
+          "name times, because the parameter names are displayed",
+          "Al 3, because name is \"Al\" and times is 3, each shown followed by a space"
         ],
-        "answer": "B",
+        "answer": "D",
         "ek": "EK AAP-3.A.5",
-        "rationale": "By position (EK AAP-3.A.5), \"Al\" is assigned to name and 3 to times; the procedure displays name then times, each followed by a space (EK AAP-3.A.6), giving 'Al 3' — B is correct. A assumes times triggers repetition, but the procedure only DISPLAYs times, it does not loop. C reorders the output. D confuses displaying a parameter's VALUE with printing its name; DISPLAY shows the value assigned to it."
+        "rationale": "name is \"Al\" and times is 3, and each is displayed with a trailing space, giving Al 3; D is correct. A misreads times as a repeat count. B reorders the output. C displays the parameter names literally rather than their values."
       },
       {
         "id": "Q8",
         "kind": "scenario",
-        "stem": "A programmer wants to run the same three-line 'print a receipt header' process in five different places in a program. Per EK AAP-3.A.1, what is the advantage of making it a procedure and calling it?",
+        "stem": "You must run the same three-line 'print a receipt header' process in five different places in a program. What is the advantage of writing it as a procedure and calling it?",
         "options": [
           "Calling a procedure makes those three lines execute faster than writing them directly",
+          "The process is written and named once, then run in all five places by calling its name",
           "A procedure can hold more lines of code than the main program can",
-          "Using a procedure removes the need to give the values any arguments",
-          "The process is written and named once, then run in all five places by calling its name — no copying the three lines five times"
+          "Using a procedure removes the need to pass any arguments"
         ],
-        "answer": "D",
+        "answer": "B",
         "ek": "EK AAP-3.A.1",
-        "rationale": "EK AAP-3.A.1 frames a procedure as a named group of instructions; naming a process once lets you invoke it anywhere by name instead of duplicating its lines — that reuse is exactly what D states, so D is correct. A invents a speed gain that a call does not provide. B fabricates a size limit that does not exist. C is false — a procedure may still require arguments on every call; naming the process does not remove its inputs."
+        "rationale": "A procedure lets you write the logic once and reuse it by name in many places, so B is correct. A claims a speed benefit that does not exist. C invents a size limit. D is unrelated; reuse does not eliminate arguments."
       }
     ]
   },

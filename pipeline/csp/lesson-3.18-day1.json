@@ -349,38 +349,36 @@
     "questions": [
       {
         "id": "Q1",
-        "kind": "applied",
-        "stem": "Per EK AAP-4.B.1, which statement best defines a decidable problem?",
+        "kind": "recall",
+        "stem": "Which of the following best defines a decidable problem?",
         "options": [
           "A decision problem that has a yes/no answer but for which no algorithm is known",
           "Any problem a computer can solve for at least one specific input",
-          "A decision problem for which an algorithm can be written that produces a correct output for all inputs",
+          "A decision problem for which an algorithm can be written that gives a correct answer for all inputs",
           "A problem that a computer can solve quickly, in a reasonable amount of time"
         ],
         "answer": "C",
         "ek": "EK AAP-4.B.1",
-        "rationale": "EK AAP-4.B.1 defines a decidable problem as a decision problem for which an algorithm produces a correct output for ALL inputs, so C is correct. A removes the algorithm, which is the whole point of decidability. B is the B.3 trap — solving one instance is not the same as an algorithm correct for every input. D confuses decidability with reasonable running time (Topic 3.17); decidability is about existence of a correct algorithm, not its speed."
+        "rationale": "A decidable problem has an algorithm that is always correct on every input, so C is correct. A describes an undecidable problem. B is too weak, requiring only one input. D confuses decidability with speed."
       },
       {
         "id": "Q2",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A student answers 'Is a whole number even?' by testing whether the number's remainder when divided by 2 equals 0. Per EK AAP-4.B.1, is this problem decidable, and why?",
+        "stem": "A student answers 'Is a whole number even?' by testing whether the number MOD 2 equals 0. Is this problem decidable, and why?",
         "options": [
-          "Yes — a single algorithm (test number MOD 2 = 0) gives the correct yes/no for every integer input",
-          "No — for very large numbers the check would take an unreasonable amount of time",
-          "Yes — but only for the specific numbers the student happens to test",
-          "No — the correct answer changes depending on which number is used"
+          "Yes; a single algorithm, testing number MOD 2 = 0, gives the correct yes/no for every integer",
+          "No; for very large numbers the check would take an unreasonable amount of time",
+          "Yes, but only for the specific numbers the student happens to test",
+          "No; the correct answer changes depending on which number is used"
         ],
         "answer": "A",
         "ek": "EK AAP-4.B.1",
-        "rationale": "The remainder test is one fixed algorithm that is correct for every integer, which is exactly the definition of decidable (EK AAP-4.B.1), so A is right. B imports Topic 3.17's speed concern; the check is fast and, more importantly, decidability is about correctness for all inputs, not time. C mistakes testing a few cases for covering all inputs. D confuses a varying ANSWER with a varying method — one algorithm still handles every case correctly."
+        "rationale": "One algorithm decides evenness correctly for every integer, so the problem is decidable and A is correct. B confuses decidability with running time. C limits it to sample inputs. D denies that the algorithm is always correct."
       },
       {
         "id": "Q3",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "Researchers describe a decision problem for which it is impossible to build any algorithm that always returns a correct yes-or-no answer for every possible input. Per EK AAP-4.B.2, what is this problem called?",
+        "stem": "Researchers describe a decision problem for which it is impossible to build any algorithm that always returns a correct yes-or-no answer for every possible input. What is this problem called?",
         "options": [
           "A decidable problem",
           "An optimization problem",
@@ -389,12 +387,12 @@
         ],
         "answer": "D",
         "ek": "EK AAP-4.B.2",
-        "rationale": "EK AAP-4.B.2 defines an undecidable problem as one for which no algorithm can always give a correct yes-or-no answer, matching D. A is the opposite — decidable problems DO have such an algorithm. B is a different category (finding a best solution, not a yes/no barrier). C invents a term and, like the common trap, confuses impossibility with mere slowness."
+        "rationale": "A problem with no always-correct algorithm is undecidable, so D is correct. A is its opposite. B seeks a best value, not a yes/no. C is about speed, not the impossibility of a correct algorithm."
       },
       {
         "id": "Q4",
         "kind": "applied",
-        "stem": "Per the AP CED's stated boundary for AAP-4.B.2, which of the following are you NOT expected to do?",
+        "stem": "In this course, which of the following are you NOT expected to do with undecidable problems?",
         "options": [
           "Explain what it means for a problem to be undecidable",
           "Determine on your own whether a given problem is undecidable",
@@ -403,27 +401,26 @@
         ],
         "answer": "B",
         "ek": "EK AAP-4.B.2",
-        "rationale": "The exclusion on EK AAP-4.B.2 states that determining whether a given problem is undecidable is outside the scope of the course and exam, so B is the thing you are NOT expected to do. A, C, and D are all in scope: the objective is to EXPLAIN that undecidable problems exist, recognize them as a real phenomenon, and explain the B.3 point about solvable instances."
+        "rationale": "You are expected to understand and recognize undecidability, not to prove a given problem undecidable yourself, so B is correct. A, C, and D are all within the course's expectations."
       },
       {
         "id": "Q5",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A classmate concludes, 'If a problem is undecidable, then a computer can never answer it correctly for ANY input.' Per EK AAP-4.B.3, what is the precise correction?",
+        "stem": "A classmate concludes, 'If a problem is undecidable, then a computer can never answer it correctly for ANY input.' What is the precise correction?",
         "options": [
           "Some individual instances may have an algorithmic solution; what is impossible is a single algorithm that solves all instances correctly",
-          "Every instance of the problem can actually be solved — it just cannot be done quickly",
+          "Every instance of the problem can actually be solved; it just cannot be done quickly",
           "The problem can be solved for all inputs as long as a fast enough computer is used",
-          "The classmate is right: an undecidable problem has no solvable instances at all"
+          "The classmate is right; an undecidable problem has no solvable instances at all"
         ],
         "answer": "A",
         "ek": "EK AAP-4.B.3",
-        "rationale": "EK AAP-4.B.3 says an undecidable problem may have some instances with an algorithmic solution, but no algorithm solves ALL instances, so A is the exact correction. B overstates it — not every instance is solvable, and the barrier is not speed. C repeats the 'faster computer' misconception. D agrees with the wrong claim, contradicting B.3's point that some instances are solvable."
+        "rationale": "Undecidability rules out one always-correct algorithm, not every individual instance, so A is correct. B and C confuse it with speed. D repeats the classmate's overstatement."
       },
       {
         "id": "Q6",
-        "kind": "applied",
-        "stem": "Which statement about an undecidable problem is TRUE?",
+        "kind": "recall",
+        "stem": "Which statement about an undecidable problem is true?",
         "options": [
           "It has one algorithm that works for all inputs, but that algorithm is simply too slow",
           "It is just a problem for which no one has discovered the algorithm yet",
@@ -432,26 +429,26 @@
         ],
         "answer": "C",
         "ek": "EK AAP-4.B.3",
-        "rationale": "C combines EK AAP-4.B.2 (no algorithm correct for all inputs) with EK AAP-4.B.3 (some instances still solvable), which is the accurate picture. A is false — an undecidable problem has no correct-for-all-inputs algorithm at all, slow or otherwise. B treats a proven impossibility as a temporary gap in knowledge. D confuses undecidability with optimization, an unrelated category from AAP-4.A.2."
+        "rationale": "No always-correct algorithm exists, yet particular instances may still be solvable, so C is correct. A blames speed. B suggests the algorithm merely awaits discovery. D confuses undecidability with optimization."
       },
       {
         "id": "Q7",
         "kind": "scenario",
-        "stem": "A student argues, 'A problem is undecidable only because today's computers are not powerful enough; a fast enough machine would make it decidable.' Per EK AAP-4.B.2, why is this reasoning wrong?",
+        "stem": "A student argues, 'A problem is undecidable only because today's computers are not powerful enough; a fast enough machine would make it decidable.' Why is this reasoning wrong?",
         "options": [
-          "It is actually correct — faster hardware does turn undecidable problems into decidable ones",
+          "It is actually correct; faster hardware does turn undecidable problems into decidable ones",
           "Undecidability is about the impossibility of any always-correct algorithm, not about hardware speed or power",
           "The real fix is adding more memory rather than more processing speed",
           "Undecidable problems are simply those that always run in an unreasonable amount of time"
         ],
         "answer": "B",
         "ek": "EK AAP-4.B.2",
-        "rationale": "EK AAP-4.B.2 makes undecidability a claim about the impossibility of an always-correct algorithm, independent of hardware, so B is right. A endorses the misconception. C still assumes hardware is the barrier, just swapping memory for speed. D confuses undecidability with Topic 3.17's unreasonable running time — an undecidable problem has no correct algorithm to run at all, fast or slow."
+        "rationale": "Undecidability is a limit on algorithms themselves, not on hardware, so B is correct. A accepts the false premise. C swaps one hardware fix for another. D confuses undecidability with slow running time."
       },
       {
         "id": "Q8",
         "kind": "scenario",
-        "stem": "Consider two decision problems: (P) 'Is a given whole number even?' and (Q) a problem for which it is established that no algorithm can always give a correct yes/no answer. Which classification is correct?",
+        "stem": "Consider two decision problems: (P) 'Is a given whole number even?' and (Q) a problem for which no algorithm can always give a correct yes/no answer. Which classification is correct?",
         "options": [
           "Both P and Q are undecidable",
           "Both P and Q are decidable",
@@ -460,7 +457,7 @@
         ],
         "answer": "D",
         "ek": "EK AAP-4.B.1",
-        "rationale": "P has a single algorithm correct for all inputs (the remainder test), so it is decidable (EK AAP-4.B.1); Q is defined as having no always-correct algorithm, so it is undecidable (EK AAP-4.B.2). That makes D correct. A and C mislabel the easily-decidable even-number problem as undecidable. B ignores Q's stated impossibility and calls it decidable."
+        "rationale": "P has an always-correct algorithm (decidable) while Q has none (undecidable), so D is correct. A and B misclassify one of them. C reverses the two classifications."
       }
     ]
   },

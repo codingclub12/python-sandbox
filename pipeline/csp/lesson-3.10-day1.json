@@ -320,94 +320,94 @@
     "questions": [
       {
         "id": "Q1",
-        "kind": "applied",
-        "stem": "In exam pseudocode, aList ← [4, 8, 15, 16, 23]. What does aList[2] evaluate to, per EK AAP-2.N.1?",
+        "kind": "recall",
+        "stem": "Which of the following best describes a list?",
         "options": [
-          "15, counting the first element as index 0",
-          "4, the first element of the list",
-          "8, the second element, since the first element is at index 1",
-          "An error — index 2 is out of range for this list"
+          "A single value that cannot change once it is assigned",
+          "An ordered collection of elements, each reachable by an index",
+          "A procedure that returns a Boolean value",
+          "A loop that repeats a fixed number of times"
         ],
-        "answer": "C",
+        "answer": "B",
         "ek": "EK AAP-2.N.1",
-        "rationale": "EK AAP-2.N.1 states the first element is at index 1, so aList[1] is 4 and aList[2] is 8. C is correct. A applies 0-indexing (the reference sheet is 1-indexed), which lands on 15. B confuses index 2 with the first element. D is false — index 2 is within the valid range 1 through 5."
+        "rationale": "A list is an ordered set of elements accessed by index, so B is correct. A describes a simple variable, not a collection. C describes a procedure. D describes iteration. Only B captures the idea of many elements stored under one name."
       },
       {
         "id": "Q2",
-        "kind": "scenario",
+        "kind": "applied",
         "predictFirst": true,
-        "stem": "steps holds 5 elements. A program runs APPEND(steps, 90) and then INSERT(steps, 1, 50). Per EK AAP-2.N.1, what is true afterward?",
+        "stem": "aList ← [4, 8, 15, 16, 23]. What does aList[2] evaluate to?",
         "options": [
-          "LENGTH(steps) is 7 and the first element is now 50",
-          "LENGTH(steps) is 7 and the first element is unchanged from before",
-          "LENGTH(steps) is 5 — the procedures overwrote existing slots",
-          "LENGTH(steps) is 6 and 50 was added to the end of the list"
+          "4, the first element of the list",
+          "15, counting the first element as index 0",
+          "8, the second element, since the first element is at index 1",
+          "An error, since index 2 is out of range for this list"
         ],
-        "answer": "A",
+        "answer": "C",
         "ek": "EK AAP-2.N.1",
-        "rationale": "APPEND increases the length by 1 (to 6), and INSERT increases it by 1 again (to 7); INSERT at index 1 shifts everything right and places 50 first (EK AAP-2.N.1). A is correct. B ignores that INSERT at index 1 replaces the front position. C wrongly claims the procedures overwrite rather than resize. D forgets APPEND already grew the list and misplaces 50 at the end instead of index 1."
+        "rationale": "Reference-sheet lists are 1-indexed, so aList[1] is 4 and aList[2] is 8. C is correct. B applies 0-indexing and lands on 15. A confuses index 2 with the first element. D is false; index 2 is within the valid range 1 through 5."
       },
       {
         "id": "Q3",
         "kind": "applied",
-        "stem": "bList ← [10, 20, 30, 40]. After REMOVE(bList, 2) runs, what is bList[2] and LENGTH(bList), per EK AAP-2.N.1?",
+        "predictFirst": true,
+        "stem": "bList ← [10, 20, 30, 40]. After REMOVE(bList, 2) runs, what are bList[2] and LENGTH(bList)?",
         "options": [
-          "bList[2] is 20 and LENGTH(bList) is 4 — REMOVE only blanks the slot",
-          "bList[2] is 40 and LENGTH(bList) is 3",
           "bList[2] is 30 and LENGTH(bList) is 4",
+          "bList[2] is 40 and LENGTH(bList) is 3",
+          "bList[2] is 20 and LENGTH(bList) is 4, since REMOVE only blanks the slot",
           "bList[2] is 30 and LENGTH(bList) is 3"
         ],
         "answer": "D",
         "ek": "EK AAP-2.N.1",
-        "rationale": "REMOVE(bList, 2) deletes 20 and shifts the later values left, giving [10, 30, 40] with length 3, so bList[2] is 30 (EK AAP-2.N.1). D is correct. A assumes REMOVE leaves an empty slot and keeps length 4. B shifts too far. C gets the new value right but forgets the length decreased by 1."
+        "rationale": "REMOVE deletes the element at index 2 (the 20) and shifts the rest left, so the list becomes [10, 30, 40]: bList[2] is 30 and LENGTH is 3. D is correct. A and C keep the old length; REMOVE actually shrinks the list. B misreads which value lands at index 2."
       },
       {
         "id": "Q4",
         "kind": "applied",
-        "stem": "You must change the value at index 3 of aList to 99 WITHOUT changing how many elements the list has. Per EK AAP-2.N.1, which statement does exactly that?",
+        "stem": "You need to change the element at index 3 of aList to 99 while keeping the list the same length. Which statement does exactly that?",
         "options": [
-          "INSERT(aList, 3, 99)",
           "aList[3] ← 99",
+          "INSERT(aList, 3, 99)",
           "APPEND(aList, 99)",
           "REMOVE(aList, 3)"
         ],
-        "answer": "B",
+        "answer": "A",
         "ek": "EK AAP-2.N.1",
-        "rationale": "aList[3] ← 99 overwrites the existing element at index 3 in place, leaving the length unchanged (EK AAP-2.N.1). B is correct. A inserts a new element and grows the length by 1. C adds 99 to the end and grows the length. D deletes an element and shrinks the length — none of these preserve the size the way an in-place assignment does."
+        "rationale": "Assigning aList[3] ← 99 overwrites the existing element without changing the count, so A is correct. INSERT (B) and APPEND (C) each add an element, growing the length. REMOVE (D) deletes an element, shrinking it. Only direct index assignment changes a value in place."
       },
       {
         "id": "Q5",
-        "kind": "applied",
-        "stem": "A program runs FOR EACH item IN scores { total ← total + item }, where scores has 4 elements. Per EK AAP-2.O.3, which statement describes the traversal?",
+        "kind": "recall",
+        "stem": "Which of the following best describes what it means to traverse a list?",
         "options": [
-          "item is assigned each element's value in order, first to last, so every element is added — a complete traversal",
-          "item is assigned the index positions 1, 2, 3, 4 rather than the element values",
-          "The loop body runs exactly once, regardless of how many elements scores has",
-          "FOR EACH visits only the first and last elements of scores"
+          "Visit each element of the list, typically from first to last",
+          "Sort the list into ascending order",
+          "Remove the first and last elements",
+          "Return the length of the list"
         ],
         "answer": "A",
         "ek": "EK AAP-2.O.3",
-        "rationale": "EK AAP-2.O.3 says item is assigned the value of each element sequentially from first to last, and the body runs once per element — a complete traversal (EK AAP-2.O.1). A is correct. B confuses item with an index; FOR EACH binds values, not positions. C ignores that the body runs once per element. D invents a partial visit FOR EACH never does."
+        "rationale": "A traversal steps through the elements, usually first to last, so A is correct. Sorting (B) rearranges values, removing (C) changes the list, and returning length (D) is a single query. None of those visit every element, which is what traversal means."
       },
       {
         "id": "Q6",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A linear search scans vals ← [5, 9, 2, 7] in order, looking for the value 2 and stopping as soon as it is found. Per EK AAP-2.O.5, how many elements does it examine?",
+        "stem": "A linear search scans vals ← [5, 9, 2, 7] in order for the value 2 and stops as soon as it is found. How many elements does it examine?",
         "options": [
-          "4 — a linear search always checks the entire list",
-          "1 — the value is found immediately",
-          "3 — it checks 5, then 9, then finds 2 and stops",
-          "2 — it stops one element before the match"
+          "4, because a linear search always checks the whole list",
+          "1, because the value is found immediately",
+          "3, checking 5, then 9, then finding 2 and stopping",
+          "2, because it stops one element before the match"
         ],
         "answer": "C",
         "ek": "EK AAP-2.O.5",
-        "rationale": "A linear search checks each element in order until the desired value is found (EK AAP-2.O.5): it examines 5 (no), 9 (no), then 2 (yes) and stops — 3 elements. C is correct. A describes scanning the whole list, but the search stops at the match. B skips the two non-matches before 2. D stops one element too early and never actually finds the value."
+        "rationale": "Linear search checks 5, then 9, then 2, where it stops, so 3 elements are examined. C is correct. A is wrong because a search that stops early need not scan everything. B skips the first two checks. D stops too soon and would miss the match."
       },
       {
         "id": "Q7",
         "kind": "applied",
-        "stem": "temps ← [10, 20, 30]. A program sums the list into total with a traversal, then computes total / LENGTH(temps). Per EK AAP-2.O.4, what value is the average?",
+        "stem": "temps ← [10, 20, 30]. A program adds the elements into total, then computes total / LENGTH(temps). What value is the average?",
         "options": [
           "60, the sum of the elements",
           "20, the sum divided by the number of elements",
@@ -416,21 +416,21 @@
         ],
         "answer": "B",
         "ek": "EK AAP-2.O.4",
-        "rationale": "The sum is 10 + 20 + 30 = 60, and the average is the sum divided by LENGTH, 60 / 3 = 20 (EK AAP-2.O.4). B is correct. A stops at the sum and forgets to divide. C reports the maximum instead of the average. D reports the first element. Averaging always divides the sum by the count of elements, not by a fixed number."
+        "rationale": "The sum is 60 and LENGTH is 3, so 60 / 3 is 20. B is correct. A reports the sum without dividing. C and D pick single elements rather than computing an average. Dividing the accumulated total by the count is what produces the mean."
       },
       {
         "id": "Q8",
-        "kind": "applied",
-        "stem": "A student wants to compare two equal-length lists by stepping through both with the same index i at the same time. Per the scope of EK AAP-2.O.1, which statement is correct?",
+        "kind": "scenario",
+        "stem": "A program steps through prices from the first element and stops as soon as it finds one over 100. What kind of traversal is this?",
         "options": [
-          "FOR EACH assigns i the index, so it is designed for stepping two lists together",
-          "Traversing two lists with a shared index is the required exam method for comparing lists",
-          "A partial traversal is not allowed; every traversal must visit all elements",
-          "Traversing multiple lists at the same time using the same index (a parallel traversal) is outside the scope of this course and the AP Exam"
+          "A complete traversal, because it always visits every element",
+          "Not a traversal, because it uses a condition",
+          "A binary search, because it stops early",
+          "A partial traversal, because it may stop before reaching the end"
         ],
         "answer": "D",
         "ek": "EK AAP-2.O.1",
-        "rationale": "The exclusion on EK AAP-2.O.1 states parallel traversals — stepping through multiple lists with the same index at once — are outside the scope of the course and exam, so D is correct. A is false: FOR EACH binds the element value, not an index. B contradicts the exclusion. C is false — a traversal can be complete or partial (EK AAP-2.O.1)."
+        "rationale": "Because the loop can stop before the last element, this is a partial traversal, so D is correct. A is wrong since it need not visit every element. B is wrong because conditions are common in traversals. C is wrong; binary search requires sorted data and halving, not a left-to-right scan."
       }
     ]
   },

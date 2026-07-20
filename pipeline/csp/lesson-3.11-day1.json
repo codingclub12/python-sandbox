@@ -402,22 +402,21 @@
       {
         "id": "Q1",
         "kind": "recall",
-        "stem": "Per EK AAP-2.P.1, where does binary search begin, and what does it do at each step?",
+        "stem": "Which of the following best describes how binary search works?",
         "options": [
-          "It begins at the first element and checks each element in order until the value is found",
-          "It begins at the middle of a sorted data set and eliminates half of the remaining data each step",
-          "It begins at the last element and works backward, removing one element at a time",
-          "It begins at a randomly chosen element and re-sorts the data after every comparison"
+          "It checks each element in order from the first until the value is found",
+          "It starts at the middle of a sorted data set and eliminates half of the remaining data each step",
+          "It starts at the last element and removes one element at a time",
+          "It picks a random element, then re-sorts the data after each comparison"
         ],
         "answer": "B",
         "ek": "EK AAP-2.P.1",
-        "rationale": "EK AAP-2.P.1 states binary search starts at the middle of a sorted data set and eliminates half of the data, repeating until the value is found or all elements are eliminated — so B is correct. A describes linear search, which checks each element in order. C invents a backward one-at-a-time scan, which is neither binary nor linear. D fabricates random starts and re-sorting, which binary search never does."
+        "rationale": "Binary search begins in the middle of sorted data and discards half the remaining elements each step, so B is correct. A describes linear search. C and D describe processes binary search never uses; it neither works one element at a time from the end nor re-sorts data."
       },
       {
         "id": "Q2",
         "kind": "applied",
-        "predictFirst": true,
-        "stem": "A sorted list has 15 elements. In the WORST case, how many iterations (checks) does binary search need to find a value, counting by halving 15 → 7 → 3 → 1 → 0?",
+        "stem": "A sorted list has 15 elements. In the worst case, how many times can binary search halve the data (15 → 7 → 3 → 1) before it finishes?",
         "options": [
           "4",
           "8",
@@ -426,82 +425,77 @@
         ],
         "answer": "A",
         "ek": "EK AAP-2.P.1",
-        "rationale": "Counting halvings, 15 → 7 → 3 → 1 → 0 is four steps, so the worst case is 4 iterations (A). B (8) halves 15 only once and rounds up, mistaking one step for the answer. C (15) is linear search's worst case — checking every element — not binary search's. D (2) stops halving far too early."
+        "rationale": "Halving 15 gives 7, then 3, then 1, then 0, which is 4 steps, so A is correct. B roughly halves 15 only once. C is the linear-search worst case. D stops the halving far too early."
       },
       {
         "id": "Q3",
-        "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A programmer runs binary search on an UNSORTED list and it reports that a value which is actually present is 'not found.' Per EK AAP-2.P.2, what best explains this?",
+        "kind": "recall",
+        "stem": "Which statement best describes the requirement a data set must meet before binary search can be used?",
         "options": [
-          "Nothing is wrong — binary search works on any list, sorted or not",
-          "Binary search is always slower than linear search, so it timed out before finishing",
-          "Binary search automatically sorts the list first, so the report must be a display error",
-          "On unsorted data, the eliminate-half decision discarded the half that actually held the value"
+          "It must be in sorted order",
+          "It must be in the order the values were entered",
+          "It must contain no duplicate values",
+          "It must have fewer than ten elements"
         ],
-        "answer": "D",
+        "answer": "A",
         "ek": "EK AAP-2.P.2",
-        "rationale": "EK AAP-2.P.2 requires sorted data: the choice of which half to discard is only valid when one side of the middle is smaller and the other larger. On unsorted data that guarantee fails, so a present value can be thrown away — D. A denies the requirement the EK states. B invents a speed/timeout issue unrelated to correctness. C is false; binary search does not sort the data for you."
+        "rationale": "Binary search only works on sorted data, because the eliminate-half decision relies on order. A is correct. B, C, and D are not requirements: entry order does not help, duplicates are allowed, and there is no size limit."
       },
       {
         "id": "Q4",
         "kind": "applied",
-        "predictFirst": true,
-        "stem": "A sorted list has 1000 elements. Per EK AAP-2.P.3, how do the worst-case iteration counts of linear and binary search compare?",
+        "stem": "A sorted list has 1000 elements. How do the worst-case iteration counts of linear and binary search compare?",
         "options": [
           "Both take about 1000 iterations, since each must eventually look at every element",
-          "Linear takes about 10 iterations; binary takes about 1000",
+          "Linear takes about 10 iterations while binary takes about 1000",
           "Linear may take up to 1000 iterations while binary takes about 10, so binary is far more efficient here",
           "Both take about 10 iterations, since both cut the list in half"
         ],
         "answer": "C",
         "ek": "EK AAP-2.P.3",
-        "rationale": "Linear search may check all 1000 elements; binary search halves 1000 down to nothing in about 10 steps, so binary is far more efficient on this sorted data (C), exactly what EK AAP-2.P.3 claims. A wrongly says binary examines every element. B swaps the two counts. D wrongly credits linear search with halving — only binary search halves the data."
+        "rationale": "Linear search may check all 1000 elements, while binary search halves the data to about 10 steps, so C is correct. A ignores binary search's halving. B swaps the two. D wrongly claims linear search halves the data."
       },
       {
         "id": "Q5",
         "kind": "applied",
-        "predictFirst": true,
-        "stem": "Binary search is about to run on the sorted list [2, 5, 9, 14, 20, 27, 33] (7 elements). Which element does it check FIRST?",
+        "stem": "Binary search runs on the sorted list [2, 5, 9, 14, 20, 27, 33]. Which element does it check first?",
         "options": [
-          "14 — the value in the middle (4th) position",
-          "2 — the first value in the list",
-          "33 — the last value in the list",
-          "5 — the second value in the list"
+          "2, the first value in the list",
+          "5, the second value in the list",
+          "33, the last value in the list",
+          "14, the value in the middle position"
         ],
-        "answer": "A",
+        "answer": "D",
         "ek": "EK AAP-2.P.1",
-        "rationale": "Binary search begins at the middle of a sorted data set (EK AAP-2.P.1). With 7 elements the middle is position 4, which holds 14, so A is correct. B and C describe endpoints, which binary search never starts from — checking an endpoint could eliminate only one element. D picks position 2, which is not the middle."
+        "rationale": "Binary search starts at the middle of the seven-element list, which is 14, so D is correct. A and B start at the front like linear search, and C starts at the end. Only the middle element is examined first."
       },
       {
         "id": "Q6",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A student concludes, 'Binary search is always faster than linear search, so I should always use it.' Per EK AAP-2.P.2–P.3, what is the most accurate correction?",
+        "stem": "A student says, 'Binary search is always faster than linear search, so I should always use it.' What is the most accurate correction?",
         "options": [
-          "Correct — binary search is the faster choice for every list, so it should always replace linear search",
-          "Binary search needs sorted data first; it is often more efficient than linear search on sorted data, but it cannot be used on unsorted data without sorting it",
-          "Linear search is always faster, so binary search should never be used in practice",
-          "Binary search only works correctly on lists that contain fewer than ten elements"
+          "Correct; binary search is faster for every list, so it should always replace linear search",
+          "Binary search needs sorted data first; it is often more efficient on sorted data, but it cannot run on unsorted data without sorting it",
+          "Linear search is always faster, so binary search should never be used",
+          "Binary search works correctly only on lists with fewer than ten elements"
         ],
         "answer": "B",
         "ek": "EK AAP-2.P.2",
-        "rationale": "EK AAP-2.P.2 requires sorted data and EK AAP-2.P.3 says binary search is OFTEN (not always) more efficient, and only on sorted data — so B is the accurate correction. A ignores the sorting requirement entirely. C overcorrects in the opposite direction and contradicts P.3. D invents a size limit that does not exist."
+        "rationale": "Binary search requires sorted data, so it is not universally usable; B is correct. A ignores that requirement. C overcorrects in the opposite direction. D invents a size limit that does not exist."
       },
       {
         "id": "Q7",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A sorted data set doubles in size from 500 to 1000 elements. Per EK AAP-2.P.1, how does the worst-case number of binary search iterations change?",
+        "stem": "A sorted data set doubles in size from 500 to 1000 elements. How does the worst-case number of binary search iterations change?",
         "options": [
           "It doubles, from about 10 to about 20, since the data doubled",
           "It stays exactly the same, since binary search ignores the list size",
-          "It increases by just one iteration — one extra halving cuts the doubled data back to a size already handled",
+          "It increases by just one iteration, since one extra halving handles the doubled data",
           "It increases by 500, one extra check for each new element"
         ],
         "answer": "C",
         "ek": "EK AAP-2.P.1",
-        "rationale": "Each iteration halves the data, so doubling the size adds exactly one more halving: 500 needs about 9 checks and 1000 needs about 10 (C). A confuses doubling the data with doubling the checks — the check count grows one step at a time. B is false; size determines the number of halvings. D applies linear-search thinking, one check per element, to binary search."
+        "rationale": "Doubling the data adds a single halving step, so the count rises by about one; C is correct. A treats binary search like linear search. B ignores that size matters at all. D describes linear-search growth."
       }
     ]
   },

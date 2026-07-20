@@ -377,7 +377,7 @@
       {
         "id": "Q1",
         "kind": "recall",
-        "stem": "Per EK AAP-3.D.1, which statement best describes a software library?",
+        "stem": "Which of the following best describes a software library?",
         "options": [
           "A single long program that must be run from start to finish",
           "A collection of procedures that may be used in creating new programs",
@@ -386,56 +386,54 @@
         ],
         "answer": "B",
         "ek": "EK AAP-3.D.1",
-        "rationale": "EK AAP-3.D.1 defines a software library as containing procedures that may be used in creating new programs, so B is correct. A describes a standalone program, not a reusable collection. C confuses a library with a data or output file. D confuses a library of procedures with a program's variables."
+        "rationale": "A library is a collection of reusable procedures, so B is correct. A describes a single program, C describes a data file, and D describes runtime variables. Only B captures the idea of prewritten procedures available for reuse."
       },
       {
         "id": "Q2",
-        "kind": "applied",
-        "stem": "A team is building a complex image-editing program and uses an existing image library instead of writing every procedure themselves. Per EK AAP-3.D.3, what is the main benefit?",
+        "kind": "scenario",
+        "stem": "A team building a complex image-editing program uses an existing image library instead of writing every procedure themselves. What is the main benefit?",
         "options": [
           "It guarantees the finished program will contain zero bugs of any kind",
           "It makes the program run on less electricity",
           "It removes any need to test the finished program",
-          "It simplifies creating the complex program by reusing prewritten procedures"
+          "It simplifies building the complex program by reusing prewritten procedures"
         ],
         "answer": "D",
         "ek": "EK AAP-3.D.3",
-        "rationale": "EK AAP-3.D.3 states the use of libraries simplifies the task of creating complex programs, which is exactly D. A overpromises — reusing a library reduces effort but cannot guarantee zero bugs. B invents an energy claim the CED never makes. C is false; the program still must be tested, even when it reuses library code."
+        "rationale": "Reusing tested library procedures simplifies development, so D is correct. A overpromises bug-free code. B invents an energy claim. C is false; the finished program still needs testing even when it reuses library code."
       },
       {
         "id": "Q3",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "While writing a new app, a programmer copies in a validation procedure they wrote for a different project of their own last year. Per EK AAP-3.D.2, this reused code comes from:",
+        "stem": "While writing a new app, a programmer pastes in a validation procedure they wrote themselves for a different project last year. This reused code comes from:",
         "options": [
-          "An internal source — previously written code from within the programmer's own work",
+          "An internal source, code previously written within the programmer's own work",
           "An external source, since it came from a different year",
           "Neither internal nor external, since only downloaded libraries count as existing code",
           "An API, since the programmer already knows how it behaves"
         ],
         "answer": "A",
         "ek": "EK AAP-3.D.2",
-        "rationale": "EK AAP-3.D.2 says existing code can come from internal or external sources, including previously written code. Code the programmer wrote themselves is an internal source, so A is correct. B misreads 'external' as meaning 'old' rather than 'from outside the project.' C repeats the myth that only downloaded libraries count as existing code. D confuses a source of code with an API, which is a specification of behavior."
+        "rationale": "Code the programmer wrote before is an internal source of existing code, so A is correct. B confuses time with origin. C wrongly limits existing code to downloads. D mislabels reused code as an API."
       },
       {
         "id": "Q4",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A library's API states: Distance(x1, y1, x2, y2) returns the number of grid steps between two points. Per EK AAP-3.D.4, what does this API give the programmer?",
+        "stem": "A library's documentation states: Distance(x1, y1, x2, y2) returns the number of grid steps between two points. What does this give the programmer?",
         "options": [
           "The exact lines of code that compute the distance",
           "A guarantee that the procedure runs faster than any alternative",
-          "A specification of how the procedure behaves and how to call it, with the code inside hidden",
+          "A description of how to call the procedure and what it does, with the code inside hidden",
           "Permission to change the procedure's internal calculations"
         ],
         "answer": "C",
         "ek": "EK AAP-3.D.4",
-        "rationale": "EK AAP-3.D.4 defines an API as a specification for how a library's procedures behave and can be used, matching C — you learn the behavior and how to call it, not the internal code. A confuses the API with the source code it hides. B invents a performance guarantee the API does not provide. D is wrong; an API describes usage, it does not grant editing rights to internals."
+        "rationale": "Documentation specifies behavior and how to call a procedure while hiding the internals, so C is correct. A exposes code that abstraction hides. B invents a speed guarantee. D misreads documentation as permission to edit the library."
       },
       {
         "id": "Q5",
-        "kind": "scenario",
-        "stem": "A programmer wants to use a library procedure whose code they have never seen. Per EK AAP-3.D.5, why is the library's documentation necessary?",
+        "kind": "recall",
+        "stem": "Which statement best explains why a library's documentation matters when using a procedure whose code you cannot see?",
         "options": [
           "Without it the procedure refuses to run at all",
           "It is what lets the programmer understand the procedure's behavior and how to use it correctly",
@@ -444,12 +442,12 @@
         ],
         "answer": "B",
         "ek": "EK AAP-3.D.5",
-        "rationale": "EK AAP-3.D.5 states documentation is necessary to understand a library's behaviors and how to use them, which is B. A is false; undocumented code can still execute — the risk is misusing it. C invents a self-modifying behavior documentation does not have. D is nonsense; a procedure must still be called to do anything."
+        "rationale": "Documentation is how a programmer learns a procedure's behavior and correct use, so B is correct. A wrongly ties running to documentation. C imagines automatic rewriting. D contradicts how procedures are used, which is by calling them."
       },
       {
         "id": "Q6",
         "kind": "applied",
-        "stem": "A library doc says Passing(score, cutoff) returns true if score ≥ cutoff, else false. A student calls Passing(60, 75), intending to check whether a 75 passed a 60 cutoff. Per EK AAP-3.D.5, what actually happens?",
+        "stem": "A library doc says Passing(score, cutoff) returns true if score ≥ cutoff. A student calls Passing(60, 75), meaning to check whether 75 passes a cutoff of 60. What actually happens?",
         "options": [
           "It tests 60 ≥ 75 and returns false; the documented order is (score, cutoff) and the student swapped them",
           "It returns true; the library infers which value the student meant",
@@ -458,22 +456,21 @@
         ],
         "answer": "A",
         "ek": "EK AAP-3.D.5",
-        "rationale": "The documented parameter order is (score, cutoff), so Passing(60, 75) tests 60 ≥ 75 and returns false — A is correct, and it shows why reading the docs matters. B imagines the library reads intent, which it cannot. C is false; swapped arguments run fine and simply give a wrong answer. D denies that order matters, contradicting the documented specification."
+        "rationale": "Arguments bind by position, so score is 60 and cutoff is 75, giving 60 ≥ 75, which is false; A is correct. B assumes the library reads intent. C is false; wrong order runs without error. D denies that order matters."
       },
       {
         "id": "Q7",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A programmer needs a well-tested procedure to sort a list, and a reliable library already provides one. Per LO AAP-3.D, what is the best reason to select the library procedure rather than writing a new sort from scratch?",
+        "stem": "A programmer needs a well-tested list-sorting procedure, and a reliable library already provides one. What is the best reason to use the library's procedure instead of writing a new sort?",
         "options": [
           "Library code never has to be understood, only pasted in",
           "Writing a sort from scratch is always impossible",
           "Using the library means the program no longer needs any variables",
-          "Reusing tested existing code simplifies development and reduces new bugs"
+          "Reusing tested existing code speeds development and reduces new bugs"
         ],
         "answer": "D",
         "ek": "EK AAP-3.D.3",
-        "rationale": "Selecting an appropriate library reuses tested code, which simplifies development and reduces the chance of new bugs (EK AAP-3.D.3), so D is the best reason. A is false; you still must understand a procedure's documented behavior to use it correctly. B overstates the case — a sort can be written from scratch, it is just more work. C is unrelated; using a library does not eliminate a program's variables."
+        "rationale": "Reusing tested code saves effort and avoids new bugs, so D is correct. A is careless; you still need to understand a procedure's behavior. B overstates difficulty. C is unrelated; libraries do not eliminate variables."
       }
     ]
   },
