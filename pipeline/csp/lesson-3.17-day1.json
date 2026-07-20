@@ -319,14 +319,14 @@
         "predictFirst": true,
         "stem": "A textbook says: 'Sorting is a task we study; sorting the list (8, 3, 5) is one particular case of it.' Per EK AAP-4.A.1, which pairing correctly labels these two ideas?",
         "options": [
-          "'Sorting' is an instance and 'sorting (8, 3, 5)' is the problem, because the list is more general",
-          "Both 'sorting' and 'sorting (8, 3, 5)' are instances, because each involves a list",
-          "'Sorting' is the problem and 'sorting (8, 3, 5)' is an instance, because the instance adds specific input",
-          "Both are problems, because sorting can be solved algorithmically either way"
+          "'Sorting' is an instance and 'sorting (8, 3, 5)' is the problem",
+          "Both 'sorting' and 'sorting (8, 3, 5)' are instances of one general task",
+          "'Sorting' is the problem and 'sorting (8, 3, 5)' is an instance of it",
+          "Both 'sorting' and 'sorting (8, 3, 5)' are problems"
         ],
         "answer": "C",
         "ek": "EK AAP-4.A.1",
-        "rationale": "EK AAP-4.A.1 defines a problem as a general description of a task and an instance as that problem WITH specific input; sorting is the general task, and sorting (8, 3, 5) supplies a particular list, so C is correct. A reverses the two labels. B ignores that one of them is the general task with no specific input. D erases the distinction the EK draws between the general problem and a specific instance."
+        "rationale": "EK AAP-4.A.1 defines a problem as a general description of a task and an instance as that problem WITH specific input; sorting is the general task, and sorting (8, 3, 5) supplies a particular list, so C is correct. A reverses the two labels. B treats the general task as if it were an instance. D erases the distinction the EK draws between the general problem and a specific instance."
       },
       {
         "id": "Q2",
@@ -363,13 +363,13 @@
         "stem": "An algorithm loops once through a list of n items; a second algorithm loops through the whole list once for EACH item. Per EK AAP-4.A.5, how should you compare their efficiencies?",
         "options": [
           "Run both and keep whichever finishes first on your laptop",
-          "Count statement executions: about n for the first and about n × n for the second, so the first grows more slowly",
-          "They are equally efficient because both are correct and use loops",
-          "Derive the Big-O of each using a mathematical formula, as the CED requires"
+          "They are equally efficient — both are correct and both use loops",
+          "Derive the Big-O of each with a mathematical formula, as the CED requires",
+          "Count statement executions: about n for the first and about n × n for the second, so the first grows more slowly"
         ],
-        "answer": "B",
+        "answer": "D",
         "ek": "EK AAP-4.A.5",
-        "rationale": "EK AAP-4.A.5 says efficiency can be informally measured by counting how many times a statement or group of statements executes; the single loop runs about n times and the nested loop about n × n, so B is correct. A relies on one machine's clock, which is not how efficiency is defined. C ignores that correctness says nothing about cost. D contradicts the A.3 exclusion of formal Big-O."
+        "rationale": "EK AAP-4.A.5 says efficiency can be informally measured by counting how many times a statement or group of statements executes; the single loop runs about n times and the nested loop about n × n, so D is correct. A relies on one machine's clock, which is not how efficiency is defined. B ignores that correctness says nothing about cost. C contradicts the A.3 exclusion of formal Big-O."
       },
       {
         "id": "Q5",
@@ -377,14 +377,14 @@
         "predictFirst": true,
         "stem": "Two correct algorithms solve the same problem: one does about n comparisons, the other about n × n. A student concludes 'since both are correct, they are equally good.' Per EK AAP-4.A.6, what is the best correction?",
         "options": [
-          "Correctness and efficiency are the same thing, so the student is right",
-          "The n × n algorithm is actually more efficient because it does more work",
           "Different correct algorithms for the same problem can have different efficiencies; the n-comparison one is far more efficient as n grows",
+          "Correctness and efficiency are the same thing, so the student is right",
+          "The n × n algorithm is more efficient since it does more work",
           "Efficiency cannot be compared unless the algorithms are run on identical computers"
         ],
-        "answer": "C",
+        "answer": "A",
         "ek": "EK AAP-4.A.6",
-        "rationale": "EK AAP-4.A.6 states different correct algorithms for the same problem can have different efficiencies; the n-comparison algorithm grows far more slowly than the n × n one, so C is correct. A conflates correctness with efficiency. B mistakes 'more work' for 'more efficient.' D wrongly claims a machine is needed, when counting executions settles it independently of hardware."
+        "rationale": "EK AAP-4.A.6 states different correct algorithms for the same problem can have different efficiencies; the n-comparison algorithm grows far more slowly than the n × n one, so A is correct. B conflates correctness with efficiency. C mistakes 'more work' for 'more efficient.' D wrongly claims a machine is needed, when counting executions settles it independently of hardware."
       },
       {
         "id": "Q6",
@@ -392,14 +392,14 @@
         "predictFirst": true,
         "stem": "A nested-loop algorithm feels slow, so a team runs it on a computer twice as fast. Per EK AAP-4.A.3, what happens to its EFFICIENCY?",
         "options": [
-          "The efficiency is unchanged; the work still grows with n × n, the machine just finishes each run sooner",
-          "The efficiency doubles, because efficiency is defined by the computer's speed",
+          "The efficiency doubles, since efficiency is set by the computer's speed",
           "The algorithm becomes linear, since a faster machine reduces the growth rate",
+          "The efficiency is unchanged; the work still grows with n × n, the machine just finishes each run sooner",
           "The efficiency can no longer be measured once the hardware changes"
         ],
-        "answer": "A",
+        "answer": "C",
         "ek": "EK AAP-4.A.3",
-        "rationale": "EK AAP-4.A.3 defines efficiency as a function of the input size, a property of the algorithm rather than the hardware; a faster machine lowers every running time by the same factor but the work still grows with n × n, so A is correct. B ties efficiency to machine speed, which the definition rejects. C imagines hardware changing an algorithm's growth, which it cannot. D is false — counting executions still measures it."
+        "rationale": "EK AAP-4.A.3 defines efficiency as a function of the input size, a property of the algorithm rather than the hardware; a faster machine lowers every running time by the same factor but the work still grows with n × n, so C is correct. A ties efficiency to machine speed, which the definition rejects. B imagines hardware changing an algorithm's growth, which it cannot. D is false — counting executions still measures it."
       },
       {
         "id": "Q7",
@@ -408,26 +408,26 @@
         "options": [
           "About 30 times",
           "About 60 times",
-          "About 900 times",
-          "About 8 times"
+          "About 8 times",
+          "About 900 times"
         ],
-        "answer": "C",
+        "answer": "D",
         "ek": "EK AAP-4.A.5",
-        "rationale": "EK AAP-4.A.5 measures efficiency by counting executions; a loop of n inside a loop of n runs the inner statement n × n times, and 30 × 30 = 900, so C is correct. A counts only one loop. B adds the loops (30 + 30) instead of multiplying nested loops. D has no basis in the counting method for two nested loops of size 30."
+        "rationale": "EK AAP-4.A.5 measures efficiency by counting executions; a loop of n inside a loop of n runs the inner statement n × n times, and 30 × 30 = 900, so D is correct. A counts only one loop. B adds the loops (30 + 30) instead of multiplying nested loops. C has no basis in the counting method for two nested loops of size 30."
       },
       {
         "id": "Q8",
         "kind": "scenario",
         "stem": "A student writes 'the efficiency of this algorithm is O(n²)' on an AP CSP response. Per the EK AAP-4.A.3 exclusion, why is this the wrong tool for the course?",
         "options": [
-          "Because O(n²) is mathematically incorrect for a nested loop",
-          "Because formal Big-O analysis and formula-based reasoning are outside the scope of AP CSP; describe the growth in words like 'grows with the square of n' instead",
-          "Because efficiency may only ever be written as an exact number of seconds",
-          "Because AP CSP does not allow algorithms to use loops at all"
+          "O(n²) would be the mathematically incorrect way to describe a nested loop",
+          "Formal Big-O analysis is outside the scope of AP CSP; growth is described in words like 'grows with the square of n'",
+          "Efficiency in AP CSP may only ever be written as an exact number of seconds on a machine",
+          "AP CSP does not permit algorithms to use nested loops of any kind"
         ],
         "answer": "B",
         "ek": "EK AAP-4.A.3",
-        "rationale": "The EK AAP-4.A.3 exclusion places formal Big-O analysis and reasoning with mathematical formulas outside the scope of the course, so students describe growth informally — 'grows with the square of n' — rather than as O(n²); B is correct. A is false, since O(n²) would actually describe a nested loop. C invents a seconds-only rule the CED never states. D is absurd — loops are central to the course."
+        "rationale": "The EK AAP-4.A.3 exclusion places formal Big-O analysis and reasoning with mathematical formulas outside the scope of the course, so students describe growth informally — 'grows with the square of n' — rather than as O(n²); B is correct. A is false, since O(n²) would actually describe a nested loop correctly. C invents a seconds-only rule the CED never states. D is absurd — nested loops are central to the course."
       }
     ]
   },
@@ -530,14 +530,14 @@
             "slides": "9"
           },
           {
-            "segment": "When to reach for a heuristic: vocab, no-efficient-algorithm concept, exact vs heuristic, the 'heuristics are always wrong' trap (EK AAP-4.A.8–A.9)",
+            "segment": "When to reach for a heuristic: vocab, no-efficient-algorithm concept, exact vs heuristic, the 'heuristics are always wrong' trap, and Stop and Think (EK AAP-4.A.8–A.9)",
             "min": 14,
-            "slides": "10-14"
+            "slides": "10-15"
           },
           {
             "segment": "Common AP Traps + exit check",
             "min": 6,
-            "slides": "15-16"
+            "slides": "16-17"
           }
         ]
       },

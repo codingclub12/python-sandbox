@@ -1,0 +1,295 @@
+{
+  "meta": {
+    "lessonId": "3.17",
+    "lessonTitle": "Algorithmic Efficiency",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-4.A"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-4.A",
+    "intro": "Everything for Topic 3.17 lives in this folder. This is a CONCEPTUAL / ANALYSIS topic — there is no new code to type, so the practice is on paper: count the operations, classify reasonable vs unreasonable, and decide when a heuristic fits. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (problems vs instances; decision vs optimization; measuring efficiency by counting) and Day 2 (reasonable vs unreasonable time; heuristics). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Count the Operations and Exercise 2: Reasonable, Unreasonable, or Heuristic? (student + answer KEY) — paper analysis, no devices needed",
+      "Discussion — Fast Enough, or Never? (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-4.A, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-17-algorithmic-efficiency"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-17-algorithmic-efficiency-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-17-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-17-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-17-algorithmic-efficiency"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1: the vocabulary of problems and how to measure work by counting statement executions; Day 2: the reasonable/unreasonable verdict and heuristics, closing with Common AP Traps and the exit check). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: the exercises and quiz grade instantly with per-answer feedback. Because 3.17 is analysis rather than coding, there is NO coding-practice page for this topic — the exercises stay paper-and-reasoning end to end. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.17 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.18 (Undecidable Problems) begins immediately after the quiz and builds directly on the reasonable/unreasonable idea developed here."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Count the Operations",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-17-exercise-1",
+    "intro": "You are a performance reviewer on a software team. Four algorithms have landed on your desk, each with a note about what it does and a loop structure to read. Your job is NOT to time them — it is to COUNT them: determine how many times the key statement executes as the input size n grows, describe that growth in plain words (constant, linear, square, cube), and rule on whether each runs in reasonable or unreasonable time. This is the single most tested skill for LO AAP-4.A: read the loops, count the executions, and never once reach for a stopwatch or a Big-O formula (both are outside this course).",
+    "scenarioTitle": "Review Queue: Four Algorithms, Counted by Hand",
+    "narrative": "Read each algorithm's loop structure top to bottom. For each, find the statement in the DEEPEST part of the loop and count how many times the loops drive it to run for an input of size n. A single loop over n items runs its body about n times; a loop nested inside another loop over the same n items runs its body about n × n times. Work your own counts on scratch paper before answering Part A — the table is your reference, and the questions ask for specific counts and classifications.",
+    "log": {
+      "columns": [
+        "ID",
+        "Algorithm",
+        "Loop structure (in words)",
+        "Key statement to count",
+        "Detail worth noticing"
+      ],
+      "rows": [
+        [
+          "1",
+          "Roster check",
+          "One loop over all n names",
+          "Compare a name to the target",
+          "The body runs once per name — nothing is nested"
+        ],
+        [
+          "2",
+          "All-pairs compare",
+          "A loop over n people, and inside it another loop over the same n people",
+          "Compare person a to person b",
+          "The inner compare runs for every pair — this is the handshake pattern"
+        ],
+        [
+          "3",
+          "Fixed lookup",
+          "No loop — one direct access to the first element",
+          "Read element at index 1",
+          "The work does not change no matter how large n gets"
+        ],
+        [
+          "4",
+          "Triple nest",
+          "Three loops nested, each running over the same n items",
+          "Combine a, b, and c",
+          "Each added nesting level multiplies the count by another n"
+        ]
+      ]
+    },
+    "scenarioNote": "Algorithms adapted from the Day 1 one-loop and nested-loop code blocks; terminology and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023). Formal Big-O is intentionally not used, per the EK AAP-4.A.3 exclusion.",
+    "predict": "Before you answer Part A, predict in one sentence: which of the four algorithms will have the SMALLEST count at n = 100, and which will have the largest — without computing the exact numbers yet?",
+    "partALabel": "Part A - Count and Classify",
+    "partA": [
+      {
+        "ek": "EK AAP-4.A.5",
+        "pts": 4,
+        "q": "Algorithm 1 (Roster check): for a list of n names, how many times does the compare run? Give the count for n = 10 and n = 100, name the growth in one word, and state whether it runs in reasonable or unreasonable time.",
+        "answer": "The compare runs about n times — once per name — so n = 10 gives about 10 comparisons and n = 100 gives about 100. Per EK AAP-4.A.5, efficiency is measured informally by counting how many times a statement executes; here the body runs once for each of the n names, so the count IS n. The growth is LINEAR (it grows in direct proportion to n). Linear is polynomial-or-slower, so it runs in a REASONABLE amount of time (EK AAP-4.A.7). Full credit requires the counts (10 and 100), the word 'linear,' and the reasonable ruling — not just a number."
+      },
+      {
+        "ek": "EK AAP-4.A.5 / AAP-4.A.7",
+        "pts": 4,
+        "q": "Algorithm 2 (All-pairs compare): how many times does the inner compare run for n people? Give the count for n = 10 and n = 100, name the growth, and rule on reasonable vs unreasonable.",
+        "answer": "The inner compare runs about n × n times: for each of the n people in the outer loop, the inner loop runs through all n people again (EK AAP-4.A.5). So n = 10 gives about 100 comparisons and n = 100 gives about 10,000. The growth is SQUARE (it grows with n², the handshake pattern from the bell ringer). Square is a polynomial, so it still runs in a REASONABLE amount of time (EK AAP-4.A.7) — heavier than linear, but reasonable. Full credit requires 100 and 10,000, the word 'square' (or n²), and the reasonable ruling."
+      },
+      {
+        "ek": "EK AAP-4.A.5 / AAP-4.A.7",
+        "pts": 4,
+        "q": "Algorithm 3 (Fixed lookup): how many times does the read run for n = 10? For n = 1,000,000? Name the growth and rule on reasonable vs unreasonable.",
+        "answer": "The read runs exactly once, no matter how large n is — there is no loop, so the count does not depend on n at all: 1 for n = 10 and 1 for n = 1,000,000. Counting statement executions (EK AAP-4.A.5) shows the number never changes with the input. The growth is CONSTANT. Constant is the fastest of the polynomial-or-slower category, so it runs in a REASONABLE amount of time (EK AAP-4.A.7). The key insight: 'reasonable' is about how the count GROWS with n, and a constant count grows not at all."
+      },
+      {
+        "ek": "EK AAP-4.A.5 / AAP-4.A.6",
+        "pts": 3,
+        "q": "Algorithm 4 (Triple nest): how many times does the combine run for n items? Give the count for n = 10, name the growth, and explain what happens to the count each time you add one more nested loop over the same n items.",
+        "answer": "Three loops of size n nested together run the innermost statement about n × n × n times, so for n = 10 the combine runs about 1,000 times (10 × 10 × 10). The growth is CUBE (n³). Each additional nested loop over the same n items multiplies the count by another factor of n: one loop is n, two nested is n², three nested is n³ (EK AAP-4.A.5). Cube is still a polynomial, so Algorithm 4 runs in reasonable time — but it grows faster than the linear and square algorithms, a concrete case of different algorithms having different efficiencies (EK AAP-4.A.6)."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-4.A.6",
+        "pts": 3,
+        "q": "Algorithms 1 and 2 could both be used to answer 'does this list contain a duplicate?' — Algorithm 1's style runs about n times, Algorithm 2's about n × n. Both are correct. Explain, using the CED's own idea, why you would prefer one over the other for a large list, and how you decided WITHOUT running either.",
+        "answer": "This is EK AAP-4.A.6 exactly: different correct algorithms for the same problem can have different efficiencies. Both correctly detect a duplicate, but the linear (about n) approach does far less work than the square (about n × n) approach as the list grows — at n = 100 that is roughly 100 operations versus 10,000. For a large list you prefer the linear one. The decision needs no timing and no specific machine: you count how many times the key statement executes as a function of n and compare the growth (EK AAP-4.A.5). Counting, not a stopwatch, settles it — which is why efficiency is a property of the algorithm, not the hardware."
+      },
+      {
+        "ek": "EK AAP-4.A.3",
+        "pts": 3,
+        "q": "A teammate reruns Algorithm 2 on a computer twice as fast, sees it finish in half the time, and writes 'I made the algorithm more efficient.' Explain what is wrong, using the CED's definition of efficiency.",
+        "answer": "The teammate confused speed with efficiency. Per EK AAP-4.A.3, efficiency is an estimation of computational resources expressed as a function of the input SIZE — a property of the algorithm, not of the machine. A faster computer lowers every running time by the same constant factor, but Algorithm 2 still does about n × n comparisons; its growth is unchanged. Doubling n still quadruples the work on either machine. The algorithm was not made more efficient — the same square-growth algorithm merely ran on faster hardware. Efficiency is measured by counting statement executions (EK AAP-4.A.5), which never mentions the computer."
+      },
+      {
+        "ek": "EK AAP-4.A.3 / AAP-4.A.7",
+        "pts": 2,
+        "q": "ENRICHMENT: Rank Algorithms 1–4 from most to least efficient for large n using only the words constant, linear, square, and cube — and state why ALL FOUR still count as running in a reasonable amount of time.",
+        "answer": "From most to least efficient for large n: Algorithm 3 (constant) < Algorithm 1 (linear) < Algorithm 2 (square) < Algorithm 4 (cube), where 'most efficient' means the smallest growth in the count of operations (EK AAP-4.A.3). All four run in a REASONABLE amount of time because constant, linear, square, and cube are all 'polynomial efficiency or slower,' which the CED defines as reasonable (EK AAP-4.A.7). None is exponential or factorial, so none crosses into unreasonable time — even the cube algorithm, though it grows fastest of the four, is still on the reasonable side of the line. (Note: this ranking is by growth category, described in words — the course never uses a formal Big-O expression.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Reasonable, Unreasonable, or Heuristic?",
+    "minutes": "25 minutes",
+    "subtitle": "5 situations - classify the growth, then rule on the strategy",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-17-exercise-2",
+    "intro": "You advise a product team deciding how to tackle five different tasks. For each situation you will name the growth of the exact approach (constant, linear, square, cube, exponential, or factorial), rule whether that exact approach runs in a REASONABLE or UNREASONABLE amount of time, and then decide whether a HEURISTIC is the appropriate strategy — and if so, say why. Remember the two CED guardrails: describe growth in words, never as a Big-O formula, and never name or apply a specific heuristic algorithm — the exam tests WHEN a heuristic fits, not which one. Vague answers like 'it's kind of slow' score zero.",
+    "standard": "CB Standard (required): the growth named in words + the reasonable/unreasonable ruling + a correct decision on whether a heuristic is appropriate and why, for all 5 situations. Enrichment (optional): explain why faster hardware does or does not change the ruling (EK AAP-4.A.3).",
+    "methodHeading": "Three-Step Method - use for every situation",
+    "method": [
+      [
+        "Step 1 - Name the growth of the exact approach",
+        "Ask how the work grows with input size n: does it stay flat (constant), grow with n (linear), n² (square), n³ (cube), 2ⁿ (exponential), or n! (factorial)? Count the executions in your head — no Big-O."
+      ],
+      [
+        "Step 2 - Rule reasonable or unreasonable",
+        "Polynomial or slower — constant, linear, square, cube — is REASONABLE. Exponential or factorial is UNREASONABLE (EK AAP-4.A.7). This is a category of growth, not a stopwatch reading."
+      ],
+      [
+        "Step 3 - Decide the strategy",
+        "If the exact approach is reasonable, use it — no heuristic needed. If it is unreasonable AND a good-enough answer is acceptable, a HEURISTIC is appropriate: it trades the guarantee of the best answer for one you can actually get (EK AAP-4.A.8–A.9)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (why hardware doesn't rescue growth): a faster computer applies the SAME constant speedup to every running time, so it can make a reasonable algorithm feel snappier — but it cannot move an exponential or factorial algorithm from unreasonable to reasonable, because multiplicative growth swallows any constant factor almost immediately (EK AAP-4.A.3). That is the real reason approximate solutions and heuristics exist (EK AAP-4.A.8): when the growth itself is the enemy, you change the goal from 'provably best' to 'good enough,' not the machine.",
+    "fields": [
+      "Growth of the exact approach (constant / linear / square / cube / exponential / factorial):",
+      "Reasonable or unreasonable + is a heuristic appropriate here? Why or why not:",
+      "Enrichment — would faster hardware change your ruling? Why or why not:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "An app must check whether a specific username already exists in a list of n registered users by scanning the list once from the top.",
+        "key": {
+          "signs": "Scanning a list of n users once means the compare runs about once per user — the count is n. That is the signature of LINEAR growth (EK AAP-4.A.5): double the users, double the checks.",
+          "mechanism": "Linear is 'polynomial efficiency or slower,' so this exact approach runs in a REASONABLE amount of time (EK AAP-4.A.7). No heuristic is appropriate here: an exact, efficient algorithm already exists and finishes fast, so there is nothing to approximate. A heuristic is only worth reaching for when the exact method is impractical (EK AAP-4.A.9) — which it is not.",
+          "subtype": "Faster hardware would make it feel a bit snappier but is unnecessary — linear on n users is already reasonable. This is the base case that keeps students from over-applying heuristics: most everyday tasks have efficient exact algorithms."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A logistics tool must find the single shortest route that visits all n delivery stops exactly once and returns to the depot, by examining every possible ordering of the stops.",
+        "key": {
+          "signs": "Examining every possible ordering of n stops means checking about n! (n factorial) routes — the count multiplies by another factor with each added stop. That is FACTORIAL growth, the runaway column from the Day 2 table (EK AAP-4.A.7).",
+          "mechanism": "Factorial is the CED's own example of UNREASONABLE time: 20 stops is already about 2.4 × 10¹⁸ routes, decades of computation. Since no efficient exact algorithm exists and a good-enough route is perfectly usable, a HEURISTIC is appropriate here (EK AAP-4.A.8–A.9): accept an approximate route you can compute in seconds instead of the guaranteed-shortest one you would never finish.",
+          "subtype": "This is the textbook 'when a heuristic fits' case — both conditions hold: the exact method is impractical AND a good-enough answer is acceptable. (Per the EK AAP-4.A.9 exclusion, you name that a heuristic fits, not which specific heuristic to use.)"
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "A password-audit tool tries to guarantee it can crack any n-character password by generating and testing every possible combination of characters.",
+        "key": {
+          "signs": "Trying every possible combination for an n-character password means the number of combinations multiplies by the alphabet size for each added character — the count grows like a constant raised to the n. That is EXPONENTIAL growth (EK AAP-4.A.7).",
+          "mechanism": "Exponential is the CED's other named example of UNREASONABLE time: each extra character multiplies the work, so even modest passwords blow past any feasible computation. Whether a heuristic is 'appropriate' depends on the goal — if only a GUARANTEE of cracking every password counts, no shortcut delivers that, but if a good-enough approach (checking likely passwords first) is acceptable, a heuristic is the rational move because the exhaustive method is impractical (EK AAP-4.A.8–A.9).",
+          "subtype": "The lesson: exponential, like factorial, is unreasonable, and 'try everything' guarantees are exactly where approximate strategies take over. This is also why long passwords are secure — the exhaustive attack is unreasonable by design."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A gradebook must compute the average of n test scores by summing them in one pass and dividing by n.",
+        "key": {
+          "signs": "Summing n scores in one pass runs the add about once per score — the count is n — and the single division is one more step. That is LINEAR growth (EK AAP-4.A.5); the trailing 'divide by n' does not change the category.",
+          "mechanism": "Linear is polynomial-or-slower, so this exact approach runs in a REASONABLE amount of time (EK AAP-4.A.7). No heuristic is appropriate: the exact average is both easy and fast to compute, so there is no reason to accept an approximation. Reaching for a heuristic here would trade away a guaranteed-correct answer for nothing (EK AAP-4.A.9).",
+          "subtype": "The trap this catches: students who have just learned 'heuristic' sometimes want to apply it everywhere. The rule is that a heuristic is appropriate only when the exact method is IMPRACTICAL — an easy linear computation never qualifies."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A tournament scheduler compares every team against every other team once to build a full head-to-head grid for n teams.",
+        "key": {
+          "signs": "Comparing every team to every other team is the all-pairs / handshake pattern: for each of the n teams, you pair it with all the others, so the compare runs about n × n times. That is SQUARE growth (EK AAP-4.A.5).",
+          "mechanism": "Square is a polynomial, so this exact approach runs in a REASONABLE amount of time (EK AAP-4.A.7) — heavier than linear, but still on the reasonable side. No heuristic is appropriate: an exact, reasonable-time algorithm exists, so there is nothing to approximate (EK AAP-4.A.9). The grid is fully computable even for a large league.",
+          "subtype": "The contrast with Situations 2 and 3 is the point: square (n²) LOOKS big and grows faster than linear, but it is still reasonable — only exponential (2ⁿ) and factorial (n!) cross into unreasonable, and only those trigger the search for a heuristic."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Fast Enough, or Never?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "Every algorithm faces two questions, not one: is it correct, and is it fast enough to actually use? This topic is about the second. Across three short windows, your group will decide why 'a little more input' can mean 'a lot more work,' hunt for the line between work you can wait for and work that outlasts the universe, and rule on the honest compromise computing makes when the perfect answer is out of reach: the heuristic.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions, then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your handshake count grew far faster than the number of people did. Where else in everyday life does adding just a little more input cause a lot more work — and what would go wrong if you assumed the work grows at the same rate as the input?"
+          },
+          {
+            "text": "Question 2. We measured 'how much work' by counting how many times a statement runs, never by timing it on a computer. Why is counting a fairer way to compare two algorithms than timing them — and what could a stopwatch tell you that would actually be misleading?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~6 min, after the growth-explosion table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Draw the line",
+            "text": "The CED puts constant, linear, square, and cube on the 'reasonable' side and exponential and factorial on the 'unreasonable' side. In one sentence your whole group agrees on, state the rule for which side a growth rate lands on. Then settle a challenge: cube (n³) grows fast and feels huge — argue why it is STILL reasonable while 2ⁿ is not.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - The hardware question",
+            "text": "Debate for about 3 minutes: a teammate insists any slow algorithm can be fixed by buying a fast enough computer. Find the one kind of algorithm where they are most wrong, and explain — using the word 'growth' — why no affordable machine rescues it. Record your example and the reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "When is 'good enough' the smart answer?",
+            "text": "A delivery company cannot compute the single shortest route for 200 stops before the trucks must leave — the exact method would run for longer than anyone will live. As a group, write the clearest one-paragraph case you can for using a heuristic here, one a skeptical manager would accept, using the words 'optimal,' 'approximate,' and 'impractical.' Then name one situation where you would REFUSE to accept a heuristic and demand the exact answer, and say what makes that situation different.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best explains when a heuristic is the right choice):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}
