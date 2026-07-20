@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# pack_course.sh — package rendered CSP files into the Cyber-style folder tree:
-#   AP_CSP_Course/Big_Idea_N_<Name>/Topic_N.N_<Title>/{Slide_Decks,Guided_Notes,Quiz,Supplements}
+# pack_course.sh — package rendered CSP files into a flat per-topic tree:
+#   AP_CSP_Course/Topic_N.N_<Title>/{Slide_Decks,Guided_Notes,Quiz,Supplements}
+#   AP_CSP_Course/Course_Resources/ ; AP_CSP_Course/Big_Idea_Exams/
 # Usage: ./pack_course.sh /path/to/output.zip
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -27,13 +28,15 @@ for f in sorted(os.listdir('out')):
     me=re.match(r'^CSP_Exam_BI(\d)_(student|KEY)\.docx$',f)
     if me:
         u,mode=me.groups()
-        edir=os.path.join(root,BI[u],'_Big_Idea_Exam'); os.makedirs(edir,exist_ok=True)
+        edir=os.path.join(root,'Big_Idea_Exams'); os.makedirs(edir,exist_ok=True)
         shutil.copyfile(os.path.join('out',f),os.path.join(edir,f'AP-CSP_BigIdea{u}_Exam_{mode.replace("student","Student")}.docx'))
         continue
     m=re.match(r'^CSP_(\d+\.\d+)_(.+)$',f)
     if not m: continue
     topic,rest=m.groups()
-    tdir=os.path.join(root,BI[topic.split('.')[0]],
+    # flat: all Topic_N.N folders in one spot (no Big Idea parent), but keep
+    # the Slide_Decks/Guided_Notes/Quiz/Supplements split inside each topic
+    tdir=os.path.join(root,
         f"Topic_{topic}_{re.sub(r'[^A-Za-z0-9]+','_',title(topic)).strip('_')}")
     if re.match(r'Day\d+_Deck_',rest): sub='Slide_Decks'
     elif re.match(r'Day\d+_Notes_',rest): sub='Guided_Notes'
