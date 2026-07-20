@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# pack_course.sh — package rendered CSP files into a flat per-topic tree:
-#   AP_CSP_Course/Topic_N.N_<Title>/<all files loose>
-#   AP_CSP_Course/Course_Resources/ ; AP_CSP_Course/Big_Idea_Exams/
+# pack_course.sh — package rendered CSP files into the Cyber-style folder tree:
+#   AP_CSP_Course/Big_Idea_N_<Name>/Topic_N.N_<Title>/{Slide_Decks,Guided_Notes,Quiz,Supplements}
 # Usage: ./pack_course.sh /path/to/output.zip
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -28,16 +27,18 @@ for f in sorted(os.listdir('out')):
     me=re.match(r'^CSP_Exam_BI(\d)_(student|KEY)\.docx$',f)
     if me:
         u,mode=me.groups()
-        edir=os.path.join(root,'Big_Idea_Exams'); os.makedirs(edir,exist_ok=True)
+        edir=os.path.join(root,BI[u],'_Big_Idea_Exam'); os.makedirs(edir,exist_ok=True)
         shutil.copyfile(os.path.join('out',f),os.path.join(edir,f'AP-CSP_BigIdea{u}_Exam_{mode.replace("student","Student")}.docx'))
         continue
     m=re.match(r'^CSP_(\d+\.\d+)_(.+)$',f)
     if not m: continue
     topic,rest=m.groups()
-    # flat: one folder per topic, all files loose inside (no Big Idea layer,
-    # no Slide_Decks/Guided_Notes/Quiz/Supplements split)
-    tdir=os.path.join(root,
+    tdir=os.path.join(root,BI[topic.split('.')[0]],
         f"Topic_{topic}_{re.sub(r'[^A-Za-z0-9]+','_',title(topic)).strip('_')}")
+    if re.match(r'Day\d+_Deck_',rest): sub='Slide_Decks'
+    elif re.match(r'Day\d+_Notes_',rest): sub='Guided_Notes'
+    elif rest.startswith('Quiz_'): sub='Quiz'
+    else: sub='Supplements'   # TeacherGuide, Exercises, Discussion, LessonMap
     # customer-facing name: mirror hub naming (TEACHER caps, KEY caps, CB/DeepDive)
     n=rest
     n=n.replace('_teacher_','_TEACHER_').replace('_student_','_Student_')
@@ -45,8 +46,8 @@ for f in sorted(os.listdir('out')):
     n=n.replace('_Notes_key_','_GuidedNotes_KEY_').replace('_Notes_student_','_GuidedNotes_Student_')
     n=n.replace('_key.','_KEY.').replace('_student.','_Student.')
     n=n.replace('_cb_','_CB_').replace('_deepdive_','_DeepDive_')
-    os.makedirs(tdir,exist_ok=True)
-    shutil.copyfile(os.path.join('out',f),os.path.join(tdir,n))
+    dst=os.path.join(tdir,sub); os.makedirs(dst,exist_ok=True)
+    shutil.copyfile(os.path.join('out',f),os.path.join(dst,n))
 count=sum(len(fs) for _,_,fs in os.walk(root))
 print(f"staged {count} files under AP_CSP_Course/")
 PY
