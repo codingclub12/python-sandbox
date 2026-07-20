@@ -1,0 +1,619 @@
+{
+  "meta": {
+    "lessonId": "3.16",
+    "lessonTitle": "Simulations",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-3.F",
+    "anchor": "Simulations",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.16 · Day 1 of 2",
+      "title": "Turning the World into Numbers",
+      "subtitle": "A simulation is not a copy of reality — it is a deliberate abstraction that strips a phenomenon down to what matters, then uses RANDOM to bring the real world's variability to life",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 3.16, Simulations, brings together almost everything in Big Idea 3 — variables, loops, conditionals, procedures, and especially RANDOM from Topic 3.15 — and aims it at one big question: how can a computer stand in for the real world? Today, Day 1, we answer the first half of learning objective AAP-3.F: how a computer can REPRESENT a real-world phenomenon. The key surprise for most students is that building a good simulation is mostly about what you LEAVE OUT. Tomorrow, Day 2, we answer the second half: how to judge a simulation against reality — when it is the right tool, and how the choices you made can quietly bias every result."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain that a simulation is an abstraction of a more complex phenomenon built for a specific purpose, developed by removing detail and simplifying (LO AAP-3.F)"
+        },
+        {
+          "tag": "CB",
+          "text": "Use a random number generator to model real-world variability, and run many trials to draw inferences about how a phenomenon behaves (LO AAP-3.F)"
+        }
+      ],
+      "script": "Two targets today, both from AAP-3.F, and both about part a of that objective — how computers represent real-world phenomena. First: explain what a simulation actually is — an abstraction built for a purpose, made by removing detail — so you never fall for the exam trap that a 'better' simulation is one that copies more of reality. Second: use RANDOM to model the variability that exists in the real world, and see why running the model many times lets you draw inferences you could never get from a single real event. Tomorrow's objective is the other half of AAP-3.F: comparing simulations with the real world, including bias."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A city planner needs to know: 'Out of the next 100 days, roughly how many will it rain, so we can schedule road work?' The only way to truly find out is to WAIT for 100 real days — and even then you'd get just one run of history, which might be unusually wet or dry.",
+      "subprompt": "Write 2–4 sentences: Waiting is impossible, so propose a faster way to get an answer. What is the FEWEST information about rain you'd need to build a tiny 'pretend weather' you could run over and over in seconds? What real details would you throw away?",
+      "directions": "Be ready to share the one number your pretend-weather needs and one real detail you dropped.",
+      "script": "Five minutes with a partner. The planner cannot experiment on the real sky — waiting 100 days gives one noisy run of history and by then it is too late to plan. Push students toward the obvious workaround: build a tiny pretend-weather and run IT hundreds of times in seconds. Then ask the key question — what is the FEWEST you need? Almost every group lands on a single number, a 'chance of rain,' and cheerfully throws away temperature, humidity, wind, and clouds. That instinct — keep one number, drop the rest, then let chance decide each day — is the entire lesson. They just invented a simulation: an abstraction, built for a purpose, driven by randomness."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "What a Simulation Is (and Isn't)",
+          "description": "A simulation as an abstraction built for a purpose, developed by removing detail and simplifying (EK AAP-3.F.1, AAP-3.F.3, AAP-3.F.4)."
+        },
+        {
+          "title": "Randomness Models the Real World",
+          "description": "How RANDOM simulates real-world variability, so many trials reveal the changing state of a phenomenon (EK AAP-3.F.2, AAP-3.F.8)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.16 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is today's map — two sections, both green and CB-required. First, what a simulation is and, just as important, what it is not: an abstraction built for a purpose, made by simplifying, not a full copy of reality. Second, how a random number generator brings real-world variability into the model so that running it many times shows how the phenomenon behaves. Keep the packet open; a digital copy lives on the Topic 3.16 page, which is also where the interactive coding practice for this topic lives — the weather simulation we start on paper today, you'll type and run there."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "What a Simulation Is (and Isn't)",
+      "kicker": "Abstraction Built for a Purpose · Learning Objective AAP-3.F",
+      "script": "Section one. Your bell-ringer pretend-weather worked precisely because you threw things away. That is not a shortcut you got away with — it is the definition of a simulation. Before we write a line of code, we need the College Board's exact idea: a simulation is an abstraction of something more complex, built for a specific purpose, and developing it MEANS removing detail."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-3.F)",
+      "terms": [
+        {
+          "term": "Simulation",
+          "definition": "An abstraction of a more complex object or phenomenon, built for a specific purpose rather than to copy reality exactly (EK AAP-3.F.1)."
+        },
+        {
+          "term": "Abstraction (simplifying)",
+          "definition": "The process of developing a simulation by removing specific details or simplifying functionality until only what serves the purpose remains (EK AAP-3.F.4)."
+        },
+        {
+          "term": "Changing state",
+          "definition": "The varying sets of values a simulation uses to reflect how the state of a phenomenon changes (EK AAP-3.F.2)."
+        },
+        {
+          "term": "Drawing inferences",
+          "definition": "Using a simulation to investigate a phenomenon and reach conclusions without the constraints of the real world (EK AAP-3.F.3)."
+        },
+        {
+          "term": "Random number generator",
+          "definition": "A source of random values, such as RANDOM(a, b), used to simulate the variability that exists in the real world (EK AAP-3.F.8)."
+        }
+      ],
+      "script": "Five words carry this topic. A simulation is an abstraction of something more complex, built for a specific purpose — note the College Board never says 'a copy.' Abstraction here is an action: you develop the simulation by removing detail and simplifying until only the useful part is left. Changing state names the varying sets of values the model steps through to mimic how the real thing changes. Drawing inferences is the payoff — investigating a phenomenon and reaching conclusions without the constraints of the real world. And a random number generator, like RANDOM a comma b, is the tool that injects real-world variability. Write every definition; the exam quotes these ideas almost word for word."
+    },
+    {
+      "type": "concept",
+      "heading": "A Simulation Is an Abstraction for a Purpose",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A simulation is an ABSTRACTION of a more complex object or phenomenon, created for a specific purpose (EK AAP-3.F.1).",
+        "Developing one means REMOVING specific details and simplifying functionality — you decide what does not matter and delete it (EK AAP-3.F.4).",
+        "It often mimics real-world events so you can draw inferences and investigate WITHOUT the constraints of the real world (EK AAP-3.F.3).",
+        "The purpose sets the boundary: keep what answers your question, drop everything else."
+      ],
+      "script": "Here is the mental model to keep all topic long. A simulation is an abstraction of something more complex, and it exists for a specific purpose — the planner's rain question, a pilot's training, a scientist's experiment. Developing it is an act of deletion: you remove details and simplify until only the useful skeleton remains. The College Board is blunt about this in EK AAP-3.F.4 — the process INVOLVES removing detail. Why bother? Because a good abstraction lets you mimic real events and draw inferences without the real world's constraints — no waiting a year, no risking anyone. The purpose is the ruler you measure every detail against: does this help answer the question? If not, it goes.",
+      "capture": [
+        {
+          "q": "A simulation is an abstraction of a more complex phenomenon that is built ______.",
+          "a": "for a specific purpose, not to copy reality exactly"
+        },
+        {
+          "q": "The process of developing a simulation involves ______.",
+          "a": "removing specific details or simplifying functionality"
+        },
+        {
+          "q": "How much detail to keep is decided by ______.",
+          "a": "the question the simulation is meant to answer"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "The Real Sky vs. the Model of It",
+      "subheading": "Every simulation deletes almost everything about the real phenomenon and keeps only what serves its purpose (EK AAP-3.F.4).",
+      "left": {
+        "title": "The real phenomenon",
+        "definition": "Weather in all its tangled, interacting detail",
+        "ek": "EK AAP-3.F.1",
+        "examples": [
+          "Temperature, humidity, pressure, wind, fronts, terrain",
+          "Millions of interacting variables, none fully knowable",
+          "Impossible to compute exactly, even with a supercomputer"
+        ]
+      },
+      "right": {
+        "title": "The simulation of it",
+        "definition": "One idea kept: a single 'chance of rain' number",
+        "ek": "EK AAP-3.F.4",
+        "examples": [
+          "chanceOfRain ← 40, and nothing else about the sky",
+          "Each day: roll RANDOM(1, 100); rain if the roll ≤ 40",
+          "Simple enough to run 10,000 times in a heartbeat"
+        ]
+      },
+      "footer": "AP TIP: A simulation that kept 'every detail' would just be the real world again — and be equally impossible to run. Simplifying is the whole point (EK AAP-3.F.4).",
+      "script": "Put the real thing next to its model. On the left, real weather: temperature, humidity, pressure, wind, fronts, terrain — millions of interacting variables no one can fully know or compute. On the right, the simulation the bell-ringer invented: one number, a forty-percent chance of rain, and a rule that rolls a random number each day. Everything else about the sky is gone, on purpose. Students often think the right column is 'worse' because it knows less. It is BETTER for the purpose precisely because it is runnable — you can execute it ten thousand times in an instant, which the real sky will never let you do. Keeping every detail would just rebuild the real world, equally impossible to run.",
+      "capture": [
+        {
+          "q": "Reducing all of real weather to a single 'chance of rain' number is an example of ______.",
+          "a": "simplifying functionality so the phenomenon becomes computable"
+        },
+        {
+          "q": "A model that tried to include every real detail would be useless because ______.",
+          "a": "it would be as impossible to run as the real world itself"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Simulation",
+      "heading": "One Random Roll = One Simulated Day",
+      "caption": "The whole sky is reduced to one number; RANDOM decides today's weather. Run it again and the printed outcome may change.",
+      "pseudocode": "chanceOfRain ← 40\nroll ← RANDOM(1, 100)\nIF(roll ≤ chanceOfRain)\n{\n  sky ← \"rain\"\n}\nELSE\n{\n  sky ← \"shine\"\n}\nDISPLAY(sky)",
+      "python": "import random\nchanceOfRain = 40\nroll = random.randint(1, 100)\nif roll <= chanceOfRain:\n    sky = \"rain\"\nelse:\n    sky = \"shine\"\nprint(sky)",
+      "output": "rain",
+      "script": "Here is the whole simulation of a single day, in the exam's pseudocode on the left and runnable Python on the right. chanceOfRain is our one kept idea — forty. RANDOM one to one hundred rolls a number that is equally likely to be anything from 1 to 100; if it lands at forty or below, today is rain, otherwise shine. That is the abstraction from the previous slide made executable. Notice what RANDOM is doing: it stands in for everything we deleted — the wind, the fronts, the pressure — by producing the variability a real day has. Run this once and you get 'rain' or 'shine'; run it again and it may flip. That flip is not a bug. It is the real world's variability, modeled."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — What a Simulation Is",
+      "subheading": "These map to LO AAP-3.F. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain why developing a simulation of weather means REMOVING detail. Use the word 'purpose.'",
+        "A classmate says, 'My rain simulation would be more accurate if I added temperature, wind, and humidity to it.' Give one reason more detail can make a simulation WORSE for its purpose, and one reason it might help.",
+        "Name a real phenomenon you could not study directly, and state the single most important detail you would KEEP and one you would delete to build a simulation of it."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.16 page.",
+      "script": "Stop and think, six minutes, full sentences. One: put EK AAP-3.F.4 in your own words — developing a weather simulation means removing detail because the purpose only needs the chance of rain, and the word purpose must appear. Two: the classmate wants to add temperature, wind, humidity — press them to see the trade: more detail can make the model slower, harder to run many times, and harder to reason about, yet it might improve accuracy if that detail genuinely drives rain. Both sides matter; simplification is a judgment, not a reflex. Three: pick any phenomenon they cannot touch and force one keep and one delete. These are exactly the AAP-3.F part-a moves the exam rewards."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Randomness Models the Real World",
+      "kicker": "Variability, Trials, and Inference · Learning Objective AAP-3.F",
+      "script": "Section two. A single simulated day is almost useless — one 'rain' tells the planner nothing. The power comes from running the model many times, and from the fact that each run differs. That difference is not sloppiness; it is RANDOM standing in for the variability of the real world, and it is what lets one tiny model produce a trustworthy inference."
+    },
+    {
+      "type": "concept",
+      "heading": "RANDOM Turns One Model into Real-World Variety",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A random number generator is used to simulate the VARIABILITY that exists in the real world (EK AAP-3.F.8).",
+        "Because each run draws different random values, the simulation moves through varying sets of values — the changing state of the phenomenon (EK AAP-3.F.2).",
+        "One trial is noise; running MANY trials lets you draw inferences about how the phenomenon behaves (EK AAP-3.F.3).",
+        "Each RANDOM result is equally likely, so over many days the model's rain rate settles near the chance you built in."
+      ],
+      "script": "One rule, straight from the standards: a random number generator simulates the variability that exists in the real world — that is EK AAP-3.F.8, and it is the whole reason RANDOM belongs in this topic. Because each run pulls different random values, the simulation steps through varying sets of values, which is exactly EK AAP-3.F.2's 'changing state.' Now the payoff, EK AAP-3.F.3: a single day is noise, but run a thousand days and the noise averages out into an inference — the planner's answer. And because RANDOM makes every value equally likely, a model built with a forty-percent chance will, over many days, rain close to forty percent of the time. You did not program that rate directly into any single day; it EMERGES from many random trials.",
+      "capture": [
+        {
+          "q": "A random number generator is used to simulate ______.",
+          "a": "the variability that exists in the real world"
+        },
+        {
+          "q": "Because each run uses different random values, the simulation reflects ______.",
+          "a": "the changing state of the phenomenon across varying sets of values"
+        },
+        {
+          "q": "A single trial is noise, but many trials let you ______.",
+          "a": "draw inferences about how the phenomenon behaves"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Many Trials",
+      "heading": "A Thousand Days, One Inference",
+      "caption": "The same one-number model, run 1000 times. The fraction lands near 0.40 but differs every run — the inference is stable even though each trial varies.",
+      "pseudocode": "rainy ← 0\nREPEAT 1000 TIMES\n{\n  IF(RANDOM(1, 100) ≤ 40)\n  {\n    rainy ← rainy + 1\n  }\n}\nDISPLAY(rainy / 1000)",
+      "python": "import random\nrainy = 0\nfor i in range(1000):\n    if random.randint(1, 100) <= 40:\n        rainy = rainy + 1\nprint(rainy / 1000)",
+      "output": "0.397",
+      "script": "Same model as before, now wrapped in a loop that plays it a thousand times and counts the rainy days. DISPLAY of rainy over one thousand gives the fraction that rained — the inference the planner wanted. Run it and you might see 0.397, or 0.412, or 0.388; the exact number changes every execution because each day's RANDOM roll is independent. That is EK AAP-3.F.2's changing state in action. But notice the important thing: the fraction always hovers near forty percent. The individual days are unpredictable; the aggregate is stable and informative. That gap — noisy trials, steady inference — is why simulations work, and it is why on the exam a simulation's output is described as varying while still supporting conclusions."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace One Simulated Week",
+      "context": "Given each day's RANDOM(1, 100) roll, decide rain (roll ≤ 40) or shine, and keep a running count of rainy days. Fill the blanks yourself.",
+      "columns": [
+        "Day",
+        "Roll — RANDOM(1, 100)",
+        "Rain? (roll ≤ 40)",
+        "Rainy days so far"
+      ],
+      "rows": [
+        [
+          "Mon",
+          "12",
+          "rain",
+          "1"
+        ],
+        [
+          "Tue",
+          "77",
+          "shine",
+          "1"
+        ],
+        [
+          "Wed",
+          "39",
+          "rain",
+          "2"
+        ],
+        [
+          "Thu",
+          "40",
+          "rain",
+          "3"
+        ],
+        [
+          "Fri",
+          "88",
+          "shine",
+          "3"
+        ],
+        [
+          "Sat",
+          "5",
+          "rain",
+          "4"
+        ],
+        [
+          "Sun",
+          "61",
+          "shine",
+          "4"
+        ]
+      ],
+      "highlightCol": 3,
+      "script": "Trace one simulated week by hand — this is exactly what the code did a thousand times, slowed down. Read each roll and apply the one rule: forty or below is rain. Monday twelve, rain, count one. Tuesday seventy-seven, shine, still one. The one students must not fluff is Thursday: the roll is exactly forty, and the rule is roll LESS THAN OR EQUAL TO forty, so forty counts as rain — the count goes to three. Saturday's five is rain, four. Final tally: four rainy days out of seven, a rate of about fifty-seven percent this week — higher than forty, because seven days is far too few to settle. That is the whole lesson of the previous slide: small samples are noisy, which is why real simulations run thousands of trials.",
+      "blanks": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“A Good Simulation Includes Every Detail”",
+      "misconception": "The more real-world detail a simulation includes, the better and more trustworthy it is — a great simulation models everything.",
+      "whyItHappens": "'More information' feels like 'more accurate,' and it seems careless to leave real factors out, so students equate completeness with quality.",
+      "correction": "Developing a simulation is the process of REMOVING detail and simplifying for a purpose (EK AAP-3.F.4). A simulation that kept every detail would be as complex and unrunnable as reality itself — you could never run it thousands of times to draw an inference. Quality is measured by how well the KEPT details serve the purpose, not by how many details survive.",
+      "example": "The 1000-day rain model keeps exactly one number and still answers the planner's question. Bolting on temperature, wind, and humidity would make it slower and harder to reason about while adding nothing the planner asked for.",
+      "script": "This is the single most tested misconception in the topic, so name it out loud. It feels obvious that a simulation with more real detail is better — more information, more accuracy. But EK AAP-3.F.4 says the opposite about how simulations are DEVELOPED: the process is removing detail and simplifying. A model that included everything would just be the real world again, impossible to run even once at speed, let alone the thousands of times you need for an inference. The measure of a good simulation is whether the details it KEPT answer the question, not how many it managed to cram in. Our one-number rain model is 'good' not despite its simplicity but because of it."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Randomness and Trials",
+      "subheading": "These map to LO AAP-3.F. Complete on your Guided Notes.",
+      "prompts": [
+        "In one sentence, explain what RANDOM is standing in for when it decides each simulated day's weather. Use the word 'variability.'",
+        "The 7-day trace rained about 57% of the time even though the model uses a 40% chance. Explain why, and predict what happens to that percentage as you simulate 10,000 days instead of 7.",
+        "A student runs the 1000-day model twice and gets 0.397 then 0.412, and concludes the program is broken. Explain, using 'changing state,' why two different results are exactly what should happen."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.16 page.",
+      "script": "Stop and think, six minutes, full sentences. One: RANDOM stands in for the real-world variability — the wind, fronts, and pressure we deleted — collapsing all of it into one unpredictable roll; the word variability must appear. Two: the week rained fifty-seven percent because seven days is a tiny, noisy sample; at ten thousand days the rate will settle close to forty percent, the built-in chance — that is the law of large trials the exam leans on. Three: two different runs are not a bug; each execution uses different random values, so the simulation moves through a different changing state, and EK AAP-3.F.2 predicts exactly that. Answers are reviewed together before we close."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A simulation is an abstraction of a more complex phenomenon, built for a specific purpose — not a copy of reality (EK AAP-3.F.1)",
+        "Developing a simulation means REMOVING detail and simplifying; a model that kept everything would be unrunnable (EK AAP-3.F.4)",
+        "A random number generator simulates the variability of the real world, so each run steps through a different changing state (EK AAP-3.F.2, AAP-3.F.8)",
+        "One trial is noise; running MANY trials lets you draw a stable inference about the phenomenon (EK AAP-3.F.3)"
+      ],
+      "nextPoints": [
+        "Day 2: how to JUDGE a simulation against the real world (the second half of LO AAP-3.F)",
+        "When a simulation is the right tool — because real experiments are too big, small, fast, slow, expensive, or dangerous (EK AAP-3.F.6)",
+        "How the details you included or EXCLUDED can quietly bias every result (EK AAP-3.F.5)"
+      ],
+      "teaser": "Before tomorrow: a flight simulator used to train pilots never simulates a bird flying into the engine. Name one thing that makes that a smart simplification — and one real danger it creates for a pilot trained only on the simulator.",
+      "script": "That is Day 1. A simulation is an abstraction built for a purpose, developed by removing detail — keeping everything would make it unrunnable. RANDOM supplies the real world's variability, so each run is a different changing state, and running many trials turns noisy days into a stable inference. Tomorrow we flip from BUILDING to JUDGING: when is a simulation the right tool, and how do the elements you kept or cut bias the answer? Here is the teaser, and it is exactly where we start: a pilot's flight simulator never models a bird strike. Name one reason that omission is smart, and one danger it creates. Write both down. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.16 — Simulations — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "Per EK AAP-3.F.1, which statement best describes what a simulation IS?",
+        "options": [
+          "A complete, detail-for-detail copy of a real object or phenomenon",
+          "A program that always produces the same output every time it is run",
+          "An abstraction of a more complex object or phenomenon, built for a specific purpose",
+          "A guaranteed prediction of exactly what will happen in the real world"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.F.1",
+        "rationale": "EK AAP-3.F.1 defines a simulation as an abstraction of a more complex object or phenomenon for a specific purpose, so C is correct. A is the classic error — a simulation is a simplification, not a full copy. B describes a deterministic program; simulations typically use random values and vary between runs (EK AAP-3.F.2). D overclaims: simulations support inferences and hypotheses, they do not guarantee exact real-world outcomes."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student building a traffic simulation removes pedestrians, weather, and car colors, keeping only how many cars arrive per minute. Per EK AAP-3.F.4, how should this be described?",
+        "options": [
+          "Appropriate development of a simulation by removing detail and simplifying for the purpose",
+          "A mistake, because a trustworthy simulation must include every real-world factor",
+          "Pointless, because removing detail always makes a simulation less accurate than reality",
+          "Impossible, because a simulation cannot leave out any element of the real system"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.F.4",
+        "rationale": "EK AAP-3.F.4 states that developing an abstract simulation involves removing specific details or simplifying functionality, which is exactly what the student did, so A is correct. B is the 'more detail is always better' misconception the EK contradicts. C is false — deleting irrelevant detail (car color) does not reduce accuracy for a traffic-flow purpose. D is wrong; leaving elements out is required, not forbidden."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "In a dice-game simulation, a programmer writes roll ← RANDOM(1, 6) inside a loop that runs many times. Per EK AAP-3.F.8, what is the purpose of RANDOM here?",
+        "options": [
+          "To make the program run faster than using fixed numbers",
+          "To guarantee every face of the die appears an equal number of times",
+          "To store the results of the simulation so they can be reused later",
+          "To simulate the real-world variability of an unpredictable die roll"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.F.8",
+        "rationale": "EK AAP-3.F.8 says random number generators can be used to simulate the variability that exists in the real world, so D is correct. A invents a speed benefit RANDOM does not provide. B misstates RANDOM: each result is equally LIKELY per call, but nothing guarantees equal counts in a finite run. C confuses generating values with storing them."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Engineers want to study how a bridge design behaves in a once-in-500-years earthquake before building it. Per EK AAP-3.F.6, why is a simulation the appropriate tool here?",
+        "options": [
+          "Because a simulation will predict the exact date the real earthquake occurs",
+          "Because the real experiment is impractical — too dangerous, expensive, and slow to reproduce",
+          "Because simulations are always cheaper and more accurate than any physical test",
+          "Because building the real bridge first would make the simulation unnecessary"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.F.6",
+        "rationale": "EK AAP-3.F.6 says simulations are most useful when real events are impractical for experiments — too big, small, fast, slow, expensive, or dangerous; a rare, destructive earthquake is all three, so B is correct. A overclaims prediction power. C is a blanket claim the CED never makes — simulations are not universally cheaper or more accurate. D reverses the logic; the point is to test BEFORE building."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A city's evacuation simulation is built entirely from data collected on weekday mornings and predicts smooth traffic. During a real weekend evacuation, roads jam badly. Per EK AAP-3.F.5, what is the best explanation?",
+        "options": [
+          "The simulation contains bias from excluding weekend and off-peak conditions",
+          "The simulation used too few random numbers to be statistically valid",
+          "Simulations are always wrong because computers cannot model traffic",
+          "The real evacuation was simply an unlucky run of the same model"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.F.5",
+        "rationale": "EK AAP-3.F.5 says simulations can contain bias derived from which real-world elements were included or excluded; building only from weekday-morning data excluded weekend conditions, biasing the result, so A is correct. B blames sample size, but the flaw is the excluded scenario, not randomness. C is an overgeneralization. D treats reality as a run of the model, ignoring that the model never represented weekends at all."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A weather model with a fixed 30% rain chance is run 100 times, then 100,000 times. The rain fraction is 0.24 in the short run and 0.301 in the long run. Per EK AAP-3.F.2 and AAP-3.F.3, what does this show?",
+        "options": [
+          "The model is broken because the two runs disagree",
+          "Each run varies, and running more trials yields a more reliable inference about the phenomenon",
+          "The rain chance built into the model must have secretly changed between runs",
+          "A single run of 100 is enough to draw a trustworthy conclusion"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.F.2",
+        "rationale": "EK AAP-3.F.2 describes a simulation moving through varying sets of values, and AAP-3.F.3 says simulations let us draw inferences; more trials average out the noise, landing near the true 30%, so B is correct. A misreads normal variation as breakage. C invents a changing parameter — the chance was fixed. D ignores that 100 trials is a noisy sample, which is why 0.24 drifted far from 0.30."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A biologist runs a population simulation, changes one value — the predator birth rate — reruns it, and compares the outcomes. Per EK AAP-3.F.7, what does this activity best illustrate?",
+        "options": [
+          "Proving with certainty what the real animal population will do next year",
+          "Removing randomness so the simulation becomes fully predictable",
+          "Using the simulation to formulate and refine a hypothesis about the phenomenon",
+          "Replacing the need to ever observe the real population again"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.F.7",
+        "rationale": "EK AAP-3.F.7 says simulations facilitate the formulation and refinement of hypotheses; changing one variable and comparing outcomes is a cheap experiment that refines a hypothesis, so C is correct. A overclaims certainty. B is false — the reruns still use randomness. D overstates the role; simulations inform hypotheses, they do not replace real observation entirely."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "Two teams model the same disease outbreak. Team 1 includes travel between cities; Team 2 excludes it to keep the model simpler. Which comparison of the simulations to the real world is most accurate?",
+        "options": [
+          "Team 2's simpler model is automatically more trustworthy because it removed detail",
+          "Both models are exact copies of the outbreak, so they must produce identical results",
+          "Team 1's model is guaranteed to be perfectly accurate because it includes more detail",
+          "Each model reflects its designers' choices; excluding travel is a simplification that can also introduce bias"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.F.5",
+        "rationale": "This tests the tension between AAP-3.F.4 (simplifying is normal) and AAP-3.F.5 (exclusions can bias results). Excluding travel is a legitimate simplification that may also bias the spread pattern, so D is correct. A wrongly treats 'simpler' as 'more trustworthy.' B contradicts AAP-3.F.1 — neither is a copy. C repeats the 'more detail guarantees accuracy' misconception; more detail helps only if it serves the purpose and is correct."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.16 — Simulations — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.16 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.16 is the conceptual capstone of the programming strand: it takes the mechanics students already own — variables, loops, conditionals, procedures, and RANDOM from Topic 3.15 — and points them at the question of how a computer can stand in for the real world. The single learning objective, AAP-3.F, has two parts, and the two days split cleanly along them. Day 1 (part a) is about REPRESENTING a phenomenon: a simulation is an abstraction built for a purpose (F.1), developed by removing detail and simplifying (F.4), that uses varying values to reflect a changing state (F.2) and RANDOM to model real-world variability (F.8), so that many trials yield an inference (F.3). Day 2 (part b) is about JUDGING a simulation against reality: when it is the right tool because real experiments are impractical (F.6), how it refines hypotheses (F.7), and — the heavily tested idea — how included or excluded elements introduce bias (F.5).",
+      "The topic ships a codeex because AAP-3.F is a programming objective, but with a deliberate twist carried over from Topic 3.15: because RANDOM makes raw output vary, the graded stdout is always a DETERMINISTIC property or summary of many trials (an outcome is one of two states; the number of trials; the fraction is a valid probability; the two-state counts conserve). Students grade on invariants, not on unpredictable draws — which is itself a lesson about what is and isn't stable in a simulation.",
+      "The through-line is a weather simulation the bell ringer invents on Day 1: real weather collapsed to a single 'chance of rain' number, driven by RANDOM. Students hand-trace it on paper (Exercise 1), audit related simulations for bias (Exercise 2), and then type and run progressively harder versions of the same scenario on the Topic 3.16 coding page."
+    ],
+    "los": [
+      "LO AAP-3.F — For simulations: a. Explain how computers can be used to represent real-world phenomena or outcomes. b. Compare simulations with real-world contexts."
+    ],
+    "eks": [
+      "EK AAP-3.F.1 — Simulations are abstractions of more complex objects or phenomena for a specific purpose.",
+      "EK AAP-3.F.2 — A simulation is a representation that uses varying sets of values to reflect the changing state of a phenomenon.",
+      "EK AAP-3.F.3 — Simulations often mimic real-world events with the purpose of drawing inferences, allowing investigation of a phenomenon without the constraints of the real world.",
+      "EK AAP-3.F.4 — The process of developing an abstract simulation involves removing specific details or simplifying functionality.",
+      "EK AAP-3.F.5 — Simulations can contain bias derived from the choices of real-world elements that were included or excluded.",
+      "EK AAP-3.F.6 — Simulations are most useful when real-world events are impractical for experiments (e.g., too big, too small, too fast, too slow, too expensive, or too dangerous).",
+      "EK AAP-3.F.7 — Simulations facilitate the formulation and refinement of hypotheses related to the objects or phenomena under consideration.",
+      "EK AAP-3.F.8 — Random number generators can be used to simulate the variability that exists in the real world."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.16 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.16 page for the interactive coding practice (the weather simulation, typed and run).",
+      "Optional: a 100-sided spinner, a deck of cards, or dice for a physical RANDOM demonstration of a single simulated day."
+    ],
+    "prereqs": [
+      "Students should be fluent with Topic 3.15 (RANDOM(a, b) returns an equally likely integer from a to b, and using it means each run may differ), plus loops (REPEAT n TIMES), conditionals (IF/ELSE), and — for Day 2's hypothesis code and the last codeex problem — procedures with parameters and RETURN (Topics 3.12–3.13). No statistics background is assumed; 'more trials give a steadier average' is developed intuitively from the traced week."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Representing a phenomenon: simulation as abstraction, removing detail, RANDOM for variability, trials and inference (LO AAP-3.F part a)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.16/Q1) + bell ringer (the 100-day rain problem)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "What a simulation is: vocab, abstraction-for-a-purpose, real-vs-model, one-day code_block (EK AAP-3.F.1, F.3, F.4)",
+            "min": 15,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on what a simulation is",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Randomness and trials: variability concept, 1000-day code_block, traced week, 'every detail' misconception (EK AAP-3.F.2, F.8)",
+            "min": 15,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on randomness and trials",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + bird-strike teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Judging a simulation: when reality is impractical, refining hypotheses, and bias from included/excluded elements (LO AAP-3.F part b)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.16/Q2) + bell ringer (the flight simulator's missing bird strike)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "When simulations beat reality: impractical experiments, the six 'too's, hypotheses, parameter code_block (EK AAP-3.F.6, F.7)",
+            "min": 16,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on when to simulate and hypotheses",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Bias: included vs excluded, the bias audit table, the 'computers are objective' misconception (EK AAP-3.F.5)",
+            "min": 15,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on bias",
+            "min": 5,
+            "slides": "16"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.16 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive weather-simulation coding practice on the Topic 3.16 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.16 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“More detail always makes a better simulation”",
+        "myth": "A simulation improves as it includes more real-world factors; a great simulation models everything.",
+        "reality": "Developing a simulation is the process of REMOVING detail and simplifying for a purpose (EK AAP-3.F.4). A model that kept every detail would be as unrunnable as reality itself, so you could never run the many trials an inference needs. Quality is whether the KEPT details serve the purpose, not how many survive."
+      },
+      {
+        "heading": "“RANDOM making the output vary means the program is broken”",
+        "myth": "If two runs of a simulation give different results, something is wrong with the code.",
+        "reality": "RANDOM is deliberately modeling real-world variability (EK AAP-3.F.8), so the simulation steps through a different changing state each run (EK AAP-3.F.2). Different results are expected; the stable, trustworthy part is the INFERENCE drawn from many trials (EK AAP-3.F.3), not any single run."
+      },
+      {
+        "heading": "“A computer's simulation is objective, so it can't be biased”",
+        "myth": "Because a computer and random numbers produced the results, the output is neutral fact.",
+        "reality": "A simulation only reflects the real-world elements its designers chose to include or exclude (EK AAP-3.F.5). Those choices carry human judgment and can bias every result. Randomness creates variability, not fairness — a model built only from weekday data will confidently mispredict weekends."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Run one simulated day physically: a student rolls a die or spins a 100-spinner, the class applies the 'rain if ≤ 40' rule, and tallies on the board — make 'one trial' concrete before the loop abstracts it.",
+        "Give a pre-filled trace table like the Day 1 worked example with only the 'rain?' and running-count columns blank, so students practice the rule and the counter without also tracking rolls."
+      ],
+      "extension": [
+        "Have students design a simulation for a phenomenon of their choice, then list three details they deliberately excluded and, for each, name the bias that exclusion could introduce (connects F.4 and F.5).",
+        "On the Topic 3.16 coding page, students modify the last codeex problem to run the model at several chance values and describe how the outputs would refine a hypothesis (F.7) — while keeping the graded output a deterministic invariant."
+      ]
+    },
+    "discussion": [
+      "Your bell-ringer weather model works precisely because it throws almost everything away. What does that suggest about the relationship between a good abstraction and 'being realistic' — can a model be too realistic to be useful?",
+      "A flight simulator that never models a bird strike is both a smart simplification and a source of risk. Where is the line between 'a reasonable detail to exclude' and 'a bias that will hurt someone,' and who should get to decide?",
+      "Simulations let us investigate earthquakes, pandemics, and climate without the constraints of the real world. When a life-or-death decision rests on a simulation's output, what should a decision-maker demand to know about what the model left out?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

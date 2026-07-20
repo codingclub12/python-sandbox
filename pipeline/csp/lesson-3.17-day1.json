@@ -1,0 +1,591 @@
+{
+  "meta": {
+    "lessonId": "3.17",
+    "lessonTitle": "Algorithmic Efficiency",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-4.A",
+    "anchor": "Algorithmic Efficiency",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.17 · Day 1 of 2",
+      "title": "How Much Work Is That?",
+      "subtitle": "Before a program can be fast, you have to see WHERE the work is — separating a problem from a single instance, telling a yes/no question from a best-answer question, and measuring an algorithm's cost by counting how many times its statements run as the input grows",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.17, Algorithmic Efficiency. Up to now in Big Idea 3 we asked whether an algorithm is CORRECT — does it give the right answer. Now we ask a second question that decides whether an algorithm is actually usable: how much WORK does it do, and does that work stay manageable as the input gets bigger. Today, Day 1, we build the vocabulary and the measuring skill: what a problem is versus a single instance, the difference between a yes/no decision problem and a best-answer optimization problem, and how to estimate efficiency by counting how many times a statement runs. Tomorrow, Day 2, we turn that count into a verdict — reasonable or unreasonable time — and meet heuristics, the good-enough answers we settle for when the exact one would take forever. One note up front: the College Board explicitly keeps formal Big-O notation OUT of this course, so everything we do is by plain counting and reasoning, never formulas like O of n."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Distinguish a PROBLEM from an INSTANCE of that problem, and tell a decision problem (yes/no) apart from an optimization problem (the best answer) (LO AAP-4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Estimate an algorithm's efficiency informally by counting how many times a statement runs, and express that cost as it depends on the size of the input (LO AAP-4.A)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-4.A, determining the efficiency of an algorithm. First: use the CED's precise vocabulary — separate a problem, the general task, from an instance, one specific input; and separate a decision problem, which has a yes-or-no answer, from an optimization problem, which asks for the best solution among many. Second: measure efficiency the way the exam expects — informally, by counting how many times a statement or group of statements executes, and describing how that count grows as the input size grows. Tomorrow's targets, the reasonable-versus-unreasonable line and heuristics, both stand on the counting skill we build today."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "With your group, count the number of unique HANDSHAKES if everyone shakes hands with everyone else exactly once. Work it out for a group of 4 people, then 8 people, then predict for 40 — every pair counts once, and no one shakes their own hand.",
+      "subprompt": "Write 2–4 sentences: when the group doubled from 4 to 8, did the number of handshakes double, or grow faster? Estimate the handshakes for 40 people WITHOUT drawing them all. What does this suggest about how the amount of work depends on the size of the group?",
+      "directions": "Be ready to share your count and your prediction for 40.",
+      "script": "Five minutes with a group. Count the handshakes when everyone greets everyone once. For 4 people it is 6; for 8 people it is 28; for 40 it is 780. The move that matters is noticing the GROWTH: doubling the group from 4 to 8 did not double the handshakes from 6 to 12 — it nearly quintupled them, to 28. The work grows faster than the group does, roughly with the SQUARE of the number of people. Hold onto that. You just discovered the whole idea of today's lesson: an algorithm's cost is not one fixed number, it is a quantity that grows with the size of the input, and how FAST it grows is exactly what we are going to learn to measure and judge."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Problems, Instances, and Kinds of Problems",
+          "description": "A problem versus one instance of it, and decision (yes/no) versus optimization (best-answer) problems (EK AAP-4.A.1–A.2)."
+        },
+        {
+          "title": "Measuring Efficiency by Counting",
+          "description": "Efficiency as a function of input size, measured informally by counting statement executions — and why two correct algorithms can cost very differently (EK AAP-4.A.3–A.6)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.17 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required. First, the vocabulary of problems: a problem versus a single instance, and decision problems versus optimization problems. Second, the core skill: measuring an algorithm's efficiency by counting how many times its statements run, and seeing how that count depends on the input size. Keep the packet open and fill it in as we go; if you were absent or lost the packet, a digital copy lives on the Topic 3.17 Guided Notes page at apcsexamprep.com, where the analysis exercises are also available."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Problems, Instances, and Kinds of Problems",
+      "kicker": "The Vocabulary of Efficiency · Learning Objective AAP-4.A",
+      "script": "Section one. Before we can measure efficiency we need to be precise about what we are measuring the efficiency OF. The College Board draws two distinctions that show up all over the exam: a problem versus an instance of it, and a decision problem versus an optimization problem. Getting these words exactly right is worth easy points and keeps the rest of the topic clear."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-4.A)",
+      "terms": [
+        {
+          "term": "Problem",
+          "definition": "A general description of a task that can (or cannot) be solved algorithmically, such as 'sorting a list' (EK AAP-4.A.1)."
+        },
+        {
+          "term": "Instance",
+          "definition": "A specific version of a problem that includes particular input — for example, sorting the specific list (2, 3, 1, 7) (EK AAP-4.A.1)."
+        },
+        {
+          "term": "Decision problem",
+          "definition": "A problem whose answer is yes or no, such as 'is there a path from A to B?' (EK AAP-4.A.2)."
+        },
+        {
+          "term": "Optimization problem",
+          "definition": "A problem whose goal is to find the 'best' solution among many, such as 'what is the shortest path from A to B?' (EK AAP-4.A.2)."
+        },
+        {
+          "term": "Efficiency",
+          "definition": "An estimation of the amount of computational resources an algorithm uses, typically expressed as a function of the size of the input (EK AAP-4.A.3)."
+        }
+      ],
+      "script": "Five words carry this topic. A problem is the general task — sorting, searching, finding a route — stated without any particular input. An instance is that same problem with a specific input attached: sorting the list two, three, one, seven. A decision problem has a yes-or-no answer, like is there a path from A to B. An optimization problem asks for the best among many options, like what is the SHORTEST path from A to B. And efficiency is our estimate of how many resources — usually steps or time — an algorithm uses, always thought of as a function of the input size. Notice how the same setting, paths in a network, gives a decision version and an optimization version — that pairing is a favorite exam move."
+    },
+    {
+      "type": "concept",
+      "heading": "A Problem, and One Instance of It",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A PROBLEM is the general task, described without any specific input — 'sort a list of numbers' (EK AAP-4.A.1).",
+        "An INSTANCE is that problem with actual input supplied — 'sort (2, 3, 1, 7)' is one instance of the sorting problem (EK AAP-4.A.1).",
+        "One problem has endless instances: every different list to be sorted is a new instance of the same sorting problem.",
+        "Efficiency is a property of the ALGORITHM across input sizes, not of any single instance — which is why we ask how cost grows, not what one run cost."
+      ],
+      "script": "Keep the problem-versus-instance distinction crisp. A problem is the general task with no particular input named — sort a list, search a list, find a route through a map. An instance pins that task to one specific input — sort the list two, three, one, seven. A single problem spawns endless instances: every different list you could hand the sorter is another instance of the same sorting problem. This matters for efficiency because efficiency is a property of the algorithm considered across all input sizes, not the cost of one lucky or unlucky instance. That is exactly why the questions we ask sound like 'how does the work grow as the list gets longer,' never 'how long did this one list take.'",
+      "capture": [
+        {
+          "q": "A problem describes the general task, while an instance of it adds ______.",
+          "a": "a specific input, such as the particular list (2, 3, 1, 7) to be sorted"
+        },
+        {
+          "q": "A single problem can have ______.",
+          "a": "endlessly many instances — one for every different input you could supply"
+        },
+        {
+          "q": "We study the efficiency of the algorithm across input sizes rather than one instance because ______.",
+          "a": "efficiency describes how the work grows as the input grows, not the cost of a single run"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Decision vs Optimization Problems",
+      "subheading": "The same setting can pose a yes/no question or a best-answer question — and they are very different kinds of problems (EK AAP-4.A.2).",
+      "left": {
+        "title": "Decision problem",
+        "definition": "A problem whose answer is simply yes or no",
+        "ek": "EK AAP-4.A.2",
+        "examples": [
+          "Is there a path from A to B?",
+          "Is the number 91 prime?",
+          "Does this list contain a value over 100?"
+        ]
+      },
+      "right": {
+        "title": "Optimization problem",
+        "definition": "A problem that asks for the BEST solution among many",
+        "ek": "EK AAP-4.A.2",
+        "examples": [
+          "What is the shortest path from A to B?",
+          "What is the largest prime below 100?",
+          "Which route visits every city in the least distance?"
+        ]
+      },
+      "footer": "AP TIP: 'Is there…' / 'Does it…' signals a DECISION problem; 'what is the best / shortest / largest…' signals an OPTIMIZATION problem.",
+      "script": "One setting, two kinds of questions. A decision problem has a yes-or-no answer: is there a path from A to B, is 91 prime, does the list hold a value over 100. An optimization problem asks for the best option out of many: what is the shortest path from A to B, the largest prime below 100, the route that visits every city in the least distance. The tell is in the wording — is there and does it point to a decision problem, while best, shortest, largest, and least point to an optimization problem. Optimization problems are often the harder, more expensive ones, because instead of stopping at the first yes, you may have to weigh a huge number of candidates to be sure you found the best. That difference in cost is the thread we pull on all topic.",
+      "capture": [
+        {
+          "q": "A decision problem is one whose answer is ______.",
+          "a": "yes or no — for example, is there a path from A to B"
+        },
+        {
+          "q": "An optimization problem asks not whether a solution exists but ______.",
+          "a": "which solution is the best among many, such as the shortest path from A to B"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Problems and Instances",
+      "subheading": "These map to LO AAP-4.A. Complete on your Guided Notes.",
+      "prompts": [
+        "In your own words, explain the difference between a problem and an instance, then give one problem of your own and two different instances of it.",
+        "Label each as a decision or an optimization problem, and rewrite the OTHER version of each: (a) 'Is there a flight from Chicago to Tokyo?' (b) 'What is the cheapest flight from Chicago to Tokyo?'",
+        "A classmate says 'sorting the list (5, 2, 9) is a problem.' Correct the wording precisely — what is the problem, and what is (5, 2, 9)?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.17 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: put the problem-versus-instance idea in your own words, then invent a problem and two instances of it — every different input is a new instance. Two: label the flight questions and flip each — is there a flight is a decision problem, and its optimization partner is what is the cheapest flight; the cheapest-flight version is optimization, and its decision partner is simply is there a flight. Three: fix the classmate — sorting is the problem, and the specific list five, two, nine is an instance of it. Those three moves are exactly how AAP-4.A.1 and A.2 questions are phrased."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Measuring Efficiency by Counting",
+      "kicker": "Count the Steps · Learning Objective AAP-4.A",
+      "script": "Section two. Now the central skill of the topic. To compare algorithms we need a way to measure how much work each one does — and the College Board's method is refreshingly concrete: count how many times a statement runs, and watch how that count changes as the input gets bigger. No stopwatches, no formulas, just counting."
+    },
+    {
+      "type": "concept",
+      "heading": "Efficiency Is About Growth, Not the Clock",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Efficiency is an estimate of the resources an algorithm uses, expressed as a function of the INPUT SIZE (EK AAP-4.A.3).",
+        "An algorithm's efficiency can be determined by formal or mathematical reasoning (EK AAP-4.A.4)…",
+        "…but at this level we measure it INFORMALLY, by counting how many times a statement or group of statements executes (EK AAP-4.A.5).",
+        "EXCLUDED from this course: formal Big-O analysis and reasoning with mathematical formulas — describe growth in words (constant, linear, square), never as O(n) (EK AAP-4.A.3)."
+      ],
+      "script": "Here is the mental model for the whole topic. Efficiency is not a wall-clock time — that depends on which computer you run on. It is an estimate of the work an algorithm does, written as a function of the input size: how does the cost change as the list, or the map, or the group gets bigger. The College Board says efficiency can be pinned down through formal mathematical reasoning, but then makes a deliberate choice for this course: we measure it INFORMALLY, by counting how many times a statement or group of statements runs. And they explicitly EXCLUDE formal Big-O notation and formula-based analysis — so we describe growth in plain words like constant, linear, and square, and we never write O of n. Counting is the entire toolkit, and it is enough.",
+      "capture": [
+        {
+          "q": "Efficiency is best thought of not as clock time but as ______.",
+          "a": "a function of the input size — how the work grows as the input grows"
+        },
+        {
+          "q": "At this level we measure an algorithm's efficiency informally by ______.",
+          "a": "counting how many times a statement or group of statements executes"
+        },
+        {
+          "q": "The CED explicitly keeps ______ out of this course.",
+          "a": "formal Big-O notation and analysis using mathematical formulas"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Counting Executions",
+      "heading": "One Loop: Work Grows With n",
+      "caption": "The comparison inside the loop runs once per element, so a list of n names costs about n checks.",
+      "pseudocode": "FOR EACH name IN roster\n{\n  IF(name = target)\n  {\n    DISPLAY(\"found\")\n  }\n}",
+      "python": "for name in roster:\n    if name == target:\n        print(\"found\")",
+      "script": "Here is counting in action. This loop looks at each name in the roster once and checks whether it equals the target. So the number of times the comparison runs is the number of names — if the roster has n names, the check runs about n times. Double the roster and you double the checks. We call that LINEAR growth: the work grows in direct proportion to the input size. Notice we did not time anything or name a computer; we just counted how many times the statement inside the loop executes as a function of n. That single habit — find the statement in the deepest loop and count how often it runs — is the whole measuring technique."
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Counting Executions",
+      "heading": "A Loop Inside a Loop: Work Grows With n × n",
+      "caption": "For every person, the inner loop runs through everyone again — so the inner check runs about n × n times.",
+      "pseudocode": "FOR EACH a IN people\n{\n  FOR EACH b IN people\n  {\n    IF(a = b)\n    {\n      DISPLAY(\"match\")\n    }\n  }\n}",
+      "python": "for a in people:\n    for b in people:\n        if a == b:\n            print(\"match\")",
+      "script": "Now nest one loop inside another. For each of the n people in the outer loop, the inner loop runs through all n people again — so the comparison inside runs n times n, which is n squared. This is your handshake bell ringer in code: comparing everyone to everyone. If n is 10, the inner check runs 100 times; if n is 20, it runs 400 times. Doubling the input did not double the work, it QUADRUPLED it — that is SQUARE growth. Same counting rule as before, just applied to a nested loop: find the statement deepest inside and count how many times the loops drive it to run. A nested loop over the same data is the classic signature of square-time work."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Two Correct Algorithms, Very Different Costs",
+      "context": "Both algorithms are CORRECT. Count how many times the inner check runs as n grows. Fill in the blank cells before we compare.",
+      "columns": [
+        "Input size n",
+        "One loop — checks ≈ n",
+        "Loop inside a loop — checks ≈ n × n"
+      ],
+      "rows": [
+        [
+          "5",
+          "5",
+          "25"
+        ],
+        [
+          "10",
+          "10",
+          "100"
+        ],
+        [
+          "20",
+          "20",
+          "400"
+        ],
+        [
+          "50",
+          "50",
+          "2500"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Put the two algorithms side by side and just count. The one-loop version does about n checks: five, ten, twenty, fifty. The nested version does n times n: twenty-five, one hundred, four hundred, twenty-five hundred. Both are perfectly correct — they can even solve the same problem — yet their costs pull apart fast, and the gap widens as n grows. That is EK AAP-4.A.6 in one table: different correct algorithms for the same problem can have very different efficiencies. When you can choose, you want the loop that grows gently. Fill in the cells I left blank by counting, not guessing — n for the single loop, n times n for the nested one.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“A Faster Computer Makes the Algorithm More Efficient”",
+      "misconception": "If an algorithm is slow, running it on a faster computer makes it a more efficient algorithm.",
+      "whyItHappens": "In everyday speech 'efficient' and 'fast' mean the same thing, and a faster machine really does finish sooner, so it feels like the algorithm improved.",
+      "correction": "Efficiency is a property of the ALGORITHM — how its work grows with input size (EK AAP-4.A.3) — not of the hardware. A faster computer shifts every time down by the same factor but does not change how the work GROWS: a nested-loop, square-time algorithm is still square-time on a supercomputer. Two correct algorithms are compared by counting statement executions (EK AAP-4.A.5), which never mentions the machine.",
+      "example": "Buy a computer twice as fast and the n×n algorithm still does n×n checks — you just wait half as long for the same explosion. Going from n = 1,000 to n = 2,000 still quadruples the work on either machine.",
+      "script": "Here is the trap the exam loves. Because efficient and fast sound identical in ordinary English, students think a faster computer makes a slow algorithm more efficient. It does not. Efficiency is a property of the algorithm — how the count of operations grows with the input — and the hardware never appears in that count. A faster machine divides every running time by the same factor, but a square-time algorithm is still square-time; the work still quadruples when the input doubles. That is exactly why we measure by counting statement executions and not with a stopwatch: the count is about the algorithm itself, independent of whatever computer happens to run it. Prove it to yourself by explaining why doubling the machine speed does not change the SHAPE of the growth."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Count the Work",
+      "subheading": "These map to LO AAP-4.A. Show your counting on your Guided Notes.",
+      "prompts": [
+        "For the single loop over a list of n items, how many times does the check run when n = 100? For the nested loop over the same list? Show the count for each.",
+        "Explain in two sentences why we say the nested-loop algorithm's work grows 'with the square of n,' using the words input size and executes.",
+        "Two correct algorithms solve the same problem; one runs about n times and the other about n × n times. Which is more efficient for large n, and how did you decide WITHOUT running either one?",
+        "A classmate says 'my algorithm took 3 seconds, so it is efficient.' State the one piece of information their claim is missing."
+      ],
+      "directions": "Show every count. Then check yourself with the matching CFUs on the Topic 3.17 page.",
+      "script": "Count the work, six minutes, show every number. One: for n equal to 100 the single loop runs about 100 checks and the nested loop runs 100 times 100, which is ten thousand. Two: the nested loop grows with the square of n because the inner statement executes n times for each of the n outer passes, so its count is n times n as the input size grows. Three: for large n the n-time algorithm wins, and you decided by counting how the executions grow, not by running either — the gap only widens. Four: the three-seconds claim is missing the input size and how the cost grows; three seconds on a tiny input tells you nothing about a large one. These are the exact counting moves AAP-4.A.5 and A.6 test."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A PROBLEM is a general task; an INSTANCE adds specific input — sorting is a problem, sorting (2,3,1,7) is an instance (EK AAP-4.A.1)",
+        "A DECISION problem has a yes/no answer; an OPTIMIZATION problem asks for the best solution among many (EK AAP-4.A.2)",
+        "Efficiency is an estimate of resources as a FUNCTION of input size — measured informally by counting statement executions; formal Big-O is excluded (EK AAP-4.A.3–A.5)",
+        "Different correct algorithms for the same problem can have very different efficiencies — a nested loop (n×n) grows far faster than a single loop (n) (EK AAP-4.A.6)"
+      ],
+      "nextPoints": [
+        "Day 2: turning the count into a VERDICT — reasonable time (polynomial or slower) vs unreasonable time (exponential, factorial) (EK AAP-4.A.7)",
+        "Why some problems have no efficient algorithm, so we settle for approximate solutions (EK AAP-4.A.8)",
+        "Heuristics: a good-enough approach used when finding the guaranteed-best answer is impractical (EK AAP-4.A.9)"
+      ],
+      "teaser": "Before tomorrow, predict it: to check every possible order of 20 delivery stops you would examine about 20 factorial routes — that is over 2 billion billion. If a computer checked a billion routes per second, roughly how many YEARS would that take? Write your estimate and your reasoning.",
+      "script": "That is Day 1. A problem is the general task and an instance adds specific input; a decision problem answers yes or no while an optimization problem asks for the best; efficiency is a function of input size, measured by counting how many times statements run, with formal Big-O left out on purpose; and different correct algorithms for the same problem can cost wildly differently. Tomorrow we turn the count into a verdict — reasonable versus unreasonable time — and meet heuristics, the good-enough answers we accept when the exact one is out of reach. Here is the teaser, and it is the exact case we open with tomorrow: twenty delivery stops means about twenty-factorial possible routes, over two billion billion of them; at a billion checks per second, work out roughly how many years that would take. Write your estimate and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.17 — Algorithmic Efficiency — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A textbook says: 'Sorting is a task we study; sorting the list (8, 3, 5) is one particular case of it.' Per EK AAP-4.A.1, which pairing correctly labels these two ideas?",
+        "options": [
+          "'Sorting' is an instance and 'sorting (8, 3, 5)' is the problem, because the list is more general",
+          "Both 'sorting' and 'sorting (8, 3, 5)' are instances, because each involves a list",
+          "'Sorting' is the problem and 'sorting (8, 3, 5)' is an instance, because the instance adds specific input",
+          "Both are problems, because sorting can be solved algorithmically either way"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-4.A.1",
+        "rationale": "EK AAP-4.A.1 defines a problem as a general description of a task and an instance as that problem WITH specific input; sorting is the general task, and sorting (8, 3, 5) supplies a particular list, so C is correct. A reverses the two labels. B ignores that one of them is the general task with no specific input. D erases the distinction the EK draws between the general problem and a specific instance."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "Per EK AAP-4.A.2, which question is a DECISION problem rather than an optimization problem?",
+        "options": [
+          "Is there a route that connects warehouse A to warehouse B?",
+          "What is the shortest route from warehouse A to warehouse B?",
+          "Which route from A to B has the fewest tolls?",
+          "What is the cheapest way to visit every warehouse once?"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-4.A.2",
+        "rationale": "EK AAP-4.A.2 says a decision problem has a yes/no answer while an optimization problem seeks the 'best' solution among many. 'Is there a route…' is answered yes or no, so A is the decision problem. B (shortest), C (fewest tolls), and D (cheapest) each ask for a best option among many, which makes them optimization problems."
+      },
+      {
+        "id": "Q3",
+        "kind": "recall",
+        "stem": "Per EK AAP-4.A.3, efficiency is best described as which of the following?",
+        "options": [
+          "The exact number of seconds an algorithm takes on a specific computer",
+          "An estimation of the computational resources an algorithm uses, expressed as a function of the input size",
+          "A formal Big-O formula that every AP CSP student must derive",
+          "The number of lines of code in the algorithm"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-4.A.3",
+        "rationale": "EK AAP-4.A.3 defines efficiency as an estimation of the amount of computational resources used, typically expressed as a function of the size of the input, so B is correct. A ties efficiency to wall-clock time on one machine, which the topic deliberately avoids. C is wrong because the CED explicitly EXCLUDES formal Big-O analysis. D confuses program length with resource use."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An algorithm loops once through a list of n items; a second algorithm loops through the whole list once for EACH item. Per EK AAP-4.A.5, how should you compare their efficiencies?",
+        "options": [
+          "Run both and keep whichever finishes first on your laptop",
+          "Count statement executions: about n for the first and about n × n for the second, so the first grows more slowly",
+          "They are equally efficient because both are correct and use loops",
+          "Derive the Big-O of each using a mathematical formula, as the CED requires"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-4.A.5",
+        "rationale": "EK AAP-4.A.5 says efficiency can be informally measured by counting how many times a statement or group of statements executes; the single loop runs about n times and the nested loop about n × n, so B is correct. A relies on one machine's clock, which is not how efficiency is defined. C ignores that correctness says nothing about cost. D contradicts the A.3 exclusion of formal Big-O."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Two correct algorithms solve the same problem: one does about n comparisons, the other about n × n. A student concludes 'since both are correct, they are equally good.' Per EK AAP-4.A.6, what is the best correction?",
+        "options": [
+          "Correctness and efficiency are the same thing, so the student is right",
+          "The n × n algorithm is actually more efficient because it does more work",
+          "Different correct algorithms for the same problem can have different efficiencies; the n-comparison one is far more efficient as n grows",
+          "Efficiency cannot be compared unless the algorithms are run on identical computers"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-4.A.6",
+        "rationale": "EK AAP-4.A.6 states different correct algorithms for the same problem can have different efficiencies; the n-comparison algorithm grows far more slowly than the n × n one, so C is correct. A conflates correctness with efficiency. B mistakes 'more work' for 'more efficient.' D wrongly claims a machine is needed, when counting executions settles it independently of hardware."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A nested-loop algorithm feels slow, so a team runs it on a computer twice as fast. Per EK AAP-4.A.3, what happens to its EFFICIENCY?",
+        "options": [
+          "The efficiency is unchanged; the work still grows with n × n, the machine just finishes each run sooner",
+          "The efficiency doubles, because efficiency is defined by the computer's speed",
+          "The algorithm becomes linear, since a faster machine reduces the growth rate",
+          "The efficiency can no longer be measured once the hardware changes"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-4.A.3",
+        "rationale": "EK AAP-4.A.3 defines efficiency as a function of the input size, a property of the algorithm rather than the hardware; a faster machine lowers every running time by the same factor but the work still grows with n × n, so A is correct. B ties efficiency to machine speed, which the definition rejects. C imagines hardware changing an algorithm's growth, which it cannot. D is false — counting executions still measures it."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "An algorithm contains a loop that runs n times, and inside it a single loop that also runs n times. Per EK AAP-4.A.5, roughly how many times does the innermost statement execute for a list of n = 30?",
+        "options": [
+          "About 30 times",
+          "About 60 times",
+          "About 900 times",
+          "About 8 times"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-4.A.5",
+        "rationale": "EK AAP-4.A.5 measures efficiency by counting executions; a loop of n inside a loop of n runs the inner statement n × n times, and 30 × 30 = 900, so C is correct. A counts only one loop. B adds the loops (30 + 30) instead of multiplying nested loops. D has no basis in the counting method for two nested loops of size 30."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "A student writes 'the efficiency of this algorithm is O(n²)' on an AP CSP response. Per the EK AAP-4.A.3 exclusion, why is this the wrong tool for the course?",
+        "options": [
+          "Because O(n²) is mathematically incorrect for a nested loop",
+          "Because formal Big-O analysis and formula-based reasoning are outside the scope of AP CSP; describe the growth in words like 'grows with the square of n' instead",
+          "Because efficiency may only ever be written as an exact number of seconds",
+          "Because AP CSP does not allow algorithms to use loops at all"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-4.A.3",
+        "rationale": "The EK AAP-4.A.3 exclusion places formal Big-O analysis and reasoning with mathematical formulas outside the scope of the course, so students describe growth informally — 'grows with the square of n' — rather than as O(n²); B is correct. A is false, since O(n²) would actually describe a nested loop. C invents a seconds-only rule the CED never states. D is absurd — loops are central to the course."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.17 — Algorithmic Efficiency — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.17 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.17 is a CONCEPTUAL and ANALYSIS topic — there is no new syntax to type. It answers the second question every programmer must ask after 'is it correct?': 'is it fast enough to actually use?' Day 1 (LO AAP-4.A, part a foundations) builds the vocabulary and the measuring skill — problem versus instance, decision versus optimization problems, and how to estimate efficiency informally by counting how many times a statement executes as the input grows. Day 2 (LO AAP-4.A, part a conclusion + part b) turns the count into a verdict — reasonable time (polynomial or slower) versus unreasonable time (exponential or factorial) — and introduces heuristics: good-enough approaches used when the guaranteed-best answer is impractical.",
+      "Two CED exclusions shape the whole topic and must be respected. First, formal Big-O notation and formula-based analysis are OUT (EK AAP-4.A.3): students describe growth in words — constant, linear, square, cube, exponential, factorial — and never write O(n). Second, specific heuristic solutions are OUT (EK AAP-4.A.9): students must recognize WHEN a heuristic is appropriate and WHAT a heuristic is, but are never required to know a particular named heuristic algorithm. The delivery-route (traveling-salesperson) framing is used only to illustrate the ideas, not as tested content.",
+      "The through-line is the Day 1 handshake bell ringer: students count pairs for groups of 4, 8, and 40, discover the work grows faster than the group does, and thereby invent the central idea — efficiency is a function of input size — before it is named. Because this topic is analysis rather than coding, its practice is on PAPER (count the operations, classify reasonable vs unreasonable, decide when a heuristic fits); there is no coding-practice page for 3.17."
+    ],
+    "los": [
+      "LO AAP-4.A — For determining the efficiency of an algorithm: a. Explain the difference between algorithms that run in reasonable time and those that do not. b. Identify situations where a heuristic solution may be more appropriate."
+    ],
+    "eks": [
+      "EK AAP-4.A.1 — A problem is a general description of a task that can (or cannot) be solved algorithmically. An instance of a problem also includes specific input. For example, sorting is a problem; sorting the list (2,3,1,7) is an instance of the problem.",
+      "EK AAP-4.A.2 — A decision problem is a problem with a yes/no answer (e.g., is there a path from A to B?). An optimization problem is a problem with the goal of finding the \"best\" solution among many (e.g., what is the shortest path from A to B?).",
+      "EK AAP-4.A.3 — Efficiency is an estimation of the amount of computational resources used by an algorithm. Efficiency is typically expressed as a function of the size of the input. X EXCLUSION (EK AAP-4.A.3): Formal analysis of algorithms (Big-O) and formal reasoning using mathematical formulas are outside the scope of this course and the AP Exam.",
+      "EK AAP-4.A.4 — An algorithm's efficiency is determined through formal or mathematical reasoning.",
+      "EK AAP-4.A.5 — An algorithm's efficiency can be informally measured by determining the number of times a statement or group of statements executes.",
+      "EK AAP-4.A.6 — Different correct algorithms for the same problem can have different efficiencies.",
+      "EK AAP-4.A.7 — Algorithms with a polynomial efficiency or slower (constant, linear, square, cube, etc.) are said to run in a reasonable amount of time. Algorithms with exponential or factorial efficiencies are examples of algorithms that run in an unreasonable amount of time.",
+      "EK AAP-4.A.8 — Some problems cannot be solved in a reasonable amount of time because there is no efficient algorithm for solving them. In these cases, approximate solutions are sought.",
+      "EK AAP-4.A.9 — A heuristic is an approach to a problem that produces a solution that is not guaranteed to be optimal but may be used when techniques that are guaranteed to always find an optimal solution are impractical. X EXCLUSION (AAP-4.A.9): Specific heuristic solutions are outside the scope of this course and the AP Exam."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.17 quiz (student copies) for the assessment block.",
+      "Printed Exercise 1 (Count the Operations) and Exercise 2 (Reasonable, Unreasonable, or Heuristic?) — paper analysis, no devices required.",
+      "Optional: a calculator for the growth table, so students can feel how fast 2ⁿ and n! explode."
+    ],
+    "prereqs": [
+      "Students should be comfortable reading the exam-reference pseudocode from earlier Big Idea 3 topics — especially loops and nested loops (Topic 3.8) and list traversal (Topic 3.10) — since efficiency here is measured by counting how many times loop bodies run. No new syntax is introduced. Comfort estimating with large numbers (powers of two, factorials) helps students feel the reasonable/unreasonable divide."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Problem vs instance; decision vs optimization; measuring efficiency by counting statement executions (LO AAP-4.A, part a foundations)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.17/Q1) + bell ringer (the handshake count)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Problems, instances, and kinds of problems: vocab, problem vs instance, decision vs optimization (EK AAP-4.A.1–A.2)",
+            "min": 14,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on problems and instances",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Measuring efficiency by counting: growth-not-clock concept, one-loop and nested-loop code, the growth table, faster-computer trap (EK AAP-4.A.3–A.6)",
+            "min": 14,
+            "slides": "10-15"
+          },
+          {
+            "segment": "Stop and Think on counting the work",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + factorial-routes teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Reasonable vs unreasonable time; heuristics and when they are appropriate (LO AAP-4.A, part a conclusion + part b)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.17/Q2) + bell ringer (the 20-stop delivery route explosion)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Reasonable vs unreasonable time: vocab, the reasonable/unreasonable line, the growth-explosion table (EK AAP-4.A.7)",
+            "min": 15,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on classifying reasonable vs unreasonable",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "When to reach for a heuristic: vocab, no-efficient-algorithm concept, exact vs heuristic, the 'heuristics are always wrong' trap (EK AAP-4.A.8–A.9)",
+            "min": 14,
+            "slides": "10-14"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 6,
+            "slides": "15-16"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.17 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The paper analysis exercises (Count the Operations; Reasonable, Unreasonable, or Heuristic?) can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.17 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Efficient means fast, so a faster computer fixes it”",
+        "myth": "A slow algorithm becomes more efficient when you run it on a faster machine.",
+        "reality": "Efficiency is a property of the algorithm — how its work grows with input size (EK AAP-4.A.3) — not of the hardware. A faster machine lowers every running time by the same factor but does not change the growth: a square-time algorithm is still square-time. Efficiency is measured by counting statement executions (EK AAP-4.A.5), which never mentions the computer."
+      },
+      {
+        "heading": "“Unreasonable just means it takes a few minutes”",
+        "myth": "An 'unreasonable' algorithm is one that is merely a bit slow — a few minutes instead of a few seconds.",
+        "reality": "Unreasonable time means exponential or factorial growth (EK AAP-4.A.7): the work multiplies so fast that even modest inputs would take longer than a human lifetime — or the age of the universe — on any computer. It is a category of GROWTH, not a stopwatch reading. Polynomial or slower (constant, linear, square, cube) is reasonable; exponential and factorial are not."
+      },
+      {
+        "heading": "“A heuristic is just a lazy guess that is always wrong”",
+        "myth": "Using a heuristic means giving up and guessing, so the answer is basically worthless.",
+        "reality": "A heuristic is a principled approach that produces a solution not GUARANTEED to be optimal, used when a guaranteed-optimal method is impractical (EK AAP-4.A.9). Its answer is often very good — just not provably the best. It is the rational choice precisely when the exact method would run in unreasonable time (EK AAP-4.A.8), so approximate solutions are sought."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a pre-drawn growth table (n = 1, 10, 100) with the linear and square columns filled and the exponential/factorial columns blank, so they experience the explosion by computing just a few cells with a calculator.",
+        "Provide sentence frames for the classification exercise: 'This algorithm runs in ______ time because its work grows ______, which is (reasonable / unreasonable).'"
+      ],
+      "extension": [
+        "Have students argue whether a decision version of a problem can ever be easier than its optimization version, using 'is there a path' versus 'shortest path' as the test case.",
+        "Ask students to find a real-world system that uses a heuristic (route apps, spell-check suggestions, game AI) and explain, without naming a specific algorithm, why an exact optimal method would be impractical there (EK AAP-4.A.8)."
+      ]
+    },
+    "discussion": [
+      "The handshake count grew far faster than the number of people. Where else in daily life does 'a little more input' cause 'a lot more work,' and how would you spot that pattern before it bites you?",
+      "A decision problem asks 'is there?' and an optimization problem asks 'which is best?' Why is finding the BEST answer so often dramatically more expensive than finding ANY answer — and when in real life do we deliberately settle for 'any that works'?",
+      "A heuristic gives up the guarantee of the best answer in exchange for getting an answer at all. When is that trade wise, and when would you refuse to accept 'probably good enough'?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

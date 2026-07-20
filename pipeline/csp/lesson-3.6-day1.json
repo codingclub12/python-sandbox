@@ -1,0 +1,586 @@
+{
+  "meta": {
+    "lessonId": "3.6",
+    "lessonTitle": "Conditionals",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-2.G, LO AAP-2.H",
+    "anchor": "Conditionals",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.6 · Day 1 of 2",
+      "title": "Teaching a Program to Decide",
+      "subtitle": "Selection is the second building block of every algorithm — how a condition being true or false chooses which steps run, and how the IF statement makes a program branch",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.6, Conditionals. So far every program you have written runs straight down, one line after another. Today a program learns to make a choice. Selection is the second of the three building blocks of every algorithm — sequencing, selection, iteration — and it is the idea that lets one program behave differently on different inputs. Day 1 has two parts: first, express a decision without any code at all, in plain language or a flowchart; then meet the IF statement, the exam's construct for running a block of code only when a condition is true. Tomorrow, Day 2, we add ELSE — the two-way fork — and get precise about tracing which branch runs."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Express a selection decision without using a programming language, showing how a condition being true or false chooses which steps run (LO AAP-2.G)"
+        },
+        {
+          "tag": "CB",
+          "text": "Write an IF statement and determine its result — the block runs when the condition is true, and no action is taken when it is false (LO AAP-2.H)"
+        }
+      ],
+      "script": "Two targets today. The first is AAP-2.G: express a selection — a decision — without using a programming language, in plain words or a diagram, so you can see the logic before any syntax. The second is AAP-2.H, the first half of it: write an IF statement and determine its result, knowing that the block inside runs only when the condition is true and that nothing happens when the condition is false. Both parts of AAP-2.H — writing conditionals and determining their result — start here today with the plain IF, and continue tomorrow with IF-ELSE."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "You are the gatekeeper at a concert, and you must train a substitute to take your place while you step away. The rule you follow: guests wearing a green wristband go to the VIP lounge; everyone else goes to general admission. Write the rule as numbered steps a stranger could follow with zero judgment calls.",
+      "subprompt": "Write 2–4 sentences: What did you have to name so the substitute knew what to check? Then decide what your steps do for a guest with a green band and for a guest with a blue band. Where in your steps does the path split?",
+      "directions": "Be ready to share the exact wording of your rule and where it branches.",
+      "script": "Five minutes, with a partner. You are handing your gatekeeper job to a substitute who will do EXACTLY what you write, nothing more. Write the green-band rule as numbered steps, then run two guests through it: green band, blue band. Watch what every group naturally produces — a test ('is the band green?') and two paths depending on the answer. That is selection. You did not need code to express it; plain numbered steps captured the whole decision. Hold onto the shape of what you wrote: a condition, then a branch. That is the entire lesson, and in a few minutes we will write the same idea in the exam's IF syntax."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Selection Without a Language",
+          "description": "What selection is, and how to express a decision in plain language or a flowchart (EK AAP-2.G.1)."
+        },
+        {
+          "title": "The IF Statement",
+          "description": "Writing IF(condition){ block } and determining its result — runs on true, no action on false (EK AAP-2.H.1–H.2)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.6 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required. First, selection without a language: what a decision really is and how to write one in plain language or a flowchart. Second, the IF statement: the exam's syntax for running a block only when a condition holds. Keep the packet open and fill it in as we go; if you were absent or lost the packet, a digital copy lives on the Topic 3.6 Guided Notes page at apcsexamprep.com. This topic also has interactive coding practice — you will type and run these conditionals on the Topic 3.6 page after you trace them on paper."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Selection Without a Language",
+      "kicker": "Deciding Which Steps Run · Learning Objective AAP-2.G",
+      "script": "Section one. Before any syntax, you need the idea itself. Your bell-ringer rule already had it: a test, and a branch that depends on the answer. That is selection, and the College Board wants you to be able to express it clearly in plain language or a diagram — with no programming language at all — because the logic has to be right before the code can be."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.G, AAP-2.H)",
+      "terms": [
+        {
+          "term": "Selection",
+          "definition": "The construct that determines which parts of an algorithm are executed based on a condition being true or false (EK AAP-2.G.1)."
+        },
+        {
+          "term": "Condition",
+          "definition": "A Boolean expression — one that evaluates to true or false — that a selection statement tests to decide what runs (EK AAP-2.H.1)."
+        },
+        {
+          "term": "Conditional statement",
+          "definition": "A statement, also called an if-statement, that changes the sequential flow of control by running different statements based on the value of a Boolean expression (EK AAP-2.H.1)."
+        },
+        {
+          "term": "IF statement",
+          "definition": "The construct IF(condition){ block } whose block is executed when the condition evaluates to true; when it is false, no action is taken (EK AAP-2.H.2)."
+        },
+        {
+          "term": "Flow of control",
+          "definition": "The order in which a program's statements execute; selection can redirect it so some statements are skipped (EK AAP-2.H.1)."
+        }
+      ],
+      "script": "Five words carry the topic. Selection is the construct that decides which parts of an algorithm run based on a condition being true or false. A condition is a Boolean expression — something that evaluates to true or false, like whether a band is green or a height is at least 48. A conditional statement, the if-statement, is what changes the flow of control based on that condition. The IF statement is the specific syntax: IF, the condition in parentheses, then a block in braces that runs only on true. And flow of control is just the order statements execute in — selection is how a program redirects that order and skips over steps."
+    },
+    {
+      "type": "concept",
+      "heading": "What Selection Is",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Selection is one of the three building blocks of every algorithm, alongside sequencing and iteration (EK AAP-2.G.1).",
+        "It picks which parts of an algorithm run based on a condition that is either true or false (EK AAP-2.G.1).",
+        "You can express a decision with no code at all — natural language, a numbered rule, or a flowchart all capture the same logic.",
+        "Because the choice depends on the condition, one algorithm can take different paths on different inputs."
+      ],
+      "script": "Here is the idea to lock in. Selection is one of the three building blocks of every algorithm, right next to sequencing, which you already know, and iteration, which is coming. What selection does is pick which parts of an algorithm run based on a condition that is true or false. And crucially for objective AAP-2.G, you can express that decision without any programming language — in plain words, a numbered rule, or a flowchart. The payoff is that a single algorithm stops being one fixed path: depending on the input, it can run some steps and skip others. That is what made your gatekeeper rule useful — it handled green bands and blue bands differently with one set of instructions.",
+      "capture": [
+        {
+          "q": "Selection determines ______ based on whether a condition is true or false.",
+          "a": "which parts of an algorithm are executed"
+        },
+        {
+          "q": "You can express a selection decision without any programming language by using ______.",
+          "a": "natural language, a diagram, or a numbered list of steps"
+        },
+        {
+          "q": "Selection is powerful because one algorithm can now ______ depending on the input.",
+          "a": "follow different paths, running some steps and skipping others"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Two Ways to Express a Decision — No Code Needed",
+      "subheading": "The exam expects you to express selection without a programming language. A plain-language rule and a flowchart capture the very same logic (EK AAP-2.G.1).",
+      "left": {
+        "title": "Plain-language rule",
+        "definition": "Name the test, then state what happens for true and for false in words",
+        "ek": "EK AAP-2.G.1",
+        "examples": [
+          "\"If the band is green, send to VIP.\"",
+          "The test is named: is the band green?",
+          "The action is tied to the test being true"
+        ]
+      },
+      "right": {
+        "title": "Flowchart / diagram",
+        "definition": "Draw the test as a branch point with one path for true and one for false",
+        "ek": "EK AAP-2.G.1",
+        "examples": [
+          "A decision shape holds the question",
+          "One arrow leaves for true, one for false",
+          "Each arrow leads to the steps that run on that answer"
+        ]
+      },
+      "footer": "AP TIP: On free-response and multiple-choice, selection can appear as pseudocode OR as a plain description of a decision — recognize both as the same construct.",
+      "script": "Two equally valid ways to express the exact same decision, neither using a programming language. On the left, a plain-language rule: name the test in words, then say what happens when it is true. 'If the band is green, send to VIP' names the test — is the band green — and ties an action to the answer. On the right, a flowchart draws the test as a branch point: a decision shape holds the question, and one arrow leaves for true, another for false, each leading to the steps that run for that answer. Same logic, two notations. The exam uses both, so you must recognize a plain description of a decision as selection just as readily as you recognize IF in pseudocode.",
+      "capture": [
+        {
+          "q": "Expressing selection without code still requires you to name the ______ that decides which steps run.",
+          "a": "condition — the true-or-false test"
+        },
+        {
+          "q": "In a flowchart, a decision is drawn as a branch point with separate arrows for ______.",
+          "a": "the true answer and the false answer"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Express the Decision",
+      "subheading": "These map to LO AAP-2.G. Complete on your Guided Notes.",
+      "prompts": [
+        "In plain language (no code), write a selection rule for: a store posts a 'bring a jacket' note only when the forecast temperature is below 40. Name the condition clearly.",
+        "Describe, in words, how you would draw the rule above as a flowchart: what goes in the decision shape, and where do the true and false arrows lead?",
+        "Explain, in two sentences, how selection lets a single algorithm behave differently for two different inputs. Use the word condition."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.6 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: write the jacket rule in plain language and name the condition — forecast temperature below 40. Two: describe the flowchart — the question 'is the forecast below 40?' goes in the decision shape, the true arrow leads to posting the note, the false arrow leads to doing nothing. Three: put into words why selection matters — because the outcome depends on the condition, the same algorithm handles a cold day and a warm day differently. These are exactly the AAP-2.G moves the exam asks for when it shows a decision without any code."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The IF Statement",
+      "kicker": "Run a Block Only When True · Learning Objective AAP-2.H",
+      "script": "Section two. Now we write the decision in the exam's language. The IF statement is selection in pseudocode: a condition in parentheses and a block in braces that runs only when the condition is true. Read it precisely and you can both write it and predict exactly what it does — the two halves of objective AAP-2.H."
+    },
+    {
+      "type": "concept",
+      "heading": "The IF Statement",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A conditional statement — an if-statement — changes the sequential flow of control based on the value of a Boolean expression (EK AAP-2.H.1).",
+        "The exam reference sheet writes it IF(condition){ block of statements } (EK AAP-2.H.2).",
+        "If the condition evaluates to true, the block runs; if it is false, no action is taken (EK AAP-2.H.2).",
+        "The block is only a detour: whether it runs or is skipped, the program then moves on to whatever comes after the IF."
+      ],
+      "script": "Here is the precise definition, straight from the exam reference sheet. A conditional statement — an if-statement — changes the sequential flow of control based on the value of a Boolean expression. The reference sheet writes it IF, the condition in parentheses, then a block of statements in braces. The rule is exact: if the condition evaluates to true, the block runs; if it is false, no action is taken — the block is simply skipped. And note the block is only a detour. Whether it runs or gets skipped, control returns to whatever line comes after the IF and the program keeps going. That last point is why a plain IF with a false condition does not crash or stall — it just does nothing and moves on.",
+      "capture": [
+        {
+          "q": "An IF statement runs its block only when the condition evaluates to ______.",
+          "a": "true"
+        },
+        {
+          "q": "When the condition is false in a plain IF, the program ______.",
+          "a": "takes no action and continues past the IF"
+        },
+        {
+          "q": "A conditional statement changes the sequential flow of control based on the value of ______.",
+          "a": "a Boolean expression (the condition)"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "The IF Statement",
+      "heading": "Run a Block When the Condition Is True",
+      "caption": "height is 50, so height ≥ 48 is true and the block runs.",
+      "pseudocode": "height ← 50\nIF(height ≥ 48)\n{\n  DISPLAY(\"Board the ride\")\n}",
+      "python": "height = 50\nif height >= 48:\n    print(\"Board the ride\")",
+      "output": "Board the ride",
+      "script": "Your first conditional, in two columns. On the left is the exam pseudocode; on the right is runnable Python. Read the left precisely: height is 50, then IF, the condition height greater-than-or-equal-to 48 in parentheses, then the block in braces. Evaluate the condition first — is 50 at least 48? Yes, true — so the block runs and DISPLAY shows 'Board the ride.' Notice the relational operator from Topic 3.5 doing the work inside the condition. In Python the same logic uses if and a colon and indentation instead of braces, and greater-than-or-equal is typed as the two characters, greater-than then equals. Same decision, two notations; the pseudocode on the left is what the exam tests."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Does the Block Run? Trace the IF",
+      "context": "For the statement IF(height ≥ 48){ DISPLAY(\"Board the ride\") }, evaluate the condition for each height, then decide whether the block runs and what is displayed. '(nothing)' means no action was taken.",
+      "columns": [
+        "height",
+        "height ≥ 48 ?",
+        "Does the block run?",
+        "What is displayed"
+      ],
+      "rows": [
+        [
+          "52",
+          "true",
+          "yes",
+          "Board the ride"
+        ],
+        [
+          "48",
+          "true",
+          "yes",
+          "Board the ride"
+        ],
+        [
+          "47",
+          "false",
+          "no",
+          "(nothing)"
+        ],
+        [
+          "40",
+          "false",
+          "no",
+          "(nothing)"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Trace it row by row — this is exactly how AAP-2.H result questions are worked. Height 52: is 52 at least 48? True, so the block runs and it displays 'Board the ride.' Height 48: at least 48 is true — the boundary value counts because the operator is greater-than-OR-EQUAL — so it runs. Height 47: 47 is not at least 48, false, so the block does NOT run and nothing is displayed. Height 40: also false, nothing displayed. Two things to carry: the boundary value 48 makes the condition true, and on false a plain IF displays nothing at all — it does not print an error, it just skips.",
+      "blanks": [
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Every IF Needs Something to Happen on False”",
+      "misconception": "A plain IF must still do something when its condition is false — there is always a hidden default action.",
+      "whyItHappens": "Real-world rules usually spell out both cases ('if green go to VIP, otherwise general admission'), so students expect a plain IF to carry an automatic 'otherwise' even when none is written.",
+      "correction": "IF(condition){ block } with no ELSE takes NO action when the condition is false — the block is simply skipped and control moves to the next statement (EK AAP-2.H.2). If you want something to happen on false, you must add an ELSE, which is tomorrow's construct. A lone IF is a one-way, optional detour, not a two-way fork.",
+      "example": "IF(temp > 32){ DISPLAY(\"Melting\") } with temp = 30: the condition is false, so nothing is displayed. The program does not print a default, warn, or stop — it just continues past the IF as if the statement were not there.",
+      "script": "Here is the trap, and the exam uses it. Because everyday rules usually state both halves — if green go VIP, otherwise general — students assume a plain IF secretly does something on false. It does not. IF condition then block, with no ELSE, takes no action at all when the condition is false: the block is skipped and the program moves on. There is no hidden default. If you want a false case to do something, you have to add ELSE, which is tomorrow. Concretely: IF temp greater than 32 then display Melting, with temp 30 — the condition is false, so nothing prints. Not an error, not a default message, just nothing. A lone IF is a one-way optional detour, not a two-way fork."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Write and Trace an IF",
+      "subheading": "These map to LO AAP-2.H. Complete on your Guided Notes.",
+      "prompts": [
+        "Write an IF statement in exam pseudocode that displays \"Free shipping\" when a variable total is at least 50. Use the ≥ operator.",
+        "Trace your statement for total = 50 and for total = 49. For each, state whether the block runs and what is displayed.",
+        "A classmate writes IF(score < 60){ DISPLAY(\"Study more\") } and asks what happens when score is 72. Answer precisely, and name the rule you used."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.6 page.",
+      "script": "Stop and think, six minutes, full sentences. One: write IF total greater-than-or-equal-to 50, then a block that displays Free shipping — mind the braces. Two: trace it. Total 50: 50 is at least 50, true, so it displays Free shipping — the boundary counts. Total 49: false, block skipped, nothing displayed. Three: score less-than 60 with score 72 — 72 is not less than 60, false, so nothing is displayed; the rule is that a plain IF takes no action on false. These are precisely the write-and-determine-result moves AAP-2.H tests, and you will type harder versions on the Topic 3.6 page next."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Selection determines which parts of an algorithm run based on a condition being true or false (EK AAP-2.G.1)",
+        "You can express a decision with no code — plain language or a flowchart captures the same logic (EK AAP-2.G.1)",
+        "A conditional statement changes the sequential flow of control based on a Boolean expression (EK AAP-2.H.1)",
+        "IF(condition){ block } runs the block when the condition is true, and takes NO action when it is false (EK AAP-2.H.2)"
+      ],
+      "nextPoints": [
+        "Day 2: adding ELSE — the two-way fork IF(condition){ first block } ELSE { second block } (LO AAP-2.H)",
+        "Why exactly one of the two blocks runs on every pass — never both, never neither",
+        "Determining the result of an IF-ELSE by tracing which branch the condition selects"
+      ],
+      "teaser": "Before tomorrow, predict it: score ← 55, then IF(score ≥ 60){ DISPLAY(\"Pass\") } ELSE { DISPLAY(\"Retake\") }. Write down what is displayed, and why.",
+      "script": "That is Day 1. Selection determines which parts of an algorithm run based on a true-or-false condition; you can express it with no code at all; a conditional statement changes the flow of control based on a Boolean expression; and a plain IF runs its block on true and does nothing on false. Tomorrow we add ELSE and turn the one-way detour into a two-way fork where exactly one of two blocks always runs. Here is the teaser, and it is where we open tomorrow: score is 55, IF score at least 60 display Pass, ELSE display Retake. Write down what is displayed and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.6 — Conditionals — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A librarian follows a rule: 'If a returned book is overdue, add a fine to the account.' For a book that is NOT overdue, what does this selection do, per EK AAP-2.G.1?",
+        "options": [
+          "It adds the fine anyway, treating the rule as unconditional",
+          "It runs no fine step — selection executes that part only when the condition is true",
+          "It halts the entire return process until an overdue book appears",
+          "It both adds and removes a fine so the account stays balanced"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.G.1",
+        "rationale": "EK AAP-2.G.1 says selection determines which parts of an algorithm are executed based on a condition being true or false. The 'add a fine' step is tied to the overdue condition, so a non-overdue book triggers no fine — option B. A ignores the condition entirely. C invents a halt the rule never states. D fabricates a second action that is not part of the rule."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "You must express a discount decision WITHOUT using a programming language so a cashier can follow it. Which is a correct expression of selection, per EK AAP-2.G.1?",
+        "options": [
+          "Multiply every price by 0.9 for all customers, with no condition at all",
+          "List the customers alphabetically and hand each one a card",
+          "If the customer has a member card, apply the discount; otherwise charge full price",
+          "Repeat the checkout ten times to be safe about the total"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.G.1",
+        "rationale": "Selection chooses which steps run based on a condition (EK AAP-2.G.1), and it can be expressed in plain language. C names a condition (has a member card) and the paths for true and false, so it is selection. A applies one action to everyone — no condition, so no selection. B is sequencing, not a decision. D describes iteration (repetition), a different construct."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A program normally runs its statements top to bottom. What does adding a conditional statement (an if-statement) change, per EK AAP-2.H.1?",
+        "options": [
+          "It affects the sequential flow of control, running different statements based on the value of a Boolean expression",
+          "It permanently deletes any statement placed after it in the program",
+          "It forces the program to run every statement exactly twice",
+          "It converts all of the numbers in the program into Boolean values"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.H.1",
+        "rationale": "EK AAP-2.H.1 states conditional statements affect the sequential flow of control by executing different statements based on the value of a Boolean expression — option A. B invents a deletion the construct never performs. C describes repetition, not selection. D confuses the condition's Boolean result with changing the types of other values."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs: temp ← 30, then IF(temp > 32){ DISPLAY(\"Melting\") }. Per EK AAP-2.H.2, what is displayed?",
+        "options": [
+          "The word Melting is displayed once",
+          "The Boolean value true is displayed",
+          "The number 32 is displayed",
+          "Nothing at all is displayed"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.H.2",
+        "rationale": "EK AAP-2.H.2 says the block runs only when the condition is true; on false, no action is taken. Since 30 > 32 is false, the block is skipped and nothing is displayed — option D. A assumes the block always runs. B displays the condition's value, which DISPLAY was never told to do. C prints an unrelated number from the condition."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Looking at IF(condition){ block }, a student claims 'the block always runs at least once.' Per EK AAP-2.H.2, when does the block actually run?",
+        "options": [
+          "Only after every other statement in the program has finished",
+          "Exactly once on every pass, no matter what the condition is",
+          "Only when the Boolean expression condition evaluates to true; on false, no action is taken",
+          "Only when the condition is false, acting as a safety default"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.H.2",
+        "rationale": "EK AAP-2.H.2 is explicit: the block runs if the condition evaluates to true, and no action is taken if it is false — option C. B is the exact misconception the stem names. A invents an ordering rule that does not exist. D reverses the logic, running the block on false."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs: score ← 55, then IF(score ≥ 60){ DISPLAY(\"Pass\") } ELSE { DISPLAY(\"Retake\") }. Per EK AAP-2.H.3, what is displayed?",
+        "options": [
+          "The word Retake is displayed",
+          "The word Pass is displayed",
+          "Both Pass and Retake are displayed",
+          "Nothing at all is displayed"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.H.3",
+        "rationale": "EK AAP-2.H.3 says the first block runs when the condition is true, otherwise the second block runs. 55 ≥ 60 is false, so the ELSE block runs and displays Retake — option A. B assumes the condition was true. C runs both blocks, which never happens. D forgets that ELSE guarantees an action on false."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "For any single run of IF(condition){ A } ELSE { B }, which statement is always true, per EK AAP-2.H.3?",
+        "options": [
+          "Both A and B run, one after the other",
+          "Neither A nor B runs unless the condition happens to be true",
+          "A runs when the condition is false, and B runs when it is true",
+          "Exactly one of A or B runs — A when the condition is true, B otherwise"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.H.3",
+        "rationale": "EK AAP-2.H.3 defines IF-ELSE so the first block runs on true and the second runs otherwise — exactly one block, every time (option D). A runs both, which the construct never does. B claims neither may run, but ELSE guarantees one always does. C swaps the true and false branches."
+      },
+      {
+        "id": "Q8",
+        "kind": "multi",
+        "stem": "Consider IF(age ≥ 18){ DISPLAY(\"Adult\") } ELSE { DISPLAY(\"Minor\") }. Which statements are true? I. age = 18 displays \"Adult\". II. age = 17 displays \"Minor\". III. Some age value makes it display both words.",
+        "options": [
+          "I only",
+          "I and II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.H.3",
+        "rationale": "Because ≥ includes the boundary, age = 18 makes the condition true and displays Adult (I true). age = 17 is false, so the ELSE displays Minor (II true). Exactly one block runs on any pass, so no value displays both (III false). Only I and II hold — option B. Options A and C drop a true statement, and D wrongly accepts the impossible 'both' case."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.6 — Conditionals — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.6 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.6 introduces selection — the second of the three building blocks of every algorithm (sequencing, selection, iteration). Day 1 (LO AAP-2.G and the IF half of LO AAP-2.H) builds the idea from the ground up: students first express a decision with NO programming language (plain language or a flowchart), then meet the IF statement — IF(condition){ block } — which runs its block only when the condition is true and takes no action when it is false. Day 2 (the rest of LO AAP-2.H) adds ELSE, the two-way fork IF(condition){ first block } ELSE { second block }, where exactly one of two blocks always runs, and drills determining the result by tracing which branch the condition selects.",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (IF/ELSE with braces, ← assignment, relational operators such as ≥) shown side by side with runnable Python. Conditions build directly on the relational and logical operators from Topic 3.5. The interactive, auto-graded coding practice lives on the Topic 3.6 page: students hand-trace the gate scenario on paper first, then type and run progressively harder versions online.",
+      "The through-line is the Day 1 bell ringer: students train a substitute gatekeeper by writing a green-band rule, discover a condition-and-branch structure on their own, and thereby invent selection before the word is defined. That same gate scenario (a ride-height and admission decision) carries through the exercises and the coding practice."
+    ],
+    "los": [
+      "LO AAP-2.G — Express an algorithm that uses selection without using a programming language.",
+      "LO AAP-2.H — For selection: a. Write conditional statements. b. Determine the result of conditional statements."
+    ],
+    "eks": [
+      "EK AAP-2.G.1 — Selection determines which parts of an algorithm are executed based on a condition being true or false.",
+      "EK AAP-2.H.1 — Conditional statements, or \"if-statements,\" affect the sequential flow of control by executing different statements based on the value of a Boolean expression.",
+      "EK AAP-2.H.2 — The exam reference sheet provides IF(condition) { <block of statements> } in which the code in block of statements is executed if the Boolean expression condition evaluates to true; no action is taken if condition evaluates to false.",
+      "EK AAP-2.H.3 — The exam reference sheet provides IF(condition) { <first block of statements> } ELSE { <second block of statements> } in which the code in first block of statements is executed if the Boolean expression condition evaluates to true; otherwise, the code in second block of statements is executed."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.6 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.6 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: index cards or a rope 'gate' for a physical selection demonstration (green vs other wristbands)."
+    ],
+    "prereqs": [
+      "Topic 3.5 (Boolean Expressions) is the direct prerequisite: a condition is a Boolean expression, so students must already be able to write and evaluate relational operators (=, ≠, >, <, ≥, ≤) and the logical operators NOT, AND, OR. Topic 3.1 (variables/assignment) and Topics 3.2–3.4 (data, expressions, strings) supply the values conditions test. No prior conditionals are assumed."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Selection without a language; the IF statement — write it and determine its result (LO AAP-2.G, AAP-2.H)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.6/Q1) + bell ringer (the gatekeeper rule)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Selection without a language: vocab, what selection is, plain-language vs flowchart (EK AAP-2.G.1)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on expressing the decision",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "The IF statement: concept, code_block gate, trace-the-IF table, no-default trap (EK AAP-2.H.1–H.2)",
+            "min": 14,
+            "slides": "10-14"
+          },
+          {
+            "segment": "Stop and Think on writing and tracing an IF",
+            "min": 6,
+            "slides": "15"
+          },
+          {
+            "segment": "Day close + IF-ELSE teaser for Day 2",
+            "min": 3,
+            "slides": "16"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "IF-ELSE: the two-way fork; determining the result by tracing which branch runs (LO AAP-2.H)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.6/Q2) + bell ringer (predict score 55 IF-ELSE)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Adding ELSE: exactly one branch runs, code_block, IF-alone vs IF-ELSE (EK AAP-2.H.3)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on writing an IF-ELSE",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Determining the result: trace which branch, boundary values, both-run trap (EK AAP-2.H.3)",
+            "min": 13,
+            "slides": "10-13"
+          },
+          {
+            "segment": "Stop and Think on tracing branches + Common AP Traps + exit check",
+            "min": 8,
+            "slides": "14-16"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.6 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.6 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.6 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“A plain IF must do something when false”",
+        "myth": "IF(condition){ block } always has a built-in 'otherwise' action, so something happens even when the condition is false.",
+        "reality": "A plain IF with no ELSE takes NO action when the condition is false — the block is skipped and control moves to the next statement (EK AAP-2.H.2). If a false case needs an outcome, an ELSE must be written. A lone IF is a one-way optional detour, not a two-way fork."
+      },
+      {
+        "heading": "“Both branches of an IF-ELSE run”",
+        "myth": "In IF(condition){ A } ELSE { B }, both A and B execute, or B runs as a follow-up to A.",
+        "reality": "Exactly one block runs on any pass: A when the condition is true, B otherwise, never both and never neither (EK AAP-2.H.3). Trace by evaluating the condition once, then running only the block it selects and skipping the other."
+      },
+      {
+        "heading": "“≥ means strictly greater, so the boundary fails”",
+        "myth": "A condition like height ≥ 48 is false at exactly 48 because 48 is not 'more than' 48.",
+        "reality": "≥ and ≤ include the boundary value (EK AAP-2.H.2–H.3 with the Topic 3.5 operators): height ≥ 48 is true at 48, so the IF branch runs. Mixing up strict (>) and inclusive (≥) comparisons flips the branch exactly at the edge case the exam loves to test."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Use a physical 'gate': students hold cards (a height number or a wristband color), walk up, and are routed left or right by the class reading the condition aloud — making 'exactly one path' concrete before any syntax.",
+        "Provide a fill-in trace table for the IF and IF-ELSE examples: one column for the input, one for the condition's true/false value, one for the branch taken, one for the output — so students evaluate the condition FIRST, every time."
+      ],
+      "extension": [
+        "Have students rewrite a plain IF that skips work on false as an equivalent IF-ELSE that makes the 'do nothing' explicit, and explain when each style is clearer (previews AAP-2.L equivalence).",
+        "Point deep-dive students at the Topic 3.6 coding practice to implement the gate decision, then test boundary inputs (47, 48, 49) and explain how the run confirms which branch the condition selects."
+      ]
+    },
+    "discussion": [
+      "Your gatekeeper rule worked because it named a condition and a branch. What everyday decisions do you make that are really selection — a condition, then different actions — and what is the 'condition' in each?",
+      "A plain IF does nothing on false, while an IF-ELSE always does one of two things. When is 'do nothing on false' exactly what you want, and when is a missing ELSE actually a bug?",
+      "The exam loves boundary values like exactly 48 with a ≥ test. Why is the edge case where a condition just barely flips the hardest to reason about, and how does tracing the condition to true or false first protect you?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

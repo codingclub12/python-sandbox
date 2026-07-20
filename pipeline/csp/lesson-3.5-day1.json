@@ -1,0 +1,601 @@
+{
+  "meta": {
+    "lessonId": "3.5",
+    "lessonTitle": "Boolean Expressions",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-2.E",
+    "anchor": "Boolean Expressions",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.5 · Day 1 of 2",
+      "title": "Asking the Computer Yes-or-No Questions",
+      "subtitle": "The Boolean value — true or false — and the six relational operators (=, ≠, >, <, ≥, ≤) a program uses to compare two things and get a yes-or-no answer",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Every decision a program ever makes starts with a yes-or-no question, and the answer to a yes-or-no question has a name: a Boolean value, either true or false. Today, Day 1, we build the tool that produces those answers — the relational operators that compare two things, like a rider's height against a minimum. Tomorrow, Day 2, we learn to combine several yes-or-no answers with NOT, AND, and OR. Our running example all topic long is a ride-admission gate at an amusement park: who gets to board The Gauntlet, and why. Get comparisons exactly right today and every conditional and loop later in the course becomes readable."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write expressions using the relational operators =, ≠, >, <, ≥, and ≤ to state a relationship between two values (LO AAP-2.E)"
+        },
+        {
+          "tag": "CB",
+          "text": "Evaluate a comparison to a single Boolean value — true or false — knowing that ≥ and ≤ include the boundary while > and < do not (LO AAP-2.E)"
+        }
+      ],
+      "script": "Two targets today, and they are the two halves of learning objective AAP-2.E. Part a is to WRITE expressions with relational operators — turning 'at least 48 inches tall' into height greater-than-or-equal-to 48. Part b is to EVALUATE those expressions — running the comparison to a single Boolean, true or false. Notice both halves are on today's list; the exam tests writing and evaluating separately, so we practice both. Tomorrow's objective, AAP-2.F, is the other tool: combining Booleans with NOT, AND, and OR."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Your table gets a stack of ride-entry cards, each showing a guest's height in inches. The Gauntlet's rule today: a guest may ride if they are AT LEAST 48 inches tall. Sort every card into two piles — 'Can ride' and 'Cannot ride' — using nothing but that one height rule. Cards: 47, 48, 52, 40, 60, 48.",
+      "subprompt": "Write 2–4 sentences: What single yes/no question did you ask about each card, and what were the only two answers it could ever have? Where did the two 48 cards go, and why is 48 the case people argue about?",
+      "directions": "Be ready to state your one question and defend where the 48 cards belong.",
+      "script": "Five minutes with a partner. Hand out the six heights and sort them into two piles using only the at-least-48 rule. Watch what your brain does: for every card you ask the exact same question — 'is this height at least 48?' — and that question has only ever two possible answers, yes or no. You have just re-invented today's two ideas: a comparison, and the Boolean value it produces. Then push on the 48 cards. 'At least 48' includes 48 itself, so both 48 cards go in 'Can ride' — the 47 and 40 do not. That boundary, whether the equal case counts, is exactly where relational-operator questions are won and lost. Hold that thought."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Boolean Values and Comparisons",
+          "description": "A Boolean value is true or false, and a comparison evaluates to one (EK AAP-2.E.1–E.2)."
+        },
+        {
+          "title": "The Six Relational Operators",
+          "description": "Writing and evaluating expressions with =, ≠, >, <, ≥, ≤, including the boundary cases (EK AAP-2.E.2)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.5 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's notes — two sections, both green and CB-required. First, Boolean values and comparisons: what a Boolean value is and the fact that every comparison produces one. Second, the six relational operators, where we practice both writing them from an English rule and evaluating them to true or false. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.5 page, which is also where the interactive coding practice for this topic lives."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Boolean Values and Comparisons",
+      "kicker": "True, False, and the Question Between Them · Learning Objective AAP-2.E",
+      "script": "Section one. Before we can compare anything, we need the thing a comparison produces: a Boolean value. It is the simplest type in the course — only two possibilities — but everything a program decides rests on it. Get precise about what it is and where it comes from."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.E)",
+      "terms": [
+        {
+          "term": "Boolean value",
+          "definition": "A value that is either true or false — the only two possibilities there are (EK AAP-2.E.1)."
+        },
+        {
+          "term": "Relational operator",
+          "definition": "A symbol that tests the relationship between two variables, expressions, or values; the exam sheet provides =, ≠, >, <, ≥, and ≤ (EK AAP-2.E.2)."
+        },
+        {
+          "term": "Comparison",
+          "definition": "An expression built with a relational operator; it evaluates to a Boolean value, as a = b does when it asks whether a and b are equal (EK AAP-2.E.2)."
+        },
+        {
+          "term": "Operand",
+          "definition": "One of the two variables, expressions, or values that a relational operator sits between and compares (EK AAP-2.E.2)."
+        },
+        {
+          "term": "Condition",
+          "definition": "A Boolean expression whose true-or-false result a program can later act on (EK AAP-2.E.1)."
+        }
+      ],
+      "script": "Five words carry the topic. A Boolean value is the true-or-false type — two possibilities and no others. A relational operator is one of the six comparison symbols the exam reference sheet provides. A comparison is what you get when you put an operator between two things; it always evaluates to a Boolean. The operand is each of the two things being compared — left operand and right operand. And a condition is just a Boolean expression a program is about to make a decision from, which is exactly how we will use these tomorrow."
+    },
+    {
+      "type": "concept",
+      "heading": "A Comparison Answers a Yes-or-No Question",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A Boolean value has exactly two possibilities and nothing in between (EK AAP-2.E.1).",
+        "Putting a relational operator between two things produces a Boolean value — the whole point of comparing (EK AAP-2.E.2).",
+        "On the exam sheet, a = b evaluates to true if a and b are equal; otherwise it evaluates to false (EK AAP-2.E.2).",
+        "This is how a program turns raw data into a yes-or-no answer it can act on."
+      ],
+      "script": "Here is the mental model. A Boolean value has just two possibilities — there is no third answer, no 'maybe.' A comparison is how you produce one: place a relational operator between two operands and the expression evaluates to a Boolean. The College Board gives the template directly — a equals b evaluates to true when a and b are equal, and false otherwise. That single sentence generalizes to all six operators: each asks a precise question about two things and hands back true or false. That is how a program converts numbers and text into a decision it can act on.",
+      "capture": [
+        {
+          "q": "A Boolean value can only ever be ______.",
+          "a": "true or false"
+        },
+        {
+          "q": "Putting a relational operator between two operands always produces ______.",
+          "a": "a single Boolean result — one of the two possibilities"
+        },
+        {
+          "q": "The comparison a = b evaluates to false whenever ______.",
+          "a": "a and b are not equal"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Comparisons",
+      "heading": "A Comparison Produces a Boolean",
+      "caption": "height ≥ 48 asks a yes-or-no question; the answer is the Boolean true.",
+      "pseudocode": "height ← 50\ntallEnough ← height ≥ 48\nDISPLAY(tallEnough)",
+      "python": "height = 50\ntall_enough = height >= 48\nprint(tall_enough)",
+      "output": "true",
+      "script": "Your first code, two columns. On the left is the exam pseudocode with the reference-sheet symbols; on the right is runnable Python. Height is 50. The second line does not store a number — it stores the RESULT of a comparison: is 50 at least 48? Yes, so tallEnough holds the Boolean true. DISPLAY then shows it. One notation difference to log between the columns: the exam sheet writes the greater-than-or-equal symbol as a single character, while Python types it as greater-than then equals. Python also capitalizes True, where the pseudocode uses lowercase true. Same idea, two notations — the left is what the exam tests."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Booleans and Comparisons",
+      "subheading": "These map to LO AAP-2.E. Complete on your Guided Notes.",
+      "prompts": [
+        "In one sentence, explain what type of value the comparison score > 90 produces, and list every value it could possibly evaluate to.",
+        "A classmate says 'height ≥ 48 gives back the number 50 because height is 50.' Correct the wording precisely — what does the comparison actually hand back?",
+        "Write one real yes-or-no question about a guest at the gate, then write the comparison that would answer it."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.5 page.",
+      "script": "Stop and think, six minutes, full sentences. One: score greater-than 90 produces a Boolean, and the only values it can ever be are true and false — not the score itself. Two: fix the classmate — a comparison does not return an operand's value; it returns the Boolean answer to the question, here true. Three: invent a gate question like 'is the guest exactly 60 inches?' and write the comparison, height equals 60. These moves — naming the result type and writing a comparison — are exactly what AAP-2.E asks."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Six Relational Operators",
+      "kicker": "Write Them, Then Evaluate Them · Learning Objective AAP-2.E",
+      "script": "Section two. The reference sheet gives you exactly six comparison operators, and the exam expects two skills: writing the right one from an English rule, and evaluating it to true or false. The whole game is precision, especially at the boundary — whether the equal case counts."
+    },
+    {
+      "type": "concept",
+      "heading": "Six Operators, One Boolean Answer",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The exam reference sheet provides exactly six: = (equal), ≠ (not equal), > (greater), < (less), ≥ (at least), and ≤ (at most) (EK AAP-2.E.2).",
+        "≥ and ≤ INCLUDE the boundary value; > and < EXCLUDE it — this is where points are lost.",
+        "'At least 48' → height ≥ 48; 'more than 48' → height > 48; 'not 48' → height ≠ 48.",
+        "Whichever you pick, the comparison still evaluates to a single Boolean value (EK AAP-2.E.2)."
+      ],
+      "script": "Six operators, and you should be able to name each. Equals and not-equals test whether two things match. Greater-than and less-than are strict — the boundary is excluded. Greater-than-or-equal and less-than-or-equal include the boundary. That include-versus-exclude distinction is the entire difficulty. Translate carefully: 'at least 48' means 48 counts, so greater-than-or-equal; 'more than 48' means 48 does not count, so strict greater-than; 'not 48' is the not-equal operator. Whichever operator you choose, the result is always one Boolean value. Write the English rule word for word into the correct symbol and you will not miss these.",
+      "capture": [
+        {
+          "q": "The operators ≥ and ≤ differ from > and < because they ______.",
+          "a": "include the boundary value itself, not just the values beyond it"
+        },
+        {
+          "q": "The English phrase 'at least 48' should be written as ______.",
+          "a": "height ≥ 48, since 48 itself must count"
+        },
+        {
+          "q": "The English phrase 'more than 48' should be written as ______.",
+          "a": "height > 48, since exactly 48 must be excluded"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Writing Comparisons",
+      "heading": "Same Six, Two Notations",
+      "caption": "The pseudocode symbol on the left; the two-character Python version on the right.",
+      "pseudocode": "a = b\na ≠ b\na > b\na < b\na ≥ b\na ≤ b",
+      "python": "a == b\na != b\na > b\na < b\na >= b\na <= b",
+      "output": "",
+      "script": "The full operator set, side by side. On the exam reference sheet, equality is a single equals sign — that is important, because in Python equality is a DOUBLE equals, since Python already uses one equals for assignment. Not-equal is a single symbol on the sheet and bang-equals in Python. Greater and less are the same in both. Greater-or-equal and less-or-equal are single characters on the sheet and two characters in Python. When you read a question, the left column is what appears; when you run code in the practice, the right column is what you type. Keep the mapping straight and translation is automatic."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Evaluate Each Comparison",
+      "context": "Use the rider values height = 48 and age = 10. Evaluate each comparison to true or false. The boundary cases are the ones to slow down on.",
+      "columns": [
+        "Comparison",
+        "Substitute the values",
+        "Evaluates to"
+      ],
+      "rows": [
+        [
+          "height ≥ 48",
+          "48 ≥ 48",
+          "true"
+        ],
+        [
+          "height > 48",
+          "48 > 48",
+          "false"
+        ],
+        [
+          "age < 13",
+          "10 < 13",
+          "true"
+        ],
+        [
+          "height ≠ 40",
+          "48 ≠ 40",
+          "true"
+        ],
+        [
+          "age = 12",
+          "10 = 12",
+          "false"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Evaluate each row by substituting the values first, then judging true or false. Height greater-than-or-equal 48 becomes 48 at-least 48 — the equal case counts, so true. Height strictly greater than 48 becomes 48 greater-than 48 — the equal case does NOT count, so false. Notice those two rows use the SAME numbers and give OPPOSITE answers; the only difference is one operator. Age less-than 13 is 10 less-than 13, true. Height not-equal 40 is 48 not-equal 40, true. Age equals 12 is 10 equals 12, false. Substitute, then decide — never guess from the shape of the expression.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "= Compares; ← Assigns",
+      "subheading": "On the exam reference sheet these are different symbols doing different jobs — mixing them up breaks every condition (EK AAP-2.E.2).",
+      "left": {
+        "title": "Assignment ←",
+        "definition": "A command that stores a value into a variable and changes the program's state",
+        "ek": "Contrast",
+        "examples": [
+          "height ← 48 puts the number 48 into height",
+          "It has a direction: right side stored into the left",
+          "It does NOT produce true or false"
+        ]
+      },
+      "right": {
+        "title": "Equality =",
+        "definition": "A relational operator that compares two operands and evaluates to a Boolean",
+        "ek": "EK AAP-2.E.2",
+        "examples": [
+          "height = 48 asks 'are these two equal?'",
+          "It hands back true or false, nothing is stored",
+          "It reads the values; it does not change them"
+        ]
+      },
+      "footer": "AP TIP: On the reference sheet, a single = is the equality TEST (it yields a Boolean); the left-arrow ← is what STORES a value. Read = as 'is equal to,' never as 'gets.'",
+      "script": "The single biggest source of condition errors is confusing the two symbols that look alike. On the exam reference sheet, the left-arrow is assignment — it stores a value and changes state, with a clear direction, and it never produces true or false. A single equals sign is the opposite: it is a relational operator that compares two operands and evaluates to a Boolean, storing nothing. In Python this confusion is impossible because equality is a double equals, but on the exam sheet and on paper you must read carefully. Say the arrow as 'gets' and the single equals as 'is equal to,' and the two jobs stay separate.",
+      "capture": [
+        {
+          "q": "On the exam reference sheet, the symbol that stores a value into a variable is ______.",
+          "a": "the assignment arrow ←"
+        },
+        {
+          "q": "On the exam reference sheet, a single = between two operands is ______.",
+          "a": "the equality comparison, which evaluates to a Boolean"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“At Least 48 Means height > 48”",
+      "misconception": "The rule 'riders must be at least 48 inches tall' should be written as height > 48.",
+      "whyItHappens": "'At least' sounds like a strict demand, and the plain greater-than symbol looks stronger than the greater-than-or-equal symbol, so students reach for >.",
+      "correction": "'At least 48' includes 48 itself, so the boundary must count: write height ≥ 48. Using height > 48 wrongly turns away a guest who is exactly 48 inches tall. The equal case is precisely what ≥ adds and > drops (EK AAP-2.E.2).",
+      "example": "A 48-inch guest: height ≥ 48 is 48 ≥ 48 → true, so they ride. But height > 48 is 48 > 48 → false, so they are turned away. Same guest, one operator changed, opposite outcome.",
+      "script": "Here is the trap, and the exam builds questions on it. Because 'at least' sounds demanding and the plain greater-than looks like the tougher symbol, students write height greater-than 48. But 'at least 48' means 48 is allowed, so the boundary must be included — greater-than-or-equal. The consequence is concrete: a guest exactly 48 inches tall passes with greater-than-or-equal but is rejected with plain greater-than. Same guest, one operator, opposite result. Whenever you see 'at least,' 'at most,' 'no more than,' or 'or older,' the equal case counts — reach for the operator with the line under it."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Write and Evaluate",
+      "subheading": "These map to LO AAP-2.E. Complete on your Guided Notes.",
+      "prompts": [
+        "Write a comparison for each rule: (a) the wait is no more than 30 minutes, (b) the rider is older than 12, (c) the seat number is not 13.",
+        "Using height = 60 and age = 15, evaluate each: height ≥ 48, age < 12, height ≠ 60. Show the substitution for each.",
+        "A rule says 'you may ride if you are exactly 48 inches or taller.' Explain why height ≥ 48 is correct and height > 48 is wrong, using the 48-inch guest."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.5 page.",
+      "script": "Write and evaluate, six minutes, full sentences. One: 'no more than 30' is wait less-than-or-equal 30, 'older than 12' is age greater-than 12, 'not 13' is seat not-equal 13 — the include-versus-exclude choice is the whole point. Two: with height 60 and age 15, height greater-than-or-equal 48 is true, age less-than 12 is false, height not-equal 60 is false — substitute before judging. Three: justify greater-than-or-equal with the 48-inch guest, who passes only because the equal case counts. These are the exact write-and-evaluate moves AAP-2.E tests."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A Boolean value is either true or false — the only two possibilities (EK AAP-2.E.1)",
+        "A comparison built with a relational operator evaluates to a Boolean value (EK AAP-2.E.2)",
+        "The six operators are =, ≠, >, <, ≥, and ≤; ≥ and ≤ include the boundary, > and < do not (EK AAP-2.E.2)",
+        "On the reference sheet a single = is the equality TEST; the arrow ← is assignment"
+      ],
+      "nextPoints": [
+        "Day 2: combining Boolean values with the logical operators NOT, AND, and OR (LO AAP-2.F)",
+        "Why AND needs both conditions true, OR needs at least one, and NOT flips",
+        "The inclusive-OR trap: 'both true' still makes OR true, not false"
+      ],
+      "teaser": "Before tomorrow, predict it: at the gate, tallEnough = true and hasTicket = false. A rider boards only when tallEnough AND hasTicket. Do they board? Write your answer and your reasoning.",
+      "script": "That is Day 1. A Boolean value is true or false; a comparison produces one; the six operators are equals, not-equals, greater, less, and the two 'or-equal' operators that include the boundary; and the single equals sign is a comparison, not the assignment arrow. Tomorrow we combine Booleans: NOT to flip one, AND to demand both, OR to accept either. Here is the teaser, and it is exactly where we open tomorrow: tall enough is true but has-ticket is false, and the rule is tall enough AND has ticket — do they board? Write your answer and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.5 — Boolean Expressions — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "In exam pseudocode, height holds 48. What does height ≥ 48 evaluate to, and what type of value is the result?",
+        "options": [
+          "true — and the result is a Boolean value",
+          "48 — the operator hands back the larger operand",
+          "false, because 48 is not greater than 48",
+          "true — and the result is a number"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "Greater-than-or-equal includes the equal case, so 48 ≥ 48 is true, and every relational comparison evaluates to a Boolean value (EK AAP-2.E.1–E.2), making A correct. B treats the operator as if it returns one of the operands rather than a Boolean. C applies the rule for strict > instead of ≥, dropping the boundary case. D gets the truth value right but names the wrong type — comparisons yield Booleans, not numbers."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A sign reads 'Riders must be at least 48 inches tall.' Which expression captures exactly who is allowed, and why?",
+        "options": [
+          "height > 48, because 'at least' means strictly taller than the minimum",
+          "height ≠ 48, because a rider cannot be exactly at the minimum",
+          "height ≥ 48, because 'at least 48' includes a rider who is exactly 48",
+          "height < 48, because the sign is stating a maximum height"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "'At least 48' means 48 itself is allowed, so the boundary must be included with ≥ (EK AAP-2.E.2); C is correct. A uses strict >, which wrongly rejects the exactly-48 rider. B excludes precisely the boundary value the rule includes. D reverses the meaning, treating a minimum as a maximum."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "A program runs isMatch ← (code = 4207). Before this line, code holds 4207. What is stored in isMatch?",
+        "options": [
+          "4207, a copy of the value in code",
+          "true, because code equals 4207 and a comparison evaluates to a Boolean",
+          "the text \"code = 4207\"",
+          "false, because the single = stores a value instead of comparing"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "Inside the parentheses the single = is the equality comparison; code is 4207, so the comparison is true, a Boolean, which the arrow then stores in isMatch (EK AAP-2.E.2). B is correct. A confuses the comparison's result with code's value. C treats the expression as literal text. D mislabels the single = as assignment — the arrow ← does the storing, while = compares."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "On the exam reference sheet, how do the statements a ← b and a = b differ?",
+        "options": [
+          "They are identical; both store the value of b into a",
+          "a ← b tests whether a and b are equal; a = b stores b into a",
+          "Both evaluate to a Boolean value and store nothing",
+          "a ← b stores a copy of b into a; a = b tests whether a and b are equal and evaluates to a Boolean"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "The arrow ← assigns — it stores a copy of b into a — while a single = is the equality comparison that evaluates to a Boolean (EK AAP-2.E.2); D is correct. A ignores that = compares rather than stores. B swaps the two meanings. C is false for assignment, which changes a variable and does not yield a Boolean."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "waitTime holds 30. Evaluate the comparison waitTime ≤ 30.",
+        "options": [
+          "false, because 30 is not less than 30",
+          "30, the value of waitTime",
+          "true, because ≤ includes the equal case and 30 equals 30",
+          "true, because ≤ always evaluates to true"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "Less-than-or-equal includes the boundary, so 30 ≤ 30 is true (EK AAP-2.E.2); C is correct. A applies the strict-< rule and drops the equal case. B returns the operand instead of a Boolean. D is right about the answer here but for a false reason — ≤ is not always true; 31 ≤ 30 would be false."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A gate rule needs a comparison that is true only when a guest's height is anything OTHER than exactly 60 inches. Which operator writes that rule?",
+        "options": [
+          "height ≠ 60, the not-equal operator",
+          "height = 60, the equality operator",
+          "height > 60, the greater-than operator",
+          "height ≥ 60, the at-least operator"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "'Anything other than exactly 60' is the not-equal relationship, written with ≠ (EK AAP-2.E.2); A is correct. B is the exact opposite — true only AT 60. C is true only for heights above 60 and misses everything below it. D includes 60 itself and every height above, the reverse of what is wanted."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "A student writes seats < 5 to mean 'there are fewer than 5 seats left.' seats holds 5. What does the comparison evaluate to, and is the wording matched correctly?",
+        "options": [
+          "true, and 5 does count as 'fewer than 5'",
+          "true, because < includes the boundary value 5",
+          "false, because seats also equals 5 so both sides cancel",
+          "false, because < is strict, so 5 < 5 is false — matching 'fewer than 5'"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "Strict less-than excludes the boundary, so 5 < 5 is false, which correctly matches 'fewer than 5' (EK AAP-2.E.2); D is correct. A misreads 5 as being fewer than 5. B wrongly claims < includes its boundary — that is ≤. C invents a 'cancel' rule that does not exist; the comparison simply evaluates to false."
+      },
+      {
+        "id": "Q8",
+        "kind": "multi",
+        "stem": "Using height = 52 and age = 11, which of these comparisons evaluate to true? I. height ≥ 48   II. age > 12   III. height ≠ 52",
+        "options": [
+          "I and III only",
+          "I only",
+          "I, II, and III",
+          "II and III only"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.E.2",
+        "rationale": "Evaluate each: I is 52 ≥ 48 → true; II is 11 > 12 → false; III is 52 ≠ 52 → false because 52 does equal 52. Only I is true (EK AAP-2.E.2), so B is correct. A wrongly counts III, forgetting that ≠ is false when the values match. C counts II, missing that 11 is not greater than 12. D drops the one true comparison and keeps two false ones."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.5 — Boolean Expressions — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.5 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.5 gives students the raw material every decision in a program is built from: the Boolean value, true or false, and the operators that produce and combine it. Day 1 (LO AAP-2.E) covers relational operators — a Boolean value has only two possibilities, a comparison built with =, ≠, >, <, ≥, or ≤ evaluates to one, and the include-versus-exclude boundary (≥/≤ versus >/<) is where most points are lost. Both halves of the LO are taught explicitly: writing an expression from an English rule and evaluating an expression to true or false. Day 2 (LO AAP-2.F) covers the logical operators — NOT flips a Boolean, AND is true only when both operands are true, OR is true when at least one is true — again teaching both writing and evaluating, plus the inclusive-OR trap.",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (single = for equality, ≠, ≥, ≤, and the logical words NOT/AND/OR) shown beside runnable Python (==, !=, >=, <=, and, or, not). The interactive, auto-graded coding practice lives on the Topic 3.5 page, where students type and run progressively harder versions of the same gate scenario.",
+      "The through-line is a ride-admission gate at an amusement park, 'The Gauntlet': Day 1 compares a single value (height, age, wait time) to a threshold; Day 2 combines several such Booleans (tall enough AND has ticket; VIP OR fast pass; NOT closed). The paper exercises trace and write these rules by hand; the coding page has students type and run them."
+    ],
+    "los": [
+      "LO AAP-2.E — For relationships between two variables, expressions, or values: a. Write expressions using relational operators. b. Evaluate expressions that use relational operators.",
+      "LO AAP-2.F — For relationships between Boolean values: a. Write expressions using logical operators. b. Evaluate expressions that use logic operators."
+    ],
+    "eks": [
+      "EK AAP-2.E.1 — A Boolean value is either true or false.",
+      "EK AAP-2.E.2 — The exam reference sheet provides the following relational operators: =, ≠, >, <, ≥, and ≤, used to test the relationship between two variables, expressions, or values. A comparison using a relational operator evaluates to a Boolean value. For example, a = b evaluates to true if a and b are equal; otherwise, it evaluates to false.",
+      "EK AAP-2.F.1 — The exam reference sheet provides the logical operators NOT, AND, and OR, which evaluate to a Boolean value.",
+      "EK AAP-2.F.2 — NOT condition evaluates to true if condition is false; otherwise it evaluates to false.",
+      "EK AAP-2.F.3 — condition1 AND condition2 evaluates to true if both condition1 and condition2 are true; otherwise it evaluates to false.",
+      "EK AAP-2.F.4 — condition1 OR condition2 evaluates to true if condition1 is true or if condition2 is true or if both condition1 and condition2 are true; otherwise it evaluates to false.",
+      "EK AAP-2.F.5 — The operand for a logical operator is either a Boolean expression or a single Boolean value."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.5 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.5 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: a stack of index cards labeled with guest heights for the Day 1 bell-ringer sort, and true/false cards for the Day 2 truth-table build."
+    ],
+    "prereqs": [
+      "Topic 3.1 (variables and assignment) is assumed: students must be comfortable that ← stores a value, because the sharpest Day 1 confusion is a single = (equality) versus the assignment arrow. Topic 3.3's evaluate-an-expression habit transfers directly — a Boolean expression is just an expression whose value happens to be true or false. No conditionals are needed yet; IF statements arrive in Topic 3.6 and consume the Boolean values built here."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Boolean values; comparisons; the six relational operators, writing and evaluating (LO AAP-2.E)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.5/Q1) + bell ringer (sort the height cards)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Objectives + guided-notes preview",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Boolean values and comparisons: vocab, the comparison concept, first code_block (EK AAP-2.E.1–E.2)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on Booleans and comparisons",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "The six operators: concept, operator-mapping code_block, evaluate-the-comparison table, = vs ← (EK AAP-2.E.2)",
+            "min": 14,
+            "slides": "10-14"
+          },
+          {
+            "segment": "Boundary misconception + Stop and Think on write-and-evaluate",
+            "min": 6,
+            "slides": "15-16"
+          },
+          {
+            "segment": "Day close + logical-operator teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Logical operators NOT, AND, OR; combining and flipping Booleans; the inclusive-OR trap (LO AAP-2.F)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.5/Q2) + bell ringer (who boards: AND vs OR)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Objectives + guided-notes preview",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "NOT: vocab, the NOT concept, NOT code_block, NOT truth table (EK AAP-2.F.1–F.2, F.5)",
+            "min": 13,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on NOT",
+            "min": 5,
+            "slides": "10"
+          },
+          {
+            "segment": "AND and OR: concept, AND/OR code_block, truth table, AND-vs-OR contrast (EK AAP-2.F.3–F.5)",
+            "min": 14,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Inclusive-OR misconception + Stop and Think on combining",
+            "min": 6,
+            "slides": "16-17"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "18-19"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.5 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.5 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.5 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“At least 48 means height > 48”",
+        "myth": "'At least,' 'at most,' and 'or older' should be written with the strict > or < operators.",
+        "reality": "Those phrases include the boundary value, so they require ≥ or ≤ (EK AAP-2.E.2). 'At least 48' is height ≥ 48; writing height > 48 wrongly rejects the exactly-48 case. Drill the include-versus-exclude test on every threshold rule."
+      },
+      {
+        "heading": "“A single = stores a value”",
+        "myth": "The single equals sign on the reference sheet assigns, the same as it would in some languages.",
+        "reality": "On the exam reference sheet a single = is the equality COMPARISON, which evaluates to a Boolean; the arrow ← is what stores a value (EK AAP-2.E.2). Read = as 'is equal to.' Python avoids the confusion by using == for equality, but exam pseudocode uses one =."
+      },
+      {
+        "heading": "“OR means one or the other, but not both”",
+        "myth": "condition1 OR condition2 is false when BOTH conditions are true, matching everyday 'soup or salad.'",
+        "reality": "The reference-sheet OR is INCLUSIVE: it is true if condition1 is true, or condition2 is true, or both are true (EK AAP-2.F.4). Both-true makes OR true. OR is false only when both operands are false. This is the single most common Day 2 error."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students physical true/false cards. To evaluate NOT, AND, and OR, they lay down the operand cards and physically flip (NOT) or check both (AND) versus either (OR), making the truth outcome concrete before it is symbolic.",
+        "Provide a 'translate the phrase' reference strip: 'at least' → ≥, 'at most' → ≤, 'more than' → >, 'fewer than' → <, 'not' → ≠, 'exactly' → =, so writing an expression becomes a lookup while the habit forms."
+      ],
+      "extension": [
+        "Have students build the full four-row AND and OR truth tables from scratch and then argue, in writing, why AND is 'hardest to satisfy' and OR is 'easiest,' using the number of true rows as evidence.",
+        "Point deep-dive students at the Topic 3.5 coding practice to write the complete boarding rule (tall enough AND has ticket AND ride open) and test it against several guests, explaining how each printed Boolean confirms their hand trace."
+      ]
+    },
+    "discussion": [
+      "In the bell ringer, every card produced one of only two answers. Why is it powerful for a computer that a comparison can ONLY ever be true or false — what would go wrong if 'maybe' were allowed?",
+      "'At least 48' and 'more than 48' sound almost the same in English but choose different operators. Where else in everyday rules — speed limits, age limits, discounts — does the include-or-exclude boundary quietly decide who qualifies?",
+      "Everyday 'or' usually means one or the other but not both, yet code's OR counts both-true as true. Why might the inclusive meaning be the more useful default for a program making decisions?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

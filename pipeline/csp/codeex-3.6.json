@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.6",
+    "title": "Conditionals",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in Trace the Gate and Write the Rule, hand-tracing which branch runs. Now type and run the same gate scenario for real — the problems get harder as you go, from a single IF to an IF-ELSE with a computed condition, ending with one you build from scratch. Evaluate the condition first, predict the output, then check yourself, hardest last."
+  },
+  "problems": [
+    {
+      "prompt": "A rider is 52 inches tall. Write an IF that displays exactly 'Board the ride' when height is at least 48. (For 52, it should print.)",
+      "promptHtml": "A rider is 52 inches tall. Write an <code>IF</code> that displays exactly <code>Board the ride</code> when <code>height</code> is at least 48. (For 52, it should print.)",
+      "expected": "Board the ride",
+      "starter": {
+        "python": "height = 52\n# write an IF: if height is at least 48 (>=), print exactly: Board the ride\n# a plain IF does nothing when the condition is false\n",
+        "javascript": "let height = 52;\n// write an IF: if height is at least 48 (>=), print exactly: Board the ride\n// a plain IF does nothing when the condition is false\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 52\nIF(height ≥ 48)\n{\n  DISPLAY(\"Board the ride\")\n}",
+        "python": "height = 52\nif height >= 48:\n    print(\"Board the ride\")",
+        "javascript": "let height = 52;\nif (height >= 48) {\n  console.log(\"Board the ride\");\n}"
+      },
+      "hint": "Use >= for 'at least': the condition height >= 48 is true for 52, so the block runs. Put the print inside the IF so it only runs when the condition is true."
+    },
+    {
+      "prompt": "A rider is 45 inches tall. Write an IF-ELSE: display 'Board the ride' when height is at least 48, otherwise display 'Grow a bit more'. (For 45, it should print the second message.)",
+      "promptHtml": "A rider is 45 inches tall. Write an <code>IF-ELSE</code>: display <code>Board the ride</code> when <code>height</code> is at least 48, otherwise display <code>Grow a bit more</code>. (For 45, it should print the second message.)",
+      "expected": "Grow a bit more",
+      "starter": {
+        "python": "height = 45\n# write an IF-ELSE:\n#   if height >= 48: print exactly: Board the ride\n#   otherwise (else): print exactly: Grow a bit more\n# exactly one branch runs\n",
+        "javascript": "let height = 45;\n// write an IF-ELSE:\n//   if height >= 48: print exactly: Board the ride\n//   otherwise (else): print exactly: Grow a bit more\n// exactly one branch runs\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 45\nIF(height ≥ 48)\n{\n  DISPLAY(\"Board the ride\")\n}\nELSE\n{\n  DISPLAY(\"Grow a bit more\")\n}",
+        "python": "height = 45\nif height >= 48:\n    print(\"Board the ride\")\nelse:\n    print(\"Grow a bit more\")",
+        "javascript": "let height = 45;\nif (height >= 48) {\n  console.log(\"Board the ride\");\n} else {\n  console.log(\"Grow a bit more\");\n}"
+      },
+      "hint": "Evaluate the condition first: 45 >= 48 is false, so the ELSE block runs. The ELSE has no condition of its own — it catches every case the IF did not make true."
+    },
+    {
+      "prompt": "A group ticket costs 12 dollars per person for a group of 4. Compute the total, then display 'Group discount applies' when the total is at least 40, otherwise display 'No discount'.",
+      "promptHtml": "A group ticket costs 12 dollars per person for a group of 4. Compute the <code>total</code>, then display <code>Group discount applies</code> when the total is at least 40, otherwise display <code>No discount</code>.",
+      "expected": "Group discount applies",
+      "starter": {
+        "python": "pricePerPerson = 12\ngroupSize = 4\n# 1) compute total = pricePerPerson * groupSize\n# 2) IF total is at least 40 (>=): print exactly: Group discount applies\n#    ELSE: print exactly: No discount\n",
+        "javascript": "let pricePerPerson = 12;\nlet groupSize = 4;\n// 1) compute total = pricePerPerson * groupSize\n// 2) IF total is at least 40 (>=): print exactly: Group discount applies\n//    ELSE: print exactly: No discount\n"
+      },
+      "reference": {
+        "pseudocode": "pricePerPerson ← 12\ngroupSize ← 4\ntotal ← pricePerPerson * groupSize\nIF(total ≥ 40)\n{\n  DISPLAY(\"Group discount applies\")\n}\nELSE\n{\n  DISPLAY(\"No discount\")\n}",
+        "python": "pricePerPerson = 12\ngroupSize = 4\ntotal = pricePerPerson * groupSize\nif total >= 40:\n    print(\"Group discount applies\")\nelse:\n    print(\"No discount\")",
+        "javascript": "let pricePerPerson = 12;\nlet groupSize = 4;\nlet total = pricePerPerson * groupSize;\nif (total >= 40) {\n  console.log(\"Group discount applies\");\n} else {\n  console.log(\"No discount\");\n}"
+      },
+      "hint": "First do the arithmetic: total = 12 * 4 = 48. Then the condition total >= 40 is true, so the IF block runs. A condition can be a computed value, not just a bare variable."
+    },
+    {
+      "prompt": "Build from scratch: a rider is 47 inches tall. First display 'Welcome!' on its own line, then use an IF-ELSE to display 'Board the ride' when height is at least 48, otherwise 'Grow a bit more'. Two lines of output.",
+      "promptHtml": "Build from scratch: a rider is 47 inches tall. First display <code>Welcome!</code> on its own line, then use an <code>IF-ELSE</code> to display <code>Board the ride</code> when height is at least 48, otherwise <code>Grow a bit more</code>. Two lines of output.",
+      "expected": "Welcome!\nGrow a bit more",
+      "starter": {
+        "python": "# Build the whole program yourself.\n# 1) set height to 47\n# 2) print exactly: Welcome!\n# 3) IF height >= 48: print exactly: Board the ride\n#    ELSE: print exactly: Grow a bit more\n",
+        "javascript": "// Build the whole program yourself.\n// 1) set height to 47\n// 2) print exactly: Welcome!\n// 3) IF height >= 48: print exactly: Board the ride\n//    ELSE: print exactly: Grow a bit more\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 47\nDISPLAY(\"Welcome!\")\nIF(height ≥ 48)\n{\n  DISPLAY(\"Board the ride\")\n}\nELSE\n{\n  DISPLAY(\"Grow a bit more\")\n}",
+        "python": "height = 47\nprint(\"Welcome!\")\nif height >= 48:\n    print(\"Board the ride\")\nelse:\n    print(\"Grow a bit more\")",
+        "javascript": "let height = 47;\nconsole.log(\"Welcome!\");\nif (height >= 48) {\n  console.log(\"Board the ride\");\n} else {\n  console.log(\"Grow a bit more\");\n}"
+      },
+      "hint": "The greeting runs before the decision, so it prints every time. Then evaluate 47 >= 48: it is false, so the ELSE runs. Order matters — the sequential line prints first, then exactly one branch of the IF-ELSE."
+    }
+  ]
+}

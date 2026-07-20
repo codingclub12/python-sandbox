@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "lessonId": "3.7",
+    "lessonTitle": "Nested Conditionals",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO AAP-2.I",
+    "anchor": "Nested Conditionals",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.7 · Day 1 of 1",
+      "title": "A Decision Inside a Decision",
+      "subtitle": "Nested conditionals — putting one IF-statement inside the branch of another so a second question is asked only when the first is answered a certain way, and tracing which single branch actually runs",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.7, Nested Conditionals. You already know the IF-statement and the IF-ELSE from Topic 3.6 — they make a program choose between paths. Today we do the one new move the College Board asks for here: put a conditional INSIDE another conditional, so a second decision only happens when the first decision opens the door to it. There is a single learning objective and a single essential knowledge statement, so this is one focused day: first we learn to write a nested conditional, then we learn to trace one and determine exactly what it displays. The whole thing rides on one idea — the inner question is asked only when the outer branch is taken."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write nested conditional statements — a conditional placed inside a branch of another conditional — to model a decision that depends on an earlier decision (LO AAP-2.I)"
+        },
+        {
+          "tag": "CB",
+          "text": "Determine the result of nested conditional statements by tracing outside-in, remembering the inner condition is tested only when the outer branch is taken (LO AAP-2.I)"
+        }
+      ],
+      "script": "Two targets, both from learning objective AAP-2.I, nested selection — and notice they are the two halves of the same objective. Part a is to WRITE nested conditionals: place one IF or IF-ELSE inside a branch of another when the second question only makes sense after the first is answered. Part b is to DETERMINE THE RESULT: given a nested conditional and some inputs, trace it and say exactly what it displays. Both halves rest on the same rule, so we build it once and use it both ways."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A roller coaster has one rule: you must be at least 48 inches tall to ride. Riders who ARE tall enough face a second rule — riders under age 12 must ride with an adult. The gate attendant must give each rider exactly ONE of three responses. Write the yes/no questions the attendant asks, IN ORDER, for: (A) 46 in, age 40  (B) 50 in, age 9  (C) 50 in, age 15.",
+      "subprompt": "Write 2–4 sentences: For rider A, did you ever need to ask about age? Why not? What does that tell you about the ORDER the two questions must be asked in, and which question depends on the other?",
+      "directions": "Be ready to share the ordered questions you asked each rider.",
+      "script": "Five minutes with a partner. Play the gate attendant and write the exact questions you ask each of the three riders, in order. The trap is rider A: 46 inches is too short, so you never even get to ask about age — the age question is pointless once height fails. Riders B and C pass the height check, so now the age question matters. Push them to notice two things: the age question DEPENDS on the height question, and the order is forced — you must ask height first. That dependency is exactly what a nested conditional captures, and it is the whole lesson. Do not name it yet; let them discover that a decision can live inside another decision."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Conditionals Inside Conditionals",
+          "description": "What makes a conditional nested, and how to WRITE one when a second decision depends on the first (EK AAP-2.I.1)."
+        },
+        {
+          "title": "Which Branch Actually Runs",
+          "description": "Determining the result by tracing outside-in, and why a false outer condition skips the inner check entirely (EK AAP-2.I.1)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.7 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is today's map — two sections, both green and CB-required. First, conditionals inside conditionals: what nesting means and how to write one. Second, which branch actually runs: how to trace a nest and determine its output. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.7 Guided Notes page. This topic also has interactive coding practice — you will type and run nested conditionals on the Topic 3.7 page after we build them on paper."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Conditionals Inside Conditionals",
+      "kicker": "Writing a Nested Conditional · Learning Objective AAP-2.I",
+      "script": "Section one. Your bell-ringer gate had a second question that only mattered after the first was answered — height first, then age, but only for the tall-enough riders. A nested conditional is exactly that shape in code: one conditional living inside a branch of another. Let us name it precisely and learn to write it."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.I)",
+      "terms": [
+        {
+          "term": "Conditional statement (IF)",
+          "definition": "An if-statement that runs a block of statements only when its Boolean condition is true, and takes no action when it is false (EK AAP-2.H.2)."
+        },
+        {
+          "term": "IF-ELSE statement",
+          "definition": "A conditional that runs the first block when the condition is true and runs the second, ELSE block when the condition is false (EK AAP-2.H.3)."
+        },
+        {
+          "term": "Nested conditional statement",
+          "definition": "A conditional statement written within a branch of another conditional statement, so one decision happens inside another (EK AAP-2.I.1)."
+        },
+        {
+          "term": "Outer conditional",
+          "definition": "The enclosing conditional whose condition is tested first; one of its branches contains another conditional (EK AAP-2.I.1)."
+        },
+        {
+          "term": "Inner conditional",
+          "definition": "The conditional written inside a branch of the outer one; it is reached only when that branch is taken (EK AAP-2.I.1)."
+        }
+      ],
+      "script": "Five words. The first two are review from Topic 3.6: a conditional, or IF-statement, runs a block only when its condition is true; an IF-ELSE adds a second block that runs when the condition is false. The three new words are the whole topic. A nested conditional is a conditional written inside a branch of another conditional — that is the College Board's definition, word for word. The outer conditional is the one tested first, and one of its branches holds the inner conditional. The inner conditional is the one inside that branch, and — write this down — it is reached only when that branch is taken. Outer, inner, and the fact that inner waits on outer: everything today comes from those three."
+    },
+    {
+      "type": "concept",
+      "heading": "Conditionals Within Conditionals",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A nested conditional places one IF (or IF-ELSE) statement within a second conditional (EK AAP-2.I.1).",
+        "The outer condition is tested first; only then can control flow into the inner conditional.",
+        "Nesting fits decisions that DEPEND on an earlier decision — the second question matters only once the first is answered.",
+        "You can nest inside the IF part, the ELSE part, or both, and a nest can be several levels deep."
+      ],
+      "script": "Here is the mental model. A nested conditional is one IF or IF-ELSE placed within a second conditional — that is the College Board's exact language. The order is forced: the outer condition is tested first, and only if control flows into the branch that holds the inner conditional does the program reach the inner one. Use nesting when a decision depends on an earlier decision, like the ride gate where age only matters after height passes. And you are not limited to one spot — you can nest inside the true branch, the ELSE branch, or both, and go several levels deep, though the exam usually keeps it to two.",
+      "capture": [
+        {
+          "q": "For the inner conditional to run at all, the program must first ______.",
+          "a": "take the outer branch that physically contains the inner conditional"
+        },
+        {
+          "q": "Nesting is the correct structure whenever the second decision ______.",
+          "a": "cannot be made until the first decision has been settled"
+        },
+        {
+          "q": "An inner conditional may sit in the outer statement's IF part, its ELSE part, or ______.",
+          "a": "both branches at once"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Nesting",
+      "heading": "One IF Inside Another",
+      "caption": "The age check lives INSIDE the height branch, so it runs only for a tall-enough rider.",
+      "pseudocode": "height ← 50\nage ← 15\nIF(height ≥ 48)\n{\n  IF(age ≥ 12)\n  {\n    DISPLAY(\"Enjoy the ride\")\n  }\n}",
+      "python": "height = 50\nage = 15\nif height >= 48:\n    if age >= 12:\n        print(\"Enjoy the ride\")",
+      "output": "Enjoy the ride",
+      "script": "Your first nested conditional, in two columns — exam pseudocode on the left, runnable Python on the right. Read the structure, not just the words: the inner IF that checks age sits INSIDE the block of the outer IF that checks height. With height 50 and age 15, the outer condition 50 is at least 48 is true, so we enter the outer block; now the inner condition 15 is at least 12 is true, so we display 'Enjoy the ride.' The indentation on both sides shows the containment — the age question is physically inside the height branch, which is what makes it nested rather than two separate checks. On the website coding practice you will type and run this exact shape."
+    },
+    {
+      "type": "two_column",
+      "heading": "Two Separate IFs vs One Inside the Other",
+      "subheading": "The same two questions arranged two ways — and only one of them skips the second question when the first fails (EK AAP-2.I.1).",
+      "left": {
+        "title": "Separate conditionals",
+        "definition": "Two independent IF statements — each condition is evaluated no matter what the other decides",
+        "ek": "EK AAP-2.H.2",
+        "examples": [
+          "IF(height ≥ 48) { … }  then a SEPARATE  IF(age ≥ 12) { … }",
+          "Neither check is skipped — the program runs both in sequence",
+          "Fine only when the two decisions are truly independent"
+        ]
+      },
+      "right": {
+        "title": "Nested conditionals",
+        "definition": "An inner conditional inside a branch — the inner is reached only if the outer branch runs",
+        "ek": "EK AAP-2.I.1",
+        "examples": [
+          "IF(height ≥ 48) { IF(age ≥ 12) { … } }",
+          "The age check happens ONLY for tall-enough riders",
+          "Use when the second decision depends on the first"
+        ]
+      },
+      "footer": "AP TIP: When the second question must be skipped for some outcomes of the first, nesting is required — two separate IFs would still ask it (EK AAP-2.I.1).",
+      "script": "Same two questions, two different structures — and they do NOT behave the same. On the left, two separate IF statements: the program evaluates the height check, then evaluates the age check no matter what, because nothing connects them. On the right, the age check is nested inside the height branch, so the age question is asked only for riders who are tall enough. If your rule says 'skip the second question when the first fails,' separate IFs are wrong — they always ask both. Nesting is the tool that makes the second decision depend on the first. That dependency is the entire reason nested conditionals exist.",
+      "capture": [
+        {
+          "q": "Two separate IF statements differ from a nest because separate IFs ______.",
+          "a": "evaluate both conditions in sequence regardless of the other's outcome"
+        },
+        {
+          "q": "You must nest rather than use two separate IFs whenever ______.",
+          "a": "the second question should be skipped unless the first turns out a certain way"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Write the Nest",
+      "subheading": "These map to LO AAP-2.I. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain what makes a conditional 'nested,' and give a real example (not the ride) where a second question matters only after the first is answered.",
+        "Write nested pseudocode for this rule: a site shows the 'Post' button only if a user is logged in AND, among logged-in users, only if their email is verified — otherwise show 'Verify your email.' Anyone not logged in sees 'Please log in.'",
+        "Explain why the rule in the previous question needs NESTING rather than two separate IF statements."
+      ],
+      "directions": "Answer in complete sentences and write your pseudocode using IF/ELSE. Then check yourself with the matching CFUs on the Topic 3.7 page.",
+      "script": "Stop and think, six minutes, full sentences and real pseudocode on your Guided Notes. One: define nested in your own words and invent a non-ride example — a printer that only asks about color after confirming there is paper, say. Two: write the Post-button rule as a nest — an outer IF on logged-in, an inner IF-ELSE on email verified, and the outer ELSE handling 'Please log in.' Watch that the 'Verify your email' message lands in the inner ELSE, not the outer one. Three: justify the nesting — the email check must be skipped entirely for visitors who are not logged in, which two separate IFs cannot do. A few students are called on to put their pseudocode on the board."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Which Branch Actually Runs",
+      "kicker": "Determining the Result · Learning Objective AAP-2.I",
+      "script": "Section two. Writing a nest is half the objective; the other half is reading one and saying exactly what it does. The exam loves to hand you a nested conditional and a set of inputs and ask what displays. There is one reliable method — trace it outside-in — and one trap that catches everyone, which we will make impossible to fall for."
+    },
+    {
+      "type": "concept",
+      "heading": "The Inner Check Waits on the Outer",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "To find what a nested conditional does, work from the outermost condition inward (EK AAP-2.I.1).",
+        "A false outer condition sends control straight to the outer ELSE (or past the statement), bypassing everything nested inside.",
+        "Only when the outer branch is taken does the program test the inner condition and choose its branch.",
+        "Each rider produces just one line of output, because every level commits to a single branch and moves on."
+      ],
+      "script": "One method, one warning. The method: to determine the result, trace from the outermost condition inward — evaluate the outer condition first, decide which branch you enter, and only then look at anything inside. The warning: if the outer condition is false, control jumps straight to the outer ELSE, or past the whole statement if there is no ELSE, and everything nested inside is bypassed — the inner condition is never even evaluated. Only when you actually enter the outer branch does the inner condition get tested. And because each level picks exactly one branch, a single run produces exactly one output. Outside-in, one path, one line.",
+      "capture": [
+        {
+          "q": "To determine the result, evaluate the conditions in ______ order.",
+          "a": "outside-in — the outer condition first, then the inner"
+        },
+        {
+          "q": "When the outer condition is false, the inner condition is ______.",
+          "a": "never evaluated at all — the whole inner conditional is skipped"
+        },
+        {
+          "q": "A short rider's age never matters because ______.",
+          "a": "the outer height test fails, so the inner age test is never reached"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Tracing",
+      "heading": "When the Outer Fails, the Inner Is Skipped",
+      "caption": "height is 44, so the outer condition is false — the age check never runs, even though 30 ≥ 12.",
+      "pseudocode": "height ← 44\nage ← 30\nIF(height ≥ 48)\n{\n  IF(age ≥ 12)\n  {\n    DISPLAY(\"Enjoy the ride\")\n  }\n  ELSE\n  {\n    DISPLAY(\"Ride with an adult\")\n  }\n}\nELSE\n{\n  DISPLAY(\"Too short to ride\")\n}",
+      "python": "height = 44\nage = 30\nif height >= 48:\n    if age >= 12:\n        print(\"Enjoy the ride\")\n    else:\n        print(\"Ride with an adult\")\nelse:\n    print(\"Too short to ride\")",
+      "output": "Too short to ride",
+      "script": "Now the full gate, with both ELSE branches, and the trap laid bare. Height is 44. Trace outside-in: the outer condition, 44 is at least 48, is FALSE. So control jumps to the outer ELSE and displays 'Too short to ride.' Here is the part students get wrong: the age is 30, and 30 is certainly at least 12 — but that inner condition is never evaluated, because we never entered the outer branch that contains it. The rider's age is irrelevant the moment they fail the height check. Run this on the website and change only the height to 50; suddenly the age line springs to life. That is nesting: the inner check waits on the outer."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace the Gate, Rider by Rider",
+      "context": "Same nested gate from the last slide. For each rider, decide the outer result, whether the inner condition is even checked, and the one message displayed. Fill in the blanks yourself.",
+      "columns": [
+        "Rider (height, age)",
+        "Outer: height ≥ 48?",
+        "Inner: age ≥ 12 checked?",
+        "What DISPLAYs"
+      ],
+      "rows": [
+        [
+          "(44, 30)",
+          "No — 44 ≥ 48 is false",
+          "Not checked — outer was false",
+          "Too short to ride"
+        ],
+        [
+          "(50, 15)",
+          "Yes — 50 ≥ 48 is true",
+          "Yes — 15 ≥ 12 is true",
+          "Enjoy the ride"
+        ],
+        [
+          "(50, 9)",
+          "Yes — 50 ≥ 48 is true",
+          "Yes — 9 ≥ 12 is false",
+          "Ride with an adult"
+        ],
+        [
+          "(47, 40)",
+          "No — 47 ≥ 48 is false",
+          "Not checked — outer was false",
+          "Too short to ride"
+        ]
+      ],
+      "highlightCol": 3,
+      "script": "Trace four riders the way you should trace every nested question. Rider one, 44 and 30: outer is false, so the inner is never checked, and we display 'Too short to ride' — the age 30 is a red herring. Rider two, 50 and 15: outer true, enter the branch, inner true, 'Enjoy the ride.' Rider three, 50 and 9: outer true, enter the branch, but the inner condition 9 at least 12 is false, so the inner ELSE fires — 'Ride with an adult.' Rider four, 47 and 40: outer false again, inner skipped, 'Too short to ride.' Fill in the blank cells yourself. Notice column three: 'checked' is not the same as 'true' — for the short riders the inner is not checked at all.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Every Condition Always Gets Checked”",
+      "misconception": "In a nested conditional, both the outer and the inner condition are always evaluated, so a rider's age is checked no matter their height.",
+      "whyItHappens": "Every condition is right there in the code, so it feels like the program must look at all of them; and separate IF statements — which really do all run — reinforce the habit.",
+      "correction": "In a nest, the inner condition is evaluated ONLY when the outer branch is taken (EK AAP-2.I.1). If the outer condition is false, control jumps to the outer ELSE and the inner condition is skipped — it is never evaluated at all.",
+      "example": "For a 44-inch rider, height ≥ 48 is false, so the program runs the outer ELSE and displays 'Too short to ride.' The age condition is never tested, even though the rider is 30 and 30 ≥ 12. Same code, different path.",
+      "script": "This is THE trap of the topic. Because every condition is visible on the page, and because separate IF statements really do all execute, students assume the inner condition is always evaluated. In a nest it is not. The inner condition runs only when the program enters the outer branch that contains it. Fail the outer condition and control jumps to the outer ELSE, leaving the inner condition untouched — not false, but never evaluated. The 44-inch rider proves it: age 30 clears the age bar easily, yet the program never asks, because the height check already sent it down the ELSE path. On your notes, explain in your own words why 'visible in the code' does not mean 'always checked.'"
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Trace It",
+      "subheading": "These map to LO AAP-2.I. Show your line-by-line trace on your Guided Notes.",
+      "prompts": [
+        "Trace the ride gate for a rider who is 50 inches and age 12. State the outer result, whether the inner condition is checked, and the exact message displayed.",
+        "A rider is 46 inches and age 40. Explain, step by step, why the program never checks the age even though 40 ≥ 12 is true.",
+        "Modify the gate so that riders UNDER 48 inches who are at least 18 get the message 'Staff only.' Where does the new conditional go — and why there?"
+      ],
+      "directions": "Show every step of your trace. Then check yourself with the matching CFUs on the Topic 3.7 page.",
+      "script": "Trace it, six minutes, show every step. One: 50 and 12 — outer true, inner checked, 12 at least 12 is true, so 'Enjoy the ride'; watch the boundary, at-least-12 includes 12. Two: 46 and 40 — outer false, so control goes to the outer ELSE and the age is never examined; the point is that 40 at least 12 being true is irrelevant when the outer failed. Three: the 'Staff only' rule goes inside the OUTER ELSE — a new inner conditional in the too-short branch, because that message is only for short riders. Answers are reviewed as a class before we move to the traps."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.7 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "A false outer skips the inner entirely",
+          "text": "When the outer condition is false, the inner condition is never evaluated — not even if it looks true. On a trace question, do NOT test the inner condition unless the program actually entered the outer branch."
+        },
+        {
+          "name": "Match each ELSE to its own IF",
+          "text": "An ELSE belongs to the IF whose block it directly follows. The inner ELSE handles the inner condition; the outer ELSE handles the outer condition. Line up the braces before deciding which ELSE runs."
+        },
+        {
+          "name": "Trace outside-in, one path only",
+          "text": "Evaluate the outer condition first, take exactly one branch, then test the inner only if you entered a branch that contains it. Each level outputs at most one message — never combine messages from branches you did not take."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: a false outer condition skips the inner completely — the inner is not checked, so never mark it true 'because the number fits.' Enter the outer branch first, or the inner does not exist for that run. Trap two: match each ELSE to its own IF — the inner ELSE pairs with the inner IF, the outer ELSE with the outer IF; line up the braces and you will never attach an ELSE to the wrong condition. Trap three: trace outside-in and follow exactly one path — one branch per level, one message out; do not glue together outputs from branches you never entered. Dodge these three and every nested-conditional question is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Nested Conditionals, in One Slide",
+      "points": [
+        "A nested conditional is a conditional statement placed within a branch of another conditional (EK AAP-2.I.1).",
+        "Nest when the second decision depends on the first — the inner question is asked only if the outer branch is taken (EK AAP-2.I.1).",
+        "To determine the result, trace OUTSIDE-IN: evaluate the outer condition, then the inner only if that branch runs (EK AAP-2.I.1).",
+        "A false outer condition skips the entire inner conditional — the inner condition is never evaluated (EK AAP-2.I.1)."
+      ],
+      "next": "Topic 3.8, Iteration: after choosing WHICH statements run, you'll make a block of statements REPEAT — a fixed number of times, or until a condition is met — including the zero-times and infinite-loop cases.",
+      "script": "The whole topic in one slide. A nested conditional is a conditional inside a branch of another conditional. You nest when the second decision depends on the first, so the inner question is asked only if the outer branch is taken. To determine what a nest does, trace outside-in — outer condition first, inner only if you entered that branch. And the trap that anchors the topic: a false outer condition skips the entire inner conditional, so the inner condition is never evaluated. Next class is Topic 3.8, Iteration, where instead of choosing which statements run, we make a block repeat. Run the exit check now — four 'I can' statements at the bottom of the slide; any box you cannot honestly check tells you what to review on the Topic 3.7 page tonight, including the interactive coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "write nested conditional statements to model a decision that depends on an earlier decision (LO AAP-2.I)",
+        "explain why the inner condition is evaluated only when the outer branch is taken (LO AAP-2.I)",
+        "determine the result of a nested conditional by tracing it outside-in (LO AAP-2.I)",
+        "match each ELSE to the correct IF in a nested structure (LO AAP-2.I)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.7 — Nested Conditionals — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A ride gate runs: IF(height ≥ 48) { IF(age ≥ 12) { DISPLAY(\"Enjoy the ride\") } ELSE { DISPLAY(\"Ride with an adult\") } } ELSE { DISPLAY(\"Too short to ride\") }. A rider has height 46 and age 40. What is displayed?",
+        "options": [
+          "Too short to ride",
+          "Enjoy the ride",
+          "Ride with an adult",
+          "Nothing — the checks cancel out"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "Trace outside-in: the outer condition 46 ≥ 48 is false, so control goes to the outer ELSE and displays 'Too short to ride.' The inner age condition is never evaluated, so the rider's age of 40 is irrelevant (EK AAP-2.I.1). B and C both assume the program entered the height branch, which it did not. D invents a cancellation rule; a false outer condition simply runs the outer ELSE, which does display a message."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Using the same gate — IF(height ≥ 48) { IF(age ≥ 12) { DISPLAY(\"Enjoy the ride\") } ELSE { DISPLAY(\"Ride with an adult\") } } ELSE { DISPLAY(\"Too short to ride\") } — a rider has height 52 and age 8. What is displayed?",
+        "options": [
+          "Too short to ride",
+          "Ride with an adult",
+          "Enjoy the ride",
+          "Both messages print at once"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "Outside-in: 52 ≥ 48 is true, so the program enters the height branch and now tests the inner condition. 8 ≥ 12 is false, so the inner ELSE runs and displays 'Ride with an adult' (EK AAP-2.I.1). A is wrong because the rider cleared the height check. C would require age ≥ 12. D is impossible: each conditional level takes exactly one branch, so only one message prints."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "Which situation genuinely REQUIRES a nested conditional rather than two separate IF statements?",
+        "options": [
+          "Printing 'Hello' and then printing 'Goodbye' every single time the program is run",
+          "Reporting whether a number is positive and, separately, whether it is even — both always shown",
+          "Requiring a password only after the username is confirmed, and skipping the password step if it is unknown",
+          "Adding 1 to a running counter each time a loop repeats, then printing the counter"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "Nesting is required when the second decision must be SKIPPED depending on the first. In C, the password step happens only if the username exists, so the password check belongs inside the username branch (EK AAP-2.I.1). A is pure sequencing, no decision. B reports both facts unconditionally, so two independent IFs are correct — the checks do not depend on each other. D is iteration, not selection."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A grader runs: IF(score ≥ 60) { IF(score ≥ 90) { DISPLAY(\"A\") } ELSE { DISPLAY(\"Pass\") } } ELSE { DISPLAY(\"Fail\") }. If score is 72, what is displayed?",
+        "options": [
+          "A",
+          "Fail",
+          "A Pass",
+          "Pass"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "Outside-in: 72 ≥ 60 is true, so the program enters the outer branch and tests the inner condition. 72 ≥ 90 is false, so the inner ELSE runs and displays 'Pass' (EK AAP-2.I.1). A would need score ≥ 90. B would need the outer condition to be false. C wrongly combines two messages, but only one branch per level executes."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Using the same grader — IF(score ≥ 60) { IF(score ≥ 90) { DISPLAY(\"A\") } ELSE { DISPLAY(\"Pass\") } } ELSE { DISPLAY(\"Fail\") } — if score is 55, what is displayed, and which ELSE runs?",
+        "options": [
+          "Pass, via the inner ELSE",
+          "Fail, via the outer ELSE",
+          "A, via the inner IF",
+          "Nothing at all — 55 fails both conditions"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "55 ≥ 60 is false, so control goes straight to the OUTER ELSE and displays 'Fail'; the inner conditional is never reached (EK AAP-2.I.1). A misattributes the output to the inner ELSE, which only runs when the outer condition is true. C requires entering the outer branch. D is wrong because the outer ELSE does display 'Fail' — a false outer condition still produces output when an ELSE is present."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "In the structure IF(a) { IF(b) { … } }, under what circumstance is condition b NOT evaluated at all?",
+        "options": [
+          "When a is false, so control never enters the outer branch that contains b",
+          "When b is false, the program refuses to evaluate it",
+          "Condition b is always evaluated, regardless of a",
+          "Only when both a and b are false at the same time"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "The inner condition b is evaluated only when control enters the outer branch, which happens only when a is true. If a is false, b is never evaluated (EK AAP-2.I.1). B is backwards: 'b is false' is a result of evaluating b, so b must have been evaluated. C describes separate IFs, not a nest. D still requires b to be evaluated to know it is false, which cannot happen when a is false."
+      },
+      {
+        "id": "Q7",
+        "kind": "multi",
+        "stem": "A program runs: IF(loggedIn) { IF(isAdmin) { DISPLAY(\"Admin\") } ELSE { DISPLAY(\"User\") } }. Which statements are true? I. A visitor who is not logged in produces no output. II. isAdmin is tested only for logged-in visitors. III. A logged-in visitor who is not an admin sees 'User.'",
+        "options": [
+          "I only",
+          "I and II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "All three are correct. There is no outer ELSE, so a not-logged-in visitor produces no output (I). The inner isAdmin check sits inside the loggedIn branch, so it runs only for logged-in visitors (II). A logged-in non-admin fails the inner IF and hits the inner ELSE, displaying 'User' (III) — all consistent with EK AAP-2.I.1. Any option omitting a statement undercounts what the nest does."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A store gives free shipping only to members, and among members only when the order is over $50 (otherwise 'Add more for free shipping'); anyone who is not a member sees 'Members only.' Which code is correct?",
+        "options": [
+          "IF(isMember) { … } and a separate IF(total > 50) { … }, each printing its own message",
+          "IF(total > 50) { IF(isMember) { DISPLAY(\"Free shipping\") } ELSE { DISPLAY(\"Members only\") } }",
+          "IF(isMember) { IF(total > 50) { DISPLAY(\"Free shipping\") } ELSE { DISPLAY(\"Add more for free shipping\") } } ELSE { DISPLAY(\"Members only\") }",
+          "IF(isMember AND total > 50) { DISPLAY(\"Free shipping\") }, with no other branches"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.I.1",
+        "rationale": "The membership test must come first and gate the order test; non-members see 'Members only' and never reach the order check. Option C nests the order check inside the member branch and puts 'Members only' in the outer ELSE, matching the rule exactly (EK AAP-2.I.1). A runs both checks independently, so a non-member could still be asked about the total. B swaps the order, checking total first and mislabeling non-qualifying orders. D collapses to one AND and drops both the 'Add more' and 'Members only' messages the rule requires."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.7 — Nested Conditionals — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.7 · 1 class period + assessment block",
+    "overview": [
+      "Topic 3.7 is a single, tightly focused day built on one learning objective, AAP-2.I, and one essential knowledge statement, AAP-2.I.1: a nested conditional is a conditional statement inside another conditional statement. The two halves of the objective drive the two sections — Section 1 teaches students to WRITE a nest (part a), used when a second decision depends on a first; Section 2 teaches students to DETERMINE THE RESULT of a nest (part b) by tracing outside-in.",
+      "The entire lesson rides on one idea, surfaced repeatedly: the inner condition is evaluated only when the outer branch is taken, so a false outer condition skips the inner check entirely. The ride-gate through-line (height first, then age) makes this concrete — a too-short rider's age is never examined — and that same scenario carries into the paper exercises and the online coding practice.",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (IF/ELSE with braces, ≥, DISPLAY) beside runnable Python. The interactive, auto-graded coding practice on the Topic 3.7 page is the screen rung of the paper-then-screen ladder: students hand-trace and hand-write nests on the exercises, then type and run progressively harder versions of the same ride-gate scenario online."
+    ],
+    "los": [
+      "LO AAP-2.I — For nested selection: a. Write nested conditional statements. b. Determine the result of nested conditional statements."
+    ],
+    "eks": [
+      "EK AAP-2.H.2 — The exam reference sheet provides IF(condition) { <block of statements> } in which the code in block of statements is executed if the Boolean expression condition evaluates to true; no action is taken if condition evaluates to false.",
+      "EK AAP-2.H.3 — The exam reference sheet provides IF(condition) { <first block of statements> } ELSE { <second block of statements> } in which the code in first block of statements is executed if the Boolean expression condition evaluates to true; otherwise, the code in second block of statements is executed.",
+      "EK AAP-2.I.1 — Nested conditional statements consist of conditional statements within conditional statements."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1.",
+      "Printed Topic 3.7 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.7 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: a large printed flowchart of the ride gate for a physical trace-through at the board."
+    ],
+    "prereqs": [
+      "Topic 3.6 (Conditionals) is the direct prerequisite: students must already read and write IF and IF-ELSE statements and evaluate a Boolean condition to a single true/false value. Relational operators from Topic 3.5 (≥, <, =) appear in every condition here. No new syntax is introduced beyond placing one conditional inside another; the difficulty is entirely in the control flow, so time is best spent tracing rather than teaching new notation."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Writing nested conditionals when a second decision depends on the first, and determining the result by tracing outside-in (LO AAP-2.I)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.7/Q1) + bell ringer (the ride-gate attendant)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Conditionals inside conditionals: vocab, the nesting concept, first code_block, separate-vs-nested (EK AAP-2.I.1)",
+            "min": 15,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think — write the nest",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Which branch runs: outside-in concept, the short-rider code_block, the rider-by-rider trace, the 'always checked' misconception (EK AAP-2.I.1)",
+            "min": 16,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think — trace it",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.7 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.7 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.7 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Every condition always gets checked”",
+        "myth": "Both the outer and inner conditions are always evaluated, so a rider's age is checked no matter their height.",
+        "reality": "In a nest, the inner condition is evaluated only when the outer branch is taken (EK AAP-2.I.1). A false outer condition sends control to the outer ELSE and the inner condition is never evaluated. Being visible in the code is not the same as being executed — separate IFs all run, but a nested inner does not."
+      },
+      {
+        "heading": "“An ELSE can attach to the wrong IF”",
+        "myth": "In a nest, students pair an ELSE with whichever IF seems closest in meaning, often the outer one.",
+        "reality": "An ELSE belongs to the IF whose block it directly follows (EK AAP-2.H.3). The inner ELSE handles the inner condition; the outer ELSE handles the outer condition. Lining up the braces removes all ambiguity — the ELSE at the outer level cannot fire based on the inner condition."
+      },
+      {
+        "heading": "“Nesting is just a single AND”",
+        "myth": "IF(a) { IF(b) { X } } can always be replaced by IF(a AND b) { X } with no difference.",
+        "reality": "The all-true path is equivalent, but once ELSE branches appear at either level, the nest produces distinct outputs an AND cannot (EK AAP-2.I.1). The ride gate shows three outcomes — too short, ride with an adult, enjoy — which a single AND could never express. Trace the branches; do not assume you can flatten it."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a two-column flowchart of the ride gate (diamond for each condition, arrows to each message) and have them physically walk a finger down the path for each rider before writing anything — the visual makes 'inner skipped' obvious.",
+        "Provide a pre-drawn trace table (rider, outer result, inner checked?, output) so students fill columns left to right and cannot skip the outside-in order."
+      ],
+      "extension": [
+        "Have students add a third nesting level (e.g., a front-row rule that only applies to riders age 16+ who already qualified) and trace it for several inputs, proving each extra level is reached only when the branch above it is taken.",
+        "Point deep-dive students at the Topic 3.7 coding practice to implement the store free-shipping rule from the quiz, then explain why swapping the two conditions changes the output."
+      ]
+    },
+    "discussion": [
+      "Your bell-ringer gate forced you to ask height BEFORE age. Where else in everyday life do you answer a first question only to unlock a second — and what goes wrong if someone asks them in the wrong order?",
+      "Two separate IFs and a nested IF can contain the exact same two conditions yet behave differently. What single feature of the nest — the thing separate IFs lack — is responsible for the difference?",
+      "A too-short rider's age is never checked, even if they are clearly old enough. Is it a bug or a feature that the program refuses to evaluate a condition it does not need? What does that suggest about how a computer decides what NOT to do?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

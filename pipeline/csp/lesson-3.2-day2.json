@@ -1,0 +1,307 @@
+{
+  "meta": {
+    "lessonId": "3.2",
+    "lessonTitle": "Data Abstraction",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-1.D",
+    "anchor": "Data Abstraction",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.2 · Day 2 of 2",
+      "title": "The Name That Hides the Details",
+      "subtitle": "Data abstraction — developing a list to hold many related items under one name, and explaining how that name separates what data does from how it is stored, taming complexity",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Data Abstraction. Yesterday you learned what a list is — an ordered sequence of elements reached by a 1-indexed position. Today we answer the 'so what.' A list is not just a container; it is a data abstraction, and data abstraction is one of the most powerful ideas in the whole course. We do two things, matching the two parts of learning objective AAP-1.D. Part a: develop a data abstraction by building a list that stores multiple related items under one name. Part b: explain how that single name manages complexity — how it separates the abstract idea of the data from the concrete details of how it is stored. By the end you should be able to look at a program and say precisely why the list version is easier to build and maintain."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Develop a data abstraction using a list — creating it with the reference-sheet [ ] notation to store multiple related elements under one name (LO AAP-1.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how naming a collection with a list manages complexity, separating a data type's abstract properties from the concrete details of its representation (LO AAP-1.D)"
+        }
+      ],
+      "script": "Two targets today, and together they cover both parts of AAP-1.D. First, part a: develop a data abstraction using a list — build it with the reference-sheet bracket notation and use it to store multiple related items under one name. Second, part b: explain how that abstraction manages complexity — how giving the collection a name lets you separate the abstract properties of the data from the concrete details of how it is represented. Part a is the doing; part b is the explaining; the exam asks for both."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A weather club logs one week of daily highs in SEVEN separate variables: mon ← 68, tue ← 72, wed ← 75, thu ← 70, fri ← 81, sat ← 79, sun ← 74. With a partner, sketch the steps to (a) find the highest temperature and (b) add an eighth day. Now imagine the log must cover a whole YEAR.",
+      "subprompt": "Write 2–4 sentences: What breaks when you go from 7 days to 365 with separate variables? What single change to how the data is stored would make 'find the highest' work no matter how many days there are?",
+      "directions": "Be ready to name the change that makes the program scale.",
+      "script": "Five minutes with a partner. Seven variables, one per day. To find the highest you have to name all seven in one long comparison; to add a day you have to invent an eighth variable name and edit the comparison again. Now scale it to a year — 365 names, an unmanageable comparison, and the code changes every time the data does. Then ask the key question: what single change fixes all of it? Put the readings in one list. Suddenly 'find the highest' can walk the list no matter how long it is, and adding a day is just appending. You just felt the problem data abstraction solves — that is today's entire lesson."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "What Data Abstraction Is",
+          "description": "Separating a data type's abstract properties from its representation; developing a list under one name (EK AAP-1.D.1–D.3, D.6–D.8)."
+        },
+        {
+          "title": "How Lists Manage Complexity",
+          "description": "Why the abstraction is easier to develop and maintain, and how one list can hold different types of elements (EK AAP-1.D.4–D.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.2 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two sections, both green and CB-required. First, what data abstraction is — separating the abstract idea of the data from the details of how it is stored, and developing a list under one name. Second, how lists manage complexity — why the list version is easier to develop and maintain, and how a single list can even hold different types of elements. Keep the packet open; every answer also lives on the Topic 3.2 page, along with the coding practice where you build and grow lists yourself."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "What Data Abstraction Is",
+      "kicker": "A Name Without the Details · Learning Objective AAP-1.D",
+      "script": "Section one, and part a of the objective. Your seven weather variables were miserable because the data had no single name. A list fixes that, and in doing so it becomes a data abstraction — a name for a whole collection that lets you stop thinking about the individual storage. The College Board is precise about what that separation means, and precision here is worth real exam points."
+    },
+    {
+      "type": "concept",
+      "heading": "Data Abstraction: A Name Without the Details",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Data abstraction SEPARATES a data type's abstract properties from the concrete details of how it is represented (EK AAP-1.D.1).",
+        "It manages complexity by giving a collection of data a NAME, without referencing the specific details of the representation (EK AAP-1.D.2).",
+        "Data abstractions can be created using LISTS (EK AAP-1.D.3).",
+        "A list lets multiple related items be treated as a SINGLE value; other languages call this an array — but linked lists are outside the scope of this course (EK AAP-1.D.6)."
+      ],
+      "script": "Here is the precise definition, and it is EK AAP-1.D.1: data abstraction separates the abstract properties of a data type from the concrete details of how it is represented. In plain terms — you get to think about WHAT the data is and ignore HOW it is stored. EK AAP-1.D.2 tells you why that helps: it manages complexity by giving a whole collection a single name, without you having to reference the storage details. And EK AAP-1.D.3 says the tool for this in our course is the list. One more from EK AAP-1.D.6: a list lets many related items be treated as a single value — other languages call the same idea an array. The College Board explicitly excludes one variant: linked lists are outside the scope of this course and the exam, so you never need them.",
+      "capture": [
+        {
+          "q": "Data abstraction separates a data type's abstract properties from ______.",
+          "a": "the concrete details of how the data is actually represented"
+        },
+        {
+          "q": "A data abstraction manages complexity chiefly by ______.",
+          "a": "giving a whole collection a single name you can use without the storage details"
+        },
+        {
+          "q": "A list lets multiple related items be ______.",
+          "a": "treated as one value, called an array in some languages"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Developing the Abstraction",
+      "heading": "Build a List Under One Name",
+      "caption": "The [ ] notation creates the list; one name, temps, now stands for all four readings — indices 1 through 4.",
+      "pseudocode": "temps ← [68, 72, 75, 70]\nempty ← []\nDISPLAY(temps[4])",
+      "python": "temps = [68, 72, 75, 70]\nempty = []\nprint(temps[3])",
+      "output": "70",
+      "script": "This is part a in code — developing the abstraction. The reference-sheet bracket notation builds a list: temps arrow open-bracket 68, 72, 75, 70 close-bracket creates a new list of four readings, and from now on the single name temps stands for the whole collection. The empty brackets on the second line make a new empty list you could grow later. DISPLAY of temps[4] shows the fourth reading, 70 — remember, one-indexed, so index 4 is the last of four. In Python that same last element is temps[3]. You have just created a data abstraction: four related values, one name, and the storage details tucked out of sight."
+    },
+    {
+      "type": "two_column",
+      "heading": "Seven Variables vs One List",
+      "subheading": "Same data, two designs. The list is a data abstraction: one name for the whole collection, easier to develop and maintain (EK AAP-1.D.2, D.4).",
+      "left": {
+        "title": "Seven separate variables",
+        "definition": "Each reading gets its own name; the collection has no single handle",
+        "ek": "Anti-pattern",
+        "examples": [
+          "mon, tue, wed, thu, fri, sat, sun — seven names to track",
+          "Find the max: name all seven in one comparison",
+          "Add a day: invent an eighth name and edit the code"
+        ]
+      },
+      "right": {
+        "title": "One list",
+        "definition": "The whole collection lives under one name you can reuse",
+        "ek": "EK AAP-1.D.2",
+        "examples": [
+          "temps ← [68, 72, 75, 70, 81, 79, 74] — one handle",
+          "Find the max: walk the list, however long it is",
+          "Add a day: append — no new variable, no rewrite"
+        ]
+      },
+      "footer": "AP TIP: The list does not change WHAT the data is — it changes how the PROGRAM refers to it. One name that scales is the whole point of the abstraction.",
+      "script": "Same seven temperatures, two designs, and the exam wants you to explain why one is better. On the left, seven separate variables: the collection has no single handle, so finding the maximum means naming all seven, and adding a day means inventing an eighth name and editing the comparison. On the right, one list: temps holds the whole week under a single name. Now finding the maximum can walk the list no matter how long it is, and adding a day is just an append — no new variable, no rewrite. Notice the list did not change what the data IS; it changed how the program refers to it. That is EK AAP-1.D.2 and D.4 in one picture: one name, easier to develop, easier to maintain.",
+      "capture": [
+        {
+          "q": "Compared with separate variables, one list makes a program easier to ______.",
+          "a": "develop and maintain, because the whole collection has a single reusable name"
+        },
+        {
+          "q": "Switching from seven variables to one list changes not what the data is but ______.",
+          "a": "how the program refers to and works with the collection"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Develop the Abstraction",
+      "subheading": "These map to LO AAP-1.D. Complete on your Guided Notes.",
+      "prompts": [
+        "Using the reference-sheet notation, write a single statement that creates a list named prices holding 4.50, 3.25, and 6.00. Then write the statement that creates an empty list named cart.",
+        "A program stores five test scores as score1 through score5. Rewrite the data as one list and explain, in one sentence, how the new version separates WHAT the data is from HOW it is stored.",
+        "In one sentence, explain what the exclusion means when it says linked lists are outside the scope of this course — and what you ARE expected to use instead."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.2 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: prices arrow open-bracket 4.50, 3.25, 6.00 close-bracket creates the list; cart arrow open-bracket close-bracket makes an empty list to fill later. Two: rewrite score1 through score5 as one list named scores, and explain that naming the collection separates what it is — a set of scores — from how it is stored. Three: the linked-list exclusion means you never build or trace a linked list on this exam; the list, sometimes called an array, is the data abstraction you use instead. These are exactly the part-a moves AAP-1.D asks for."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "How Lists Manage Complexity",
+      "kicker": "Easier to Develop and Maintain · Learning Objective AAP-1.D",
+      "script": "Section two, and part b of the objective. Now the payoff you must be able to put in words: HOW does the abstraction manage complexity? The College Board wants more than 'it's shorter.' It wants the reasons — easier to develop, easier to maintain, one name instead of many, and even the flexibility to hold different kinds of elements. This is where the free-response points live."
+    },
+    {
+      "type": "concept",
+      "heading": "Why Abstraction Manages Complexity",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Developing a data abstraction can make a program easier to DEVELOP and MAINTAIN (EK AAP-1.D.4).",
+        "One name for the collection means changes touch one place, not many scattered variables (EK AAP-1.D.2).",
+        "Data abstractions often contain DIFFERENT TYPES of elements — a list can mix numbers, strings, and Booleans (EK AAP-1.D.5).",
+        "Copying is clean too: aList ← bList assigns a copy of the whole list to the new name (EK AAP-1.D.7)."
+      ],
+      "script": "Here is the part-b language to internalize. EK AAP-1.D.4: developing a data abstraction can make a program easier to develop and to maintain — those are the two words the exam rewards. Why? Because one name for the whole collection means a change happens in one place, not across many scattered variables — that is EK AAP-1.D.2 again. EK AAP-1.D.5 adds a subtlety worth writing down: a data abstraction can contain different TYPES of elements, so one list might hold numbers, strings, even Booleans together. And the reference sheet keeps copying clean: aList arrow bList assigns a copy of the whole list to a new name, from EK AAP-1.D.7. Put together, these are the concrete reasons an abstraction tames complexity.",
+      "capture": [
+        {
+          "q": "Developing a data abstraction can make a program easier to ______.",
+          "a": "develop and to maintain over time"
+        },
+        {
+          "q": "One reason changes are safer with a list is that ______.",
+          "a": "an edit happens in a single named place instead of across many variables"
+        },
+        {
+          "q": "The CED notes that a single data abstraction can hold ______.",
+          "a": "elements of different types, such as numbers and strings together"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "One Value, Many Types",
+      "heading": "Treated as a Single Value",
+      "caption": "record holds a string, a number, and a Boolean — one abstraction, different types; copyList takes a copy of the whole list.",
+      "pseudocode": "record ← [\"Mon\", 68, true]\ncopyList ← record\nDISPLAY(record[1])",
+      "python": "record = [\"Mon\", 68, True]\ncopyList = record[:]\nprint(record[0])",
+      "output": "Mon",
+      "script": "Two ideas the exam quietly tests. First, EK AAP-1.D.5: a data abstraction often holds different types of elements. Here record is one list holding a string, 'Mon,' a number, 68, and a Boolean, true — three types under one name, treated as a single value. DISPLAY of record[1] shows the first element, the string 'Mon,' one-indexed as always. Second, EK AAP-1.D.7 on copying: copyList arrow record assigns a copy of the whole list to a new name. Notice the Python column uses record colon to force a genuine copy — a small language detail — while the exam sheet's arrow already means copy. One abstraction, mixed types, cleanly copied: that is a list doing real work."
+    },
+    {
+      "type": "worked_table",
+      "heading": "What the Name Lets You Ignore",
+      "context": "For each question a programmer might ask, fill in whether the list ABSTRACTION lets them ignore the storage detail — and the benefit that follows.",
+      "columns": [
+        "Programmer's concern",
+        "Handled by the name? ",
+        "Why this manages complexity"
+      ],
+      "rows": [
+        [
+          "How many readings are there right now",
+          "Yes — ask the list, don't track a count variable",
+          "Code works for any length; no rewrite when data grows (EK AAP-1.D.4)"
+        ],
+        [
+          "Where each value sits in memory",
+          "Yes — use the name and index, ignore the storage",
+          "Abstract properties are separated from the representation (EK AAP-1.D.1)"
+        ],
+        [
+          "What name to give an 8th reading",
+          "Yes — append to the one list, invent no new name",
+          "One handle for the whole collection (EK AAP-1.D.2)"
+        ],
+        [
+          "Whether elements can be different types",
+          "Yes — a list may hold numbers and strings together",
+          "Flexible design without extra structures (EK AAP-1.D.5)"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Fill this in as we go — it is part b as a checklist. Each row is a concern the programmer would have to manage by hand WITHOUT the abstraction. How many readings are there? Ask the list, don't babysit a counter — so the code works at any length. Where does each value sit in memory? Use the name and index; the storage is separated from the abstract idea, which is EK AAP-1.D.1 exactly. What do I name the eighth reading? You don't — you append to the one list. Can the elements be different types? Yes, a list can mix them. Every 'yes' in the middle column is a detail the single name lets you ignore, and every ignored detail is complexity managed.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Data Abstraction Hides the Data From You”",
+      "misconception": "Once values are stored in a named list, data abstraction locks the individual values away, so you can no longer read element 1, element 2, and so on.",
+      "whyItHappens": "The word 'abstraction' sounds like 'hiding,' and students assume that if the details are hidden, the data itself must be inaccessible too.",
+      "correction": "Data abstraction hides the concrete details of the REPRESENTATION — how and where the collection is stored — not access to the values (EK AAP-1.D.1). You still reach any element by its index, like temps[1] or record[3]. What you get to ignore is the storage, and ignoring it is precisely what manages complexity (EK AAP-1.D.2).",
+      "example": "temps ← [68, 72, 75, 70] hides nothing you need: temps[1] is still 68, temps[4] is still 70. What the name lets you skip is tracking where those four numbers live in memory or how many separate variables you'd otherwise juggle.",
+      "script": "The trap here is the word 'abstraction' itself. It sounds like hiding, so students conclude the values must be locked away — that naming the list somehow seals element one and element two out of reach. Not so. Data abstraction hides the details of the REPRESENTATION — how the collection is stored, where the values live — not your access to them. You still pull any element by its index: temps[1] is 68, temps[4] is 70, unchanged. What the name lets you IGNORE is the storage, and ignoring the storage is exactly what tames complexity. Hidden representation, open access — that distinction is the heart of EK AAP-1.D.1 and D.2."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Explain the Complexity Win",
+      "subheading": "These map to LO AAP-1.D. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain how storing a class's grades in one list named grades manages complexity better than grade1, grade2, ..., grade30. Use the words 'develop' and 'maintain.'",
+        "A list stores [\"Ada\", 15, true]. Name the type of each element and explain how this illustrates that a data abstraction can contain different types of elements.",
+        "A classmate says 'putting data in a list means I can't see the values anymore.' Correct the wording precisely: state what abstraction actually hides, and what you can still do with each element.",
+        "In one sentence, restate the core idea of data abstraction — the separation it provides — in your own words."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.2 page.",
+      "script": "Stop and think, six minutes, full sentences. One: one list named grades is easier to develop and maintain than thirty numbered variables because a change happens in one place and the code works for any class size. Two: for the list of Ada, 15, true — string, number, Boolean — which shows a single abstraction holding different types of elements. Three: fix the classmate — abstraction hides the storage details, not the values; you still read each element by its index. Four: one sentence, your own words, on the separation data abstraction provides between what the data is and how it is stored. These are exactly the part-b explanations the free-response section rewards."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.2 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Count from 1, not 0",
+          "text": "On the exam reference sheet the first element is index 1 and the last is index LENGTH(aList). temps[1] is the first reading; temps[0] or any index past the length is an error that terminates the program. Do not import 0-indexing from Python or Java."
+        },
+        {
+          "name": "Abstraction hides the STORAGE, not the values",
+          "text": "Naming a list separates its abstract properties from how it is represented — you still access every element by index. If a question implies the values become unreadable, that is the trap; abstraction hides how the data is stored, not the data itself."
+        },
+        {
+          "name": "Explain the win with 'develop' and 'maintain'",
+          "text": "When asked how a list manages complexity, don't just say 'it's shorter.' Say it gives the collection one name so the program is easier to develop and maintain and works for any number of elements. Those are the words that earn the point."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: count from one. The exam sheet's first element is index 1 and the last is the length; temps[0] or anything past the end terminates the program — never import Python's zero. Trap two: abstraction hides the storage, not the values. Naming a list separates its abstract properties from how it's represented, but you still reach every element by index; if a question hints the values become unreadable, that's the bait. Trap three: when you explain the complexity win, use the College Board's own words — one name, easier to develop and maintain, works for any length. 'It's shorter' does not earn the point; 'develop and maintain' does. Dodge these three and every data-abstraction question is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Data Abstraction, in One Slide",
+      "points": [
+        "A list is an ordered sequence of elements, each at a unique index; the exam sheet indexes 1 through the length (EK AAP-1.C.1–C.3, AAP-1.D.8).",
+        "A string is an ordered sequence of characters, indexed the same way (EK AAP-1.C.4).",
+        "Developing a list creates a data abstraction: multiple related items treated as one value under one name (EK AAP-1.D.3, D.6–D.7).",
+        "The abstraction manages complexity by separating a data type's abstract properties from its representation, making the program easier to develop and maintain (EK AAP-1.D.1–D.2, D.4–D.5)."
+      ],
+      "next": "Topic 3.3, Mathematical Expressions: now that one name can hold many values, how do we compute with them — arithmetic operators, division, and the MOD remainder that powers so many list algorithms?",
+      "script": "The whole topic in one slide. A list is an ordered sequence of elements, each at a unique index, and the exam sheet numbers those indices from one through the length. A string is the same ordered-sequence idea for characters. Developing a list creates a data abstraction: many related items treated as one value under a single name, sometimes called an array, never a linked list on this exam. And that abstraction manages complexity by separating the abstract properties of the data from how it is represented, which makes a program easier to develop and maintain. Next class is Topic 3.3, Mathematical Expressions, where we start computing with these values. Before you pack up, run the exit check: four 'I can' statements at the bottom, and any box you cannot honestly check tells you what to review on the Topic 3.2 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain that a list is an ordered sequence of elements, each at a unique 1-indexed position, and that a string is an ordered sequence of characters (LO AAP-1.C)",
+        "reference a list or string element by its index using the exam sheet's numbering from 1 through the length (LO AAP-1.C)",
+        "develop a data abstraction by building a list that stores multiple related items under one name (LO AAP-1.D)",
+        "explain how a list abstraction manages complexity by separating the data's abstract properties from its representation, making a program easier to develop and maintain (LO AAP-1.D)"
+      ]
+    }
+  ]
+}

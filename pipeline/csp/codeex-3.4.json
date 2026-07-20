@@ -1,5 +1,10 @@
 {
-  "meta": { "topic": "3.4", "title": "Strings", "unit": "Big Idea 3: Algorithms and Programming" },
+  "meta": {
+    "topic": "3.4",
+    "title": "Strings",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in the String Builder and Build the Badge exercises — joining pieces with concatenation and taking substrings by position. Now type and run them for real, hardest last. Predict each output first, then check it: the first builds a badge from two substrings, and the last is an off-by-one index bug for you to fix."
+  },
   "problems": [
     {
       "prompt": "Given name = \"Computer\", print the first 4 characters followed by the last 4 characters, separated by a space.",
@@ -10,7 +15,7 @@
         "javascript": "let name = \"Computer\";\n// print the first 4 characters, a space, then the last 4\n"
       },
       "reference": {
-        "pseudocode": "DISPLAY(SUBSTRING(name,1,4) + \" \" + SUBSTRING(name,5,8))\n(illustrative; the exam treats substrings conceptually)",
+        "pseudocode": "first ← first 4 characters of name\nlast ← last 4 characters of name\nDISPLAY(first + \" \" + last)\n(the exam describes substrings in words — there is no SUBSTRING procedure on the reference sheet)",
         "python": "print(name[0:4] + \" \" + name[4:8])",
         "javascript": "console.log(name.slice(0,4) + \" \" + name.slice(4,8));"
       },

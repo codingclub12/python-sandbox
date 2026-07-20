@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "lessonId": "3.8",
+    "lessonTitle": "Iteration",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-2.K",
+    "anchor": "Iteration",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.8 · Day 2 of 2",
+      "title": "Reading a Loop's Result",
+      "subtitle": "Tracing REPEAT loops pass by pass — and the two cases the exam builds traps from: the infinite loop that never stops, and the loop that runs zero times",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Iteration. Yesterday we wrote the two loops; today we read them — determine the result or side effect of a loop by tracing it pass by pass. That is AAP-2.K part b, and it is what most exam iteration questions actually ask. Then we meet the two special cases the College Board turns into traps, both on the REPEAT UNTIL loop: the infinite loop, where the condition can never become true, and the zero-times loop, where the condition is already true before the loop even starts. Get those two, and loops stop being scary."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Determine the result or side effect of REPEAT n TIMES and REPEAT UNTIL loops by tracing them pass by pass (LO AAP-2.K)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain the two edge cases of REPEAT UNTIL: an infinite loop when the condition never becomes true, and zero executions when the condition is true before the loop starts (LO AAP-2.K)"
+        }
+      ],
+      "script": "Two targets, both from AAP-2.K part b, determining the result of iteration. First: trace any REPEAT loop pass by pass and give the final value it produces — the accumulator, the counter, whatever the loop changes. Second: recognize and explain the two edge cases of REPEAT UNTIL — the infinite loop, when the stopping condition can never become true, and the zero-times loop, when the condition is already true and the body never runs. These two are the highest-value points in the topic because the exam hides them in ordinary-looking loops."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser, now settle it. The program runs: savings ← 25, then REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 }, then DISPLAY(savings). Three classmates predict it prints 30, 25, and 'it never stops.'",
+      "subprompt": "Who is right, and exactly why? Write the value the loop checks BEFORE the first pass, decide how many times the body runs, and name the mistake each wrong classmate made.",
+      "directions": "Be ready to defend your trace, starting with the very first condition check.",
+      "script": "Pick up yesterday's teaser and decide it. savings starts at 25, and the loop repeats until savings is at least 20. Three classmates say 30, 25, and 'never stops.' A few minutes alone: the key move is to check the condition BEFORE the first pass — is 25 at least 20? Yes. So the body runs zero times and savings stays 25. The classmate who said 30 assumed the body must run at least once. The one who said 'never stops' confused this with an infinite loop. The correct answer is 25, and the reason — condition checked first — is the whole second half of today."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Tracing a Loop's Result",
+          "description": "Following a loop pass by pass to determine its result or side effect (EK AAP-2.K.1)."
+        },
+        {
+          "title": "Two Subtle Cases",
+          "description": "The infinite loop when the condition never becomes true, and the zero-times loop when the condition is already true (EK AAP-2.K.4–K.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.8 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's map: two sections, both green and CB-required. First, tracing a loop's result — the pass-by-pass method that answers every 'what does this display?' question. Second, the two subtle cases — the infinite loop and the zero-times loop. Keep the packet open; a digital copy lives on the Topic 3.8 Guided Notes page, and the coding practice on the Topic 3.8 page lets you run these traces and watch the results yourself."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Tracing a Loop's Result",
+      "kicker": "Pass by Pass · Learning Objective AAP-2.K",
+      "script": "Section one. Writing a loop is half the skill; the exam mostly asks the other half — what does this loop produce? The reliable answer is always the same: trace it pass by pass, one row per repeat, and never try to hold it all in your head."
+    },
+    {
+      "type": "concept",
+      "heading": "How to Trace Any Loop",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A loop changes the flow of control by repeating a block of statements until a stopping condition is met (EK AAP-2.K.1).",
+        "Make a table: one row per pass, one column per variable the loop changes.",
+        "For REPEAT UNTIL, check the condition BEFORE each pass — if it is already true, do not run the body.",
+        "The result or side effect is whatever the tracked variables hold once the loop stops (EK AAP-2.K.1)."
+      ],
+      "script": "One method handles every loop question. Remember what a loop does: it repeats a block, changing the program's state until a stopping condition is met. To find the result, build a small table — one row for each pass, one column for each variable the loop touches. For a REPEAT UNTIL, the discipline that saves you is checking the condition before each pass, including the first: if it is already true, the body does not run. When the loop finally stops, read off the tracked variables — that is the result or side effect the question wants. Trust the table over your gut every time.",
+      "capture": [
+        {
+          "q": "To find what a loop produces, build a table with one row per ______.",
+          "a": "pass through the loop body"
+        },
+        {
+          "q": "For a REPEAT UNTIL loop you must test the condition ______.",
+          "a": "before each pass, including the very first one"
+        },
+        {
+          "q": "A loop's result or side effect is ______.",
+          "a": "the values the tracked variables hold once it stops"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Tracing",
+      "heading": "Count the Passes",
+      "caption": "This REPEAT UNTIL adds 5 to savings and counts weeks; the counter reveals how many passes the condition allowed.",
+      "pseudocode": "savings ← 0\nweeks ← 0\nREPEAT UNTIL(savings ≥ 20)\n{\n  savings ← savings + 5\n  weeks ← weeks + 1\n}\nDISPLAY(weeks)",
+      "python": "savings = 0\nweeks = 0\nwhile savings < 20:\n    savings = savings + 5\n    weeks = weeks + 1\nprint(weeks)",
+      "output": "4",
+      "script": "Here is why tracing matters: REPEAT UNTIL never tells you the pass count, so you compute it. This loop adds 5 to savings and adds 1 to weeks every pass, stopping when savings reaches 20. Trace it: pass one, savings 5, weeks 1; pass two, 10 and 2; pass three, 15 and 3; pass four, 20 and 4 — now savings is at least 20, so the loop stops. DISPLAY of weeks shows four. The counter variable is a classic exam device: it turns 'how many times did this run?' into a value you can read straight off the trace. Run it yourself in the coding practice to confirm."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace a REPEAT UNTIL, Pass by Pass",
+      "context": "The loop is REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5; weeks ← weeks + 1 }. The condition is checked BEFORE each pass. Fill in the blanks.",
+      "columns": [
+        "Check # (before body)",
+        "savings ≥ 20?",
+        "savings after body",
+        "weeks after body"
+      ],
+      "rows": [
+        [
+          "1",
+          "0 ≥ 20 → false, run body",
+          "5",
+          "1"
+        ],
+        [
+          "2",
+          "5 ≥ 20 → false, run body",
+          "10",
+          "2"
+        ],
+        [
+          "3",
+          "10 ≥ 20 → false, run body",
+          "15",
+          "3"
+        ],
+        [
+          "4",
+          "15 ≥ 20 → false, run body",
+          "20",
+          "4"
+        ],
+        [
+          "5",
+          "20 ≥ 20 → true, STOP",
+          "—",
+          "—"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "This is the trace made explicit, and it is exactly how you should work a REPEAT UNTIL on the exam. Each row is one CHECK of the condition before a possible pass. Checks one through four find savings still under 20, so the body runs and savings climbs 5, 10, 15, 20 while weeks climbs 1 through 4. Check five finds 20 is at least 20 — true — so the loop stops and no body runs on that check. Fill in the blank cells and notice there is always one final check that does no work; that check is what ends the loop. That final true check is why a loop can also end before it starts, which is the next section.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Trace the Result",
+      "subheading": "These map to LO AAP-2.K. Show your line-by-line trace on your Guided Notes.",
+      "prompts": [
+        "Trace: total ← 0; REPEAT 5 TIMES { total ← total + 2 }; DISPLAY(total). Show total after each pass and give the final value.",
+        "Trace: x ← 1; count ← 0; REPEAT UNTIL(x > 8) { x ← x + 3; count ← count + 1 }; DISPLAY(count). How many passes run, and what prints?",
+        "In one sentence, explain why a counter variable inside a REPEAT UNTIL is a reliable way to answer 'how many times did the loop run?'"
+      ],
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 3.8 page.",
+      "script": "Trace it, six minutes, show every pass. One: REPEAT 5 TIMES adding 2 gives 2, 4, 6, 8, 10 — final total ten. Two: x starts 1, adds 3 each pass — 4, 7, 10 — stopping once x is over 8, which happens at 10 on the third pass, so count is three. Three: the counter works because it increments exactly once per pass, so its final value equals the pass count you cannot see in the loop's text. These are the AAP-2.K part b moves the exam makes over and over."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Two Subtle Cases",
+      "kicker": "Infinite and Zero-Times · Learning Objective AAP-2.K",
+      "script": "Section two — the highest-value ten minutes of the topic. Two REPEAT UNTIL loops look completely normal but behave in ways students miss: one never stops, and one never starts. The College Board writes questions on both, so we take them one at a time."
+    },
+    {
+      "type": "concept",
+      "heading": "Case 1 — The Infinite Loop",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "In a REPEAT UNTIL loop, an infinite loop occurs when the ending condition will never evaluate to true (EK AAP-2.K.4).",
+        "It happens when the body never moves the state toward the condition — or steps right over it.",
+        "Example: total ← 1; REPEAT UNTIL(total = 10) { total ← total + 2 } — total is 1, 3, 5, 7, 9, 11 and skips 10 forever.",
+        "The fix: make sure every pass moves the tracked value toward making the condition true."
+      ],
+      "script": "Case one, the infinite loop. The College Board's definition is precise: in a REPEAT UNTIL, an infinite loop occurs when the ending condition can never become true. The usual cause is a body that never pushes the state toward the condition, or one that overshoots it. The example is the classic exam trap: start total at 1 and add 2 each pass while waiting for total to equal exactly 10. But 1 plus 2s only ever gives odd numbers — 1, 3, 5, 7, 9, 11 — so total equals 10 is never true, and the loop runs forever. The lesson: when you check a REPEAT UNTIL, verify each pass actually moves toward the stopping condition, and beware equality tests that a step size can jump over.",
+      "capture": [
+        {
+          "q": "A REPEAT UNTIL becomes an infinite loop when ______.",
+          "a": "its ending condition can never evaluate to true"
+        },
+        {
+          "q": "total ← 1 with +2 each pass never satisfies total = 10 because ______.",
+          "a": "adding 2 to an odd start produces only odd numbers, skipping 10"
+        },
+        {
+          "q": "The way to avoid an infinite loop is to ensure every pass ______.",
+          "a": "moves the tracked value toward making the condition true"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Case 1 · Infinite",
+      "heading": "The Loop That Never Stops",
+      "caption": "savings never grows, so savings ≥ 20 can never become true — this loop runs forever (do not run it as-is).",
+      "pseudocode": "savings ← 0\nREPEAT UNTIL(savings ≥ 20)\n{\n  savings ← savings + 0\n}\nDISPLAY(savings)",
+      "python": "savings = 0\nwhile savings < 20:\n    savings = savings + 0\n# never reaches print(savings)",
+      "script": "A deliberately broken loop to make K.4 concrete. It looks almost identical to yesterday's working savings loop — but the body adds ZERO. savings stays 0 forever, so savings is at least 20 is never true, the loop never stops, and DISPLAY is never reached. This is not a syntax error; the code is perfectly legal, it just never ends. That is what makes infinite loops dangerous on the exam and in real life — they hide in code that looks fine. The tell is always the same question: does anything in the body actually move savings toward 20? Here, no. Do not run this version as written; the coding practice shows a safe, step-limited version."
+    },
+    {
+      "type": "concept",
+      "heading": "Case 2 — The Zero-Times Loop",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "In a REPEAT UNTIL loop, if the condition evaluates to true initially, the body is not executed at all (EK AAP-2.K.5).",
+        "This happens because the condition is checked BEFORE the loop, not after (EK AAP-2.K.5).",
+        "Example: savings ← 25; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 } — 25 ≥ 20 is already true, so the body runs 0 times.",
+        "The tracked variables keep their starting values; DISPLAY(savings) shows 25, unchanged."
+      ],
+      "script": "Case two, the mirror image — the loop that runs zero times. The College Board is explicit: in a REPEAT UNTIL, if the condition is true initially, the body is not executed at all, because the condition is checked before the loop. The bell-ringer example is exactly this: savings starts at 25, and the loop repeats until savings is at least 20 — but 25 is already at least 20, so the very first check is true and the body never runs. savings stays 25, and DISPLAY shows 25, unchanged. This is why 'REPEAT UNTIL always runs at least once' is false. The condition is a gate at the TOP of the loop; if it is already true, you never go in.",
+      "capture": [
+        {
+          "q": "A REPEAT UNTIL body runs zero times when ______.",
+          "a": "its condition is already true the first time it is checked"
+        },
+        {
+          "q": "The reason a zero-times run is possible at all is that the condition is checked ______.",
+          "a": "before the loop body, not after it"
+        },
+        {
+          "q": "After a zero-times loop, the tracked variables hold ______.",
+          "a": "their original starting values, unchanged by the loop"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Case 2 · Zero-Times",
+      "heading": "The Loop That Never Starts",
+      "caption": "savings starts at 25, so savings ≥ 20 is already true; the body runs zero times and 25 prints unchanged.",
+      "pseudocode": "savings ← 25\nREPEAT UNTIL(savings ≥ 20)\n{\n  savings ← savings + 5\n}\nDISPLAY(savings)",
+      "python": "savings = 25\nwhile savings < 20:\n    savings = savings + 5\nprint(savings)",
+      "output": "25",
+      "script": "The bell-ringer, now as code. savings starts at 25. Before the first pass, the loop checks: is savings at least 20? It is — 25 clears 20 — so the condition is already true and the body is skipped entirely. savings never changes, and DISPLAY shows twenty-five. Compare it to yesterday's version that started at 0 and ran four times: same loop text, different starting value, completely different behavior. That is the whole point of K.5 — the starting state decides whether a REPEAT UNTIL runs many times, once, or not at all. Run both versions in the coding practice and watch 25 print with zero passes."
+    },
+    {
+      "type": "misconception",
+      "heading": "“A REPEAT UNTIL Loop Always Runs at Least Once”",
+      "misconception": "The body of a REPEAT UNTIL loop must execute at least one time before the condition is ever checked.",
+      "whyItHappens": "In everyday speech, 'repeat until done' sounds like you do the task and THEN check whether you are finished — so it feels like the body must run before the first test.",
+      "correction": "On the exam reference sheet the condition is checked BEFORE each pass, including the very first (EK AAP-2.K.5). If the condition is already true when the loop is reached, the body runs zero times and the tracked variables keep their starting values. 'Repeat until' is a gate at the top of the loop, not a check at the bottom.",
+      "example": "savings ← 25; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 }; DISPLAY(savings) prints 25, not 30. Because 25 ≥ 20 is already true, the +5 body never runs even once.",
+      "script": "The trap that decides the zero-times questions. Because 'repeat until done' in English sounds like do-then-check, students assume the body always runs at least once. The reference sheet says the opposite: the condition is checked before each pass, first check included. So if the condition is already true, the loop is skipped entirely and the variables keep their starting values. The example prints 25, not 30 — the plus-5 never happens. Have students explain in their notes why 'checked before the loop' forces the zero-times result; that sentence is the whole misconception undone."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Infinite or Zero-Times?",
+      "subheading": "These map to LO AAP-2.K. Complete on your Guided Notes.",
+      "prompts": [
+        "For k ← 3; REPEAT UNTIL(k = 0) { k ← k − 1 }: how many passes run, and does it stop? Now change the body to k ← k − 2 and answer again.",
+        "For n ← 8; REPEAT UNTIL(n ≥ 5) { n ← n + 1 }; DISPLAY(n): how many times does the body run, and what prints? Name the case.",
+        "Write a one-sentence checklist you can use on the exam to decide whether a REPEAT UNTIL will loop forever, run zero times, or run a normal number of passes."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.8 page.",
+      "script": "Stop and think, six minutes. One: k from 3 with minus 1 reaches exactly 0 in three passes and stops; but minus 2 gives 3, 1, negative 1 — it skips 0, so k equals 0 is never true and it loops forever, an infinite loop. Two: n starts at 8 and the condition n at least 5 is already true, so the body runs zero times and 8 prints — the zero-times case. Three: the checklist should read something like 'first check if the condition is already true (zero times); if not, check whether each pass moves toward the condition (else infinite); otherwise trace the passes.' That checklist is your loop insurance on exam day. Answers are reviewed as a class before the exit."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.8 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "REPEAT UNTIL has no built-in count",
+          "text": "Never assume a REPEAT UNTIL runs a set number of times. It runs however many passes the condition allows — trace it with a counter; do not guess a number from the loop's text."
+        },
+        {
+          "name": "The condition is checked BEFORE the body",
+          "text": "A REPEAT UNTIL can run zero times. If the condition is already true when the loop is reached, the body never executes and variables keep their starting values (EK AAP-2.K.5)."
+        },
+        {
+          "name": "Watch for the infinite loop",
+          "text": "If no pass moves the state toward the condition — or a step size jumps over an equality target — the loop never stops (EK AAP-2.K.4). Check that every pass makes progress toward true."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: REPEAT UNTIL has no built-in count — do not read a number off the loop; trace it with a counter to find how many passes actually run. Trap two: the condition is checked before the body, so a REPEAT UNTIL can run zero times when the condition is already true — that is the zero-times case, and it is worth easy points. Trap three: watch for infinite loops — if a pass never moves toward the condition, or a step size skips over an equality target like equals 10, the loop never stops. Screen every REPEAT UNTIL for all three and iteration questions become free."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Iteration, in One Slide",
+      "points": [
+        "Iteration is a repeating portion of an algorithm — a set number of times, or until a condition is met (EK AAP-2.J.1).",
+        "REPEAT n TIMES runs its block exactly n times; REPEAT UNTIL(condition) repeats until the condition becomes true (EK AAP-2.K.2–K.3).",
+        "Determine a loop's result by tracing it pass by pass — one row per pass, checking a REPEAT UNTIL condition before each pass (EK AAP-2.K.1).",
+        "REPEAT UNTIL edge cases: it loops forever if the condition never becomes true (K.4), and runs zero times if the condition is true before it starts (K.5)."
+      ],
+      "next": "Topic 3.9, Developing Algorithms: now that you can loop, we combine iteration with variables and conditionals to build the classic algorithms — finding a maximum or minimum, summing and averaging, and testing divisibility with MOD.",
+      "script": "The whole topic in one slide. Iteration is a repeating portion of an algorithm, controlled by a count or a condition. REPEAT n TIMES runs its block exactly n times; REPEAT UNTIL repeats until its condition becomes true. To find any loop's result, trace it pass by pass, and for REPEAT UNTIL always check the condition before each pass. And the two edge cases that win points: a REPEAT UNTIL loops forever if the condition can never become true, and runs zero times if the condition is already true before it starts. Next class is Topic 3.9, Developing Algorithms, where loops become the engine for maximums, sums, averages, and divisibility. Before you pack up, run the exit check — four 'I can' statements at the bottom of the slide; any box you cannot honestly check tells you what to review on the Topic 3.8 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "express a repeating process as iteration without code, saying whether it repeats a set count or until a condition (LO AAP-2.J)",
+        "write REPEAT n TIMES and REPEAT UNTIL(condition) statements using the exam reference sheet (LO AAP-2.K)",
+        "trace a loop pass by pass to determine its result or side effect (LO AAP-2.K)",
+        "identify when a REPEAT UNTIL loop runs zero times or becomes an infinite loop (LO AAP-2.K)"
+      ]
+    }
+  ]
+}
