@@ -15,7 +15,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { stripEK } = require('./helpers');
+const { stripEK, upsertPagesCsvRow } = require('./helpers');
 
 const DIR = __dirname;
 const OUT = path.join(DIR, 'web_out');
@@ -234,17 +234,9 @@ const csvPath = path.join(OUT,'pages.csv');
 // and a Template Suffix (gated page template) so a raw Matrixify import is
 // never world-readable. Verify the store's access gate before publishing.
 const HEADERS = ['Handle','Title','Body HTML','Template Suffix','Published','Command'];
-let csv;
-if (fs.existsSync(csvPath)){
-  csv = fs.readFileSync(csvPath,'utf8');
-  const re = new RegExp('^"'+handle+'".*\r?\n','m');
-  if (re.test(csv)) csv = csv.replace(re,'');   // idempotent re-runs
-} else {
-  csv = '﻿' + HEADERS.map(cell).join(',') + '\r\n';
-}
 if (!html.trim()) throw new Error('empty body');
-csv += [handle,title,html,templateSuffix,'false','MERGE'].map(cell).join(',') + '\r\n';
-fs.writeFileSync(csvPath, csv, 'utf8');
+upsertPagesCsvRow(csvPath, HEADERS.map(cell), handle,
+  [handle,title,html,templateSuffix,'false','MERGE'].map(cell));
 
 // self-check: pure ASCII, no EK codes leaked, no answers from capture
 const bad = html.match(/[^\x00-\x7F]/);

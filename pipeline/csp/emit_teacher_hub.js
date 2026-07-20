@@ -25,6 +25,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const H = require('./helpers');
 
 const DIR = __dirname;
 const OUTD = path.join(DIR, 'out');
@@ -173,16 +174,8 @@ fs.writeFileSync(path.join(WEB, handle + '.html'), body, 'utf8');
 const cell = v=>'"'+String(v).replace(/"/g,'""')+'"';
 const HEADERS = ['Handle','Title','Body HTML','Template Suffix','Published','Command'];
 const csvPath = path.join(WEB,'pages.csv');
-let csv;
-if (fs.existsSync(csvPath)){
-  csv = fs.readFileSync(csvPath,'utf8');
-  const re = new RegExp('^"'+handle+'".*\r?\n','m');
-  if (re.test(csv)) csv = csv.replace(re,'');
-} else {
-  csv = '﻿' + HEADERS.map(cell).join(',') + '\r\n';
-}
-csv += [handle,'AP CSP Teacher Resources (Premium)',body,templateSuffix,'false','MERGE'].map(cell).join(',') + '\r\n';
-fs.writeFileSync(csvPath, csv, 'utf8');
+H.upsertPagesCsvRow(csvPath, HEADERS.map(cell), handle,
+  [handle,'AP CSP Teacher Resources (Premium)',body,templateSuffix,'false','MERGE'].map(cell));
 
 const bad = body.match(/[^\x00-\x7F]/);
 console.log(`emitted ${handle}.html + pages.csv row`);

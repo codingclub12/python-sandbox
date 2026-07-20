@@ -176,5 +176,42 @@ function stripEK(s) {
   return t;
 }
 
+// ---- pages.csv upsert (record-aware) -------------------------------------
+// Split CSV text into full records, respecting quoted fields that legitimately
+// contain commas AND newlines (Shopify Body HTML does). A naive line-based
+// regex removal corrupts multi-line rows into orphaned fragments — this does not.
+function splitCsvRecords(text){
+  const recs=[]; let cur='', inq=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(inq){
+      if(c==='"'){ if(text[i+1]==='"'){cur+='""';i++;continue;} inq=false; cur+='"'; continue; }
+      cur+=c; continue;
+    }
+    if(c==='"'){ inq=true; cur+='"'; continue; }
+    if(c==='\r'&&text[i+1]==='\n'){ recs.push(cur); cur=''; i++; continue; }
+    if(c==='\n'){ recs.push(cur); cur=''; continue; }
+    cur+=c;
+  }
+  if(cur!=='') recs.push(cur);
+  return recs;
+}
+// Upsert one gated page row into pages.csv keyed by handle. headerCells and
+// rowCells are already-escaped quoted field strings. Removes any prior record
+// for the same handle (full multi-line record), then appends the new one.
+function upsertPagesCsvRow(csvPath, headerCells, handle, rowCells){
+  const fs=require('fs'); const BOM='﻿';
+  let header=headerCells.join(','), body=[];
+  if(fs.existsSync(csvPath)){
+    let text=fs.readFileSync(csvPath,'utf8');
+    if(text.startsWith(BOM)) text=text.slice(BOM.length);
+    const recs=splitCsvRecords(text).filter(r=>r.length);
+    if(recs.length){ header=recs[0]; body=recs.slice(1).filter(r=>!r.startsWith('"'+handle+'"')); }
+  }
+  body.push(rowCells.join(','));
+  fs.writeFileSync(csvPath, BOM+header+'\r\n'+body.join('\r\n')+'\r\n','utf8');
+}
+
 module.exports={C,FONT,MONO,run,p,h1,h2,h3,bullet,numItem,link,code,callout,dataTable,stripEK,
-  spacer,rule,pageBreak,titleBlock,buildDoc,save,LINKS,Paragraph,TextRun,PageBreak};
+  spacer,rule,pageBreak,titleBlock,buildDoc,save,LINKS,Paragraph,TextRun,PageBreak,
+  splitCsvRecords,upsertPagesCsvRow};

@@ -175,12 +175,8 @@ fs.writeFileSync(path.join(WEB, handle + '.html'), body, 'utf8');
 const cell = v => '"' + String(v).replace(/"/g, '""') + '"';
 const HEADERS = ['Handle','Title','Body HTML','Template Suffix','Published','Command'];
 const csvPath = path.join(WEB, 'pages.csv');
-let csv;
-if (fs.existsSync(csvPath)){ csv = fs.readFileSync(csvPath,'utf8');
-  const re = new RegExp('^"'+handle+'".*\r?\n','m'); if (re.test(csv)) csv = csv.replace(re,''); }
-else { csv = '﻿' + HEADERS.map(cell).join(',') + '\r\n'; }
-csv += [handle, 'AP CSP Topic '+topic+' Coding Practice - '+EX.meta.title, body, '', 'false', 'MERGE'].map(cell).join(',') + '\r\n';
-fs.writeFileSync(csvPath, csv, 'utf8');
+H.upsertPagesCsvRow(csvPath, HEADERS.map(cell), handle,
+  [handle, 'AP CSP Topic '+topic+' Coding Practice - '+EX.meta.title, body, '', 'false', 'MERGE'].map(cell));
 
 // ---------- teacher answer-key docx (reference solutions live here only) ----------
 const k = [];
