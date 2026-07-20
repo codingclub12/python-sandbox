@@ -1,0 +1,290 @@
+{
+  "meta": { "unitId": "3", "title": "Big Idea 3 Exam — Algorithms and Programming", "unitLabel": "Big Idea 3: Algorithms and Programming" },
+  "timeMinutes": 60,
+  "partI": {
+    "instructions": "Choose the single best answer. Several items ask you to trace or evaluate pseudocode written in the exam reference-sheet language — remember that lists are 1-indexed and that ← is the assignment operator. Read each segment fully before answering.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs the following segment: score ← 4 ; bonus ← score ; score ← 10 ; DISPLAY(bonus). What value is displayed?",
+        "options": [
+          "10",
+          "14",
+          "4",
+          "The program halts with a run-time error"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-1.B.3 + EK AAP-1.B.2",
+        "rationale": "The assignment bonus ← score copies the current value of score, which is 4 at that moment (AAP-1.B.2: assignment assigns a copy of the result). The value stored in a variable is the most recent value assigned to THAT variable, and no later statement reassigns bonus, so bonus is still 4 when displayed (AAP-1.B.3). A reflects the misconception that bonus tracks score and updates to 10 when score changes; a variable does not follow another variable's later changes. B adds 4 + 10, treating the two statements as an accumulation rather than a copy then a reassignment. D is wrong: the segment is valid and runs to completion; bonus holds a defined value the whole time."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A fitness app originally stored a user's seven daily quiz scores in seven separate variables. A programmer replaces them with a single list named dailyScores. Which statement BEST explains the benefit of this data abstraction?",
+        "options": [
+          "Using a list allows multiple related items to be treated as a single value and gives the collection a name without referencing the details of its representation, which manages complexity",
+          "Using a list guarantees that the program will always use less memory than seven separate variables would",
+          "Storing the values in a list automatically converts them from numbers into strings",
+          "A list can only be used when all of the values it holds are identical to one another"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-1.D.6 + EK AAP-1.D.2",
+        "rationale": "A list lets multiple related items be treated as a single value (AAP-1.D.6), and data abstraction manages complexity by giving a collection of data a name without referencing the specific details of its representation (AAP-1.D.2). B is wrong: the benefit the CED names is managing complexity, not a guaranteed memory reduction; memory use is not the point of the abstraction. C is wrong: placing numbers in a list does not change their type; a list can hold numbers, and elements retain their data type (AAP-1.A.3). D is wrong: a list is an ordered sequence of elements that may hold different values, and data abstractions often contain different elements (AAP-1.D.5)."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program executes colors ← [\"red\", \"green\", \"blue\", \"yellow\"]. What does colors[2] evaluate to?",
+        "options": [
+          "\"red\"",
+          "\"blue\"",
+          "The program terminates, since list indices must start at 0",
+          "\"green\""
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.N.1 + EK AAP-1.C.3",
+        "rationale": "On the exam reference sheet the first element of a list is at index 1, so accessing aList[i] returns the i-th element (AAP-2.N.1); an index is a way of referencing elements using natural numbers (AAP-1.C.3). colors[1] is \"red\" and colors[2] is the second element, \"green\". A applies zero-based indexing from other languages, treating index 2 as the third element counted from 0; the reference sheet is 1-indexed. B is the third element, an off-by-one made by miscounting from index 1. C is wrong: index 2 is within the valid range 1 to LENGTH(colors), so no error occurs (an error would occur only for an index below 1 or above the length, AAP-1.D.8)."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Using the exam reference sheet's arithmetic rules, what does the expression 2 + 12 MOD 5 * 2 evaluate to?",
+        "options": [
+          "4",
+          "6",
+          "8",
+          "24"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.C.2 + EK AAP-2.C.4",
+        "rationale": "MOD evaluates to the remainder of a divided by b (AAP-2.C.2), and MOD has the same precedence as * and /, so the expression is evaluated left to right by the order of operations before addition (AAP-2.C.4). 12 MOD 5 = 2, then 2 * 2 = 4, then 2 + 4 = 6. A comes from treating MOD as lower precedence than *: 12 MOD (5 * 2) = 12 MOD 10 = 2, then 2 + 2 = 4. C comes from doing the addition first: (2 + 12) MOD 5 * 2 = 14 MOD 5 * 2 = 4 * 2 = 8. D ignores MOD entirely and multiplies 12 * 2 = 24 after a mishandled left-to-right pass."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A security system should arm ONLY when the door is closed (the variable closed is true) AND motion is not detected (the variable motion is false). Which Boolean expression is true in exactly those situations?",
+        "options": [
+          "closed OR (NOT motion)",
+          "NOT (closed AND motion)",
+          "closed AND (NOT motion)",
+          "(NOT closed) AND motion"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.F.3 + EK AAP-2.F.2",
+        "rationale": "The system arms when both conditions hold, so the expression must AND them: condition1 AND condition2 is true only if both are true (AAP-2.F.3). \"Motion is not detected\" is NOT motion, which is true when motion is false (AAP-2.F.2), giving closed AND (NOT motion). A uses OR, which would arm whenever the door is closed even if motion IS detected, and whenever there is no motion even if the door is open (AAP-2.F.4). B, NOT (closed AND motion), is true in every case except closed-and-motion, so it would arm even when the door is open with no motion. D, (NOT closed) AND motion, is true only when the door is open and motion is detected, the exact opposite of the intended condition."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Trace the nested selection: n ← 15 ; IF(n MOD 3 = 0) { IF(n MOD 5 = 0) { DISPLAY(\"both\") } ELSE { DISPLAY(\"three\") } } ELSE { DISPLAY(\"other\") }. What is displayed?",
+        "options": [
+          "both",
+          "three",
+          "other",
+          "three other"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.I.1 + EK AAP-2.H.3",
+        "rationale": "Nested conditionals are conditionals inside conditionals, and control flows into the inner IF only when the outer condition is true (AAP-2.I.1, AAP-2.H.3). 15 MOD 3 = 0 is true, so the program enters the outer block; then 15 MOD 5 = 0 is also true, so the inner IF runs its first block and displays \"both\". B would require 15 MOD 5 to be nonzero; but 15 is divisible by 5, so the inner ELSE does not run. C would require 15 MOD 3 to be nonzero; since it is zero, the outer ELSE is never reached. D treats the branches as if more than one block executes; only one branch of each IF/ELSE runs, so exactly one word is displayed."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Trace the loop: x ← 10 ; REPEAT UNTIL(x > 5) { x ← x + 1 ; DISPLAY(x) } ; DISPLAY(\"done\"). What does the segment display?",
+        "options": [
+          "6 7 8 9 10 11 done",
+          "The loop repeats forever and nothing after it is reached",
+          "11 done",
+          "done"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.K.5 + EK AAP-2.K.3",
+        "rationale": "REPEAT UNTIL(condition) checks the condition BEFORE each pass and repeats the body until the condition is true (AAP-2.K.3). Here x is 10 and the condition x > 5 is already true on entry, so the body never executes at all (AAP-2.K.5). Control passes straight to DISPLAY(\"done\"), displaying only done. A assumes the loop counts up while x is greater than 5, misreading REPEAT UNTIL as a loop that continues while the condition is true rather than until it is true. B claims an infinite loop, but the condition is true immediately, so the loop cannot even begin, let alone run forever (an infinite loop needs a condition that never becomes true, AAP-2.K.4). C assumes the body runs once before the check, but the condition is tested first, so no increment or display occurs."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A membership app looks up an ID in an UNSORTED list by checking each element in order, starting at the first, and stopping as soon as it finds the target or reaches the end of the list. Which statement BEST describes this algorithm?",
+        "options": [
+          "It is a binary search, which starts in the middle and eliminates half of the data at each step",
+          "It is a linear (sequential) search, which checks each element of the list in order until the desired value is found or all elements have been checked",
+          "It is impossible to complete any traversal of an unsorted list, so the lookup cannot succeed",
+          "It is a partial traversal that first requires the list to be sorted into ascending order"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.O.5 + EK AAP-2.O.1",
+        "rationale": "Checking each element in order until the value is found or all elements have been checked is the definition of a linear or sequential search (AAP-2.O.5), and accessing elements one after another is a traversal of the list (AAP-2.O.1). A is wrong: binary search halves a data set but requires the data to be in sorted order (AAP-2.P.2), and this list is unsorted. C is wrong: a list can be traversed regardless of whether it is sorted; sorting is not a prerequisite for accessing elements in order. D is wrong: a linear search needs no sorting, and stopping early on a match is a partial traversal only in the sense that it may not reach the end, not because the list must first be sorted."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A binary search is run on a SORTED list of 32 names. What is the maximum number of times the algorithm can halve the data set before the target is found or all elements are eliminated, and what must be true of the data?",
+        "options": [
+          "At most 5 halving steps, and the data must be in sorted order",
+          "At most 32 steps, since binary search compares the target with every element once",
+          "At most 16 steps, since binary search always examines exactly half of the list",
+          "At most 5 halving steps, and binary search works equally well on unsorted data"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.P.1 + EK AAP-2.P.2 + EK AAP-2.P.3",
+        "rationale": "Binary search starts in the middle and eliminates half of the remaining data each step (AAP-2.P.1): 32 → 16 → 8 → 4 → 2 → 1 is five halvings, and the data must be sorted for binary search to be valid (AAP-2.P.2). B describes the worst case of a sequential search, which may inspect all 32 elements; binary search does far fewer comparisons, which is why it is often more efficient (AAP-2.P.3). C halves only once (32 to 16) and stops, ignoring that the halving repeats until one element or none remains. D gives the right count but the wrong requirement: binary search cannot be applied to unsorted data (AAP-2.P.2)."
+      },
+      {
+        "id": "Q10",
+        "kind": "multi",
+        "stem": "A teacher shows two different code segments that both count how many values in a list are positive. Which of the following statements are consistent with the CED? I. Algorithms can be written in different ways and still accomplish the same task. II. Algorithms that appear similar can produce different side effects or results. III. Two algorithms that produce the same result must always contain exactly the same number of statements.",
+        "options": [
+          "I only",
+          "II and III only",
+          "I and II only",
+          "I, II, and III"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.L.1 + EK AAP-2.L.2",
+        "rationale": "Statement I matches AAP-2.L.1: algorithms can be written in different ways and still accomplish the same tasks. Statement II matches AAP-2.L.2: algorithms that appear similar can yield different side effects or results, which is why similar-looking code must still be traced carefully. Statement III is false: different correct algorithms for the same problem can differ in length and structure (AAP-2.L.5 notes different algorithms can solve the same problem), so equal results do not require an equal number of statements. A rejects true statement II. B accepts false statement III and rejects true statement I. D accepts false statement III."
+      },
+      {
+        "id": "Q11",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Consider: PROCEDURE Mystery(a, b) { RETURN(a + 2 * b) } ; result ← Mystery(3, 4) ; DISPLAY(result). What is displayed?",
+        "options": [
+          "20",
+          "14",
+          "24",
+          "11"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.A.5 + EK AAP-3.A.7 + EK AAP-2.C.4",
+        "rationale": "The call Mystery(3, 4) assigns 3 to parameter a and 4 to parameter b (AAP-3.A.5). Inside the procedure, RETURN evaluates a + 2 * b and returns that value to the calling statement (AAP-3.A.7), where by the order of operations multiplication happens before addition (AAP-2.C.4): 2 * 4 = 8, then 3 + 8 = 11. A comes from evaluating (a + 2) * b = 5 * 4 = 20, adding before multiplying. B comes from (a + b) * 2 = 14, pairing the wrong operands. C comes from a * 2 * b = 3 * 2 * 4 = 24, treating the + as another multiplication."
+      },
+      {
+        "id": "Q12",
+        "kind": "multi",
+        "stem": "A team is building a large program and is deciding how to organize its code. Which of the following statements are consistent with the CED's treatment of procedures and libraries? I. Procedural abstraction lets a procedure be used knowing only what it does, not how it does it. II. Using parameters generalizes a procedure so it can be reused with a range of arguments. III. A software library contains procedures that may be used when creating new programs.",
+        "options": [
+          "I and II only",
+          "I, II, and III",
+          "II only",
+          "I only"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.B.1 + EK AAP-3.B.5 + EK AAP-3.D.1",
+        "rationale": "All three are consistent with the CED. Statement I is procedural abstraction: a name for a process that lets a procedure be used knowing what it does, not how it does it (AAP-3.B.1). Statement II matches AAP-3.B.5: parameters generalize procedures so they can be reused with a range of input values. Statement III matches AAP-3.D.1: a software library contains procedures that may be used in creating new programs, which simplifies building complex programs (AAP-3.D.3). A omits the true library statement III. C omits true statements I and III. D omits true statements II and III."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A programmer writes RANDOM(2, 5) to help simulate variability in a model. Using the exam reference sheet, which are ALL of the possible values this expression can return?",
+        "options": [
+          "2, 3, 4, or 5, each equally likely",
+          "3 or 4 only, the values strictly between 2 and 5",
+          "Any real number between 2 and 5",
+          "2 or 5 only, the two endpoints of the range"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.E.1 + EK AAP-3.E.2 + EK AAP-3.F.8",
+        "rationale": "RANDOM(a, b) generates and returns a random INTEGER from a to b inclusive, each equally likely (AAP-3.E.1), so RANDOM(2, 5) can return 2, 3, 4, or 5; because it is random, each execution may produce a different result (AAP-3.E.2), which is how random number generators simulate real-world variability (AAP-3.F.8). B wrongly excludes the endpoints; the range is inclusive of both a and b. C is wrong: RANDOM returns integers, not arbitrary real numbers between the bounds. D keeps only the endpoints, discarding the integers in between that are equally likely to occur."
+      },
+      {
+        "id": "Q14",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Engineers evaluate a new bridge design against strong earthquakes by running a computer simulation rather than building the bridge and shaking it. Which statement BEST reflects the CED's view of this simulation?",
+        "options": [
+          "The simulation captures every detail of the real bridge, so its computed results are guaranteed to be identical to what a real earthquake would produce on the physical structure",
+          "Simulations are useful only for phenomena that are too small to observe directly, so a large structure like a bridge is never an appropriate subject for one",
+          "The simulation is an abstraction that simplifies real-world details, is useful when real experiments are impractical (too dangerous or too expensive), and can contain bias from the elements included or excluded",
+          "A simulation that relies on random numbers to vary its inputs necessarily produces results that carry no scientific value at all"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.F.1 + EK AAP-3.F.4 + EK AAP-3.F.6 + EK AAP-3.F.5",
+        "rationale": "Simulations are abstractions of more complex phenomena built for a specific purpose (AAP-3.F.1), developed by removing details or simplifying functionality (AAP-3.F.4); they are most useful when real-world events are impractical to experiment on, such as too dangerous or too expensive (AAP-3.F.6), and they can contain bias derived from which real-world elements were included or excluded (AAP-3.F.5). A is wrong: a simulation simplifies reality and cannot capture every detail, so results are approximations, not guaranteed-identical outcomes. B is wrong: the CED lists too big, too dangerous, too expensive, and more, not only too small, as reasons to simulate. D is wrong: random number generators are used to simulate real-world variability (AAP-3.F.8), which supports, rather than negates, the simulation's usefulness."
+      },
+      {
+        "id": "Q15",
+        "kind": "multi",
+        "stem": "A computer science class discusses hard problems. Which of the following statements are consistent with the CED? I. Algorithms with exponential or factorial efficiency are examples of algorithms that run in an unreasonable amount of time. II. When no efficient algorithm exists to guarantee an optimal answer, a heuristic may be used to produce a solution that is not guaranteed to be optimal. III. An undecidable problem is one for which no algorithm can be constructed that is always capable of giving a correct yes-or-no answer for all inputs.",
+        "options": [
+          "I only",
+          "I and II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-4.A.7 + EK AAP-4.A.8 + EK AAP-4.A.9 + EK AAP-4.B.2",
+        "rationale": "All three are consistent with the CED. Statement I matches AAP-4.A.7: polynomial-or-slower algorithms run in reasonable time, while exponential or factorial efficiencies run in an unreasonable amount of time. Statement II matches AAP-4.A.8 and AAP-4.A.9: when no efficient algorithm exists, approximate solutions are sought, and a heuristic produces a solution not guaranteed to be optimal. Statement III matches AAP-4.B.2: an undecidable problem is one for which no algorithm can always give a correct yes-or-no answer. A omits true statements II and III. B omits true statement III. C omits true statement I."
+      }
+    ]
+  },
+  "partII": {
+    "instructions": "Answer in complete sentences and use precise Big Idea 3 vocabulary (variable, list, traversal, conditional, iteration, procedure, parameter, procedural abstraction, efficiency, reasonable time, heuristic, simulation). Write all pseudocode using the exam reference-sheet notation; remember that lists are 1-indexed and that ← is the assignment operator.",
+    "questions": [
+      {
+        "id": "FR1",
+        "prompt": "StepStride, a fitness app, stores a user's daily step counts in a list. The list uses the exam reference sheet's 1-indexed convention, so the first element is at index 1. Assume the list steps has been set to [3000, 8000, 5000, 12000, 7000, 9000].",
+        "parts": [
+          "(a) Trace this segment and state EXACTLY what it displays: count ← 0 ; total ← 0 ; FOR EACH s IN steps { total ← total + s ; IF(s ≥ 8000) { count ← count + 1 } } ; DISPLAY(count) ; DISPLAY(total). Show how you determined each displayed value.",
+          "(b) Write a procedure CountAtLeast(aList, goal) that returns the number of elements in aList whose value is greater than or equal to goal. Use exam reference-sheet notation (PROCEDURE, RETURN, FOR EACH or list indexing, IF), and state what the call CountAtLeast(steps, 8000) would return.",
+          "(c) StepStride also keeps a SORTED list of 16 friends' user IDs and looks up an ID with binary search. State the condition the list must satisfy, give the maximum number of times binary search can halve the 16-element list before the value is found or all elements are eliminated, and explain why binary search is often more efficient than a sequential search here."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) The FOR EACH loop assigns s each element of steps in order, first to last, and executes the block once per element (AAP-2.O.3). total accumulates every value: 3000 + 8000 + 5000 + 12000 + 7000 + 9000 = 44000. The IF adds 1 to count each time s ≥ 8000 is true (AAP-2.H.2), which happens for 8000, 12000, and 9000, so count becomes 3. DISPLAY(count) then DISPLAY(total) each display the value followed by a space (AAP-3.A.6), so the segment displays: 3 44000",
+          "(b) PROCEDURE CountAtLeast(aList, goal) { n ← 0 ; FOR EACH value IN aList { IF(value ≥ goal) { n ← n + 1 } } RETURN(n) }. The header names the parameters aList and goal so the procedure can be reused with any list and any threshold (AAP-3.C.1, AAP-3.B.5). It traverses the list with FOR EACH (AAP-2.O.3), tests each element with a conditional (AAP-2.H.2), counts the elements that meet the condition, and returns that count with RETURN (AAP-3.C.2). The call CountAtLeast(steps, 8000) returns 3, matching part (a).",
+          "(c) The list must be in sorted order for binary search to be used (AAP-2.P.2). Binary search starts in the middle and eliminates half of the remaining elements at each step (AAP-2.P.1): 16 → 8 → 4 → 2 → 1, which is at most 4 halving steps before the value is found or all elements are eliminated. Binary search is often more efficient than a sequential search on sorted data because a sequential search may have to check all 16 elements one by one, while binary search checks at most 4 (AAP-2.P.3)."
+        ],
+        "rubric": [
+          "1 pt: Part (a) determines count = 3 (the elements 8000, 12000, and 9000 satisfy s ≥ 8000).",
+          "1 pt: Part (a) determines total = 44000 and reports the displayed output as 3 44000, reflecting the FOR EACH accumulation (AAP-2.O.3).",
+          "1 pt: Part (b) defines PROCEDURE CountAtLeast with parameters for the list and the threshold (AAP-3.C.1, AAP-3.B.5).",
+          "1 pt: Part (b) traverses the list, using FOR EACH or a valid index-based loop over the elements (AAP-2.O.3).",
+          "1 pt: Part (b) uses a conditional to test each element against goal with the correct ≥ comparison (AAP-2.H.2).",
+          "1 pt: Part (b) returns the accumulated count with RETURN and states the call returns 3 (AAP-3.C.2).",
+          "1 pt: Part (c) states the list must be sorted (AAP-2.P.2).",
+          "1 pt: Part (c) gives 4 halving steps, justified by 16 → 8 → 4 → 2 → 1 (AAP-2.P.1).",
+          "1 pt: Part (c) explains that binary search is more efficient than sequential search on sorted data, since sequential may check all elements while binary checks far fewer (AAP-2.P.3)."
+        ],
+        "ek": "EK AAP-2.O.3 + EK AAP-2.H.2 + EK AAP-3.A.6 + EK AAP-3.C.1 + EK AAP-3.C.2 + EK AAP-3.B.5 + EK AAP-2.P.1 + EK AAP-2.P.2 + EK AAP-2.P.3"
+        },
+      {
+        "id": "FR2",
+        "prompt": "RouteWise plans same-day delivery routes for a courier who must visit many stops. The development team is deciding how to structure the program, how to choose routes efficiently, and how to test its choices against real traffic.",
+        "parts": [
+          "(a) The team writes separate procedures such as Distance(stopA, stopB) and RouteLength(routeList), and RouteLength calls Distance repeatedly instead of repeating the distance code. Explain how procedural abstraction manages complexity here, and explain what the parameters contribute to making these procedures reusable.",
+          "(b) To GUARANTEE the shortest route, the program could examine every possible ordering of the stops, but the number of orderings grows so fast that with many stops this would take far too long to run. Explain, using the idea of reasonable versus unreasonable time, why the exhaustive approach is impractical, and explain what a heuristic offers instead.",
+          "(c) RouteWise tests route choices against city traffic with a simulation that uses RANDOM to vary each street's delay. Explain why a simulation is an appropriate tool here and how random number generation is used, and identify ONE way the simulation's results could be biased."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) Procedural abstraction gives a process a name and lets the rest of the program use it knowing only what it does, not how it does it (AAP-3.B.1): RouteLength can call Distance without knowing how a distance is computed. Splitting the work into Distance and RouteLength bases the solution to the larger problem (total route length) on the solutions to smaller subproblems (AAP-3.B.2), and calling Distance repeatedly instead of duplicating its code reuses shared functionality, which manages complexity (AAP-3.B.4). The parameters stopA and stopB, and routeList, generalize the procedures so they work for any pair of stops or any route, letting the same code be reused with a range of arguments (AAP-3.B.5). The team could also pull tested procedures from a software library to build the program faster (AAP-3.D.1).",
+          "(b) The exhaustive approach examines every ordering of the stops; the number of orderings grows factorially as stops are added, and algorithms with factorial or exponential efficiency are examples of algorithms that run in an unreasonable amount of time (AAP-4.A.7). For many stops the program would not finish in a practical amount of time, so in effect there is no efficient algorithm that guarantees the optimal route at that scale, and an approximate solution must be sought (AAP-4.A.8). A heuristic is an approach that produces a solution that is not guaranteed to be optimal but may be used when techniques guaranteed to find the optimal solution are impractical (AAP-4.A.9); RouteWise can use one to find a good-enough route quickly instead of the guaranteed-best route far too slowly.",
+          "(c) A simulation is an abstraction of a more complex phenomenon (city traffic) built for a specific purpose (AAP-3.F.1), and it is appropriate here because running real deliveries under every traffic condition would be impractical, being too slow, too expensive, or too variable to experiment on directly (AAP-3.F.6). RANDOM(a, b) returns a random integer from a to b inclusive, each equally likely (AAP-3.E.1), so using it to vary each street's delay lets the simulation reflect the variability that exists in real-world traffic across many runs (AAP-3.F.8). The results can contain bias derived from which real-world elements were included or excluded (AAP-3.F.5): for example, if the model leaves out rush-hour surges or road construction, the routes it recommends as best may be systematically wrong."
+        ],
+        "rubric": [
+          "1 pt: Part (a) explains procedural abstraction as using a procedure knowing what it does, not how it does it (AAP-3.B.1).",
+          "1 pt: Part (a) explains decomposition into subproblems or reuse that avoids duplicating code (AAP-3.B.2 or AAP-3.B.4).",
+          "1 pt: Part (a) explains that parameters generalize the procedures so they can be reused with a range of arguments (AAP-3.B.5).",
+          "1 pt: Part (b) identifies the exhaustive approach as having factorial or exponential efficiency, which runs in an unreasonable amount of time (AAP-4.A.7).",
+          "1 pt: Part (b) explains that with no efficient algorithm to guarantee the optimal solution at scale, an approximate solution must be sought (AAP-4.A.8).",
+          "1 pt: Part (b) describes a heuristic as producing a not-guaranteed-optimal but practical solution (AAP-4.A.9).",
+          "1 pt: Part (c) explains a simulation is an abstraction that is appropriate when real experiments are impractical, e.g., too dangerous, too expensive, or too slow (AAP-3.F.1, AAP-3.F.6).",
+          "1 pt: Part (c) explains that RANDOM generates equally likely integers used to model real-world variability (AAP-3.E.1, AAP-3.F.8).",
+          "1 pt: Part (c) identifies a source of bias from real-world elements included or excluded (AAP-3.F.5)."
+        ],
+        "ek": "EK AAP-3.B.1 + EK AAP-3.B.2 + EK AAP-3.B.4 + EK AAP-3.B.5 + EK AAP-3.D.1 + EK AAP-4.A.7 + EK AAP-4.A.8 + EK AAP-4.A.9 + EK AAP-3.F.1 + EK AAP-3.F.6 + EK AAP-3.E.1 + EK AAP-3.F.8 + EK AAP-3.F.5"
+      }
+    ]
+  }
+}
