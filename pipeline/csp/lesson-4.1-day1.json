@@ -325,9 +325,9 @@
     "questions": [
       {
         "id": "Q1",
-        "kind": "scenario",
-        "predictFirst": true,
-        "stem": "On a school network, device A connects to B and C; B connects to D; C connects to E; D connects to F; E connects to F. Per EK CSN-1.A.5, which of the following is a valid path from sender A to receiver F?",
+        "kind": "applied",
+        "predictFirst": false,
+        "stem": "On a school network, A connects to B and C, B to D, C to E, D to F, and E to F. Which is a valid path from sender A to receiver F?",
         "options": [
           "A → B → E → F",
           "A → D → F",
@@ -336,26 +336,28 @@
         ],
         "answer": "C",
         "ek": "EK CSN-1.A.5",
-        "rationale": "EK CSN-1.A.5 defines a path as a sequence of DIRECTLY connected devices that begins at the sender and ends at the receiver. In option C every consecutive pair (A–C, C–E, E–F) is directly connected, and it runs sender to receiver. A fails because B and E are not directly connected. B fails because A and D are not directly connected — 'eventually reaches D' is not a direct connection. D is a valid sequence of connections but begins at B, not at the sender A, so it is not a path from A to F."
+        "rationale": "A path is a sequence of directly connected devices that begins at the sender and ends at the receiver. In C every consecutive pair (A–C, C–E, E–F) is directly connected, running from A to F. A fails because B and E are not directly connected. B fails because A and D are not directly connected. D is a real sequence of connections but starts at B, not at the sender A."
       },
       {
         "id": "Q2",
         "kind": "recall",
-        "stem": "Per EK CSN-1.A.7, which statement correctly describes the bandwidth of a computer network?",
+        "predictFirst": false,
+        "stem": "Which statement best describes the bandwidth of a computer network?",
         "options": [
-          "The total number of devices that can join the network at one time",
-          "The maximum amount of data that can be sent in a fixed amount of time, usually measured in bits per second",
+          "The number of devices that can join the network at one time",
+          "The maximum amount of data that can be sent in a fixed amount of time",
           "The average time a single message takes to travel from sender to receiver",
           "The physical length of the longest connection between two devices"
         ],
         "answer": "B",
-        "ek": "EK CSN-1.A.7",
-        "rationale": "EK CSN-1.A.7 defines bandwidth as the maximum amount of data that can be sent in a fixed amount of time, and EK CSN-1.A.8 adds that it is usually measured in bits per second. A confuses capacity for data with capacity for devices. C describes latency (travel time), a different quantity the CED does not name — bandwidth is about amount, not delay. D invents a physical-distance meaning; bandwidth has nothing to do with cable length."
+        "ek": "EK CSN-1.A.7 + EK CSN-1.A.8",
+        "rationale": "Bandwidth is the maximum amount of data that can be sent in a fixed amount of time, usually measured in bits per second. A confuses data capacity with a device count. C describes latency (travel time), a different quantity. D invents a physical-distance meaning; bandwidth has nothing to do with cable length."
       },
       {
         "id": "Q3",
         "kind": "multi",
-        "stem": "Per EK CSN-1.A.1, which of the following are computing devices? I. A router directing traffic on a school network. II. A smart sensor reporting temperature readings. III. A tablet running a streaming app.",
+        "predictFirst": false,
+        "stem": "Which of the following are computing devices? I. A router directing traffic on a network. II. A smart sensor reporting temperature. III. A tablet running a streaming app.",
         "options": [
           "III only",
           "I and III only",
@@ -364,56 +366,58 @@
         ],
         "answer": "D",
         "ek": "EK CSN-1.A.1",
-        "rationale": "EK CSN-1.A.1 defines a computing device as a physical artifact that can run a program and explicitly lists computers, tablets, servers, ROUTERS, and SMART SENSORS as examples — all three items are named by the EK itself. A reflects the misconception that only screen-and-keyboard machines count. B admits the router but wrongly excludes the sensor. C admits the sensor but wrongly excludes the router, which students often file as 'just wiring' when it is a program-running device."
+        "rationale": "A computing device is any physical artifact that can run a program — the definition explicitly includes computers, tablets, servers, routers, and smart sensors, so all three qualify. A reflects the misconception that only screen-and-keyboard machines count. B wrongly excludes the sensor; C wrongly excludes the router, which students often dismiss as 'just wiring.'"
       },
       {
         "id": "Q4",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A student sends two identical messages one minute apart from the same laptop to the same server. Network monitoring shows they traveled through different sequences of routers, yet both arrived correctly. Per EK CSN-1.B.5, what best explains this?",
+        "predictFirst": false,
+        "stem": "Two messages sent a minute apart from the same laptop to the same server travel through different sequences of routers, yet both arrive correctly. What best explains this?",
         "options": [
-          "Routing on the Internet is usually dynamic, so the path is not specified in advance",
+          "Routing on the Internet is dynamic, so a path is not specified in advance",
           "The first message reserved its path, forcing the second onto a different route",
           "The server requested the second message over a new route to verify the first",
-          "One of the messages contained an addressing error that sent it the wrong way"
+          "One message contained an addressing error that sent it the wrong way"
         ],
         "answer": "A",
         "ek": "EK CSN-1.B.5",
-        "rationale": "EK CSN-1.B.5 states that routing on the Internet is usually dynamic — paths are not specified in advance, so two messages between the same endpoints can legitimately take different routes depending on current conditions. B invents a reservation system; Internet routing does not hold paths for senders. C invents a verification protocol that does not exist. D is contradicted by the scenario — both messages arrived correctly, so nothing was mis-addressed. Different routes with successful delivery is normal, designed behavior."
+        "rationale": "Routing on the Internet is usually dynamic — paths are not specified in advance, so messages between the same endpoints can take different routes as conditions change. B invents a reservation system the Internet does not use. C invents a verification protocol. D is contradicted by the scenario, since both messages arrived correctly."
       },
       {
         "id": "Q5",
-        "kind": "applied",
-        "stem": "The Internet grew from connecting a few thousand academic computers in the 1980s to billions of devices today without being redesigned from scratch. Per EK CSN-1.B.6 and B.7, this growth is possible primarily due to the Internet's:",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which term describes a system's capacity to change in size and scale to meet new demands?",
         "options": [
-          "Bandwidth — its maximum amount of data per fixed amount of time",
-          "Metadata — the extra information attached to every message",
-          "Central registry of connected devices, expanded year by year",
-          "Scalability — its capacity to change in size and scale to meet new demands"
+          "Bandwidth",
+          "Routing",
+          "Scalability",
+          "Metadata"
         ],
-        "answer": "D",
-        "ek": "EK CSN-1.B.7",
-        "rationale": "EK CSN-1.B.6 defines scalability as the capacity of a system to change in size and scale to meet new demands, and EK CSN-1.B.7 states that the Internet was designed to be scalable — precisely the property the growth story demonstrates. A misuses bandwidth, which measures data per time on a network, not the ability to grow. B drags in metadata, which serves packet routing and reassembly (Topic 4.1 Day 2), not growth. C contradicts the Internet's design: there is no central registry of devices — a central anything is what the design avoids."
+        "answer": "C",
+        "ek": "EK CSN-1.B.6 + EK CSN-1.B.7",
+        "rationale": "Scalability is the capacity of a system to change in size and scale to meet new demands, and the Internet was designed to be scalable. Bandwidth measures data per unit time, not growth. Routing is finding a path from sender to receiver. Metadata is information carried with a packet — none of these names the ability to grow."
       },
       {
         "id": "Q6",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A phone receives the packets of a photo in the order 1, 3, 2, 5, 4 — yet displays the photo perfectly. Per EK CSN-1.C.2, what makes the correct reassembly possible?",
+        "predictFirst": false,
+        "stem": "A phone receives a photo's packets in the order 1, 3, 2, 5, 4, yet shows the photo perfectly. What makes correct reassembly possible?",
         "options": [
-          "The phone requests the entire photo again whenever packets arrive out of order",
-          "Each packet carries metadata that is used for reassembling the data at the destination",
-          "Routers along the way sort the packets so they arrive in the correct order",
-          "The packets all follow one identical path, which preserves their original order"
+          "The phone requests the whole photo again whenever packets arrive out of order",
+          "Each packet carries metadata that the destination uses to reassemble the data",
+          "Routers along the way sort the packets into order before delivering them",
+          "All the packets follow one identical path, which preserves their order"
         ],
         "answer": "B",
         "ek": "EK CSN-1.C.2",
-        "rationale": "EK CSN-1.C.2 states that packets contain a chunk of data plus metadata used for routing AND for data reassembly — sequence information in the metadata lets the destination rebuild the original order no matter how packets arrive. A describes a wasteful mechanism that does not exist; out-of-order arrival needs no re-send of everything. C credits the routers, but routers forward packets — they do not sort a stream back into order. D is contradicted by the scenario: the arrival order 1, 3, 2, 5, 4 shows order was NOT preserved, yet reassembly still succeeded."
+        "rationale": "Each packet carries a chunk of data plus metadata used for routing and for reassembly, so the destination can rebuild the original order no matter how packets arrive. A describes a wasteful re-request that does not happen. C credits routers, which forward packets rather than reorder a stream. D is contradicted by the arrival order 1, 3, 2, 5, 4, which shows order was not preserved."
       },
       {
         "id": "Q7",
         "kind": "recall",
-        "stem": "Per EK CSN-1.C.4, which of the following lists three common protocols used on the Internet?",
+        "predictFirst": false,
+        "stem": "Which of the following lists three common protocols used on the Internet?",
         "options": [
           "IP, TCP, and UDP",
           "URL, ISP, and LAN",
@@ -422,27 +426,28 @@
         ],
         "answer": "A",
         "ek": "EK CSN-1.C.4",
-        "rationale": "EK CSN-1.C.4 names IP, TCP, and UDP as common protocols used on the Internet. B collects Internet-adjacent abbreviations that are not protocols: a URL is an address format, an ISP is a company, a LAN is a kind of network. C mixes web-page languages (HTML, CSS) with computer memory (RAM) — none is a communication protocol. D mixes a system of linked pages (WWW), a hardware processor (CPU), and a satellite positioning system (GPS); none is an Internet communication protocol."
+        "rationale": "IP, TCP, and UDP are common protocols used on the Internet. B lists Internet-adjacent terms that are not protocols: a URL is an address, an ISP is a company, a LAN is a type of network. C mixes web-page languages with computer memory. D mixes a system of linked pages, a processor, and a positioning system — none is a communication protocol."
       },
       {
         "id": "Q8",
-        "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A classmate says: 'The Internet and the World Wide Web are just two names for the same thing.' Which response best applies EK CSN-1.D.1–D.3?",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which statement best describes the relationship between the Internet and the World Wide Web?",
         "options": [
-          "The classmate is right — every service that moves data between computers is part of the Web",
-          "The classmate is wrong — the Web is the physical network of routers, and the Internet is the linked pages",
-          "The classmate is wrong — the Web is a system of linked pages, programs, and files that USES the Internet, a network of interconnected networks",
-          "The classmate is right — HTTP is the shared protocol that defines both of them equally"
+          "They are two names for the same global network",
+          "The World Wide Web is a system of linked pages and files that uses the Internet",
+          "The Internet is a collection of linked pages that runs on top of the Web",
+          "The Internet works only for the Web; all other traffic uses separate networks"
         ],
-        "answer": "C",
-        "ek": "EK CSN-1.D.3",
-        "rationale": "EK CSN-1.D.1 defines the World Wide Web as a system of linked pages, programs, and files; EK CSN-1.D.3 states the Web USES the Internet — they are different things in a layered relationship. A is false: many Internet services (email, online games, app traffic) involve no linked pages and are not the Web. B has the right verdict but swaps the definitions — the Internet is the network infrastructure, the Web is the linked content. D is doubly wrong: HTTP is a protocol used by the WEB (EK CSN-1.D.2), not a definition of the Internet."
+        "answer": "B",
+        "ek": "EK CSN-1.D.1 + EK CSN-1.D.3",
+        "rationale": "The World Wide Web is a system of linked pages, programs, and files that uses the Internet — a layered relationship, not a synonym. A treats them as identical. C swaps the definitions, making the Internet the content and the Web the infrastructure. D is false, since email, games, and app traffic use the Internet without the Web."
       },
       {
         "id": "Q9",
         "kind": "multi",
-        "stem": "Which of the following statements about the World Wide Web are true? I. The World Wide Web is a system of linked pages, programs, and files. II. HTTP is a protocol used by the World Wide Web. III. The World Wide Web uses the Internet.",
+        "predictFirst": false,
+        "stem": "Which statements about the World Wide Web are true? I. It is a system of linked pages, programs, and files. II. HTTP is a protocol it uses. III. It uses the Internet.",
         "options": [
           "I and II only",
           "II and III only",
@@ -450,8 +455,8 @@
           "I, II, and III"
         ],
         "answer": "D",
-        "ek": "LO CSN-1.D",
-        "rationale": "All three statements are the CED's own words: EK CSN-1.D.1 (a system of linked pages, programs, and files), EK CSN-1.D.2 (HTTP is a protocol used by the World Wide Web), and EK CSN-1.D.3 (the World Wide Web uses the Internet). A wrongly drops III, usually from the misconception that the Web and the Internet are peers rather than layered. B wrongly drops the definition in I. C wrongly drops II, often from confusing HTTP with an Internet-wide protocol like IP — HTTP belongs to the Web layer."
+        "ek": "EK CSN-1.D.1 + EK CSN-1.D.2 + EK CSN-1.D.3",
+        "rationale": "All three are true: the Web is a system of linked pages, programs, and files; HTTP is a protocol it uses; and it uses the Internet. A drops III, from the misconception that the Web and Internet are peers rather than layered. B drops the definition in I. C drops II, often from confusing HTTP with an Internet-wide protocol like IP."
       }
     ]
   },

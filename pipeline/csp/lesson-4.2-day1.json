@@ -347,36 +347,38 @@
       {
         "id": "Q1",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "During a video call between students in Ohio and Oregon, a major router along the path fails completely — yet the call continues with barely a pause. Per EK CSN-1.E.4, what best explains why the call kept working?",
+        "predictFirst": false,
+        "stem": "During a video call, a router along the path fails completely, yet the call continues with barely a pause. What best explains why it kept working?",
         "options": [
-          "The failed router stored a backup copy of the video data and forwarded it after restarting",
-          "The video data was small enough to finish transmitting before the router fully shut down",
-          "Subsequent data was sent via a different route, using one of the multiple paths the Internet maintains between connected devices",
-          "The Internet prevented the router from failing by automatically redirecting extra power to it"
+          "The failed router stored the video data and forwarded it after restarting",
+          "The data was small enough to finish transmitting before the router shut down",
+          "Subsequent data was sent along a different route between the two devices",
+          "The Internet redirected extra power to keep the router from failing"
         ],
         "answer": "C",
         "ek": "EK CSN-1.E.4",
-        "rationale": "EK CSN-1.E.4 states the rerouting rule directly: if a particular device or connection on the Internet fails, subsequent data will be sent via a different route, if possible — and EK CSN-1.E.3 supplies the 'possible': more than one path exists between the two endpoints. A invents a mechanism; a completely failed router forwards nothing, and rerouting happens around it, not through it. B dodges the question — a live call transmits continuously, so data was still flowing when the router died. D is the prevention myth: fault tolerance survives failures rather than preventing them (EK CSN-1.E.5), and no such power-redirection mechanism exists."
+        "rationale": "When a device or connection fails, subsequent data is sent via a different route, if one exists — and more than one path exists between the endpoints. A invents a mechanism; a fully failed router forwards nothing, and rerouting goes around it. B dodges the question, since a live call transmits continuously. D is the prevention myth: fault tolerance survives failures rather than preventing them."
       },
       {
         "id": "Q2",
         "kind": "recall",
-        "stem": "Which of the following best defines redundancy in a computer network (EK CSN-1.E.2)?",
+        "predictFirst": false,
+        "stem": "Which of the following best defines redundancy in a computer network?",
         "options": [
-          "The inclusion of extra components that can be used to mitigate failure of the system if other components fail",
-          "The removal of unnecessary duplicate components so that the network runs as efficiently as possible",
-          "A guarantee that no component in a well-engineered network will ever fail during normal operation",
-          "The practice of sending every message twice so that the receiver can compare the copies for errors"
+          "Extra components included so the system can keep working if others fail",
+          "Removing duplicate components so the network runs as efficiently as possible",
+          "A guarantee that no component in the network will ever fail",
+          "Sending every message twice so the receiver can compare the copies"
         ],
         "answer": "A",
         "ek": "EK CSN-1.E.2",
-        "rationale": "EK CSN-1.E.2 defines redundancy as the inclusion of extra components that can be used to mitigate failure of a system if other components fail — option A nearly verbatim. B is the everyday-English meaning of 'redundant' (unnecessary, removable) applied backwards; in networking, redundancy is added on purpose, not removed. C is the prevention myth: redundancy assumes components WILL fail and plans around it — nothing in the CED promises failure-free components. D confuses redundancy of components/paths with retransmitting duplicate data; the EK is about spare infrastructure, not sending everything twice."
+        "rationale": "Redundancy is the inclusion of extra components that can mitigate failure if other components fail. B is the everyday meaning of 'redundant' (removable) applied backwards; in networking redundancy is added on purpose. C is the prevention myth — redundancy assumes components will fail. D confuses spare infrastructure with retransmitting duplicate data."
       },
       {
         "id": "Q3",
         "kind": "multi",
-        "stem": "Which of the following are benefits that fault tolerance and redundant routing provide to the Internet? I. Users can continue to use the network even when components fail unexpectedly. II. The reliability of communication between two points increases. III. The Internet can scale to connect more devices and more people.",
+        "predictFirst": false,
+        "stem": "Which of these are benefits that fault tolerance and redundant routing provide to the Internet? I. Users stay connected when components fail. II. Reliability between two points increases. III. The Internet can scale to more devices and people.",
         "options": [
           "I and II only",
           "I and III only",
@@ -384,66 +386,68 @@
           "I, II, and III"
         ],
         "answer": "D",
-        "ek": "EK CSN-1.E.5",
-        "rationale": "All three are stated benefits. I is EK CSN-1.E.5: fault tolerance matters precisely because complex systems fail at unexpected times, often in groups, and it allows users to continue to use the network. II and III are the two halves of EK CSN-1.E.7: the redundancy of routing options between two points increases the reliability of the Internet AND helps it scale to more devices and more people. A drops the scaling benefit — the one students most often forget, since it is about growth rather than failure. B drops reliability, the most direct payoff. C drops the user-facing benefit that motivates the whole topic."
+        "ek": "EK CSN-1.E.5 + EK CSN-1.E.7",
+        "rationale": "All three are stated benefits: fault tolerance lets users keep using the network when components fail, and the redundancy of routing options both increases reliability and helps the Internet scale to more devices and people. A drops the scaling benefit students most often forget. B drops reliability. C drops the user-facing benefit."
       },
       {
         "id": "Q4",
-        "kind": "scenario",
-        "predictFirst": true,
-        "stem": "An office park's network connects each of its 40 buildings directly to one central switch, which then connects to the Internet. An auditor is asked to identify the network's vulnerability to failure. Which answer is correct?",
+        "kind": "applied",
+        "predictFirst": false,
+        "stem": "An office connects all 40 of its buildings to one central switch, which links to the Internet. What is the network's main vulnerability to failure?",
         "options": [
-          "Any one of the 40 building connections, since every cable could possibly fail at some point",
-          "The central switch, since every path in the network passes through that single component",
-          "Nothing — 40 separate building connections already count as redundancy, so no vulnerability exists",
-          "The buildings farthest from the switch, since longer cable runs always fail before shorter ones"
+          "Any one of the 40 building cables, since any cable could eventually fail",
+          "The central switch, since every path in the network depends on it",
+          "Nothing, because 40 separate building connections already provide redundancy",
+          "The buildings farthest from the switch, since longer cables fail first"
         ],
         "answer": "B",
         "ek": "EK CSN-1.E.2",
-        "rationale": "A vulnerability is the single point of failure — the component every path depends on. In this star layout, all 40 buildings share the central switch: one failure there disconnects everything at once, with no different route available (EK CSN-1.E.4's 'if possible' fails). Redundancy would mean extra components mitigating that failure (EK CSN-1.E.2), such as a second switch. A is the classic trap: any cable CAN fail, but losing one cable strands one building — survivable, therefore not THE vulnerability. C mistakes many spokes for redundancy; no pair of buildings has a path avoiding the switch, so there is no second path anywhere. D is fabricated — cable length does not determine failure order, and distance is irrelevant to the audit."
+        "rationale": "The vulnerability is the single point of failure — the component every path depends on. All 40 buildings share the central switch, so one failure there disconnects everything with no alternate route. A is the classic trap: losing one cable strands only one building. C mistakes many spokes for redundancy; no pair of buildings has a path avoiding the switch. D is fabricated, since cable length does not set failure order."
       },
       {
         "id": "Q5",
         "kind": "applied",
-        "predictFirst": true,
-        "stem": "A town council debates paying for a second fiber line to the Internet that would sit mostly unused alongside the existing one. Per EK CSN-1.E.6, which statement most accurately frames the decision?",
+        "predictFirst": false,
+        "stem": "A town debates paying for a second Internet line that would sit mostly unused beside the first. Which statement best frames the decision?",
         "options": [
-          "The second line requires additional resources but can provide the benefit of fault tolerance if the first line fails",
-          "The second line is wasteful, since a component that sits unused provides no benefit to a network",
-          "The second line is unnecessary, since a properly engineered first line would simply never fail",
-          "The second line will double the speed of every connection, which is the main reason to build redundancy"
+          "The second line needs additional resources but can provide fault tolerance if the first fails",
+          "The second line is wasteful, since a component that sits unused provides no benefit",
+          "The second line is unnecessary, because a well-built first line would never fail",
+          "The second line doubles the speed of every connection, which is the point of redundancy"
         ],
         "answer": "A",
         "ek": "EK CSN-1.E.6",
-        "rationale": "EK CSN-1.E.6 states the trade in one sentence: redundancy within a system often requires additional resources but can provide the benefit of fault tolerance — option A applies it directly, naming both the cost and the payoff. B is the 'redundancy is waste' misconception: the idle line's value is that it stands ready, letting the town continue functioning when the main line fails (EK CSN-1.E.5). C is the prevention myth — the CED assumes components fail at unexpected times; no engineering makes a line unfailable. D justifies the purchase with a performance claim the CED never makes; the EK's stated benefit of redundancy is fault tolerance, not doubled speed."
+        "rationale": "Redundancy often requires additional resources but can provide the benefit of fault tolerance — option A names both the cost and the payoff. B is the 'redundancy is waste' misconception; the idle line's value is standing ready. C is the prevention myth, since components fail at unexpected times. D justifies the purchase with a speed claim redundancy does not make."
       },
       {
         "id": "Q6",
-        "kind": "applied",
-        "stem": "After a storm knocks out several routers across a region, a classmate says: 'The Internet clearly is not fault-tolerant — parts of it just failed.' Per EK CSN-1.E.5, what is the best response?",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which statement best describes a fault-tolerant system?",
         "options": [
-          "The classmate is right: a system that experiences any component failure cannot be called fault-tolerant",
-          "The classmate is right, since true fault tolerance requires engineers to repair all failures within minutes",
-          "The classmate is wrong: fault-tolerant systems are built from components so reliable that they cannot fail",
-          "The classmate is wrong: fault tolerance means the system can support failures and still continue to function, not that failures never happen"
+          "A system whose components are so reliable they never fail",
+          "A system that can support failures and still continue to function",
+          "A system that repairs every failure within a few minutes",
+          "A system that avoids failure by using only simple components"
         ],
-        "answer": "D",
+        "answer": "B",
         "ek": "EK CSN-1.E.5",
-        "rationale": "EK CSN-1.E.5 defines the term: when a system can support failures and still continue to function, it is called fault-tolerant — and it adds that elements of complex systems fail at unexpected times, often in groups, which a regional storm illustrates perfectly. The routers failed; users elsewhere kept using the network because data rerouted (EK CSN-1.E.4). A judges fault tolerance by the absence of failure — exactly backwards, since the definition presumes failures happen. B invents a repair-speed requirement found nowhere in the CED; the system tolerates failure by rerouting, not by fast fixes. C is the prevention myth again: no component is unfailable, which is why redundancy exists at all (EK CSN-1.E.2)."
+        "rationale": "A fault-tolerant system can support failures and still continue to function — the definition presumes failures happen, at unexpected times and often in groups. A and D are the prevention myth: no component is unfailable, which is why redundancy exists. C invents a repair-speed requirement; the system tolerates failure by rerouting, not by fast fixes."
       },
       {
         "id": "Q7",
         "kind": "applied",
-        "stem": "A network engineer notes that between any two points on the Internet there are usually many possible routing options. Per EK CSN-1.E.7, what does this redundancy of routing options provide?",
+        "predictFirst": false,
+        "stem": "Between any two points on the Internet there are usually many possible routes. What does this redundancy of routing options provide?",
         "options": [
-          "It guarantees that packets always arrive in order, removing the need for transport protocols",
-          "It increases the reliability of the Internet and helps it scale to more devices and more people",
-          "It reduces the total cost of running the Internet by eliminating the need for extra components",
-          "It prevents any individual router from failing and doubles the transmission speed of all data"
+          "It guarantees packets always arrive in order, removing the need for protocols",
+          "It lowers cost by removing the need for any extra components",
+          "It increases reliability and helps the Internet scale to more devices and people",
+          "It prevents any router from failing and doubles transmission speed"
         ],
-        "answer": "B",
+        "answer": "C",
         "ek": "EK CSN-1.E.7",
-        "rationale": "EK CSN-1.E.7 names exactly two payoffs: the redundancy of routing options between two points increases the reliability of the Internet and helps it scale to more devices and more people — option B, nearly verbatim. A contradicts Topic 4.1: packets may still arrive out of order regardless of how many routes exist, which is why transport protocols exist. C inverts EK CSN-1.E.6 — redundancy REQUIRES additional resources; it costs more, not less. D is the prevention myth plus a fabricated speed claim: routers still fail, and the benefit is rerouting around them (EK CSN-1.E.4), not making them unfailable or faster."
+        "rationale": "The redundancy of routing options increases the reliability of the Internet and helps it scale to more devices and people. A contradicts packet behavior — packets may still arrive out of order regardless of routes. B inverts the trade: redundancy requires additional resources, so it costs more. D is the prevention myth plus a fabricated speed claim."
       }
     ]
   },
