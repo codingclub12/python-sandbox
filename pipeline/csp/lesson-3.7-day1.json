@@ -343,7 +343,7 @@
         "id": "Q1",
         "kind": "scenario",
         "predictFirst": true,
-        "stem": "A ride gate runs: IF(height ≥ 48) { IF(age ≥ 12) { DISPLAY(\"Enjoy the ride\") } ELSE { DISPLAY(\"Ride with an adult\") } } ELSE { DISPLAY(\"Too short to ride\") }. A rider has height 46 and age 40. What is displayed?",
+        "stem": "A ride gate runs: IF(height ≥ 48) { IF(age ≥ 12) { DISPLAY(\"Enjoy the ride\") } ELSE { DISPLAY(\"Ride with an adult\") } } ELSE { DISPLAY(\"Too short to ride\") }. A rider: 46 inches, age 40. What is displayed?",
         "options": [
           "Too short to ride",
           "Enjoy the ride",
@@ -357,8 +357,7 @@
       {
         "id": "Q2",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "Using the same gate — IF(height ≥ 48) { IF(age ≥ 12) { DISPLAY(\"Enjoy the ride\") } ELSE { DISPLAY(\"Ride with an adult\") } } ELSE { DISPLAY(\"Too short to ride\") } — a rider has height 52 and age 8. What is displayed?",
+        "stem": "Using the same ride gate, a rider is 52 inches, age 8. What is displayed?",
         "options": [
           "Too short to ride",
           "Ride with an adult",
@@ -372,7 +371,7 @@
       {
         "id": "Q3",
         "kind": "applied",
-        "stem": "Which situation genuinely REQUIRES a nested conditional rather than two separate IF statements?",
+        "stem": "Which of the following situations best describes a genuine need for a nested conditional rather than two separate IF statements?",
         "options": [
           "Printing 'Hello' and then printing 'Goodbye' every single time the program is run",
           "Reporting whether a number is positive and, separately, whether it is even — both always shown",
@@ -385,7 +384,7 @@
       },
       {
         "id": "Q4",
-        "kind": "scenario",
+        "kind": "applied",
         "predictFirst": true,
         "stem": "A grader runs: IF(score ≥ 60) { IF(score ≥ 90) { DISPLAY(\"A\") } ELSE { DISPLAY(\"Pass\") } } ELSE { DISPLAY(\"Fail\") }. If score is 72, what is displayed?",
         "options": [
@@ -401,8 +400,7 @@
       {
         "id": "Q5",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "Using the same grader — IF(score ≥ 60) { IF(score ≥ 90) { DISPLAY(\"A\") } ELSE { DISPLAY(\"Pass\") } } ELSE { DISPLAY(\"Fail\") } — if score is 55, what is displayed, and which ELSE runs?",
+        "stem": "Using the same grader, if score is 55, what is displayed, and which ELSE runs?",
         "options": [
           "Pass, via the inner ELSE",
           "Fail, via the outer ELSE",
@@ -416,7 +414,7 @@
       {
         "id": "Q6",
         "kind": "applied",
-        "stem": "In the structure IF(a) { IF(b) { … } }, under what circumstance is condition b NOT evaluated at all?",
+        "stem": "In IF(a) { IF(b) { … } }, what is the circumstance under which condition b is never evaluated?",
         "options": [
           "When a is false, so control never enters the outer branch that contains b",
           "When b is false, the program refuses to evaluate it",
@@ -430,7 +428,7 @@
       {
         "id": "Q7",
         "kind": "multi",
-        "stem": "A program runs: IF(loggedIn) { IF(isAdmin) { DISPLAY(\"Admin\") } ELSE { DISPLAY(\"User\") } }. Which statements are true? I. A visitor who is not logged in produces no output. II. isAdmin is tested only for logged-in visitors. III. A logged-in visitor who is not an admin sees 'User.'",
+        "stem": "A program runs: IF(loggedIn) { IF(isAdmin) { DISPLAY(\"Admin\") } ELSE { DISPLAY(\"User\") } }. Which statements are true? I. A not-logged-in visitor produces no output. II. isAdmin is tested only when logged in. III. A logged-in non-admin sees \"User.\"",
         "options": [
           "I only",
           "I and II only",
@@ -444,8 +442,7 @@
       {
         "id": "Q8",
         "kind": "scenario",
-        "predictFirst": true,
-        "stem": "A store gives free shipping only to members, and among members only when the order is over $50 (otherwise 'Add more for free shipping'); anyone who is not a member sees 'Members only.' Which code is correct?",
+        "stem": "A store gives free shipping only to members, and only when a member's order is over $50 (otherwise \"Add more for free shipping\"); non-members see \"Members only.\" Which code is correct?",
         "options": [
           "IF(isMember) { … } and a separate IF(total > 50) { … }, each printing its own message",
           "IF(total > 50) { IF(isMember) { DISPLAY(\"Free shipping\") } ELSE { DISPLAY(\"Members only\") } }",
