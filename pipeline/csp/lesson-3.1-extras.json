@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "lessonId": "3.1",
+    "lessonTitle": "Variables and Assignments",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-1.A, AAP-1.B"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-1.A, AAP-1.B",
+    "intro": "Everything for this topic lives in this folder. Topic 3.1 is the pilot for Big Idea 3 — the first topic where students read and write code — so it also ships an interactive, auto-graded coding-practice page. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (what a variable is; meaningful names; the four types) and Day 2 (the assignment operator; most-recent-value trace puzzles). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Log and Exercise 2: Pick the Type (student + answer KEY)",
+      "Discussion — Who Are Names For? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-1.A and AAP-1.B, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-1-variables-and-assignments"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-1-variables-and-assignments-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-1-variables-and-assignments-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-1-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-1-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-1-variables-and-assignments"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: what a variable is and choosing a type; Day 2: assignment and the trace puzzles). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real code and checks it against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.1 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.2 (Data Abstraction) begins immediately after the quiz, and it builds directly on the variable defined here."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Log",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-1-exercise-1",
+    "intro": "You are a debugging partner reading a program's execution log. The program below is a sequence of assignments in exam pseudocode; the log shows each line in order. Your job is to TRACE it — determine the value of every variable after each line runs — and then answer questions about what the program finally displays. This is the single most tested skill for LO AAP-1.B: read line by line, evaluate the right side first, and remember that a variable keeps its most recent value.",
+    "scenarioTitle": "Execution Log: A Sequence of Assignments",
+    "narrative": "Read the log top to bottom, one line at a time. For each line, first evaluate the expression on the RIGHT using the current values, then store a copy in the variable on the LEFT. A dash means the variable has no value yet. Work your own trace on scratch paper before answering Part A — the log is your reference, and the questions ask what specific variables hold at specific moments.",
+    "log": {
+      "columns": [
+        "Line",
+        "Statement",
+        "Right side evaluates to",
+        "Variable changed",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "1",
+          "goals ← 2",
+          "2",
+          "goals",
+          "goals now holds 2"
+        ],
+        [
+          "2",
+          "assists ← goals",
+          "2 (a copy of goals right now)",
+          "assists",
+          "assists takes a COPY of goals' current value, not a link"
+        ],
+        [
+          "3",
+          "goals ← goals + 3",
+          "2 + 3 = 5",
+          "goals",
+          "goals is overwritten with 5; assists is untouched"
+        ],
+        [
+          "4",
+          "points ← goals",
+          "5 (a copy of goals right now)",
+          "points",
+          "points copies the CURRENT goals, which is now 5"
+        ],
+        [
+          "5",
+          "goals ← 0",
+          "0",
+          "goals",
+          "goals resets to 0; points and assists keep their own copies"
+        ]
+      ]
+    },
+    "scenarioNote": "Program adapted from the Day 2 worked trace and the CED's a ← 1; b ← a; a ← 2 example; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023).",
+    "predict": "Before you answer Part A, predict in one sentence: after the whole log runs, will assists, points, and goals all hold the same value? Why or why not?",
+    "partALabel": "Part A - Trace the Values",
+    "partA": [
+      {
+        "ek": "EK AAP-1.B.2 / AAP-1.B.3",
+        "pts": 4,
+        "q": "Give the value of goals, assists, and points AFTER line 4 has run. Show how you evaluated the right side of each assignment to get there.",
+        "answer": "After line 4: goals = 5, assists = 2, points = 5. Trace: line 1 sets goals to 2. Line 2, assists ← goals, evaluates goals (2) and stores a COPY of 2 in assists (EK AAP-1.B.2). Line 3, goals ← goals + 3, evaluates 2 + 3 = 5 and overwrites goals with 5 — assists is NOT affected because it holds its own copy (EK AAP-1.B.3). Line 4, points ← goals, evaluates the current goals (now 5) and copies 5 into points. So goals = 5, assists = 2, points = 5. Full credit requires showing that assists stayed 2 while goals changed."
+      },
+      {
+        "ek": "EK AAP-1.B.3",
+        "pts": 4,
+        "q": "The final line is goals ← 0. If the program ends with DISPLAY(assists), DISPLAY(points), DISPLAY(goals), what three values print, in order? Explain why assists and points did NOT change when goals was reset to 0.",
+        "answer": "It prints 2, 5, 0. assists = 2, points = 5, goals = 0. When goals ← 0 runs, it changes only goals — the most recent value assigned to goals is 0 (EK AAP-1.B.3). assists and points were each assigned a COPY of goals' value at an earlier moment (2 and 5 respectively); those copies are independent, so reassigning goals never touches them. There is no live link between the variables — assignment stores a value, not a connection (EK AAP-1.B.2)."
+      },
+      {
+        "ek": "EK AAP-1.B.2",
+        "pts": 4,
+        "q": "A classmate reads line 2 (assists ← goals) and says 'now assists and goals are the same variable, so they'll always match.' Using the exact CED definition of the assignment operator, explain what is wrong and what line 2 actually does.",
+        "answer": "The classmate is wrong: the two variables are not merged or linked. Per EK AAP-1.B.2, a ← expression evaluates the expression and then assigns a COPY of the result to the variable. So assists ← goals evaluates goals (2) and stores a separate copy of 2 in assists. From that instant assists and goals are independent variables that happen to hold equal values; the moment line 3 changes goals to 5, they differ. 'Same variable' and 'always match' both assume a link the assignment operator never creates."
+      },
+      {
+        "ek": "EK AAP-1.B.1",
+        "pts": 3,
+        "q": "Line 3 is goals ← goals + 3, where goals appears on BOTH sides. Explain, in the correct order of steps, how a variable can legally appear on both sides of an assignment.",
+        "answer": "It is legal because assignment is a two-step command, not an equation (EK AAP-1.B.1 / AAP-1.B.2). Step 1: evaluate the right side using the CURRENT value of goals — goals is 2, so 2 + 3 = 5. Step 2: store a copy of that result (5) back into goals, overwriting the old 2. The old value is only READ in step 1 and only REPLACED in step 2, so there is no contradiction. Reading it as 'becomes' makes it obvious: 'goals becomes goals + 3' means 'goals becomes 5.'"
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-1.B.3",
+        "pts": 3,
+        "q": "Write your own three-line assignment sequence (using two variables) that ends by DISPLAYing a value that surprises someone who thinks assignment creates a link. State the displayed value and why it surprises them.",
+        "answer": "Example: score ← 10; best ← score; score ← 25; DISPLAY(best) prints 10. It surprises someone expecting 25 because they assume best is tied to score and updates when score changes. In fact best ← score copied score's value (10) at that moment, and a variable keeps its most recent assigned value (EK AAP-1.B.3); best was never reassigned, so it is still 10. Any equivalent sequence earns full credit as long as the copied variable is changed after the copy and the displayed value proves independence."
+      },
+      {
+        "ek": "EK AAP-1.B.3",
+        "pts": 3,
+        "q": "To swap the values of two variables you generally need a THIRD (temporary) variable. Using a ← 4 and b ← 9, write the swap with a temp and explain what would go wrong if you tried a ← b; b ← a with no temp.",
+        "answer": "Correct swap: temp ← a; a ← b; b ← temp. Trace: temp holds 4, a becomes 9, b becomes the saved 4 — final a = 9, b = 4, swapped. Without temp, a ← b makes a = 9, destroying a's original 4; then b ← a copies the NEW a (9) into b, so both end up 9 and the original 4 is gone forever. The temporary variable is needed to preserve a's value before it is overwritten, because a variable holds only its most recent value (EK AAP-1.B.3)."
+      },
+      {
+        "ek": "EK AAP-1.A.1 / AAP-1.B.3",
+        "pts": 2,
+        "q": "ENRICHMENT: In the log, points ← goals copied a number. If instead a variable roster held a LIST and you wrote copyRoster ← roster, the exam reference sheet says this assigns a copy of the list. Explain how that connects to the idea that a variable holds exactly ONE value, and predict whether changing roster later would change copyRoster.",
+        "answer": "It connects directly: a variable holds exactly one value at a time, and that single value can itself be a list (EK AAP-1.A.1). copyRoster ← roster evaluates roster (one list value) and, per the reference sheet, stores a copy of that list in copyRoster. Because a copy was stored, copyRoster is its own independent value: reassigning roster to a different list later would change only roster, not copyRoster — the same most-recent-value / copy logic as the number case (EK AAP-1.B.3). (Note: element-by-element list mutation is a Topic 3.10 nuance; here we assign a whole new value.)"
+      },
+      {
+        "ek": "LO AAP-1.B",
+        "pts": 0,
+        "q": "Next step: you traced these values by hand. Now head to the Topic 3.1 page and type and run the harder versions, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Pick the Type",
+    "minutes": "25 minutes",
+    "subtitle": "5 values - choose the type and name",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-1-exercise-2",
+    "intro": "You are designing the variables for a new app. For each value the app must store, decide WHAT KIND of value it is, choose the type that best represents it (number, Boolean, list, or string), and give the variable a meaningful name. The decisions that trip people up are values that look like one type but behave like another — a phone number full of digits that is really a label, or a yes/no fact that is really a Boolean. Vague answers like 'just use a number' score zero.",
+    "standard": "CB Standard (required): what kind of value it is + the best type (number / Boolean / list / string) + a meaningful variable name, for all 5 values. Enrichment (optional): note a subtler type or naming consideration (EK AAP-1.A.4).",
+    "methodHeading": "Three-Step Method - use for every value",
+    "method": [
+      [
+        "Step 1 - Name what kind of value it is",
+        "Is it a quantity you calculate with, a yes/no fact, ordered text, or many values held together? That description points straight at the type."
+      ],
+      [
+        "Step 2 - Choose the type + apply the arithmetic test",
+        "Pick number, Boolean, list, or string. For digit-filled values, ask: do I ever add, subtract, or average this? If not, it is a label — a string — even though it looks numeric."
+      ],
+      [
+        "Step 3 - Give it a meaningful name",
+        "Name the variable so the code reads like its intent (EK AAP-1.A.2). isLoggedIn beats flag; quizScores beats data1. A type without a good name is only half the decision."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler type/naming judgment): Some values are genuinely better suited to one type than another (EK AAP-1.A.4), and the reason is often about what you must PRESERVE or COMPUTE. Leading zeros, symbols, and formatting push a value toward string; needing arithmetic, comparison, or averaging pulls it toward number. A collection of related values belongs in one list under one meaningful name — not many loose variables. When you finish, move to the Topic 3.1 coding page to write and run programs that use these types.",
+    "fields": [
+      "What kind of value is this (quantity / yes-no / text / collection):",
+      "Best type (number / Boolean / list / string) + a meaningful variable name:",
+      "Enrichment — a subtler type or naming consideration:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The app must store a player's current score in a game, which goes up and down as they play and is compared against a high score.",
+        "key": {
+          "signs": "This is a quantity you calculate with: the score is added to, compared, and measured against a high score. That is the classic signal for a numeric value (EK AAP-1.A.3).",
+          "mechanism": "Choose the NUMBER type, named something like currentScore or playerScore. A meaningful name shows what the value represents and keeps the code readable (EK AAP-1.A.2). Arithmetic (adding points, comparing to the high score) works directly on numbers, which is exactly what this value needs.",
+          "subtype": "Because a number is only useful when you do math on it, currentScore passing the arithmetic test confirms the type. Contrast it with the phone-number case later: same digits on screen, opposite decision, because one is computed with and the other is not."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "The app must remember whether the user has accepted the terms of service, so it can show or hide a reminder banner.",
+        "key": {
+          "signs": "This is a yes/no fact with exactly two states — accepted or not accepted. A two-state fact is the textbook case for a Boolean (EK AAP-1.A.3).",
+          "mechanism": "Choose the BOOLEAN type, named hasAcceptedTerms (or termsAccepted). It holds true or false, and a well-chosen name makes conditionals read like plain English later — 'if not hasAcceptedTerms, show the banner' (EK AAP-1.A.2). Storing this as a number (0/1) or the text 'yes'/'no' is a worse fit because the value is genuinely binary.",
+          "subtype": "EK AAP-1.A.4 in action: a yes/no fact is better suited to a Boolean than to a number or string. Name Booleans as questions or states (is..., has...) so their true/false meaning is unmistakable."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "The app must store the user's phone number, entered as 5551234567, which is only ever displayed and texted, never used in any calculation.",
+        "key": {
+          "signs": "It LOOKS numeric because it is all digits, but nothing is ever computed from it — it is a label used for display and contact. Apply the arithmetic test: you never add or average phone numbers.",
+          "mechanism": "Choose the STRING type, named phoneNumber. As a string the exact sequence of characters — including any leading zero, and formatting like dashes or a country code — is preserved (EK AAP-1.A.4). Stored as a number, a leading zero would vanish and formatting would be lost, corrupting the value.",
+          "subtype": "This is the headline EK AAP-1.A.4 trap: the right test is whether you do ARITHMETIC on the value, not whether it contains digits. ZIP codes, student IDs, and credit-card numbers follow the same rule — all strings."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "The app must store the titles of all the songs in a user's playlist so it can show them in order and let the user scroll through them.",
+        "key": {
+          "signs": "This is MANY related values that must be kept together and in order — a collection, not a single item. The signal is 'all of the ...' plus an order that matters.",
+          "mechanism": "Choose the LIST type, named playlistTitles (or songTitles), where each element is a string title. One variable holds one value — a single list — that in turn contains many titles (EK AAP-1.A.1). A good plural name signals the collection and keeps the code readable (EK AAP-1.A.2).",
+          "subtype": "The alternative — dozens of loose variables like song1, song2, song3 — fails as soon as the playlist grows or changes; a list scales and preserves order. Note the nesting the CED allows: one variable, one list value, many string elements inside."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "The app must store a product's price, like 19.99, because it will be summed into a cart total and multiplied by a tax rate.",
+        "key": {
+          "signs": "This is a quantity you calculate with: it gets summed and multiplied. Summing and multiplying are arithmetic, so it passes the number test cleanly (EK AAP-1.A.3).",
+          "mechanism": "Choose the NUMBER type, named itemPrice (or unitPrice). Arithmetic — adding to a cart total, multiplying by a tax rate — must work directly, which only a number supports. A meaningful name like itemPrice makes 19.99 self-explanatory instead of a bare mystery value (EK AAP-1.A.2).",
+          "subtype": "Contrast with Scenario 3: a price and a phone number can both contain digits, but one is computed with (number) and one is a label (string). The arithmetic test — 'do I ever calculate with this?' — is what separates them, which is the heart of EK AAP-1.A.4."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Who Are Names For?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "A program runs exactly the same whether a variable is called x or timeRemaining, and it stores exactly the same bits whether you understand it or not. Yet naming and tracing variables is where beginners lose the most time and make the most bugs. Across three short windows in this topic, your group will argue about who variable names are really for, decide what makes a value 'the wrong type,' and settle the trace puzzles that fool almost everyone the first time.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your nameless recipe was almost impossible to follow until you gave the values names. What broke, exactly — and what does that tell you about what a variable really provides that 'just remembering the number' does not?"
+          },
+          {
+            "text": "Question 2. The computer runs the same whether you name a variable x or timeRemaining. So who are meaningful names actually FOR? Name a time you (or someone) had to reread confusing writing, code, or instructions and wished the author had labeled things clearly."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the match-the-type table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-question test",
+            "text": "For any value made of digits — a price, a phone number, a ZIP code, a score — there is one question that decides whether it should be a number or a string. In one sentence your whole group agrees on, write that question, and state what each answer tells you to choose.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Find a value that fights back",
+            "text": "Debate for about 3 minutes: name one real-world value where your group DISAGREES about the best type, or where it honestly depends on how the value is used. Record the value and the two defensible choices, then state the piece of information that would settle it.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The trace that fools everyone",
+            "text": "Consider: a ← 1, b ← a, a ← 2, DISPLAY(b). Most people's gut says 2; the answer is 1. As a group, write the clearest one-paragraph explanation you can of WHY it is 1 — one a nervous classmate would actually understand — using the words 'copy' and 'most recent value.' Then invent one more short sequence that would fool the same person, and give its correct answer.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'assignment makes a link' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

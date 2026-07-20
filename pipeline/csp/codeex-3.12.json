@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.12",
+    "title": "Calling Procedures",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in the Trace the Call and Effect-or-Value exercises — same snack-bar procedures. Now type and run them for real, hardest last. The procedures are already written for you (or nearly so); your job is to CALL them, capture what they RETURN, and DISPLAY the result. Predict the output first, then check yourself."
+  },
+  "problems": [
+    {
+      "prompt": "The procedure costFor is already written: it returns count times 3 (each snack is $3). Call it with an order of 4 snacks and print the total, exactly: 12",
+      "promptHtml": "The procedure <code>costFor</code> is already written: it returns <code>count</code> times 3 (each snack is $3). Call it with an order of 4 snacks and print the total, exactly: <code>12</code>",
+      "expected": "12",
+      "starter": {
+        "python": "def costFor(count):\n    return count * 3\n\n# costFor is written for you. Call it with 4 and print what it returns.\n# Expected output: 12\n",
+        "javascript": "function costFor(count) {\n  return count * 3;\n}\n\n// costFor is written for you. Call it with 4 and print what it returns.\n// Expected output: 12\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE costFor(count)\n{\n  RETURN(count * 3)\n}\ntotal ← costFor(4)\nDISPLAY(total)",
+        "python": "def costFor(count):\n    return count * 3\n\ntotal = costFor(4)\nprint(total)",
+        "javascript": "function costFor(count) {\n  return count * 3;\n}\n\nlet total = costFor(4);\nconsole.log(total);"
+      },
+      "hint": "Capture what the call hands back: total = costFor(4). The call runs the procedure, and total then holds the returned value 12, which you print."
+    },
+    {
+      "prompt": "Using the same costFor(count) that returns count times 3, a customer buys 2 popcorns and 3 drinks. Call costFor once for each, add the two returned totals, and print the order total, exactly: 15",
+      "promptHtml": "Using the same <code>costFor(count)</code> that returns <code>count</code> times 3, a customer buys 2 popcorns and 3 drinks. Call <code>costFor</code> once for each, add the two returned totals, and print the order total, exactly: <code>15</code>",
+      "expected": "15",
+      "starter": {
+        "python": "def costFor(count):\n    return count * 3\n\n# Call costFor for 2 popcorns and again for 3 drinks.\n# Capture each returned value, add them, and print the total.\n# Expected output: 15\n",
+        "javascript": "function costFor(count) {\n  return count * 3;\n}\n\n// Call costFor for 2 popcorns and again for 3 drinks.\n// Capture each returned value, add them, and print the total.\n// Expected output: 15\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE costFor(count)\n{\n  RETURN(count * 3)\n}\npopcorn ← costFor(2)\ndrinks ← costFor(3)\norder ← popcorn + drinks\nDISPLAY(order)",
+        "python": "def costFor(count):\n    return count * 3\n\npopcorn = costFor(2)\ndrinks = costFor(3)\norder = popcorn + drinks\nprint(order)",
+        "javascript": "function costFor(count) {\n  return count * 3;\n}\n\nlet popcorn = costFor(2);\nlet drinks = costFor(3);\nlet order = popcorn + drinks;\nconsole.log(order);"
+      },
+      "hint": "Capture each call in its own variable — popcorn = costFor(2) and drinks = costFor(3) — then add the two captured values. Only a value you captured can be reused in the sum."
+    },
+    {
+      "prompt": "The procedure label(name, count) is written for you; it prints the name then the count on one line. Watch argument ORDER: call it so the screen shows exactly: Nachos 2",
+      "promptHtml": "The procedure <code>label(name, count)</code> is written for you; it prints the name then the count on one line. Watch argument ORDER: call it so the screen shows exactly: <code>Nachos 2</code>",
+      "expected": "Nachos 2",
+      "starter": {
+        "python": "def label(name, count):\n    print(str(name) + \" \" + str(count))\n\n# Arguments bind to parameters BY POSITION.\n# Call label so it prints: Nachos 2\n",
+        "javascript": "function label(name, count) {\n  console.log(name + \" \" + count);\n}\n\n// Arguments bind to parameters BY POSITION.\n// Call label so it prints: Nachos 2\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE label(name, count)\n{\n  DISPLAY(name)\n  DISPLAY(count)\n}\nlabel(\"Nachos\", 2)",
+        "python": "def label(name, count):\n    print(str(name) + \" \" + str(count))\n\nlabel(\"Nachos\", 2)",
+        "javascript": "function label(name, count) {\n  console.log(name + \" \" + count);\n}\n\nlabel(\"Nachos\", 2);"
+      },
+      "hint": "The first argument goes to the first parameter (name), the second to count. Put \"Nachos\" first and 2 second: label(\"Nachos\", 2). Swapping them would print 2 Nachos."
+    },
+    {
+      "prompt": "Write it from scratch. A snack costs $3. Write a procedure named costFor that takes count and RETURNS count times 3. Then use it to price an order of 7 snacks and print the total, exactly: 21",
+      "promptHtml": "Write it from scratch. A snack costs $3. Write a procedure named <code>costFor</code> that takes <code>count</code> and RETURNS <code>count</code> times 3. Then use it to price an order of 7 snacks and print the total, exactly: <code>21</code>",
+      "expected": "21",
+      "starter": {
+        "python": "# 1) Define a procedure costFor(count) that RETURNS count * 3.\n# 2) Call it with 7, capture the returned value, and print it.\n# Expected output: 21\n",
+        "javascript": "// 1) Define a procedure costFor(count) that returns count * 3.\n// 2) Call it with 7, capture the returned value, and print it.\n// Expected output: 21\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE costFor(count)\n{\n  RETURN(count * 3)\n}\ntotal ← costFor(7)\nDISPLAY(total)",
+        "python": "def costFor(count):\n    return count * 3\n\ntotal = costFor(7)\nprint(total)",
+        "javascript": "function costFor(count) {\n  return count * 3;\n}\n\nlet total = costFor(7);\nconsole.log(total);"
+      },
+      "hint": "First write the procedure with a return line (return count * 3). Then call costFor(7), store the returned value in a variable, and print that variable. The RETURN is what makes the value available to capture."
+    }
+  ]
+}

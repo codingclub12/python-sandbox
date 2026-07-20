@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "lessonId": "1.3",
+    "lessonTitle": "Program Design and Development",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 1: Creative Development",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO CRD-2.E, CRD-2.F",
+    "anchor": "Program Design and Development",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 1 · Topic 1.3 · Day 1 of 2",
+      "title": "Nobody Great Codes First",
+      "subtitle": "How real programs actually get built — the four phases, the two process styles, and why the best developers spend so long NOT writing code",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 1.3, Program Design and Development. In Topic 1.2 we asked what programs are FOR; today we ask how they actually get MADE — and the honest answer is that the code is one of the last things to appear. We spend two days here. Today, Day 1, is the development process itself: the four phases the College Board names, iterative versus incremental — two words the exam loves to swap — and the design work that turns an idea into a buildable plan. Tomorrow is what programmers write besides code: documentation and giving credit, which connects directly to the Create Performance Task every student in this room will submit. This topic is the blueprint for that task, so everything here is a deposit into your own project."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Describe how a development process works — its four phases — and tell iterative from incremental (LO CRD-2.E)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how a program and its interface are designed: investigation, requirements, specification (LO CRD-2.F)"
+        }
+      ],
+      "script": "Two targets today, one per learning objective. First, CRD-2.E: the development process — knowing the four commonly used phases by name, knowing a process can be ordered and intentional or exploratory, and being able to tell iterative development from incremental development, which is the single most-swapped pair of words in this topic. Second, CRD-2.F: design — how investigation produces requirements, how a specification defines those requirements, and the specific activities the College Board lists for the design phase. Tomorrow builds on today with documentation and acknowledging borrowed code."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Your club is running a bake-sale stand at Friday's game, and you're in charge. List the first six things you would do — in order — between right now and the moment the stand opens.",
+      "subprompt": "Now go back and label each step with your own one-word tag for what KIND of step it is: finding-out? planning? building? checking? Keep the list — we'll use it all period.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own — and notice there is no code anywhere in this prompt; that's deliberate. Six steps, in order, from now until the bake-sale stand opens Friday. Then the interesting part: label each step with your own word for what kind of step it is. Most lists start with things like 'ask people what they'd buy' and 'figure out prices' — finding-out steps — then move to planning the table layout, then building the stand, then a taste-test or a trial run. Keep the list visible. In about ten minutes the College Board will hand you four official names for the exact categories you just invented, and you'll discover you already run a development process every time you plan anything."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "How Programs Get Built",
+          "description": "Ordered vs. exploratory processes, the four phases, and iterative vs. incremental (EK CRD-2.E.1–E.4)."
+        },
+        {
+          "title": "Design: From Investigation to Blueprint",
+          "description": "Investigation methods, requirements, the specification, and the design phase's activities (EK CRD-2.F.1–F.7)."
+        },
+        {
+          "title": "Deep Dive: Waterfall vs. Agile",
+          "description": "How the ordered-vs-exploratory choice plays out in the real software industry.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 1.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Here's the map for today's Guided Notes — three sections. Two are green and CB-required: how programs get built, covering the phases and the iterative-incremental distinction, and then design, from investigation all the way to the specification. The third is a blue deep dive on how the software industry actually runs these processes — waterfall versus agile — which goes beyond the exam but makes the required ideas concrete. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 1.3 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "How Programs Get Built",
+      "kicker": "The Development Process · Learning Objective CRD-2.E",
+      "script": "Section one. Every program you have ever used — every app, every game, every website — came out of a development process, and the College Board is precise about its shape: two possible styles, four commonly used phases, and two famous adjectives, iterative and incremental, that describe how teams move through those phases. Your bake-sale list already contains all of it."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CRD-2.E)",
+      "terms": [
+        {
+          "term": "Development process",
+          "definition": "The path a programmer follows to build a program — it can be ordered and intentional, or exploratory in nature; common phases are investigating and reflecting, designing, prototyping, and testing (EK CRD-2.E.1, CRD-2.E.2)."
+        },
+        {
+          "term": "Iterative development",
+          "definition": "A process that requires refinement and revision based on feedback, testing, or reflection throughout — which may mean revisiting earlier phases (EK CRD-2.E.3)."
+        },
+        {
+          "term": "Incremental development",
+          "definition": "A process that breaks the problem into smaller pieces and makes sure each piece works before adding it to the whole (EK CRD-2.E.4)."
+        }
+      ],
+      "script": "Three terms that carry this section. A development process is the path from idea to working program — and the College Board says it can be ordered and intentional, a planned march, or exploratory, a discovery-as-you-go approach; both are legitimate. Iterative development means loops: refine and revise based on feedback, testing, or reflection, even if that means going back to a phase you thought was finished. Incremental development means pieces: break the problem into smaller chunks and verify each one works before adding it to the whole. Loops versus pieces — hold onto that pairing, because the exam builds distractors out of swapping these two words."
+    },
+    {
+      "type": "concept",
+      "heading": "Two Styles, Four Phases",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A development process can be ORDERED AND INTENTIONAL — a deliberate plan — or EXPLORATORY — experimenting your way to a solution (EK CRD-2.E.1).",
+        "There are multiple development processes, but four phases are commonly used: INVESTIGATING AND REFLECTING, DESIGNING, PROTOTYPING, and TESTING (EK CRD-2.E.2).",
+        "Your bake-sale list hit the same four: asking what people would buy (investigating), planning the table (designing), a trial batch (prototyping), the taste test (testing).",
+        "The phases are a toolkit, not a straitjacket — real processes revisit and reorder them, which is exactly where 'iterative' comes in next."
+      ],
+      "script": "Two big facts on this slide. Fact one: a development process can be ordered and intentional — you plan the route and march it — or exploratory, where you experiment your way toward a solution because the problem is too new to plan. Neither is wrong; they fit different problems. Fact two: whatever the style, four phases show up so often the College Board names them: investigating and reflecting, designing, prototyping, and testing. Now look back at your bake-sale list — asking people what they'd buy is investigating, sketching the table layout is designing, the trial batch is prototyping, and the taste test is testing. You invented the phases before they had names. One warning: these are commonly used phases, not a mandatory one-way sequence — real teams loop back, and that looping has its own name on the next slide.",
+      "capture": [
+        {
+          "q": "Not every team plans everything up front — the CED also allows a process that is ______.",
+          "a": "exploratory in nature, discovering the design by experimenting"
+        },
+        {
+          "q": "After investigating and reflecting, the remaining three phases are ______.",
+          "a": "design the approach, prototype it, then test what was built"
+        },
+        {
+          "q": "The phases are commonly used, not a mandatory one-way sequence — real processes ______.",
+          "a": "revisit and reorder them (which is what makes a process iterative)"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Iterative vs. Incremental — Loops vs. Pieces",
+      "subheading": "The exam's favorite word swap in this topic. They describe two different things a process can do (EK CRD-2.E.3, CRD-2.E.4).",
+      "left": {
+        "title": "Iterative",
+        "definition": "Refine and revise from feedback, testing, reflection — revisit earlier phases",
+        "ek": "EK CRD-2.E.3",
+        "examples": [
+          "Test the prototype → users get confused → return to the DESIGN phase and rework it",
+          "The loop is the point: version 2 exists because version 1 taught you something",
+          "Revisiting an earlier phase is the tell-tale sign of iteration"
+        ]
+      },
+      "right": {
+        "title": "Incremental",
+        "definition": "Break the problem into pieces; verify each piece before adding it",
+        "ek": "EK CRD-2.E.4",
+        "examples": [
+          "Build the login → verify it works → THEN add the deck screen → verify → then add scoring",
+          "The pieces are the point: nothing joins the whole until it works on its own",
+          "'Each piece verified before being added' is the tell-tale phrase"
+        ]
+      },
+      "footer": "AP TIP: Iterative = LOOPS (revise, revisit earlier phases). Incremental = PIECES (verify each part before adding it). A process can be both at once.",
+      "script": "Here is the distinction this topic is famous for. Iterative is about loops: you refine and revise based on feedback, testing, or reflection, and that may pull you back into a phase you already 'finished' — testing reveals a confusing menu, so you return to designing. The loop is the point. Incremental is about pieces: break the problem into smaller parts and make sure each part works before you add it to the whole — login first, verify it, then the next feature, verify it, and so on. The pieces are the point. On the exam, the tell-tale sign of iterative is revisiting an earlier phase after feedback; the tell-tale phrase for incremental is each piece verified before being added. And note the footer: a real process is usually both at once — pieces built one at a time, each looped through feedback. They are not competitors; they are two different adjectives.",
+      "capture": [
+        {
+          "q": "What sends an iterative team back to an earlier phase? ______",
+          "a": "what they learn along the way — tests that fail, users who push back"
+        },
+        {
+          "q": "The incremental safety rule: never add a piece to the whole until ______.",
+          "a": "that piece has been verified to work on its own"
+        },
+        {
+          "q": "Memory hook: iterative = ______; incremental = ______.",
+          "a": "iterative = loops (revise and revisit); incremental = pieces (verify, then add)"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Iterating Means You Failed”",
+      "misconception": "Going back to an earlier phase means the team messed up — a good developer designs it right the first time and never has to revise.",
+      "whyItHappens": "School trains one-draft habits: you submit an essay once, get a grade, and move on. Revision feels like a penalty, so revisiting the design phase looks like evidence of a mistake.",
+      "correction": "Iteration is refinement BY DESIGN: the CED defines an iterative process as one that REQUIRES refinement and revision based on feedback, testing, or reflection — often revisiting earlier phases (EK CRD-2.E.3). Returning to the design phase means the process is working, not failing.",
+      "example": "The apps on your phone update every few weeks. Those updates aren't apologies — they're the iterative process working exactly as intended: test with millions of users, learn, revise, ship again.",
+      "script": "Here's the trap, and it comes from how school usually works: one draft, one grade, move on. Under that habit, a team that returns to the design phase looks like a team that blew it. The College Board says the opposite — read the definition closely: an iterative process REQUIRES refinement and revision based on feedback, testing, or reflection. Requires. The loop back to an earlier phase isn't the process breaking; it IS the process. Some information — like where real users get confused — literally cannot exist until you test, so a plan with no path for that information to flow back into design would be the actual failure. Every update badge on your phone is this principle running on schedule: test with millions of users, learn, revise, ship again."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Name That Process",
+      "subheading": "These map to LO CRD-2.E. Complete on your Guided Notes.",
+      "prompts": [
+        "A team builds a chat app one feature at a time — messages first, verified working, then emojis, then photos, each verified before it joins the app. Iterative, incremental, or both? Defend your label with the CED definition.",
+        "After user testing, a team leaves the code alone but returns to the design phase to rework two screens. Which term describes this — and why is revisiting a phase NOT evidence of failure?",
+        "A programmer facing a brand-new kind of problem starts experimenting with no fixed plan. Which kind of development process is this, and is it legitimate?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.3 page.",
+      "script": "Stop and think — six minutes, full sentences on your Guided Notes. One: the feature-at-a-time chat app, each piece verified before joining the whole — that's the incremental fingerprint, and a strong answer quotes the definition. Two: returning to the design phase after user testing — that's iteration, and the second half of the question matters most: revisiting is required by the definition, not evidence of failure. Three: the experimenter with no fixed plan — that's an exploratory process, and yes, the CED explicitly allows it; ordered-and-intentional is not the only legitimate style. A few students will be called on to defend their labels before we move to design."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Design: From Investigation to Blueprint",
+      "kicker": "Designing a Program and Its UI · Learning Objective CRD-2.F",
+      "script": "Section two. Of the four phases, the College Board zooms in hardest on the ones that happen before serious code: investigation and design. This is where a vague idea — 'a homework app' — becomes a precise, buildable plan. The vocabulary chain here is the most testable content of the day: investigation produces requirements, the specification defines the requirements, and the design phase outlines how to accomplish the specification."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CRD-2.F)",
+      "terms": [
+        {
+          "term": "Investigation",
+          "definition": "The work of understanding a program's constraints and the concerns and interests of the people who will use it — performed by collecting data through surveys, user testing, interviews, and direct observations (EK CRD-2.F.2, CRD-2.F.3)."
+        },
+        {
+          "term": "Program requirements",
+          "definition": "A description of how a program functions; may include a description of the user interactions the program must provide (EK CRD-2.F.4)."
+        },
+        {
+          "term": "Program specification",
+          "definition": "The document that defines the requirements for the program — the design phase then outlines how to accomplish it (EK CRD-2.F.5, CRD-2.F.6)."
+        }
+      ],
+      "script": "Three terms, and they chain together. Investigation is how you find out what to build: understanding the constraints on the program and the concerns and interests of the people who will actually use it. Requirements are what investigation produces: a description of how the program functions, often including the user interactions it must provide. And the specification is the document that defines those requirements — the formal statement of WHAT the program must do. Keep the chain in this order: investigate to discover, requirements to describe, specification to define. Tomorrow's quiz and the real exam both probe whether you know the specification defines the requirements — not the other way around."
+    },
+    {
+      "type": "concept",
+      "heading": "The Design Pipeline",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The design of a program incorporates INVESTIGATION to determine its requirements (EK CRD-2.F.1).",
+        "Investigation reveals two things: the program's CONSTRAINTS, and the CONCERNS AND INTERESTS of the people who will use it (EK CRD-2.F.2).",
+        "The specification DEFINES the requirements; the design phase then outlines HOW to accomplish that specification (EK CRD-2.F.5, CRD-2.F.6).",
+        "Order matters: you cannot write a specification for users you never investigated, and you cannot design toward a specification that doesn't exist."
+      ],
+      "script": "This is the backbone of LO CRD-2.F, and it's a pipeline. Design incorporates investigation to determine requirements — you go find out what's needed before deciding what to build. Investigation surfaces two kinds of truth: constraints, the hard limits like budget, devices, and deadlines, and the concerns and interests of the actual users, which are almost never what the programmer assumed. The requirements describe how the program functions; the specification defines those requirements formally; and only then does the design phase do its job — outlining how to accomplish the specification. Notice the direction of the arrows: skip investigation and your requirements are guesses; skip the specification and your design has no target. When a team ships an app nobody wanted, the autopsy almost always finds the first arrow missing.",
+      "capture": [
+        {
+          "q": "Design starts with investigation because you cannot list what a program must do until ______.",
+          "a": "you understand its constraints and its users"
+        },
+        {
+          "q": "Investigation looks outward at ______.",
+          "a": "the people who will use the program — what they need and worry about"
+        },
+        {
+          "q": "Specification vs. design phase: one ______, the other ______ — in that order.",
+          "a": "states what must be built … plans how to build it"
+        }
+      ],
+      "subheading": "Investigate → requirements → specification → design phase"
+    },
+    {
+      "type": "two_column",
+      "heading": "How You Investigate vs. What Design Produces",
+      "subheading": "The CED lists both: four ways to collect data from users, and five activities of the design phase (EK CRD-2.F.3, CRD-2.F.7).",
+      "left": {
+        "title": "Investigation methods",
+        "definition": "Collecting data to learn constraints and user needs",
+        "ek": "EK CRD-2.F.3",
+        "examples": [
+          "SURVEYS — many users, quick, shallow answers",
+          "USER TESTING — watch people try the (proto)product",
+          "INTERVIEWS — few users, deep conversation",
+          "DIRECT OBSERVATIONS — watch users in their real environment, no product in hand"
+        ]
+      },
+      "right": {
+        "title": "Design-phase activities",
+        "definition": "Outlining how to accomplish the specification",
+        "ek": "EK CRD-2.F.7",
+        "examples": [
+          "BRAINSTORMING ideas",
+          "PLANNING AND STORYBOARDING the flow",
+          "Organizing the program into MODULES and functional components",
+          "DIAGRAMS of the user-interface layouts",
+          "Developing a TESTING STRATEGY for the program"
+        ]
+      },
+      "footer": "AP TIP: 'Watching users in their normal routine' = direct observation. 'Watching users try your product' = user testing. Exam items hinge on that difference.",
+      "script": "Two College Board lists, side by side, both quotable on the exam. Left column, the four investigation methods: surveys reach many users cheaply but shallowly; interviews go deep with a few; user testing puts your product — even a rough prototype — in someone's hands while you watch; direct observation watches people in their real environment with no product involved at all, to learn how they actually work today. The footer distinction earns real points: watching a librarian check out books during a normal shift is direct observation; handing the librarian your prototype app is user testing. Right column, the five design-phase activities: brainstorming, planning and storyboarding, organizing the program into modules and functional components, creating diagrams of the user-interface layouts, and — the one students forget — developing a testing strategy. Deciding how you'll test is design work you do BEFORE building, not an afterthought.",
+      "capture": [
+        {
+          "q": "Beyond surveys and user testing, the CED's other two investigation methods are ______.",
+          "a": "sitting down with users (interviews) and watching them work (direct observation)"
+        },
+        {
+          "q": "Watching users in their real environment without your product is ______; watching them try your product is ______.",
+          "a": "direct observation; user testing"
+        },
+        {
+          "q": "The design-phase activity students most often forget: developing a ______.",
+          "a": "testing strategy for the program"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Sort the Activities into Phases",
+      "context": "A student team builds a flashcard app. Name the development-process phase for each activity in their week (EK CRD-2.E.2).",
+      "columns": [
+        "Team activity",
+        "What the team is really doing",
+        "Phase"
+      ],
+      "rows": [
+        [
+          "Survey the 9th grade about what a study app should do",
+          "Collecting data from future users to determine requirements",
+          "Investigating and reflecting"
+        ],
+        [
+          "Sketch every screen on paper and storyboard the flow between them",
+          "Outlining how to accomplish the specification",
+          "Designing"
+        ],
+        [
+          "Build a rough version where only the login screen actually works",
+          "Creating an early working model to try the idea out",
+          "Prototyping"
+        ],
+        [
+          "Give the rough version to five students and note where they get stuck",
+          "Checking the program against user needs; gathering feedback",
+          "Testing"
+        ],
+        [
+          "After the feedback, return to the paper sketches and rework two screens",
+          "Revisiting an earlier phase based on feedback — the iterative move",
+          "Designing (again — that's iteration)"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Let's run a whole week of a real student project through the four phases — fill in the Phase column on your Guided Notes as we go. Surveying the 9th grade is investigating and reflecting: collecting data from future users. Sketching screens and storyboarding the flow is designing: outlining how to accomplish the specification. The rough version where only login works is prototyping — an early working model built to learn from, not to ship. Handing it to five students and noting where they get stuck is testing. And row five is the payoff: going BACK to the sketches after feedback is the design phase again — and that return trip is precisely what makes this process iterative per the CED. One process, four phases, and a loop: the whole learning objective in one week of one project.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Design the Investigation",
+      "subheading": "These map to LO CRD-2.F. Complete on your Guided Notes.",
+      "prompts": [
+        "A team wants to build an app for the school library but has never spoken to the librarian. Choose TWO investigation methods for them, and say what each would reveal that the other wouldn't.",
+        "In one sentence each: what do the requirements describe, and what does the specification do to those requirements?",
+        "A teammate says the design phase is 'just drawing what the app looks like.' List three OTHER design-phase activities from the CED that prove them wrong."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.3 page.",
+      "script": "Stop and think — six minutes, full sentences. One: pick two investigation methods for the library app and justify the pair — a strong answer pairs a broad method like a survey with a deep one like an interview or direct observation of the checkout desk, and says what each uniquely reveals. Two: the requirements describe how the program functions, including user interactions it must provide, and the specification defines those requirements — that exact sentence pair is exam-ready. Three: the teammate who thinks design is just drawing — the CED lists brainstorming, storyboarding, organizing the program into modules, UI-layout diagrams, AND developing a testing strategy; any three beyond drawing proves the point. Answers are reviewed as a class before the deep dive."
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: Waterfall vs. Agile",
+      "subheading": "The CED's 'ordered vs. exploratory' choice, as a billion-dollar industry echo.",
+      "track": "enrichment",
+      "left": {
+        "title": "Waterfall (ordered, one pass)",
+        "definition": "Each phase fully completed, signed off, then never revisited",
+        "ek": "Deep Dive",
+        "examples": [
+          "All requirements → full design → full build → test at the very end",
+          "Works when requirements truly cannot change (spacecraft firmware, medical devices)",
+          "Famous failure mode: discovering in month 18 what users needed in month 1"
+        ]
+      },
+      "right": {
+        "title": "Agile (iterative + incremental)",
+        "definition": "Small pieces shipped in short cycles, feedback folded into the next cycle",
+        "ek": "Deep Dive",
+        "examples": [
+          "Two-week 'sprints': build a small piece, test with users, revise the plan",
+          "The dominant style at most modern software companies",
+          "It is literally the CED's two adjectives run as a schedule: increments, iterated"
+        ]
+      },
+      "footer": "Deep-dive connection: agile teams iterate BECAUSE testing keeps teaching them things design couldn't predict — EK CRD-2.E.3 as a business model.",
+      "script": "A deep dive for context — the exam won't say waterfall or agile, but the industry fight between them is the CED's vocabulary at billion-dollar scale. Waterfall is the fully ordered, one-pass process: nail down all requirements, complete the whole design, build everything, test at the end. It survives where requirements genuinely cannot move, like spacecraft firmware — and it fails famously when month-18 testing reveals what users actually needed in month 1, with no loop left to fix it. Agile is the industry's embrace of iterative-plus-incremental: two-week sprints, each delivering a small verified piece, each ending with feedback that reshapes the plan. When you hear that a company 'runs sprints,' you now know exactly which two CED adjectives their paycheck depends on.",
+      "capture": [
+        {
+          "q": "Waterfall completes each phase once and never ______.",
+          "a": "revisits it — which is why late-discovered user needs are so expensive"
+        },
+        {
+          "q": "Agile is the CED's two adjectives run as a schedule: ______.",
+          "a": "incremental (small verified pieces) + iterative (feedback revises each cycle)"
+        }
+      ]
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A development process can be ordered and intentional or exploratory; four phases are commonly used: investigating and reflecting, designing, prototyping, testing (EK CRD-2.E.1–E.2)",
+        "Iterative = loops (refine and revise, revisit earlier phases); incremental = pieces (verify each before adding it to the whole) (EK CRD-2.E.3–E.4)",
+        "Investigation — surveys, user testing, interviews, direct observations — determines requirements (EK CRD-2.F.1–F.4)",
+        "The specification defines the requirements; the design phase outlines how to accomplish it: brainstorming, storyboarding, modules, UI diagrams, testing strategy (EK CRD-2.F.5–F.7)"
+      ],
+      "nextPoints": [
+        "Day 2: documentation — the writing that lives with your code, and why comments never slow a program down (LO CRD-2.G)",
+        "Giving credit: how to acknowledge code from other sources — including AI — the right way (LO CRD-2.H)",
+        "The Create Performance Task plagiarism policy: the one rule that can zero out an entire project"
+      ],
+      "teaser": "Before tomorrow, chew on this: in June you wrote the most brilliant program of your life. In September you open the file — and you can't read your own code. Nothing is broken. Every line still runs. So what, exactly, went wrong?",
+      "script": "That's Day 1. Processes come in two styles and four common phases; iterative means loops and incremental means pieces; investigation determines requirements; the specification defines them; and the design phase outlines how to accomplish the specification. Tomorrow we cover what programmers write besides code — documentation and comments — plus how to properly credit code you didn't write, which connects straight to the Create Performance Task policy that can zero out an entire project. Here's the teaser to chew on: in June you wrote the most brilliant program of your life; in September you open it and can't read your own code, even though every line still runs. Nothing is broken — so what went wrong? Bring a theory tomorrow. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 1.3 — Program Design and Development — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": false,
+        "stem": "A team releases a prototype to ten classmates, learns the buttons are confusing, and returns to the design phase to rework the layout. This process is best described as:",
+        "options": [
+          "Incremental — each small piece was verified separately before being combined",
+          "A failed design phase that should have been done right the first time",
+          "Iterative — refining and revising from feedback, returning to an earlier phase",
+          "Exploratory — experimenting with no plan for the program"
+        ],
+        "answer": "C",
+        "ek": "EK CRD-2.E.3",
+        "rationale": "CRD-2.E.3 defines an iterative process as refinement and revision based on feedback, testing, or reflection, which may revisit earlier phases — exactly returning to design after feedback. A names the wrong idea; nothing here verifies pieces before combining them (CRD-2.E.4). B is the misconception that revisiting a phase is failure; the framework treats it as normal. D is wrong — the team clearly has a plan and a prototype."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which of the following best describes the phases commonly used to develop a program?",
+        "options": [
+          "Investigating and reflecting, designing, prototyping, testing",
+          "Brainstorming, coding, compiling, publishing",
+          "Designing, coding, debugging, documenting",
+          "Surveying, interviewing, observing, user testing"
+        ],
+        "answer": "A",
+        "ek": "EK CRD-2.E.2",
+        "rationale": "CRD-2.E.2 names four commonly used phases: investigating and reflecting, designing, prototyping, testing. B and C insert plausible activities (coding, compiling, debugging) that are not named phases — writing code lives inside prototyping. D lists the four investigation methods (CRD-2.F.3), a different list: ways to perform one phase, not the phases themselves."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": false,
+        "stem": "A student adds a feature, verifies it, adds the next, verifies it, and so on until the game is done. This approach is best described as:",
+        "options": [
+          "Iterative — each feature was revised after user feedback",
+          "Exploratory — the student did not know what the game would become",
+          "Investigating and reflecting — data was gathered before each part",
+          "Incremental — the problem is split into pieces, each verified before being added"
+        ],
+        "answer": "D",
+        "ek": "EK CRD-2.E.4",
+        "rationale": "CRD-2.E.4 defines incremental development as breaking the problem into pieces and verifying each before adding it — verify-then-add is that definition. A is the swap trap; no feedback-driven revision is described (CRD-2.E.3). B mislabels a planned, piece-by-piece build as exploratory. C misuses a phase name — no user data is gathered, only the student's own verification."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": false,
+        "stem": "A developer spends a week watching cafeteria workers use the current system, without interfering or adding any software. Which investigation method is this?",
+        "options": [
+          "A survey — she gathers information from many workers at once",
+          "Direct observation — she watches users in their real environment",
+          "User testing — the workers try her program while she watches",
+          "An interview — she asks workers about their individual concerns"
+        ],
+        "answer": "B",
+        "ek": "EK CRD-2.F.3",
+        "rationale": "CRD-2.F.3 lists direct observations — watching users in their normal environment with no new product introduced. A is wrong; no questionnaire is used. C is the near-miss: user testing means watching users try YOUR prototype, but here her product does not exist yet. D is wrong; no conversation occurs — she deliberately does not interfere."
+      },
+      {
+        "id": "Q5",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which statement correctly describes how a program's requirements and specification relate?",
+        "options": [
+          "The specification defines the requirements, which describe how the program functions",
+          "The requirements define the specification, which lists only user interactions",
+          "The specification is written after the program is finished, to document it",
+          "Requirements and specification are unrelated documents from different phases"
+        ],
+        "answer": "A",
+        "ek": "EK CRD-2.F.5",
+        "rationale": "CRD-2.F.5: a specification defines the requirements; CRD-2.F.4: requirements describe how a program functions, possibly including user interactions. B reverses the relationship and wrongly limits the specification to user interactions. C confuses the specification with after-the-fact documentation; it guides development. D is wrong — the two are directly linked, one defining the other."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which of the following best describes work done in the design phase of a program?",
+        "options": [
+          "Fixing run-time errors found while the finished program executes",
+          "Writing the final user manual after the program is released",
+          "Acknowledging code borrowed from another source",
+          "Developing a testing strategy and diagramming the user-interface layout"
+        ],
+        "answer": "D",
+        "ek": "EK CRD-2.F.7",
+        "rationale": "CRD-2.F.7 places brainstorming, diagramming the user-interface layout, and developing a testing strategy inside the design phase — D names two of these. A is debugging, which happens after code exists, not in design. B is documentation delivered at release, not a design activity. C is source acknowledgement (CRD-2.H), unrelated to the design phase. Students most doubt that planning HOW to test belongs in design, but the framework places it there."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": false,
+        "stem": "A student deletes every comment 'to make the program run faster.' What is the actual effect on how the program runs?",
+        "options": [
+          "It runs noticeably faster, since the computer skips the comment lines",
+          "Its behavior is unchanged — comments are read by people and do not affect how it runs",
+          "It stops working, since comments connect the code to its documentation",
+          "It runs at the same speed but may now produce different output values"
+        ],
+        "answer": "B",
+        "ek": "EK CRD-2.G.2",
+        "rationale": "CRD-2.G.2: comments are documentation read by people and do not affect how a program runs — deleting them changes nothing about execution, speed included. A restates the tested misconception. C invents a requirement; no language refuses uncommented code. D contradicts the definition from the other side — if comments do not affect execution, they cannot change output."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": false,
+        "stem": "Two partners plan to write all documentation in one session after the program is completely finished. What is the best evaluation of this plan?",
+        "options": [
+          "Fine — documentation only helps the final user run the program",
+          "Flawed only if the program will be published; private programs need none",
+          "Flawed — programmers should document throughout development, which helps build and maintain correct programs",
+          "Fine — documenting during development would change how the program runs"
+        ],
+        "answer": "C",
+        "ek": "EK CRD-2.G.3",
+        "rationale": "CRD-2.G.3 says document throughout development, and CRD-2.G.4 explains why: documentation helps build and maintain correct programs, alone or in teams — a development tool, not just a final product. A shrinks its audience to end users. B invents a published/private distinction. D contradicts CRD-2.G.2 — comments never affect how a program runs."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "predictFirst": false,
+        "stem": "A student's Create Task program includes a sorting segment found on a programming forum. Which is a sufficient acknowledgement?",
+        "options": [
+          "A note in the program documentation identifying the forum the code came from",
+          "Renaming the variables so thoroughly the segment no longer needs credit",
+          "Telling the teacher out loud that part of the program was found online",
+          "None is needed — code posted publicly is free to claim as your own"
+        ],
+        "answer": "A",
+        "ek": "EK CRD-2.H.2",
+        "rationale": "CRD-2.H.2: acknowledgement can appear in the program documentation and should name the origin or original author — a note naming the forum satisfies both. B is the 'I changed it, so it's mine' myth; modification does not erase the source (CRD-2.H.1). C is a verbal aside, not documentation, and does not travel with the program. D confuses publicly viewable with credit-free; on the Create Task, uncredited use scores zero."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 1.3 — Program Design and Development — Teacher Guide",
+    "subtitle": "Big Idea 1: Creative Development · Topic 1.3 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 1.3 is where students learn how programs actually get made: the development process (ordered vs. exploratory; the four commonly used phases of investigating and reflecting, designing, prototyping, and testing; iterative vs. incremental), the design work that turns an idea into a buildable specification (investigation methods, requirements, specification, and the CED's five design-phase activities), documentation (what it is, why comments never affect execution, and why it happens throughout development), and acknowledging code from other sources.",
+      "This topic is prime Create Performance Task scaffolding, and the materials say so explicitly to students: the development process students name here is the process they will run on their own PT, the documentation habits are the ones the written responses reward, and Day 2 lands the plagiarism policy directly — uncredited use of others' work or generative AI scores 0, and AI-generated code must be both credited and understood. The through-line is the Day 1 bell ringer (planning a bake-sale stand) — students discover they already run the four phases instinctively — and the Day 1 closing teaser (the brilliant June program you can't read in September), which Day 2's documentation section pays off."
+    ],
+    "los": [
+      "LO CRD-2.E — Develop a program using a development process.",
+      "LO CRD-2.F — Design a program and its user interface.",
+      "LO CRD-2.G — Describe the purpose of a code segment or program by writing documentation.",
+      "LO CRD-2.H — Acknowledge code segments used from other sources."
+    ],
+    "eks": [
+      "EK CRD-2.E.1 — A development process can be ordered and intentional, or exploratory in nature.",
+      "EK CRD-2.E.2 — There are multiple development processes. The following phases are commonly used when developing a program: investigating and reflecting, designing, prototyping, testing.",
+      "EK CRD-2.E.3 — A development process that is iterative requires refinement and revision based on feedback, testing, or reflection throughout the process. This may require revisiting earlier phases of the process.",
+      "EK CRD-2.E.4 — A development process that is incremental is one that breaks the problem into smaller pieces and makes sure each piece works before adding it to the whole.",
+      "EK CRD-2.F.1 — The design of a program incorporates investigation to determine its requirements.",
+      "EK CRD-2.F.2 — Investigation in a development process is useful for understanding and identifying the program constraints, as well as the concerns and interests of the people who will use the program.",
+      "EK CRD-2.F.3 — Some ways investigation can be performed are as follows: collecting data through surveys, user testing, interviews, direct observations.",
+      "EK CRD-2.F.4 — Program requirements describe how a program functions and may include a description of user interactions that a program must provide.",
+      "EK CRD-2.F.5 — A program's specification defines the requirements for the program.",
+      "EK CRD-2.F.6 — In a development process, the design phase outlines how to accomplish a given program specification.",
+      "EK CRD-2.F.7 — The design phase of a program may include: brainstorming, planning and storyboarding, organizing the program into modules and functional components, creation of diagrams that represent the layouts of the user interface, and development of a testing strategy for the program.",
+      "EK CRD-2.G.1 — Program documentation is a written description of the function of a code segment, event, procedure, or program and how it was developed.",
+      "EK CRD-2.G.2 — Comments are a form of program documentation written into the program to be read by people and do not affect how a program runs.",
+      "EK CRD-2.G.3 — Programmers should document a program throughout its development.",
+      "EK CRD-2.G.4 — Program documentation helps in developing and maintaining correct programs when working individually or in collaborative programming environments.",
+      "EK CRD-2.G.5 — Not all programming environments support comments, so other methods of documentation may be required.",
+      "EK CRD-2.H.1 — It is important to acknowledge any code segments that were developed collaboratively or by another source.",
+      "EK CRD-2.H.2 — Acknowledgement of a code segment(s) written by someone else and used in a program can be in the program documentation. The acknowledgement should include the origin or original author's name."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies).",
+      "Printed Topic 1.3 quiz (student copies) for the assessment block.",
+      "Optional: index cards listing the Day 1 worked-table activities, for a physical phase-sorting warm-up or re-teach."
+    ],
+    "prereqs": [
+      "Topic 1.1 (Collaboration) — students should already frame development as teamwork; Topic 1.3's process and documentation content repeatedly assumes collaborative settings (EK CRD-2.G.4, CRD-2.H.1).",
+      "Topic 1.2 (Program Function and Purpose) — students should be able to state what a program is for; this topic asks how a program with that purpose gets designed and built."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "The development process and program design (LO CRD-2.E, CRD-2.F)",
+        "segments": [
+          {
+            "segment": "QOTD (BI1/T1.3/Q1) + bell ringer (plan the bake-sale stand, tag your own steps)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "How programs get built: styles, four phases, iterative vs. incremental (EK CRD-2.E.1–E.4)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.E",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Design pipeline: investigation → requirements → specification → design activities + phase-sort table (EK CRD-2.F.1–F.7)",
+            "min": 15,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.F",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Deep dive: waterfall vs. agile (optional enrichment)",
+            "min": 5,
+            "slides": "17"
+          },
+          {
+            "segment": "Day close + the June-program teaser for Day 2",
+            "min": 3,
+            "slides": "18"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Documentation and acknowledging code, connected to the Create PT policy (LO CRD-2.G, CRD-2.H)",
+        "segments": [
+          {
+            "segment": "QOTD (BI1/T1.3/Q2) + bell ringer (the unreadable June program)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Documentation and comments: what, when, why, and environments without comments (EK CRD-2.G.1–G.5)",
+            "min": 12,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.G",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Acknowledging code + the Create PT plagiarism/AI policy + sufficiency table (EK CRD-2.H.1–H.2)",
+            "min": 13,
+            "slides": "10-13"
+          },
+          {
+            "segment": "Stop and Think on CRD-2.H",
+            "min": 6,
+            "slides": "14"
+          },
+          {
+            "segment": "Deep dive: how real teams document (optional enrichment)",
+            "min": 5,
+            "slides": "15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 1.3 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 1.3 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Iterating means you failed”",
+        "myth": "Going back to an earlier phase means the team messed up; a good developer designs it right the first time.",
+        "reality": "EK CRD-2.E.3 defines an iterative process as one that REQUIRES refinement and revision based on feedback, testing, or reflection — revisiting earlier phases is a planned feature, because information like where users get confused cannot exist until testing. App updates are iteration on schedule, not serial apologies."
+      },
+      {
+        "heading": "“Comments slow the program down”",
+        "myth": "Deleting comments makes a program smaller and faster, so lean code should be comment-free.",
+        "reality": "Per EK CRD-2.G.2, comments are read by PEOPLE and do not affect how a program runs — execution speed and output are identical with or without them. Stripping comments trades away future readability (EK CRD-2.G.4) for zero performance gain."
+      },
+      {
+        "heading": "“If I changed it, it's mine”",
+        "myth": "Renaming variables or lightly editing a borrowed code segment removes the need to credit it — especially if the code was posted publicly or written by an AI.",
+        "reality": "EK CRD-2.H.1–H.2: any code developed collaboratively or by another source must be acknowledged in the program documentation with the origin or original author's name. Modification doesn't erase origin, and on the Create PT, uncredited use of others' work or generative AI scores 0 — AI code must be credited AND understood."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Provide the four phases on a strip (investigating and reflecting → designing → prototyping → testing) and have students physically point to the phase before writing any answer in the Day 1 sort table.",
+        "Give the sentence frames: 'The requirements describe HOW the program functions. The specification DEFINES the requirements. The design phase outlines HOW TO ACCOMPLISH the specification.' — the chain students must be able to recite in order.",
+        "For iterative vs. incremental, anchor the one-word hooks LOOPS vs. PIECES and have students tag every scenario with one word before explaining."
+      ],
+      "extension": [
+        "Have students write a half-page specification plus a four-panel storyboard for an app of their choosing, then trade and check: could a stranger build from this? What requirement is missing?",
+        "Deep-dive students research one real development-process artifact (a sprint board, a public changelog, an open-source project README) and identify which CED phase or documentation idea it embodies.",
+        "Ask students to draft the acknowledgement comment they would write for an AI-generated procedure in their own future Create PT — origin, author, and a one-sentence explanation proving they understand the code."
+      ]
+    },
+    "discussion": [
+      "The CED allows a development process to be exploratory. When is 'just start experimenting' genuinely the smarter opening move — and what is the earliest signal that it's time to switch to an ordered, intentional process?",
+      "The Create PT permits generative AI as a supplementary resource, credited and understood. Where exactly is the line between AI as a tool (like a calculator) and AI as the uncredited author of your work — and who should get to draw that line?",
+      "Your favorite app has updated hundreds of times since launch. Is a program ever actually finished — and if not, what does that mean for how much time a team should spend making version 1 'perfect'?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

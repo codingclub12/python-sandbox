@@ -1,0 +1,380 @@
+{
+  "meta": {
+    "lessonId": "3.16",
+    "lessonTitle": "Simulations",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-3.F",
+    "anchor": "Simulations",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.16 · Day 2 of 2",
+      "title": "Judging the Model Against the World",
+      "subtitle": "When a simulation is the right tool because reality is impractical, how it lets you test hypotheses for free, and the quiet danger the exam loves — bias hidden in what you chose to leave out",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Simulations. Yesterday we BUILT a simulation — the weather model — by abstracting the real world down to one number and letting RANDOM supply the variability. Today we JUDGE simulations, which is the second half of learning objective AAP-3.F: comparing a simulation with the real world it stands for. Three ideas: first, WHEN a simulation is the right tool, which is exactly when the real experiment is impractical; second, how changing one value and re-running turns a simulation into a cheap hypothesis test; and third, the idea the exam tests hardest — how the elements you included or excluded can bias every result, no matter how objective the computer looks."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify when a simulation is the appropriate tool because a real experiment is impractical, and explain how reruns formulate and refine hypotheses (LO AAP-3.F)"
+        },
+        {
+          "tag": "CB",
+          "text": "Compare a simulation with its real-world context by finding the bias created by the real elements its designers included or excluded (LO AAP-3.F)"
+        }
+      ],
+      "script": "Two targets today, both from AAP-3.F and both about part b — comparing simulations with real-world contexts. First: recognize the situations where a simulation is the right call, which the College Board ties directly to real experiments being impractical, and explain how re-running a model with a changed value formulates and refines a hypothesis. Second: the headline skill — take a simulation and its real-world context, and pin down the bias that comes from which real elements the designers kept or cut. That comparison move is what separates a top MCQ answer from a plausible wrong one."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser: a flight simulator used to train pilots never simulates a bird flying into an engine. Trainee pilots log hundreds of hours on it and are certified partly on their simulator performance.",
+      "subprompt": "Write 2–4 sentences: Give one strong reason it is SMART for the simulator to leave bird strikes out. Then name one real danger created for a pilot trained only on it. Finish: who decided the bird strike wasn't worth including, and how would that choice bias what pilots are ready for?",
+      "directions": "Be ready to share your 'smart reason' and your 'real danger.'",
+      "script": "Five minutes with a partner. The flight simulator is a real, life-or-death simulation, and it deliberately excludes bird strikes. Students should see BOTH sides. Smart: bird strikes are rare, and a simulator can focus training time on the common, controllable skills — a reasonable simplification, straight out of yesterday's F.4. Dangerous: a pilot who has never practiced a bird strike may freeze in a real one — the exclusion has quietly biased what the training prepares them for, which is today's F.5. Then the sharp question: SOMEONE chose to leave it out. Every simulation carries its designers' choices, and those choices decide what the model can and cannot tell you. That tension — smart simplification versus dangerous bias — is the whole of today."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "When Simulations Beat Reality",
+          "description": "Why simulations are most useful when real experiments are impractical, and how reruns refine hypotheses (EK AAP-3.F.6, AAP-3.F.7)."
+        },
+        {
+          "title": "Bias: What You Leave Out",
+          "description": "How the real-world elements a simulation includes or excludes create bias in its results (EK AAP-3.F.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.16 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's map: two sections, both green and CB-required. First, when simulations beat reality — the situations where a real experiment is impractical, and how re-running a model with a tweaked value lets you test hypotheses for free. Second, bias — how the elements a designer includes or excludes bend the results, and how to spot that bias by comparing the model to the real world. Keep the packet open; the same weather model you built yesterday shows up again on the Topic 3.16 coding page, where the final problem has you run it through a procedure and check an invariant."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "When Simulations Beat Reality",
+      "kicker": "Impractical Experiments & Hypotheses · Learning Objective AAP-3.F",
+      "script": "Section one. A simulation is not always the right tool — if you can just run the real experiment cheaply and safely, do that. Simulations earn their keep in a specific situation the College Board names precisely: when the real event is impractical to experiment on. And once you have one, every rerun becomes a nearly free experiment."
+    },
+    {
+      "type": "concept",
+      "heading": "Simulate When Reality Is Impractical",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Simulations are MOST USEFUL when real-world events are impractical for experiments (EK AAP-3.F.6).",
+        "The CED names six ways reality can be impractical: too big, too small, too fast, too slow, too expensive, or too dangerous (EK AAP-3.F.6).",
+        "The abstraction lets you investigate the phenomenon without the constraints of the real world (EK AAP-3.F.3).",
+        "If the real experiment is cheap, fast, and safe, a simulation may be the WRONG tool — just run reality."
+      ],
+      "script": "Here is the rule for WHEN to simulate. EK AAP-3.F.6 says simulations are most useful when real-world events are impractical for experiments, and it hands you the exam's checklist of six: too big, too small, too fast, too slow, too expensive, too dangerous. A galaxy is too big; a molecule too small; a crash too fast; climate too slow; a thousand crash-tests too expensive; a meltdown too dangerous. In every case the simulation lets you investigate without the real world's constraints. But note the flip side on the last bullet — this is a favorite trap: if the real experiment is cheap, quick, and safe, simulating may be the wrong choice. 'Impractical' is the trigger word, not 'a computer could do it.'",
+      "capture": [
+        {
+          "q": "Simulations are most useful when real-world events are ______.",
+          "a": "impractical for experiments"
+        },
+        {
+          "q": "The CED's six triggers for 'impractical' are ______.",
+          "a": "too big, too small, too fast, too slow, too expensive, or too dangerous"
+        },
+        {
+          "q": "If a real experiment is already cheap, fast, and safe, a simulation may be ______.",
+          "a": "the wrong tool — you should just run the real thing"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Too Big, Too Slow, Too Dangerous",
+      "context": "Each row is one of the CED's reasons a real experiment is impractical (EK AAP-3.F.6). Match the example and what the simulation makes possible; fill the blanks yourself.",
+      "columns": [
+        "Why the real experiment is impractical",
+        "A real example",
+        "What the simulation makes possible"
+      ],
+      "rows": [
+        [
+          "Too big",
+          "The gravitational dance of a whole galaxy",
+          "Watch millions of stars move on one screen"
+        ],
+        [
+          "Too small",
+          "How a drug molecule binds to a virus",
+          "Study the fit atom by atom"
+        ],
+        [
+          "Too fast",
+          "The instant of a car crash",
+          "Slow the impact to inspect each millisecond"
+        ],
+        [
+          "Too slow",
+          "Climate shifting over 200 years",
+          "Compress centuries into seconds"
+        ],
+        [
+          "Too expensive",
+          "Crash-testing thousands of real cars",
+          "Total thousands of virtual cars for free"
+        ],
+        [
+          "Too dangerous",
+          "A nuclear reactor meltdown",
+          "Train operators at zero real risk"
+        ]
+      ],
+      "highlightCol": 0,
+      "script": "Walk the six reasons with a concrete example for each — these are the exact situations exam questions describe. Too big: a galaxy's motion, studied on a screen. Too small: a drug molecule binding to a virus, watched atom by atom. Too fast: the instant of a crash, slowed to milliseconds. Too slow: two centuries of climate, compressed to seconds. Too expensive: thousands of crash-tests, run as virtual cars for free. Too dangerous: a reactor meltdown, used to train operators with zero real risk. Fill the blanks so students commit at least three of these to memory — when an MCQ describes a scenario, they should be able to name which 'too' makes a simulation the right tool.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          5,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "concept",
+      "heading": "Every Rerun Is a Cheap Experiment",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Simulations facilitate the formulation and refinement of hypotheses about the phenomenon (EK AAP-3.F.7).",
+        "Change ONE value, rerun, and compare the outcomes — a controlled experiment that costs seconds, not months (EK AAP-3.F.7).",
+        "This is possible because a simulation lets you investigate without the constraints of the real world (EK AAP-3.F.3).",
+        "Cheap, repeatable runs let you test an idea before spending real money, time, or safety on it."
+      ],
+      "script": "Once you have a simulation, the second big win appears: it is a hypothesis machine. EK AAP-3.F.7 says simulations facilitate the formulation and refinement of hypotheses. The move is simple — change one value, rerun, compare. In the weather model, bump the chance of rain from forty to sixty and re-run; you have just tested the hypothesis 'more rain-chance means more umbrella days' in seconds, a controlled experiment reality would make you wait months for. This works because, per EK AAP-3.F.3, the simulation lets you investigate without the real world's constraints. The practical payoff: you refine your idea cheaply and repeatably before committing real money, time, or safety — which is why science and engineering lean on simulations so heavily.",
+      "capture": [
+        {
+          "q": "Simulations facilitate the ______ of hypotheses.",
+          "a": "formulation and refinement"
+        },
+        {
+          "q": "Changing one value and re-running the model is a way to ______.",
+          "a": "test a hypothesis as a controlled experiment without touching the real world"
+        },
+        {
+          "q": "Cheap, repeatable runs let a researcher ______ before committing real resources.",
+          "a": "refine an idea and predict outcomes"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Refine a Hypothesis",
+      "heading": "Change One Number, Ask a New Question",
+      "caption": "The same weather model wrapped in a procedure. Raising the chance argument from 40 to 60 is a hypothesis test — run for free.",
+      "pseudocode": "PROCEDURE rainyDays(chance, days)\n{\n  rainy ← 0\n  REPEAT days TIMES\n  {\n    IF(RANDOM(1, 100) ≤ chance)\n    {\n      rainy ← rainy + 1\n    }\n  }\n  RETURN(rainy)\n}\nDISPLAY(rainyDays(40, 1000))\nDISPLAY(rainyDays(60, 1000))",
+      "python": "import random\ndef rainyDays(chance, days):\n    rainy = 0\n    for i in range(days):\n        if random.randint(1, 100) <= chance:\n            rainy = rainy + 1\n    return rainy\nprint(rainyDays(40, 1000))\nprint(rainyDays(60, 1000))",
+      "output": "398 601",
+      "script": "Here is yesterday's model promoted into a procedure with a parameter — chance — which is what makes hypothesis testing trivial. Call rainyDays with forty and a thousand, then again with sixty and a thousand. The two DISPLAYs might print 398 and 601, or 405 and 588 — the exact numbers vary every run, as always. But the SHAPE of the answer is rock-steady: the sixty-percent model reliably rains more than the forty-percent one. You just ran a controlled experiment — one variable changed, everything else held — and refined the hypothesis that rain-chance drives umbrella days, in the time it takes to press run. On the coding page, the final problem builds exactly this kind of procedure, but grades a deterministic property so RANDOM's wobble never breaks the check."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — When to Simulate & Hypotheses",
+      "subheading": "These map to LO AAP-3.F. Complete on your Guided Notes.",
+      "prompts": [
+        "For each situation, decide whether a simulation is the right tool and name the reason: (a) predicting how a new skyscraper sways in a 100-year windstorm, (b) finding out whether a coin in your pocket is fair.",
+        "A team wants to know if widening a highway lane would cut rush-hour jams. Explain how a traffic simulation lets them formulate and refine this hypothesis without closing the real road.",
+        "In one sentence, state the trigger the exam is looking for when it asks whether a simulation is appropriate — and why 'a computer could do it faster' is NOT that trigger."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.16 page.",
+      "script": "Stop and think, six minutes, full sentences. One: the skyscraper in a hundred-year windstorm is a textbook simulation case — too dangerous and too slow to test for real; the pocket coin is the counterexample — flipping it is cheap, fast, and safe, so just flip it. Two: the highway team changes the lane-count value, reruns, and compares jam levels — a controlled experiment that refines their hypothesis without ever closing a real lane. Three: the trigger is that the real experiment is IMPRACTICAL — too big, small, fast, slow, expensive, or dangerous — not merely that a computer could do it; speed alone doesn't justify a model when reality is already easy to test. These are the AAP-3.F part-b judgments the exam rewards."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Bias: What You Leave Out",
+      "kicker": "Included, Excluded, and Skewed · Learning Objective AAP-3.F",
+      "script": "Section two, and this is the most heavily tested idea in the topic. Yesterday we celebrated removing detail as the art of simulation. Today we see its shadow: every element you leave out is an element the model is blind to, and that blindness can bias the answer. The exam wants you to compare a simulation to the real world and locate that bias exactly."
+    },
+    {
+      "type": "concept",
+      "heading": "Simulations Can Contain Bias",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A simulation can contain BIAS derived from the choices of real-world elements that were included or excluded (EK AAP-3.F.5).",
+        "Simplifying (F.4) and bias (F.5) are two faces of the same act: what you cut to simplify is exactly what the model can no longer see.",
+        "A computer and random numbers do not remove bias — the model only reflects the choices built into it.",
+        "To judge a simulation, ask what was left out and how that omission skews the results toward or away from something."
+      ],
+      "script": "Here is the core idea, word for word from EK AAP-3.F.5: a simulation can contain bias derived from the choices of real-world elements that were included or excluded. Sit with how this pairs with yesterday. Simplifying — F.4 — is necessary and good; but every detail you cut is a detail the model is now blind to, and that blindness is where bias hides — F.5. The two are the same act seen from two sides. And crucially, running it on a computer with random numbers does not scrub the bias out; the model faithfully reflects whatever choices its designers made. So the judging question is always: what did this model leave out, and which direction does that push the results? That question is the whole of part b.",
+      "capture": [
+        {
+          "q": "A simulation can contain bias derived from ______.",
+          "a": "the choices of real-world elements that were included or excluded"
+        },
+        {
+          "q": "Simplifying and bias are two faces of the same act because ______.",
+          "a": "what you cut to simplify is exactly what the model can no longer account for"
+        },
+        {
+          "q": "Running a model on a computer does not remove bias because ______.",
+          "a": "the model only reflects the design choices built into it"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Included vs. Excluded Elements",
+      "subheading": "The comparison the exam wants: what the model uses, and — more dangerously — what it silently leaves out (EK AAP-3.F.5).",
+      "left": {
+        "title": "Included (what the model uses)",
+        "definition": "The real-world elements the designer chose to keep",
+        "ek": "EK AAP-3.F.5",
+        "examples": [
+          "Last year's rain totals from one downtown gauge",
+          "The chance-of-rain number computed from that data",
+          "Whatever is visible in the model's outputs and inputs"
+        ]
+      },
+      "right": {
+        "title": "Excluded (silently left out)",
+        "definition": "The elements the model never represents — and never warns you about",
+        "ek": "EK AAP-3.F.5",
+        "examples": [
+          "The season, the long-term climate trend, microclimates",
+          "Unusual events: a drought year, a freak storm",
+          "Nothing in the output ever mentions these gaps"
+        ]
+      },
+      "footer": "AP TIP: The bias almost never lives in what a model shows you — it lives in what the model never had a chance to consider (EK AAP-3.F.5).",
+      "script": "This is the comparison to run on any simulation. On the left, the included elements — what the designer kept: last year's rain from one downtown gauge, the chance number built from it, everything visible in the inputs and outputs. On the right, the excluded elements — the season, the multi-decade climate trend, microclimates across the city, freak droughts and storms. Here is the dangerous asymmetry students must feel: the excluded column is invisible. The model never prints a warning that it ignored the drought. It hands you a confident percentage with no footnote about its blind spots. So when you compare a simulation to reality, the excluded column is where you hunt for bias — not the polished output on the left.",
+      "capture": [
+        {
+          "q": "When comparing a simulation to the real world, the bias is usually hiding in ______.",
+          "a": "the elements the model excluded, because they never appear in its output"
+        },
+        {
+          "q": "The excluded elements are especially dangerous because the model ______.",
+          "a": "never warns you about the gaps — it reports confident results anyway"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Audit the Simulation for Bias",
+      "context": "For each simulation, name a real element it leaves out and how that omission biases the result (EK AAP-3.F.5). Fill the blanks yourself.",
+      "columns": [
+        "The simulation",
+        "A real element it leaves out",
+        "How leaving it out biases the result"
+      ],
+      "rows": [
+        [
+          "A rain app trained only on last year's data",
+          "This year's drought and the long-term climate trend",
+          "It keeps predicting rain that no longer comes"
+        ],
+        [
+          "A traffic model built from weekday rush hours only",
+          "Weekend and holiday travel patterns",
+          "It mistimes signals whenever it is not a weekday"
+        ],
+        [
+          "A game-balance test run only by expert players",
+          "How first-time beginners actually play",
+          "It makes the game look far easier than it really is"
+        ],
+        [
+          "A wait-time model assuming equal machines per precinct",
+          "Precincts that were given fewer machines",
+          "It hides the long lines in under-served neighborhoods"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "Now the skill itself: auditing a simulation for bias by comparing it to the real world. For each model, name a real element it left out and the direction that omission skews the answer. The rain app that only saw last year keeps predicting rain a drought has ended. The traffic model built from weekdays mistimes every weekend. The game tested only by experts feels far too easy because beginners were never represented. And the polling-place model that assumes equal machines everywhere hides exactly the long lines in precincts that got fewer — a bias with real civic consequences. Fill the blanks so students practice producing the excluded element and the bias direction themselves; that two-part answer is what earns the point on a free-response comparison.",
+      "blanks": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“A Computer Made It, So the Numbers Are Objective”",
+      "misconception": "Because a computer and random numbers produced the simulation's results, the output is neutral, objective fact and cannot be biased.",
+      "whyItHappens": "Automation feels impartial and random numbers feel 'fair,' so a confident numeric output from a machine reads as unbiased truth.",
+      "correction": "A simulation only reflects the real-world elements its designers chose to include or exclude (EK AAP-3.F.5); those choices are human judgments that can bias every result. RANDOM produces variability, not fairness — it never compensates for a factor the model left out. A biased model runs just as smoothly and prints numbers just as confidently as an unbiased one.",
+      "example": "The rain app that excluded the drought still outputs a crisp '40% chance' every day. The computer isn't lying or malfunctioning — it is faithfully reporting a model that was blind to the drought from the start.",
+      "script": "This is the trap the exam sets most often, so make students say it in their own words. A computer produced the number, it used random draws, so it feels objective and fair. But EK AAP-3.F.5 is explicit: bias comes from the designers' choices about what to include or exclude, and the computer just executes those choices faithfully. RANDOM adds variability, not fairness — it will never notice a drought the model never represented. The unsettling part is that a biased simulation runs perfectly and prints confident numbers, indistinguishable at a glance from an unbiased one. 'A computer made it' is never evidence that a result is unbiased; the only test is comparing what the model included and excluded against the real world."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Find the Bias",
+      "subheading": "These map to LO AAP-3.F. Complete on your Guided Notes.",
+      "prompts": [
+        "A fitness app estimates 'calories burned' from a model built only on data from young male athletes. Name one excluded group and predict which way the estimates are biased for people outside the training data.",
+        "Return to the flight simulator with no bird strikes. Compare it to the real world: state the excluded element and the specific bias it creates in what pilots are prepared for.",
+        "A classmate says, 'This simulation can't be biased — it uses RANDOM, so every outcome is equally fair.' In two sentences, explain the flaw using the word 'excluded.'"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.16 page.",
+      "script": "Stop and think, five minutes, full sentences. One: the fitness app trained only on young male athletes excludes women, older adults, and non-athletes, so its calorie estimates are biased — likely off, and confidently so — for everyone outside that group. Two: the flight simulator excludes bird strikes, biasing training toward routine flight and leaving pilots unprepared for a real emergency they never rehearsed. Three: the RANDOM-means-fair classmate confuses variability with fairness — RANDOM only varies the runs; it cannot account for any real element the designer EXCLUDED, and that exclusion is the bias. These are exactly the compare-to-reality moves AAP-3.F part b tests. Answers are reviewed together before the traps."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.16 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Developing a simulation means SIMPLIFYING, not copying",
+          "text": "The right answer describes removing detail and simplifying for a purpose (F.4). Reject any option that says a good simulation must include every real-world factor or be a full copy of reality — 'more detail' is not the same as 'better.'"
+        },
+        {
+          "name": "Bias comes from included/excluded elements, not from RANDOM",
+          "text": "RANDOM models variability (F.8); it never makes a model fair or unbiased. When a question asks why a simulation is skewed, look for the real element the designers left out (F.5), not the randomness."
+        },
+        {
+          "name": "'Impractical' is the trigger to simulate",
+          "text": "A simulation is the right tool when the real experiment is too big, small, fast, slow, expensive, or dangerous (F.6). Distrust options that justify simulating only because 'a computer is faster' when reality is already cheap and safe to test."
+        }
+      ],
+      "script": "One minute, three traps, real points in May. Trap one: developing a simulation is simplifying, not copying — the exam rewards 'removes detail for a purpose,' and punishes 'includes every factor.' Trap two: bias comes from what was included or excluded, never from the randomness — when a model is skewed, hunt for the left-out element, not RANDOM. Trap three: the trigger word for WHEN to simulate is 'impractical' — too big, small, fast, slow, expensive, or dangerous — not merely that a computer could do it faster. Students should write each trap in their own words; these three account for the majority of missed simulation questions."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Simulations, in One Slide",
+      "points": [
+        "A simulation is an abstraction of a more complex phenomenon, built for a purpose by REMOVING detail and simplifying — not a copy of reality (EK AAP-3.F.1, AAP-3.F.4).",
+        "RANDOM models the real world's variability, so many trials move through a changing state and yield a stable inference (EK AAP-3.F.2, AAP-3.F.3, AAP-3.F.8).",
+        "Simulations are the right tool when real experiments are impractical — too big, small, fast, slow, expensive, or dangerous — and reruns refine hypotheses (EK AAP-3.F.6, AAP-3.F.7).",
+        "A simulation can contain bias from the real elements its designers included or EXCLUDED; a computer running it does not make it objective (EK AAP-3.F.5)."
+      ],
+      "next": "Topic 3.17, Algorithmic Efficiency: you can now model the world with code — but as the models grow, how do we tell an algorithm that finishes in reasonable time from one that would run effectively forever?",
+      "script": "The whole topic in one slide. A simulation is an abstraction built for a purpose by removing detail — never a copy of reality. RANDOM supplies real-world variability, so many trials pass through a changing state and settle into a stable inference. Simulations are the right tool exactly when the real experiment is impractical — the six too's — and re-running with a changed value refines a hypothesis for free. And the idea the exam tests hardest: a simulation can carry bias from what its designers included or excluded, and running it on a computer never makes it objective. Next class is Topic 3.17, Algorithmic Efficiency, where we ask which algorithms finish in a reasonable amount of time. Before you pack up, run the exit check: four 'I can' statements, and any box you cannot honestly check tells you what to review on the Topic 3.16 page tonight, including the weather-simulation coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain how a simulation represents a real phenomenon by abstracting away detail and simplifying for a purpose (LO AAP-3.F)",
+        "use RANDOM to model real-world variability and run many trials to draw an inference (LO AAP-3.F)",
+        "decide when a simulation is the right tool because a real experiment is impractical, and how reruns refine hypotheses (LO AAP-3.F)",
+        "compare a simulation to the real world and locate the bias created by the elements it included or excluded (LO AAP-3.F)"
+      ]
+    }
+  ]
+}

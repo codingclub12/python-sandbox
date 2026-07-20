@@ -1,0 +1,594 @@
+{
+  "meta": {
+    "lessonId": "3.14",
+    "lessonTitle": "Libraries",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO AAP-3.D",
+    "anchor": "Libraries",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.14 · Day 1 of 1",
+      "title": "Standing on Prewritten Code",
+      "subtitle": "Software libraries let you reuse tested procedures instead of rewriting them — and an API plus its documentation is what tells you how to call code you have never even seen",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "For the last several topics you have been writing procedures from scratch. Today you learn the professional's real move: most of the time you do NOT write the procedure — you reuse one someone already wrote and tested, from a software library. The whole topic is one learning objective, AAP-3.D: selecting appropriate libraries or existing code to build new programs. Two big ideas drive it. First, what a library is and where reusable code comes from. Second, and the part the exam presses hardest, how you actually use a procedure you cannot see the inside of: through its API — the specification of how it behaves — and its documentation, which the College Board flatly calls necessary."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain what a software library is, how it simplifies building complex programs, and how existing code comes from internal or external sources (LO AAP-3.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain that an API is a specification for how a library's procedures behave, and use a procedure correctly by reading its documentation (LO AAP-3.D)"
+        }
+      ],
+      "script": "Two targets, both from learning objective AAP-3.D, selecting appropriate libraries or existing code to use in new programs. First: say what a software library is, why leaning on one simplifies a complex program, and recognize that reused 'existing code' can come from inside your own project or from an outside source. Second, the exam's favorite: an API is a specification for how a library's procedures behave and can be used — not the code itself — and documentation is what lets you call a procedure correctly even though you never see inside it. Everything today is about using code you did not write."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "GradeKit is a code library for building gradebook apps. One of its procedures is documented like this — and you have NEVER seen the code inside it:   Curve(score, points) → returns score + points, but never more than 100.   Using ONLY that one-line description, work out Curve(88, 15) and Curve(70, 5).",
+      "subprompt": "Write 2–4 sentences: What are the two results? You just used a procedure without reading a single line of its code — what exactly made that possible? What would have happened if that one-line description had been missing?",
+      "directions": "Be ready to share your two answers and the description that made them possible.",
+      "script": "Five minutes with a partner. GradeKit is a made-up library; Curve is one of its procedures, and you have never seen the code inside it. All you get is one documented line: it returns score plus points, but never more than one hundred. Work out Curve of 88 and 15 — that is 103, capped to 100 — and Curve of 70 and 5, which is 75. Now the real question: you just correctly used a procedure whose code you cannot see. What let you do that? The answer is the whole lesson. A short written specification of the procedure's behavior — its documentation — is exactly enough to use it. Take that line away and you would be guessing. That instinct is today's central idea."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Libraries and Existing Code",
+          "description": "What a software library is, how it simplifies complex programs, and internal vs external sources of reused code (EK AAP-3.D.1–D.3)."
+        },
+        {
+          "title": "APIs and Documentation",
+          "description": "An API as the specification for how a library's procedures behave, and why documentation is necessary to use them (EK AAP-3.D.4–D.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.14 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required. Section one: libraries and existing code — what a library is, how it simplifies complex work, and where reused code comes from. Section two: APIs and documentation — the specification that defines a procedure's behavior, and why the College Board calls documentation necessary. Keep the packet open and fill it in as we go; if you were absent or lost it, a digital copy lives on the Topic 3.14 Guided Notes page at apcsexamprep.com. Today also has interactive coding practice — you will call a real GradeKit library and let the computer check your output."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Libraries and Existing Code",
+      "kicker": "Reuse Instead of Rewrite · Learning Objective AAP-3.D",
+      "script": "Section one. Your bell ringer used a procedure from a library. Now we name what that means. Before you reach for an API, you need the bigger idea: skilled programmers rarely build everything themselves. They stand on prewritten, tested code — from libraries and from their own earlier work — so they can spend their effort on what is actually new."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-3.D)",
+      "terms": [
+        {
+          "term": "Software library",
+          "definition": "A collection of procedures that may be used in creating new programs (EK AAP-3.D.1)."
+        },
+        {
+          "term": "Existing code segment",
+          "definition": "Reusable code drawn from internal or external sources, such as libraries or previously written code (EK AAP-3.D.2)."
+        },
+        {
+          "term": "External source",
+          "definition": "A library or code segment that comes from outside your own project and is used as documented (EK AAP-3.D.2)."
+        },
+        {
+          "term": "API (Application Program Interface)",
+          "definition": "A specification for how the procedures in a library behave and can be used (EK AAP-3.D.4)."
+        },
+        {
+          "term": "Documentation",
+          "definition": "The written description of a library's behaviors and how to use them, which is necessary for using the API or library (EK AAP-3.D.5)."
+        }
+      ],
+      "script": "Five words carry this topic. A software library is a collection of procedures you may use to build new programs. An existing code segment is reusable code — it might come from a library or from code someone already wrote. An external source is code from outside your project that you use as documented, without editing its internals. An API, an application program interface, is the specification for how a library's procedures behave and can be used — hold that word, specification. And documentation is the written description of those behaviors and how to use them, which the CED says is necessary. Notice three of these five come straight from the API-and-docs half of the lesson; that is where the exam lives."
+    },
+    {
+      "type": "concept",
+      "heading": "A Library Is Prewritten, Tested Code You Reuse",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A software library contains procedures that may be used in creating new programs (EK AAP-3.D.1).",
+        "You CALL those procedures by name — you do not rewrite what they already do.",
+        "The use of libraries simplifies the task of creating complex programs (EK AAP-3.D.3).",
+        "Reusing tested code means less to write, less to debug, and faster development."
+      ],
+      "script": "Here is the core idea. A software library is a bundle of procedures that already exist and that you may use in your own programs. The key verb is call: you invoke a library procedure by name and let it do its job, rather than writing that logic yourself. The College Board states the payoff directly in EK AAP-3.D.3 — using libraries simplifies the task of creating complex programs. Think about a program that must sort thousands of records, draw graphics, or connect to the internet. Writing all of that from scratch would be enormous and bug-prone; calling a tested library turns each into a single line. Less to write, less to test, faster to finish.",
+      "capture": [
+        {
+          "q": "A software library is ______.",
+          "a": "a set of reusable procedures you call to help build new programs"
+        },
+        {
+          "q": "The CED says libraries are especially valuable because they ______.",
+          "a": "make hard, complex programs easier and faster to build"
+        },
+        {
+          "q": "Reusing a tested library procedure instead of rewriting it means ______.",
+          "a": "less code to write and fewer bugs to chase"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Where Reused Code Comes From",
+      "subheading": "Existing code segments can come from internal or external sources, such as libraries or previously written code (EK AAP-3.D.2).",
+      "left": {
+        "title": "Internal sources",
+        "definition": "Reused code from within your own project or team",
+        "ek": "EK AAP-3.D.2",
+        "examples": [
+          "A procedure you wrote last week for another feature",
+          "A helper a teammate already added to this project",
+          "Previously written code you own and can edit"
+        ]
+      },
+      "right": {
+        "title": "External sources",
+        "definition": "Reused code that comes from outside your project",
+        "ek": "EK AAP-3.D.2",
+        "examples": [
+          "A published library your program imports",
+          "Code shared by another organization or community",
+          "Used as documented — you often cannot see or change its internals"
+        ]
+      },
+      "footer": "AP TIP: 'Existing code' is not only downloaded libraries — reusing your OWN earlier code counts as an internal source too (EK AAP-3.D.2).",
+      "script": "Reused code comes from two directions, and the exam likes to test whether you know both. Internal sources are inside your own world: a procedure you wrote last week, a helper a teammate already dropped into this project, any earlier code you own and could edit. External sources come from outside: a published library you import, code shared by another organization, used as documented — usually without the ability to see or change what is inside. The trap to write down now: a distractor will claim 'existing code' means only downloaded libraries. It does not. Reusing your own previously written code is just as much an existing code segment, from an internal source.",
+      "capture": [
+        {
+          "q": "Reusing a procedure you wrote earlier in the same project is an example of a(n) ______.",
+          "a": "internal source of existing code"
+        },
+        {
+          "q": "A published library you import into your program is a(n) ______.",
+          "a": "external source of existing code"
+        },
+        {
+          "q": "What internal and external reused code share is that both ______.",
+          "a": "are code you did not have to write from scratch this time"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Using a Library",
+      "heading": "Call It — Don't Rewrite It",
+      "caption": "GradeKit already provides Average, so you call the procedure instead of writing the averaging loop yourself.",
+      "pseudocode": "scores ← [88, 92, 79]\nclassAvg ← Average(scores)\nDISPLAY(classAvg)",
+      "python": "scores = [88, 92, 79]\nclassAvg = Average(scores)\nprint(classAvg)",
+      "output": "86",
+      "script": "Here is reuse in three lines. The library GradeKit provides a procedure called Average that takes a list of numbers and returns their average, rounded down to a whole number. You do not write a loop that sums and divides — you just call Average on your list and store the result. Eighty-eight, ninety-two, and seventy-nine sum to two hundred fifty-nine; divided by three and rounded down that is eighty-six, which DISPLAY prints. On the exam you read this call in pseudocode; in today's coding practice you call the very same GradeKit procedures in real Python. Either way, the point is identical: the averaging logic already exists, so you reuse it."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Libraries and Reuse",
+      "subheading": "These map to LO AAP-3.D. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain what a software library is and one concrete reason that using one 'simplifies the task of creating complex programs.'",
+        "A classmate reuses a validation procedure they wrote for a different project of their own last year. Is that an internal or external source? Justify using the CED's wording.",
+        "Name one task in a program where calling a library procedure is clearly better than writing the code yourself, and say why."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.14 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: define a software library and give one concrete reason it simplifies a complex program — sorting, graphics, networking are all fair examples. Two: the classmate reusing their own year-old procedure is pulling from an internal source; it is previously written code from within their own work, exactly the wording of EK AAP-3.D.2 — do not let the word 'library' trick anyone into calling it external. Three: pick a genuinely hard task and argue why reuse beats rewriting it. These are the reuse judgments AAP-3.D asks you to make."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "APIs and Documentation",
+      "kicker": "The Specification You Call Against · Learning Objective AAP-3.D",
+      "script": "Section two, and this is where most exam points on this topic are won or lost. You can call a library procedure without ever seeing its code — but only if you know exactly how to call it and what it gives back. That knowledge has a name, the API, and it reaches you through documentation. Get precise about both."
+    },
+    {
+      "type": "concept",
+      "heading": "An API Is the Contract, Not the Code",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Application program interfaces (APIs) are specifications for how the procedures in a library behave and can be used (EK AAP-3.D.4).",
+        "An API tells you each procedure's name, what inputs it takes, and what it returns — its BEHAVIOR.",
+        "It does NOT show you the code inside; you only need to know what a procedure does, not how.",
+        "Because the API fixes the behavior, you can call a procedure correctly without ever reading its internals."
+      ],
+      "script": "The single most important sentence in this topic is EK AAP-3.D.4: an API is a specification for how the procedures in a library behave and can be used. Unpack 'specification.' It states each procedure's name, the inputs it expects, and the value it returns — in short, its behavior. What it deliberately does not give you is the code inside. And that is the beauty of it: to use a procedure you only need to know what it does, not how it does it — the same procedural-abstraction idea from Topic 3.13, now applied to somebody else's code. Because the API pins down the behavior, you can call the procedure correctly with zero access to its internals. The API is the contract between the library and you.",
+      "capture": [
+        {
+          "q": "An API is a ______.",
+          "a": "specification of each procedure's behavior — its inputs, outputs, and how to call it"
+        },
+        {
+          "q": "Knowing a procedure's API means you know what it does but not ______.",
+          "a": "how it does it — the code inside stays hidden from the caller"
+        },
+        {
+          "q": "The API matters because it lets a programmer ______.",
+          "a": "call a procedure correctly without ever reading the code inside it"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Documentation Is How You Learn the API",
+      "subheading": "Documentation for an API/library is necessary in understanding the behaviors provided by the API/library and how to use them (EK AAP-3.D.5).",
+      "left": {
+        "title": "Without documentation",
+        "definition": "You are guessing at how the procedure works",
+        "ek": "EK AAP-3.D.5",
+        "examples": [
+          "You don't know the parameter order or what it returns",
+          "Passing(70, 65) vs Passing(65, 70) — guess wrong and the result flips",
+          "You may misuse the procedure and never learn why the output is off"
+        ]
+      },
+      "right": {
+        "title": "With documentation",
+        "definition": "You can use the procedure correctly the first time",
+        "ek": "EK AAP-3.D.5",
+        "examples": [
+          "The doc states each parameter, its order, and the return value",
+          "You call the procedure exactly as specified",
+          "You confidently use code you did not write and cannot see"
+        ]
+      },
+      "footer": "AP TIP: You cannot reliably use a library from its name alone; the documentation is what makes the behavior knowable (EK AAP-3.D.5).",
+      "script": "EK AAP-3.D.5 uses a strong word: documentation is necessary to understand a library's behaviors and how to use them. Look at the contrast. Without documentation you are guessing — you do not know the parameter order or the return value, so a call like Passing of seventy and sixty-five could mean the opposite of what you intended, and you might never figure out why an answer is wrong. With documentation, every parameter, its order, and the return value are spelled out; you call the procedure exactly as specified and move on. That is the whole reason your bell ringer worked: one documented line about Curve was enough to use it correctly. Necessary is the operative word — not helpful, necessary.",
+      "capture": [
+        {
+          "q": "Two calls that swap argument order, like Passing(70, 65) and Passing(65, 70), show why you must ______.",
+          "a": "read the documentation to get parameter order right"
+        },
+        {
+          "q": "Without documentation, using a library procedure becomes ______.",
+          "a": "guesswork that can silently produce wrong results"
+        },
+        {
+          "q": "Documentation lets a programmer correctly use code that they ______.",
+          "a": "did not write and cannot even see inside"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Read the Doc, Predict the Return",
+      "context": "Every value below comes ONLY from GradeKit's documented behavior — you never see the code inside. Use the doc to fill in each return.",
+      "columns": [
+        "Call",
+        "What the GradeKit doc specifies",
+        "Returns"
+      ],
+      "rows": [
+        [
+          "Average([80, 90, 100])",
+          "returns the average, rounded down to a whole number",
+          "90"
+        ],
+        [
+          "Highest([12, 45, 7])",
+          "returns the largest number in the list",
+          "45"
+        ],
+        [
+          "Passing(65, 70)",
+          "returns true if score ≥ cutoff, else false",
+          "false"
+        ],
+        [
+          "Passing(70, 65)",
+          "same procedure — arguments are in the order (score, cutoff)",
+          "true"
+        ],
+        [
+          "Curve(96, 9)",
+          "returns score + points, but never more than 100",
+          "100"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Predict each return using nothing but the documented behavior — you never see GradeKit's code. Average of eighty, ninety, and one hundred is ninety. Highest of the second list is forty-five. Now watch rows three and four, the whole point of the section: Passing of sixty-five and seventy asks is sixty-five at least seventy — false. Passing of seventy and sixty-five asks is seventy at least sixty-five — true. Same procedure, arguments swapped, opposite answer. The only way you knew which was which is the documented parameter order, score then cutoff. And Curve of ninety-six and nine is one hundred five capped to one hundred. This is EK AAP-3.D.5 made concrete: the doc is what makes every one of these predictable.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“I Can Just Guess How to Call It”",
+      "misconception": "If I know a library procedure's name, I can figure out how to call it and what it returns without reading any documentation.",
+      "whyItHappens": "The name sounds descriptive — like Passing or Curve — so the behavior feels obvious, and reading docs seems slower than just trying it.",
+      "correction": "A name does not tell you the parameter order, the exact return value, or edge-case behavior. The API specification, delivered through documentation, is what actually defines how the procedure behaves and how to use it (EK AAP-3.D.4, EK AAP-3.D.5). Guessing is how you swap arguments, misread a return, and ship a bug that still runs.",
+      "example": "Passing(score, cutoff) returns true when score ≥ cutoff. Guess the order and call Passing(70, 85) to ask 'did an 85 pass a 70 cutoff?' — it actually tests 70 ≥ 85 and returns false. Same procedure, wrong call, wrong answer, and no error message to warn you.",
+      "script": "This is the trap the exam builds distractors from. A procedure named Passing or Curve sounds self-explanatory, so students assume they can call it on instinct and skip the docs. But a name never tells you the parameter order, the precise return value, or how edge cases behave. The API — through its documentation — is what defines all of that, which is exactly why EK AAP-3.D.5 says documentation is necessary. The danger is quiet: guess the order in Passing of seventy and eighty-five, thinking you are asking whether an eighty-five clears a seventy cutoff, and the procedure instead tests seventy against eighty-five and returns false. Wrong answer, and the program runs without a single error. Reading the doc is not optional caution; it is the only way to be correct."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — APIs and Docs",
+      "subheading": "These map to LO AAP-3.D. Complete on your Guided Notes.",
+      "prompts": [
+        "In your own words, explain the difference between an API (the specification) and the actual code inside a library procedure.",
+        "You are handed Curve(score, points): 'returns score + points, but never above 100.' Predict Curve(96, 9), and explain how you knew without seeing the code.",
+        "Explain why the CED describes documentation as NECESSARY — what specifically can go wrong if you call a library procedure without it?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.14 page.",
+      "script": "Stop and think, six minutes, full sentences. One: separate the API from the code — the API specifies behavior and how to call the procedure; the code is the hidden how, which you do not need. Two: Curve of ninety-six and nine is ninety-six plus nine, which is one hundred five, capped at one hundred, so it returns one hundred — and you knew purely from the one documented line, no code required. Three: docs are necessary because without them you cannot know parameter order or return values; you would guess, swap arguments, and produce wrong output that still runs error-free. These are exactly the AAP-3.D moves the exam rewards."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.14 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "An API is a specification, not the code",
+          "text": "The API describes how a procedure behaves and how to call it; it is NOT the source code inside the library. You use a procedure knowing what it does, not how. An option that calls the API 'the code that runs the procedure' is wrong."
+        },
+        {
+          "name": "'Existing code' includes your OWN earlier code",
+          "text": "A distractor treats 'existing code segments' as only downloaded libraries. Internal sources count too — code you or a teammate wrote before is reused existing code from an internal source (EK AAP-3.D.2)."
+        },
+        {
+          "name": "Documentation is necessary, not optional",
+          "text": "A tempting choice says you can use a library from its name alone. The CED says documentation is necessary to know the behaviors and how to use them (EK AAP-3.D.5); parameter order and return values are unknowable without it."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: an API is a specification, not the source code — it says how a procedure behaves and how to call it, and an option describing it as 'the code that runs the procedure' is a trap. Trap two: existing code is not only downloaded libraries; your own or a teammate's earlier code is reused code from an internal source, and the exam loves that distinction. Trap three: documentation is necessary, not a nice-to-have — you cannot know parameter order or return values from a name alone, so any choice implying you can skip the docs is wrong. Dodge these three and every libraries question is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Libraries, in One Slide",
+      "points": [
+        "A software library is a set of reusable procedures you call to help build new programs; using libraries simplifies creating complex programs (EK AAP-3.D.1, D.3).",
+        "Reused 'existing code' comes from internal sources — your own or your team's earlier code — or external sources like published libraries (EK AAP-3.D.2).",
+        "An API is a specification for how a library's procedures behave and can be used — the contract, not the hidden code inside (EK AAP-3.D.4).",
+        "Documentation is necessary to understand a library's behaviors and how to use them correctly (EK AAP-3.D.5)."
+      ],
+      "next": "Topic 3.15, Random Values: you will call the RANDOM(a, b) library-style procedure — reading its specification to reason about the range of values it can return.",
+      "script": "The whole topic in one slide. A software library is a set of reusable procedures you call to help build programs, and using libraries simplifies creating complex ones. Reused existing code comes from internal sources — your own or a teammate's earlier work — or external sources like published libraries. An API is a specification for how a library's procedures behave and can be used; it is the contract, not the hidden code. And documentation is necessary to understand those behaviors and use them correctly — the exact reason your bell ringer's one line about Curve was enough. Next topic, Random Values, is your first heavily used library-style procedure, RANDOM. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.14 page, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain what a software library is and how reusing it simplifies building complex programs (LO AAP-3.D)",
+        "distinguish internal from external sources of existing, reusable code (LO AAP-3.D)",
+        "explain that an API is a specification for how a library's procedures behave and can be used (LO AAP-3.D)",
+        "use a library procedure correctly by reading its documentation, without seeing its code (LO AAP-3.D)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.14 — Libraries — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 14 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "Which of the following best describes a software library?",
+        "options": [
+          "A single long program that must be run from start to finish",
+          "A collection of procedures that may be used in creating new programs",
+          "A file that stores a program's saved output data",
+          "The set of variables a program uses while it runs"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.D.1",
+        "rationale": "A library is a collection of reusable procedures, so B is correct. A describes a single program, C describes a data file, and D describes runtime variables. Only B captures the idea of prewritten procedures available for reuse."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "A team building a complex image-editing program uses an existing image library instead of writing every procedure themselves. What is the main benefit?",
+        "options": [
+          "It guarantees the finished program will contain zero bugs of any kind",
+          "It makes the program run on less electricity",
+          "It removes any need to test the finished program",
+          "It simplifies building the complex program by reusing prewritten procedures"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.D.3",
+        "rationale": "Reusing tested library procedures simplifies development, so D is correct. A overpromises bug-free code. B invents an energy claim. C is false; the finished program still needs testing even when it reuses library code."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "While writing a new app, a programmer pastes in a validation procedure they wrote themselves for a different project last year. This reused code comes from:",
+        "options": [
+          "An internal source, code previously written within the programmer's own work",
+          "An external source, since it came from a different year",
+          "Neither internal nor external, since only downloaded libraries count as existing code",
+          "An API, since the programmer already knows how it behaves"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.D.2",
+        "rationale": "Code the programmer wrote before is an internal source of existing code, so A is correct. B confuses time with origin. C wrongly limits existing code to downloads. D mislabels reused code as an API."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A library's documentation states: Distance(x1, y1, x2, y2) returns the number of grid steps between two points. What does this give the programmer?",
+        "options": [
+          "The exact lines of code that compute the distance",
+          "A guarantee that the procedure runs faster than any alternative",
+          "A description of how to call the procedure and what it does, with the code inside hidden",
+          "Permission to change the procedure's internal calculations"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.D.4",
+        "rationale": "Documentation specifies behavior and how to call a procedure while hiding the internals, so C is correct. A exposes code that abstraction hides. B invents a speed guarantee. D misreads documentation as permission to edit the library."
+      },
+      {
+        "id": "Q5",
+        "kind": "recall",
+        "stem": "Which statement best explains why a library's documentation matters when using a procedure whose code you cannot see?",
+        "options": [
+          "Without it the procedure refuses to run at all",
+          "It is what lets the programmer understand the procedure's behavior and how to use it correctly",
+          "It automatically rewrites the procedure to fit the new program",
+          "It makes the library run without ever needing to be called"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.D.5",
+        "rationale": "Documentation is how a programmer learns a procedure's behavior and correct use, so B is correct. A wrongly ties running to documentation. C imagines automatic rewriting. D contradicts how procedures are used, which is by calling them."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A library doc says Passing(score, cutoff) returns true if score ≥ cutoff. A student calls Passing(60, 75), meaning to check whether 75 passes a cutoff of 60. What actually happens?",
+        "options": [
+          "It tests 60 ≥ 75 and returns false; the documented order is (score, cutoff) and the student swapped them",
+          "It returns true; the library infers which value the student meant",
+          "It causes an error, since arguments can never be passed in the wrong order",
+          "It tests 75 ≥ 60 and returns true; argument order does not affect the result"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.D.5",
+        "rationale": "Arguments bind by position, so score is 60 and cutoff is 75, giving 60 ≥ 75, which is false; A is correct. B assumes the library reads intent. C is false; wrong order runs without error. D denies that order matters."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A programmer needs a well-tested list-sorting procedure, and a reliable library already provides one. What is the best reason to use the library's procedure instead of writing a new sort?",
+        "options": [
+          "Library code never has to be understood, only pasted in",
+          "Writing a sort from scratch is always impossible",
+          "Using the library means the program no longer needs any variables",
+          "Reusing tested existing code speeds development and reduces new bugs"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.D.3",
+        "rationale": "Reusing tested code saves effort and avoids new bugs, so D is correct. A is careless; you still need to understand a procedure's behavior. B overstates difficulty. C is unrelated; libraries do not eliminate variables."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.14 — Libraries — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.14 · 1 class period + assessment block",
+    "overview": [
+      "Topic 3.14 is a single-day topic on one learning objective, LO AAP-3.D: selecting appropriate libraries or existing code segments to use in creating new programs. It follows naturally from Topic 3.13 (writing procedures): now that students can build procedural abstractions, they learn that most real programs are built by REUSING procedures others already wrote and tested. Day 1 splits into two halves — first, what a software library is, how reuse simplifies complex programs, and that existing code comes from internal or external sources (EK AAP-3.D.1–D.3); second, the exam-critical pair, that an API is a specification for how a library's procedures behave and can be used, and that documentation is necessary to use them (EK AAP-3.D.4–D.5).",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (procName(arg1, arg2) calls, ← assignment, DISPLAY) shown beside runnable Python. The through-line is a made-up library, GradeKit, documented by an API the students read but whose code they never see — the bell ringer uses one GradeKit procedure (Curve) from its documentation alone, and the same library carries into the paper exercises and the interactive coding practice on the Topic 3.14 page, where students CALL the provided procedures rather than reimplement them.",
+      "The single most tested idea is that an API is a specification, not the source code, and that documentation is necessary — students must be able to use a procedure correctly (including getting parameter order right) knowing only its documented behavior."
+    ],
+    "los": [
+      "LO AAP-3.D — Select appropriate libraries or existing code segments to use in creating new programs."
+    ],
+    "eks": [
+      "EK AAP-3.D.1 — A software library contains procedures that may be used in creating new programs.",
+      "EK AAP-3.D.2 — Existing code segments can come from internal or external sources, such as libraries or previously written code.",
+      "EK AAP-3.D.3 — The use of libraries simplifies the task of creating complex programs.",
+      "EK AAP-3.D.4 — Application program interfaces (APIs) are specifications for how the procedures in a library behave and can be used.",
+      "EK AAP-3.D.5 — Documentation for an API/library is necessary in understanding the behaviors provided by the API/library and how to use them."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1.",
+      "Printed Topic 3.14 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.14 page for the interactive coding practice (calling the provided GradeKit library).",
+      "Optional: a printed one-page 'GradeKit API doc' handout listing Average, Highest, Passing, and Curve with their documented behaviors."
+    ],
+    "prereqs": [
+      "Topics 3.12 and 3.13 (calling procedures, then writing procedures with parameters and RETURN, and procedural abstraction) are the direct foundation: students must already understand that a procedure has a name, parameters, and a return value, and that abstraction lets you use a procedure by what it does, not how. This topic extends that abstraction to code someone else wrote — a library — reached through an API and its documentation."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "What a library is and where reused code comes from; an API as a specification and why documentation is necessary (LO AAP-3.D)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.14/Q1) + bell ringer (use GradeKit's Curve from its documentation alone)",
+            "min": 7,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Libraries and existing code: vocab, what a library is, internal vs external sources, calling a library procedure (EK AAP-3.D.1–D.3)",
+            "min": 15,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on libraries and reuse",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "APIs and documentation: API as specification, docs are necessary, read-the-doc table, the guessing misconception (EK AAP-3.D.4–D.5)",
+            "min": 15,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on APIs and docs",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.14 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.14 page, where students call the provided GradeKit library, can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.14 quiz",
+            "min": 14,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“An API is the code inside the library”",
+        "myth": "An API is the actual source code that makes a library procedure work.",
+        "reality": "An API is a SPECIFICATION for how the procedures behave and can be used (EK AAP-3.D.4) — the name, inputs, and return value. It deliberately hides the internal code; you use a procedure knowing what it does, not how. Enforce the word 'specification.'"
+      },
+      {
+        "heading": "“Existing code means only downloaded libraries”",
+        "myth": "Reusing 'existing code segments' refers only to external libraries you download.",
+        "reality": "Existing code can come from internal OR external sources (EK AAP-3.D.2). Code you or a teammate wrote earlier in the project is an internal source of existing code, just as much as an imported library is an external one."
+      },
+      {
+        "heading": "“You can use a library from its name alone”",
+        "myth": "If a procedure's name is descriptive, you can guess how to call it and skip the documentation.",
+        "reality": "Documentation is NECESSARY to know the behavior and how to use a procedure (EK AAP-3.D.5). A name does not reveal parameter order or return values; guessing swaps arguments and produces wrong output that still runs error-free, as with Passing(score, cutoff)."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students the printed one-page GradeKit API doc and have them physically point to the line that answers each worked-table row, reinforcing that every prediction comes from the documentation, not from seeing code.",
+        "For the parameter-order idea, have pairs act out Passing(score, cutoff) with number cards: one student is 'score,' one is 'cutoff,' and swapping who stands where flips the true/false result."
+      ],
+      "extension": [
+        "Have students write a short API doc entry (name, parameters in order, return value, one example) for a brand-new GradeKit procedure of their own, then trade docs with a partner who must predict a call using only the written doc.",
+        "Point deep-dive students at the Topic 3.14 coding practice to call the provided GradeKit procedures to build a small grade report, then explain how using the library, rather than reimplementing it, simplified their program."
+      ]
+    },
+    "discussion": [
+      "Your bell ringer let you correctly use Curve without seeing one line of its code. What does that tell you about what a programmer actually needs to know to reuse someone else's work — and what they do NOT need to know?",
+      "Reusing a library saves enormous effort, but you are trusting code you cannot see. Where is the line between sensibly standing on tested libraries and depending on a 'black box' you do not understand? What would make you trust or distrust a library?",
+      "The CED calls documentation 'necessary,' not merely helpful. Think of a time you (or someone) misused a tool, app, or procedure because the instructions were missing or unclear. How does that everyday experience map onto why an API needs good documentation?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

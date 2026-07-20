@@ -1,0 +1,618 @@
+{
+  "meta": {
+    "lessonId": "3.11",
+    "lessonTitle": "Binary Search",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO AAP-2.P",
+    "anchor": "Binary Search",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.11 · Day 1 of 1",
+      "title": "Cut It in Half",
+      "subtitle": "Binary search: start in the middle of a SORTED data set, throw away half the elements with a single comparison, and repeat — a search that reaches a value in a handful of steps instead of a scan of every element",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Last topic we searched a list the honest way — linear search, checking every element in order until we found the target. Today we meet a search that is often dramatically faster, but only when one condition is met: the data must already be sorted. Binary search starts at the middle of a sorted set, uses one comparison to eliminate half of everything at once, and repeats. Two things matter for the exam, and they are the two parts of today's objective: figuring out how many iterations it takes to find a value, and explaining the requirement that makes it work — the data must be sorted. One heads-up: the College Board does not want you to memorize a specific line-by-line implementation of binary search. What they test is the halving idea and the iteration count, and that is exactly where we live today."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Determine the number of iterations binary search needs to find a value in a data set, by repeatedly checking the middle of a sorted set and eliminating half each step (LO AAP-2.P)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain the requirement binary search depends on — the data must be sorted — and why it is often more efficient than a linear search on sorted data (LO AAP-2.P)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-2.P, binary search algorithms. The first is a counting skill: given a sorted data set, determine how many iterations binary search needs to find a value — you count halvings, not elements. The second is an explanation skill: state the requirement that makes binary search valid — the data must be in sorted order — and explain why, on sorted data, it is often far more efficient than linear search. Notice both objectives cite the same LO; this is a single, tight learning objective, so today is a single focused day."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A partner is thinking of a whole number from 1 to 100. After each guess they tell you only 'higher' or 'lower.' Play one round out loud. Then play a second round where your ONLY goal is to guarantee you win in as few guesses as possible — no lucky guessing.",
+      "subprompt": "Write 2–4 sentences: What number did you guess FIRST in the smart round, and why that one? What does each 'higher' or 'lower' let you throw away? What is the largest number of guesses you could ever need with the smart strategy?",
+      "directions": "Be ready to share your first guess and the reasoning behind it.",
+      "script": "Five minutes with a partner, and it feels like a game because it is one. One person thinks of a number from 1 to 100; the guesser gets only 'higher' or 'lower' after each guess. Play a sloppy round first, then a deliberate round where the goal is to guarantee a win in the fewest guesses. Watch what every efficient guesser does: they open with 50. Why 50? Because whatever answer comes back, half the numbers vanish — 'higher' kills 1 through 50, 'lower' kills 50 through 100. Then they guess the middle of what's left, 25 or 75, and halve again. That instinct — always guess the middle, always halve the range — is binary search. And the punchline they will discover: from 100 numbers you never need more than seven guesses. Hold that feeling; the whole lesson is that game made precise. One more thing to surface: the game only works because the numbers 1 to 100 are in order. That ordering is today's key requirement."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 3 sections that match today's lesson. Green = CB required; blue = optional deep dive.",
+      "sections": [
+        {
+          "title": "How Binary Search Works — Halve and Count",
+          "description": "Starting at the middle of a sorted set, eliminating half each step, and counting the iterations needed to find a value (EK AAP-2.P.1)."
+        },
+        {
+          "title": "The Sorted Requirement and Why It Wins",
+          "description": "Why the data must be sorted, and why binary search is often more efficient than linear search on sorted data (EK AAP-2.P.2–P.3)."
+        },
+        {
+          "title": "Deep Dive: Why Each Check Doubles the Reach",
+          "description": "How one extra comparison doubles the amount of data binary search can handle — the intuition behind its speed.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.11 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — three sections. The first two are green and CB-required: how binary search works, where you learn to halve and count iterations; and the sorted requirement and why it wins, where you explain what must be true for binary search and why it beats linear search on sorted data. The third section is a blue deep dive, beyond the exam, on why each extra check doubles the data you can search — optional, but it makes the speed click. Keep the packet open; if you were absent, a digital copy lives on the Topic 3.11 page, which also hosts today's interactive coding practice."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "How Binary Search Works — Halve and Count",
+      "kicker": "Start in the Middle, Eliminate Half · Learning Objective AAP-2.P",
+      "script": "Section one. Your number game was binary search in disguise. Now we make it precise: how the algorithm decides what to check, how it throws away half of the data every step, and — the exam's favorite question for this topic — how to count the number of iterations it needs to find a value."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.P)",
+      "terms": [
+        {
+          "term": "Binary search",
+          "definition": "An algorithm that starts at the middle of a sorted data set and eliminates half of the data each step, repeating until the value is found or all elements are eliminated (EK AAP-2.P.1)."
+        },
+        {
+          "term": "Sorted data",
+          "definition": "A data set whose elements are already arranged in order (for example, smallest to largest); binary search requires this before it can run (EK AAP-2.P.2)."
+        },
+        {
+          "term": "Iteration",
+          "definition": "One repeat of the binary search process — checking the middle of the current region and discarding half; counting these answers 'how many steps to find the value' (EK AAP-2.P.1)."
+        },
+        {
+          "term": "Eliminate half",
+          "definition": "Using a single comparison at the middle to rule out the entire half of the data that cannot contain the target, cutting the work that remains in two (EK AAP-2.P.1)."
+        },
+        {
+          "term": "More efficient",
+          "definition": "Needing fewer checks to finish; binary search is often more efficient than linear search when the data is sorted (EK AAP-2.P.3)."
+        }
+      ],
+      "script": "Five words carry this topic. Binary search: the algorithm that starts in the middle of a sorted set and eliminates half of the data each step until it finds the value or runs out. Sorted data: elements already in order — the precondition without which none of this works. Iteration: one repeat of the check-the-middle-and-halve process; counting iterations is how you answer 'how many steps.' Eliminate half: the heart of it — one comparison at the middle rules out an entire half at once. And more efficient: needing fewer checks to finish, which binary search usually is compared to linear search on sorted data. Write all five; every exam question on this topic is built from them."
+    },
+    {
+      "type": "concept",
+      "heading": "Start in the Middle, Eliminate Half",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Binary search works by repeatedly cutting the search area in two, not by scanning one element at a time (EK AAP-2.P.1).",
+        "Each step it looks at the value in the middle position of whatever portion is still in play (EK AAP-2.P.1).",
+        "Comparing that middle value to the target reveals which half cannot possibly hold the target, so that entire half is discarded (EK AAP-2.P.1).",
+        "The process repeats until the target is found or every element has been eliminated (EK AAP-2.P.1).",
+        "The College Board tests the halving IDEA and the iteration count — not a memorized line-by-line implementation (X EXCLUSION on EK AAP-2.P.1)."
+      ],
+      "script": "Here is the mechanism, stated the way the College Board states it. Binary search does not scan; it cuts. Each step, it inspects the value sitting in the middle of the portion still being searched. One comparison of that middle value against the target tells it which half is hopeless — if the middle is too big, the target must be in the smaller-valued half, so the larger half is gone; if the middle is too small, the opposite. Then it repeats on the surviving half, and keeps going until it lands on the target or eliminates everything. One crucial exam note lives in the exclusion attached to this standard: you are NOT expected to memorize a specific implementation with index pointers and loops. You are expected to understand the halving and count the iterations. That is a gift — focus your energy there.",
+      "capture": [
+        {
+          "q": "Instead of scanning one element at a time, each step of binary search ______.",
+          "a": "throws away an entire half of the elements still left to check"
+        },
+        {
+          "q": "It decides which half to discard by comparing the target to the value sitting at ______.",
+          "a": "the center of the portion still being searched"
+        },
+        {
+          "q": "For this topic the exam expects the halving idea and iteration count rather than ______.",
+          "a": "a memorized line-by-line implementation of the algorithm"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace a Search, Count the Iterations",
+      "context": "A shelf holds 15 books sorted by call number: [3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88]. We search for book 21 (position 5). Each iteration checks the middle of the region in play, then eliminates the half that cannot hold it. Middle position = (low + high) / 2, rounded down. Fill in the blanks, then count the iterations.",
+      "columns": [
+        "Iteration",
+        "Region (positions in play)",
+        "Middle position checked",
+        "Value there vs target 21",
+        "Half eliminated"
+      ],
+      "rows": [
+        [
+          "1",
+          "1–15",
+          "8",
+          "40 > 21",
+          "positions 8–15 (the larger half)"
+        ],
+        [
+          "2",
+          "1–7",
+          "4",
+          "15 < 21",
+          "positions 1–4 (the smaller half)"
+        ],
+        [
+          "3",
+          "5–7",
+          "6",
+          "26 > 21",
+          "positions 6–7 (the larger half)"
+        ],
+        [
+          "4",
+          "5–5",
+          "5",
+          "21 = 21 ✓ found",
+          "— (value found)"
+        ]
+      ],
+      "highlightCol": 0,
+      "script": "Trace it exactly the way you should on the exam. Iteration one: the region is all 15 positions, the middle is position eight, value 40. 40 is bigger than 21, so the target can only be in the smaller-valued half — positions eight through fifteen are eliminated, leaving one through seven. Iteration two: middle of one-to-seven is position four, value 15. 15 is smaller than 21, so eliminate the small half, positions one through four, leaving five through seven. Iteration three: middle of five-to-seven is position six, value 26, too big, eliminate six and seven, leaving position five. Iteration four: middle of five-to-five is position five, value 21 — found. Four iterations. Notice we examined 4 of the 15 books, not all 15. And notice how you find the middle: low plus high over two, rounded down. That counting — number of iterations to find a value — is the number-one skill AAP-2.P part a asks for.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Counting Iterations",
+      "heading": "Halve the Count Until Nothing Is Left",
+      "caption": "Halving the number of items still in play: a 15-item shelf needs at most 4 checks — the same 4 iterations we just traced.",
+      "pseudocode": "itemsLeft ← 15\nchecks ← 0\nREPEAT UNTIL(itemsLeft < 1)\n{\n  checks ← checks + 1\n  itemsLeft ← itemsLeft / 2\n}\nDISPLAY(checks)",
+      "python": "items_left = 15\nchecks = 0\nwhile items_left >= 1:\n    checks = checks + 1\n    items_left = items_left // 2\nprint(checks)",
+      "output": "4",
+      "script": "You do not have to trace a whole search to count its worst case — you can just count halvings. Start with the number of items, here 15. Each check lets you throw away half, so cut the count in half and tally one check; keep going until nothing could remain. Fifteen halves to seven, to three, to one, to zero — four halvings, four checks. That matches the four iterations we traced by hand, and it is the maximum this shelf could ever need. On the left is the exam's pseudocode; on the right is runnable Python that prints four. This little count-the-halvings program is exactly what you will build and run in today's coding practice. And it explains the number game: 100 halves to 50, 25, 13, 7, 4, 2, 1 — seven checks, never more."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Halve and Count",
+      "subheading": "These map to LO AAP-2.P (part a). Complete on your Guided Notes.",
+      "prompts": [
+        "A sorted list has 7 elements. Binary search checks the middle first — which position is that, and how many elements remain after the first comparison?",
+        "Count the worst-case iterations for a sorted list of 31 elements by halving: 31 → ? → ? → … → 0. How many halvings?",
+        "In your own words, explain why examining the MIDDLE element (not the first) is what lets binary search eliminate half the data in one step."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.11 page.",
+      "script": "Stop and think, six minutes, full sentences. One: for 7 elements the middle is position four, and one comparison leaves at most three elements — half the list is gone instantly. Two: halve 31 — 31, 15, 7, 3, 1, 0 — that is five halvings, so at most five iterations. Three: the middle is the only choice that splits the remaining data into two equal halves; checking the first element could only ever eliminate one element, which is just linear search wearing a costume. These are precisely the part-a moves the exam rewards."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Sorted Requirement and Why It Wins",
+      "kicker": "One Rule, One Big Payoff · Learning Objective AAP-2.P",
+      "script": "Section two. Binary search is fast, but it is not free — it demands something in return. Here we nail the one requirement that makes it valid, explain WHY that requirement is non-negotiable, and then measure the payoff against linear search. This is the explanation half of the objective, AAP-2.P part b."
+    },
+    {
+      "type": "concept",
+      "heading": "The One Rule: The Data Must Be Sorted",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Binary search has one hard requirement: the data set must already be in sorted order before the search starts (EK AAP-2.P.2).",
+        "Sorting is what gives the middle value meaning — one side then holds only smaller values, the other side only larger ones.",
+        "That guarantee is exactly what lets a single comparison safely discard an entire half of the data (EK AAP-2.P.1).",
+        "If the data is not sorted, the eliminate-half decision can throw out the very region that actually holds the target (EK AAP-2.P.2)."
+      ],
+      "script": "The mechanism from section one hides an assumption, and here it is out in the open: the data must be sorted first. Why does that matter so much? Because the entire eliminate-half move depends on it. When the data is sorted, comparing the target to the middle value tells you something ironclad — everything on one side is smaller and everything on the other is larger, so one of those sides truly cannot contain the target and can be discarded with total confidence. Pull away the sorting and that confidence evaporates: a value smaller than the middle might be sitting anywhere, including in the half you just threw away. So the sorted requirement is not a nice-to-have; it is the load-bearing wall. That is the AAP-2.P part-b explanation the exam asks you to give.",
+      "capture": [
+        {
+          "q": "Binary search cannot run correctly unless the data set is ______.",
+          "a": "already arranged in order before the search begins"
+        },
+        {
+          "q": "Sorting matters because it guarantees that one side of the middle holds only ______.",
+          "a": "smaller values while the other side holds only larger ones"
+        },
+        {
+          "q": "On unsorted data, eliminating a half is unsafe because it can discard ______.",
+          "a": "the very region that actually contains the target"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Linear Search vs Binary Search",
+      "subheading": "Both find a value in a list — but they pay very different costs, and only one needs sorted data (EK AAP-2.P.3).",
+      "left": {
+        "title": "Linear (sequential) search",
+        "definition": "Check each element in order until the value is found or the list ends",
+        "ek": "EK AAP-2.P.3",
+        "examples": [
+          "Works on ANY list — sorted or not",
+          "Worst case: examines all n elements one by one",
+          "For 1000 items, up to 1000 checks"
+        ]
+      },
+      "right": {
+        "title": "Binary search",
+        "definition": "Check the middle of a sorted region, eliminate half, repeat",
+        "ek": "EK AAP-2.P.3",
+        "examples": [
+          "Requires SORTED data before it can run",
+          "Worst case: halves the region each step",
+          "For 1000 sorted items, only about a dozen checks"
+        ]
+      },
+      "footer": "AP TIP: On sorted data, binary search is often far more efficient — but linear search is the one that still works when the data is unsorted (EK AAP-2.P.3).",
+      "script": "Line the two searches up side by side. Linear search checks each element in order; its great virtue is that it works on any list at all, sorted or not, but its cost is that in the worst case it examines every single element — a thousand items can mean a thousand checks. Binary search demands sorted data, and in exchange it halves the region every step, so a thousand sorted items are handled in only about ten or a dozen checks. That is the trade the College Board wants you to articulate in EK AAP-2.P.3: binary search is often more efficient than linear search, but that efficiency is available only when the data is sorted. If your data is unsorted and you cannot sort it, linear search is still your tool.",
+      "capture": [
+        {
+          "q": "On a sorted list of 1000 items, linear search may need up to 1000 checks, while binary search needs only about ______.",
+          "a": "ten — the number of times 1000 halves down to nothing"
+        },
+        {
+          "q": "Binary search is often more efficient than linear search, but only when the data is ______.",
+          "a": "kept in sorted order for the whole search"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "The Payoff, in Numbers",
+      "context": "Worst-case number of checks for each search as the list grows. Linear search's worst case is n (check them all); binary search's worst case is the number of times n halves down to nothing. Fill in the blanks by halving.",
+      "columns": [
+        "List size (n)",
+        "Linear search — worst-case checks",
+        "Binary search — worst-case checks"
+      ],
+      "rows": [
+        [
+          "7",
+          "7",
+          "3"
+        ],
+        [
+          "15",
+          "15",
+          "4"
+        ],
+        [
+          "100",
+          "100",
+          "7"
+        ],
+        [
+          "1000",
+          "1000",
+          "10"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Now feel the payoff as numbers. For seven items, linear search may need seven checks; binary search needs three. For fifteen, it is fifteen versus four. For a hundred, a hundred versus seven — halve a hundred to fifty, twenty-five, thirteen, seven, three, one, zero, that is seven halvings. For a thousand, a thousand versus ten. Look down the binary column: while the list size multiplies by more than a hundred, the binary checks crawl from three to ten. That gap is the whole reason binary search matters, and it only widens as data grows. This is EK AAP-2.P.3 made concrete — often far more efficient, on sorted data.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Binary Search Works on Any List”",
+      "misconception": "Binary search is just a faster search, so you can use it on any list of values, sorted or not.",
+      "whyItHappens": "Binary search is introduced as 'the fast one,' so it is tempting to reach for it everywhere, and on tiny examples it sometimes lands on the answer by luck.",
+      "correction": "Binary search requires the data to be in sorted order (EK AAP-2.P.2). Deciding which half to eliminate depends entirely on knowing that one side of the middle is smaller and the other is larger. On unsorted data that guarantee is gone, so binary search can discard the half that actually holds the target and report the value as missing when it is really present. It is often more efficient than linear search, but only when applied to sorted data (EK AAP-2.P.3).",
+      "example": "In the unsorted list [4, 1, 7, 2, 9], search for 2. The middle (position 3) is 7; since 2 < 7, binary search eliminates the right half — but 2 lives at position 4, in the half just thrown away. It wrongly concludes 2 is absent. Sort first — [1, 2, 4, 7, 9] — and binary search finds 2 correctly.",
+      "script": "This is the trap the exam sets, and it sinks students who treat binary search as a universal upgrade. Because it is billed as the fast search, people apply it to any list — and on small examples it occasionally gets lucky. But binary search requires sorted data, full stop. Watch it fail: in the unsorted list four, one, seven, two, nine, search for two. The middle is seven; two is smaller, so binary search throws away the right half — except two is in that half, at position four. The algorithm now swears two isn't there, and it's wrong. Sort the list first and it works perfectly. The lesson, straight from EK AAP-2.P.2, is that the sorting is the requirement; without it, the eliminate-half logic is unsound."
+    },
+    {
+      "type": "concept",
+      "heading": "Why Each Check Doubles the Reach",
+      "tag": "DEEP DIVE",
+      "track": "enrichment",
+      "bullets": [
+        "Run the halving backwards: 1 check can pin down a value among up to 1 item, 2 checks up to 3 items, 3 checks up to 7 items — each extra check roughly DOUBLES the size it can handle.",
+        "So the searchable size grows explosively while the check count grows one at a time: about 10 checks cover 1000 items, about 20 checks cover a million.",
+        "This is why doubling the data adds only ONE iteration — one more halving is enough to cut the doubled data back down.",
+        "Formal analysis of this growth (logarithms, Big-O) is beyond the AP CSP exam — but the doubling intuition is what makes binary search's speed feel inevitable."
+      ],
+      "script": "Here is the deep-dive intuition, beyond anything the exam will grade but worth having. Run the halving in reverse. One check can settle a search among a single item. Two checks handle up to three. Three checks handle up to seven. Every extra check you allow roughly doubles the amount of data you can conquer. That is a staggering trade: the searchable size explodes — one, three, seven, fifteen, thirty-one, and onward — while the number of checks ticks up by one each time. Ten checks reach a thousand items; twenty checks reach a million. It also explains the pattern you will see on the exam: double the data and binary search needs just one more iteration, because one more halving is all it takes to bring the doubled pile back to the size you already knew how to handle. The formal version of this is logarithms and Big-O, which are outside our course — but the doubling picture is the honest heart of why binary search is fast.",
+      "capture": [
+        {
+          "q": "Each additional binary search check roughly ______ the amount of data it can handle.",
+          "a": "doubles"
+        },
+        {
+          "q": "Doubling the size of a sorted data set adds only ______ to the worst-case number of iterations.",
+          "a": "one more check (a single extra halving)"
+        }
+      ]
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.11 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Binary search REQUIRES sorted data",
+          "text": "If a question shows an unsorted list and applies binary search, the setup is broken. Binary search is only valid on sorted data — that requirement is the most tested idea in this topic. Sort first, or you cannot binary search at all."
+        },
+        {
+          "name": "Count halvings, not elements",
+          "text": "For 'how many iterations,' do NOT count elements like linear search. Count how many times the size halves down to nothing: 15 → 7 → 3 → 1 → 0 is 4 checks. Doubling the data adds just one iteration."
+        },
+        {
+          "name": "You are tested on the IDEA, not an implementation",
+          "text": "The exclusion means no line-by-line binary search code is required. Questions ask how many iterations, why sorting is needed, and why it beats linear search — the halving concept, not index pointers."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: binary search requires sorted data — if a prompt hands you an unsorted list, the whole premise is invalid, and that requirement is the single most tested idea here. Trap two: to count iterations, count halvings, not elements; fifteen goes to seven to three to one to zero, four checks, and doubling the data adds only one more. Trap three: because specific implementations are excluded, they will not make you trace pointer code — they ask how many iterations, why sorting is required, and why binary beats linear. Answer those three and every binary search question on the exam is yours."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Binary Search, in One Slide",
+      "points": [
+        "Binary search starts at the MIDDLE of a sorted data set and eliminates half of the data each step, repeating until the value is found or all elements are eliminated (EK AAP-2.P.1).",
+        "Count iterations by halving the size down to nothing — 15 → 7 → 3 → 1 → 0 is 4 checks; doubling the data adds just one iteration (EK AAP-2.P.1).",
+        "The data MUST be in sorted order; the eliminate-half decision is only valid when one side of the middle is smaller and the other larger (EK AAP-2.P.2).",
+        "On sorted data binary search is often far more efficient than linear search — about 10 checks for 1000 items versus up to 1000 (EK AAP-2.P.3)."
+      ],
+      "next": "Topic 3.12, Calling Procedures: now that you can reason about algorithms like search, how do you package a process behind a name — a procedure you call, pass arguments to, and use the return value from?",
+      "script": "The whole topic in one slide. Binary search starts in the middle of a sorted set and eliminates half the data each step until it finds the value or runs out. You count its iterations by halving the size to nothing — fifteen to seven to three to one to zero is four — and doubling the data costs just one more iteration. The requirement that makes it all valid is sorted data, because only then does one comparison safely rule out a whole half. And the payoff is efficiency: on sorted data binary search often crushes linear search, roughly ten checks for a thousand items against as many as a thousand. Before you pack up, run the exit check — the 'I can' statements at the bottom of the slide; any box you cannot honestly check tells you what to review on the Topic 3.11 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain how binary search starts at the middle of a sorted set and eliminates half of the data each step (LO AAP-2.P)",
+        "determine the worst-case number of iterations binary search needs to find a value in a data set (LO AAP-2.P)",
+        "state and justify the requirement that the data must be sorted before binary search can be used (LO AAP-2.P)",
+        "explain why binary search is often more efficient than linear search on sorted data (LO AAP-2.P)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.11 — Binary Search — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "Which of the following best describes how binary search works?",
+        "options": [
+          "It checks each element in order from the first until the value is found",
+          "It starts at the middle of a sorted data set and eliminates half of the remaining data each step",
+          "It starts at the last element and removes one element at a time",
+          "It picks a random element, then re-sorts the data after each comparison"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.P.1",
+        "rationale": "Binary search begins in the middle of sorted data and discards half the remaining elements each step, so B is correct. A describes linear search. C and D describe processes binary search never uses; it neither works one element at a time from the end nor re-sorts data."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A sorted list has 15 elements. In the worst case, how many times can binary search halve the data (15 → 7 → 3 → 1) before it finishes?",
+        "options": [
+          "4",
+          "8",
+          "15",
+          "2"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.P.1",
+        "rationale": "Halving 15 gives 7, then 3, then 1, then 0, which is 4 steps, so A is correct. B roughly halves 15 only once. C is the linear-search worst case. D stops the halving far too early."
+      },
+      {
+        "id": "Q3",
+        "kind": "recall",
+        "stem": "Which statement best describes the requirement a data set must meet before binary search can be used?",
+        "options": [
+          "It must be in sorted order",
+          "It must be in the order the values were entered",
+          "It must contain no duplicate values",
+          "It must have fewer than ten elements"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.P.2",
+        "rationale": "Binary search only works on sorted data, because the eliminate-half decision relies on order. A is correct. B, C, and D are not requirements: entry order does not help, duplicates are allowed, and there is no size limit."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "stem": "A sorted list has 1000 elements. How do the worst-case iteration counts of linear and binary search compare?",
+        "options": [
+          "Both take about 1000 iterations, since each must eventually look at every element",
+          "Linear takes about 10 iterations while binary takes about 1000",
+          "Linear may take up to 1000 iterations while binary takes about 10, so binary is far more efficient here",
+          "Both take about 10 iterations, since both cut the list in half"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.P.3",
+        "rationale": "Linear search may check all 1000 elements, while binary search halves the data to about 10 steps, so C is correct. A ignores binary search's halving. B swaps the two. D wrongly claims linear search halves the data."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "Binary search runs on the sorted list [2, 5, 9, 14, 20, 27, 33]. Which element does it check first?",
+        "options": [
+          "2, the first value in the list",
+          "5, the second value in the list",
+          "33, the last value in the list",
+          "14, the value in the middle position"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.P.1",
+        "rationale": "Binary search starts at the middle of the seven-element list, which is 14, so D is correct. A and B start at the front like linear search, and C starts at the end. Only the middle element is examined first."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A student says, 'Binary search is always faster than linear search, so I should always use it.' What is the most accurate correction?",
+        "options": [
+          "Correct; binary search is faster for every list, so it should always replace linear search",
+          "Binary search needs sorted data first; it is often more efficient on sorted data, but it cannot run on unsorted data without sorting it",
+          "Linear search is always faster, so binary search should never be used",
+          "Binary search works correctly only on lists with fewer than ten elements"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.P.2",
+        "rationale": "Binary search requires sorted data, so it is not universally usable; B is correct. A ignores that requirement. C overcorrects in the opposite direction. D invents a size limit that does not exist."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A sorted data set doubles in size from 500 to 1000 elements. How does the worst-case number of binary search iterations change?",
+        "options": [
+          "It doubles, from about 10 to about 20, since the data doubled",
+          "It stays exactly the same, since binary search ignores the list size",
+          "It increases by just one iteration, since one extra halving handles the doubled data",
+          "It increases by 500, one extra check for each new element"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.P.1",
+        "rationale": "Doubling the data adds a single halving step, so the count rises by about one; C is correct. A treats binary search like linear search. B ignores that size matters at all. D describes linear-search growth."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.11 — Binary Search — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.11 · 1 class period + assessment block",
+    "overview": [
+      "Topic 3.11 is a single, tightly focused day on one learning objective, AAP-2.P. Both parts of the LO are covered: part a — determining the number of iterations binary search needs to find a value in a data set (a counting skill), and part b — explaining the requirement that makes binary search valid (the data must be sorted). The lesson builds the halving mechanism, has students count iterations on a concrete sorted list, and then justifies the sorted-data requirement and the efficiency payoff over linear search from Topic 3.10.",
+      "A deliberate boundary shapes this topic: the CED excludes specific implementations of binary search (X EXCLUSION on EK AAP-2.P.1). The lesson therefore stays at the halving/iteration-count level — no index-pointer code to memorize. Slides show the halving idea in AP pseudocode next to runnable Python, and the auto-graded coding practice on the Topic 3.11 page has students count iterations and eliminate half on a sorted list, never trace a low-level implementation.",
+      "The through-line is the Day-1 bell ringer: the 'guess my number 1–100' game. Students discover that opening with 50 and always halving the range guarantees a win in at most seven guesses — inventing binary search, and its dependence on ordered data, before the term is defined. That same halving thread runs through the worked traces, the paper exercises, and the coding practice."
+    ],
+    "los": [
+      "LO AAP-2.P — For binary search algorithms: a. Determine the number of iterations required to find a value in a data set. b. Explain the requirements necessary to complete a binary search."
+    ],
+    "eks": [
+      "EK AAP-2.P.1 — The binary search algorithm starts at the middle of a sorted data set of numbers and eliminates half of the data; this process repeats until the desired value is found or all elements have been eliminated. X EXCLUSION (EK AAP-2.P.1): Specific implementations of the binary search are outside the scope of the course and the AP Exam.",
+      "EK AAP-2.P.2 — Data must be in sorted order to use the binary search algorithm.",
+      "EK AAP-2.P.3 — Binary search is often more efficient than sequential/linear search when applied to sorted data."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1.",
+      "Printed Topic 3.11 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.11 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: a set of index cards with sorted numbers, or a physical 'guess my number' range strip, for a kinesthetic halving demonstration."
+    ],
+    "prereqs": [
+      "Topic 3.10 (Lists), especially linear/sequential search, is the direct prerequisite — binary search is framed as the efficient alternative on sorted data, and the efficiency comparison assumes students know how linear search behaves. Students should be comfortable with 1-indexed lists and with reading a sorted list of numbers. No specific implementation of binary search is assumed or required (it is excluded)."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "The halving mechanism and counting iterations (part a); the sorted-data requirement and efficiency over linear search (part b) (LO AAP-2.P)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.11/Q1) + bell ringer (guess my number 1–100)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "How binary search works: vocab, halve-and-eliminate concept, the 15-book trace, the count-the-halvings code_block (EK AAP-2.P.1)",
+            "min": 15,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on halving and counting iterations",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "The requirement and payoff: sorted-data concept, linear-vs-binary, the payoff table, the unsorted-fails misconception (EK AAP-2.P.2–P.3)",
+            "min": 15,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Optional deep dive: why each check doubles the reach",
+            "min": 3,
+            "slides": "16",
+            "track": "enrichment"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 6,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.11 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.11 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.11 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Binary search works on any list”",
+        "myth": "Binary search is just a faster search, so it can be used on any list of values, sorted or not.",
+        "reality": "Binary search requires sorted data (EK AAP-2.P.2). The eliminate-half decision is only valid when one side of the middle is smaller and the other larger; on unsorted data it can discard the half that actually holds the target and report a present value as missing. Enforce: sort first, or you cannot binary search at all."
+      },
+      {
+        "heading": "“Count the elements, like linear search”",
+        "myth": "The number of iterations is close to the number of elements, so a list of 1000 takes hundreds of checks.",
+        "reality": "Binary search halves the data each step, so you count HALVINGS, not elements (EK AAP-2.P.1). A 1000-element sorted list takes about 10 checks, not 1000. Doubling the data adds only one iteration — the single most counterintuitive point for students."
+      },
+      {
+        "heading": "“I need to memorize the binary search code”",
+        "myth": "There is a specific binary search implementation with index pointers and loops that must be memorized for the exam.",
+        "reality": "Specific implementations are excluded (X EXCLUSION on EK AAP-2.P.1). The exam tests the halving idea, iteration counts, the sorted requirement, and the efficiency comparison — not line-by-line pointer code. Keep student energy on concept and counting."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Run the number game physically with a printed 1–100 strip: students fold the range in half after each 'higher/lower' so 'eliminate half' is something they see and touch before it is abstract.",
+        "Provide a fill-in iteration table (region / middle / comparison / half eliminated) so students trace a search one row at a time and literally count the rows to get the iteration count."
+      ],
+      "extension": [
+        "Have students predict, then verify with the coding practice, the worst-case checks for large sizes (e.g., 1,000,000) and explain why the count grows so slowly compared with the data.",
+        "Ask students to construct an unsorted list and a target for which binary search fails, then show the exact half where the target is wrongly discarded — proving why sorting is required."
+      ]
+    },
+    "discussion": [
+      "In the number game, opening with 50 guarantees a win in at most seven guesses, but opening with 1 could take a hundred. What is it about guessing the MIDDLE that the endpoints can never give you, and where else do people 'search by halving' in real life?",
+      "Binary search is often far more efficient than linear search — but only on sorted data. If your data is arriving unsorted, when is it worth the cost of sorting it first, and when would you just live with linear search?",
+      "The exam deliberately excludes the specific code for binary search and asks instead about iterations and requirements. What does that choice suggest about what the College Board thinks is the durable, transferable idea here — versus the disposable detail?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

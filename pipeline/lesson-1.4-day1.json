@@ -1,0 +1,807 @@
+{
+  "meta": {
+    "lessonId": "1.4",
+    "lessonTitle": "AI-Based Cybersecurity Attacks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 1,
+    "los": "LO 1.4.A",
+    "anchor": "AI-Powered Cyberattacks",
+    "author": "AP CS Exam Prep",
+    "totalDays": 2
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.4 · Day 1 of 2",
+      "title": "How Adversaries Weaponize AI",
+      "subtitle": "AI-Based Cybersecurity Attacks: the six CB-specified ways adversaries use AI-powered tools to augment an attack",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 1.4, AI-Based Cybersecurity Attacks, Day 1 of 2. Everything you have learned so far — social engineering, password attacks, network attacks — still applies. What changes in this lesson is the tooling. Today, Day 1, is learning objective 1.4.A: the six specific ways the College Board says adversaries use AI-powered tools to make those attacks faster, cheaper, and far more convincing. Tomorrow, Day 2, is learning objective 1.4.B — how you defend against them, anchored on Scenario 1D. The danger today is not science fiction; it is that the old tells we relied on — the broken English in a phishing email, the certainty that a voice on the phone is really the person it claims to be — are exactly the things AI now removes."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "You get a phone call. It is your grandmother's number, and it is unmistakably her voice — same accent, same way of saying your name — crying that she has been in an accident and needs money wired right now. Nothing about the voice sounds off.",
+      "subprompt": "Write 3–5 sentences: name one reason you would believe this call, and one way an attacker could fake a specific person's voice so convincingly. What, if anything, could you check?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own, no notes. Read the prompt: a call from your grandmother's actual number, in her actual voice, saying she is hurt and needs money wired immediately. In three to five sentences, tell me one reason you would believe it, and one way an attacker could fake a specific person's voice that well. Then: is there anything you could actually check in the moment? Hold your answer. By the end of class you will know exactly how this is done — it is the first of six techniques today — and tomorrow you will know the one simple thing that defeats it."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have three sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "AI Turned Against People",
+          "description": "Deepfake voice and video avatars, native-fluent AI phishing, and AI-powered reconnaissance (EK 1.4.A.1, A.2, A.5)."
+        },
+        {
+          "title": "Attacks On and With AI Systems",
+          "description": "Prompt extraction of secrets, poisoning LLM training data, and AI-assisted malware and vulnerability hunting (EK 1.4.A.3, A.4, A.6)."
+        },
+        {
+          "title": "Scenario 1D: How the Voice Scam Was Built",
+          "description": "Trace the real CB scenario: recon plus voice cloning chained into one convincing phone call."
+        },
+        {
+          "title": "Enrichment: Why the Old Tells Stopped Working",
+          "description": "Why ‘look for bad grammar’ and ‘trust a familiar voice’ are no longer reliable defenses.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 1.4 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three sections today, all green except the last. Section one is AI aimed at people — deepfakes, AI-written phishing, and AI reconnaissance. Section two is attacks on and with AI systems themselves — pulling secrets out of a model, poisoning what a model learns, and using AI to write malicious code. Section three applies it all to Scenario 1D, the voice-cloning scam from your bell ringer. Keep your pencil moving; Guided Notes are collected at the end of class."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the three AI techniques aimed at people — deepfake voice and video avatars, native-fluent AI phishing, and AI-powered reconnaissance (LO 1.4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify the three attacks on and with AI systems — prompt extraction of secrets, training-data poisoning, and AI-assisted malicious coding (LO 1.4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain why the old tells — robotic voices and bad grammar — no longer reliably catch AI-augmented attacks (LO 1.4.A)"
+        }
+      ],
+      "script": "Three objectives today, all under learning objective 1.4.A, and together they cover the six techniques the College Board names. The College Board names six distinct techniques under this objective. Notice the verb is explain, not just list. The AP exam will hand you a scenario and ask you to identify which AI technique is in play and explain how it makes the underlying attack work. By the end of today you should be able to do that for all six."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "AI Turned Against People",
+      "kicker": "AI-Augmented Attacks · Learning Objective 1.4.A",
+      "script": "Section one. Learning objective 1.4.A. The first three techniques all point AI at a human target — they make deception more convincing and reconnaissance more thorough. Ten minutes here."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "AI Aimed at People: Three CB-Specified Techniques",
+      "subheading": "EK 1.4.A.1, A.2, and A.5. The AP exam will describe one of these in a scenario and ask you to name the technique.",
+      "items": [
+        {
+          "ek": "EK 1.4.A.1",
+          "title": "Deepfake Voice & Video Avatars",
+          "summary": "Adversaries use AI tools that leverage existing voice and image samples of a person to create a digital avatar of them — impersonating someone over the phone or on a video call. This can lead to financial loss or the sharing of private information, and it grows more dangerous as organizations adopt voice-based authentication.",
+          "ekRef": "EK 1.4.A.1"
+        },
+        {
+          "ek": "EK 1.4.A.2",
+          "title": "Native-Fluent AI Phishing",
+          "summary": "Generative AI tools like large language models (LLMs) write convincing phishing messages in any target language. The old tell — unnatural, non-native phrasing — is gone: AI can craft a message that reads as though written by a native speaker, in any language.",
+          "ekRef": "EK 1.4.A.2"
+        },
+        {
+          "ek": "EK 1.4.A.5",
+          "title": "AI-Powered Reconnaissance",
+          "summary": "Adversaries run AI-powered tools that scan the internet to gather information a target has posted on social media and public websites. This automates the OSINT research phase — the same profiling that fuels targeted phishing and the dictionary attacks from Lesson 1.2.",
+          "ekRef": "EK 1.4.A.5"
+        }
+      ],
+      "script": "Three techniques, all aimed at a person. First, EK 1.4.A.1: deepfake avatars. Feed an AI tool samples of someone's voice or face — easy to scrape from social media — and it can place a phone call or join a video call as that person. That is your bell ringer. And notice the sting in the tail: as more banks adopt voice authentication, a cloned voice is not just convincing, it can be the literal key. Second, EK 1.4.A.2: AI phishing. For years we told you to look for broken grammar. An LLM writes flawless phishing in any language on demand, so that tell is dead. Third, EK 1.4.A.5: AI reconnaissance. Tools that automatically scrape your social media and public footprint to build a profile of you — the research phase of an attack, now automated and at scale. Write all three, with their EK numbers, in your Guided Notes."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Attacks On and With AI Systems",
+      "kicker": "AI-Augmented Attacks · Learning Objective 1.4.A",
+      "script": "Section two. Still learning objective 1.4.A. The next three techniques turn on the AI systems themselves — pulling data out of a model, poisoning what a model learns, and using AI as a coding accomplice. Ten minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Attacks On and With AI: Three CB-Specified Techniques",
+      "subheading": "EK 1.4.A.3, A.4, and A.6. These target the model or use the model as a tool — not the human directly.",
+      "items": [
+        {
+          "ek": "EK 1.4.A.3",
+          "title": "Prompt Extraction of Secrets",
+          "summary": "Adversaries craft prompts that extract secure or sensitive information from LLMs. That sensitive data can come from two places: what other users typed into the model, and the large data sets used to train it. The attacker pulls secrets back out through clever questioning.",
+          "ekRef": "EK 1.4.A.3"
+        },
+        {
+          "ek": "EK 1.4.A.4",
+          "title": "Poisoning the Training Data",
+          "summary": "Adversaries publish or modify websites to contain false information, so that the false information gets pulled into the training sets for LLMs — causing the models to later repeat that false information to real users. The attack targets what the model learns, not a single login.",
+          "ekRef": "EK 1.4.A.4"
+        },
+        {
+          "ek": "EK 1.4.A.6",
+          "title": "AI-Assisted Malicious Coding",
+          "summary": "Adversaries use AI-enhanced coding tools to help write new malware, modify existing application code to perform malicious activities, or find vulnerabilities in large code bases — lowering the skill and time needed to build an effective attack.",
+          "ekRef": "EK 1.4.A.6"
+        }
+      ],
+      "script": "Three more, turned on the systems. EK 1.4.A.3: prompt extraction. An LLM has seen sensitive things — other people's inputs, and whatever was in its training data — and a carefully crafted prompt can coax those secrets back out. EK 1.4.A.4: data poisoning. This one is subtle. The adversary plants false information on public websites specifically so it gets scraped into the next model's training set, and then the model confidently repeats the lie to everyone who asks. EK 1.4.A.6: AI-assisted coding. The same coding assistants that help developers help adversaries — writing new malware, weaponizing existing code, or scanning a huge codebase for the one exploitable bug. Write all three with their EK numbers."
+    },
+    {
+      "type": "two_column",
+      "heading": "Scenario 1D: How One Phone Call Was Built",
+      "subheading": "The CB anchor scenario chains two of today's techniques together — recon feeds the clone.",
+      "left": {
+        "title": "Step 1 — Reconnaissance (EK 1.4.A.5)",
+        "definition": "The adversary profiles the target from public posts",
+        "ek": "EK 1.4.A.5",
+        "examples": [
+          "Sends a friend request using a name similar to a real classmate; the target accepts",
+          "Scrapes the target's short videos for clean samples of their voice",
+          "Uses public posts to identify the target's relatives and find a relative to call",
+          "All of this is gathered from social media — no hacking required"
+        ]
+      },
+      "right": {
+        "title": "Step 2 — Voice Cloning (EK 1.4.A.1)",
+        "definition": "The harvested voice becomes a weapon",
+        "ek": "EK 1.4.A.1",
+        "examples": [
+          "Voice samples are fed into an AI tool that clones the target's voice",
+          "The adversary calls the relative speaking in the target's cloned voice",
+          "Invents a crisis: arrested for stealing, in jail, needs bail money wired now",
+          "The relative wires the money — the voice ‘sounded exactly like’ the target"
+        ]
+      },
+      "footer": "AP TIP: When a scenario describes social-media scraping followed by an impersonation, name BOTH techniques — recon (EK 1.4.A.5) and the deepfake avatar (EK 1.4.A.1). The exam rewards identifying the chain, not just one step.",
+      "script": "Here is the whole scenario as a chain. Step one is EK 1.4.A.5, reconnaissance. The adversary sends a friend request under a name that looks like a kid from the target's school, gets accepted, and now has access to the target's video posts. They scrape clean voice samples and, from the same public posts, find a relative to target. Step two is EK 1.4.A.1, the deepfake. Those voice samples go into a cloning tool, and the adversary calls the relative in the target's own voice with a manufactured emergency — arrested, in jail, wire bail money now. The relative does, because the voice sounded exactly like the target. Two techniques, one seamless attack. On the exam, name both links in the chain."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘I’d Spot a Fake’ Myth",
+      "misconception": "AI scams are easy to catch — fake voices sound robotic and phishing emails have bad grammar.",
+      "whyItHappens": "Those WERE reliable tells for years. Early text-to-speech was flat and robotic, and a lot of phishing genuinely was written by non-native speakers, so ‘listen for the robot voice’ and ‘look for broken English’ became the rules we taught.",
+      "correction": "EK 1.4.A.1 and 1.4.A.2 exist precisely because those tells no longer hold. Modern voice cloning reproduces a specific person's accent and cadence from a few samples, and an LLM writes native-fluent phishing in any language on demand. The absence of a tell is not evidence the message is real.",
+      "example": "The Scenario 1D call uses the target's real voice and real number — there is no robotic giveaway to catch. A phishing email drafted by an LLM can be more grammatically polished than a real one. Relying on ‘it sounded/read fine’ is now a vulnerability, which is exactly why Day 2's defenses don't depend on detecting the fake.",
+      "script": "This is the most dangerous misconception in the whole lesson, because it creates false confidence. For a decade we taught two tells: AI voices sound robotic, and phishing has bad grammar. Both are now obsolete, and the College Board wrote EK 1.4.A.1 and A.2 to say so. A cloning tool captures a specific person's accent and the exact way they say your name. An LLM produces phishing cleaner than most legitimate email. So if your whole defense is ‘I'll be able to tell,’ you have no defense — the better the AI, the more confident the wrong instinct feels. That is the bridge to tomorrow: every defense in EK 1.4.B works WITHOUT you having to detect the fake, because detection is exactly what AI takes away from you."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Why the Old Tells Stopped Working",
+      "subheading": "Not directly CB-required, but it explains why every Day 2 defense avoids relying on detection.",
+      "track": "enrichment",
+      "left": {
+        "title": "The Tell We Used to Teach",
+        "definition": "How people spotted fakes before AI",
+        "ek": "Enrichment",
+        "examples": [
+          "‘Phishing has broken grammar’ — many scams were written by non-native speakers",
+          "‘A familiar voice is proof of identity’ — cloning a specific voice was hard",
+          "‘A live video call can't be faked’ — convincing face-swaps needed studios",
+          "Detection by gut feeling was a reasonable first line of defense"
+        ]
+      },
+      "right": {
+        "title": "Why AI Erased It",
+        "definition": "What changed with generative tools",
+        "ek": "Enrichment",
+        "examples": [
+          "LLMs write native-fluent phishing in any language on demand (EK 1.4.A.2)",
+          "A few public voice samples now clone a specific person's accent and cadence (EK 1.4.A.1)",
+          "Avatar tools fake a live video call from image samples (EK 1.4.A.1)",
+          "The better the AI gets, the more confident the wrong instinct feels"
+        ]
+      },
+      "footer": "TAKEAWAY: Because detection is exactly what AI removes, the EK 1.4.B defenses are built to work WITHOUT having to detect the fake.",
+      "script": "Quick enrichment, because it explains the whole shape of tomorrow's lesson. On the left, the tells we used to teach: bad grammar means phishing, a familiar voice means the real person, a live video call can't be faked. Every one of those was reasonable five years ago. On the right, why AI erased each: native-fluent phishing on demand, voice cloning from a few public samples, avatar tools that fake a video call. Here is the takeaway: if detection is exactly the thing AI takes away from you, then a good defense can't depend on detection. That is why every EK 1.4.B defense tomorrow works without you ever having to tell real from fake."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 1.4.A)",
+      "terms": [
+        {
+          "term": "Digital avatar (deepfake)",
+          "definition": "An AI-generated likeness of a real person built from existing voice and image samples, used to impersonate them on a call or video (EK 1.4.A.1)."
+        },
+        {
+          "term": "Generative AI / large language model (LLM)",
+          "definition": "An AI system that generates human-like text, used by adversaries to write convincing phishing messages in any target language (EK 1.4.A.2)."
+        },
+        {
+          "term": "Prompt extraction",
+          "definition": "Crafting prompts that pull secure or sensitive information back out of an LLM, where it came from user input or the model's training data (EK 1.4.A.3)."
+        },
+        {
+          "term": "Training-data poisoning",
+          "definition": "Publishing or altering websites with false information so it is absorbed into an LLM's training set, causing the model to repeat the false information (EK 1.4.A.4)."
+        },
+        {
+          "term": "AI-powered reconnaissance",
+          "definition": "Using AI tools that scan the internet to gather information a target posted on social media and public websites (EK 1.4.A.5)."
+        },
+        {
+          "term": "AI-assisted malicious coding",
+          "definition": "Using AI-enhanced coding tools to write new malware, modify code for malicious activity, or find vulnerabilities in large code bases (EK 1.4.A.6)."
+        }
+      ],
+      "script": "Six terms, one per technique. Prioritize for the exam: digital avatar, native-fluent AI phishing, and AI reconnaissance — those are the three that show up most in scenarios. But know all six by name and EK number, because the exam can ask about any of them. If you see ‘the model repeated false information it had been trained on,’ that is poisoning, EK 1.4.A.4. If you see ‘the model revealed sensitive data,’ that is prompt extraction, EK 1.4.A.3. The distinction matters."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 1.4.A. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A company's help desk gets a video call from someone who looks and sounds exactly like their CFO, urgently authorizing a large wire transfer. Name the CB-specified technique in play, and explain why voice-based or appearance-based trust is the wrong thing to rely on here.",
+        "An adversary plants the same false ‘fact’ across dozens of low-quality websites, and months later a popular AI assistant starts repeating it. Identify what 1.4.A technique this is, and explain how it differs from prompt extraction."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: a deepfake video call impersonating a CFO. Name the technique, cite the EK, and explain why ‘but it looked and sounded like them’ is exactly the trust an attacker is exploiting. Question two distinguishes two techniques people confuse: planting false info that gets trained into a model — that is poisoning, EK 1.4.A.4, information going IN — versus prompt extraction, EK 1.4.A.3, information coming OUT. Be precise about the direction."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.4 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-ai-based-attacks"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Name-the-AI-technique scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Trace the Scenario 1D attack chain.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-exercise-2"
+        },
+        {
+          "label": "Lesson 1.4 quiz",
+          "tail": "Five questions across both objectives.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-4-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything from class is on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.4 page and run the self-check. Then Exercise 1, where you name the AI technique in each scenario, and Exercise 2, where you trace the Scenario 1D chain yourself. The quiz at the bottom is five questions across both objectives — you'll be ready for it after tomorrow. Write the lesson page URL down now."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Named all six CB-specified ways adversaries use AI to augment attacks (LO 1.4.A)",
+        "Separated attacks aimed at people (A.1, A.2, A.5) from attacks on AI systems (A.3, A.4, A.6)",
+        "Traced Scenario 1D as a chain: recon (A.5) feeding voice cloning (A.1)",
+        "Retired the old tells — robotic voices and bad grammar no longer catch AI attacks"
+      ],
+      "nextPoints": [
+        "Learn the four CB-specified defenses against AI-augmented attacks (LO 1.4.B)",
+        "Solve Scenario 1D: which single defense would have stopped the voice scam",
+        "Take the Lesson 1.4 quiz"
+      ],
+      "teaser": "Tonight, agree on one secret word with a family member — something a stranger could never guess from your social media. Tomorrow you'll learn why that one word defeats a perfect voice clone.",
+      "script": "Day 1 done. You have all six techniques and you can tell the two families apart — aimed at people versus aimed at AI systems. Tonight's teaser is also tomorrow's first defense: pick a secret word with someone in your family, something no amount of social-media scraping could reveal. Tomorrow we make it official with EK 1.4.B, solve the Scenario 1D voice scam, and take the quiz. Review your Guided Notes — be able to name all six techniques and their EK numbers cold."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 1.4 — AI-Based Cybersecurity Attacks — Quiz",
+    "instructions": "Choose the single best answer. 24 questions, 45 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "multi",
+        "stem": "Three incidents are reported. I. An employee joins a video call with someone who looks and sounds exactly like their CEO, who urgently requests a wire transfer. II. A Spanish-speaking firm receives a phishing email written in flawless, native-level Spanish. III. A user mistypes their password once, then logs in successfully from their usual device. Which incidents reflect CB-specified ways adversaries use AI to augment an attack?",
+        "options": [
+          "I only",
+          "I and II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.A",
+        "rationale": "Incident I is EK 1.4.A.1 — a deepfake voice/video avatar impersonating the CEO. Incident II is EK 1.4.A.2 — an LLM writing native-fluent phishing in the target's language (the old ‘bad grammar’ tell is gone). Incident III is an ordinary user mistyping once and succeeding from a known device — no AI and no attack signs at all, so it is excluded. The answer is I and II only."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "In Scenario 1D, the adversary scrapes a target's social-media videos for voice samples, then places a phone call to a relative speaking in the target's cloned voice. Which two CB-specified techniques does this attack combine?",
+        "options": [
+          "Prompt extraction from an LLM and training-data poisoning",
+          "AI-written phishing and AI-assisted malware coding",
+          "AI-powered reconnaissance and a voice-cloning digital avatar",
+          "Multifactor authentication and a shared secret word"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.A.5 + EK 1.4.A.1",
+        "rationale": "Scraping public social-media posts to gather voice samples and find a relative is AI-powered reconnaissance (EK 1.4.A.5); feeding those samples into a tool that clones the voice for the call is a deepfake digital avatar (EK 1.4.A.1). Option A describes attacks on AI systems, not this scenario. Option B names two real techniques that are not the ones used here. Option D lists two defenses (EK 1.4.B), not attack techniques."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "After the Scenario 1D voice scam, a family wants one practical safeguard that lets a relative verify it is really you during a panicked emergency phone call. Which CB-specified defense fits best?",
+        "options": [
+          "Agree in advance on a shared secret word known only to family members",
+          "Enter the caller's claims into an AI chatbot to check whether they are true",
+          "Post a public warning about voice-cloning scams on social media",
+          "Immediately change the passwords on all family bank accounts"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.B.1",
+        "rationale": "EK 1.4.B.1 specifies establishing a shared secret word or phrase known only to two parties to authenticate identity in high-stakes situations — a perfect voice clone still cannot supply a word it was never told. Option B feeds sensitive details into an AI tool, which EK 1.4.B.3 warns against. Option C does not verify any individual caller. Option D protects accounts but does nothing to verify a person's identity on a live call."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "After being targeted, a family adopts four habits. I. Set up a secret code word for emergencies. II. Turn on multifactor authentication for their accounts. III. Stop typing personal or sensitive details into AI chatbots. IV. Verify surprising answers from AI tools against reputable, non-AI sources. Which of these are CB-specified protections against AI-augmented cyberattacks?",
+        "options": [
+          "I and II only",
+          "II and IV only",
+          "I, III, and IV only",
+          "I, II, III, and IV"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.B.1–B.4",
+        "rationale": "All four are EK 1.4.B defenses: a shared secret word (EK 1.4.B.1), multifactor authentication (EK 1.4.B.2), not entering personal/sensitive data into AI tools (EK 1.4.B.3), and verifying AI output against reputable, stable, non-AI sources (EK 1.4.B.4). Because every item maps to a distinct EK in 1.4.B, the complete set is correct."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "A user pastes a confidential client contract into a free public AI chatbot to get a summary. Per the CED, why is this risky?",
+        "options": [
+          "The chatbot is legally prohibited from summarizing contracts",
+          "AI tools may feed the input back into the model, where an adversary could later craft prompts to extract it",
+          "Summaries produced by AI tools are always inaccurate and unusable",
+          "Pasting text into a chatbot disables the device's multifactor authentication"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.A.3 + EK 1.4.B.3",
+        "rationale": "EK 1.4.B.3 warns that some AI tools feed user input back into the model for continuous training, and EK 1.4.A.3 explains that adversaries can craft prompts to extract that sensitive information — so confidential data should never be entered into such tools. Option A invents a legal rule. Option C overstates the case; the risk is exposure, not inaccuracy. Option D describes a mechanism that does not exist."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A small business owner who speaks only English receives an email, supposedly from their bank, written in perfectly natural English with no awkward phrasing or grammar mistakes. The owner assumes it must be legitimate. Per the CED, why is that assumption now unreliable?",
+        "options": [
+          "Banks are required to send all official messages in the customer's first language",
+          "Generative AI tools let adversaries craft phishing in any language that reads as native-written",
+          "Phishing messages can no longer be delivered to English-speaking recipients at all",
+          "Email providers automatically translate every incoming message into the reader's language"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.A.2",
+        "rationale": "EK 1.4.A.2 states that adversaries can use generative AI tools like LLMs to create convincing phishing messages in any target language that read as though written by a native speaker, so the old 'unnatural language' tell no longer reliably separates phishing from legitimate mail. Option A invents a banking rule. Option C is false — polished phishing still reaches English speakers. Option D describes a feature that is not the issue."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "According to the CED, where can the secure or sensitive information that an adversary extracts from an LLM through crafted prompts originate?",
+        "options": [
+          "Only from the LLM provider's billing records",
+          "Only from publicly published news articles",
+          "From user input and the large data sets used to train the LLM",
+          "From the user's local device storage accessed by the model"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.A.3",
+        "rationale": "EK 1.4.A.3 specifies that secure or sensitive information in LLMs can come from user input and the large data sets used to train the LLMs, both of which a crafted prompt may pull back out. Options A and B name sources the CED does not list. Option D describes direct device access, which is not the mechanism EK 1.4.A.3 describes."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "An adversary creates dozens of websites that all state the same fabricated 'fact' about a company. Months later, a popular AI assistant begins confidently repeating that fabricated fact to users who ask. Which CB-specified technique does this describe?",
+        "options": [
+          "Prompt extraction of sensitive information from an LLM",
+          "A deepfake voice and video avatar of a company executive",
+          "AI-powered reconnaissance of the company's employees",
+          "Publishing false information so it is absorbed into LLM training data"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.A.4",
+        "rationale": "EK 1.4.A.4 describes adversaries publishing or modifying websites to contain false information so it is included in the training sets for LLMs, causing the models to later repeat that false information. Option A is the opposite direction — pulling data out (EK 1.4.A.3). Option B is a deepfake (EK 1.4.A.1). Option C is reconnaissance (EK 1.4.A.5), neither of which involves seeding training data."
+      },
+      {
+        "id": "Q9",
+        "kind": "multi",
+        "stem": "Two AI-related attacks are described. I. An adversary plants false information across many websites so a model later repeats it as fact. II. An adversary crafts clever prompts to make a model reveal sensitive data it was trained on. Which statement about these two CB-specified techniques is accurate?",
+        "options": [
+          "I pushes false data into the model; II pulls sensitive data out of the model",
+          "Both I and II push false information into the model's training set",
+          "Both I and II pull sensitive information out of the model through prompts",
+          "I pulls sensitive data out of the model; II pushes false data into it"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.4 + EK 1.4.A.3",
+        "rationale": "EK 1.4.A.4 (training-data poisoning) pushes false information INTO the model so it later repeats it, while EK 1.4.A.3 (prompt extraction) pulls sensitive information OUT through crafted prompts — they run in opposite directions. Options B and C wrongly treat both as the same direction, and Option D reverses the two techniques."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "A junior attacker with limited programming skill uses an AI coding assistant to generate new malware and to scan a large open-source project for exploitable flaws. Which CB-specified technique are they using, and what is its main effect?",
+        "options": [
+          "AI reconnaissance — it scrapes the developer's social-media profile",
+          "Prompt extraction — it reveals secrets stored inside the AI model",
+          "AI-assisted malicious coding — it lowers the skill and time an attack needs",
+          "Training-data poisoning — it makes the model repeat false security advice"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.A.6",
+        "rationale": "EK 1.4.A.6 states that adversaries can use AI-enhanced coding tools to write new malware, modify existing code for malicious activity, or find vulnerabilities in large code bases — lowering the skill and time an effective attack requires. Option A is reconnaissance (A.5), Option B is extraction (A.3), and Option D is poisoning (A.4), none of which describe generating malware or scanning code."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "A security team finds that an adversary modified an existing legitimate application's source code, using an AI tool, so the program now secretly exfiltrates user data while still appearing to function normally. Which CB-specified technique best matches this activity?",
+        "options": [
+          "AI-powered reconnaissance using internet-scanning tools",
+          "Native-fluent AI phishing sent to the application's users",
+          "A deepfake avatar impersonating the application's developer",
+          "AI-assisted coding that modifies existing application code maliciously"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.A.6",
+        "rationale": "EK 1.4.A.6 explicitly includes using AI-enhanced coding tools to modify existing application code to perform malicious activities, which is exactly what was done here. Option A is reconnaissance (A.5), Option B is phishing (A.2), and Option C is a deepfake (A.1) — none involve altering application code."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "stem": "An attacker wants to build a targeted profile of a victim before contacting them, gathering details the victim posted on social media and public websites without breaking into any account. Which CB-specified technique does the attacker rely on?",
+        "options": [
+          "AI-powered tools that scan the internet to gather publicly posted information",
+          "Crafting prompts that extract training data from a public LLM",
+          "Enabling multifactor authentication on the victim's accounts",
+          "Modifying websites so an LLM later repeats false information"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.5",
+        "rationale": "EK 1.4.A.5 describes performing reconnaissance on a target using AI-powered tools that scan the internet to gather information posted on social media and public websites — no account compromise required. Option B is extraction (A.3), Option C is a defense (B.2), and Option D is poisoning (A.4)."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "stem": "A company already uses voice recognition to let employees access internal systems by phone. Knowing adversaries can clone voices, which CB-specified protection most directly prevents a cloned voice alone from granting account access?",
+        "options": [
+          "Establishing a shared secret word between two family members",
+          "Verifying AI tool output against reputable non-AI sources",
+          "Requiring a second authentication factor beyond the voice",
+          "Avoiding entering personal data into AI chatbots"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.B.2",
+        "rationale": "EK 1.4.B.2 notes that if an adversary clones a target's voice to access a voice-authenticated system, requiring a second authentication factor (MFA) could prevent the adversary from gaining access. Option A verifies a person on a call, not a system login. Option B addresses poisoned output, and Option D addresses data exposure — neither blocks a cloned-voice login by itself."
+      },
+      {
+        "id": "Q14",
+        "kind": "applied",
+        "stem": "A student asks an AI assistant a factual question for a research paper and receives a confident, specific answer. Following CED guidance, what should the student do before relying on it?",
+        "options": [
+          "Accept it as final since the assistant stated it confidently",
+          "Re-ask the same assistant until it repeats the same answer",
+          "Paste the full assignment into the assistant for a second opinion",
+          "Verify it against reputable, stable, non-AI-based sources"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.B.4",
+        "rationale": "EK 1.4.B.4 directs that output from AI tools be carefully evaluated and verified using reputable, stable, non-AI-based sources. Option A trusts confidence alone, Option B just re-queries the same possibly-poisoned model, and Option C exposes data to the tool (against B.3) without independently confirming the fact."
+      },
+      {
+        "id": "Q15",
+        "kind": "multi",
+        "stem": "Consider three responses to AI-augmented threats. I. Checking an AI assistant's surprising claim against a trusted encyclopedia and a government website. II. Believing an AI answer simply because it was detailed. III. Confirming an AI-stated statistic with an established, non-AI research source. Which responses follow the CB-specified guidance for handling AI output?",
+        "options": [
+          "II only",
+          "I and III only",
+          "I and II only",
+          "II and III only"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.B.4",
+        "rationale": "EK 1.4.B.4 requires verifying AI output against reputable, stable, non-AI-based sources, which both I and III do. Response II accepts the answer on confidence alone, the exact behavior EK 1.4.B.4 warns against, so only I and III are correct."
+      },
+      {
+        "id": "Q16",
+        "kind": "scenario",
+        "stem": "An adversary wants future LLM users to receive a specific piece of misinformation as if it were true. Rather than attacking any single user, what does the CB-specified poisoning technique target?",
+        "options": [
+          "The voice-authentication system a victim uses for banking",
+          "The data the model learns from, so it later repeats the falsehood",
+          "A single login session captured during a video call",
+          "The encrypted password file stored on a target's device"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.A.4",
+        "rationale": "EK 1.4.A.4 describes publishing or modifying websites with false information so it is included in LLM training sets, causing the model to repeat the falsehood to users — the attack targets what the model learns, not one user. Options A, C, and D describe account, session, and password targets that this technique does not aim at."
+      },
+      {
+        "id": "Q17",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An organization recently switched to letting customers verify their identity over the phone using voice-recognition software alone. Per the CED, why does this design choice raise the potential impact of voice impersonation?",
+        "options": [
+          "A cloned voice can now serve as the literal key that unlocks a voice-authenticated account",
+          "Voice recognition software is unable to process any audio captured over a phone line",
+          "Customers will refuse to use any system that records and stores their spoken voice",
+          "Phone networks automatically strip the unique accent and cadence out of every call"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.1",
+        "rationale": "EK 1.4.A.1 states that as more organizations adopt voice-based authentication, the impact of voice impersonation has a larger potential impact — a cloned voice is no longer just convincing, it can be the credential itself. Option B is false, as voice systems run over phone audio. Option C invents a behavior the CED does not claim. Option D describes a technical effect that is not real and would undercut cloning."
+      },
+      {
+        "id": "Q18",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A security analyst reviews a phishing email and notes that, unlike older scams, it contains no awkward grammar — it reads exactly like a fluent native speaker wrote it. Per the CED, what does this fluency most directly indicate about the modern threat?",
+        "options": [
+          "Generative AI now lets adversaries craft native-fluent phishing, removing the old language tell",
+          "The message must be legitimate since only real institutions can write fluent text",
+          "The recipient's email client silently corrected every grammar error before delivery",
+          "Native-language fluency proves the sender is physically located in the target's country"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.2",
+        "rationale": "EK 1.4.A.2 explains that adversaries can use generative AI tools like LLMs to craft phishing in any language that reads as native-written, so unnatural language no longer reliably separates phishing from legitimate mail. Option B treats fluency as proof of legitimacy, the exact mistake the EK warns against. Options C and D invent mechanisms the CED does not describe."
+      },
+      {
+        "id": "Q19",
+        "kind": "scenario",
+        "stem": "Before contacting a victim, an adversary runs automated tools that crawl social media and public websites to assemble a detailed profile of the target's habits, relatives, and routines. No account is ever breached. Which CB-specified technique is this, and what underlying attack does it most directly feed?",
+        "options": [
+          "Training-data poisoning — it feeds false routines into a public model",
+          "Prompt extraction — it pulls the victim's secrets out of a chatbot",
+          "AI-assisted malicious coding — it writes malware tuned to the victim",
+          "AI-powered reconnaissance — it profiles the target to fuel later targeting"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.A.5",
+        "rationale": "EK 1.4.A.5 describes reconnaissance using AI-powered tools that scan the internet to gather information posted on social media and public websites, which builds the profile that fuels targeted phishing and impersonation. Option A is poisoning (A.4), Option B is extraction (A.3), and Option C is malicious coding (A.6) — none describe profiling a target from public posts."
+      },
+      {
+        "id": "Q20",
+        "kind": "applied",
+        "stem": "A penetration-testing report warns that a low-skill actor used an AI coding assistant to comb a massive open-source repository for exploitable weaknesses. Per the CED, what makes this use of AI-enhanced coding tools especially concerning?",
+        "options": [
+          "It lowers the skill and time needed to find vulnerabilities in large code bases",
+          "It guarantees the discovered flaws can never be patched by the project owners",
+          "It only works against code written in a single obscure programming language",
+          "It requires the actor to already hold administrator access to the repository"
+        ],
+        "answer": "A",
+        "ek": "EK 1.4.A.6",
+        "rationale": "EK 1.4.A.6 states that adversaries can use AI-enhanced coding tools to find vulnerabilities in large code bases, lowering the skill and time an effective attack requires. Option B overstates the effect, Option C falsely narrows the scope, and Option D invents a prerequisite the CED does not list."
+      },
+      {
+        "id": "Q21",
+        "kind": "scenario",
+        "stem": "Two siblings agree on a private word that only they know, planning to ask for it if either ever gets an urgent, out-of-character call. Per the CED, why does this defeat even a flawless voice clone of one sibling?",
+        "options": [
+          "A voice clone automatically reveals any secret stored on the cloned person's phone",
+          "The clone can reproduce the voice but cannot supply a word it was never given",
+          "Voice-cloning tools are legally barred from being used between family members",
+          "The secret word encrypts the phone call so the clone's audio cannot be heard"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.B.1",
+        "rationale": "EK 1.4.B.1 specifies a secret word or phrase known only to two parties to authenticate identities in high-stakes situations — the clone copies the voice but has no way to produce a word it was never told. Option A invents device access, Option C invents a legal rule, and Option D misdescribes how a spoken secret works."
+      },
+      {
+        "id": "Q22",
+        "kind": "multi",
+        "stem": "An organization protects a voice-authenticated phone system against cloned-voice attacks. I. It requires a one-time code from an authenticator app in addition to the voice match. II. It relies on the voice match alone, trusting it to catch any fake. III. It adds a hardware security key as a second factor for high-value actions. Which approaches follow the CB-specified MFA guidance?",
+        "options": [
+          "II only",
+          "I and III only",
+          "I and II only",
+          "II and III only"
+        ],
+        "answer": "B",
+        "ek": "EK 1.4.B.2",
+        "rationale": "EK 1.4.B.2 states that enabling multifactor authentication — requiring a second factor beyond the voice — could prevent an adversary with a cloned voice from gaining access. Both I (authenticator code) and III (hardware key) add a genuine second factor, while II relies on voice alone, the single point the clone defeats."
+      },
+      {
+        "id": "Q23",
+        "kind": "applied",
+        "stem": "An employee wants a public AI chatbot to draft a reply that references unreleased product specs and a customer's account number. Per the CED, what is the safest course of action?",
+        "options": [
+          "Paste everything in, since chatbots delete each conversation right after replying",
+          "Include only the account number, treating numeric data as automatically safe",
+          "Keep the personal and sensitive details out of the chatbot entirely",
+          "Submit the data and then immediately ask the chatbot to forget it"
+        ],
+        "answer": "C",
+        "ek": "EK 1.4.B.3",
+        "rationale": "EK 1.4.B.3 warns that personal or sensitive data should not be entered into AI-powered tools, since some feed user input back into the model and adversaries could later extract it. Option A assumes deletion the CED does not promise, Option B wrongly treats numbers as safe, and Option D cannot undo data already absorbed for training."
+      },
+      {
+        "id": "Q24",
+        "kind": "scenario",
+        "stem": "A researcher gets a striking statistic from an AI assistant and suspects it may have been shaped by poisoned training data. Per the CED, what is the correct way to decide whether to trust the figure?",
+        "options": [
+          "Trust the figure outright since the assistant returned it without hesitation",
+          "Ask the same assistant to grade its own statistic for accuracy and stop there",
+          "Search for other AI chatbots and accept the figure if two of them agree",
+          "Confirm the figure against reputable, stable, non-AI-based sources first"
+        ],
+        "answer": "D",
+        "ek": "EK 1.4.B.4",
+        "rationale": "EK 1.4.B.4 directs that AI output be carefully evaluated and verified using reputable, stable, non-AI-based sources, which is the only option that escapes a possibly poisoned model. Option A trusts confidence, Option B re-queries the same model, and Option C checks other AI tools that may share the same poisoned data."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 1.4 — AI-Based Cybersecurity Attacks — Teacher Guide",
+    "subtitle": "Unit 1 · Topic 1.4 · 2 class periods · Scenario 1D",
+    "overview": [
+      "Lesson 1.4 covers how adversaries weaponize AI and how individuals defend against it. Across two days students learn to explain the six CB-specified ways adversaries use AI-powered tools to augment cyberattacks (EK 1.4.A.1–A.6) and the four CB-specified protections against AI-augmented attacks (EK 1.4.B.1–B.4). The six attack techniques split cleanly into two families: AI aimed at people (deepfake avatars A.1, native-fluent phishing A.2, AI reconnaissance A.5) and attacks on or with AI systems (prompt extraction A.3, training-data poisoning A.4, AI-assisted malicious coding A.6). Teaching that split is the Day 1 organizing idea.",
+      "Scenario 1D (AI-Powered Cyberattacks) anchors the lesson: an adversary scrapes a target's social-media videos for voice samples (EK 1.4.A.5), clones the voice (EK 1.4.A.1), and calls a relative with a fake jail-and-bail emergency. The key Day 2 skill is recognizing that every EK 1.4.B defense works WITHOUT detecting the fake — a shared secret word (B.1) and MFA (B.2) defeat a perfect clone because they require something the clone was never given. Naming note: the CB scenario describes the attack in the second person and names no individuals; no family name is added in this lesson."
+    ],
+    "los": [
+      "LO 1.4.A — Explain how adversaries use AI-powered tools to augment cyberattacks.",
+      "LO 1.4.B — Explain how to protect against some AI-augmented cyberattacks."
+    ],
+    "eks": [
+      "EK 1.4.A.1 — Adversaries can use AI-powered tools that leverage existing voice and image samples of a person to create a digital avatar of that person. The use of these technologies enables adversaries to impersonate someone over the phone or even on a video call, which can lead to financial loss or the sharing of sensitive or private information. As more organizations adopt voice-based authentication, the impact of voice-impersonation has a larger potential impact.",
+      "EK 1.4.A.2 — Adversaries can use generative AI tools, like large language models (LLMs), to create convincing phishing messages in any target language. Because traditional phishing messages are sometimes written by non-native speakers of the target's language, unnatural language is a feature that has been used to distinguish phishing messages from legitimate messages. However, with AI tools, adversaries can now craft phishing messages in any language that read as though they were written by a native speaker.",
+      "EK 1.4.A.3 — Adversaries can craft prompts that extract secure or sensitive information from LLMs. Secure or sensitive information in LLMs can come from user input and the large data sets used to train LLMs.",
+      "EK 1.4.A.4 — Adversaries can publish websites or modify existing websites to contain false information so that the false information will be included in the training sets for LLMs, causing the LLMs to repeat the false information.",
+      "EK 1.4.A.5 — Adversaries can perform reconnaissance on a target using AI-powered tools that scan the internet to gather information posted on social media and public websites.",
+      "EK 1.4.A.6 — Adversaries can use AI-enhanced coding tools to help them write new malware, modify existing application code to perform malicious activities, or to find vulnerabilities in large code bases.",
+      "EK 1.4.B.1 — Shared secrets with close friends and relatives that can be used to verify each other's identities should be established. A secret word or phrase known only to two parties can be used to authenticate identities in high-stakes situations.",
+      "EK 1.4.B.2 — Multifactor authentication (MFA) should be enabled. If an adversary clones a target's voice to access a system with voice authentication, requiring a second authentication factor could prevent an adversary from gaining access to accounts.",
+      "EK 1.4.B.3 — Personal or sensitive data should not be entered into any AI-powered tools, such as chatbots or virtual assistants. Some AI-powered tools feed user input back into the model to provide continuous training. Adversaries could extract data that users have included in prompts.",
+      "EK 1.4.B.4 — Output from AI-powered tools should be carefully evaluated. Verify information from AI-powered tools using reputable, stable, non-AI-based sources."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each day.",
+      "Printed/Digital Day 1–2 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page (apcsexamprep.com/pages/ap-cybersecurity-unit-1-ai-based-attacks), which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 1.4 quiz (student copies) for Day 2.",
+      "Scenario 1D narrative displayed on the Day 1 and Day 2 decks (no handout needed)."
+    ],
+    "prereqs": [
+      "Lesson 1.1 (social engineering) and Lesson 1.2 (password attacks). AI techniques augment those same attacks — A.2 supercharges 1.1 phishing, and A.5 reconnaissance feeds the 1.2 dictionary-construction thread."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "The six ways adversaries use AI to augment attacks (LO 1.4.A)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.4/Q1) + bell ringer (the voice-clone call)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "AI aimed at people: deepfakes, AI phishing, AI recon (EK 1.4.A.1, A.2, A.5)",
+            "min": 12,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Attacks on/with AI: extraction, poisoning, AI coding (EK 1.4.A.3, A.4, A.6)",
+            "min": 12,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Scenario 1D as a chain + the ‘I'd spot a fake’ myth",
+            "min": 8,
+            "slides": "9-11"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 7,
+            "slides": "12-13"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "14-15"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Defending against AI-augmented attacks + solve Scenario 1D + quiz (LO 1.4.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.4/Q2) + bell ringer (did you set a code word?)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Three identity/data defenses (EK 1.4.B.1–B.3)",
+            "min": 12,
+            "slides": "3-6"
+          },
+          {
+            "segment": "Verify AI output (EK 1.4.B.4) — the counter to poisoning",
+            "min": 7,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Solve Scenario 1D: which defense breaks each link",
+            "min": 8,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Stop and Think + quiz strategy",
+            "min": 6,
+            "slides": "11-12"
+          },
+          {
+            "segment": "Quiz debrief + bridge to Lesson 1.5",
+            "min": 7,
+            "slides": "13-14"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 1.4 quiz",
+            "min": 25,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "The ‘I'd spot a fake’ myth",
+        "myth": "AI scams are easy to catch — fake voices sound robotic and AI phishing has bad grammar.",
+        "reality": "EK 1.4.A.1 and 1.4.A.2 exist because those tells no longer hold. Voice cloning reproduces a specific person's accent from a few samples, and LLMs write native-fluent phishing in any language. The absence of a tell is not evidence a message is genuine."
+      },
+      {
+        "heading": "Poisoning vs. extraction",
+        "myth": "Pulling secrets out of an AI and feeding lies into an AI are the same kind of attack.",
+        "reality": "They are opposite directions. Prompt extraction (EK 1.4.A.3) pulls sensitive information OUT of a model; training-data poisoning (EK 1.4.A.4) pushes false information IN so the model later repeats it. The exam tests this distinction."
+      },
+      {
+        "heading": "MFA replaces a code word",
+        "myth": "If we have MFA, we don't also need a family secret word.",
+        "reality": "They defend different things. MFA (EK 1.4.B.2) protects account logins, including against cloned-voice authentication; a shared secret word (EK 1.4.B.1) verifies a person on a live call where no login is involved. The Scenario 1D phone scam is defeated by the code word, not by MFA."
+      },
+      {
+        "heading": "AI answers are authoritative",
+        "myth": "If an AI tool states something confidently, it must be true.",
+        "reality": "EK 1.4.B.4 requires verifying AI output against reputable, stable, non-AI sources — and EK 1.4.A.4 shows why: adversaries can poison training data so a model confidently repeats false information."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post the two families as a word bank before the Stop and Think: ‘aimed at people’ (A.1, A.2, A.5) and ‘on/with AI systems’ (A.3, A.4, A.6), so students sort by category rather than recall six items cold.",
+        "Provide a sentence frame for technique ID: ‘This is EK 1.4.A.____ because the adversary used AI to ____, which makes the underlying attack ____.’"
+      ],
+      "extension": [
+        "Have students map each EK 1.4.B defense to the specific EK 1.4.A technique it best counters (e.g., B.1 → A.1, B.4 → A.4) and defend any that counter more than one.",
+        "Ask students to write the OSINT profile an adversary could build from three of their own (hypothetical) public posts, then identify which single piece they would remove to break a voice-clone attack chain."
+      ]
+    },
+    "discussion": [
+      "Which of the six EK 1.4.A techniques do you think is hardest for an ordinary person to defend against, and why?",
+      "A shared secret word (EK 1.4.B.1) defeats a perfect voice clone. Why is a low-tech defense sometimes stronger than a high-tech one?",
+      "If AI tools can both attack (EK 1.4.A) and defend (Lesson 1.5), who do you think the technology favors over time — the attacker or the defender?"
+    ],
+    "answerKeyNote": "Each question’s full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  }
+}

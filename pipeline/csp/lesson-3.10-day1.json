@@ -1,0 +1,594 @@
+{
+  "meta": {
+    "lessonId": "3.10",
+    "lessonTitle": "Lists",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-2.N",
+    "anchor": "Lists",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.10 · Day 1 of 2",
+      "title": "One Name, Many Values — With an Address for Each",
+      "subtitle": "A list holds many values under a single name, and the exam reference sheet gives every element a 1-indexed address plus a small set of procedures — INSERT, APPEND, REMOVE, LENGTH — that read and reshape it",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.10, Lists. Back in Topic 3.1 you learned a variable holds one value — and that one value can be a whole list. Today we open that list up. Day 1 is about the two mechanical skills the exam tests over and over: indexing, which is reaching into a list by an element's position number, and the list procedures the reference sheet defines — INSERT, APPEND, REMOVE, and LENGTH. Tomorrow, Day 2, we traverse the whole list to compute sums, averages, maximums, and to run a linear search. Everything begins with one idea: a list is many values under one name, and each value has an address."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write expressions that use list indexing — aList[i], where the first element is at index 1 — and the list procedures INSERT, APPEND, REMOVE, and LENGTH (LO AAP-2.N)"
+        },
+        {
+          "tag": "CB",
+          "text": "Evaluate list-indexing and list-procedure expressions: determine an element's value, and the list's contents and length, after each operation runs (LO AAP-2.N)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-2.N, list operations — and notice it has two halves the exam grades separately. Part a is WRITING: build a correct index expression like aList of i, and call INSERT, APPEND, REMOVE, and LENGTH properly. Part b is EVALUATING: given a starting list and a sequence of operations, determine exactly what each element holds and how long the list is afterward. Reading and writing list code are two different skills, and today drills both. Tomorrow's objective, AAP-2.O, is the other half of lists — traversing them from front to back."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A week of daily step counts is written in a row on paper: 8000, 12000, 9000, 15000, 11000. Your partner reads three edits ALOUD and you perform them on the row: 'Change the middle number to 5000. Add 10000 to the end. Delete the very first number.'",
+      "subprompt": "Write 2–4 sentences: What did you have to invent to follow 'the middle number' and 'the first number' without pointing? When you added and deleted, how did the OTHER numbers move? Give each operation a short name a computer could use.",
+      "directions": "Be ready to share the names and rules you invented.",
+      "script": "Five minutes with a partner. Write the five step counts in a row and have your partner read the three edits out loud while you do them. It is deliberately clumsy — 'the middle one,' 'the first one' — you keep having to count positions out loud. Almost every group invents the same fixes: number the slots one, two, three so you can say 'position three,' and give each edit a name like change, add-to-end, delete. Watch what happens to the neighbors, too: deleting the first number slides everyone left; there is no empty hole left behind. You just re-invented exactly what the AP reference sheet gives you for free — indices and the procedures INSERT, APPEND, and REMOVE. Hold onto those instincts; we are about to make them precise."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Reading a List by Index",
+          "description": "The 1-indexed address of each element, aList[i], and reading vs. writing a single position (EK AAP-2.N.1)."
+        },
+        {
+          "title": "The Four List Procedures",
+          "description": "INSERT, APPEND, REMOVE, and LENGTH — how each changes the list's contents and length (EK AAP-2.N.1–N.2)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.10 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required. First, reading a list by index: how the reference sheet numbers elements starting at one, and the difference between reading a position and writing to it. Second, the four list procedures the exam expects you to know cold — INSERT, APPEND, REMOVE, and LENGTH. Keep the packet open and fill it in as we go; if you were absent, a digital copy lives on the Topic 3.10 Guided Notes page. The write-and-run coding practice for this topic lives on the Topic 3.10 page too."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Reading a List by Index",
+      "kicker": "Every Element Has a 1-Indexed Address · Learning Objective AAP-2.N",
+      "script": "Section one. Your bell-ringer row worked the moment you numbered the slots. That numbering is called indexing, and the College Board is exact about it: on the exam reference sheet, the first element of a list lives at index one — not zero. Get that anchor right and every list question gets easier."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.N)",
+      "terms": [
+        {
+          "term": "Index",
+          "definition": "The position number used to reach an element; on the exam reference sheet the first element is at index 1 and the last is at index LENGTH(aList) (EK AAP-2.N.1)."
+        },
+        {
+          "term": "aList[i]  (element access)",
+          "definition": "Reading the value stored at position i of a list; aList[1] is the first element (EK AAP-2.N.1)."
+        },
+        {
+          "term": "APPEND(aList, value)",
+          "definition": "Adds value to the END of the list; the length increases by 1 (EK AAP-2.N.1)."
+        },
+        {
+          "term": "INSERT(aList, i, value)",
+          "definition": "Places value at index i and shifts right any values at indices ≥ i; the length increases by 1 (EK AAP-2.N.1)."
+        },
+        {
+          "term": "REMOVE(aList, i)",
+          "definition": "Removes the item at index i and shifts left any values after it; the length decreases by 1 (EK AAP-2.N.1)."
+        },
+        {
+          "term": "LENGTH(aList)",
+          "definition": "Evaluates to the number of elements currently in the list; list procedures follow the syntax rules of the language (EK AAP-2.N.1–N.2)."
+        }
+      ],
+      "script": "Six terms carry this topic. An index is a position number, and the reference sheet starts counting at one — the first element is index one, the last is index LENGTH of the list. aList of i reads whatever value sits at position i. Then the four procedures: APPEND adds to the end and grows the list by one; INSERT drops a value at position i, pushing everything from i onward to the right, and also grows the list by one; REMOVE deletes position i and slides everything after it left, shrinking the list by one; and LENGTH just tells you how many elements are in the list right now. Write every definition — these six show up in almost every list question on the exam."
+    },
+    {
+      "type": "concept",
+      "heading": "Reading a List by Position",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The exam reference sheet numbers elements starting at 1: the first element is aList[1], and the last is aList[LENGTH(aList)] (EK AAP-2.N.1).",
+        "x ← aList[i] copies the VALUE at position i into the variable x, leaving the list unchanged (EK AAP-2.N.1).",
+        "aList[i] ← x stores a new value INTO position i, overwriting whatever was there — the length does not change (EK AAP-2.N.1).",
+        "aList[i] ← aList[j] copies the value at position j into position i, overwriting position i in place (EK AAP-2.N.1)."
+      ],
+      "script": "Here is the anchor for the whole topic. The exam reference sheet is one-indexed: the first element is aList of one, and the last is aList of LENGTH-of-the-list. Two moves use that address in opposite directions. x arrow aList of i pulls a copy of the value OUT of position i into a variable — the list itself is untouched. aList of i arrow x pushes a value IN, overwriting position i; the value at that slot changes but the list's length does not. And aList of i arrow aList of j copies one position's value into another, overwriting in place. One warning for later: a valid index runs from one up to the length; an index below one or past the end is an error that stops the program. Keep index one as your first element and you will not fall for the off-by-one trap the exam loves.",
+      "capture": [
+        {
+          "q": "On the exam reference sheet the first element of a list is at index ______.",
+          "a": "1 (one), and the last element is at index LENGTH(aList)"
+        },
+        {
+          "q": "x ← aList[i] copies a value out of the list, so the list itself is ______.",
+          "a": "left unchanged — only the variable x receives the copied value"
+        },
+        {
+          "q": "aList[i] ← x changes the value at one position but the list's ______.",
+          "a": "length stays the same — it overwrites in place, it does not add an element"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Indexing",
+      "heading": "Reach In by Position",
+      "caption": "steps[1] is the first day (1-indexed); Python's steps[0] is the same element (0-indexed).",
+      "pseudocode": "steps ← [8000, 12000, 9000, 15000, 11000]\nDISPLAY(steps[1])\nDISPLAY(steps[4])\nDISPLAY(LENGTH(steps))",
+      "python": "steps = [8000, 12000, 9000, 15000, 11000]\nprint(steps[0])\nprint(steps[3])\nprint(len(steps))",
+      "output": "8000 15000 5",
+      "script": "Your first list code, in two columns. The list steps holds five daily step counts. On the exam reference sheet, steps of one is the first day — eight thousand. steps of four is the fourth day — fifteen thousand. LENGTH of steps is five. Now look across at Python and flag the single most important notational difference in this whole unit: Python counts from zero, so the same first element is steps of ZERO, and the fourth day is steps of three. Same elements, different starting number. On the exam you always use the reference sheet's one-indexing on the left; in the coding practice, Python's zero-indexing on the right. Anchor to the left column and translate carefully."
+    },
+    {
+      "type": "two_column",
+      "heading": "Change in Place vs. Change the Length",
+      "subheading": "Overwriting one slot leaves the list the same size; the procedures INSERT, APPEND, and REMOVE change how many elements the list has (EK AAP-2.N.1).",
+      "left": {
+        "title": "Change in place",
+        "definition": "aList[i] ← x replaces the value at an existing position",
+        "ek": "EK AAP-2.N.1",
+        "examples": [
+          "steps[2] ← 5000  — day 2 now reads 5000",
+          "The element at that slot changes; nothing shifts",
+          "LENGTH is exactly the same before and after"
+        ]
+      },
+      "right": {
+        "title": "Change the length",
+        "definition": "INSERT / APPEND / REMOVE add or delete an element",
+        "ek": "EK AAP-2.N.1",
+        "examples": [
+          "APPEND(steps, 10000)  — LENGTH grows by 1",
+          "INSERT(steps, 2, 5000)  — shifts right, LENGTH +1",
+          "REMOVE(steps, 1)  — shifts left, LENGTH −1"
+        ]
+      },
+      "footer": "AP TIP: aList[i] ← x OVERWRITES one slot (same length). INSERT/APPEND/REMOVE resize the list and SHIFT the neighbors — the single most tested list distinction.",
+      "script": "This is the distinction the exam turns into points. On the left, aList of i arrow x changes the value living at one existing position. Nothing moves, and the list is the same length before and after — you overwrote one slot. On the right, the three procedures change how many elements exist. APPEND tacks a value on the end and grows the length by one. INSERT drops a value at a position and pushes the neighbors to the right, growing by one. REMOVE deletes a position and slides the neighbors left, shrinking by one. If a question changes the LENGTH, a procedure did it; if the length is unchanged, it was an in-place assignment. Reading that difference correctly is half of AAP-2.N.",
+      "capture": [
+        {
+          "q": "aList[i] ← x and APPEND(aList, x) differ because only APPEND ______.",
+          "a": "changes the list's length — the in-place assignment overwrites one existing slot"
+        },
+        {
+          "q": "If a list operation makes LENGTH(aList) change, the operation must have been ______.",
+          "a": "an INSERT, APPEND, or REMOVE — those add or delete an element and shift the neighbors"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Indexing",
+      "subheading": "These map to LO AAP-2.N. Complete on your Guided Notes.",
+      "prompts": [
+        "For nums ← [30, 40, 50, 60], give the value of nums[1] and nums[LENGTH(nums)], and name which element each one is (first? last?).",
+        "Write one statement that changes the third element of nums to 99 WITHOUT changing the list's length. Then state the length before and after.",
+        "A classmate writes nums[0] to get the first element. Explain, using the reference sheet's rule, what nums[0] actually does and how to fix it."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.10 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: for nums equals thirty, forty, fifty, sixty — nums of one is thirty, the first element, and nums of LENGTH, which is nums of four, is sixty, the last element. Two: to change the third element to ninety-nine in place, write nums of three arrow ninety-nine; the length is four before and four after, because overwriting does not resize. Three: nums of zero is not the first element on the reference sheet — index zero is below the valid range one-through-four, so it is an error; the fix is nums of one. These are exactly the AAP-2.N moves the exam makes."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Four List Procedures",
+      "kicker": "INSERT · APPEND · REMOVE · LENGTH · Learning Objective AAP-2.N",
+      "script": "Section two. Indexing reads and overwrites existing slots. The four procedures do more — they change how many elements the list has, and they move the neighbors when they do. The exam expects you to know the exact effect of each one, including which direction the other elements shift and how the length changes."
+    },
+    {
+      "type": "concept",
+      "heading": "Four Procedures That Reshape a List",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "APPEND(aList, value): the length increases by 1 and value is placed at the END of the list (EK AAP-2.N.1).",
+        "INSERT(aList, i, value): shifts RIGHT any values at indices ≥ i, the length increases by 1, and value is placed at index i (EK AAP-2.N.1).",
+        "REMOVE(aList, i): removes the item at index i and shifts LEFT any values at indices greater than i; the length decreases by 1 (EK AAP-2.N.1).",
+        "LENGTH(aList): returns the current number of elements; these procedures are implemented per the syntax rules of the language (EK AAP-2.N.1–N.2)."
+      ],
+      "script": "Four procedures, memorized cold. APPEND takes a value and puts it on the very end; the list grows by one. INSERT takes a position and a value: it slides every element from that position onward one step to the right to make room, drops the value into position i, and grows the list by one — nothing is overwritten, everyone just moves over. REMOVE takes a position, deletes that element, and slides everything after it one step to the left to close the gap; the list shrinks by one. LENGTH simply reports how many elements are there right now, which is why it changes after every APPEND, INSERT, or REMOVE. And AAP-2.N.2 reminds you these behave the same idea in any language, even though the exact syntax differs — you write them in the language's own rules.",
+      "capture": [
+        {
+          "q": "INSERT(aList, i, value) makes room by shifting the values at indices ≥ i ______.",
+          "a": "to the right by one position, then places value at index i and increases the length by 1"
+        },
+        {
+          "q": "REMOVE(aList, i) deletes position i and then shifts the later values ______.",
+          "a": "left by one position to close the gap, decreasing the length by 1"
+        },
+        {
+          "q": "The difference between APPEND and INSERT is that APPEND always places the value ______.",
+          "a": "at the end of the list, while INSERT places it at a chosen index i"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Procedures",
+      "heading": "Grow and Shrink the List",
+      "caption": "APPEND adds to the end; INSERT pushes neighbors right; LENGTH reports the new size.",
+      "pseudocode": "steps ← [8000, 12000, 9000]\nAPPEND(steps, 10000)\nINSERT(steps, 2, 5000)\nDISPLAY(LENGTH(steps))\nDISPLAY(steps[2])",
+      "python": "steps = [8000, 12000, 9000]\nsteps.append(10000)\nsteps.insert(1, 5000)\nprint(len(steps))\nprint(steps[1])",
+      "output": "5 5000",
+      "script": "Trace this with me. steps starts with three values. APPEND ten thousand puts it on the end, so the list is now eight thousand, twelve thousand, nine thousand, ten thousand — length four. INSERT at position two with value five thousand slides twelve thousand and everything after it one step right and drops five thousand into slot two, giving eight thousand, five thousand, twelve thousand, nine thousand, ten thousand — length five. So LENGTH is five and steps of two is now five thousand. On the Python side, watch the index translation: INSERT at reference-sheet position two becomes insert at Python index one, because Python counts from zero. Same result, shifted numbering."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace the List, Operation by Operation",
+      "context": "Start with steps ← [8000, 12000, 9000, 15000, 11000]. After EACH operation, write the full list and its LENGTH. Watch which way the neighbors shift.",
+      "columns": [
+        "After operation",
+        "List contents",
+        "LENGTH"
+      ],
+      "rows": [
+        [
+          "start",
+          "[8000, 12000, 9000, 15000, 11000]",
+          "5"
+        ],
+        [
+          "APPEND(steps, 10000)",
+          "[8000, 12000, 9000, 15000, 11000, 10000]",
+          "6"
+        ],
+        [
+          "INSERT(steps, 2, 5000)",
+          "[8000, 5000, 12000, 9000, 15000, 11000, 10000]",
+          "7"
+        ],
+        [
+          "REMOVE(steps, 1)",
+          "[5000, 12000, 9000, 15000, 11000, 10000]",
+          "6"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Trace it like the exam wants — full list and length after every line. Start: five elements, length five. APPEND ten thousand: it joins the end, length six. INSERT at position two, value five thousand: twelve thousand and everyone after it slide right, five thousand lands in slot two, length seven — notice nothing was overwritten, they all just moved over. REMOVE at position one: eight thousand is deleted and everyone slides left to fill the gap, so five thousand is now first, length six. The blanks are yours to fill — the whole skill is tracking how the neighbors move and how the length changes with each operation.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The First Element Is aList[0]”",
+      "misconception": "The first element of a list is at index 0, and the last is at index LENGTH(aList) − 1 — just like Python.",
+      "whyItHappens": "Python, Java, and JavaScript are all 0-indexed, and the coding practice shows Python, so students carry 0-indexing onto the exam by habit.",
+      "correction": "The AP Exam Reference Sheet is 1-INDEXED: the first element is aList[1] and the last is aList[LENGTH(aList)]. Valid indices run 1 through LENGTH(aList); an index of 0 or of LENGTH(aList) + 1 is out of range and causes an error. On the exam, always count from 1 (EK AAP-2.N.1).",
+      "example": "For letters ← [\"a\", \"b\", \"c\"], on the reference sheet letters[1] is \"a\" and letters[3] is \"c\". letters[0] is not \"a\" — it is out of range. In Python the same first element is letters[0]; that is a language difference, not the exam's rule.",
+      "script": "This is the number-one list trap, and it is a habit problem. Every language in the coding practice counts from zero, so students reach for index zero to get the first element on the exam — and lose the point. The AP reference sheet is one-indexed: the first element is aList of one, the last is aList of LENGTH-of-the-list, and valid indices run one through the length. Index zero is not the first element; it is out of range, an error that stops the program. On the reference sheet, letters of one is 'a' and letters of three is 'c.' The Python on your screen genuinely uses zero — that is a language difference you translate, not the rule the exam grades. When you see reference-sheet pseudocode, count from one, every time."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — The Procedures",
+      "subheading": "These map to LO AAP-2.N. Show your trace on your Guided Notes.",
+      "prompts": [
+        "Start with q ← [5, 8, 2]. Trace APPEND(q, 7) then INSERT(q, 1, 4). Write the full list and LENGTH after each step.",
+        "Using q from the previous prompt, trace REMOVE(q, 2). Give the resulting list, and explain which values shifted and in which direction.",
+        "In one or two sentences, explain the difference between INSERT(aList, i, value) and aList[i] ← value — what happens to the list's length in each?"
+      ],
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 3.10 page.",
+      "script": "Trace it, six minutes, show every line. One: q starts as five, eight, two. APPEND seven gives five, eight, two, seven, length four; INSERT at position one with value four pushes everyone right and gives four, five, eight, two, seven, length five. Two: REMOVE at position two deletes five and slides the rest left, giving four, eight, two, seven, length four — the values after position two moved left. Three: INSERT adds a new element and grows the length, shifting neighbors; aList of i arrow value overwrites an existing slot and leaves the length unchanged. That length question is the exam's favorite way to test whether you really know the procedures. Answers are reviewed together before we close."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A list holds many values under one name, and each element has a 1-indexed address: the first is aList[1], the last is aList[LENGTH(aList)] (EK AAP-2.N.1)",
+        "x ← aList[i] reads a value out; aList[i] ← x overwrites one slot in place — the length does not change (EK AAP-2.N.1)",
+        "APPEND adds to the end (+1); INSERT places at index i and shifts right (+1); REMOVE deletes index i and shifts left (−1) (EK AAP-2.N.1)",
+        "LENGTH(aList) reports the current size, and list procedures follow the language's own syntax (EK AAP-2.N.1–N.2)"
+      ],
+      "nextPoints": [
+        "Day 2: TRAVERSING the whole list with FOR EACH item IN aList (LO AAP-2.O)",
+        "Standard list algorithms: sum, average, minimum, and maximum over a list",
+        "Linear (sequential) search: checking each element in order until the value is found"
+      ],
+      "teaser": "Before tomorrow, predict it: for steps ← [8000, 12000, 9000, 15000, 11000], a loop adds every element into total starting from 0. What is total at the end, and what would total ÷ LENGTH(steps) give you?",
+      "script": "That is Day 1. A list is many values under one name, each with a one-indexed address; reading a slot leaves the list alone, overwriting a slot keeps the length the same, and the three procedures — APPEND, INSERT, REMOVE — resize the list and shift the neighbors. Tomorrow we stop poking at single positions and sweep the ENTIRE list: the FOR EACH loop, then the standard algorithms built on it — sum, average, minimum, maximum, and linear search. Here is the teaser, and it is exactly where we start tomorrow: add every step count into a running total, then divide by the length. Write down the total and the average. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.10 — Lists — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "Which of the following best describes a list?",
+        "options": [
+          "A single value that cannot change once it is assigned",
+          "An ordered collection of elements, each reachable by an index",
+          "A procedure that returns a Boolean value",
+          "A loop that repeats a fixed number of times"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.N.1",
+        "rationale": "A list is an ordered set of elements accessed by index, so B is correct. A describes a simple variable, not a collection. C describes a procedure. D describes iteration. Only B captures the idea of many elements stored under one name."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "aList ← [4, 8, 15, 16, 23]. What does aList[2] evaluate to?",
+        "options": [
+          "4, the first element of the list",
+          "15, counting the first element as index 0",
+          "8, the second element, since the first element is at index 1",
+          "An error, since index 2 is out of range for this list"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.N.1",
+        "rationale": "Reference-sheet lists are 1-indexed, so aList[1] is 4 and aList[2] is 8. C is correct. B applies 0-indexing and lands on 15. A confuses index 2 with the first element. D is false; index 2 is within the valid range 1 through 5."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "bList ← [10, 20, 30, 40]. After REMOVE(bList, 2) runs, what are bList[2] and LENGTH(bList)?",
+        "options": [
+          "bList[2] is 30 and LENGTH(bList) is 4",
+          "bList[2] is 40 and LENGTH(bList) is 3",
+          "bList[2] is 20 and LENGTH(bList) is 4, since REMOVE only blanks the slot",
+          "bList[2] is 30 and LENGTH(bList) is 3"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.N.1",
+        "rationale": "REMOVE deletes the element at index 2 (the 20) and shifts the rest left, so the list becomes [10, 30, 40]: bList[2] is 30 and LENGTH is 3. D is correct. A and C keep the old length; REMOVE actually shrinks the list. B misreads which value lands at index 2."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "stem": "You need to change the element at index 3 of aList to 99 while keeping the list the same length. Which statement does exactly that?",
+        "options": [
+          "aList[3] ← 99",
+          "INSERT(aList, 3, 99)",
+          "APPEND(aList, 99)",
+          "REMOVE(aList, 3)"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.N.1",
+        "rationale": "Assigning aList[3] ← 99 overwrites the existing element without changing the count, so A is correct. INSERT (B) and APPEND (C) each add an element, growing the length. REMOVE (D) deletes an element, shrinking it. Only direct index assignment changes a value in place."
+      },
+      {
+        "id": "Q5",
+        "kind": "recall",
+        "stem": "Which of the following best describes what it means to traverse a list?",
+        "options": [
+          "Visit each element of the list, typically from first to last",
+          "Sort the list into ascending order",
+          "Remove the first and last elements",
+          "Return the length of the list"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.O.3",
+        "rationale": "A traversal steps through the elements, usually first to last, so A is correct. Sorting (B) rearranges values, removing (C) changes the list, and returning length (D) is a single query. None of those visit every element, which is what traversal means."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A linear search scans vals ← [5, 9, 2, 7] in order for the value 2 and stops as soon as it is found. How many elements does it examine?",
+        "options": [
+          "4, because a linear search always checks the whole list",
+          "1, because the value is found immediately",
+          "3, checking 5, then 9, then finding 2 and stopping",
+          "2, because it stops one element before the match"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.O.5",
+        "rationale": "Linear search checks 5, then 9, then 2, where it stops, so 3 elements are examined. C is correct. A is wrong because a search that stops early need not scan everything. B skips the first two checks. D stops too soon and would miss the match."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "temps ← [10, 20, 30]. A program adds the elements into total, then computes total / LENGTH(temps). What value is the average?",
+        "options": [
+          "60, the sum of the elements",
+          "20, the sum divided by the number of elements",
+          "30, the largest value in the list",
+          "10, the first element of the list"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.O.4",
+        "rationale": "The sum is 60 and LENGTH is 3, so 60 / 3 is 20. B is correct. A reports the sum without dividing. C and D pick single elements rather than computing an average. Dividing the accumulated total by the count is what produces the mean."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "A program steps through prices from the first element and stops as soon as it finds one over 100. What kind of traversal is this?",
+        "options": [
+          "A complete traversal, because it always visits every element",
+          "Not a traversal, because it uses a condition",
+          "A binary search, because it stops early",
+          "A partial traversal, because it may stop before reaching the end"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.O.1",
+        "rationale": "Because the loop can stop before the last element, this is a partial traversal, so D is correct. A is wrong since it need not visit every element. B is wrong because conditions are common in traversals. C is wrong; binary search requires sorted data and halving, not a left-to-right scan."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.10 — Lists — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.10 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.10 turns the single 'a variable can hold a list' idea from Topic 3.1 into a full working toolkit. Day 1 (LO AAP-2.N) is the mechanics: indexing a list by position — 1-indexed on the exam reference sheet, so the first element is aList[1] — the difference between reading a slot (x ← aList[i]) and overwriting one in place (aList[i] ← x), and the four procedures INSERT, APPEND, REMOVE, and LENGTH, including which direction the neighbors shift and how the length changes. Day 2 (LO AAP-2.O) is traversal: the FOR EACH loop, complete vs. partial traversals, the standard algorithms (sum, average, minimum, maximum), and linear/sequential search.",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (1-indexed lists, ← assignment, FOR EACH item IN aList) shown side by side with runnable Python. Because Python is 0-indexed, the indexing difference is surfaced deliberately and repeatedly — it is the single most common list error students carry onto the exam. The interactive, auto-graded coding practice lives on the Topic 3.10 page.",
+      "The through-line scenario is a walking challenge's daily step log, steps ← [8000, 12000, 9000, 15000, 11000]. Students index it and reshape it on Day 1, then traverse it to total, average, find the best day, and search it on Day 2 — the same list carried from paper tracing into the typed coding problems."
+    ],
+    "los": [
+      "LO AAP-2.N — For list operations: a. Write expressions that use list indexing and list procedures. b. Evaluate expressions that use list indexing and list procedures.",
+      "LO AAP-2.O — For algorithms involving elements of a list: a. Write iteration statements to traverse a list. b. Determine the result of an algorithm that includes list traversals."
+    ],
+    "eks": [
+      "EK AAP-2.N.1 — The exam reference sheet provides basic operations on lists, including: accessing an element by index (aList[i]; the first element is at index 1); assigning a value of an element of a list to a variable (x <- aList[i]); assigning a value to an element of a list (aList[i] <- x); assigning the value of aList[j] to aList[i] (aList[i] <- aList[j]); inserting elements at a given index (INSERT(aList, i, value): shifts right any values at indices >= i, length increases by 1, value placed at index i); adding elements to the end of the list (APPEND(aList, value): length increases by 1, value placed at the end); removing elements (REMOVE(aList, i): removes the item at index i and shifts left any values at indices greater than i, length decreases by 1); determining the length of a list (LENGTH(aList)).",
+      "EK AAP-2.N.2 — List procedures are implemented in accordance with the syntax rules of the programming language.",
+      "EK AAP-2.O.1 — Traversing a list can be a complete traversal, where all elements in the list are accessed, or a partial traversal, where only a portion of elements are accessed. X EXCLUSION (EK AAP-2.O.1): Traversing multiple lists at the same time using the same index for both (parallel traversals) is outside the scope of this course and the AP Exam.",
+      "EK AAP-2.O.2 — Iteration statements can be used to traverse a list.",
+      "EK AAP-2.O.3 — The exam reference sheet provides FOR EACH item IN aList { <block of statements> }. The variable item is assigned the value of each element of aList sequentially, in order, from the first element to the last element. The code in block of statements is executed once for each assignment of item.",
+      "EK AAP-2.O.4 — Knowledge of existing algorithms that use iteration can help in constructing new algorithms. Some examples of existing algorithms that are often used with lists include: determining a minimum or maximum value in a list; computing a sum or average of a list of numbers.",
+      "EK AAP-2.O.5 — Linear search or sequential search algorithms check each element of a list, in order, until the desired value is found or all elements in the list have been checked."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.10 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.10 page for the interactive coding practice (in class or assigned).",
+      "Optional: index cards laid in a numbered row to physically demonstrate indexing, shifting on INSERT/REMOVE, and length changes."
+    ],
+    "prereqs": [
+      "Topic 3.1 (a variable holds one value, which can be a list) and Topic 3.8 (iteration: REPEAT n TIMES / REPEAT UNTIL) are the direct prerequisites — traversal on Day 2 builds on the loop constructs from 3.8, and the sum/max/average algorithms echo the accumulator patterns from Topic 3.9. Students should be comfortable tracing a variable line by line before they trace a list.",
+      "This topic feeds directly into Topic 3.11 (Binary Search), which requires a sorted list and contrasts with the linear search taught here."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Indexing (1-indexed), reading vs. overwriting a slot, and the four procedures INSERT/APPEND/REMOVE/LENGTH (LO AAP-2.N)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.10/Q1) + bell ringer (edit the step-count row aloud)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Objectives + guided-notes preview",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Reading a list by index: vocab, 1-indexed access, code_block, change-in-place vs. change-the-length (EK AAP-2.N.1)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on indexing",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "The four procedures: exact effects, code_block, operation-by-operation trace, the 0-index trap (EK AAP-2.N.1–N.2)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on the procedures",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + traversal teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Traversal with FOR EACH, complete vs. partial, sum/average/min/max, and linear search (LO AAP-2.O)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.10/Q2) + bell ringer (total the step log by hand)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Objectives + guided-notes preview",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Traversing a list: vocab, FOR EACH, complete vs. partial + parallel-traversal exclusion, FOR EACH vs. indexed traversal (EK AAP-2.O.1–O.3)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on traversal",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Algorithms over a list: sum/average/min/max and linear search, with a traced search table (EK AAP-2.O.4–O.5)",
+            "min": 13,
+            "slides": "11-16"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.10 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.10 page absorbs any extra flex time and is the natural bridge into Topic 3.11.",
+        "segments": [
+          {
+            "segment": "Topic 3.10 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“The first element is aList[0]”",
+        "myth": "Lists are 0-indexed on the exam, so the first element is aList[0] and the last is aList[LENGTH(aList) − 1].",
+        "reality": "The AP Exam Reference Sheet is 1-INDEXED (EK AAP-2.N.1): the first element is aList[1] and the last is aList[LENGTH(aList)]. Valid indices run 1 through LENGTH; index 0 or LENGTH+1 is out of range and terminates the program. Python's 0-indexing in the coding practice is a language difference to translate, not the exam's rule."
+      },
+      {
+        "heading": "“INSERT and REMOVE overwrite the slot”",
+        "myth": "INSERT(aList, i, value) replaces the element already at index i, and REMOVE(aList, i) just blanks that slot, so the length stays the same.",
+        "reality": "INSERT shifts values at indices ≥ i to the RIGHT and increases the length by 1; REMOVE deletes index i and shifts later values LEFT, decreasing the length by 1 (EK AAP-2.N.1). Neither leaves the length unchanged. Overwriting-in-place is aList[i] ← x, which is the only one of these that keeps the same length."
+      },
+      {
+        "heading": "“FOR EACH gives you the index”",
+        "myth": "In FOR EACH item IN aList, the variable item holds the position number (1, 2, 3, …), so you can index other lists with it.",
+        "reality": "item is assigned each element's VALUE in order, first to last — not its index (EK AAP-2.O.3). If you need positions you use an indexed loop instead. Stepping through multiple lists with one shared index (parallel traversal) is explicitly outside the scope of the course and exam (exclusion on EK AAP-2.O.1)."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Lay index cards in a numbered row (1, 2, 3, …) so students physically SLIDE cards right for INSERT and left for REMOVE, and recount the row length after each operation — the shift and the length change become concrete.",
+        "Provide a fill-in trace table (one row per operation, columns for list contents and LENGTH) so students rewrite the whole list after each APPEND/INSERT/REMOVE rather than tracking it in their heads."
+      ],
+      "extension": [
+        "Have students write, in pseudocode, a partial traversal that only sums the FIRST three days of a longer step log, and explain why it is a partial rather than a complete traversal (EK AAP-2.O.1).",
+        "Point deep-dive students at the Topic 3.10 coding practice to implement the linear search returning the 1-indexed position of the first day that meets a goal, and to reconcile the 1-indexed pseudocode with Python's 0-indexed result."
+      ]
+    },
+    "discussion": [
+      "Your bell-ringer row only worked once you numbered the slots and named the edits. What does that suggest about why every list operation the reference sheet defines needs both an index and a precise effect on the neighbors and the length?",
+      "The exam counts from 1 and Python counts from 0 for the exact same first element. Who is 'right,' and what does having two conventions tell you about the difference between an abstraction (the reference sheet) and an implementation (a real language)?",
+      "A linear search can stop the instant it finds its target, but sometimes it must check every element. When is each situation the case, and what does that tell you about the best and worst amount of work a sequential search can do?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

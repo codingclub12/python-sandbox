@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "lessonId": "3.4",
+    "lessonTitle": "Strings",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 1,
+    "los": "LO AAP-2.D"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   1 day   •   LO AAP-2.D",
+    "intro": "Everything for this topic lives in this folder. Topic 3.4 is a single-day topic on string manipulation — concatenation and substrings — and it ships an interactive, auto-graded coding-practice page. Students warm the ideas up on paper here, then type and run harder versions of the same 'badge builder' problems online. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition (concatenation: joining strings end-to-end and the no-space trap; substrings: taking a piece and the off-by-one position trap). Speaker notes on every slide.",
+      "Teacher Guide (one-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes (student fill-in + answer KEY)",
+      "Exercise 1: Evaluate the String Builder and Exercise 2: Build the Badge (student + answer KEY)",
+      "Discussion — Joined or Taken Apart? (3-part: Opening, Mid-lesson, Closing across the single day)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.D, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-4-strings"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-4-strings-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-4-strings-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-4-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-4-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-4-strings"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (concatenation and the no-space trap; substrings and the off-by-one position trap). All code is shown in exam conventions next to runnable Python; substrings are described in words on the pseudocode side because the reference sheet has no substring procedure.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real code and checks it against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.4 is a 1-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Topic 3.5 (Boolean Expressions) begins immediately after the quiz, and it extends today's evaluate-an-expression skill from text to true-or-false."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Evaluate the String Builder",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-4-exercise-1",
+    "intro": "You are testing a coding club's 'badge builder' — a small program that assembles handles, display names, and labels out of string pieces. The program below is a sequence of string expressions in exam conventions; the log shows what each line evaluates to. Your job is to TRACE it — determine the exact string each expression produces — and then answer questions about the results. This is the core skill for LO AAP-2.D: read a string expression and give its exact value, remembering that concatenation adds no spaces of its own and that a substring is a piece of an existing string.",
+    "scenarioTitle": "Execution Log: The Badge Builder",
+    "narrative": "Read the log top to bottom, one line at a time. For each concatenation, write out exactly the characters given — no space appears unless a \" \" is joined in. For each substring, take only the characters at the named positions and leave the original string unchanged. Work your own trace on scratch paper before answering Part A. Note: the exam describes substrings in words (\"the first 3 characters of last\") because the reference sheet has no substring procedure.",
+    "log": {
+      "columns": [
+        "Line",
+        "Statement",
+        "Evaluates to",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "1",
+          "first ← \"Ada\"",
+          "\"Ada\"",
+          "first holds a 3-character string"
+        ],
+        [
+          "2",
+          "last ← \"Lovelace\"",
+          "\"Lovelace\"",
+          "last holds an 8-character string"
+        ],
+        [
+          "3",
+          "full ← first + \" \" + last",
+          "\"Ada Lovelace\"",
+          "the middle \" \" supplies the only space"
+        ],
+        [
+          "4",
+          "tag ← first + last",
+          "\"AdaLovelace\"",
+          "with no \" \" between, the words run together"
+        ],
+        [
+          "5",
+          "initials ← (1st char of first) + (1st char of last)",
+          "\"AL\"",
+          "each 1st character is a one-character substring, then joined"
+        ],
+        [
+          "6",
+          "handle ← (first 3 chars of last) + \"7\"",
+          "\"Lov7\"",
+          "a 3-character substring of last, concatenated with the text \"7\""
+        ]
+      ]
+    },
+    "scenarioNote": "Scenario shared with the Build the Badge exercise and the Topic 3.4 coding practice; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023). Substrings are written in words because the reference sheet provides no substring procedure.",
+    "predict": "Before you answer Part A, predict in one sentence: will full and tag display the same characters? Why or why not?",
+    "partALabel": "Part A - Trace the Values",
+    "partA": [
+      {
+        "ek": "EK AAP-2.D.1",
+        "pts": 4,
+        "q": "Give the exact value of full (line 3) and tag (line 4). Explain in one sentence why tag has no space in it but full does.",
+        "answer": "full = \"Ada Lovelace\" and tag = \"AdaLovelace\". full concatenates first, then an explicit space string \" \", then last, so the space between the names exists only because that \" \" was joined in (EK AAP-2.D.1). tag concatenates first and last directly with nothing between them, so the words run together with no gap. Concatenation adds no space of its own — the only spaces in a result are ones you concatenate."
+      },
+      {
+        "ek": "EK AAP-2.D.2",
+        "pts": 4,
+        "q": "initials (line 5) is built from two substrings. State each one-character substring, give the final value of initials, and explain what makes each piece a substring.",
+        "answer": "The 1st character of first is \"A\"; the 1st character of last is \"L\". Each is a substring because it is part of an existing string — a single character taken from it (EK AAP-2.D.2), and taking it does not change first or last. Concatenating \"A\" and \"L\" end-to-end gives initials = \"AL\"."
+      },
+      {
+        "ek": "EK AAP-2.D.2 / AAP-2.D.1",
+        "pts": 4,
+        "q": "handle (line 6) is (first 3 chars of last) + \"7\". Give the substring, the final value of handle, and explain why the 7 is written in quotes as \"7\".",
+        "answer": "The first 3 characters of \"Lovelace\" are positions 1–3: L, o, v → the substring \"Lov\" (EK AAP-2.D.2). Concatenating \"Lov\" with \"7\" gives handle = \"Lov7\". The 7 is written as \"7\" so it is a text character that can be concatenated end-to-end with the letters; concatenation joins strings, so every piece — including the digit — must be a string (EK AAP-2.D.1)."
+      },
+      {
+        "ek": "EK AAP-2.D.1",
+        "pts": 3,
+        "q": "Order matters. Predict the value of last + first and compare it to tag (line 4). Are they the same string? Explain using the CED definition of concatenation.",
+        "answer": "last + first = \"LovelaceAda\", while tag = first + last = \"AdaLovelace\". They are NOT the same string. Concatenation joins strings end-to-end in the order given, so the left operand always comes first (EK AAP-2.D.1); swapping first and last swaps the two halves of the result. Same pieces, opposite order, different string."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.D.1",
+        "pts": 3,
+        "q": "Using first, last, and string literals, write a single expression that outputs Lovelace, Ada (last name, a comma, a space, then first name). Show the exact literal you place between the names.",
+        "answer": "last + \", \" + first evaluates to \"Lovelace, Ada\". The middle literal must be \", \" — a comma followed by one space — because concatenation adds nothing on its own (EK AAP-2.D.1). Writing last + \",\" + first would give \"Lovelace,Ada\" with no space, and reversing to first + \", \" + last would put the names in the wrong order. Only last + \", \" + first supplies both the comma-space separator and the correct order."
+      },
+      {
+        "ek": "EK AAP-2.D.2",
+        "pts": 3,
+        "q": "In Python, last[2] returns 'v', not the 2nd character of \"Lovelace\". Explain the off-by-one cause, and give the index that returns the 2nd character 'o'.",
+        "answer": "Python counts positions from 0, so last[2] is the 3rd character, 'v' — not the 2nd. The 2nd character 'o' is at index 1. On the exam reference sheet the same character is position 2, but code indexes start at 0, so the exam position is always one more than the Python index (EK AAP-2.D.2 / AAP-1.C.3). Decide the base before you count: exam positions from 1, code indexes from 0."
+      },
+      {
+        "ek": "EK AAP-2.D.2",
+        "pts": 2,
+        "q": "ENRICHMENT: The club wants a score equal to the number of vowels (a, e, i, o, u) in \"Lovelace\". Count them by hand, give the number, and describe in one sentence how a program could compute it by examining each character.",
+        "answer": "\"Lovelace\" has 4 vowels: o, e, a, e (the two L's, the v, and the c are not vowels). A program could compute this by traversing the string one character at a time and adding 1 to a counter each time the current character is one of a, e, i, o, u — examining each character in turn. (This previews the typed vowel-count problem on the Topic 3.4 coding page.)"
+      },
+      {
+        "ek": "LO AAP-2.D",
+        "pts": 0,
+        "q": "Next step: you evaluated these strings by hand. Now head to the Topic 3.4 page and type and run the harder versions, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Build the Badge",
+    "minutes": "25 minutes",
+    "subtitle": "5 targets - write the string expression that builds each one",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-4-exercise-2",
+    "intro": "You are finishing the coding club's badge builder. For each target output below, decide WHICH operation you need — concatenation to JOIN pieces, or a substring to TAKE a piece — write the expression that produces the target exactly, and account for every space, separator, and position. The decisions that trip people up are the spaces that concatenation will not add for you, and the character positions that differ between the exam (from 1) and code (from 0). Vague answers like 'just add the strings' score zero.",
+    "standard": "CB Standard (required): name the operation (concatenation and/or substring) + write the exact expression using the given pieces and string literals + verify it character-by-character against the target, for all 5 targets. Enrichment (optional): note a subtler separator, order, or position consideration (EK AAP-2.D.1 / AAP-2.D.2).",
+    "methodHeading": "Three-Step Method - use for every target",
+    "method": [
+      [
+        "Step 1 - Name the pieces you have and the exact target",
+        "Write out the target output character by character, including every space and symbol. That tells you what must appear and in what order."
+      ],
+      [
+        "Step 2 - Choose the operation and supply the separators",
+        "Do you JOIN pieces (concatenation) or TAKE part of one string (substring)? Concatenation adds nothing on its own, so write any space, comma, or symbol as its own string literal exactly where the target needs it."
+      ],
+      [
+        "Step 3 - Check positions and read back the result",
+        "For a substring, count positions from 1 for the exam (from 0 in code) and take only those characters. Then read your expression left to right and match it against the target, character by character."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler string judgment): the same pieces in a different order make a different string (EK AAP-2.D.1), and a 'harmless' extra or missing space changes the output entirely. For substrings, the exam counts positions from 1 while Python and JavaScript count from 0, so 'the 4th character' is position 4 on the exam but index 3 in code (EK AAP-2.D.2). When you finish, move to the Topic 3.4 coding page to type and run these badge problems and let the computer check your output.",
+    "fields": [
+      "The pieces you have and the exact target output (written character by character):",
+      "The operation (concatenation and/or substring) and the expression that builds it:",
+      "Enrichment — a subtler separator, order, or position consideration:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "From first = \"Ada\" and last = \"Lovelace\", build the short username AdaL (the whole first name, then just the first letter of the last name).",
+        "key": {
+          "signs": "The target AdaL is two pieces joined: the full string first, then a single character taken from last. Joining pieces is concatenation; taking one character is a substring (EK AAP-2.D.1 / AAP-2.D.2).",
+          "mechanism": "Write first + (1st character of last). The 1st character of \"Lovelace\" is the substring \"L\" (position 1), and concatenating \"Ada\" with \"L\" end-to-end gives \"AdaL\". No space literal is needed because the target has no space.",
+          "subtype": "Notice there is exactly one substring and one concatenation. Taking \"L\" does not change last, and joining adds nothing between \"Ada\" and \"L\", which is why the result is four characters with no gap."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "From label = \"Score\" and the value 8, build the display string Score: 8 (the word, a colon, one space, then the digit).",
+        "key": {
+          "signs": "The target Score: 8 is the label joined to the digit with a colon and a space in between. This is concatenation, and the separator must be supplied explicitly (EK AAP-2.D.1).",
+          "mechanism": "Write label + \": \" + \"8\". The middle literal \": \" carries the colon and the single space; \"8\" is written as a text character so it can be concatenated with the letters. The result reads S-c-o-r-e-:-space-8 = \"Score: 8\".",
+          "subtype": "label + \":\" + \"8\" would give \"Score:8\" with no space, and label + \" \" + \"8\" would drop the colon. Every symbol in the target — including the colon and the space — must appear as part of some string literal, because concatenation never inserts them for you."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "From word = \"clever\", build the substring eve (the middle three letters).",
+        "key": {
+          "signs": "The target eve is a piece taken from inside word, not a join of separate pieces. That is a substring — part of an existing string (EK AAP-2.D.2).",
+          "mechanism": "In \"clever\" (c-l-e-v-e-r), the letters e, v, e sit at exam positions 3, 4, and 5, so the substring is 'the characters at positions 3 through 5' = \"eve\". Taking it leaves \"clever\" unchanged.",
+          "subtype": "In Python those same characters are indexes 2, 3, 4 — word[2:5] — because code counts from 0. The exam position and the code index differ by one; name the positions first, then convert if you are writing code."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "From cheer = \"GO\", build the chant GO-GO (the cheer, a hyphen, then the cheer again).",
+        "key": {
+          "signs": "The target GO-GO reuses the same piece twice with a hyphen between them. Reusing and joining pieces is concatenation, and the hyphen is a separator you must supply (EK AAP-2.D.1).",
+          "mechanism": "Write cheer + \"-\" + cheer. The same variable can appear more than once in a concatenation; the middle literal \"-\" supplies the hyphen. The result is G-O-hyphen-G-O = \"GO-GO\".",
+          "subtype": "cheer + cheer would give \"GOGO\" with no hyphen. Because concatenation preserves order and adds nothing on its own, the hyphen exists only where you concatenate the \"-\" literal, and reusing cheer does not consume or change it."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A teammate's Python code tries to grab the 4th character of word = \"rainbow\" with word[4], but it prints the wrong letter. Identify the bug and give the corrected expression.",
+        "key": {
+          "signs": "This is the off-by-one position trap. The 4th character is a substring named by position, and Python indexes from 0, not 1 (EK AAP-2.D.2 / AAP-1.C.3).",
+          "mechanism": "In \"rainbow\" (r-a-i-n-b-o-w), the 4th character (exam position 4) is 'n'. But Python counts from 0, so word[4] is the 5th character, 'b'. The corrected expression is word[3], which returns 'n'.",
+          "subtype": "The exam position (4) is always one more than the Python index (3). This is exactly the bug in the Topic 3.4 coding practice's spot-the-error problem: on the reference sheet the 3rd or 4th character sits at position 3 or 4, but in code you subtract one to get the index."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Joined or Taken Apart?",
+    "minutes": "~20 min total - 3 parts - Opening + Mid-lesson + Closing (all Day 1)",
+    "overview": "A program builds text in exactly two directions: it JOINS strings together with concatenation, and it TAKES pieces out of them as substrings. Both are one-sentence ideas in the CED, yet they cause a surprising number of exam errors — a missing space, a reversed order, a character counted from the wrong end. Across three short windows in this single-day topic, your group will argue about why programs must be so literal about spaces, settle the count-from-1-versus-0 question, and pin down the two exact traps the exam builds from strings.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. When you built your handle, steps stuck pieces together (concatenation) and one step pulled part of a word out (a substring). In your own words, what is the difference between BUILDING a bigger string and TAKING a piece of one — and can you name a place in an app where each one happens?"
+          },
+          {
+            "text": "Question 2. Your name normally has a space in it, but your handle had none. The computer only put in the spaces you told it to. Why must a program be that literal about every single space, when a human reader would just 'know' where the words go?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the Evaluate Each Concatenation table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-rule test for spaces",
+            "text": "For any concatenation, there is one rule that tells you exactly where the spaces in the output will be. In one sentence your whole group agrees on, write that rule, and use it to explain why \"code\" + \"NOW\" has no space but \"code\" + \" \" + \"NOW\" does.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Same pieces, different string",
+            "text": "Debate for about 3 minutes: find a pair of real words where joining them in one order makes a meaningful result and the other order does not (or means something different). Record both joins and state, in CED terms, why concatenation produces two different strings.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The character that fools everyone",
+            "text": "Consider: in Python, \"science\"[3] is 'e', but the 3rd character of \"science\" is 'i'. Most people's gut says index 3 gives the 3rd character. As a group, write the clearest one-paragraph explanation you can of WHY code needs index 2 here — one a nervous classmate would actually understand — using the words 'position', 'index', and 'counts from 0'. Then invent one more short word-and-index example that would fool the same person, and give its correct answer.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'the 3rd character is at index 3' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

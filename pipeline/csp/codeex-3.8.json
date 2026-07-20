@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.8",
+    "title": "Iteration",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in the Trace the Savings Loop and How Many Passes? exercises — Maya's savings jar. Now type and run them for real. The problems get harder as you go, ending with one you build from scratch. Predict the output first, then check yourself, hardest last."
+  },
+  "problems": [
+    {
+      "prompt": "Maya's jar starts at 0. Using a loop that repeats a FIXED number of times, add 5 to savings four times, then print the final total. It should print exactly: 20",
+      "promptHtml": "Maya's jar starts at 0. Using a loop that repeats a <strong>fixed number of times</strong>, add 5 to <code>savings</code> four times, then print the final total. It should print exactly: <code>20</code>",
+      "expected": "20",
+      "starter": {
+        "python": "savings = 0\n# repeat 4 times: add 5 to savings each pass\n# (a count-controlled loop, like REPEAT 4 TIMES)\n# then print savings\n",
+        "javascript": "let savings = 0;\n// repeat 4 times: add 5 to savings each pass\n// (a count-controlled loop, like REPEAT 4 TIMES)\n// then print savings\n"
+      },
+      "reference": {
+        "pseudocode": "savings ← 0\nREPEAT 4 TIMES\n{\n  savings ← savings + 5\n}\nDISPLAY(savings)",
+        "python": "savings = 0\nfor i in range(4):\n    savings = savings + 5\nprint(savings)",
+        "javascript": "let savings = 0;\nfor (let i = 0; i < 4; i = i + 1) {\n  savings = savings + 5;\n}\nconsole.log(savings);"
+      },
+      "hint": "A count-controlled loop runs a set number of times. In Python, for i in range(4): runs its indented body exactly 4 times; add 5 to savings inside it, then print savings after the loop."
+    },
+    {
+      "prompt": "Maya's jar starts at 0 and she needs at least 20. Keep adding 5 each week UNTIL savings ≥ 20, counting the weeks. Print how many weeks it takes. It should print exactly: 4",
+      "promptHtml": "Maya's jar starts at 0 and she needs at least 20. Keep adding 5 each week <strong>until</strong> <code>savings &ge; 20</code>, counting the weeks. Print how many weeks it takes. It should print exactly: <code>4</code>",
+      "expected": "4",
+      "starter": {
+        "python": "savings = 0\nweeks = 0\n# keep adding 5 to savings until savings reaches 20\n# (a condition-controlled loop; REPEAT UNTIL(savings >= 20))\n# add 1 to weeks each pass, then print weeks\n",
+        "javascript": "let savings = 0;\nlet weeks = 0;\n// keep adding 5 to savings until savings reaches 20\n// (a condition-controlled loop; REPEAT UNTIL(savings >= 20))\n// add 1 to weeks each pass, then print weeks\n"
+      },
+      "reference": {
+        "pseudocode": "savings ← 0\nweeks ← 0\nREPEAT UNTIL(savings ≥ 20)\n{\n  savings ← savings + 5\n  weeks ← weeks + 1\n}\nDISPLAY(weeks)",
+        "python": "savings = 0\nweeks = 0\nwhile savings < 20:\n    savings = savings + 5\n    weeks = weeks + 1\nprint(weeks)",
+        "javascript": "let savings = 0;\nlet weeks = 0;\nwhile (savings < 20) {\n  savings = savings + 5;\n  weeks = weeks + 1;\n}\nconsole.log(weeks);"
+      },
+      "hint": "REPEAT UNTIL(savings >= 20) becomes while savings < 20 — loop WHILE the condition is still false. Add 1 to weeks on every pass so weeks ends up equal to the number of passes."
+    },
+    {
+      "prompt": "This time Maya's jar already holds 25, and the loop is REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 }. Predict how many times the body runs, then write it and print the final savings. It should print exactly: 25",
+      "promptHtml": "This time Maya's jar already holds 25, and the loop is <code>REPEAT UNTIL(savings &ge; 20) { savings &larr; savings + 5 }</code>. Predict how many times the body runs, then write it and print the final <code>savings</code>. It should print exactly: <code>25</code>",
+      "expected": "25",
+      "starter": {
+        "python": "savings = 25\n# The condition savings >= 20 is checked BEFORE the first pass.\n# Is it already true? If so, how many times does the body run?\n# Write the REPEAT UNTIL loop that adds 5, then print savings.\n",
+        "javascript": "let savings = 25;\n// The condition savings >= 20 is checked BEFORE the first pass.\n// Is it already true? If so, how many times does the body run?\n// Write the REPEAT UNTIL loop that adds 5, then print savings.\n"
+      },
+      "reference": {
+        "pseudocode": "savings ← 25\nREPEAT UNTIL(savings ≥ 20)\n{\n  savings ← savings + 5\n}\nDISPLAY(savings)",
+        "python": "savings = 25\nwhile savings < 20:\n    savings = savings + 5\nprint(savings)",
+        "javascript": "let savings = 25;\nwhile (savings < 20) {\n  savings = savings + 5;\n}\nconsole.log(savings);"
+      },
+      "hint": "The condition is tested before the body runs. Since 25 >= 20 is already true (while 25 < 20 is false), the loop body never executes — the body runs ZERO times and savings prints unchanged as 25."
+    },
+    {
+      "prompt": "Build from scratch: Maya starts at 0 and deposits 3 each time. Count how many deposits it takes to reach at least 20, and print that count. It should print exactly: 7",
+      "promptHtml": "Build from scratch: Maya starts at 0 and deposits <code>3</code> each time. Count how many deposits it takes to reach <strong>at least 20</strong>, and print that count. It should print exactly: <code>7</code>",
+      "expected": "7",
+      "starter": {
+        "python": "# savings starts at 0; deposits starts at 0\n# keep adding 3 to savings until savings >= 20\n# add 1 to deposits each pass, then print deposits\n",
+        "javascript": "// savings starts at 0; deposits starts at 0\n// keep adding 3 to savings until savings >= 20\n// add 1 to deposits each pass, then print deposits\n"
+      },
+      "reference": {
+        "pseudocode": "savings ← 0\ndeposits ← 0\nREPEAT UNTIL(savings ≥ 20)\n{\n  savings ← savings + 3\n  deposits ← deposits + 1\n}\nDISPLAY(deposits)",
+        "python": "savings = 0\ndeposits = 0\nwhile savings < 20:\n    savings = savings + 3\n    deposits = deposits + 1\nprint(deposits)",
+        "javascript": "let savings = 0;\nlet deposits = 0;\nwhile (savings < 20) {\n  savings = savings + 3;\n  deposits = deposits + 1;\n}\nconsole.log(deposits);"
+      },
+      "hint": "Deposits of 3 give 3, 6, 9, 12, 15, 18, 21. After 6 deposits savings is 18, still under 20, so one more deposit is needed — 7 deposits reach 21. Loop while savings < 20 and count each pass."
+    }
+  ]
+}

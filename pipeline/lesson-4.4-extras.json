@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "lessonId": "4.4",
+    "lessonTitle": "Detecting Attacks on Devices",
+    "unit": "Unit 4: Securing Devices",
+    "days": 2,
+    "los": "LO 4.4.A, 4.4.B, 4.4.C, 4.4.D"
+  },
+  "map": {
+    "subtitle": "Unit 4: Securing Devices   •   2 days   •   LO 4.4.A, 4.4.B, 4.4.C, 4.4.D",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: Device Compromise Indicator Identifier and Exercise 2: Device Detection Advisor (student + answer KEY)",
+      "Discussion — Reading the Evidence Trail (2-part: Opening Day 1, Closing Day 2)",
+      "Quiz (student + answer KEY — 12 questions, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-4-detecting-attacks-on-devices"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-4-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-4-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-4-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 logs, IoCs, and choosing a detection control; Day 2 evaluating impact and reading auth logs for password attacks).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Detecting Attacks on Devices'; the slide deck titles Day 1 'Reading the Evidence Trail'; the unit hub lists this lesson as 'Detecting Attacks on Devices.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Device Compromise Indicator Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-4-exercise-1",
+    "intro": "You are a security analyst triaging alerts on one server. Five indicator rows landed on your desk this morning. For each one you will read the evidence, classify the indicator of compromise by its CED type, and name the password attack the log signature points to. Part A works the indicator table; Part B extends the same skills. Everything maps to CB Learning Objectives 4.4.A, 4.4.B, 4.4.C, and 4.4.D.",
+    "scenarioTitle": "Indicator Table: Five Device Findings",
+    "narrative": "Your endpoint monitoring flagged five findings on a single server overnight. The triage table lists each finding's source (which log or file revealed it), what the evidence showed, what was suspicious about it, and the after-effect. Read the table row by row, then answer Part A. Use the method: name the IoC TYPE by its source (host-based from logs/config, file-based from files, behavior-based from auth/access logs), then — for the authentication-log rows — name the password attack from its signature.",
+    "log": {
+      "columns": [
+        "ID",
+        "Source",
+        "What the evidence showed",
+        "What was suspicious",
+        "After-effect"
+      ],
+      "rows": [
+        [
+          "1",
+          "Authentication log",
+          "User m.lee: 9 failed logins from 09:14:30 to 09:14:41 from external IP 203.0.113.9.",
+          "One account, nine wrong passwords in eleven seconds.",
+          "No success yet; the burst stopped, then m.lee succeeded hours later from a new IP."
+        ],
+        [
+          "2",
+          "Authentication log",
+          "Logins for usernames a, b, c, d, e and dozens more, all 10:05:00–10:05:08, all from IP 203.0.113.9.",
+          "Many different users, one unusual IP, all within seconds.",
+          "Most failed; the volume of distinct accounts from a single source is the tell."
+        ],
+        [
+          "3",
+          "File analysis",
+          "An executable in C:\\Temp whose SHA-256 hash matches a known-malware sample; its file path is tied to malicious activity.",
+          "A file's hash and path both match known-bad indicators.",
+          "Quarantined before execution; flagged for reimage review."
+        ],
+        [
+          "4",
+          "System configuration files",
+          "An unexpected service was installed and a startup configuration setting was changed without a change ticket.",
+          "Unauthorized config change and an unexpected new service.",
+          "Persistence mechanism removed; admin credentials rotated."
+        ],
+        [
+          "5",
+          "Authentication log",
+          "Pairs admin:admin, root:root, and other default user:password combinations tried in quick succession from IP 203.0.113.9.",
+          "Default credential pairs attempted back-to-back from one IP.",
+          "All rejected; default-credential policy audit ordered."
+        ]
+      ]
+    },
+    "scenarioNote": "Findings adapted from the Day 1 worked authentication-log example and the IoC-type examples in the slide deck; IoC types and password-attack names follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026).",
+    "predict": "Before you answer Part A, write one sentence: of the five findings, which one is NOT a password attack at all, and what is the single detail that decides it?",
+    "partALabel": "Part A - Indicator Classification",
+    "partA": [
+      {
+        "ek": "EK 4.4.A.4 / 4.4.A.5 / 4.4.A.6",
+        "pts": 6,
+        "q": "Findings 3 and 4 are NOT in the authentication log. For EACH, name the CED IoC type, and quote the defining detail from the table that proves the type. Then explain the one-word source test that separates host-based from file-based.",
+        "answer": "Finding 3 is a file-based IoC (EK 4.4.A.5): it was discovered by analyzing a file on the device — an executable whose hash matches known malware AND a file path associated with malicious activity, both CED file-based examples. Finding 4 is a host-based IoC (EK 4.4.A.4): it was discovered in system configuration settings — an unauthorized change to configuration plus an unexpected service, both CED host-based examples. The source test: file-based comes from analyzing FILES (usually executables); host-based comes from analyzing LOGS and CONFIGURATION SETTINGS. The tell is where the evidence was found, not what it suggests."
+      },
+      {
+        "ek": "EK 4.4.A.6 / 4.4.D.1 / 4.4.D.2",
+        "pts": 4,
+        "q": "Finding 1 (m.lee) carries TWO indicators across the row and its after-effect. Name the behavior-based indicator and the password attack in the burst, then explain what the later success from a new IP indicates and cite both EKs.",
+        "answer": "The burst — one user, nine wrong passwords in eleven seconds — is a behavior-based IoC of multiple failed login attempts (EK 4.4.A.6) and the signature of an online password attack: a single user attempting many wrong passwords in a short span (EK 4.4.D.1). The after-effect, m.lee succeeding hours later from a brand-new IP, is an authorized user logging in from an unexpected IP, an indicator that the password has been compromised (EK 4.4.D.2). The two findings together suggest the online attack eventually succeeded."
+      },
+      {
+        "ek": "EK 4.4.D.3",
+        "pts": 4,
+        "q": "Finding 2 is frequently confused with Finding 1. Name the attack in Finding 2, and state the one detail that distinguishes its signature from an online password attack.",
+        "answer": "Finding 2 is password spraying (EK 4.4.D.3): the indicator is MANY DIFFERENT users trying to log in within seconds of each other from one IP (or unusual IPs). The distinguishing detail is the breadth of usernames: an online password attack (EK 4.4.D.1) is ONE user account attempting many wrong passwords, whereas spraying spreads across many distinct accounts from a single source. Same IP, opposite username pattern."
+      },
+      {
+        "ek": "EK 4.4.D.4",
+        "pts": 4,
+        "q": "Finding 5 shows admin:admin and root:root tried in quick succession. Name the attack, and explain why the specific CONTENT of the attempts — not just the speed — is what fixes the classification.",
+        "answer": "Finding 5 is credential stuffing (EK 4.4.D.4): the indicator is a series of DEFAULT user:password combinations attempted in quick succession, often from the same IP. Speed alone would not distinguish it from spraying or an online attack — what fixes the classification is the content: admin:admin and root:root are paired default credentials, so the adversary is reusing known default pairs rather than guessing passwords for one account (online) or hitting many accounts with a common password (spraying)."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 4.4.D.5",
+        "pts": 3,
+        "q": "An analyst insists 'if a password attack happened, it will be in this auth log somewhere.' Using the CED, explain the one kind of password attack that would leave NO row in this table, and why.",
+        "answer": "An offline password attack would leave no row at all (EK 4.4.D.5). It cannot be detected because the attack takes place on the adversary's own computer — they crack a stolen password-hash database locally, so no login attempts ever reach the target's authentication log. Only online attacks (online password attack, spraying, stuffing) touch the log; the absence of rows does not mean no attack occurred."
+      },
+      {
+        "ek": "EK 4.4.C.3",
+        "pts": 3,
+        "q": "The server in this scenario runs signature-based detection, which raised few false alarms all week. A colleague concludes it must also be the hardest detection for an adversary to evade. Explain why that conclusion is wrong.",
+        "answer": "EK 4.4.C.3 keeps these as two SEPARATE trade-offs. Signature-based detection does have a low rate of false positives — that is a reliability claim. But signature-based detection is also EASIER for adversaries to bypass, because it matches known signatures and novel variants slip past — that is a security claim. A low false-positive rate says nothing about resistance to evasion, so the colleague has fused two independent facts."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Findings 4 and 1 each illustrate a different attack PHASE concern. Explain why catching any of these indicators at the device level matters in terms of what the adversary already had to bypass.",
+        "answer": "Per EK 4.4.C.2, to act on a device an adversary must first bypass a combination of physical- or network-layer protective, deterrent, and detective controls. By the time an indicator appears on this server (a config change in Finding 4, a login burst in Finding 1), the adversary is already past those outer layers, so device-level detection is the last line that can prevent access to sensitive data or disruption of critical services. (Credit for naming the bypassed outer-layer controls and the device level as the final catch point.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Device Detection Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 clients - Three-Step Method",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-4-exercise-2",
+    "intro": "You are a device-detection consultant. Three clients need advice on detecting attacks on their devices. For each client, read the signs in the situation, recommend a detection approach justified by performance, cost, or sensitivity BY NAME and — where an auth log is involved — name the password attack from its signature. Vague 'just monitor more' advice scores zero.",
+    "standard": "CB Standard (required): read the signs + choose/justify a detection control or evaluate its impact + name any password attack from its log signature, for all 3 clients. Enrichment (optional): also name the IoC sub-type the situation best illustrates.",
+    "methodHeading": "Three-Step Method - use for every client",
+    "method": [
+      [
+        "Step 1 - Read the signs",
+        "Identify what the situation reveals: the device's resources and sensitivity, and any indicator of compromise or auth-log signature present. Only claim what the client's situation shows."
+      ],
+      [
+        "Step 2 - Choose / evaluate the control",
+        "Pick or judge the detection approach using the CED criteria — performance, cost/EDR, sensitivity/hybrid — and the impact factors speed, attack phase, false positives vs. Bypass."
+      ],
+      [
+        "Step 3 - Name the attack + justify",
+        "If an auth log is involved, name the password attack from its signature, then justify why your control fits THIS client's resources and risk."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment IoC sub-types (the CED's three categories by source): Host-based = found in logs and configuration settings (unexpected processes, unauthorized config changes). File-based = found by analyzing files, usually executables (hash matches known malware, malicious file path). Behavior-based = found in authentication and access logs (failed-login bursts, unusual login times/locations, privilege-elevation attempts). The source of the evidence decides the type.",
+    "fields": [
+      "Detection approach + criterion:",
+      "Password attack from the log signature, if any:",
+      "Enrichment — IoC sub-type the situation illustrates:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "GreenField Farms runs a fleet of low-power embedded soil sensors with very limited memory and processing power. The security team wants on-device detection but several sensors already lag. The data they handle is low-sensitivity telemetry. What detection approach fits, and why?",
+        "key": {
+          "signs": "Read the signs: the devices are resource-constrained embedded sensors handling low-sensitivity data, and some already show performance strain.",
+          "mechanism": "Approach: signature-based detection (EK 4.4.B.1) — anomaly-based tools use MORE system resources, so signature-based is the better option for devices with less powerful resources; and per EK 4.4.C.1 signature-based is faster, an effect compounded on devices that lack processing power for anomaly-based tools. Note the CED caveat: many embedded devices lack the resources to run ANY detection on-device, so off-device monitoring may be the honest answer. Low sensitivity (EK 4.4.B.3) means hybrid is not warranted.",
+          "subtype": "Host-based IoCs (the on-sensor option would watch logs and configuration). Trap: recommending anomaly-based or a full hybrid model over-provisions weak embedded devices — that reverses EK 4.4.B.1."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Mercy Regional Hospital runs a resource-rich server that stores highly sensitive patient records and provides a critical scheduling service. It is a likely target. The board also wants unified, centralized monitoring across all hospital devices but does not want to manage detection in-house. Advise on detection approach and procurement.",
+        "key": {
+          "signs": "Read the signs: a sensitive, critical, resource-rich device that is a likely target, plus a board need for unified centralized monitoring without in-house management.",
+          "mechanism": "Approach: a hybrid-detection model (EK 4.4.B.3) — sensitive or critical devices benefit from hybrid for maximum protection, when possible, and this server has the resources to run it. Procurement: an endpoint detection and response (EDR) service from a third-party vendor (EK 4.4.B.2) — expensive but holistic and unified, with a centralized alert platform, which directly answers the board's no-in-house, unified-monitoring need. Attack-phase value (EK 4.4.C.2): catching an attack at this device level is the last line protecting sensitive data and a critical service.",
+          "subtype": "Behavior-based IoCs (auth/access-log monitoring of this server). Trap: choosing signature-only to 'minimize false positives' ignores that a sensitive, resource-rich device is exactly where hybrid is warranted (EK 4.4.B.3)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "NorthStar Bank's analyst is staring at one server's authentication log. Overnight it shows: (a) user t.ramos with 40 failed logins in 20 seconds from one foreign IP, then a success from that same IP at 3 a.m.; (b) sixty distinct usernames each attempting one login within a five-second window from a single unfamiliar IP. The analyst also asks why a hash-cracking incident reported by a partner bank produced nothing in their own logs.",
+        "key": {
+          "signs": "Read the signs: pattern (a) is one account with many wrong passwords then an off-hours success from a new IP; pattern (b) is many distinct users, one login each, seconds apart, one unfamiliar IP; the partner incident left no log rows.",
+          "mechanism": "Pattern (a): an online password attack (EK 4.4.D.1 — one user, many wrong passwords, fast), and the 3 a.m. success from the same foreign IP is a compromised-account indicator (EK 4.4.D.2 — authorized user, unusual time and IP). Pattern (b): password spraying (EK 4.4.D.3 — many users within seconds from one/unusual IP). The partner's hash-cracking: an offline password attack (EK 4.4.D.5) leaves no log entries because it runs on the adversary's own computer. Detection note: this sensitive bank server warrants hybrid (EK 4.4.B.3) to catch behavior-based anomalies signature-based detection might miss.",
+          "subtype": "Behavior-based IoCs throughout (auth-log signatures). Trap: calling pattern (b) an online password attack ignores that spraying is defined by MANY users, not one (EK 4.4.D.3 vs. D.1); and expecting the offline crack to appear in logs contradicts EK 4.4.D.5."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Reading the Evidence Trail",
+    "minutes": "~17 min total - 2 parts - Opening (Day 1) + Closing (Day 2)",
+    "overview": "Every action a device takes leaves a trace, but a trace is only evidence — not proof an attack succeeded, and not always present at all. Across two short windows in this lesson, your group will connect the CED's indicator types and detection trade-offs to real decisions, debate when the resource cost of stronger detection is worth paying, and decide what an analyst should and should not conclude from an authentication log — including the attack that leaves no trace.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Logs record system processes, login attempts, file downloads, and user actions — yet most attacks are noticed only after damage shows. Why is reading the evidence trail so hard in practice, and what would it actually take to catch an indicator of compromise EARLY (not just 'check the logs more')?"
+          },
+          {
+            "text": "Question 2. Anomaly-based detection catches more but costs more system resources; signature-based is fast and accurate but easier to bypass. Whose call is it to accept that trade-off — the team buying for a weak embedded device, or the team running a sensitive server? Defend your split with one concrete example."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the worked authentication-log debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - One user vs. Many users",
+            "text": "In the worked auth log, one row was a single user with nine wrong passwords and another was many usernames from one IP within seconds. In one sentence your whole group agrees on, state the single detail that separates an online password attack from password spraying.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which trade-off is hardest to accept?",
+            "text": "Debate for about 3 minutes: of the detection trade-offs — performance cost of anomaly-based, the price of an EDR service, and signature-based being easy to bypass despite low false positives — which is hardest for a real organization to live with, and what is the realistic cost of choosing wrong? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~9 min, after the second Stop and Think",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'empty log' case",
+            "text": "A partner organization reports that adversaries cracked a stolen password-hash database and took over accounts — yet the target's own authentication logs show NOTHING. Design the response: why did this attack leave no trace, what should the analyst conclude — and NOT conclude — from an empty log, and which CED defense most directly limits the damage once an offline crack is suspected?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (conclusion + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

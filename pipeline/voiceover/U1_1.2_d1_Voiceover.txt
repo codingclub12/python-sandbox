@@ -1,0 +1,57 @@
+VOICEOVER SCRIPT — Lesson 1.2
+============================================================
+
+[Slide 1]
+Lesson 1.2, Suspicious Website Logins. Today is the foundation day. By the end of this lesson you will be able to spot the signs of a password attack in a log file, explain exactly how adversaries exploit predictable human password habits, and describe three specific actions that make authentication significantly harder to break. Day 2 and Day 3 are application and practice. Day 4 is the quiz. Everything on the AP exam for this lesson comes from three core skills. Let’s lock all three in today.
+
+[Slide 2]
+Count privately: how many of your accounts share a password with at least one other account. Most people have between 3 and 10 password-reuse pairs. Some have more. Consider: why do people reuse passwords even when they know it is a risk? I am not looking for the textbook answer. I want your honest reasoning. We will come back to password reuse at the end of today’s lesson — and by then you will know exactly what makes it so dangerous.
+
+[Slide 3]
+Five sections today. Core sections will appear on the AP exam. The rest is enrichment. The first four sections are your primary focus.
+
+[Slide 4]
+Three goals. The first is recognition: given a log or a scenario, can you identify the signs that a password attack is occurring? The second is explanation: can you explain the mechanism by which adversaries exploit weak passwords? The third is also explanation: can you describe specific actions that make authentication stronger? Notice the verbs: identify, explain, explain. The AP exam will give you a scenario and ask you to do exactly those three things. Everything today maps to one of these three.
+
+[Slide 5]
+Section one. Spotting the attack. The standard gives you three specific indicators. If you see any one of these in a scenario on the AP exam, you should immediately think password attack.
+
+[Slide 6]
+One bridge slide before we get to today's content. In Lesson 1.1 you learned how social engineering manipulates people; this is what it looks like aimed at a password. This is a credential phishing login page — a fake site built to look exactly like PayPal. Look at the URL bar first: secure-paypal-verify.net is not PayPal; real PayPal is always paypal.com, full stop. The word secure in the URL is a trick. The browser itself says Not secure in red — the attacker is hoping you are moving too fast to notice. The bottom banner manufactures urgency: verify within 24 hours, legal action — that is the Lesson 1.1 playbook, intimidation plus urgency. Here is why it matters for Lesson 1.2: whatever password gets typed into that field goes straight to the adversary. Stolen credentials like these become the raw material for the attacks we study today — they seed the stolen-password lists, and the personal info harvested alongside them feeds the dictionary construction you will see. That is the hand-off from 1.1 to 1.2: manipulation harvests the credential, and today we study what the adversary does with it.
+
+[Slide 7]
+Three signs. Sign one: many failures in a short duration. Volume plus speed. A user mistyping will fail once or twice, then succeed. An automated attack generates a pattern: fail, fail, fail, at a rate no human achieves manually. Sign two: unusual timestamps. You, the legitimate user, log in at 7 a.m. And 4 p.m. The attack happens at 2:47 a.m. That timestamp anomaly is the tell. Sign three: unknown device. Your account has a login history from your laptop and your phone. An attempt from a device or IP you have never used before is suspicious regardless of whether it succeeds. The AP exam will give you a log file and ask you to identify which of these is present. Know all three cold.
+
+[Slide 8]
+Section two. Why weak passwords fail. The standard is very specific about the patterns adversaries target. If you understand how the attack is constructed, you will understand exactly why certain passwords are vulnerable.
+
+[Slide 9]
+Two ideas together. The standard says: humans follow predictable patterns when creating passwords. Two words plus a year plus a special character at the end. Pet names. Family names. Significant dates. It also says: adversaries know this and exploit it. They research you on social media, gather your family names and important dates, combine them with the known patterns, and build a custom dictionary. Rivera2009! Is a perfect example: last name, graduation year, exclamation point appended. An adversary who knows your last name tries Rivera plus every two-digit year from 1980 to 2024 plus common special characters. That is a targeted dictionary attack.
+
+[Slide 10]
+This is the most dangerous misconception for this lesson because it creates false confidence. Password strength meters exist to enforce minimum complexity rules, not to measure real-world attack resistance. Rivera2009! Has uppercase, lowercase, a number, and a special character. Most meters give it a green bar. But read carefully: one or two words, a two-digit year, special character appended at the end. That IS the Rivera2009! Formula. Adversaries know this pattern because they studied the same human password habits the meter was built around. Their tools do not brute force every character. They try the pattern: common word or name, plus year from 1970 to 2025, plus exclamation point or at sign or hash. The meter told you the password was strong. The attacker’s dictionary disagrees. Strength meters measure character set diversity. Attackers exploit human predictability. Fix: use a password manager to generate something genuinely random, which has no pattern for a dictionary to exploit.
+
+[Slide 11]
+Enrichment. Three attack types to know. Brute force tries everything, which is why short passwords fail and rate limiting matters. Dictionary attacks use a targeted word list tuned to the victim. Credential stuffing is different: the adversary has your actual password from a prior breach and is checking if you reused it somewhere else. The exam focuses on the dictionary attack model. These enrichment types help you build the full mental map.
+
+[Slide 12]
+Section three. Three defenses. The standard is specific about all three. Know each one, know why it works, and know any limitations.
+
+[Slide 13]
+Three defenses. First: long, random, unique. Long means more guesses needed. Random means no dictionary can be built from your personal life. Unique means one breach does not compromise every account you own. The standard specifically names the password manager as the tool to generate and store these. Second: avoid personal info. This is the direct counter to that pattern. If the adversary cannot find your pet’s name in your password, their custom dictionary fails. Third: MFA. Even if the password is completely cracked, a one-time code sent to your phone stops the attacker. They have the password and still cannot log in.
+
+[Slide 14]
+MFA is excellent. Enable it everywhere it is available — that is a genuine best practice from the standard. But I want to be precise about what it does and does not protect you from, because the AP exam will test the mechanism, not just the recommendation. MFA adds a required second factor. It does NOT make the first factor irrelevant. Three real bypass methods: first, real-time phishing proxies. The adversary builds a proxy that sits between you and the real site. You enter your password and your MFA code. The proxy relays both to the real site in real time. By the time your session loads, the attacker is already in. Second, SIM swapping. The attacker calls your carrier, impersonates you with some social engineering, and gets your phone number ported to their SIM. They now receive your SMS codes. Third, MFA fatigue. The attacker sends repeated push notification approvals to your authenticator app at 2 a.m. Until you approve one by accident. In all three cases a strong, unique password was the first line of defense that could have slowed or complicated the attack. Strong password plus MFA is defense in depth. Weak password plus MFA is a single point of failure with a safety net that can be bypassed.
+
+[Slide 15]
+Six terms. Prioritize for the AP exam: online password attack, dictionary attack, the three signs of an attack, and MFA. If you see a scenario on the exam where the attacker is using a list from a prior data breach, that is credential stuffing, not a dictionary attack. The distinction matters in free-response.
+
+[Slide 16]
+Question one gives you a mini log snapshot: 47 failed logins in three minutes at 2 a.m., all from the owner's usual home IP. Two of the three specified signs are present — name them, and tell me which sign is NOT present and why. That ‘which sign is missing’ habit will matter on Day 2. Question two: explain exactly why Rivera2009! Is vulnerable. Which patterns does it use? Be specific.
+
+[Slide 17]
+Everything we just did is waiting for you on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.2 page and run the self-check so you know where you actually stand. Then do Exercise 1, the login log analysis, where you find all three signs of an attack. Exercise 2 is the adversary profile builder, and the quiz at the bottom is five questions across all three objectives. If you want it again at your own speed, the lesson video walks through this exact material slide for slide.
+
+[Slide 18]
+Day 1 done. You have the framework: three signs, the dictionary attack mechanism, and three defenses. Day 2 is application. You will take Scenario 1B from the standard — the Scenario 1B website login log — and work through it structured. Be able to say all three attack signs cold, explain why Rivera2009! Fails, and name all three defenses without looking.
+

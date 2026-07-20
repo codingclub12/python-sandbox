@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.2",
+    "title": "Data Abstraction",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in Trace the List and One Name for Many. Now build and run them for real with the weather station's daily-high temperatures — the problems get harder as you go, ending with one you build from scratch. Remember: the exam sheet counts from index 1, but Python counts from index 0, so translate every position down by one when you code. Predict the output first, then check yourself."
+  },
+  "problems": [
+    {
+      "prompt": "Create a list named temps holding the daily highs 68, 72, 75, and 70, then print exactly the FIRST reading: 68",
+      "promptHtml": "Create a list named <code>temps</code> holding the daily highs <code>68, 72, 75, 70</code>, then print exactly the FIRST reading: <code>68</code>",
+      "expected": "68",
+      "starter": {
+        "python": "# make a list called temps holding 68, 72, 75, 70\n# print the FIRST reading (exam sheet index 1 = Python index 0)\n",
+        "javascript": "// make a list called temps holding 68, 72, 75, 70\n// print the FIRST reading (exam sheet index 1 = Python index 0)\n"
+      },
+      "reference": {
+        "pseudocode": "temps ← [68, 72, 75, 70]\nDISPLAY(temps[1])",
+        "python": "temps = [68, 72, 75, 70]\nprint(temps[0])",
+        "javascript": "let temps = [68, 72, 75, 70];\nconsole.log(temps[0]);"
+      },
+      "hint": "Build the list with square brackets and commas. The exam sheet's first element is temps[1]; in Python and JavaScript that same first element is temps[0]."
+    },
+    {
+      "prompt": "Start with temps holding 68, 72, 75, 70. Append a new reading, 81, to the end, then print how many readings are now stored.",
+      "promptHtml": "Start with <code>temps</code> holding <code>68, 72, 75, 70</code>. Append a new reading, <code>81</code>, to the end, then print how many readings are now stored.",
+      "expected": "5",
+      "starter": {
+        "python": "temps = [68, 72, 75, 70]\n# append 81 to the end of temps\n# print how many readings are now in the list\n",
+        "javascript": "let temps = [68, 72, 75, 70];\n// append 81 to the end of temps\n// print how many readings are now in the list\n"
+      },
+      "reference": {
+        "pseudocode": "temps ← [68, 72, 75, 70]\nAPPEND(temps, 81)\nDISPLAY(LENGTH(temps))",
+        "python": "temps = [68, 72, 75, 70]\ntemps.append(81)\nprint(len(temps))",
+        "javascript": "let temps = [68, 72, 75, 70];\ntemps.push(81);\nconsole.log(temps.length);"
+      },
+      "hint": "Appending adds one element to the end, so the length grows by 1. Use the length function/property to count the elements after appending — do not hard-code 5."
+    },
+    {
+      "prompt": "The list temps holds 68, 72, 75, 70. Print the THIRD reading and the LAST reading on one line, separated by a space, like: 75 70",
+      "promptHtml": "The list <code>temps</code> holds <code>68, 72, 75, 70</code>. Print the THIRD reading and the LAST reading on one line, separated by a space, like: <code>75 70</code>",
+      "expected": "75 70",
+      "starter": {
+        "python": "temps = [68, 72, 75, 70]\n# print the THIRD reading and the LAST reading, separated by a space\n# exam index 3 = Python index 2; the last element is at index len(temps)-1\n",
+        "javascript": "let temps = [68, 72, 75, 70];\n// print the THIRD reading and the LAST reading, separated by a space\n// exam index 3 = JS index 2; the last element is at index temps.length-1\n"
+      },
+      "reference": {
+        "pseudocode": "temps ← [68, 72, 75, 70]\nDISPLAY(temps[3])\nDISPLAY(temps[4])",
+        "python": "temps = [68, 72, 75, 70]\nprint(str(temps[2]) + \" \" + str(temps[4 - 1]))",
+        "javascript": "let temps = [68, 72, 75, 70];\nconsole.log(temps[2] + \" \" + temps[temps.length - 1]);"
+      },
+      "hint": "The exam sheet's third element temps[3] is Python's temps[2]. The last element is at index len(temps)-1, which reaches the end no matter how long the list is."
+    },
+    {
+      "prompt": "Build the abstraction from scratch: create a list named highs holding 90, 85, and 88, append 92, then print the FIRST and LAST readings separated by a space, like: 90 92",
+      "promptHtml": "Build the abstraction from scratch: create a list named <code>highs</code> holding <code>90, 85, 88</code>, append <code>92</code>, then print the FIRST and LAST readings separated by a space, like: <code>90 92</code>",
+      "expected": "90 92",
+      "starter": {
+        "python": "# create a list named highs holding 90, 85, 88\n# append 92 to the end\n# print the FIRST reading and the LAST reading, separated by a space\n",
+        "javascript": "// create a list named highs holding 90, 85, 88\n// append 92 to the end\n// print the FIRST reading and the LAST reading, separated by a space\n"
+      },
+      "reference": {
+        "pseudocode": "highs ← [90, 85, 88]\nAPPEND(highs, 92)\nDISPLAY(highs[1])\nDISPLAY(highs[LENGTH(highs)])",
+        "python": "highs = [90, 85, 88]\nhighs.append(92)\nprint(str(highs[0]) + \" \" + str(highs[len(highs) - 1]))",
+        "javascript": "let highs = [90, 85, 88];\nhighs.push(92);\nconsole.log(highs[0] + \" \" + highs[highs.length - 1]);"
+      },
+      "hint": "After appending, the last element is at index len(highs)-1 (exam sheet index LENGTH(highs)). The first element is highs[0] in Python (exam sheet highs[1]). Join the two with a space."
+    }
+  ]
+}

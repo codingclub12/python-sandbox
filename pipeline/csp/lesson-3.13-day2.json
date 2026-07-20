@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "lessonId": "3.13",
+    "lessonTitle": "Developing Procedures",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-3.C",
+    "anchor": "Developing Procedures",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.13 · Day 2 of 2",
+      "title": "Writing the Procedure",
+      "subtitle": "The two exam-reference-sheet forms of a PROCEDURE — one with no RETURN, one with RETURN(expression) — and the rule that RETURN can appear anywhere and exits the procedure immediately",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Developing Procedures. Yesterday you explained WHY procedures manage complexity; today, learning objective AAP-3.C, you WRITE them in the exact form the exam reference sheet gives. There are two forms and you must know both cold: PROCEDURE name of parameters, block — with no return — and the same thing ending in RETURN of an expression. Then we nail the rule the exam builds trace questions from: RETURN may appear anywhere inside a procedure, and the instant it runs it hands a value back to the caller and stops the procedure. By the end you can write a correct header, fill in a correct body, and place a RETURN exactly where you need it."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write a PROCEDURE with parameters and no RETURN, using the reference-sheet form PROCEDURE procName(p1, p2) { block } (LO AAP-3.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Write a PROCEDURE that returns a value with RETURN(expression), knowing RETURN may appear anywhere and causes an immediate return to the caller (LO AAP-3.C)"
+        }
+      ],
+      "script": "Two targets today, both from AAP-3.C, developing procedural abstractions by writing procedures. First: write a PROCEDURE that takes parameters but returns nothing — for example one that just DISPLAYs a label — in the exact reference-sheet form. Second: write a PROCEDURE that returns a value with RETURN of an expression, and understand the crucial semantics — RETURN can appear at any point, and the moment it runs the procedure stops and control goes back to the caller. Those two forms, and that immediate-return rule, are everything AAP-3.C asks you to produce."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser, now decide it. A procedure runs: IF(quantity = 0) { RETURN(0) } and then, below that, RETURN(price * quantity). Consider two calls: charge(5, 0) and charge(5, 3).",
+      "subprompt": "Write down: What does charge(5, 0) return, and does the RETURN(price * quantity) line ever run for that call? What does charge(5, 3) return? In one sentence, state the rule about when a RETURN stops the rest of the procedure.",
+      "directions": "Be ready to defend which RETURN fired for each call.",
+      "script": "Pick up yesterday's teaser and settle it. The procedure checks if quantity is zero and RETURNs zero; below that it RETURNs price times quantity. A few minutes on your own. For charge of five and zero: quantity is zero, so the first RETURN fires, the procedure returns zero AND stops — the second RETURN line never runs for that call. For charge of five and three: quantity is not zero, so the guard is skipped and the second RETURN fires, giving fifteen. The rule you should write down is the whole point of today's second half: a RETURN can sit anywhere, and the instant it runs it exits the procedure immediately, skipping everything after it on that path."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Writing a PROCEDURE (No Return)",
+          "description": "The reference-sheet form PROCEDURE procName(p1, p2) { block }, header versus body, parameters versus arguments (EK AAP-3.C.1)."
+        },
+        {
+          "title": "Writing a PROCEDURE with RETURN",
+          "description": "The form that ends in RETURN(expression); RETURN may appear anywhere and causes an immediate return (EK AAP-3.C.2)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.13 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two sections, both green and CB-required. First, writing a PROCEDURE with no return — the reference-sheet form, the split between the header and the body, and parameters versus arguments. Second, writing a PROCEDURE with RETURN — the form that ends in RETURN of an expression, and the rule that RETURN can appear anywhere and exits immediately. Keep the packet open; every answer also lives on the Topic 3.13 page, along with the interactive coding practice where you will type and run today's procedures against the school-store scenario you traced on paper."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Writing a PROCEDURE (No Return)",
+      "kicker": "The Reference-Sheet Form · Learning Objective AAP-3.C",
+      "script": "Section one. You can already call procedures and explain why they help. Now you write one. Start with the simpler of the two forms — a procedure that takes parameters and does its work but returns no value. The exam reference sheet defines the exact syntax, and getting the header and body right is the whole skill here."
+    },
+    {
+      "type": "concept",
+      "heading": "PROCEDURE name(params) { block }",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The reference sheet defines PROCEDURE procName(parameter1, parameter2, ...) { <block of statements> } to define a procedure taking ZERO or more arguments (EK AAP-3.C.1).",
+        "The HEADER is the first line: the keyword PROCEDURE, the name, and the parameter list in parentheses.",
+        "The BODY is the block of statements inside the braces — the work the procedure does when called.",
+        "This form returns no value; it is used for procedures whose job is an effect, like DISPLAYing a label."
+      ],
+      "script": "Here is the first form, straight from the reference sheet: the keyword PROCEDURE, a name, a parameter list in parentheses, then a block of statements in braces. That is a full procedure definition, and it takes zero or more arguments. Learn the two parts by name. The header is the first line — PROCEDURE, the name, and the parameters — it is the contract that says how the procedure is called. The body is the block inside the braces — the actual work that runs when you call it. This particular form returns no value; you use it when the procedure's job is to DO something, like display a label, rather than hand a value back.",
+      "capture": [
+        {
+          "q": "The first line of a procedure — keyword, name, and parameter list — is called the ______.",
+          "a": "header, the contract that says how the procedure is called"
+        },
+        {
+          "q": "The block of statements inside the braces is called the ______.",
+          "a": "body — the work that runs when the procedure is called"
+        },
+        {
+          "q": "The reference-sheet form PROCEDURE procName(...) { block } defines a procedure that takes ______.",
+          "a": "zero or more arguments and returns no value"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "No Return",
+      "heading": "A Procedure That Prints a Label",
+      "caption": "printLabel takes two parameters and DISPLAYs them; it returns no value.",
+      "pseudocode": "PROCEDURE printLabel(item, price)\n{\n    DISPLAY(item)\n    DISPLAY(price)\n}\nprintLabel(\"Pencil\", 3)",
+      "python": "def printLabel(item, price):\n    print(item, end=\" \")\n    print(price)\n\nprintLabel(\"Pencil\", 3)",
+      "output": "Pencil 3",
+      "script": "Here is the no-return form in action. The header names the procedure printLabel and lists two parameters, item and price. The body has two DISPLAY statements — that is the work. When you call printLabel with the arguments Pencil and three, item becomes Pencil, price becomes three, and the body displays them: Pencil, then three. Notice there is no RETURN anywhere — this procedure's whole purpose is the effect of displaying, not handing a value back. That is exactly what EK AAP-3.C.1's form is for. On the exam you write the pseudocode on the left; in the coding practice you run the Python on the right and watch the same output appear."
+    },
+    {
+      "type": "two_column",
+      "heading": "Parameters (in the Header) vs. Arguments (at the Call)",
+      "subheading": "Same idea, two moments: the header names the inputs; the call supplies the values (EK AAP-3.C.1).",
+      "left": {
+        "title": "Parameters",
+        "definition": "The input variables named in the header when you DEFINE the procedure",
+        "ek": "EK AAP-3.C.1",
+        "examples": [
+          "PROCEDURE printLabel(item, price) — item and price are parameters",
+          "They are placeholders, empty until the procedure is called",
+          "You choose their names once, in the header"
+        ]
+      },
+      "right": {
+        "title": "Arguments",
+        "definition": "The actual values you supply in the parentheses when you CALL the procedure",
+        "ek": "EK AAP-3.C.1",
+        "examples": [
+          "printLabel(\"Pencil\", 3) — \"Pencil\" and 3 are arguments",
+          "The first argument fills the first parameter, and so on, by position",
+          "Different arguments each call — that is what generalizes the procedure"
+        ]
+      },
+      "footer": "AP TIP: Parameters are named ONCE in the header; arguments are supplied EACH time you call. Position matters — first argument fills the first parameter.",
+      "script": "One distinction the exam tests constantly. Parameters are the input variables you name in the header when you define the procedure — item and price in printLabel. They are placeholders, empty until someone calls. Arguments are the actual values you put in the parentheses at the call — the string Pencil and the number three. The connection is by position: the first argument fills the first parameter, the second fills the second. Define the parameters once, in the header; supply fresh arguments every time you call. That is exactly how one procedure serves many inputs — the generalization idea from yesterday, now in the syntax.",
+      "capture": [
+        {
+          "q": "A parameter is a placeholder in the header that stays empty until ______.",
+          "a": "the procedure is called and a supplied value fills it"
+        },
+        {
+          "q": "The first supplied value fills the first parameter and the second fills the second — the matching is done by ______.",
+          "a": "position, not by name"
+        },
+        {
+          "q": "Supplying different values on each call is exactly what lets one procedure ______.",
+          "a": "serve a whole range of inputs — the generalization idea from Day 1"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Write a No-Return Procedure",
+      "subheading": "These map to LO AAP-3.C. Complete on your Guided Notes.",
+      "prompts": [
+        "Write, in exam pseudocode, a PROCEDURE greet(name) with no return that DISPLAYs the name. Label the header and the body.",
+        "In greet(\"Ada\"), identify the parameter and the argument, and state which one is named in the header and which is supplied at the call.",
+        "A classmate writes PROCEDURE printLabel { DISPLAY(item) } with no parentheses and no parameters, then calls printLabel(\"Pencil\", 3). Explain what is wrong with the header."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.13 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: write a PROCEDURE greet of name that DISPLAYs the name, and label the header — PROCEDURE greet of name — and the body — the DISPLAY line. Two: in greet of Ada, name is the parameter and the string Ada is the argument; the parameter is declared in the header, the argument is supplied at the call. Three: the classmate's header has no parameter list, so there is nowhere for the argument Pencil to go — the header must declare the parameters in parentheses that the call will fill. These are the exact writing moves AAP-3.C expects."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Writing a PROCEDURE with RETURN",
+      "kicker": "Hand a Value Back · Learning Objective AAP-3.C",
+      "script": "Section two. The no-return form does something; the return form gives something back. This is the form you use whenever the caller needs the procedure's result — to store it, print it, or use it in a bigger expression. The reference sheet defines it precisely, and it carries the one rule the exam turns into trace puzzles: RETURN exits immediately."
+    },
+    {
+      "type": "concept",
+      "heading": "PROCEDURE name(params) { block RETURN(expression) }",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The reference sheet defines PROCEDURE procName(...) { <block> RETURN(expression) }, which returns the value of expression to the caller (EK AAP-3.C.2).",
+        "RETURN(expression) evaluates the expression and hands that value back — so result ← finalPrice(3, 12) can store it.",
+        "The RETURN statement may appear at ANY point inside the procedure (EK AAP-3.C.2).",
+        "The moment a RETURN runs, it causes an IMMEDIATE return to the caller — statements after it on that path do not run (EK AAP-3.C.2)."
+      ],
+      "script": "Here is the second form. Same header and body as before, but now the body includes RETURN of an expression, and that returns the expression's value to the caller. This is what lets result arrow finalPrice of three and twelve actually store a number — the procedure hands one back. Two rules to internalize, both from EK AAP-3.C.2. First, the RETURN can appear at any point inside the procedure, not only at the end. Second, and this is the one the exam loves, the moment a RETURN runs it causes an immediate return to the caller — everything after it on that path is skipped. That is why yesterday's guard worked: once RETURN zero fires, the procedure is done.",
+      "capture": [
+        {
+          "q": "RETURN(expression) evaluates the expression and then ______.",
+          "a": "hands that value back to the caller, so it can be stored or used"
+        },
+        {
+          "q": "Within a procedure, a RETURN statement may appear ______.",
+          "a": "at any point, not only as the last line"
+        },
+        {
+          "q": "The instant a RETURN runs, it causes ______.",
+          "a": "an immediate return to the caller, skipping any statements after it on that path"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "With Return",
+      "heading": "A Procedure That Returns a Total",
+      "caption": "finalPrice computes the total and RETURNs it; the caller stores the value.",
+      "pseudocode": "PROCEDURE finalPrice(price, quantity)\n{\n    total ← price * quantity\n    RETURN(total)\n}\nreceipt ← finalPrice(3, 12)\nDISPLAY(receipt)",
+      "python": "def finalPrice(price, quantity):\n    total = price * quantity\n    return total\n\nreceipt = finalPrice(3, 12)\nprint(receipt)",
+      "output": "36",
+      "script": "The return form doing real work. The header names finalPrice with parameters price and quantity. The body computes total as price times quantity, then RETURNs total — that hands thirty-six back to the caller. Because it returns a value, the caller can capture it: receipt arrow finalPrice of three and twelve stores thirty-six in receipt, and DISPLAY then shows it. Contrast this with printLabel from section one, which displayed but returned nothing — there was no value to store. That difference, RETURN versus DISPLAY, is the single most common thing students confuse, and we will hit it head-on in a moment."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace an Early RETURN, Call by Call",
+      "context": "The procedure is: PROCEDURE charge(price, quantity) { IF(quantity = 0) { RETURN(0) } RETURN(price * quantity) }. For each call, name which RETURN fires and the value returned. The last column is yours to complete.",
+      "columns": [
+        "Call",
+        "Which RETURN fires",
+        "Value returned (fill in)"
+      ],
+      "rows": [
+        [
+          "charge(5, 0)",
+          "the first RETURN — quantity = 0, immediate exit",
+          "0"
+        ],
+        [
+          "charge(5, 3)",
+          "the second RETURN — guard skipped",
+          "15"
+        ],
+        [
+          "charge(4, 1)",
+          "the second RETURN — guard skipped",
+          "4"
+        ],
+        [
+          "charge(10, 0)",
+          "the first RETURN — quantity = 0, immediate exit",
+          "0"
+        ]
+      ],
+      "highlightCol": 2,
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "script": "Trace the early-RETURN procedure, one call at a time — this is exactly how the exam wants you to reason about RETURN placement. charge of five and zero: quantity is zero, so the first RETURN fires, returns zero, and the procedure exits immediately — the multiply line never runs. charge of five and three: quantity is not zero, so the guard is skipped and the second RETURN gives fifteen. charge of four and one skips the guard too and returns four. charge of ten and zero fires the first RETURN again for zero. Fill in the last column yourself for the blanked rows. The pattern to see: whichever RETURN runs first wins, and everything after it on that path is skipped."
+    },
+    {
+      "type": "misconception",
+      "heading": "“DISPLAY and RETURN Do the Same Thing”",
+      "misconception": "A procedure that DISPLAYs its result has effectively given that value back to whoever called it.",
+      "whyItHappens": "Both seem to 'produce' the answer, and in the coding practice you SEE the number on the screen either way, so displaying feels like returning.",
+      "correction": "DISPLAY only prints a value to the screen; it does not hand it back. RETURN sends the value to the caller so it can be stored or reused: result ← finalPrice(...) works only because finalPrice RETURNs (EK AAP-3.C.2). A procedure that displays but never returns gives the caller nothing to assign — result would be empty.",
+      "example": "If finalPrice ended with DISPLAY(total) instead of RETURN(total), then receipt ← finalPrice(3, 12) would print 36 but store NOTHING in receipt — there was no returned value. Swap DISPLAY for RETURN and receipt correctly holds 36.",
+      "script": "The trap that sinks Day 2. Because both DISPLAY and RETURN seem to produce the answer — and in the coding practice you see the number either way — students treat them as the same. They are not. DISPLAY only prints to the screen; it hands nothing back. RETURN sends the value to the caller so it can be stored or reused. That is why receipt arrow finalPrice works only when finalPrice RETURNs; if it merely displayed, the thirty-six would flash on screen but receipt would hold nothing. When a question asks for a value the caller can USE, it must be RETURNed, not displayed. Separate show-it from give-it-back and this whole family of questions becomes easy."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Write a Returning Procedure",
+      "subheading": "These map to LO AAP-3.C. Complete on your Guided Notes.",
+      "prompts": [
+        "Write, in exam pseudocode, a PROCEDURE doublePrice(price) that RETURNs price times 2. Then write one line that stores doublePrice(9) in a variable and DISPLAYs it.",
+        "Rewrite charge so it RETURNs 0 when quantity is 0. Explain why the RETURN(price * quantity) line is never reached when quantity is 0.",
+        "A procedure ends with DISPLAY(total) instead of RETURN(total). Explain what breaks when a caller writes cost ← thatProcedure(5, 4) and why."
+      ],
+      "directions": "Show your procedures. Then check yourself with the matching CFUs on the Topic 3.13 page.",
+      "script": "Write it, six minutes, and show your procedures. One: doublePrice of price RETURNs price times two; then result arrow doublePrice of nine stores eighteen and DISPLAY shows it. Two: rewrite charge with an IF quantity equals zero guard that RETURNs zero — the multiply RETURN is never reached when quantity is zero because the first RETURN exits the procedure immediately. Three: if a procedure DISPLAYs total instead of RETURNing it, then cost arrow thatProcedure gets nothing — the value was printed, not handed back, so cost is empty. These are precisely the writing-and-reasoning moves AAP-3.C rewards. Answers are reviewed as a class before the exit."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.13 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "RETURN is not DISPLAY",
+          "text": "DISPLAY prints a value; RETURN hands it back so the caller can store it. If a question needs result ← proc(...), the procedure must RETURN — a procedure that only DISPLAYs gives the caller nothing to assign."
+        },
+        {
+          "name": "RETURN exits immediately",
+          "text": "The instant a RETURN runs, the procedure stops and control goes back to the caller. Statements after that RETURN on the same path never execute — which is exactly why an early RETURN(0) guard works."
+        },
+        {
+          "name": "Change the HOW, keep the callers",
+          "text": "Because a procedure hides how it works, you can rewrite its internals without touching any call site — as long as what it does is preserved. Watch for questions asking which change forces callers to update: only a change to what it DOES."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: RETURN is not DISPLAY — display prints, return hands the value back, and only a RETURNed value can be stored in result arrow proc. Trap two: RETURN exits immediately — the moment it runs the procedure stops, so anything after it on that path is skipped, which is the whole mechanism behind an early guard. Trap three, carried from Day 1: because a procedure hides how it works, you can change its internals freely as long as what it does is preserved; only a change to what the procedure DOES forces callers to update. Dodge these three and every procedures question on the exam is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Developing Procedures, in One Slide",
+      "points": [
+        "Procedural abstraction manages complexity: it names a process, enables modularity and reuse, generalizes with parameters, aids readability, and hides internals (EK AAP-3.B.1–B.7).",
+        "The no-return form: PROCEDURE procName(parameter1, parameter2, ...) { block } — a header naming parameters, a body of statements, no value returned (EK AAP-3.C.1).",
+        "The return form: PROCEDURE procName(...) { block RETURN(expression) } — RETURN evaluates the expression and hands its value back to the caller (EK AAP-3.C.2).",
+        "RETURN may appear anywhere and causes an IMMEDIATE return; DISPLAY only prints, RETURN hands a value back to be stored or reused (EK AAP-3.C.2)."
+      ],
+      "next": "Topic 3.14, Libraries: now that you can write your own procedures, how do you import and use procedures OTHERS wrote — reading an API and its documentation to know what a procedure does without seeing how?",
+      "script": "The whole topic in one slide. Procedural abstraction manages complexity by naming a process, enabling modularity and reuse, generalizing with parameters, improving readability, and hiding internals you can change freely. To write one, you know two reference-sheet forms: the no-return form, a header of parameters plus a body; and the return form, which ends in RETURN of an expression that hands a value back. And the key rule: RETURN can appear anywhere and exits immediately, and displaying a value is not the same as returning it. Next class is Topic 3.14, Libraries, where you use procedures other people wrote by reading their documentation — pure procedural abstraction, knowing what without how. Before you pack up, run the exit check: four I-can statements at the bottom, and any box you cannot honestly check tells you what to review on the Topic 3.13 page tonight, including the interactive coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain how procedural abstraction manages complexity through naming, modularity, reuse, and hidden internals (LO AAP-3.B)",
+        "explain how parameters generalize a procedure so it works for a range of inputs (LO AAP-3.B)",
+        "write a PROCEDURE with parameters and no RETURN using the reference-sheet form (LO AAP-3.C)",
+        "write a PROCEDURE that RETURNs a value, and place a RETURN so it exits at the right moment (LO AAP-3.C)"
+      ]
+    }
+  ]
+}

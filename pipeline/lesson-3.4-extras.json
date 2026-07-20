@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "lessonId": "3.4",
+    "lessonTitle": "Protecting Networks: Firewalls",
+    "unit": "Unit 3: Securing Networks",
+    "days": 2,
+    "los": "LO 3.4.A, 3.4.B, 3.4.C, 3.4.D"
+  },
+  "map": {
+    "subtitle": "Unit 3: Securing Networks   •   2 days   •   LO 3.4.A, 3.4.B, 3.4.C, 3.4.D",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: ACL Rule Tracer and Exercise 2: Firewall Configuration Advisor (student + answer KEY)",
+      "Discussion — Order Decides Everything (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 11 questions, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-3-protecting-networks-firewalls"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-4-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-4-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-4-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 firewall types + ACLs, Day 2 placement + rule configuration and the worked ordering example).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Protecting Networks: Firewalls'; the recurring throughline is that a firewall does nothing without rules, and the ORDER of those rules — first match wins — decides what actually gets in or out."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "ACL Rule Tracer",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-4-exercise-1",
+    "intro": "You are a network administrator reviewing a firewall's access control list. The ACL below is checked top to bottom, and the FIRST rule that matches a packet is the one that executes. Read the table row by row, then trace each test packet through the list and decide ALLOW or DENY and why. Part A works the ACL; Part B extends the same skills. Everything maps to CB Learning Objectives 3.4.B and 3.4.D.",
+    "scenarioTitle": "Firewall ACL: Five Ordered Rules",
+    "narrative": "A small office firewall protects a web server (10.0.0.5) and an internal database (10.0.0.9). The administrator wrote the access control list below. Each rule has a direction, a filter criterion, and an action. The firewall checks the rules in the order shown and stops at the first match. Read the ACL, then in Part A trace specific inbound packets through it.",
+    "log": {
+      "columns": [
+        "Order",
+        "Direction",
+        "Criterion (protocol / port / source → dest)",
+        "Action",
+        "What this rule does"
+      ],
+      "rows": [
+        [
+          "1",
+          "Inbound",
+          "TCP 443 from ANY → 10.0.0.5",
+          "ALLOW",
+          "Lets the public reach the web server over HTTPS"
+        ],
+        [
+          "2",
+          "Inbound",
+          "TCP 22 from 203.0.113.7 → 10.0.0.5",
+          "ALLOW",
+          "Lets the admin's trusted IP SSH to the web server"
+        ],
+        [
+          "3",
+          "Inbound",
+          "TCP ANY from ANY → 10.0.0.9",
+          "DENY",
+          "Blocks all internet traffic to the database"
+        ],
+        [
+          "4",
+          "Inbound",
+          "TCP 22 from ANY → 10.0.0.5",
+          "DENY",
+          "Blocks SSH to the web server from everyone else"
+        ],
+        [
+          "5",
+          "Inbound",
+          "TCP ANY from ANY → ANY",
+          "DENY",
+          "Default deny — anything not already allowed is dropped"
+        ]
+      ]
+    },
+    "scenarioNote": "ACL adapted from the Day 1 worked walkthrough and the enrichment multi-rule example; rule anatomy and first-match-wins ordering follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026). Addresses are illustrative.",
+    "predict": "Before you answer Part A, write one sentence: which rule do you expect most test packets to fall through to, and which single rule could you delete without changing any outcome?",
+    "partALabel": "Part A - Trace the Packets",
+    "partA": [
+      {
+        "ek": "EK 3.4.B.2",
+        "pts": 6,
+        "q": "Trace each of these three inbound packets through the ACL and state ALLOW or DENY, naming the FIRST rule that matches each: (a) TCP 443 from 198.51.100.4 to 10.0.0.5; (b) TCP 22 from 203.0.113.7 to 10.0.0.5; (c) TCP 22 from 198.51.100.4 to 10.0.0.5.",
+        "answer": "(a) ALLOWED by Rule 1 — inbound TCP 443 to the web server matches the first allow rule, so the firewall stops there. (b) ALLOWED by Rule 2 — the source is the admin's trusted IP 203.0.113.7 doing SSH to the web server, which matches before any deny. (c) DENIED by Rule 4 — this SSH attempt is from an untrusted source, so it does NOT match Rule 2 (wrong source) and falls through to Rule 4, the deny-SSH-from-everyone-else rule, which matches first. Per EK 3.4.B.2 the first matching rule executes and the firewall stops looking."
+      },
+      {
+        "ek": "EK 3.4.B.2 / 3.4.D.3",
+        "pts": 4,
+        "q": "An inbound packet TCP 3306 (the database port) from 198.51.100.4 to 10.0.0.9 arrives. Which rule denies it, and would it still be denied if Rule 3 were deleted? Explain using first-match-wins.",
+        "answer": "Rule 3 denies it first — inbound TCP to the database 10.0.0.9 matches the deny-all-to-database rule, so the firewall stops there. If Rule 3 were deleted, the packet would fall through Rules 1, 2, and 4 (none match a database destination) and hit Rule 5, the default deny, which would also DENY it. So the outcome is the same either way for THIS packet — but Rule 3 is not redundant in general, because it is more specific and documents intent; deleting it makes the database's protection depend entirely on the default deny."
+      },
+      {
+        "ek": "EK 3.4.B.3",
+        "pts": 4,
+        "q": "Name the three parts of Rule 2 using the CED's rule anatomy. Then explain what would happen to the admin's legitimate SSH session if Rule 2 were removed from the list.",
+        "answer": "Per EK 3.4.B.3 a rule has a direction, a criterion to filter by, and an action. Rule 2: direction = inbound; criterion = TCP port 22 from source 203.0.113.7 to destination 10.0.0.5; action = permit/ALLOW. If Rule 2 were removed, the admin's SSH packet would no longer match a specific allow rule. It would fall through to Rule 4 (deny SSH to the web server from ANY), which would match and DENY it — locking the admin out. Rule 2 must sit ABOVE Rule 4 because the first match wins."
+      },
+      {
+        "ek": "EK 3.4.D.3",
+        "pts": 4,
+        "q": "The administrator considers moving Rule 5 (default deny) to the TOP of the list. Predict the effect on ALL inbound traffic and justify it with the first-match principle and the CED's ordering rule.",
+        "answer": "Moving the default-deny rule to the top would block ALL inbound traffic, including the legitimate HTTPS and admin SSH that Rules 1 and 2 are meant to permit. Per EK 3.4.B.2 the first matching rule executes, and per EK 3.4.D.3 changing the order can change which traffic is allowed or denied. A deny-ANY-from-ANY rule matches every inbound packet, so it would execute first for everything and the allow rules below it would never be reached — the network would go from open-as-intended to fully closed. The default deny must stay LAST."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 3.4.D.3",
+        "pts": 3,
+        "q": "State the professional ordering pattern this ACL follows (specific vs. broad rules) and explain WHY first-match-wins forces that pattern, citing the CED.",
+        "answer": "The pattern is specific ALLOWs first, broad DENY last. Because EK 3.4.B.2 says the first matching rule executes, a narrow allow (HTTPS to the web server, SSH from the admin IP) must appear ABOVE the broad deny-all so the allowed traffic matches its specific rule before reaching the catch-all. EK 3.4.D.3 warns that changing the order changes the outcome; if the deny-all were on top, nothing you meant to permit would ever match. Specific before general is what 'precedence of filtering priorities' means in practice."
+      },
+      {
+        "ek": "EK 3.4.B.1",
+        "pts": 3,
+        "q": "A coworker says, 'This ACL only controls traffic coming IN — outbound traffic isn't its job.' Correct this.",
+        "answer": "Per EK 3.4.B.1 the access control list is the set of rules a firewall uses to permit or deny BOTH inbound AND outbound network traffic. This particular ACL happens to list only inbound rules, but an ACL can and routinely does govern outbound traffic too (for example, blocking internal hosts from reaching a banned external service). The coworker is confusing what THIS list contains with what an ACL is capable of controlling."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Rule 3 and Rule 5 both deny database traffic in effect. Name one advantage of keeping the explicit, more-specific Rule 3 even though the default deny would also stop that traffic.",
+        "answer": "An explicit, specific rule documents intent and protects the database independently of the catch-all, so the protection survives even if the default-deny rule is later edited, reordered, or removed. It is also easier to audit and to attach logging to a named rule than to the generic default deny. (Either reason — documented intent/auditability, or independence from the default deny — earns credit.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Firewall Configuration Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 clients - Requirements to Ordered Rules",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-4-exercise-2",
+    "intro": "You are a firewall consultant. Three clients hand you requirements and ask you to turn them into a correctly ordered ACL. For each client, identify the signs/requirements, state the rules and the ordering mechanism that makes them work, and name the firewall placement or type that fits. Run the method on every client. Advanced students also name the firewall-type or placement sub-detail.",
+    "standard": "CB Standard (required): read the requirements + write/order the matching rules + tie the order to first-match-wins, for all 3 clients. Enrichment (optional): also name the firewall type or placement detail that applies.",
+    "methodHeading": "Four-Step Method - use for every client",
+    "method": [
+      [
+        "Step 1 - Read the requirements",
+        "Identify what type of traffic, from which sources, to which destinations should be allowed or denied. Write the allow list and the deny list before touching order."
+      ],
+      [
+        "Step 2 - Build the rules",
+        "For each requirement write a rule with a direction, a criterion (port, IP, service, protocol, or application), and an action."
+      ],
+      [
+        "Step 3 - Order them",
+        "Put specific ALLOW rules above the broad DENY-all so the first match executes the right action. Remember: changing the order can change the outcome."
+      ],
+      [
+        "Step 4 - Place + classify",
+        "State where the firewall(s) go — each segment and each internet boundary — and, if it matters, which firewall type the requirement demands."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment detail (NOT separately required for ordering): match the requirement to the right firewall TYPE. Stateless filters on header fields only; stateful tracks connection state so reply traffic to an allowed outbound request is recognized; NGFW adds intrusion prevention, deep packet inspection, and application-type filtering — the only type that can block a specific app by name rather than by port.",
+    "fields": [
+      "Requirements → allow list / deny list:",
+      "Ordered rules (with first-match justification):",
+      "Placement + firewall type that fits:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Public Web Host — A startup runs one public web server (TCP 80 and 443) and an internal admin workstation that must be able to SSH (TCP 22) to the server from a single office IP, 198.51.100.20. Nothing else inbound should be allowed. The administrator drafted the rules but is unsure of the order.",
+        "key": {
+          "signs": "Requirements (EK 3.4.D.1): ALLOW inbound TCP 80 and 443 from ANY to the web server; ALLOW inbound TCP 22 from 198.51.100.20 only; DENY everything else inbound. The trap is leaving SSH open to ANY or putting the deny-all too high.",
+          "mechanism": "Order, top to bottom: (1) ALLOW inbound TCP 80/443 ANY → web server; (2) ALLOW inbound TCP 22 from 198.51.100.20 → web server; (3) DENY inbound TCP 22 from ANY → web server; (4) DENY inbound ANY (default). First-match-wins (EK 3.4.B.2) means the admin's SSH matches Rule 2 before the deny in Rule 3; every other SSH attempt falls to Rule 3; all else hits the default deny. Reordering (EK 3.4.D.3) the default deny upward would block the web server.",
+          "subtype": "Stateless firewall (EK 3.4.A.2) is sufficient — every rule filters on header fields (port and source IP) only; placement is at the internet ingress/egress point (EK 3.4.C.3)."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Segmented Clinic — A clinic has two internal segments: a patient-records segment (sensitive) and a public waiting-room kiosk segment (low sensitivity). It also has TWO separate internet links from two ISPs for redundancy. The IT lead wants to firewall 'the network' but is thinking of buying one box for the cheaper ISP link only.",
+        "key": {
+          "signs": "Requirements (EK 3.4.D.1): isolate the patient-records segment with strict rules; the kiosk segment needs only basic outbound web; BOTH internet links must be protected. Trap: one perimeter box, or firewalling only one ISP link.",
+          "mechanism": "Per EK 3.4.C.1 EACH segment gets its own firewall, and per EK 3.4.C.3 EACH internet ingress/egress point — both ISP links — gets a firewall; firewalling only the cheaper link leaves the second an open door. Per EK 3.4.C.2 the records-segment firewall is set to a HIGHER security level (deny-by-default, tightly scoped allows) than the kiosk firewall, independently. Each firewall's ACL still follows first-match-wins ordering (EK 3.4.B.2).",
+          "subtype": "Placement, not type, is the graded point: segment firewalls (C.1) + independent security levels (C.2) + a firewall at every internet boundary (C.3). A stateful firewall (EK 3.4.A.3) on the records segment is a reasonable upgrade so return traffic to approved outbound requests is tracked."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "Block the App, Not the Port — An enterprise must permit normal web traffic on TCP 443 but BLOCK one specific file-sharing application that tunnels its traffic over that same port 443. A stateless rule on port 443 cannot tell the two apart. The security team also wants intrusion prevention on this link.",
+        "key": {
+          "signs": "Requirements (EK 3.4.D.1, D.2): allow general HTTPS on 443, but deny ONE application even though it rides on the allowed port — so a port/IP criterion alone cannot express the rule. Trap: trying to solve an application-layer requirement with a port-only stateless rule.",
+          "mechanism": "A port-based ALLOW for 443 plus a port-based DENY for 443 contradict each other under first-match-wins (EK 3.4.B.2) — whichever is first decides, and neither distinguishes the banned app. The requirement needs filtering by APPLICATION, not just port (EK 3.4.D.2 lists 'application' as a valid criterion). Rule pattern: ALLOW TCP 443, but with an application-aware DENY for the specific app placed so it is evaluated correctly.",
+          "subtype": "Next-generation firewall (EK 3.4.A.4) — only an NGFW does filtering by application type plus intrusion prevention and deep packet inspection, so it can block the named app while allowing other 443 traffic. Stateless (A.2) and stateful (A.3) firewalls cannot filter by application."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Order Decides Everything",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "A firewall does nothing without rules, and the ORDER of those rules — first match wins — decides what actually gets in or out. Across three short windows in this lesson, your group will examine why a firewall is a function rather than a box, debate which CED idea is hardest to get right when configuring real rules, and decide what an administrator should and should not conclude when correct-looking rules still block legitimate traffic.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The CED says a firewall is SOFTWARE, not necessarily a separate box — it can live inside a router. Why does it matter whether we picture a firewall as a function versus a physical appliance? What does the 'function' view let you do that the 'box' view hides?"
+          },
+          {
+            "text": "Question 2. Whose job is firewall safety — the administrator who writes the rules, or the vendor who ships the device? Defend your split with one concrete example (e.g., a default-deny that ships off, or a rule ordered wrong by the admin)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the worked ordering walkthrough",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The silent reversal",
+            "text": "In the worked example, swapping two rules took the network from 'SSH allowed' to 'SSH blocked' with no rule added or removed. In one sentence your whole group agrees on, explain exactly WHY first-match-wins makes order — not the set of rules — decide the outcome.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which CED idea is hardest to get right?  [LO 3.4.A–D]",
+            "text": "Debate for about 3 minutes: of the four big ideas — picking the right firewall type (3.4.A), naming a rule's parts (3.4.B.3), placing firewalls on every segment and boundary (3.4.C), and ordering rules correctly (3.4.D.3) — which is hardest to get right on a real network, and what is the realistic cost of getting it wrong? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~9 min, after the configuration exercise",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'all the right rules, still broken' case",
+            "text": "An administrator wrote every correct allow rule for a web server AND a correct default-deny — but the web server is unreachable from the internet. Design the fix: which single change most directly restores access, why is adding MORE rules the wrong instinct here, and when legitimate traffic is blocked by a correct-looking ACL, what should an analyst conclude — and NOT conclude — about where the problem is?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the one ordering fix + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

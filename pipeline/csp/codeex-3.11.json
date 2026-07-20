@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.11",
+    "title": "Binary Search",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in the Trace the Shelf and Sorted or Not? exercises — same sorted shelf, now on screen. Type and run each one; they get harder as you go, ending with one you build from scratch. Everything here stays at the halving / iteration-count level: find the middle, eliminate half, count the checks. Predict the output first, then verify."
+  },
+  "problems": [
+    {
+      "prompt": "The shelf holds 15 books sorted by call number: [3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88]. Binary search always checks the MIDDLE book first. Print the value of that first middle book.",
+      "promptHtml": "The shelf holds 15 books sorted by call number: <code>[3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88]</code>. Binary search always checks the <b>MIDDLE</b> book first. Print the value of that first middle book.",
+      "expected": "40",
+      "starter": {
+        "python": "shelf = [3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88]\n# binary search checks the MIDDLE first\n# find the middle index of the 15-item list, then print the value there\n",
+        "javascript": "let shelf = [3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88];\n// binary search checks the MIDDLE first\n// find the middle index of the 15-item list, then print the value there\n"
+      },
+      "reference": {
+        "pseudocode": "shelf ← [3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88]\nmiddle ← (1 + LENGTH(shelf)) / 2\nDISPLAY(shelf[middle])",
+        "python": "shelf = [3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88]\nmiddle = len(shelf) // 2\nprint(shelf[middle])",
+        "javascript": "let shelf = [3, 8, 12, 15, 21, 26, 33, 40, 47, 52, 58, 61, 70, 75, 88];\nlet middle = Math.floor(shelf.length / 2);\nconsole.log(shelf[middle]);"
+      },
+      "hint": "For 15 items the middle is the 8th book (position 8 in the 1-indexed exam notation). In Python and JavaScript, lists are 0-indexed, so len(shelf) // 2 gives index 7 — the same middle book. Print the value stored there, not the index."
+    },
+    {
+      "prompt": "Count the WORST-CASE number of checks for the 15-book shelf. Start with 15 items and repeatedly halve the count (throwing away half each check) until nothing is left, counting each halving. Print the total number of checks.",
+      "promptHtml": "Count the <b>WORST-CASE</b> number of checks for the 15-book shelf. Start with 15 items and repeatedly halve the count (throwing away half each check) until nothing is left, counting each halving. Print the total number of checks.",
+      "expected": "4",
+      "starter": {
+        "python": "size = 15      # items still in play\nchecks = 0    # checks made so far\n# each check lets you throw away half: halve size and add 1 to checks\n# keep going until size reaches 0, then print checks\n",
+        "javascript": "let size = 15;    // items still in play\nlet checks = 0;   // checks made so far\n// each check lets you throw away half: halve size and add 1 to checks\n// keep going until size reaches 0, then print checks\n"
+      },
+      "reference": {
+        "pseudocode": "size ← 15\nchecks ← 0\nREPEAT UNTIL(size < 1)\n{\n  checks ← checks + 1\n  size ← size / 2\n}\nDISPLAY(checks)",
+        "python": "size = 15\nchecks = 0\nwhile size > 0:\n    checks = checks + 1\n    size = size // 2\nprint(checks)",
+        "javascript": "let size = 15;\nlet checks = 0;\nwhile (size > 0) {\n  checks = checks + 1;\n  size = Math.floor(size / 2);\n}\nconsole.log(checks);"
+      },
+      "hint": "Halve with whole-number division so you count whole books: 15 → 7 → 3 → 1 → 0. That is 4 halvings, so 4 checks. Add 1 to checks each time BEFORE (or after) you halve — just make sure the loop stops when size hits 0."
+    },
+    {
+      "prompt": "Show the elimination. Starting from the 15-book shelf, print the number of books still in play AFTER each check (each check throws away half), one number per line, until none remain.",
+      "promptHtml": "Show the elimination. Starting from the 15-book shelf, print the number of books still in play <b>AFTER each check</b> (each check throws away half), one number per line, until none remain.",
+      "expected": "7\n3\n1\n0",
+      "starter": {
+        "python": "size = 15\n# each check throws away half of what's left\n# after each check, print how many books remain\n# stop once nothing remains\n",
+        "javascript": "let size = 15;\n// each check throws away half of what's left\n// after each check, print how many books remain\n// stop once nothing remains\n"
+      },
+      "reference": {
+        "pseudocode": "size ← 15\nREPEAT UNTIL(size < 1)\n{\n  size ← size / 2\n  DISPLAY(size)\n}",
+        "python": "size = 15\nwhile size > 0:\n    size = size // 2\n    print(size)",
+        "javascript": "let size = 15;\nwhile (size > 0) {\n  size = Math.floor(size / 2);\n  console.log(size);\n}"
+      },
+      "hint": "Halve first, then print the new size: 15 halves to 7 (print 7), then 3, then 1, then 0 (print 0 and stop). The four numbers you print line up with the 4 checks from the previous problem."
+    },
+    {
+      "prompt": "Build it from scratch. A different library shelf holds 1000 books, sorted. Print the worst-case number of checks binary search needs to find a book — count how many times 1000 halves down to nothing.",
+      "promptHtml": "Build it from scratch. A different library shelf holds <code>1000</code> books, sorted. Print the worst-case number of checks binary search needs to find a book — count how many times <code>1000</code> halves down to nothing.",
+      "expected": "10",
+      "starter": {
+        "python": "# A sorted shelf of 1000 books.\n# Count the worst-case checks by halving 1000 until nothing is left.\n# Print just the number of checks.\n",
+        "javascript": "// A sorted shelf of 1000 books.\n// Count the worst-case checks by halving 1000 until nothing is left.\n// Print just the number of checks.\n"
+      },
+      "reference": {
+        "pseudocode": "size ← 1000\nchecks ← 0\nREPEAT UNTIL(size < 1)\n{\n  checks ← checks + 1\n  size ← size / 2\n}\nDISPLAY(checks)",
+        "python": "size = 1000\nchecks = 0\nwhile size > 0:\n    checks = checks + 1\n    size = size // 2\nprint(checks)",
+        "javascript": "let size = 1000;\nlet checks = 0;\nwhile (size > 0) {\n  checks = checks + 1;\n  size = Math.floor(size / 2);\n}\nconsole.log(checks);"
+      },
+      "hint": "Same halving loop as the 15-book shelf, just starting at 1000: 1000 → 500 → 250 → 125 → 62 → 31 → 15 → 7 → 3 → 1 → 0. Count the steps — 10. Linear search would need up to 1000 checks on the same shelf, which is the whole point."
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "lessonId": "5.1",
+    "lessonTitle": "Application and Data Vulnerabilities",
+    "unit": "Unit 5: Securing Applications and Data",
+    "days": 5,
+    "los": "LO 5.1.A, 5.1.B, 5.1.C"
+  },
+  "map": {
+    "subtitle": "Unit 5: Securing Applications and Data   •   5 days   •   LO 5.1.A, 5.1.B, 5.1.C",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–5 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–5 (student fill-in + answer KEY)",
+      "Exercise 1: Application Attack Identifier and Exercise 2: Data Risk Assessor (student + answer KEY)",
+      "Discussion — The Door You Left Unlocked (3-part: Opening Day 1, Mid-lesson Day 3, Closing Day 5)",
+      "Quiz (student + answer KEY — key A-C-B-D-A, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-5-application-and-data-vulnerabilities"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-1-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-1-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-1-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 files and access, Days 2–4 the four application attacks, Day 5 risk documentation and quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Application and Data Vulnerabilities'; the unit anchor scenario is '5A: Protecting Sensitive Data'; the unit hub lists this lesson as 'Application and Data Vulnerabilities and Attacks.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Application Attack Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-1-exercise-1",
+    "intro": "You are an application-security analyst. Five requests and symptoms just landed on your desk. For each one you will name the CB application attack, state what it targets that defines it. Part A works the incident log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.1.A, 5.1.B, and 5.1.C.",
+    "scenarioTitle": "Incident Log: Five Application Events",
+    "narrative": "Five events were flagged across your web stack this week. Your monitoring tools logged each one with where it hit, the request or input observed, the symptom users or admins reported, and the after-effect. Read the log row by row, then answer Part A. Use the method: anchor your first instinct, find what the attack REACHES (database, browser, memory, or file system), then name the attack.",
+    "log": {
+      "columns": [
+        "ID",
+        "Surface",
+        "Request / input observed",
+        "Symptom reported",
+        "After-effect"
+      ],
+      "rows": [
+        [
+          "1",
+          "Login form",
+          "Username field received control characters and database commands instead of a name.",
+          "The page returned every account record instead of one.",
+          "Customer emails and password hashes were dumped to the attacker."
+        ],
+        [
+          "2",
+          "Forum comment",
+          "A saved comment contained a <script> block that the page stores and re-serves.",
+          "Every later visitor's browser silently ran the script on page load.",
+          "Stored session tokens and saved passwords were read from visitors' browsers."
+        ],
+        [
+          "3",
+          "Image URL",
+          "A GET request was edited to append ../../../etc/passwd to the image path.",
+          "The server returned a system file from outside the web folder.",
+          "A sensitive server file listing accounts was disclosed to the requester."
+        ],
+        [
+          "4",
+          "Search box",
+          "Input far longer than the fixed-size memory region was submitted in one field.",
+          "The application crashed, then briefly ran code it was never meant to run.",
+          "The adversary modified files outside the program's security policy."
+        ],
+        [
+          "5",
+          "Emailed link",
+          "A crafted link carried a script in its parameters back to one reader's browser.",
+          "Only the single user who clicked the link had the script execute.",
+          "That one user's browser-stored credentials were exfiltrated."
+        ]
+      ]
+    },
+    "scenarioNote": "Incidents adapted from the Lesson 5.1 Stop-and-Think and worked-table debrief; attack names and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026).",
+    "predict": "Before you answer Part A, write one sentence: of the five events, which two are most easily confused with each other, and what single detail tells them apart?",
+    "partALabel": "Part A - Incident Classification",
+    "partA": [
+      {
+        "ek": "EK 5.1.B.3 / 5.1.B.4",
+        "pts": 6,
+        "q": "Incident 1 (login form) and Incident 4 (search box) are different CB attacks that both start with bad input. Name each attack, state what each one TARGETS that defines each.",
+        "answer": "Incident 1 is an SQL-injection attack (EK 5.1.B.4): control characters and SQL commands were placed into the username field of an application that queries a database with unvalidated user input (EK 5.1.B.3), causing the application to return more information than it should — a confidentiality breach. It TARGETS the database on the server. Incident 4 is a buffer-overflow attack (EK 5.1.B.8): input exceeding the fixed-size buffer overflowed into adjacent memory (EK 5.1.B.7), crashing the app and executing code outside the program's security policy. It TARGETS computer memory. Both share the unvalidated-input root cause but land in completely different places."
+      },
+      {
+        "ek": "EK 5.1.B.6",
+        "pts": 4,
+        "q": "Incidents 2 (forum comment) and 5 (emailed link) are both the same CB attack type. Name the attack, classify EACH as its correct subtype, and quote the defining detail in each that proves the subtype.",
+        "answer": "Both are cross-site scripting (XSS) attacks (EK 5.1.B.6) — injected code a user's browser executes. Incident 2 is Stored (Type II): the script was inserted onto the website through a comment field and re-served, so it runs for EVERY later visitor. Incident 5 is Reflected (Type I): the script rode in a link the user clicked, so it affected ONLY that one user. The discriminator is saved-on-the-site-for-everyone (Stored) versus carried-in-a-clicked-link-for-one (Reflected)."
+      },
+      {
+        "ek": "EK 5.1.B.9 / 5.1.B.10",
+        "pts": 4,
+        "q": "Incident 3 (image URL) is frequently mistaken for SQL injection. Name the correct CB attack, state what it targets, and explain the one detail that rules out SQL injection.",
+        "answer": "Incident 3 is a directory-traversal attack (EK 5.1.B.10): the adversary modified a URL/GET request, appending ../../../etc/passwd so each '../' climbs one directory up the server's file system to reach a sensitive file (EK 5.1.B.9 — a GET request accesses a file somewhere in the server's filesystem). It TARGETS the server's file system, not a database. The detail that rules out SQL injection: no SQL commands or control characters entered a database query — the manipulated thing is the file PATH itself, and the server returned a stored system file rather than query results."
+      },
+      {
+        "ek": "EK 5.1.B.4 / 5.1.B.6",
+        "pts": 4,
+        "q": "Incidents 1 and 2 both begin with an adversary typing something malicious into an input field, yet the CED treats them as distinct attacks. Explain why, naming what each one targets and citing both EKs.",
+        "answer": "They share a root cause — unvalidated input — but land in different places. Incident 1 (SQL injection, EK 5.1.B.4) puts SQL commands into a field so they run against the DATABASE on the server, returning or altering stored data. Incident 2 (XSS, EK 5.1.B.6) injects code that the VICTIM'S BROWSER executes, reaching browser-stored secrets like usernames and passwords (EK 5.1.B.5). Server-side database versus client-side browser: collapsing them into 'injection' misses where the payload actually runs, which is exactly how the exam tests the distinction."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 5.1.B.2",
+        "pts": 3,
+        "q": "Four of the five incidents trace back to one root cause the CED names. State the root cause, define it, and explain why fixing it would have blocked Incidents 1, 3, 4, and 5.",
+        "answer": "The root cause is failed data validation (EK 5.1.B.2): the application did not verify that user input met expected criteria and reject input outside expected parameters before processing it. Validating and constraining input would have rejected the SQL control characters in Incident 1, the '../' path sequences in Incident 3, the over-long buffer input in Incident 4, and the script-bearing link parameters in Incident 5 — each is unexpected input the program acted on instead of refusing."
+      },
+      {
+        "ek": "EK 5.1.A.1",
+        "pts": 3,
+        "q": "Incident 1 dumped password hashes, but suppose those same records had instead been stolen by pulling an unencrypted backup drive out of a server. Which CED idea explains that second path, and why does it bypass the login screen entirely?",
+        "answer": "EK 5.1.A.1: an adversary can read any unencrypted files if they have access to the device or drive storing them. Pulling the drive and connecting it to another machine bypasses the original login because a login password protects a running session, not the bytes on the disk — only encryption protects data at rest. The records are exposed without ever touching the application's login form."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Data Risk Assessor",
+    "minutes": "25 minutes",
+    "subtitle": "3 scenarios - Document the Risk (5.1.C)",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-1-exercise-2",
+    "intro": "You are a data-security auditor. Three scenarios describe a vulnerability against some data. For each, name which leg of the CIA triad is threatened, document the risk as high, moderate, or low using BOTH sensitivity AND likelihood, and tie it to the underlying attack. Vague 'it's bad' ratings score zero.",
+    "standard": "CB Standard (required): name the CIA leg + document high/moderate/low 5.1.C wording + name the underlying attack, for all 3 scenarios. Enrichment (optional): name the single control that most directly lowers the rating.",
+    "methodHeading": "Three-Step Method - use for every scenario",
+    "method": [
+      [
+        "Step 1 - Name the CIA leg",
+        "Decide whether the threat is to confidentiality (unauthorized read), integrity (data altered), or availability (data destroyed or encrypted so no one can reach it). State which and why."
+      ],
+      [
+        "Step 2 - Document the level",
+        "Combine data sensitivity AND likelihood of the exploit. High = highly sensitive (e.g., regulated) data via a highly likely exploit; Moderate = sensitive data lacking strong enough encryption or strict enough access controls; Low = less sensitive data with shorter-key encryption or access controls not strict enough."
+      ],
+      [
+        "Step 3 - Name the attack",
+        "Tie the scenario to the underlying 5.1.A or 5.1.B vulnerability (e.g. Unencrypted drive A.1, SQL injection B.4), so the documentation is traceable."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 5.1): for each scenario, name the single control that most directly lowers the rating — strong encryption at rest, strict least-privilege access controls, or input validation/sanitization. The skill is matching the control to the specific factor (sensitivity is fixed by the data; you change the likelihood by closing the exploit path).",
+    "fields": [
+      "CIA leg threatened:",
+      "Risk level 5.1.C wording (high / moderate / low):",
+      "Underlying attack, and the control that lowers it:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A defense contractor stores the complete technical specifications for a next-generation military jet engine — data governed by federal regulation — on a single unencrypted drive that an insider can copy in seconds. The drive sits in a shared lab with loose physical access.",
+        "key": {
+          "signs": "The CIA leg is confidentiality (EK 5.1.C.1): an unauthorized person could access highly sensitive data. The underlying vulnerability is reading unencrypted files with device/drive access (EK 5.1.A.1).",
+          "mechanism": "Document as HIGH risk (EK 5.1.C.2): highly sensitive, regulation-governed data that could be compromised through a highly likely exploit — both conditions are met (regulated specs AND an easy-to-copy unencrypted drive). This is the CED's own illustrative example.",
+          "subtype": "Control that most directly lowers it: strong encryption at rest. Encryption does not change the data's sensitivity, but it makes the unencrypted-drive exploit far less likely to succeed, dropping the rating."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A retailer's customer-records database (names, addresses, order history) is reachable through a login form that passes user input straight into its queries with no checks. The records are encrypted, but with a short key, and many staff accounts can read the table. No regulation governs this data.",
+        "key": {
+          "signs": "Two CIA legs are in play (EK 5.1.C.1): confidentiality, because SQL injection can make the app return more records than it should, and integrity, because the same attack can modify or delete database entries (EK 5.1.B.4). The underlying vulnerability is an application querying a database with unvalidated input (EK 5.1.B.3).",
+          "mechanism": "Document as MODERATE risk (EK 5.1.C.3): sensitive data that does not have strong enough encryption (short key) or strict enough access controls (many staff can read it). It is sensitive but not regulation-governed, so it does not meet the EK 5.1.C.2 high-risk bar.",
+          "subtype": "Control that most directly lowers it: input validation/sanitization to close the SQL-injection path (with stricter least-privilege access as a secondary fix). Validating input attacks the likelihood factor directly."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "An internal company wiki holds routine, non-sensitive how-to articles. It is encrypted with shorter keys, and its access controls are a little loose — a few more employees can edit pages than strictly need to. There is no realistic path for an outsider to reach it.",
+        "key": {
+          "signs": "The CIA leg most at issue is integrity (EK 5.1.C.1): the loose edit permissions mean pages could be altered from their intended state; the underlying vulnerability is weak access-control settings (EK 5.1.A.3).",
+          "mechanism": "Document as LOW risk (EK 5.1.C.4): less sensitive information encrypted with shorter keys and with access controls that are not strict enough. The data's low sensitivity keeps this low even though two weaknesses exist — the trap is over-rating it because 'weak encryption AND weak access control' sounds alarming; sensitivity is the anchor here.",
+          "subtype": "Control that most directly lowers it: tightening access controls to least privilege so fewer employees can edit. This is the textbook reminder that risk combines sensitivity AND likelihood, not weaknesses counted in isolation."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Door You Left Unlocked",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 3) + Closing (Day 5)",
+    "overview": "Almost every vulnerability in this lesson is a door someone left unlocked: an unencrypted drive, an over-broad permission, an input field nobody checked. Across three short windows your group will examine why these doors stay open, debate which class of attack is hardest for a normal organization to defend, and decide how an auditor should document risk when sensitive data sits behind only a weak lock.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The bell-ringer manager believed a login password protected files on a stolen, unencrypted drive. Why do people so naturally trust a password prompt to guard the data itself? What would it take to make 'encrypt the drive' as automatic as 'set a password'?"
+          },
+          {
+            "text": "Question 2. When an application is breached through unchecked input, whose job was the missing check — the developer who wrote the field, or the company that shipped it? Defend your split with one concrete example (e.g., a login form, a comment box)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 3, ~8 min, right after the SQL-injection vs. XSS misconception debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Same input, different door",
+            "text": "SQL injection and XSS both start with an adversary typing something malicious into a field, yet they land in different places. In one sentence your whole group agrees on, state what each one targets and why that target — not the typing — is what makes them different attacks.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which attack is hardest to defend?",
+            "text": "Debate for about 3 minutes: of the four CED application attacks — SQL injection (B.4), XSS (B.6), buffer overflow (B.8), directory traversal (B.10) — which is hardest for a normal organization to fully defend against, given they share the unvalidated-input root cause? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 5, ~9 min, after the risk-documentation grid",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'super-sensitive but locked-down' case",
+            "text": "An auditor finds highly sensitive, regulated data — but the only path to exploit it is a near-impossible one. A teammate insists it is automatically HIGH risk because the data is so sensitive. Decide: is sensitivity alone enough to rate it high, what does the likelihood factor change, and when sensitivity and likelihood disagree, what should an auditor conclude — and NOT conclude — about the documented risk level?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (risk level + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

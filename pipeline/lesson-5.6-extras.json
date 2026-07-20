@@ -1,0 +1,285 @@
+{
+  "meta": {
+    "lessonId": "5.6",
+    "lessonTitle": "Detecting Attacks on Data",
+    "unit": "Unit 5: Securing Applications and Data",
+    "days": 7,
+    "los": "LO 5.6.A, 5.6.B, 5.6.C, 5.6.D, 5.6.E"
+  },
+  "map": {
+    "subtitle": "Unit 5: Securing Applications and Data   •   7 days   •   LO 5.6.A–E",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 single deck covering LO 5.6.A–E (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (7-day pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — five sections, one per learning objective (student fill-in + answer KEY)",
+      "Exercise 1: Data Attack Indicator Identifier and Exercise 2: Detective Controls Advisor (student + answer KEY)",
+      "Discussion — Detection Is Not Prevention (3-part: Opening Day 1, Mid-lesson Day 4, Closing Day 6)",
+      "Quiz (student + answer KEY — 14 questions, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-5-detecting-attacks-on-data"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-6-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-6-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-6-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 single deck walks all five objectives: detection controls, choosing by cost/sensitivity/classification, evaluating speed and false negatives, hashing a file, and reading logs for attack signatures).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Detecting Attacks on Data'; the unit hub may list it as the closing topic of Unit 5, Securing Applications and Data. All refer to this lesson. The recurring idea: detection is not prevention."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Data Attack Indicator Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-6-exercise-1",
+    "intro": "You are a SOC analyst reviewing a web application's request log and a file-integrity register. Each row is a real request or check; your job is to read it line by line and spot the fingerprint of an attack on data — SQL injection, XSS, buffer overflow, or directory traversal — or a file alteration caught by a hash mismatch. Part A works the log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.6.D and 5.6.E.",
+    "scenarioTitle": "Web App Request & File-Integrity Log",
+    "narrative": "Your monitoring system captured six rows overnight: five are HTTP requests with the suspicious field highlighted, and one is a file-integrity check that re-hashed a critical config file against its recorded baseline. Read each row, identify the tell-tale indicator, then answer Part A. Use the method from the deck: find the defining indicator (SQL symbols, a <script> tag, an abnormally long field, a../ path, or a changed digest), name the attack, and state how you would report it.",
+    "log": {
+      "columns": [
+        "Row",
+        "Source",
+        "Captured Field / Value",
+        "Tell-tale Indicator",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "1",
+          "App log",
+          "search = ' OR 1=1 --",
+          "Quote + OR 1=1 + double-dash",
+          "Submitted to a product search box"
+        ],
+        [
+          "2",
+          "App log",
+          "comment = <script>steal()</script>",
+          "Injected <script>…</script> tag",
+          "Posted in a public comment field"
+        ],
+        [
+          "3",
+          "Server log",
+          "cookie length = 9,800 chars",
+          "Abnormally long cookie field",
+          "Total request also oversized"
+        ],
+        [
+          "4",
+          "Server log",
+          "GET /files/../../../../etc/passwd",
+          "Repeated ../ sequences in path",
+          "Climbs toward a system file"
+        ],
+        [
+          "5",
+          "Integrity check",
+          "config.cfg → b04e…9af1 vs a91f…3d7c",
+          "Digest differs from baseline",
+          "Same SHA-256 algorithm both runs"
+        ],
+        [
+          "6",
+          "App log",
+          "username = j.rivera (HTTPS)",
+          "No SQL/tag/length/path anomaly",
+          "Normal-length login over HTTPS"
+        ]
+      ]
+    },
+    "scenarioNote": "Log lines follow the indicator patterns named in the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026), and 5.6.E.1–E.4; abbreviated digests and the Rivera username are this course's added teaching detail.",
+    "predict": "Before you answer Part A, write one sentence: which single row is NOT an attack at all, and what makes you sure?",
+    "partALabel": "Part A - Log Classification",
+    "partA": [
+      {
+        "ek": "EK 5.6.E.1 / 5.6.E.2",
+        "pts": 6,
+        "q": "Rows 1 and 2 are both injection attacks that live in user input, but they are different CB attack types. Name each attack, quote the exact indicator that proves it, and state what an analyst should grep the rest of the log for to find more of each.",
+        "answer": "Row 1 is SQL injection (EK 5.6.E.1): the field ' OR 1=1 -- carries three SQL tells at once — a single-quote character, the Boolean condition OR 1=1, and the double-dash SQL comment; grep the logs for quote characters, OR 1=1, --, and capitalized SQL control words (WHERE, IN, FROM) in user input. Row 2 is cross-site scripting / XSS (EK 5.6.E.2): the field <script>steal()</script> is an injected script tag in a comment; grep user input for suspicious tags, particularly <script>...</script>. Full credit requires matching the symbol to the correct attack and EK, not blending them."
+      },
+      {
+        "ek": "EK 5.6.E.3 / 5.6.E.4",
+        "pts": 4,
+        "q": "Rows 3 and 4 are detected by very different log evidence. Name each CB attack and explain exactly what numerical or structural feature of the request flags it.",
+        "answer": "Row 3 is a buffer overflow attempt (EK 5.6.E.3): for web apps you detect these by checking how much data the user sends — URL length, cookie length, query-string length, or total request length — and a 9,800-character cookie is an abnormally long field. Row 4 is directory traversal (EK 5.6.E.4): the HTTP GET path /files/../../../../etc/passwd contains repeated ../ sequences, the indicator of an adversary trying to climb out of the web root toward a system file. Naming the EK alone earns half credit; the length feature and the ../ feature must be stated."
+      },
+      {
+        "ek": "EK 5.6.D.3",
+        "pts": 4,
+        "q": "Row 5 is a file-integrity check, not a request. Explain what the digest mismatch proves, why repeatability makes that conclusion reliable, and the one thing the hash does NOT tell you.",
+        "answer": "Per EK 5.6.D.3, the same file (config.cfg) was hashed at baseline (a91f…3d7c) and re-hashed later (b04e…9af1) with the same SHA-256 algorithm; because hash functions are repeatable (EK 5.6.D.1) — the same input always yields the same output — a different digest can only mean the file was altered between the two hashings. The mismatch proves the file changed and roughly when, so it should be investigated as possible malicious activity. What the hash does NOT tell you: who altered it, how, or whether anyone merely viewed/copied it (an unaltered copy leaves the digest unchanged — a false negative per EK 5.6.C.3)."
+      },
+      {
+        "ek": "EK 5.6.E.1 / 5.6.E.4",
+        "pts": 4,
+        "q": "Row 6 is the planted trap — a teammate flagged it as a possible attack. State whether it is an attack, justify using the indicators, and explain why running over HTTPS does not change your answer.",
+        "answer": "Row 6 is NOT an attack: username = j.rivera shows none of the EK 5.6.E fingerprints — no quote/OR 1=1/-- (E.1), no <script> tag (E.2), no abnormally long field (E.3), and no ../ path sequences (E.4). It is a normal-length login. HTTPS is irrelevant to this judgment: HTTPS only encrypts the request in transit, but these attacks are detected by the CONTENT of the user input the server receives — an encrypted request can still carry ' OR 1=1 -- or <script>. The full-credit move is to say none of the four signatures are present and to explain what WOULD change the conclusion (e.g., SQL symbols or a ../ path appearing in the field)."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 5.6.C.1 / 5.6.C.2",
+        "pts": 3,
+        "q": "A SOC manager says reading a six-row log by hand was fine here, but it will not scale. Explain what log analysis needs to detect attacks in time, and which of the rows above could only be caught retrospectively.",
+        "answer": "Per EK 5.6.C.1, to operate at an effective speed log analysis must be augmented with some automation — a human reading every line cannot keep up at scale. Per EK 5.6.C.2, real-time automated log analysis (and honeypots, some DLP) can alert as an attack happens, but the Row 5 hash check is retrospective: it compares a re-hash to a recorded baseline, so it only reveals the config file was altered AFTER the change occurred — useful for investigation, too late to stop that alteration."
+      },
+      {
+        "ek": "EK 5.6.E.3",
+        "pts": 3,
+        "q": "A developer argues that a 9,800-character cookie (Row 3) is probably just a big session token, not an attack. Explain why length is still worth flagging and what fields you would check.",
+        "answer": "EK 5.6.E.3 says buffer overflows against web apps are detected precisely by checking how much data the user is sending — URL length, cookie length, query-string length, and total request length — because long strings in any of these fields can indicate an attempted overflow. A legitimately large token is possible, so length is an INDICATOR to investigate, not a verdict; the analyst should check all four length fields and the baseline normal size before clearing or escalating it."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Beyond reading logs, name one detective control that could have caught the file change in Row 5 in real time, and explain why the hash check alone did not.",
+        "answer": "A honeypot or a real-time DLP/automated log-analysis tool (EK 5.6.A.2 / 5.6.C.2) could alert the instant the config file was touched, giving real-time detection. The hash check (EK 5.6.A.3 / 5.6.D.3) is retrospective by design — it only compares digests when you choose to re-hash, so it surfaces the alteration after the fact. (Any real-time control, or accounting/log analysis flagging access outside normal patterns per EK 5.6.A.1, earns credit.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Detective Controls Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 clients - Choose by Cost & Sensitivity",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-6-exercise-2",
+    "intro": "You are a detection consultant. Three organizations need to detect attacks on their data but have different budgets, data values, and legal obligations. For each, recommend the right CB detective control(s) — accounting/log analysis, honeypot, cryptographic hash, or a higher-cost DLP service — and justify the choice by COST, SENSITIVITY/CRITICALITY, and CLASSIFICATION. Name the blind spot of each control you pick. Vague 'monitor everything' advice scores zero.",
+    "standard": "CB Standard (required): name the control(s) + tie the choice to cost, sensitivity, and/or classification by + state the blind spot, for all 3 clients. Enrichment (optional): classify each method as real-time or retrospective.",
+    "methodHeading": "Three-Step Method - use for every client",
+    "method": [
+      [
+        "Step 1 - Name the control",
+        "Pick the CB detective control(s) the client needs: accounting/log analysis, honeypot, cryptographic hash integrity check, or a third-party DLP service.."
+      ],
+      [
+        "Step 2 - Justify by the criteria",
+        "Explain the choice using cost, sensitivity/criticality, and classification."
+      ],
+      [
+        "Step 3 - Name the blind spot",
+        "State what your chosen control will miss: hashes miss data that is viewed/stolen but unaltered; honeypots miss adversaries who never take the bait. Pair controls to cover the gap."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (NOT required for choosing the control): classify each method by detection speed. REAL-TIME = some DLP, honeypots, and real-time automated log analysis (alert as the attack happens, enabling a prompt response). RETROSPECTIVE = after-the-fact log analysis and hash-based integrity checks (detect that an attack already occurred).: log analysis needs automation to run at an effective speed; honeypots are near-instantaneous.",
+    "fields": [
+      "Detective control(s) recommended:",
+      "Justification by criterion:",
+      "Blind spot to warn about:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Tiny Clinic — A two-doctor clinic with almost no security budget stores patient health records. It wants to detect tampering with those records and catch any intruder poking around for valuable files. It cannot afford an enterprise tool right now.",
+        "key": {
+          "signs": "Tight budget + patient health records (a legally classified, high-value target). Two needs: detect file tampering, and catch an intruder hunting for valuables.",
+          "mechanism": "Recommend two INEXPENSIVE controls per EK 5.6.B.1: hash-based integrity checks (EK 5.6.A.3) to detect tampering with record files, and a honeypot (EK 5.6.A.2) — a fake 'patient_billing_SSNs.xlsx' whose every access signals malice — to catch the snooping intruder. Beyond cost, classification applies: healthcare data carries legal/regulatory monitoring requirements (EK 5.6.B.3), and the records are highly sensitive (EK 5.6.B.2), so they warrant close monitoring even on a budget.",
+          "subtype": "Blind spots (EK 5.6.C.3): the hash only flags ALTERATION, so a record copied/exfiltrated unchanged is missed; the honeypot misses any intruder who goes straight to the real records and never takes the bait. Pair them (and add accounting/log analysis) to cover both gaps. Speed: hashes are retrospective; the honeypot is near-real-time (EK 5.6.C.2)."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Regional Bank — A bank runs a public marketing website and, separately, the core database holding customer account balances. Leadership has budget for stronger tooling and asks where to concentrate detection across these two systems.",
+        "key": {
+          "signs": "Two systems of very different value under one company: a low-value public marketing site vs. the high-value, high-criticality account-balance database — the obvious adversary target.",
+          "mechanism": "Concentrate monitoring on the account-balance database per EK 5.6.B.2: more sensitive/critical data is a likelier target and should be watched more closely. With budget available (EK 5.6.B.1), recommend a third-party DLP service to monitor data access, usage, and transmission across the organization, plus real-time automated log analysis / accounting (EK 5.6.A.1) on the database; the marketing site needs only basic logging. Financial-classification monitoring requirements (EK 5.6.B.3) also point detection at the account data.",
+          "subtype": "Blind spot / trap (EK 5.6.C.3 + 5.6.B.2): do NOT spend equally on the marketing site — value, not system count, drives where detection goes. Speed: DLP and real-time log analysis are real-time (EK 5.6.C.2), enabling a prompt response that can stop an attack before it does more harm; a pure hash check would only catch alteration after the fact."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "Designs Firm — An engineering firm's crown jewels are confidential CAD design files. The threat that scares leadership is an insider copying the designs to a USB drive and walking out — without modifying the originals at all. The firm currently relies only on nightly hash checks of the design folder.",
+        "key": {
+          "signs": "Crown-jewel intellectual property + an insider EXFILTRATION threat (copy without altering). The current control is hash-only integrity checking.",
+          "mechanism": "Hash checks alone fail this exact threat: per EK 5.6.C.3, cryptographic hashes only detect ALTERATION, so an adversary who views/copies a design without changing the original produces a false negative — the digest never moves. Recommend adding controls that detect access and movement: a third-party DLP service (EK 5.6.B.1) that monitors data access, usage, and transmission (it would flag the USB copy), plus accounting/log analysis (EK 5.6.A.1) to catch access outside normal patterns, and a honeypot decoy design file (EK 5.6.A.2). The designs are highly sensitive (EK 5.6.B.2), justifying the spend.",
+          "subtype": "Blind spot (EK 5.6.C.3): keep the hash for integrity, but never rely on it for theft detection; also note a honeypot misses an insider who only touches the real files. Speed: the hash check is retrospective; DLP and real-time log analysis are real-time and could catch the copy as it happens (EK 5.6.C.2)."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Detection Is Not Prevention",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 4) + Closing (Day 6)",
+    "overview": "Every topic before this one was about keeping adversaries out. Lesson 5.6 assumes one may get through and asks a harder question: how do we notice? Across three short windows your group will weigh why detection matters even when it cannot stop the attack, debate which control is worth a small organization's scarce dollars, and decide what an analyst should and should not conclude when a control stays silent — its false negatives.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The bell-ringer honeypot is a file full of FAKE data — nothing real is inside. Why is planting something worthless one of the most reliable detectors there is? What is it about a fake file that makes any access to it meaningful?"
+          },
+          {
+            "text": "Question 2. If a detective control can only tell you an attack happened but cannot stop it, is it worth deploying at all? Defend your answer with one concrete example (e.g., a hash check that proves a config file was altered last week)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 4, ~8 min, right after the false-negatives debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The silent hash",
+            "text": "An adversary copies confidential files to a USB and walks out, changing nothing. The team used only hash checks and saw no alert. In one sentence your whole group agrees on, explain exactly what the hash DID detect and what it could NOT — and name this kind of miss.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which criterion should decide?",
+            "text": "Debate for about 3 minutes: when choosing a detective control, the CED gives three criteria — cost (C.B.1), sensitivity/criticality (B.2), and classification (B.3). For a small clinic's patient records, which criterion should DOMINATE the decision, and what is the realistic cost of letting budget override it? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 6, ~9 min, after the log-reading practice",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'we were watching' case",
+            "text": "A firm hashed its design files nightly and felt protected — but an insider copied the designs unchanged and the hashes never moved (the Exercise 2 firm). Design the defense: which single control change most directly catches this theft, why does the nightly hash check help less here, and when a control stays SILENT, what should an analyst conclude — and NOT conclude — about whether an attack occurred?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (control + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

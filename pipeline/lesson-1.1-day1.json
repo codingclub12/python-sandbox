@@ -1,0 +1,530 @@
+{
+  "meta": {
+    "lessonId": "1.1",
+    "lessonTitle": "Understanding Social Engineering",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 1,
+    "los": "LO 1.1.A, LO 1.1.B",
+    "anchor": "Social Engineering",
+    "author": "AP CS Exam Prep",
+    "totalDays": 2
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.1 · Day 1 of 2",
+      "title": "Understanding Social Engineering",
+      "subtitle": "How attackers manipulate people instead of machines — the two tactics the exam names, and why they work on everyone",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 1, Lesson 1.1, Understanding Social Engineering. This is the very first content lesson of the course, and it sets the tone for everything that follows: most attacks don't begin with code, they begin with a person being manipulated. We're spreading this topic over two days. Today, Day 1, is about recognizing social engineering and understanding why it works — the College Board names two specific tactics, intimidation and urgency, and we'll learn to spot both. Tomorrow, Day 2, we'll look at what a victim can actually lose. Let's start with the people."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "You get a text: “This is your bank's fraud line. We've detected a charge and your account will be frozen in 10 minutes unless you confirm the code we just sent you. Reply NOW.” There's no link and no malware — just the message.",
+      "subprompt": "Write 3–5 sentences: what feelings is this message trying to trigger, and why might a careful person still reply before thinking it through?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own, no notes. Read the text message: it claims to be your bank, says your account freezes in ten minutes, and demands you reply with a code immediately. Notice there's no link to click and no virus — it's pure words. So in three to five sentences: what feelings is this message trying to trigger, and why might even a careful person reply before thinking it through? Hold your answer; we'll come right back to it when we name the tactics."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Define social engineering and identify its common indicators — the attacker's goal (reveal info, download a file, or click a link) and the channel (in person, email, text, or social media) (LO 1.1.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Name the two tactics the CED specifies — intimidation and urgency — and spot each one in a real message (EK 1.1.A.2)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain WHY each tactic works: intimidation uses fear of consequences; urgency pressures us into acting before we can judge whether a request is safe (LO 1.1.B)"
+        }
+      ],
+      "script": "Three targets today, all from the first two learning objectives for this topic. First, 1.1.A: define social engineering and identify its indicators — the attacker’s goal (get you to reveal information, download a file, or click a link) and the channel it arrives through (in person, email, text, or social media). Second, the two tactics the College Board names by name — intimidation and urgency — and being able to point to each one in a real message. Third, 1.1.B: not just naming the tactics but explaining why they work on human beings — intimidation leverages our fear of negative consequences, and urgency pressures us to act before we stop to think. By the end of today you should be able to read a suspicious message and say what tactic it uses and why that tactic is effective."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "What Social Engineering Is",
+          "description": "The definition, the channels it travels on, and the two named tactics — intimidation and urgency (EK 1.1.A.1–A.2)."
+        },
+        {
+          "title": "Why the Tactics Work",
+          "description": "The human instincts that intimidation and urgency exploit (EK 1.1.B.1–B.3)."
+        },
+        {
+          "title": "Spotting It: Scenario 1A",
+          "description": "Read a real phishing email and name the tactics inside it."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 1.1 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Here's the map for today's Guided Notes — three sections, all green because all three are CB-required. First, what social engineering is: the definition, the channels it uses, and the two tactics the exam names. Second, why those tactics work — the human instincts they exploit. And third, we apply it to a real phishing email in Scenario 1A. Keep the packet open and fill it in as we go; if you fall behind, every answer is on the lesson page."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "What Social Engineering Is",
+      "kicker": "Indicators of Social Engineering · Learning Objective 1.1.A",
+      "script": "Section one. Before we can defend against it, we have to be able to name it. Social engineering is the oldest trick in cybersecurity, and the College Board is very specific about what counts and which tactics to watch for. Let's lock down the words."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 1.1.A)",
+      "terms": [
+        {
+          "term": "Social engineering",
+          "definition": "Using psychological tactics to manipulate people — rather than technology — into revealing sensitive information, downloading a malicious file, or clicking a malicious link (EK 1.1.A.1)."
+        },
+        {
+          "term": "Elicitation",
+          "definition": "Manipulating a target into revealing sensitive information (EK 1.1.A.1)."
+        },
+        {
+          "term": "Intimidation",
+          "definition": "When an adversary threatens a target with negative consequences if they don't comply (EK 1.1.A.2)."
+        },
+        {
+          "term": "Urgency",
+          "definition": "When an adversary creates reasons why a target should act quickly (EK 1.1.A.2)."
+        }
+      ],
+      "script": "Four words. Social engineering is using psychological tactics to manipulate people, not technology, into one of three things: revealing sensitive information, downloading a malicious file, or clicking a malicious link. That word for getting someone to reveal information is elicitation. Then the two tactics the CED names for this topic: intimidation is threatening a target with negative consequences if they don't comply — think the account-freeze threat from the bell ringer. And urgency is creating reasons the target should act quickly — the ten-minute deadline. Just two named tactics in 1.1; we'll meet more of them later in the course, but for this topic, intimidation and urgency are the whole list."
+    },
+    {
+      "type": "concept",
+      "heading": "How Social Engineering Reaches You",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "It can happen in person, but it's most often delivered by email, by text message, or through social media messages (EK 1.1.A.1).",
+        "The attacker's goal is to get you to do one of three things: reveal sensitive information, download a malicious file, or click a malicious link.",
+        "No code, no virus required — the “vulnerability” being exploited is human behavior, not software.",
+        "A single message often stacks more than one tactic to increase the pressure."
+      ],
+      "script": "Where does this reach you? In person sometimes, but far more often by email, text message, or social media message — the channels you use every day. And the attacker wants one of exactly three outcomes: you reveal sensitive information, you download a malicious file, or you click a malicious link. Notice there's no hacking in the Hollywood sense here — the weakness being exploited is human behavior. And watch for stacking: a real message will often combine tactics, like a threat plus a deadline, to pile on the pressure."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Why the Tactics Work",
+      "kicker": "How Tactics Influence Victims · Learning Objective 1.1.B",
+      "script": "Section two. It's not enough to name intimidation and urgency — the exam wants you to explain WHY they work. And the answer is the same for both: they rely on common psychological principles that influence everyone's behavior. They target instinct, not intelligence."
+    },
+    {
+      "type": "two_column",
+      "heading": "Two Tactics, Two Human Instincts",
+      "subheading": "Both rely on common psychological principles that influence human behavior (EK 1.1.B.1).",
+      "left": {
+        "title": "Intimidation",
+        "definition": "Leverages our aversion to negative consequences",
+        "ek": "EK 1.1.B.2",
+        "examples": [
+          "Draws attention to a possible bad outcome — a fine, a lockout, getting in trouble",
+          "Uses fear to incite the target to act",
+          "The threat doesn't have to be real to work"
+        ]
+      },
+      "right": {
+        "title": "Urgency",
+        "definition": "Leverages our reflex to react quickly to time pressure",
+        "ek": "EK 1.1.B.3",
+        "examples": [
+          "Creates a deadline or a sense of time-sensitivity",
+          "Pressure makes the target respond or act quickly",
+          "Prevents the target from pausing to judge whether the action is safe"
+        ]
+      },
+      "footer": "AP TIP: On the exam, naming the tactic earns half the point — explaining the human instinct it exploits earns the rest.",
+      "script": "Two tactics, two instincts. Intimidation leverages a natural human aversion to negative consequences: by drawing attention to a bad outcome, the adversary uses fear to push you to act — and the threat doesn't even have to be real. Urgency leverages our natural reflex to react quickly when something is time-sensitive: a deadline pressures you to respond fast, and that speed is the point, because it stops you from pausing to ask whether the request is even reasonable or safe. On the exam, naming the tactic is half the answer; explaining the instinct it exploits is the other half."
+    },
+    {
+      "type": "misconception",
+      "heading": "“I'd Never Fall for That”",
+      "misconception": "Social engineering only works on careless or untrained people.",
+      "whyItHappens": "Movies show obvious scams, so students picture an easy mark and assume that being aware is the same as being protected.",
+      "correction": "Intimidation and urgency exploit universal human instincts — fear of consequences and reaction to time pressure. They work on smart, trained people precisely because they bypass analysis and hit reflex. The defense is a verification habit, not confidence.",
+      "example": "The bank text from the bell ringer worked on careful people because the ten-minute clock never let them stop and verify with the real bank.",
+      "script": "Here's the trap: “I'd never fall for that.” We assume awareness equals protection. But intimidation and urgency target instinct, not intelligence — your fear of a bad outcome, your reflex to beat a deadline. They work on trained professionals all the time. The bank text fooled careful people precisely because the ten-minute clock never gave them a chance to call the real bank and check. The defense isn't being smart or suspicious; it's having a habit: slow down and verify through a second, trusted channel before you act."
+    },
+    {
+      "type": "scenario_intro",
+      "eyebrow": "CB Scenario 1A",
+      "heading": "Scenario 1A: Detecting Phishing Messages",
+      "narrative": "You are sitting next to your teacher at their desk, working on a problem, when they receive the email on the next slide. Your teacher wants to click the link — but you suspect it may not be legitimate.",
+      "jobLabel": "Your job:",
+      "job": "Decide whether the email is legitimate, and be ready to explain the evidence.",
+      "script": "Let's put it to work. This is College Board Scenario 1A, Detecting Phishing Messages. The setup: you're sitting next to your teacher at their desk when an email arrives. Your teacher is about to click the link, but something feels off to you. Your job is to decide whether it's legitimate and to be ready to back that up with evidence. Here's the email."
+    },
+    {
+      "type": "scenario_email",
+      "heading": "The Email Your Teacher Received",
+      "context": "Read it the way your teacher would — quickly, mid-task. Then we'll slow down and analyze it.",
+      "from": "do-not-reply@g00gle.com",
+      "to": "ljones@school.edu",
+      "subject": "[Urgent!] Access Requested",
+      "body": [
+        "One of your students has requested access to make a copy of a document. Click this link to authorize your student to copy your document.",
+        "If you don't click the link, your student won't be able to copy the document and complete their assignment.",
+        "Research shows that the faster teachers respond to students' document-sharing requests, the more likely students are to submit assignments on time.",
+        "— The Google Drive Team"
+      ],
+      "callout": "Look at the sender address and the subject line before you read another word.",
+      "script": "Read it the way your teacher did — fast, in the middle of something else. Now slow down. Look at the sender: do-not-reply at g-zero-zero-gle dot com. Those are zeros, not the letter o — that's a look-alike domain, not Google. The subject is bracket-Urgent-bracket: that's urgency, manufactured right in the subject line. The body warns that the student won't be able to finish their assignment — a negative consequence, that's intimidation, leaning on the teacher's sense of responsibility. And that last line about “research shows faster responses” is pure pressure to act without thinking. No real evidence, just a push."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "These map to LO 1.1.A and LO 1.1.B. Complete on your Guided Notes.",
+      "prompts": [
+        "Name every social-engineering tactic you can find in the email. (Hint: check the subject line AND the body.)",
+        "Pick one tactic and explain the human instinct it is exploiting, in your own words.",
+        "What single piece of evidence would you point to first to convince your teacher the email is not legitimate?"
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Stop and think — independent, six minutes, full sentences on your Guided Notes. Question one: name every social-engineering tactic in the email and cite the EK for each — and check both the subject line and the body, because more than one is in there. Question two: pick one tactic and explain, in your own words, the human instinct it's exploiting. Question three: what's the single strongest piece of evidence you'd point to first to convince your teacher it's fake? Packets are collected at the end."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.1 page",
+          "tail": "Read the lesson and run the self-check on today's material.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-understanding-social-engineering"
+        },
+        {
+          "label": "Tactic-spotting practice",
+          "tail": "Read short messages and name the tactic — today's skill.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-1-exercise-1"
+        }
+      ],
+      "note": "The impacts and the full Lesson 1.1 quiz come after we finish the lesson tomorrow. The lesson video covers today's material slide for slide.",
+      "script": "Everything's on the site. Open the Lesson 1.1 page to review and self-check, then work the tactic-spotting practice, which drills exactly what we did today — read a message, name the tactic. We'll cover the impacts and take the full quiz after we finish tomorrow. And if you're out or want a replay, the lesson video walks this material slide for slide."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Defined social engineering: manipulating people, not technology, to reveal info, download a file, or click a link (EK 1.1.A.1)",
+        "Named the two tactics for this topic — intimidation and urgency (EK 1.1.A.2)",
+        "Explained why they work: fear of consequences and reaction to time pressure (EK 1.1.B.1–B.3)",
+        "Found both tactics inside the Scenario 1A phishing email"
+      ],
+      "nextPoints": [
+        "Day 2: the possible impacts for victims of social engineering (LO 1.1.C)",
+        "What an adversary gains from your personal info, a login code, or a clicked link",
+        "Wrap the lesson and take the Lesson 1.1 quiz"
+      ],
+      "teaser": "Before tomorrow, think: if you handed an attacker just three ordinary facts about yourself — a pet's name, a birthday, a former workplace — what could they unlock with them?",
+      "script": "That's Day 1. We defined social engineering, named the two tactics for this topic — intimidation and urgency — explained why they work on everyone, and found both of them hiding in the Scenario 1A email. Tomorrow we follow the damage downstream: what a victim actually loses when an attack succeeds. Here's your teaser — if you handed an attacker just three ordinary facts about yourself, a pet's name, a birthday, an old workplace, what could they unlock with them? Bring an answer."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 1.1 — Social Engineering & Attack Types — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student gets a text: \"This is IT Support. Your account will be permanently deleted in 5 minutes unless you reply with the 6-digit code we just sent.\" Per EK 1.1.A.2, which two tactics does this message use?",
+        "options": [
+          "Intimidation — the threat of permanent deletion — and urgency — the 5-minute deadline",
+          "Reciprocity and authority bias, two named CED social-engineering tactics",
+          "Urgency only — the message contains no threatened negative consequence",
+          "Intimidation only — the deadline is informational, not pressure to act fast"
+        ],
+        "answer": "A",
+        "ek": "EK 1.1.A.2",
+        "rationale": "EK 1.1.A.2 names exactly two tactics. Intimidation is threatening a target with negative consequences if they don't comply — here, permanent account deletion. Urgency is creating a reason to act quickly — the 5-minute deadline. The message uses both, so A is correct. B invents tactics the CED does not list for this EK. C and D each ignore one of the two tactics that are plainly present."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "According to EK 1.1.A.1, social engineering attacks use psychological tactics to manipulate users into doing which of the following?",
+        "options": [
+          "Patching software, rotating passwords, or enabling multifactor authentication",
+          "Encrypting a hard drive, wiping a device, or disabling a firewall setting",
+          "Revealing sensitive information, downloading a malicious file, or clicking a malicious link",
+          "Resetting a router, clearing browser history, or updating an operating system"
+        ],
+        "answer": "C",
+        "ek": "EK 1.1.A.1",
+        "rationale": "EK 1.1.A.1 states the goals precisely: manipulate users into revealing sensitive information (elicitation), downloading a malicious file, or clicking on a malicious link. C restates this exactly. A, B, and D list defensive or unrelated technical actions that are not the manipulated behaviors named in the EK."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A teacher asks which channels social engineering can arrive through, per EK 1.1.A.1. Which option best matches the CED's list?",
+        "options": [
+          "Only through email attachments scanned by a mail server before delivery",
+          "In person, or by email, text message, or social media messages",
+          "Only through automated network scans that need no human interaction",
+          "Exclusively in person, since the tactics require face-to-face contact"
+        ],
+        "answer": "B",
+        "ek": "EK 1.1.A.1",
+        "rationale": "EK 1.1.A.1 says social engineering can be performed in person but is often done by email, by text message, or through social media messages. B matches this list. A and C wrongly narrow it to a single technical channel, and D contradicts the EK by excluding the remote channels it explicitly names."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A message warns, \"If you don't verify now, your paycheck will be withheld.\" Per EK 1.1.B.2, explain how intimidation works on the reader.",
+        "options": [
+          "It offers a reward, exploiting the human tendency to reciprocate a favor",
+          "It builds slow rapport over time so the reader lowers their guard gradually",
+          "It proves the sender's identity, so the reader trusts the request automatically",
+          "It leverages a natural aversion to negative consequences, using fear to incite action"
+        ],
+        "answer": "D",
+        "ek": "EK 1.1.B.2",
+        "rationale": "EK 1.1.B.2 states intimidation leverages a natural human aversion to negative consequences: by drawing attention to a possible bad outcome, adversaries use fear to incite targets to act. The withheld paycheck is the negative consequence, and fear of it drives the action — D matches the EK. A, B, and C describe other mechanisms the CED does not attribute to intimidation."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Per EK 1.1.B.3, why is a sense of urgency effective at getting a target to comply?",
+        "options": [
+          "Pressure to act quickly can stop the target from considering whether the action is reasonable or safe",
+          "It permanently changes the target's long-term beliefs about the sender's trustworthiness",
+          "It guarantees the target will report the message to their IT department immediately",
+          "It removes the negative consequence so the target no longer feels any fear at all"
+        ],
+        "answer": "A",
+        "ek": "EK 1.1.B.3",
+        "rationale": "EK 1.1.B.3 says urgency leverages a natural human response to time-sensitive needs: feeling pressured to act quickly can prevent targets from taking time to consider whether an action is reasonable or safe. A restates this mechanism. B and C describe outcomes the EK does not claim, and D confuses urgency with intimidation and misstates the effect."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "Per EK 1.1.B.1, what do social engineering tactics fundamentally rely on?",
+        "options": [
+          "Software vulnerabilities in the target's email client or web browser",
+          "Common psychological principles that influence human behavior",
+          "Stolen encryption keys obtained from a breached certificate authority",
+          "Misconfigured firewalls that allow malicious traffic into a network"
+        ],
+        "answer": "B",
+        "ek": "EK 1.1.B.1",
+        "rationale": "EK 1.1.B.1 states that social engineering tactics rely on common psychological principles that influence human behavior. B matches this directly. A, C, and D describe technical weaknesses, but the defining feature of social engineering in the CED is that it targets human behavior rather than technology."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A victim is tricked into revealing a pet's name, birthdate, and former workplace. Per EK 1.1.C.1, why is this information valuable to an adversary?",
+        "options": [
+          "It encrypts the victim's files, letting the adversary demand a ransom payment",
+          "It disables multifactor authentication on every account the victim owns",
+          "It is often used as challenge-question answers that verify a user's identity",
+          "It directly grants administrator rights over the victim's employer network"
+        ],
+        "answer": "C",
+        "ek": "EK 1.1.C.1",
+        "rationale": "EK 1.1.C.1 says victims may give an adversary personal information that could lead to impersonation — name, phone number, address, workplace, pets' names, or birthdate — and that such information is often used on websites as challenge questions to verify a user's identity. C matches the EK. A, B, and D describe impacts the CED does not tie to this kind of personal information."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary convinces a victim to read back the one-time password (OTP) texted to their phone. Per EK 1.1.C.2, what is the direct impact?",
+        "options": [
+          "The adversary permanently deletes the victim's account from the service",
+          "The adversary can log in to the service as the victim",
+          "The adversary gains physical access to the victim's mobile device",
+          "The adversary installs malware that steals data from the victim's browser"
+        ],
+        "answer": "B",
+        "ek": "EK 1.1.C.2",
+        "rationale": "EK 1.1.C.2 says victims may give an adversary secure information like a one-time password or authentication login code, which could allow an adversary to log in to a service as the victim. B matches the EK. A and C are not stated impacts of handing over an OTP, and D describes EK 1.1.C.3 (malware), not the OTP impact."
+      },
+      {
+        "id": "Q9",
+        "kind": "multi",
+        "stem": "Per EK 1.1.C.3, clicking a malicious link or downloading malware can lead to which outcomes? I. Malware installed on the device. II. Information stolen from the web browser. III. Being directed to a site that captures login credentials.",
+        "options": [
+          "Outcome I only of the three",
+          "Outcomes I and II only",
+          "Outcomes II and III only",
+          "Outcomes I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK 1.1.C.3",
+        "rationale": "EK 1.1.C.3 says victims may download malware or click a link that installs malware on their device, steals information from their web browser, or directs them to a website where their login credentials can be captured. All three outcomes are listed in the EK, so D is correct. The narrower options each omit at least one outcome the EK explicitly names."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 1.1 — Understanding Social Engineering — Teacher Guide",
+    "subtitle": "Unit 1 · Topic 1.1 · 2 class periods · Scenario 1A",
+    "overview": [
+      "Lesson 1.1 opens AP Cybersecurity with the human layer of security: how adversaries manipulate people rather than technology. Across two days students learn to identify social engineering and its two named tactics (intimidation and urgency), explain why those tactics work, and describe the impacts a victim can suffer. The College Board names only two tactics in this topic — intimidation and urgency — so resist importing the larger tactic list from Unit 2; keep Lesson 1.1 tightly scoped.",
+      "Scenario 1A (Detecting Phishing Messages) anchors the lesson: a look-alike “Google Drive” email sent to a teacher, carrying urgency in the subject line and intimidation in the body."
+    ],
+    "los": [
+      "LO 1.1.A — Identify common indicators of social engineering tactics.",
+      "LO 1.1.B — Explain how social engineering tactics influence victims to perform a desired action.",
+      "LO 1.1.C — Describe possible impacts for victims of social engineering attacks."
+    ],
+    "eks": [
+      "EK 1.1.A.1 — Social engineering attacks employ psychological tactics to manipulate users into revealing sensitive information (elicitation), downloading a malicious file, or clicking on a malicious link. Social engineering can be performed in person but is often done by email, by text message, or through social media messages.",
+      "EK 1.1.A.2 — Adversaries often use psychological tactics like intimidation and urgency to achieve their goals. Intimidation is when an adversary threatens a target with negative consequences if they don't comply. Urgency is when an adversary creates reasons why a target should act quickly.",
+      "EK 1.1.B.1 — Social engineering tactics rely on common psychological principles that influence human behavior.",
+      "EK 1.1.B.2 — Intimidation leverages a natural human aversion to negative consequences. By drawing attention to possible negative consequences, adversaries use fear to incite targets to act.",
+      "EK 1.1.B.3 — Urgency leverages a natural human response to react quickly to time-sensitive needs. When targets detect a sense of urgency in a message, they feel pressured to respond or act quickly, which can prevent them from taking the time to consider whether an action is reasonable or safe.",
+      "EK 1.1.C.1 — Victims may give an adversary personal information that could lead to impersonation, such as name, phone number, address, workplace, pets' names, or birthdate. These types of information are often used on websites as challenge questions to verify a user's identity.",
+      "EK 1.1.C.2 — Victims may give an adversary secure information like a one-time password (OTP) or authentication login code, which could allow an adversary to log in to a service as the victim.",
+      "EK 1.1.C.3 — Victims may download malware or click a link that installs malware on their device, steals information from their web browser, or directs them to a website where their login credentials can be captured by an adversary."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version) for each day.",
+      "Printed Day 1 and Day 2 Guided Notes (student copies).",
+      "Printed Lesson 1.1 quiz (student copies) for the assessment block.",
+      "Scenario 1A email displayed on the Day 1 deck (no handout needed)."
+    ],
+    "prereqs": [
+      "None — this is the opening content lesson of the course. No prior cybersecurity vocabulary is assumed."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Identify social engineering; explain why intimidation and urgency work (LO 1.1.A, 1.1.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.1/Q1) + bell ringer (the 10-minute bank-fraud text)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "What social engineering is: definition, channels, key vocab (EK 1.1.A.1–A.2)",
+            "min": 12,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Why the tactics work: intimidation vs urgency (EK 1.1.B.1–B.3)",
+            "min": 12,
+            "slides": "8-9"
+          },
+          {
+            "segment": "The ‘I'd never fall for that’ myth",
+            "min": 5,
+            "slides": "10"
+          },
+          {
+            "segment": "Scenario 1A: read and analyze the phishing email",
+            "min": 8,
+            "slides": "11-12"
+          },
+          {
+            "segment": "Stop and Think + assign Your Turn",
+            "min": 5,
+            "slides": "13-15"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Describe impacts for victims; synthesize and assess (LO 1.1.C)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.1/Q2) + bell ringer (the click aftermath — one password, total access)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Three things a victim can lose (EK 1.1.C.1–C.3)",
+            "min": 12,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Worked walkthrough: victim's loss → adversary's gain",
+            "min": 9,
+            "slides": "7"
+          },
+          {
+            "segment": "AP exam strategy: name the tactic, explain the instinct, trace the impact",
+            "min": 6,
+            "slides": "8"
+          },
+          {
+            "segment": "Stop and Think back to Scenario 1A",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Lesson recap, wrap, and assign Your Turn",
+            "min": 6,
+            "slides": "10-12"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run the Lesson 1.1 quiz as the close of Day 2 or as the next lesson's warm-up (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 1.1 quiz",
+            "min": 25,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "The ‘I'd never fall for that’ myth",
+        "myth": "Social engineering only works on careless or untrained people.",
+        "reality": "Intimidation and urgency exploit universal instincts — fear of consequences and reaction to time pressure — so they work on trained professionals too. The defense is a verification habit, not confidence."
+      },
+      {
+        "heading": "Topic 1.1 is the full tactic menu",
+        "myth": "Topic 1.1 covers the full menu of social-engineering tactics (pretexting, authority, scarcity, and so on).",
+        "reality": "The CED names only two tactics for Topic 1.1: intimidation and urgency. The broader list belongs to Unit 2, Topic 2.1 — keep Lesson 1.1 scoped to the two."
+      },
+      {
+        "heading": "No code, no attack",
+        "myth": "It isn't a real attack unless something gets installed or hacked.",
+        "reality": "EK 1.1.A.1 is explicit that the manipulation itself is the attack; revealing information or being pushed to act can do the damage with no code at all."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give the two tactic names as a word bank before the Scenario 1A analysis so students focus on matching rather than recall.",
+        "Provide a sentence frame for the “why it works” items: “This is ____ because it makes the target feel ____, which leads them to ____.”"
+      ],
+      "extension": [
+        "Have students rewrite the Scenario 1A email to make it more convincing, then label every tactic they added and the instinct each one targets.",
+        "Ask students to find a real (sanitized) phishing message from their own inbox or a public archive and annotate the tactics and likely impacts."
+      ]
+    },
+    "discussion": [
+      "Why is a calm, polite social-engineering message sometimes more dangerous than an aggressive one?",
+      "Which single habit would have stopped the Scenario 1A teacher from clicking, and why does that habit beat “being careful”?",
+      "Of the three impact categories, which would be hardest for a victim to recover from, and why?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

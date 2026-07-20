@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "lessonId": "3.15",
+    "lessonTitle": "Random Values",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 1,
+    "los": "LO AAP-3.E"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   1 day   •   LO AAP-3.E",
+    "intro": "Everything for this topic lives in this folder. Topic 3.15 is a one-day topic on RANDOM(a, b): writing random expressions and determining their possible results. Because random output varies, it also ships interactive coding practice whose graded programs print a deterministic PROPERTY of the result, never the raw random number. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (writing RANDOM expressions; the inclusive/equally-likely rule; listing and counting possible results; why tested random code checks a property). Speaker notes on every slide.",
+      "Teacher Guide (one-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Read the Random Rolls and Exercise 2: Design the Random Range (student + answer KEY)",
+      "Discussion — Predictable About the Unpredictable (3-part: Opening, Mid-lesson, Closing on Day 1)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-3.E, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-15-random-values"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-15-random-values-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-15-random-values-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-15-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-15-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-15-random-values"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (writing RANDOM expressions, then determining and counting possible results). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real code and checks a deterministic property of each random result against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.15 is a 1-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Topic 3.16 (Simulations) begins right after the quiz, and it builds directly on RANDOM introduced here."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Read the Random Rolls",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-15-exercise-1",
+    "intro": "You are testing GameNight, a board-game companion app that uses RANDOM(a, b) all over the place — a die, a color spinner, an event picker, a bonus-point roll, and a coin flip. Your job is NOT to predict the exact numbers (you cannot — each run may differ). It is to determine, for each RANDOM call, the complete SET of values it could return and how many there are. This is the single most tested skill for LO AAP-3.E: read the two bounds, list every value from a to b inclusive, and count them as b − a + 1.",
+    "scenarioTitle": "GameNight's Random Calls",
+    "narrative": "Read each line and reason about its POSSIBLE results, not a single outcome. Remember two rules: RANDOM(a, b) is inclusive of both a and b, so both endpoints are possible; and the number of outcomes is b − a + 1. Work your own list on scratch paper before answering Part A — the table is your reference, and the questions ask what values each call could produce.",
+    "log": {
+      "columns": [
+        "Line",
+        "RANDOM call",
+        "What it is for",
+        "Possible results",
+        "How many"
+      ],
+      "rows": [
+        [
+          "1",
+          "die ← RANDOM(1, 6)",
+          "roll one six-sided die",
+          "1, 2, 3, 4, 5, 6",
+          "6"
+        ],
+        [
+          "2",
+          "spinner ← RANDOM(0, 3)",
+          "spin a 4-color wheel numbered 0–3",
+          "0, 1, 2, 3",
+          "4"
+        ],
+        [
+          "3",
+          "event ← RANDOM(1, 3)",
+          "pick 1 of 3 game events",
+          "1, 2, 3",
+          "3"
+        ],
+        [
+          "4",
+          "bonus ← RANDOM(10, 12)",
+          "award a bonus-point value",
+          "10, 11, 12",
+          "3"
+        ],
+        [
+          "5",
+          "coin ← RANDOM(0, 1)",
+          "flip a coin stored as 0 or 1",
+          "0, 1",
+          "2"
+        ]
+      ]
+    },
+    "scenarioNote": "Scenario shared with the Topic 3.15 coding practice (same GameNight app); notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023), where RANDOM(a, b) returns a random integer from a to b, inclusive.",
+    "predict": "Before you answer Part A, predict in one sentence: if GameNight runs line 1 (the die) three times in a row, will it produce three different numbers, three identical numbers, or is it impossible to say in advance? Why?",
+    "partALabel": "Part A - Determine the Possible Results",
+    "partA": [
+      {
+        "ek": "EK AAP-3.E.1",
+        "pts": 4,
+        "q": "For the spinner (line 2) and the bonus (line 4), list EVERY value each could return and show the b − a + 1 count for each. Explain why the spinner has four outcomes even though its high bound is only 3.",
+        "answer": "Spinner, RANDOM(0, 3): possible results 0, 1, 2, 3 — count 3 − 0 + 1 = 4. Bonus, RANDOM(10, 12): possible results 10, 11, 12 — count 12 − 10 + 1 = 3. The spinner has four outcomes even though the high bound is 3 because the range is INCLUSIVE and starts at 0: you count 0, 1, 2, and 3, which is four values (EK AAP-3.E.1). The '+ 1' in b − a + 1 exists precisely because both endpoints are counted. Full credit requires listing all values AND showing the count, not just the number."
+      },
+      {
+        "ek": "EK AAP-3.E.2",
+        "pts": 4,
+        "q": "GameNight runs the die (line 1) three times in a row and gets 4, 4, 1. A player complains that getting 4 twice 'proves the die is broken.' Using the exact CED idea about random number generation, explain why this is normal.",
+        "answer": "It is completely normal. Per EK AAP-3.E.2, using random number generation means each execution may produce a different result — 'may' differ, not 'must' differ. Each roll is independent and every value 1–6 is equally likely, so repeating a 4 is just as possible as any other pair of outcomes; nothing links one roll to the next. Getting 4, 4, 1 is one ordinary sequence out of many. A broken die would be one that could NOT produce some valid value (say, could never roll a 6), which is a different problem entirely. Repetition is evidence of randomness, not a defect."
+      },
+      {
+        "ek": "EK AAP-3.E.1",
+        "pts": 4,
+        "q": "A developer wanted the die to roll any value from 1 to 6, but a teammate rewrote line 1 as die ← RANDOM(1, 5). Explain exactly what is wrong, what the app would do, and how to fix it.",
+        "answer": "RANDOM(1, 5) can only return 1, 2, 3, 4, or 5 — five outcomes — so the die could NEVER roll a 6 (EK AAP-3.E.1). A six-sided die that cannot show 6 is broken: players would be unable to reach spaces or scores that require a 6, silently skewing the game. The fix is to set the high bound to 6: die ← RANDOM(1, 6), which restores all six equally likely outcomes 1–6. The mistake is the classic 'top bound is excluded' error — but RANDOM's bounds are inclusive, so to make 6 possible, 6 must be the high argument."
+      },
+      {
+        "ek": "EK AAP-3.E.1",
+        "pts": 3,
+        "q": "GameNight is adding a 20-sided die that must roll any whole number from 1 to 20 inclusive. WRITE the RANDOM assignment for a variable d20, and state how many different values it could return.",
+        "answer": "d20 ← RANDOM(1, 20). It could return any of 1, 2, 3, …, 20 — that is 20 − 1 + 1 = 20 different values, each equally likely (EK AAP-3.E.1). Writing the correct bounds (1 and 20) is part a of the objective; counting the outcomes as b − a + 1 = 20 is part b. Full credit requires both the correct expression and the count of 20 (not 19)."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-3.E.1 / AAP-3.E.2",
+        "pts": 3,
+        "q": "Before GameNight picks an event with RANDOM(1, 3), a player asks, 'which event will it choose?' Explain what you CAN say for certain and what you CANNOT, using the words 'set of possible results' and 'each execution.'",
+        "answer": "You can say for certain the SET OF POSSIBLE RESULTS: the event will be 1, 2, or 3 — one of exactly three equally likely outcomes (EK AAP-3.E.1). You cannot say WHICH one it will be, because using random number generation means EACH EXECUTION may produce a different result (EK AAP-3.E.2), so the specific value is unknowable until the line runs. The correct answer to 'which event' is therefore not a single number but the whole set of possibilities. This 'certain about the set, uncertain about the next value' split is the heart of LO AAP-3.E."
+      },
+      {
+        "ek": "EK AAP-3.E.2",
+        "pts": 3,
+        "q": "A tester must verify that the die NEVER returns 0 or 7 — only 1 through 6. Since the die's value changes every run, printing the raw roll gives no fixed answer to check. Describe what PROPERTY the test program should print instead, and why that output is predictable.",
+        "answer": "Instead of printing the roll, the test program should roll the die and print whether the result is IN RANGE — for example, print 'in range' when 1 ≤ die ≤ 6 and 'out of range' otherwise. Because every possible value of RANDOM(1, 6) satisfies 1 ≤ die ≤ 6, that condition is always true, so the program prints 'in range' on EVERY run (EK AAP-3.E.1). The raw roll is unpredictable (EK AAP-3.E.2), but the PROPERTY 'the roll is in range' is guaranteed, giving a single fixed expected output the grader can check. (Stronger version: roll many times in a loop and print whether ALL rolls were in range.) This is exactly how the Topic 3.15 coding practice grades random programs."
+      },
+      {
+        "ek": "EK AAP-3.E.1",
+        "pts": 2,
+        "q": "ENRICHMENT: GameNight wants a random EVEN bonus of 2, 4, 6, or 8. A student writes bonus ← RANDOM(2, 8) and is surprised to see 5 appear. Explain why, and design a correct expression using RANDOM plus arithmetic.",
+        "answer": "RANDOM(2, 8) returns EVERY integer from 2 to 8 — 2, 3, 4, 5, 6, 7, 8 — not just the even ones, so 5 is a valid result (EK AAP-3.E.1). RANDOM alone always gives a contiguous run of integers; it cannot skip values. To get only 2, 4, 6, 8, generate one of four choices and scale: bonus ← 2 × RANDOM(1, 4). Here RANDOM(1, 4) yields 1, 2, 3, or 4, and multiplying by 2 maps them to 2, 4, 6, 8 — four even outcomes, still equally likely. (Combining RANDOM with arithmetic to shape outcomes is a Topic 3.16 simulation move.)"
+      },
+      {
+        "ek": "LO AAP-3.E",
+        "pts": 0,
+        "q": "Next step: you determined these possible results by hand. Now head to the Topic 3.15 page and type and run the harder versions, where the computer checks a property of each random result for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Design the Random Range",
+    "minutes": "25 minutes",
+    "subtitle": "5 game features - choose the RANDOM call and list its outcomes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-15-exercise-2",
+    "intro": "You are building the random features of the GameNight app. For each feature, decide the exact RANDOM(a, b) call that produces the outcomes it needs, list every value that call could return, and count them with b − a + 1. The decisions that trip people up are the endpoints: does the feature start at 0 or 1, and is the highest value actually reachable? Vague answers like 'just use RANDOM' score zero — you must give the exact bounds.",
+    "standard": "CB Standard (required): the exact RANDOM(a, b) call + the complete list of possible results + the count (b − a + 1), for all 5 features. Enrichment (optional): note a subtler bounds or variability consideration (EK AAP-3.E.1–E.2).",
+    "methodHeading": "Three-Step Method - use for every feature",
+    "method": [
+      [
+        "Step 1 - Identify the lowest and highest value it needs",
+        "What is the smallest outcome the feature must be able to produce, and the largest? Those become a and b. Watch whether the feature naturally starts at 0 or 1."
+      ],
+      [
+        "Step 2 - Write RANDOM(a, b) and list every outcome",
+        "Because both bounds are inclusive, write out a, a+1, …, b in full. If a required value is missing from your list, your bounds are wrong."
+      ],
+      [
+        "Step 3 - Count with b − a + 1 and sanity-check",
+        "Count the outcomes as b − a + 1 and confirm it matches how many the feature should have (a six-sided die needs 6, a coin needs 2). A mismatch means an off-by-one bound."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler bounds/variability judgment): RANDOM always returns a contiguous run of integers, each equally likely (EK AAP-3.E.1), and each run may differ (EK AAP-3.E.2). If a feature needs only some values (evens, multiples of 5) or a different low bound, you shape the raw RANDOM with arithmetic — e.g., 2 × RANDOM(1, 4) for 2, 4, 6, 8. When you finish, move to the Topic 3.15 coding page to write and run programs that generate these values and verify their range.",
+    "fields": [
+      "The lowest and highest value this feature needs:",
+      "The exact RANDOM(a, b) call + every possible result + the count (b − a + 1):",
+      "Enrichment — a subtler bounds or variability consideration:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A single six-sided die roll: the app needs any whole number from 1 to 6, and a player must be able to roll a 6.",
+        "key": {
+          "signs": "The smallest needed value is 1 and the largest is 6, and 6 must be reachable — a classic inclusive range starting at 1 (EK AAP-3.E.1).",
+          "mechanism": "Use die ← RANDOM(1, 6). Possible results: 1, 2, 3, 4, 5, 6. Count: 6 − 1 + 1 = 6, which matches a six-sided die exactly. Because RANDOM is inclusive of both ends, the high bound 6 is a genuine outcome, so the die can roll a 6.",
+          "subtype": "The tempting error is RANDOM(1, 5), which omits 6 and gives only five outcomes. Sanity-checking the count against 'a die has six sides' catches that off-by-one immediately."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A coin flip stored as a number: the app needs exactly two outcomes, 0 for heads and 1 for tails.",
+        "key": {
+          "signs": "Exactly two outcomes are needed, and they are labeled 0 and 1 — the lowest value is 0, the highest is 1 (EK AAP-3.E.1).",
+          "mechanism": "Use coin ← RANDOM(0, 1). Possible results: 0, 1. Count: 1 − 0 + 1 = 2, matching a two-sided coin. The low bound is 0 here (not 1) because the feature explicitly numbers heads as 0.",
+          "subtype": "RANDOM(0, 2) is the trap — it adds a third outcome, 2, that a coin does not have. Always list the outcomes and confirm there are exactly two."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "An event picker that chooses one of three story events, numbered 1, 2, and 3.",
+        "key": {
+          "signs": "Three outcomes numbered starting at 1: lowest 1, highest 3. This is the CED's own example range (EK AAP-3.E.1).",
+          "mechanism": "Use event ← RANDOM(1, 3). Possible results: 1, 2, 3. Count: 3 − 1 + 1 = 3, one per event, each equally likely. This is exactly the reference-sheet example RANDOM(1, 3), which 'could return 1, 2, or 3.'",
+          "subtype": "You cannot predict which event fires on a given turn (EK AAP-3.E.2) — but you can state with certainty that it will be one of these three. Naming the set, not the next value, is the whole point."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A random floor for an elevator mini-game: any floor from 10 to 20 inclusive, where both 10 and 20 must be reachable.",
+        "key": {
+          "signs": "The lowest needed value is 10 and the highest is 20, and both endpoints must be reachable — an inclusive range that does not start at 0 or 1 (EK AAP-3.E.1).",
+          "mechanism": "Use floor ← RANDOM(10, 20). Possible results: 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20. Count: 20 − 10 + 1 = 11 floors. The count is 11, not 10 — the '+ 1' matters most exactly when the range does not start at 1, and forgetting it silently drops a floor.",
+          "subtype": "A shifted range is where students most often miscount. Writing out the full list (or trusting b − a + 1) prevents the off-by-one; RANDOM(10, 20) is 11 outcomes, not 10."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A random EVEN power-up value of 2, 4, 6, or 8 — no odd numbers allowed.",
+        "key": {
+          "signs": "The feature needs only four SPECIFIC values (2, 4, 6, 8) that skip the odd numbers between them — RANDOM alone cannot skip values, so a plain range will not work (EK AAP-3.E.1).",
+          "mechanism": "RANDOM(2, 8) is wrong: it returns every integer 2 through 7 and 8 — including 3, 5, 7 — because RANDOM always gives a contiguous run. Instead generate four choices and scale: powerUp ← 2 × RANDOM(1, 4). RANDOM(1, 4) yields 1, 2, 3, 4; multiplying by 2 maps them to 2, 4, 6, 8 — four even outcomes, each equally likely. Count: 4.",
+          "subtype": "This is the key insight for Topic 3.16: RANDOM produces a uniform run of integers, and you combine it with ARITHMETIC to reshape the outcomes (evens, multiples, offsets). The raw call sets the possibilities; the math sculpts them."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Predictable About the Unpredictable",
+    "minutes": "~20 min total - 3 parts - Opening (after bell ringer) + Mid-lesson (after the possible-results table) + Closing (after Common AP Traps)",
+    "overview": "RANDOM(a, b) is strange: it makes a program's output unpredictable on purpose, yet the exam expects you to reason about it with total confidence. The resolution is that two different questions have two different answers — you can always name the SET of possible results, and you can never name the NEXT one. Across three short windows in this topic, your group will pin down that distinction, argue about inclusive bounds, and figure out how anyone tests code whose output changes every time it runs.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your mystery-reward machine picked from three prizes. Before running it, you could not name the exact next prize, but you COULD name the full list of possible prizes. In your own words, what is the difference between those two kinds of knowledge — and why is only one of them predictable?"
+          },
+          {
+            "text": "Question 2. Name a real-world situation (weather, a coin toss, who bats next, a card draw) where you are confident about the set of things that COULD happen but genuinely cannot predict which one WILL. What makes the set knowable when the outcome is not?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the possible-results table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The plus-one that everyone forgets",
+            "text": "Your whole group must agree on one sentence that explains why RANDOM(1, 6) has SIX possible results, not five, and why the count is b − a + 1 rather than b − a. Write that sentence, then test it against RANDOM(10, 20): how many floors, and does your sentence still hold?",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Break a random feature",
+            "text": "Invent a game feature and write a RANDOM call for it that is WRONG by exactly one — it either drops a needed value or adds an impossible one (like a die written as RANDOM(1, 5), or a coin as RANDOM(0, 2)). Record the buggy call, what value it wrongly excludes or includes, and the corrected call.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "How do you test something that changes every time?",
+            "text": "A program prints DISPLAY(RANDOM(1, 6)), so the output is different on almost every run. Your group must design a way for an auto-grader to check it with ONE fixed expected answer. Describe exactly what the program should print instead of the raw roll, explain why that output is the same on every run, and state what property of RANDOM(1, 6) guarantees it.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best explains why you grade a PROPERTY of a random result, not the number itself):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "lessonId": "3.2",
+    "lessonTitle": "Data Abstraction",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-1.C, AAP-1.D"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-1.C, AAP-1.D",
+    "intro": "Everything for this topic lives in this folder. Topic 3.2 turns a variable into a collection — the list — and then into a data abstraction. Like every Big Idea 3 topic it ships an interactive, auto-graded coding-practice page. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (lists, elements, indices; 1-indexed referencing; strings) and Day 2 (data abstraction: developing a list and explaining how it manages complexity). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the List and Exercise 2: One Name for Many (student + answer KEY)",
+      "Discussion — What Does the Name Buy You? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-1.C and AAP-1.D, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-2-data-abstraction"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-2-data-abstraction-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-2-data-abstraction-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-2-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-2-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-2-data-abstraction"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: what a list and a string are and how the exam sheet indexes them; Day 2: data abstraction and how one name manages complexity). All code is shown in exam pseudocode next to runnable Python, with the 1-indexed-vs-0-indexed offset called out.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page builds, appends to, and reads lists against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.2 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.3 (Mathematical Expressions) begins immediately after the quiz, and it computes with the values a list now holds."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the List",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-2-exercise-1",
+    "intro": "You are the weather station's data checker, reading a program's execution log. The program below builds and grows a list of daily high temperatures in exam pseudocode; the log shows each line in order. Your job is to TRACE it — determine the contents of the list and the value at each index after each line runs — and then answer questions about what specific positions hold. This is the core skill for LO AAP-1.C: read line by line, and remember the exam sheet numbers positions from 1, so temps[1] is always the first reading.",
+    "scenarioTitle": "Execution Log: Building the temps List",
+    "narrative": "Read the log top to bottom, one line at a time. Keep your own copy of the list on scratch paper and update it after every line. The exam reference sheet is 1-INDEXED: the first element is temps[1], the last is temps[LENGTH(temps)], and any index below 1 or above the length is an out-of-range error. Work your own trace before answering Part A.",
+    "log": {
+      "columns": [
+        "Line",
+        "Statement",
+        "List contents after the line",
+        "Length",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "1",
+          "temps ← [68, 72, 75]",
+          "[68, 72, 75]",
+          "3",
+          "One name, temps, now holds three readings; temps[1] is 68"
+        ],
+        [
+          "2",
+          "APPEND(temps, 70)",
+          "[68, 72, 75, 70]",
+          "4",
+          "70 is added to the END; length grows by 1; temps[4] is now 70"
+        ],
+        [
+          "3",
+          "APPEND(temps, 81)",
+          "[68, 72, 75, 70, 81]",
+          "5",
+          "81 goes to the end; temps[5] is 81; earlier indices are unchanged"
+        ],
+        [
+          "4",
+          "first ← temps[1]",
+          "[68, 72, 75, 70, 81]",
+          "5",
+          "first copies the element at index 1 (68); the list itself is unchanged"
+        ],
+        [
+          "5",
+          "last ← temps[LENGTH(temps)]",
+          "[68, 72, 75, 70, 81]",
+          "5",
+          "LENGTH(temps) is 5, so last copies temps[5], which is 81"
+        ]
+      ]
+    },
+    "scenarioNote": "Program uses the weather-station temps scenario from the Day 1 bell ringer and Day 2 lesson; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023), which is 1-indexed.",
+    "predict": "Before you answer Part A, predict in one sentence: after line 5, will first and last hold the same value, and what does that tell you about where each came from in the list?",
+    "partALabel": "Part A - Trace the Values",
+    "partA": [
+      {
+        "ek": "EK AAP-1.C.2 / AAP-1.C.3",
+        "pts": 4,
+        "q": "After line 3 has run, write the full contents of temps in order, and give the value at temps[1], temps[3], and temps[5]. State the length of the list.",
+        "answer": "After line 3, temps is [68, 72, 75, 70, 81], length 5. temps[1] = 68 (the first element), temps[3] = 75 (the third element), temps[5] = 81 (the fifth/last element, just appended). Full credit requires 1-indexed reading: temps[1] is the FIRST reading, not the second, and temps[5] is valid only because the list now has five elements."
+      },
+      {
+        "ek": "EK AAP-1.C.3",
+        "pts": 4,
+        "q": "Lines 4 and 5 set first ← temps[1] and last ← temps[LENGTH(temps)]. What values do first and last hold after line 5? Explain what LENGTH(temps) evaluates to and why that expression reliably reaches the last element.",
+        "answer": "first = 68 and last = 81. temps[1] copies the first element, 68. LENGTH(temps) evaluates to 5 because the list has five elements after the two appends, so temps[LENGTH(temps)] is temps[5] = 81, the last element. Using LENGTH(temps) instead of a hard-coded 5 reliably reaches the last element because it always equals the current number of elements — if another reading were appended, it would automatically point at the new end (EK AAP-1.C.3)."
+      },
+      {
+        "ek": "EK AAP-1.C.3",
+        "pts": 4,
+        "q": "A classmate reading line 4 writes 'first ← temps[0] gets the first reading, 68.' Using the exam reference sheet's indexing rule, explain exactly what is wrong and what temps[0] would actually cause.",
+        "answer": "The classmate imported 0-indexing from a language like Python or Java. On the AP Exam Reference Sheet lists are 1-indexed, so the first reading is temps[1], not temps[0]. temps[0] is an index less than 1, which is out of range: it produces an error message and the program terminates (this is the reference-sheet rule formalized in EK AAP-1.D.8). So temps[0] does not get 68 — it crashes the program. The correct statement for the first reading is first ← temps[1]."
+      },
+      {
+        "ek": "EK AAP-1.C.1",
+        "pts": 3,
+        "q": "In line 1 the whole collection got ONE name, temps, and lines 2-3 grew it without inventing new variable names. Explain how this shows a list is an ordered sequence held under a single variable, and why that is more convenient than three separate variables reading1, reading2, reading3.",
+        "answer": "Line 1 stores an ordered sequence — [68, 72, 75] — under the single name temps, so the order (68 first, 75 third) is part of the data (EK AAP-1.C.1). Lines 2 and 3 append new readings to the SAME list, so the collection grows without creating reading4 or reading5. With three separate variables you would have to invent a new name for every reading and rewrite any code that processes them; with one list, the single name absorbs new elements and any operation that walks the list keeps working. One ordered collection, one handle."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-1.C.3",
+        "pts": 3,
+        "q": "Write your own four-line pseudocode sequence that creates a list of three song titles (strings) and then DISPLAYs the SECOND title. State exactly what prints, and show you used the exam sheet's 1-indexed rule.",
+        "answer": "Example: songs ← [\"Dawn\", \"Signal\", \"Ember\"]; DISPLAY(songs[2]). It prints Signal. Under the exam sheet's 1-indexed rule, songs[1] is \"Dawn\" (first), songs[2] is \"Signal\" (second), and songs[3] is \"Ember\" (third), so the second title is songs[2] = \"Signal\". Any list of three strings earns full credit as long as the DISPLAY uses index 2 for the second element and the printed value matches."
+      },
+      {
+        "ek": "EK AAP-1.C.4",
+        "pts": 3,
+        "q": "Each element of the songs list above is itself a string. Explain what makes \"Signal\" a string, and why \"Signal\" and \"Signl\" — or \"Signal\" and \"signaL\" — count as different strings.",
+        "answer": "\"Signal\" is a string because it is an ordered sequence of characters (EK AAP-1.C.4): S, i, g, n, a, l in that order. Because the order and the exact characters are part of the string, \"Signal\" versus \"Signl\" differ (different characters/length) and \"Signal\" versus \"signaL\" differ (different characters at specific positions — capital S vs lowercase s, lowercase l vs capital L). A string is defined by which characters appear AND the order they appear in, so any change to either makes a different string."
+      },
+      {
+        "ek": "EK AAP-1.C.1 / AAP-1.D.6",
+        "pts": 2,
+        "q": "ENRICHMENT: The temps list let five readings be treated as one value under one name. Other languages call this an array. In one or two sentences, explain the phrase 'treated as a single value,' and note what the CED explicitly says is OUTSIDE the scope of this course.",
+        "answer": "'Treated as a single value' means the whole ordered collection of readings can be referred to, copied, and passed around using just the one name temps, even though it contains many elements (EK AAP-1.D.6) — one variable holds one value that happens to be the entire list. The CED notes lists are called arrays in some languages, and it explicitly excludes LINKED LISTS: the use of linked lists is outside the scope of this course and the AP Exam, so you only ever work with the reference-sheet list/array."
+      },
+      {
+        "ek": "LO AAP-1.C",
+        "pts": 0,
+        "q": "Next step: you traced this list by hand. Now head to the Topic 3.2 page and type and run the harder versions, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "One Name for Many",
+    "minutes": "25 minutes",
+    "subtitle": "5 designs - separate variables or a list, and why",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-2-exercise-2",
+    "intro": "You are reviewing five small program designs. For each one, decide whether the data should stay in SEPARATE VARIABLES or be developed into a LIST data abstraction, and — the part that earns credit — explain HOW the choice manages complexity. This is LO AAP-1.D in both of its parts: developing the abstraction (part a) and explaining why it helps (part b). Vague answers like 'a list is just better' score zero; name the specific benefit, using the CED's language of one name, easier to develop and maintain, and separating abstract properties from representation.",
+    "standard": "CB Standard (required): the better design (separate variables / list) + how it manages complexity, using CED vocabulary, for all 5 designs. Enrichment (optional): note a subtler abstraction consideration such as mixed element types or copying (EK AAP-1.D.5, D.7).",
+    "methodHeading": "Three-Step Method - use for every design",
+    "method": [
+      [
+        "Step 1 - Ask: is this ONE collection of related items?",
+        "If the values are many instances of the same kind of thing (all the temperatures, all the scores), that is a collection — a signal for a list. A few unrelated values may be fine as separate variables."
+      ],
+      [
+        "Step 2 - Choose the design and name the benefit",
+        "Pick separate variables or one list. If a list, state HOW it helps: one name for the whole collection, works for any number of elements, easier to develop and maintain (EK AAP-1.D.2, D.4)."
+      ],
+      [
+        "Step 3 - Say what the name lets you IGNORE",
+        "Data abstraction separates abstract properties from representation (EK AAP-1.D.1). Name the storage detail the single list name lets the programmer stop tracking — a count, individual names, memory locations."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler abstraction judgment): A data abstraction can hold different TYPES of elements (EK AAP-1.D.5), so one list might mix a label, a number, and a Boolean. Copying is clean too — aList ← bList assigns a copy of the whole list (EK AAP-1.D.7). And remember the exclusion: linked lists are outside the scope of this course, so 'develop a data abstraction' here always means the reference-sheet list/array. When you finish, move to the Topic 3.2 coding page to build and grow these lists for real.",
+    "fields": [
+      "Better design (separate variables / list) and why this is one collection or not:",
+      "How it manages complexity (one name / easier to develop & maintain / works for any size):",
+      "Enrichment — a subtler abstraction consideration (mixed types, copying, the array name):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A program tracks the daily high temperature for every day of a month so it can later find the hottest day and the average.",
+        "key": {
+          "signs": "This is one collection of many instances of the same kind of value — a month of temperatures. 'Every day of a month' plus later processing (hottest, average) is the classic signal for a list (EK AAP-1.D.3).",
+          "mechanism": "Develop a LIST named something like monthlyHighs. One name holds the whole collection, so finding the hottest day or the average can walk the list no matter how many days it has — the code is easier to develop and maintain than one variable per day (EK AAP-1.D.2, D.4).",
+          "subtype": "The single name lets the programmer IGNORE how many days there are and where each value is stored; they just process 'the list.' That separation of abstract properties from representation is the heart of data abstraction (EK AAP-1.D.1)."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A game program stores a single player's current health and, separately, the current level number. These two values are unrelated and used in different parts of the code.",
+        "key": {
+          "signs": "These are two DIFFERENT, unrelated single values, not many instances of one kind of thing. There is no collection to name, so a list adds nothing here.",
+          "mechanism": "Keep them as SEPARATE variables, such as health and level, each holding one value with a meaningful name. Forcing unrelated values into a list would obscure their meaning rather than manage complexity — a list earns its keep only when it names a genuine collection (EK AAP-1.D.2).",
+          "subtype": "The lesson: data abstraction manages complexity for COLLECTIONS. Two unrelated scalars are clearest as two named variables; not every group of values wants to be a list."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "A quiz app currently uses grade1, grade2, grade3, ... grade30 for a class of 30 students, and the teacher wants to add a 31st student mid-semester.",
+        "key": {
+          "signs": "Thirty numbered variables are a collection wearing a disguise — all the same kind of value (a grade), differing only by a position number. Needing to ADD a 31st is the pain a list removes.",
+          "mechanism": "Develop a LIST named grades. Adding a student becomes appending one element instead of inventing grade31 and editing every place the grades are used — the program is dramatically easier to develop and maintain (EK AAP-1.D.4). One name replaces thirty scattered references (EK AAP-1.D.2).",
+          "subtype": "The single name lets the programmer stop tracking 30 (soon 31) separate variable names; the list absorbs new elements. This is the textbook case of a list managing complexity that separate variables cannot."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A weather record must store, for one day, a mix of values: the location name (\"Denver\"), the high temperature (91), and whether it rained (false).",
+        "key": {
+          "signs": "This is a small collection of RELATED values describing one day — and notably they are of different types (a string, a number, a Boolean). A collection is a candidate for a list.",
+          "mechanism": "Develop a LIST such as dayRecord ← [\"Denver\", 91, false]. Bundling the day's related facts under one name keeps them together and lets them be treated as a single value passed around the program (EK AAP-1.D.6), which is easier to maintain than three loose variables.",
+          "subtype": "This is EK AAP-1.D.5 in action: a data abstraction often contains DIFFERENT TYPES of elements. One list can hold a string, a number, and a Boolean together — the abstraction does not require the elements to share a type."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A program has a list masterScores and needs a separate working copy it can experiment with, so that changes to the copy do not disturb the original list.",
+        "key": {
+          "signs": "There is already one collection (a list); the design question is how to duplicate it safely. This is about the copy semantics of the list abstraction, not about whether to use a list.",
+          "mechanism": "Use the reference-sheet copy: workingCopy ← masterScores assigns a COPY of the whole list to a new name (EK AAP-1.D.7). Because it is a copy, experimenting on workingCopy does not change masterScores — the abstraction lets you duplicate an entire collection with one statement.",
+          "subtype": "This mirrors Topic 3.1's copy-not-link idea, now at the list level: aList ← bList copies the list value. The single name for the whole collection is what makes 'copy the entire dataset' a one-line operation (EK AAP-1.D.2, D.7)."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "What Does the Name Buy You?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "A program runs the same whether a week of temperatures lives in seven variables or one list — but the programmer's life is wildly different. Across three short windows in this topic, your group will pin down what an index really references, decide when a pile of values deserves to become a list, and put into words how naming a collection tames complexity. The recurring test: can you explain the benefit in the College Board's own language, not just say 'a list is better'?",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Reading the 'third value' from the weather display worked only because the numbers were in order and each had a position. In your own words, what is the difference between an element (the value) and its index (the position), and why would a program need both?"
+          },
+          {
+            "text": "Question 2. The exam reference sheet counts positions starting at 1, but Python, Java, and JavaScript start at 0. Where have you seen counting-from-1 (floors of a building, days of a month) versus counting-from-0, and what kind of mistake happens when someone mixes the two?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the index table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-name test",
+            "text": "For a pile of related values — a week of temperatures, a class of grades — there is one question that tells you whether they should become a single list. In one sentence your whole group agrees on, write that question, and state what each answer tells you to build.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Find data that resists a list",
+            "text": "Debate for about 3 minutes: name one set of values where your group DISAGREES about whether it should be a list or stay as separate variables, or where it honestly depends. Record the values and the two defensible designs, then state the piece of information that would settle it.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "Explain it so it earns the point",
+            "text": "A weather club replaces seven daily-temperature variables with one list named temps. As a group, write the clearest one-paragraph explanation you can of HOW this manages complexity — one that would earn full credit on the AP exam — using the words 'one name,' 'develop,' 'maintain,' and 'representation.' Then name one thing the single list name lets the programmer stop worrying about.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best explains why data abstraction manages complexity):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

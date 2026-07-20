@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "lessonId": "2.4",
+    "lessonTitle": "Detecting Attacks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 4,
+    "los": "LO 2.4.A, LO 2.4.B, LO 2.4.C",
+    "anchor": "Securing Xtensr Labs",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.4 · Day 4 of 4",
+      "title": "The Whole Detection Picture at Xtensr",
+      "subtitle": "Detecting Attacks: a review-and-practice day that consolidates all three objectives — methods, placement, and applied techniques — into one detection plan, then the Lesson 2.4 quiz",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 2.4, Day 4 of 4 — the review and practice day, and then the quiz. There is no new content today. Day 1 was 2.4.A, the four detection methods; Day 2 was 2.4.B, where to place them; Day 3 was 2.4.C, applying the techniques to Scenario 2A. Today we pull all three objectives together. We'll build one worked review table that lines up every method with how it's placed and how it's applied, assemble a complete detection plan for the whole Xtensr Labs building, recap the vocabulary across all three days, and run a Stop-and-Think practice set. Then you take the Lesson 2.4 quiz — five questions across the entire topic. By the end of class you'll have proven you can identify, place, and apply every detection control the CED names."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "At Xtensr Labs, an adversary tailgates an employee through the lobby, moves down a hallway, and ends up at the badge-locked records vault — all in about ninety seconds, during a busy afternoon.",
+      "subprompt": "Write 3–5 sentences naming, in order, which detection method, placement, AND applied technique could catch this adversary at each stage of their route. Cite at least three different EKs across 2.4.A, 2.4.B, and 2.4.C.",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own. Trace the adversary at Xtensr: tailgates an employee through the lobby, walks a hallway, reaches the badge-locked vault — ninety seconds, busy afternoon. In three to five sentences, name in order which detection method, which placement consideration, and which applied technique could catch them at each stage. Cite at least three different EKs spanning 2.4.A, 2.4.B, and 2.4.C. This is exactly the synthesis the quiz will ask for, so treat it as your warm-up. Hold your answer — we'll build the full plan together."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 4 Guided Notes pull all three objectives together for review. Everything here is CB-required.",
+      "sections": [
+        {
+          "title": "One Table, All Three Objectives",
+          "description": "Each detection method lined up with how it's placed (2.4.B) and how it's applied (2.4.C) (EK 2.4.A.1)."
+        },
+        {
+          "title": "A Complete Xtensr Detection Plan",
+          "description": "Apply every method, placement, and technique to the whole Xtensr Labs building in one cumulative scenario (EK 2.4.C.1)."
+        },
+        {
+          "title": "Vocab Recap + Quiz Practice",
+          "description": "Recap key terms across 2.4.A–C and work practice items before the Lesson 2.4 quiz (EK 2.4.B.2)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.4 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three review sections today, all CB-required. Section one is a single worked table that lines up each detection method with how it's placed and how it's applied — the whole topic on one page. Section two is a cumulative scenario: a complete detection plan for the entire Xtensr Labs building, using every objective at once. Section three recaps vocabulary across all three days and gives you practice items to warm up for the quiz. Keep your packet open; Guided Notes are collected at the end, and then you take the quiz."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Name each of the four detection methods and what it detects, on demand (LO 2.4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Place every control correctly and justify it — sensors where traffic is unexpected, cameras at ingress/egress, the right kind of guard (LO 2.4.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply the paired techniques to a full Xtensr detection plan — facial recognition, motion-plus-camera, and badge-log tailgating (LO 2.4.C)"
+        }
+      ],
+      "script": "Today consolidates all three of the topic's objectives, and your three goals span them. First, from 2.4.A: name each of the four detection methods and what each one detects, on demand. Second, from 2.4.B: place every control correctly and justify it — motion sensors where traffic is unexpected, cameras at points of ingress and egress, and the right kind of guard for the spot. Third, from 2.4.C: apply the paired techniques to a complete Xtensr detection plan — cameras with facial recognition, motion detectors with cameras, and badge logs that catch tailgating. There's nothing new under any of them; today is about connecting them so that, given any space, you can name the method, place it correctly, and apply it to catch a specific attack. That integrated skill is what the quiz measures."
+    },
+    {
+      "type": "section_divider",
+      "number": "05",
+      "label": "Review: The Whole Topic on One Page",
+      "kicker": "Securing Xtensr Labs · LO 2.4.A, 2.4.B, 2.4.C",
+      "script": "Section five — the review section. All three objectives, consolidated. We start with the master table that connects identify, place, and apply for every control. Ten minutes here, then the cumulative scenario."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Every Control: Identify → Place → Apply",
+      "subheading": "The whole topic in one grid — what each control detects (2.4.A), where it goes (2.4.B), and how it's applied (2.4.C).",
+      "columns": [
+        "Control",
+        "What it detects (2.4.A)",
+        "Effective placement (2.4.B)",
+        "Applied technique (2.4.C)"
+      ],
+      "highlightCol": 3,
+      "rows": [
+        [
+          "Camera",
+          "Visual record of an adversary's activity; recorded + monitored (A.1)",
+          "Coverage, angle, tamper-resistance; ingress/egress points (B.1)",
+          "Pair with facial recognition to alert; footage tracks the path (C.1)"
+        ],
+        [
+          "Motion sensor",
+          "Alerts security to movement in an area (A.3)",
+          "Where traffic is unexpected — server rooms, sensitive storage (B.2)",
+          "Pair with a camera to verify a real breach vs. false alarm (C.2)"
+        ],
+        [
+          "Security guard",
+          "Monitors an area and responds to suspicious activity (A.2)",
+          "Stationary at chokepoints; patrolling on perimeters (B.4)",
+          "Responds to verified alerts and supports investigation on site"
+        ],
+        [
+          "Lock / vestibule + badge",
+          "Employees notice unauthorized people first (A.4)",
+          "Locks on all sensitive entries; vestibule on the most sensitive (B.3)",
+          "Badge entry logs flag tailgating by door-open time (C.3)"
+        ]
+      ],
+      "footer": "AP TIP: The exam connects the columns — a question may give you a control and ask where it goes (2.4.B) and how to apply it (2.4.C). Read this table left to right until each row is automatic.",
+      "script": "Here is the entire topic on one page, and I want each row to become automatic. Read it left to right. Camera: it detects by capturing a visual record, recorded and monitored — that's 2.4.A.1; you place it considering coverage, angle, and tamper-resistance, at ingress and egress points — 2.4.B.1; and you apply it by pairing it with facial recognition to alert and using footage to track the adversary — 2.4.C.1. Motion sensor: detects movement, 2.4.A.3; placed where traffic is unexpected, 2.4.B.2; applied by pairing with a camera to verify, 2.4.C.2. Security guard: monitors and responds, 2.4.A.2; stationary at chokepoints or patrolling perimeters, 2.4.B.4; applied by responding to verified alerts. And the lock-vestibule-badge row ties to the human method — employees notice first, 2.4.A.4 — placed as locks on sensitive entries and vestibules on the most sensitive, 2.4.B.3, and applied through badge logs that catch tailgating by door-open time, 2.4.C.3. Read across until you can recite any row from one cell."
+    },
+    {
+      "type": "case_study",
+      "heading": "Cumulative Scenario: A Full Detection Plan for Xtensr Labs",
+      "script": "This is the capstone — a complete detection plan for Xtensr Labs that uses every objective. Walk the building with me. At the lobby, which is a point of ingress, you place a camera with facial recognition and a stationary guard, and the employees there are themselves a detection method. Down the hallways, cameras cover the route and let you track an adversary once a breach is known. In the empty server room, a motion sensor fits because any traffic is unexpected — it alerts, and a paired camera verifies. At the vault, a lock and an access control vestibule guard the door, and the badge log's door-open time catches tailgating. Patrolling guards take the exterior. Notice how the objectives interlock: identify the method, place it right, apply it to catch the attack. Three questions on your notes — walk the adversary's path naming each control and EK, find where one control would fail alone and which pairing saves it, and propose one addition with its EK. This is exactly the Scenario 2A deliverable: monitoring equipment placed to detect breaches across the whole building.",
+      "scenarioLabel": "The Detection Plan",
+      "scenario": "Pull it all together for Xtensr Research Labs. At the LOBBY (a point of ingress, EK 2.4.B.1), place a camera with facial recognition (EK 2.4.C.1) and a stationary guard at the entrance (EK 2.4.B.4); employees who work there are also a first line of detection (EK 2.4.A.4). Down the HALLWAYS, cameras provide coverage and, once any breach is detected, footage tracks the adversary's path (EK 2.4.C.1). In the empty SERVER ROOM, a motion sensor belongs because traffic there is unexpected (EK 2.4.B.2); it alerts to movement (EK 2.4.A.3) and is paired with a camera to verify the breach (EK 2.4.C.2). At the records VAULT, a lock and an access control vestibule guard the entry (EK 2.4.B.3), and the badge-log door-open time flags tailgating (EK 2.4.C.3). Patrolling guards cover the exterior perimeter (EK 2.4.B.4).",
+      "analysisLabel": "Work Through It",
+      "analysis": [
+        "Walk the adversary from lobby to vault and name every control that could detect them, in order, with its EK.",
+        "Where in this plan would a SINGLE control fail on its own, and which paired control covers the gap?",
+        "If you could add only one more control to this plan, where would it go and why — cite the EK for your reasoning.",
+        "Takeaway: This is the Topic 2.4 deliverable for Scenario 2A: a placement of monitoring equipment that detects physical security breaches across the whole Xtensr building, using all three objectives together."
+      ]
+    },
+    {
+      "type": "vocab",
+      "heading": "Vocabulary Recap (LO 2.4.A, 2.4.B, 2.4.C)",
+      "terms": [
+        {
+          "term": "Detective control",
+          "definition": "A control that detects an attack rather than preventing it — the whole purpose of Topic 2.4 (EK 2.4.A.1)."
+        },
+        {
+          "term": "Motion sensor",
+          "definition": "A control that alerts security to movement in an area without identifying who is moving (EK 2.4.A.3)."
+        },
+        {
+          "term": "False alarm",
+          "definition": "A harmless trigger; many of them, as from a sensor in a high-traffic area, make real alarms less likely to be taken seriously (EK 2.4.B.2)."
+        },
+        {
+          "term": "Points of ingress and egress",
+          "definition": "Ways in and out of a space, often monitored by camera because everyone passes through them (EK 2.4.B.1)."
+        },
+        {
+          "term": "Stationary vs. patrolling guard",
+          "definition": "Stationary guards give constant protection at chokepoints; patrolling guards cover perimeters and are harder to plan around (EK 2.4.B.4)."
+        },
+        {
+          "term": "Breach verification",
+          "definition": "Using a camera to visually confirm a real breach after a motion detector raises an alert (EK 2.4.C.2)."
+        },
+        {
+          "term": "Piggybacking / tailgating",
+          "definition": "An unauthorized person entering behind an authorized badge holder, detectable by an abnormally long door-open time (EK 2.4.C.3)."
+        }
+      ],
+      "script": "A fast vocabulary recap spanning all three days. Detective control is the umbrella for the whole topic, 2.4.A.1. From 2.4.A, motion sensor — alerts to movement only. From 2.4.B, the three the exam leans on: false alarm, the reason sensors avoid busy areas; points of ingress and egress, the prime camera spots; and the stationary-versus-patrolling guard distinction. From 2.4.C: breach verification, camera confirming a motion alert; and piggybacking and tailgating, caught by door-open time. If any of these seven feel shaky, fix them now — the quiz draws from exactly this vocabulary."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Quiz Practice",
+      "subheading": "These map across LO 2.4.A, 2.4.B, and 2.4.C. Complete on your Guided Notes packet before the quiz.",
+      "prompts": [
+        "A manager proposes one motion sensor in the busy front lobby of Xtensr Labs. Using 2.4.A.3 and 2.4.B.2, explain what the sensor does, why the lobby is the wrong place, and where it should go instead.",
+        "An adversary is recorded entering a controlled area and later reaches the vault. Using 2.4.C.1 and 2.4.C.3, explain how cameras-plus-facial-recognition and badge-log review together both detect the breach and identify the adversary.",
+        "Explain in two sentences why Topic 2.4 (detect) is a different job from Topic 2.3 (prevent), and why a building needs both — cite 2.4.A.1."
+      ],
+      "directions": "Independent. 7 minutes. Full sentences.",
+      "script": "Three practice questions, seven minutes, independent — this is your final warm-up before the quiz. Question one: one motion sensor in the busy lobby — use 2.4.A.3 for what it does and 2.4.B.2 for why the lobby is wrong and where it belongs. Question two: an adversary recorded entering and later at the vault — use 2.4.C.1 and 2.4.C.3 to show how facial recognition and badge-log review together detect and identify them. Question three, two sentences: why detect, 2.4, is a different job from prevent, 2.3, and why you need both, citing 2.4.A.1. When you finish, we collect notes and start the Lesson 2.4 quiz."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.4 page",
+          "tail": "Do the full self-check before the quiz.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-detecting-attacks"
+        },
+        {
+          "label": "Exercise 7",
+          "tail": "Build a full detection plan for a floor plan.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-7"
+        },
+        {
+          "label": "Cumulative review",
+          "tail": "Mixed items across 2.4.A, 2.4.B, and 2.4.C.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-8"
+        },
+        {
+          "label": "Lesson 2.4 quiz",
+          "tail": "Five questions across the topic — taken in class today.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything for review is on the site. Run the full self-check, do Exercise 7 where you build a complete detection plan for a floor plan, and the cumulative review with mixed items across all three objectives. The Lesson 2.4 quiz is the five-question check you take in class today. If anything from the four days is still fuzzy, the lesson video walks all of it slide for slide. Use the site to lock in anything the quiz surfaces as weak."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Lesson 2.4 · Day 4 of 4",
+      "heading": "End of Lesson 2.4",
+      "todayPoints": [
+        "Consolidated all three objectives in one table: identify (2.4.A), place (2.4.B), and apply (2.4.C) every detection control",
+        "Built a complete detection plan for Xtensr Labs, from lobby camera to vault badge log",
+        "Recapped the key vocabulary across the whole topic",
+        "Practiced integrated items and took the Lesson 2.4 quiz"
+      ],
+      "nextPoints": [
+        "Carry forward the detect-vs-prevent distinction into the rest of Unit 2",
+        "Remember detection methods work only under their conditions — monitored, present, well-placed",
+        "Keep pairing controls: motion + camera, badge log + footage"
+      ],
+      "teaser": "You can now secure a space across its whole life — prevent attacks, and detect the ones that get through. That complete picture is what the rest of Securing Spaces builds on.",
+      "script": "Lesson 2.4 is complete. Across four days you learned to identify the four detection methods, place each one effectively, and apply the CED's three detection techniques to a real building — and today you proved you can do all three together on Scenario 2A, then took the quiz. Carry three things forward: detection is a different job from prevention, and a space needs both; every detection method only works under its condition — a camera monitored, an employee present, a sensor well-placed; and the strongest detection pairs controls — motion with camera, badge log with footage. That's the complete detection picture, and the rest of Securing Spaces builds on it. Well done on Topic 2.4."
+    }
+  ]
+}

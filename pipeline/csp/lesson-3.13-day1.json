@@ -1,0 +1,598 @@
+{
+  "meta": {
+    "lessonId": "3.13",
+    "lessonTitle": "Developing Procedures",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-3.B",
+    "anchor": "Developing Procedures",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.13 · Day 1 of 2",
+      "title": "One Name, Many Uses",
+      "subtitle": "Procedural abstraction — giving a process a name so you can use it knowing only WHAT it does, not HOW — and how that tames complexity through modularity, reuse, and parameters that generalize one procedure to many inputs",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.13, Developing Procedures. In 3.12 you learned to CALL procedures that already existed; now you learn to build your own and, first, to explain WHY building them matters. Today, Day 1, is the reasoning half — learning objective AAP-3.B — where we answer one question: how does wrapping a process in a named procedure actually manage the complexity of a program? You will see modularity, code reuse, generalization through parameters, and the quiet superpower that you can rewrite the inside of a procedure without touching a single place that calls it. Tomorrow, Day 2, is the writing half — AAP-3.C — where you write PROCEDUREs yourself, with and without RETURN, in the exact form the exam reference sheet defines."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how procedural abstraction manages complexity by naming a process, dividing a program into modules, and reusing shared code instead of duplicating it (LO AAP-3.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how parameters generalize a procedure so it works for many inputs, how procedures aid readability, and why the internals can change without notifying callers (LO AAP-3.B)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-3.B, explaining how procedural abstraction manages complexity. First: a procedure gives a process a name, splits a big program into smaller modules, and lets shared logic live in one place instead of being copied everywhere. Second: parameters generalize a procedure so one definition handles a whole range of inputs, procedures make code readable, and — the point the exam loves — because a procedure hides HOW it works, you can change its internals without notifying anyone who calls it. Notice both objectives say EXPLAIN. Today is about reasoning; the actual writing of procedures is tomorrow's AAP-3.C."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "The school store prints a price label for every product. The program below computes each label's total the SAME way, copied three times: pencilTotal ← 3 * 12, then eraserTotal ← 2 * 30, then notebookTotal ← 5 * 8. Tomorrow the store adds a 6th, 7th, and 8th product — and the manager wants to switch every total to charge by the dozen.",
+      "subprompt": "Write 2–4 sentences: What is painful about this design as the store grows? If the pricing rule changes, how many places must you edit, and what could go wrong? Sketch a better design where the 'multiply unit price by quantity' idea lives in exactly ONE place.",
+      "directions": "Be ready to share your redesign.",
+      "script": "Five minutes with a partner. Read the store's program — the same multiply-unit-price-by-quantity idea, copied once per product. Ask what happens as the store grows to eight, then eighty products, and what happens when the manager changes the pricing rule: every single copy must be found and edited by hand, and one missed copy is a silent bug. Then sketch the fix. Almost every group invents the same thing: pull the shared formula into one named box you can call by name — give it the unit price and the quantity, get back the total. That instinct IS procedural abstraction, and you just discovered why it exists before we named it. Hold onto your redesign; it is the through-line for the whole topic."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Why Procedures: Naming, Modularity, Reuse",
+          "description": "Procedural abstraction names a process, divides a program into modules, and reuses shared code instead of duplicating it (EK AAP-3.B.1–B.4)."
+        },
+        {
+          "title": "Parameters, Readability, Hidden Internals",
+          "description": "Parameters generalize a procedure; procedures aid readability; internals can change without notifying callers (EK AAP-3.B.5–B.7)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.13 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required. First, why procedures exist: naming a process, dividing the program into modules, and reusing shared code instead of duplicating it. Second, the payoffs: parameters that generalize, the readability boost, and hidden internals you can change freely. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.13 Guided Notes page, and the write-and-run coding practice for this topic lives there too — you will use it after tomorrow's lesson."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Why Procedures: Naming, Modularity, Reuse",
+      "kicker": "Procedural Abstraction · Learning Objective AAP-3.B",
+      "script": "Section one. Your bell-ringer store program was painful because one idea — the pricing formula — was copied everywhere with no name. A procedure fixes exactly that. Before we can talk about the benefits, we need the core idea rock-solid: procedural abstraction gives a process a name so the rest of the program can use it knowing only what it does, not how it does it."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-3.B)",
+      "terms": [
+        {
+          "term": "Procedure",
+          "definition": "A named group of programming instructions that may take parameters and may return a value — such as a labelTotal procedure the store calls for every product (EK AAP-3.B.1)."
+        },
+        {
+          "term": "Procedural abstraction",
+          "definition": "Providing a name for a process so a procedure can be used knowing only what it does, not how it does it (EK AAP-3.B.1)."
+        },
+        {
+          "term": "Modularity",
+          "definition": "The subdivision of a computer program into separate subprograms, so each piece solves one subproblem (EK AAP-3.B.3)."
+        },
+        {
+          "term": "Code reuse",
+          "definition": "Extracting a shared feature into one procedure and calling it many times instead of duplicating the code, which helps manage complexity (EK AAP-3.B.4)."
+        },
+        {
+          "term": "Parameter",
+          "definition": "An input variable of a procedure; supplying different arguments generalizes the procedure to a range of input values (EK AAP-3.B.5)."
+        }
+      ],
+      "script": "Five words carry this topic. A procedure is a named group of instructions that may take parameters and return a value — the store's labelTotal is one. Procedural abstraction is the idea behind it: give the process a name and use it knowing only what it does, never how. Modularity is splitting the whole program into separate subprograms, each handling one subproblem. Code reuse is pulling a shared feature into one procedure and calling it repeatedly instead of copy-pasting. And a parameter is an input variable — feed it different arguments and one procedure serves a whole range of inputs. These five are exactly the vocabulary AAP-3.B questions are built from."
+    },
+    {
+      "type": "concept",
+      "heading": "Use It Knowing WHAT, Not HOW",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Procedural abstraction gives a process a NAME and lets you use the procedure knowing only what it does, not how it does it (EK AAP-3.B.1).",
+        "It lets the solution to a LARGE problem be built from the solutions to smaller SUBPROBLEMS, each solved by its own procedure (EK AAP-3.B.2).",
+        "The store's whole task — price every product — becomes 'call labelTotal for each item,' hiding the multiply-and-format details.",
+        "You already trust this every day: you call DISPLAY and RANDOM without knowing their internal code — that is procedural abstraction at work."
+      ],
+      "script": "Here is the mental model to keep. Procedural abstraction gives a process a name and lets you use it knowing only what it does — never how. That single move is what lets a solution to a large problem be assembled from solutions to smaller subproblems, each one its own procedure. The store no longer thinks 'multiply unit price by quantity, then format' for every product; it thinks 'call labelTotal,' and the messy details are sealed inside. You have trusted this all year without noticing: you call DISPLAY and RANDOM constantly and you have never seen or needed their internal code. That is procedural abstraction, and today we make it explicit.",
+      "capture": [
+        {
+          "q": "Procedural abstraction lets a procedure be used knowing only ______.",
+          "a": "what it does, not how it does it"
+        },
+        {
+          "q": "It lets the solution to a large problem be built from ______.",
+          "a": "the solutions to smaller subproblems, each solved by its own procedure"
+        },
+        {
+          "q": "You already rely on this when you call DISPLAY or RANDOM because ______.",
+          "a": "you use them by name without ever seeing their internal code"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Procedures",
+      "heading": "The Store's Pricing Rule, Named Once",
+      "caption": "labelTotal wraps 'unit price times quantity' in one name; the program just calls it.",
+      "pseudocode": "PROCEDURE labelTotal(unitPrice, quantity)\n{\n    RETURN(unitPrice * quantity)\n}\nDISPLAY(labelTotal(3, 12))",
+      "python": "def labelTotal(unitPrice, quantity):\n    return unitPrice * quantity\n\nprint(labelTotal(3, 12))",
+      "output": "36",
+      "script": "Your first look at a defined procedure, in two columns — exam pseudocode on the left, runnable Python on the right. The PROCEDURE line names the process, labelTotal, and lists its two parameters, unitPrice and quantity. Inside, one line does the work and RETURNs the total. From then on the program never rewrites the formula; it just calls labelTotal with three and twelve and gets thirty-six back. That is the whole idea of today: the how lives in one place, inside the procedure, and everywhere else you use the what by name. We write these formally tomorrow; today just read it and see the naming happen."
+    },
+    {
+      "type": "two_column",
+      "heading": "Copy the Formula vs. Call One Procedure",
+      "subheading": "Same output either way — but modularity and reuse decide how the program survives change (EK AAP-3.B.3–B.4).",
+      "left": {
+        "title": "Duplicated code",
+        "definition": "The formula is copy-pasted once per product, with no shared name",
+        "ek": "EK AAP-3.B.4",
+        "examples": [
+          "pencilTotal ← 3 * 12, eraserTotal ← 2 * 30, notebookTotal ← 5 * 8",
+          "Change the pricing rule → hunt down and edit EVERY copy",
+          "Miss one copy and the bug is silent — totals disagree"
+        ]
+      },
+      "right": {
+        "title": "One procedure, reused",
+        "definition": "The shared feature lives in one module and is called many times",
+        "ek": "EK AAP-3.B.3",
+        "examples": [
+          "labelTotal(3, 12), labelTotal(2, 30), labelTotal(5, 8)",
+          "Change the rule ONCE, inside labelTotal — every call updates",
+          "The program reads as a list of tasks, not a wall of arithmetic"
+        ]
+      },
+      "footer": "AP TIP: Modularity = splitting the program into subprograms (EK AAP-3.B.3); reuse = one procedure instead of duplicated code (EK AAP-3.B.4). Both manage complexity.",
+      "script": "Both columns print the same totals, so why does the right one win? Modularity and reuse. On the left the pricing formula is copy-pasted once per product; the day the manager changes the rule, you must find and fix every copy, and one missed copy is a silent bug where totals quietly disagree. On the right the shared feature lives in one module, labelTotal, called many times. Change the rule once, inside the procedure, and every call updates automatically. As a bonus the program now reads as a clean list of tasks instead of a wall of repeated arithmetic. That is EK AAP-3.B.3 and B.4 — modularity is the subdivision into subprograms; reuse is calling one procedure instead of duplicating code.",
+      "capture": [
+        {
+          "q": "The design on the right survives a rule change because the shared logic lives ______.",
+          "a": "in exactly one procedure, changed once instead of in many scattered copies"
+        },
+        {
+          "q": "With the duplicated design, changing the pricing rule forces you to ______.",
+          "a": "find and edit every copy, and a missed one becomes a silent bug"
+        },
+        {
+          "q": "Two designs can print identical output today yet behave very differently when ______.",
+          "a": "the shared rule must change — one edit versus many"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Naming, Modularity, Reuse",
+      "subheading": "These map to LO AAP-3.B. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain what it means to use a procedure 'knowing only what it does, not how it does it.' Use DISPLAY as your example.",
+        "The store copies its pricing formula into 8 products. Explain, using the words modularity and reuse, why moving the formula into one labelTotal procedure manages complexity.",
+        "A classmate says 'duplicating the formula and calling one procedure are the same — both print the right totals.' They print the same now; explain the situation in which the two designs behave very differently."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.13 page.",
+      "script": "Stop and think — six minutes, full sentences on your Guided Notes. One: put procedural abstraction in your own words using DISPLAY — you call it by name and never see its internal code. Two: use the words modularity and reuse to explain why one labelTotal procedure beats eight copies of the formula. Three: the trap — both designs print the same totals TODAY, but the moment the pricing rule changes, the duplicated version needs eight edits and risks a missed copy, while the procedure needs exactly one. That 'behaves the same until it must change' distinction is exactly what AAP-3.B questions test."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Parameters, Readability, Hidden Internals",
+      "kicker": "Generalize and Hide the How · Learning Objective AAP-3.B",
+      "script": "Section two. A named, reused procedure is already a win — but parameters make it powerful. By feeding a procedure different arguments, one definition serves a whole range of inputs. And because the procedure hides HOW it works, you gain two more things the exam tests directly: cleaner, more readable code, and the freedom to rewrite the internals without disturbing anyone who calls it."
+    },
+    {
+      "type": "concept",
+      "heading": "Parameters Generalize; Internals Stay Hidden",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Using PARAMETERS generalizes a procedure, so it can be reused with a range of input values or arguments (EK AAP-3.B.5).",
+        "labelTotal(unitPrice, quantity) works for ANY product — the parameters are what let one procedure serve them all (EK AAP-3.B.5).",
+        "Naming the process also improves READABILITY: the program reads like what it does (EK AAP-3.B.6).",
+        "Because callers only depend on WHAT it does, you can change the internals — faster, less storage — without notifying users, as long as the behavior is preserved (EK AAP-3.B.7)."
+      ],
+      "script": "Four ideas, all from AAP-3.B. First, parameters generalize: labelTotal with parameters unit price and quantity works for a pencil, an eraser, a notebook, or a product invented next year — the parameters are exactly what let one procedure serve a whole range of inputs. Second, naming the process improves readability; a program full of labelTotal calls reads like a description of the task instead of a wall of arithmetic. Third, and this is the one the exam prizes: because callers depend only on what the procedure does, you are free to change its internals — make it faster, use less storage, round differently — without notifying anyone, as long as what it does is preserved. Same name, same result, different guts, and no caller ever knows.",
+      "capture": [
+        {
+          "q": "Adding parameters generalizes a procedure so it can ______.",
+          "a": "be reused with a range of input values or arguments"
+        },
+        {
+          "q": "Beyond correctness, naming the process improves ______.",
+          "a": "readability — the program reads like what it does"
+        },
+        {
+          "q": "You may rewrite a procedure's internals without notifying callers as long as ______.",
+          "a": "what the procedure does — its behavior and result — is preserved"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Parameters",
+      "heading": "One Definition, Many Products",
+      "caption": "The same labelTotal serves every product; only the arguments change.",
+      "pseudocode": "DISPLAY(labelTotal(3, 12))\nDISPLAY(labelTotal(2, 30))\nDISPLAY(labelTotal(5, 8))",
+      "python": "print(labelTotal(3, 12))\nprint(labelTotal(2, 30))\nprint(labelTotal(5, 8))",
+      "output": "36 60 40",
+      "script": "Here is generalization in action — the same labelTotal from before, called three times with different arguments. Pencils at three for twelve give thirty-six; erasers at two for thirty give sixty; notebooks at five for eight give forty. One definition, three totally different products, because the parameters carry the differences. This is EK AAP-3.B.5 exactly: parameters let one procedure be reused across a range of inputs. Notice too how readable the calls are — three short lines that say what the store does, with none of the arithmetic spelled out in the open. If the store adds a fourth product tomorrow, it is one more call, not one more copy of the formula."
+    },
+    {
+      "type": "worked_table",
+      "heading": "What Each Design Move Buys You",
+      "context": "Each row is a move you make when you build a procedure. Fill in what complexity it manages, then name the CED idea. The middle column is yours to complete.",
+      "columns": [
+        "Move in the code",
+        "What it buys you (fill in)",
+        "CED idea"
+      ],
+      "rows": [
+        [
+          "Wrap the pricing formula in a named procedure",
+          "You use it by name, knowing what it does, not how",
+          "Procedural abstraction (B.1)"
+        ],
+        [
+          "Split the program into small procedures",
+          "Each subproblem is solved on its own",
+          "Modularity (B.3)"
+        ],
+        [
+          "Call one procedure instead of copying the formula",
+          "Shared logic lives in ONE place — no duplication",
+          "Code reuse (B.4)"
+        ],
+        [
+          "Add a parameter like quantity",
+          "One procedure serves a whole range of inputs",
+          "Generalization (B.5)"
+        ],
+        [
+          "Rewrite the formula inside to round differently",
+          "Callers keep working as long as the behavior is preserved",
+          "Hidden internals (B.7)"
+        ]
+      ],
+      "highlightCol": 1,
+      "blanks": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "script": "Let us make the benefits concrete, move by move. Wrapping the formula in a named procedure buys you procedural abstraction — you use it by name, knowing what, not how. Splitting the program into small procedures buys modularity — each subproblem solved on its own. Calling one procedure instead of copying the formula buys reuse — shared logic in exactly one place. Adding a parameter like quantity buys generalization — one procedure now serves a whole range of inputs. And rewriting the formula inside to round differently costs the callers nothing, because the internals are hidden — as long as the behavior is preserved, everyone who calls it keeps working. Fill in the middle column yourself for the blanked rows; those are the exact benefit statements AAP-3.B asks you to produce."
+    },
+    {
+      "type": "misconception",
+      "heading": "“Change the Inside, Update Every Call”",
+      "misconception": "If you change what is inside a procedure, you must go update every place in the program that calls it.",
+      "whyItHappens": "It feels like editing the procedure and editing its callers are the same kind of change, so students assume touching one forces touching the others.",
+      "correction": "The whole point of procedural abstraction is that callers depend only on WHAT the procedure does, not how. As long as the behavior and returned result are preserved, you can freely rewrite the internals — make it faster, use less storage, round differently — without notifying users or changing a single call site (EK AAP-3.B.7). You only have to update callers if you change what the procedure DOES.",
+      "example": "labelTotal(unitPrice, quantity) returns unitPrice * quantity. Rewrite the inside to add the numbers in a loop instead of multiplying — every call like labelTotal(3, 12) still returns 36, so not one caller changes. Same what, different how.",
+      "script": "Here is the trap, and it is a favorite on the exam. Because editing a procedure and editing its callers feel like the same kind of work, students assume that changing the inside forces you to update everywhere it is called. It does not. The entire value of procedural abstraction is that callers depend only on WHAT the procedure does. Rewrite labelTotal to add in a loop instead of multiplying — every call still returns the same total, so no caller changes. You only ever have to touch the callers if you change what the procedure DOES, not how it does it. That is EK AAP-3.B.7 stated as a bug students actually make."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Generalize and Hide the How",
+      "subheading": "These map to LO AAP-3.B. Complete on your Guided Notes.",
+      "prompts": [
+        "Explain in one or two sentences how the parameters of labelTotal(unitPrice, quantity) let a single procedure price a pencil, an eraser, and any future product.",
+        "A teammate speeds up a procedure's internals but keeps its result identical. Explain why nobody who calls it has to change their code, using the phrase 'what it does is preserved.'",
+        "Give one concrete way that replacing duplicated code with a well-named procedure improves the READABILITY of a program."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.13 page.",
+      "script": "Stop and think, six minutes, full sentences. One: explain how the two parameters of labelTotal let one procedure price a pencil, an eraser, and a product that does not exist yet — the parameters carry the differences. Two: a teammate makes a procedure faster but the result is identical; say why no caller changes, using the phrase what it does is preserved. Three: name one concrete readability win from replacing duplicated arithmetic with a well-named call — the code reads like the task. These are the exact explain-the-benefit moves AAP-3.B turns into free-response and multiple-choice points."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Procedural abstraction names a process so you use it knowing WHAT it does, not how (EK AAP-3.B.1)",
+        "It builds a large solution from smaller subproblems, and modularity is that subdivision into subprograms (EK AAP-3.B.2–B.3)",
+        "Reuse means one procedure instead of duplicated code; parameters generalize it to a range of inputs (EK AAP-3.B.4–B.5)",
+        "Procedures improve readability, and hidden internals can change without notifying callers if the behavior is preserved (EK AAP-3.B.6–B.7)"
+      ],
+      "nextPoints": [
+        "Day 2: WRITING a procedure yourself in the reference-sheet form (LO AAP-3.C)",
+        "The two forms: PROCEDURE name(params) { block } with no return, and { block RETURN(expression) } with a return",
+        "How RETURN can appear anywhere and causes an immediate return to the caller"
+      ],
+      "teaser": "Before tomorrow, predict it: a procedure runs IF(quantity = 0){ RETURN(0) } and then RETURN(price * quantity). What does it return for charge(5, 0), and does the second RETURN ever run? Write your answer and your reasoning.",
+      "script": "That is Day 1. Procedural abstraction names a process so you use the what and ignore the how; it lets a big problem be solved as smaller subproblems; modularity is that subdivision, reuse is one procedure instead of copies, and parameters generalize it to any input. On top of that you get readability and the freedom to change hidden internals without notifying callers. Tomorrow we stop explaining and start writing: the two exact reference-sheet forms of a PROCEDURE, with and without RETURN, and the rule that RETURN can appear anywhere and exits immediately. Here is the teaser and it is tomorrow's opener: a procedure checks IF quantity equals zero, RETURN zero, otherwise RETURN price times quantity — what does charge of five and zero return, and does the second RETURN ever run? Write your answer and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.13 — Developing Procedures — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "A team copied the same 'unit price times quantity' formula into 12 different places. A reviewer says, 'Wrap it in one procedure and call it.' How does this mainly manage complexity?",
+        "options": [
+          "It makes the program run measurably faster because there is less code to execute",
+          "It extracts the shared logic into one place so the code is reused instead of duplicated",
+          "It removes the need for parameters, since the procedure stores every product's price",
+          "It guarantees the pricing calculation can never contain a bug"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.B.4",
+        "rationale": "Replacing duplication with one reusable procedure is the core complexity benefit, so B is correct. A overstates a speed effect. C misunderstands parameters, which are still needed. D overpromises; a single procedure can still contain a bug, but only in one place."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "Which statement best describes what procedural abstraction lets a programmer do?",
+        "options": [
+          "Use a procedure only by reading its internal code line by line",
+          "Combine several programs into a single file with no separate parts",
+          "Guarantee that a procedure returns the same value for every input",
+          "Use a procedure by name, knowing what it does but not how it does it"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.B.1",
+        "rationale": "Procedural abstraction lets you use a procedure by name, knowing its purpose but not its internals, so D is correct. A is the opposite of abstraction. B describes the loss of modularity. C is unrelated to hiding implementation detail."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "A developer rewrites the inside of a tested convertUnits procedure to run faster, keeping every returned value identical. What must the programs that call convertUnits do?",
+        "options": [
+          "Nothing, as long as what the procedure does is preserved",
+          "Rewrite every call site to match the new internal code",
+          "Add a comment at each caller before the procedure will run again",
+          "Add a parameter to account for the faster version"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.B.7",
+        "rationale": "Because the procedure's behavior is unchanged, callers are unaffected, so A is correct. Abstraction hides the internals, so B, C, and D all assume callers depend on implementation detail they never see."
+      },
+      {
+        "id": "Q4",
+        "kind": "recall",
+        "stem": "Which of the following best defines modularity?",
+        "options": [
+          "The number of parameters a single procedure is allowed to take",
+          "The rule that lists are indexed starting at 1",
+          "Dividing a program into separate subprograms, or modules",
+          "Copying a formula into many places to gain speed"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.B.3",
+        "rationale": "Modularity is subdividing a program into separate parts, so C is correct. A and B name unrelated ideas, and D describes duplication, which is the opposite of clean modular design."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "One procedure area(width, height) computes the area of dozens of different rectangles across a program. What lets a single procedure serve all of them?",
+        "options": [
+          "It stores a separate copy of itself for each rectangle",
+          "Its parameters generalize it, so it is reused with a range of input values",
+          "It must be rewritten each time a new rectangle size is needed",
+          "All the rectangles must share the same width and height"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.B.5",
+        "rationale": "Parameters generalize a procedure so one definition handles many inputs, so B is correct. A imagines needless copies. C denies reuse entirely. D would defeat the purpose of accepting width and height as inputs."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A large program is split into small procedures that each solve one subproblem: validate input, compute total, format output. How does this help solve the whole problem?",
+        "options": [
+          "It removes the need to ever test the program before shipping it",
+          "It forces every subproblem to be solved by the exact same procedure",
+          "The whole solution is built from the solutions to the smaller subproblems",
+          "It makes the program impossible to change once the procedures exist"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.B.2",
+        "rationale": "Decomposition builds the large solution from smaller solved pieces, so C is correct. A ignores that each piece still needs testing. B misstates decomposition. D is backward; modular code is usually easier to change."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "Replacing repeated inline arithmetic with a well-named procedure most directly improves which quality of the program?",
+        "options": [
+          "Its readability, because the code reads more like what it does",
+          "Its clock speed, because named procedures execute faster than arithmetic",
+          "Its storage size, because a procedure always uses fewer bytes than a formula",
+          "Its randomness, because procedures introduce variation into the output"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.B.6",
+        "rationale": "A meaningful name makes the code express its intent, improving readability, so A is correct. B and C claim performance and size benefits that naming does not provide, and D confuses procedures with random generation."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "Design 1 copies the pricing formula into each of 10 product blocks; Design 2 calls one priceLabel procedure 10 times. Next week the pricing rule changes. Which best explains the difference?",
+        "options": [
+          "Design 1 is better because duplicated code is always easier to read",
+          "There is no difference; both require editing exactly one line",
+          "Design 2 will stop working because a procedure cannot be called more than once",
+          "Design 2 keeps the rule in one place, so the change is made once; Design 1 needs all 10 copies edited and risks a missed one"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.B.3",
+        "rationale": "Centralizing the rule means one edit for Design 2, while Design 1 must be changed in 10 places, so D is correct. A praises duplication wrongly. B ignores the 10 edits Design 1 needs. C is false; procedures can be called repeatedly."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.13 — Developing Procedures — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.13 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.13 is where students move from CALLING procedures (Topic 3.12) to reasoning about and WRITING them. Day 1 (LO AAP-3.B) is the explanation half: how procedural abstraction manages complexity by naming a process (use it knowing what, not how), dividing a program into modules, reusing shared code instead of duplicating it, generalizing with parameters, improving readability, and letting internals change without notifying callers. Day 2 (LO AAP-3.C) is the writing half: the two exam-reference-sheet forms of a PROCEDURE — one with no RETURN, one with RETURN(expression) — and the rule that RETURN may appear anywhere and causes an immediate return.",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (PROCEDURE name(p1, p2) { ... }, ← for assignment, DISPLAY, RETURN) shown side by side with runnable Python. The interactive, auto-graded coding practice lives on the Topic 3.13 page, where students TYPE and RUN progressively harder versions of the same school-store scenario they first traced on paper.",
+      "The through-line is the Day 1 bell ringer: the school store that copy-pastes its pricing formula for every product. Students feel the pain of duplication, invent a single named procedure to fix it, and carry that labelTotal / priceLabel scenario through the paper exercises and into the typed coding problems."
+    ],
+    "los": [
+      "LO AAP-3.B — Explain how the use of procedural abstraction manages complexity in a program.",
+      "LO AAP-3.C — Develop procedural abstractions to manage complexity in a program by writing procedures."
+    ],
+    "eks": [
+      "EK AAP-3.B.1 — One common type of abstraction is procedural abstraction, which provides a name for a process and allows a procedure to be used only knowing what it does, not how it does it.",
+      "EK AAP-3.B.2 — Procedural abstraction allows a solution to a large problem to be based on the solutions of smaller subproblems. This is accomplished by creating procedures to solve each of the subproblems.",
+      "EK AAP-3.B.3 — The subdivision of a computer program into separate subprograms is called modularity.",
+      "EK AAP-3.B.4 — A procedural abstraction may extract shared features to generalize functionality instead of duplicating code. This allows for program code reuse, which helps manage complexity.",
+      "EK AAP-3.B.5 — Using parameters allows procedures to be generalized, enabling the procedures to be reused with a range of input values or arguments.",
+      "EK AAP-3.B.6 — Using procedural abstraction helps improve code readability.",
+      "EK AAP-3.B.7 — Using procedural abstraction in a program allows programmers to change the internals of the procedure (to make it faster, more efficient, use less storage, etc.) without needing to notify users of the change as long as what the procedure does is preserved.",
+      "EK AAP-3.C.1 — The exam reference sheet provides PROCEDURE procName(parameter1, parameter2, ...) { <block of statements> } which is used to define a procedure that takes zero or more arguments. The procedure contains block of statements.",
+      "EK AAP-3.C.2 — The exam reference sheet provides PROCEDURE procName(parameter1, parameter2, ...) { <block of statements> RETURN(expression) } which is used to define a procedure that takes zero or more arguments. The procedure contains block of statements and returns the value of expression. The RETURN statement may appear at any point inside the procedure and causes an immediate return from the procedure back to the calling statement."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.13 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.13 page for the interactive coding practice (assigned after Day 2).",
+      "Optional: a printed 'before' program with the pricing formula copy-pasted 8 times, for the bell-ringer redesign."
+    ],
+    "prereqs": [
+      "Topic 3.12 (Calling Procedures, AAP-3.A) is the direct prerequisite: students must already be able to call a procedure, pass arguments, and use a returned value. This topic adds the ability to WRITE the procedure and to explain WHY procedures manage complexity. Comfort with variables and assignment (3.1) and with reading pseudocode is assumed throughout."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "How procedural abstraction manages complexity: naming, modularity, reuse, parameters, readability, hidden internals (LO AAP-3.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.13/Q1) + bell ringer (the store that copy-pastes its pricing formula)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Why procedures: vocab, use-what-not-how, first code_block, duplicated vs one procedure (EK AAP-3.B.1–B.4)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on naming, modularity, reuse",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Parameters, readability, hidden internals: concept, reuse code_block, benefits table, change-the-inside trap (EK AAP-3.B.5–B.7)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on generalizing and hiding the how",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + RETURN teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Writing a PROCEDURE in both reference-sheet forms: no RETURN and with RETURN; RETURN exits immediately (LO AAP-3.C)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.13/Q2) + bell ringer (predict charge(5, 0) with an early RETURN)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Writing a PROCEDURE with no RETURN: the form, a printLabel procedure, header vs body (EK AAP-3.C.1)",
+            "min": 13,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on writing a no-return procedure",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Writing a PROCEDURE with RETURN: the form, finalPrice, the early-RETURN trace, DISPLAY-is-not-RETURN trap (EK AAP-3.C.2)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.13 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.13 page absorbs any extra flex time — this is where students TYPE and RUN the paper scenario.",
+        "segments": [
+          {
+            "segment": "Topic 3.13 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Change the inside, update every call”",
+        "myth": "If you change what is inside a procedure, you must update every place that calls it.",
+        "reality": "Callers depend only on WHAT the procedure does, not how (EK AAP-3.B.1). As long as the behavior and returned result are preserved, the internals can be rewritten — faster, less storage, different algorithm — without notifying users or touching any call site (EK AAP-3.B.7). Only a change to what it DOES forces caller updates."
+      },
+      {
+        "heading": "“DISPLAY and RETURN are the same thing”",
+        "myth": "A procedure that DISPLAYs its result has given that value back to the caller.",
+        "reality": "DISPLAY only prints a value to the screen; RETURN sends the value back so result ← proc(...) can store and use it (EK AAP-3.C.2). A procedure that displays but never returns hands the caller nothing usable. This is the single most common Day 2 error — separate 'show it' from 'give it back.'"
+      },
+      {
+        "heading": "“RETURN keeps running the rest of the procedure”",
+        "myth": "After a RETURN executes, the remaining statements in the procedure still run.",
+        "reality": "RETURN may appear at any point and causes an IMMEDIATE return to the caller (EK AAP-3.C.2). Any statements after the RETURN that just executed are skipped on that path. This is why an early RETURN(0) guard works: once it fires, the later RETURN never runs."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a printed 'before' program with the pricing formula copied 8 times and highlighters: have them physically circle every copy, then rewrite it as one procedure plus 8 calls, so 'reuse' and 'one place to change' become visible.",
+        "Provide a fill-in header template for Day 2: PROCEDURE ____(____, ____) { ____ RETURN(____) }, so students practice the reference-sheet form one slot at a time before writing freely."
+      ],
+      "extension": [
+        "Have students take a working procedure, rewrite its internals a completely different way (e.g., replace multiplication with repeated addition), and prove by tracing that every call still returns the same value — demonstrating EK AAP-3.B.7 firsthand.",
+        "Point deep-dive students at the Topic 3.13 coding practice to build a procedure with an early-RETURN guard, then explain how moving the RETURN earlier changes which statements run."
+      ]
+    },
+    "discussion": [
+      "Your store copy-pasted one formula for every product. Beyond 'less typing,' what does giving that formula a single name actually change about how the whole program can grow and be maintained?",
+      "You call DISPLAY and RANDOM every day without ever seeing their code. What does that reveal about how much of programming is trusting abstractions someone else wrote — and what has to be true for that trust to be safe?",
+      "A teammate makes a procedure twice as fast without changing any result. Should they have to tell everyone who calls it? Use 'what it does is preserved' to defend your answer, and name a case where they WOULD have to tell everyone."
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

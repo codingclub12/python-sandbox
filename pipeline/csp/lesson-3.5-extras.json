@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "lessonId": "3.5",
+    "lessonTitle": "Boolean Expressions",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-2.E, AAP-2.F"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-2.E, AAP-2.F",
+    "intro": "Everything for this topic lives in this folder. Topic 3.5 gives students the Boolean value and the operators that produce and combine it — the raw material of every decision a program makes. It ships an interactive, auto-graded coding-practice page built on the same amusement-park gate scenario the paper exercises use. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (Boolean values; the six relational operators) and Day 2 (the logical operators NOT, AND, OR). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Gate and Exercise 2: Write the Rule (student + answer KEY)",
+      "Discussion — At Least, or More Than? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.E and AAP-2.F, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-5-boolean-expressions"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-5-boolean-expressions-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-5-boolean-expressions-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-5-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-5-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-5-boolean-expressions"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: Boolean values and relational operators; Day 2: NOT, AND, OR). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real Boolean expressions and checks each result, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.5 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.6 (Conditionals) begins immediately after the quiz, and it acts directly on the Boolean values defined here."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Gate",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-5-exercise-1",
+    "intro": "You are the operator at The Gauntlet's entry gate, reading each rider's data off their wristband and evaluating the ride's rules by hand. The table below lists comparisons and logical expressions in exam pseudocode; the rider's values are given. Your job is to EVALUATE each expression to true or false — substitute the values, then decide — and answer questions about who boards. This is the core skill for LO AAP-2.E and AAP-2.F: read a Boolean expression and determine its single true-or-false value.",
+    "scenarioTitle": "The Gauntlet Entry Gate: One Rider's Wristband",
+    "narrative": "This rider's wristband reads: height = 48, age = 10, hasTicket = true, rideOpen = true, isVIP = false. Evaluate each expression using those values. For a relational comparison, substitute the numbers and judge true or false. For a logical expression, evaluate each operand to a Boolean first, then apply NOT, AND, or OR. Remember: ≥ and ≤ include the boundary, and OR is inclusive.",
+    "log": {
+      "columns": [
+        "Line",
+        "Expression",
+        "Substitute the values",
+        "Evaluates to",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "1",
+          "height ≥ 48",
+          "48 ≥ 48",
+          "true",
+          "≥ includes the boundary, so the exactly-48 rider passes"
+        ],
+        [
+          "2",
+          "height > 48",
+          "48 > 48",
+          "false",
+          "strict > excludes 48 — same numbers as line 1, opposite result"
+        ],
+        [
+          "3",
+          "age > 12",
+          "10 > 12",
+          "false",
+          "10 is not greater than 12, so this rider is under the solo-ride age"
+        ],
+        [
+          "4",
+          "height ≥ 48 AND hasTicket",
+          "true AND true",
+          "true",
+          "AND needs BOTH operands true; both are, so the rider may board"
+        ],
+        [
+          "5",
+          "isVIP OR hasTicket",
+          "false OR true",
+          "true",
+          "OR needs at least one true; hasTicket supplies it"
+        ],
+        [
+          "6",
+          "NOT rideOpen",
+          "NOT true",
+          "false",
+          "NOT reverses true to false — the gate is not shut, since the ride is open"
+        ]
+      ]
+    },
+    "scenarioNote": "Expressions use the AP Computer Science Principles Exam Reference Sheet relational operators (=, ≠, >, <, ≥, ≤) and logical operators (NOT, AND, OR); notation follows the sheet (Effective Fall 2023).",
+    "predict": "Before you answer Part A, predict in one sentence: with this wristband, will the full rule 'height ≥ 48 AND hasTicket AND rideOpen' let the rider board? Why or why not?",
+    "partALabel": "Part A - Evaluate the Expressions",
+    "partA": [
+      {
+        "ek": "EK AAP-2.E.2",
+        "pts": 4,
+        "q": "Lines 1 and 2 use the SAME numbers (48 and 48) but give opposite results. Evaluate each, and explain in one sentence exactly which operator difference causes the opposite outcome.",
+        "answer": "Line 1, height ≥ 48, is 48 ≥ 48 → true, because greater-than-or-equal INCLUDES the boundary value, so the exactly-48 rider counts. Line 2, height > 48, is 48 > 48 → false, because strict greater-than EXCLUDES the boundary, so exactly 48 does not count. The only difference is the operator: ≥ includes the equal case and > drops it (EK AAP-2.E.2). Full credit requires naming the include-versus-exclude boundary as the cause."
+      },
+      {
+        "ek": "EK AAP-2.F.3",
+        "pts": 4,
+        "q": "Evaluate line 4, height ≥ 48 AND hasTicket, showing each operand first. Then state what would happen to the result if hasTicket were false, and why.",
+        "answer": "First evaluate each operand: height ≥ 48 is 48 ≥ 48 → true, and hasTicket is true. So the expression is true AND true → true (EK AAP-2.F.3): AND is true only when BOTH operands are true, and both are, so the rider may board. If hasTicket were false, the expression would be true AND false → false, because a single false operand makes an AND false no matter what the other operand is. AND demands that every condition be true."
+      },
+      {
+        "ek": "EK AAP-2.F.4",
+        "pts": 4,
+        "q": "Evaluate line 5, isVIP OR hasTicket. This rider is not a VIP. Explain why the expression is still true, and state the only situation in which this OR would be false.",
+        "answer": "Evaluate the operands: isVIP is false, hasTicket is true. So the expression is false OR true → true (EK AAP-2.F.4): OR is true when AT LEAST ONE operand is true, and hasTicket supplies that one true. Being a non-VIP does not matter, because OR does not require both. The only situation in which this OR is false is when BOTH operands are false — a rider who is neither a VIP nor a ticket holder. OR is false only when every operand is false."
+      },
+      {
+        "ek": "EK AAP-2.F.2",
+        "pts": 3,
+        "q": "Evaluate line 6, NOT rideOpen, and explain in your own words what NOT did to the value it was given. Did it change the variable rideOpen?",
+        "answer": "rideOpen is true, so NOT rideOpen is NOT true → false (EK AAP-2.F.2): NOT reverses the Boolean it is given, turning true into false. It represents 'the gate is shut,' which is false here because the ride is open. NOT did NOT change the variable rideOpen — it only READ rideOpen's value and evaluated to the opposite Boolean; rideOpen is still true. A logical operator produces a new Boolean result without altering its operand."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.F.4",
+        "pts": 3,
+        "q": "A classmate says 'if isVIP and hasFastPass are BOTH true, then isVIP OR hasFastPass must be false, because you can't use both perks.' Explain precisely why this is wrong using the reference-sheet definition of OR.",
+        "answer": "The classmate is applying everyday exclusive 'or,' but code's OR is INCLUSIVE. Per EK AAP-2.F.4, condition1 OR condition2 is true if condition1 is true, or condition2 is true, OR if both are true. So with isVIP and hasFastPass both true, isVIP OR hasFastPass is true — both-true still makes OR true, not false. The only way this OR is false is if BOTH operands are false. Whether the guest could 'use both perks' in real life is irrelevant to how the operator evaluates."
+      },
+      {
+        "ek": "EK AAP-2.E.2 / AAP-2.F.2",
+        "pts": 3,
+        "q": "Write an expression that is true exactly when a rider is NOT tall enough (the minimum is 48 inches). Then evaluate it for a rider whose height is 45, showing every step.",
+        "answer": "Being tall enough is height ≥ 48, so 'not tall enough' is NOT (height ≥ 48). Evaluate for height = 45: the inner comparison is 45 ≥ 48 → false (EK AAP-2.E.2), and NOT false → true (EK AAP-2.F.2). So the expression is true, correctly reporting that a 45-inch rider is not tall enough. (An equivalent correct answer is height < 48, which is 45 < 48 → true; either expression earns full credit as long as the evaluation is shown.)"
+      },
+      {
+        "ek": "EK AAP-2.F.3 / AAP-2.F.4",
+        "pts": 2,
+        "q": "ENRICHMENT: The full boarding rule is height ≥ 48 AND hasTicket AND rideOpen. Explain why one false operand anywhere makes the whole rule false, and contrast that with how an OR of the same three operands would behave.",
+        "answer": "AND is true only when EVERY operand is true (EK AAP-2.F.3), so a single false operand — a too-short rider, a missing ticket, or a closed ride — collapses the whole AND to false, regardless of the others; the rule is deliberately strict because every condition must pass to board. An OR of the same three operands (height ≥ 48 OR hasTicket OR rideOpen) would be the opposite: true the moment ANY one is true, and false only if all three were false (EK AAP-2.F.4). AND is hardest to satisfy; OR is easiest — which is exactly why boarding uses AND and the express lane uses OR."
+      },
+      {
+        "ek": "LO AAP-2.E, AAP-2.F",
+        "pts": 0,
+        "q": "Next step: you evaluated these by hand. Now head to the Topic 3.5 page and type and run the harder versions, where the computer checks each Boolean result for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Write the Rule",
+    "minutes": "25 minutes",
+    "subtitle": "5 gate rules - write the Boolean expression",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-5-exercise-2",
+    "intro": "You are programming the entry gate for The Gauntlet. For each posted rule below, WRITE the Boolean expression that decides who is allowed, using the reference-sheet operators (=, ≠, >, <, ≥, ≤, NOT, AND, OR) and the variable names given. The decisions that trip people up are the boundary words — 'at least' versus 'more than' — and choosing AND versus OR. Vague answers like 'check the height' score zero; write the actual expression.",
+    "standard": "CB Standard (required): the correct Boolean expression for each rule, using the right relational and/or logical operator and the given variable names, for all 5 rules. Enrichment (optional): note a boundary or inclusive/exclusive subtlety that would change the expression (EK AAP-2.E.2 / AAP-2.F.4).",
+    "methodHeading": "Three-Step Method - use for every rule",
+    "method": [
+      [
+        "Step 1 - Translate the boundary word",
+        "'At least' / 'or older' / 'no more than' include the boundary → ≥ or ≤. 'More than' / 'fewer than' / 'over' exclude it → > or <. 'Exactly' → =; 'anything but' → ≠."
+      ],
+      [
+        "Step 2 - Decide AND vs OR (if there are two conditions)",
+        "'Must have BOTH' or the rule uses 'and' → AND. 'Either one is enough' or the rule uses 'or' → OR (remember OR is inclusive). A single flipped state ('is not open') → NOT."
+      ],
+      [
+        "Step 3 - Write it with the given variable names",
+        "Use the exact variable names provided (height, age, hasTicket, ...). The result must be a Boolean expression, not a sentence — something that evaluates to true or false."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (boundary and inclusive/exclusive judgment): The hardest part of writing a Boolean rule is the edge. A rule that says 'at least 48' behaves differently from 'taller than 48' for the one rider who is exactly 48, and an OR quietly admits the both-true case that everyday 'or' would exclude. When you finish, move to the Topic 3.5 coding page to type these rules and run them against real rider values.",
+    "fields": [
+      "The relational/logical operator the boundary word points to:",
+      "The Boolean expression (using the given variable names):",
+      "Enrichment — a boundary or inclusive/exclusive subtlety:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Rule: a rider may board only if they are AT LEAST 48 inches tall. Variable: height.",
+        "key": {
+          "signs": "'At least 48' includes the exactly-48 rider, so the boundary counts. That points to greater-than-or-equal, not strict greater-than (EK AAP-2.E.2).",
+          "mechanism": "Write height ≥ 48. This comparison evaluates to true for any rider 48 inches or taller and false for anyone shorter — a single Boolean value the gate can act on. Using height > 48 would be the classic error, turning away a rider who is exactly at the minimum.",
+          "subtype": "The whole decision hinges on one rider: the exactly-48 case. height ≥ 48 admits them; height > 48 rejects them. Whenever a rule says 'at least,' 'or older,' or 'minimum,' reach for the operator with the line under it."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Rule: the wait-time sign should light up only when the wait is MORE THAN 30 minutes. Variable: waitTime.",
+        "key": {
+          "signs": "'More than 30' excludes 30 itself — a 30-minute wait should NOT light the sign. That points to strict greater-than (EK AAP-2.E.2).",
+          "mechanism": "Write waitTime > 30. It is true only when the wait exceeds 30 and false at exactly 30 or below. Contrast with Scenario 1: 'more than' drops the boundary, while 'at least' would keep it — the same reason, opposite operator.",
+          "subtype": "If the rule instead read 'no more than 30' (waitTime ≤ 30) or '30 or longer' (waitTime ≥ 30), the operator would change. The English boundary word alone decides between > , ≥, <, and ≤."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "Rule: a rider may board only if they are tall enough AND they hold a ticket. Variables: tallEnough (Boolean), hasTicket (Boolean).",
+        "key": {
+          "signs": "Two conditions must BOTH hold — the word 'and' and 'only if ... and ...' signal that a missing ticket or insufficient height should block boarding. That is the AND operator (EK AAP-2.F.3).",
+          "mechanism": "Write tallEnough AND hasTicket. It is true only when both operands are true, and false the moment either is false. Both operands are already Booleans, which is exactly what a logical operator requires (EK AAP-2.F.5).",
+          "subtype": "AND is the strict gate: every condition must pass. If the rule added a third requirement — the ride is open — you would extend it to tallEnough AND hasTicket AND rideOpen, and any one false operand would still make the whole rule false."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "Rule: a guest may use the express lane if they are a VIP OR they hold a fast pass (having both is fine). Variables: isVIP (Boolean), hasFastPass (Boolean).",
+        "key": {
+          "signs": "Either qualification is enough, and 'having both is fine' explicitly allows the both-true case. That is inclusive OR (EK AAP-2.F.4).",
+          "mechanism": "Write isVIP OR hasFastPass. It is true when at least one operand is true — including when both are — and false only when both are false. The parenthetical 'having both is fine' is a direct hint that OR must be inclusive, not the exclusive 'one or the other' of everyday speech.",
+          "subtype": "If someone wrote a rule to EXCLUDE guests who have both, plain OR would not express it — that would need extra logic beyond this course. For AAP-2.F, OR always means inclusive-or: both-true is still true."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "Rule: the gate should stay SHUT whenever the ride is NOT open. Variable: rideOpen (Boolean).",
+        "key": {
+          "signs": "The rule is stated as the reverse of an existing Boolean — 'shut' is the opposite of 'open.' Flipping a single Boolean is the job of NOT (EK AAP-2.F.2).",
+          "mechanism": "Write NOT rideOpen. When rideOpen is false, NOT rideOpen is true (the gate is shut); when rideOpen is true, NOT rideOpen is false (the gate opens). NOT takes one Boolean operand and evaluates to its opposite, without changing rideOpen itself.",
+          "subtype": "NOT's operand can be a variable or a whole comparison: NOT (height ≥ 48) is true exactly when a rider is not tall enough. Wrapping a comparison in NOT is a compact way to write the negative of a rule you already have."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "At Least, or More Than?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "A single word — 'at least' versus 'more than,' 'and' versus 'or' — can flip who a program lets in. Boolean expressions look simple because they only ever evaluate to true or false, yet the boundary cases and the inclusive-OR rule are where real bugs and lost exam points hide. Across three short windows, your group will pin down why a comparison can only ever be true or false, decide how a single boundary word changes an operator, and settle the inclusive-OR argument that fools almost everyone.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Every card in the bell ringer produced one of only two answers, yes or no. Why is it useful for a computer that a comparison can ONLY ever be true or false — what would break if 'sort of' were a legal answer?"
+          },
+          {
+            "text": "Question 2. Your group probably argued about the two 48 cards. In plain English, what is the difference between 'at least 48' and 'more than 48,' and who exactly does that difference affect?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the evaluate-the-comparison table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The boundary-word map",
+            "text": "For threshold rules, the English wording alone chooses the operator. In one list your whole group agrees on, match each phrase to its operator: 'at least,' 'more than,' 'no more than,' 'fewer than,' 'exactly,' 'anything but.'",
+            "lines": 3
+          },
+          {
+            "label": "Task B - Find a rule that fights back",
+            "text": "Debate for about 3 minutes: name one real-world rule (a speed limit, an age restriction, a discount) where your group DISAGREES about whether the boundary value is included. Record the rule and the two defensible operators, then state the piece of wording that would settle it.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The OR that fools everyone",
+            "text": "Consider: isVIP OR hasFastPass, with BOTH true. Everyday 'or' says one or the other, so many people's gut says false; the answer is true. As a group, write the clearest one-paragraph explanation you can of WHY it is true — one a nervous classmate would actually understand — using the words 'inclusive' and 'at least one.' Then state the only combination that makes this OR false.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'OR means exactly one' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

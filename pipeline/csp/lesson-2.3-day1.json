@@ -1,0 +1,658 @@
+{
+  "meta": {
+    "lessonId": "2.3",
+    "lessonTitle": "Extracting Information from Data",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 2: Data",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO DAT-2.A, DAT-2.B",
+    "anchor": "Extracting Information from Data",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 2 · Topic 2.3 · Day 1 of 2",
+      "title": "The Numbers Are Talking",
+      "subtitle": "How raw tables turn into claims, why 'moves together' never means 'caused it' — and what the data about your data quietly reveals",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 2.3 changes the question. Topics 2.1 and 2.2 were about how data is stored and squeezed; this topic is about what data can actually SAY. Today, Day 1, has two jobs: extracting information from data — including the single most-tested trap in this Big Idea, correlation versus causation — and then metadata, the data about your data, which reveals more than most people suspect. Tomorrow is the flip side: everything that goes wrong when you try to process real, messy data."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Describe the information that can be extracted from data — trends, connections, and problems to address — and explain why a correlation alone never establishes causation (LO DAT-2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Describe the information that can be extracted from metadata, and explain why changes to metadata never change the primary data (LO DAT-2.B)"
+        }
+      ],
+      "script": "Two targets today, one per learning objective. First, DAT-2.A: pulling information out of raw data — what a table can support, what it cannot prove, and when you need a second source. Second, DAT-2.B: metadata, the data that describes other data, and the exam's favorite fact about it — that editing metadata leaves the primary data untouched. Both objectives are pure Big-Idea-2 exam territory."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A (fictional) slice of our class's music-streaming survey: Ava — 412 streams, 6.1 hrs sleep, grade 88. Ben — 95 streams, 8.4 hrs, grade 91. Cam — 388 streams, 6.0 hrs, grade 74. Dee — 120 streams, 8.1 hrs, grade 90. Eli — 401 streams, 6.3 hrs, grade 79.",
+      "subprompt": "Write two lists: (1) claims this table SUPPORTS, and (2) claims it CANNOT prove. Does heavy streaming cause less sleep? How would you find out for sure?",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own. Five rows of raw survey numbers — streams, sleep, grades. Build two lists: what the table genuinely supports, and what it cannot prove no matter how convincing it looks. Then take a position on the causation question: does heavy streaming CAUSE less sleep, and what would it take to find out? Keep your answer — the gap between your two lists is exactly the gap between data and information, and it is where this whole topic lives."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "From Data to Information",
+          "description": "Facts and patterns, trends and connections, correlation vs. causation, combining sources (EK DAT-2.A.1–A.4)."
+        },
+        {
+          "title": "Metadata: Data About Data",
+          "description": "What metadata is, what it's for, and why editing it never touches the primary data (EK DAT-2.B.1–B.5)."
+        },
+        {
+          "title": "Deep Dive: The Photo That Knew Too Much",
+          "description": "How the hidden metadata inside one photo gave away a fugitive's location.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 2.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Here's today's Guided Notes map: two green CB-required sections — from data to information, then metadata — plus a blue deep-dive about a photo whose hidden metadata told the world where its subject was hiding. Keep the packet open and fill it in as we go; if you were absent or lost the packet, a digital copy lives on the Topic 2.3 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "From Data to Information",
+      "kicker": "Facts, Patterns, and Honest Claims · Learning Objective DAT-2.A",
+      "script": "Section one. Your bell-ringer table was data — raw values sitting in rows. The two lists you wrote were your first attempt at extracting information from it, and the College Board has precise vocabulary for every move you just made. Including the move you should never make."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO DAT-2.A)",
+      "terms": [
+        {
+          "term": "Data",
+          "definition": "The raw facts and values that get collected — the stream counts and sleep hours before anyone finds a pattern in them (EK DAT-2.A.1)."
+        },
+        {
+          "term": "Information",
+          "definition": "The collection of facts and patterns extracted from data — the meaning you pull out, like 'heavy streamers report less sleep' (EK DAT-2.A.1)."
+        },
+        {
+          "term": "Correlation",
+          "definition": "A relationship digitally processed data may reveal, in which two variables move together — when one changes, the other tends to change too (EK DAT-2.A.3)."
+        },
+        {
+          "term": "Causal relationship",
+          "definition": "A relationship in which one variable actually makes the other change. A correlation found in data does not necessarily indicate that a causal relationship exists — additional research is needed (EK DAT-2.A.3)."
+        }
+      ],
+      "script": "Four words that carry the section. Data is the raw material — the values themselves, before interpretation. Information is what you extract: the collection of facts and patterns pulled from that data. Correlation is a pattern where two variables move together, like streams up and sleep down in the bell ringer. And a causal relationship is the much stronger claim that one variable actually drives the other. The distance between those last two terms is the most-tested idea in this topic: finding a correlation never, by itself, proves causation."
+    },
+    {
+      "type": "concept",
+      "heading": "What You Can Claim — and When You Can't",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Data provide opportunities for identifying trends, making connections, and addressing problems (EK DAT-2.A.2).",
+        "Digitally processed data may show a correlation between variables — they move together (EK DAT-2.A.3).",
+        "A correlation does NOT necessarily indicate a causal relationship exists; additional research is needed to understand the exact nature of the relationship (EK DAT-2.A.3).",
+        "Often, a single source does not contain the data needed to draw a conclusion — it may be necessary to combine data from a variety of sources (EK DAT-2.A.4)."
+      ],
+      "script": "Here is the honest-claims playbook. Data creates three kinds of opportunity: identifying trends, making connections, and addressing problems — the CED names all three. Processing data digitally often surfaces correlations, and your bell-ringer table had a strong one: more streams, less sleep. But the College Board is emphatic about the limit: a correlation does not necessarily indicate a causal relationship, and additional research is needed to understand what is really going on. And when one table can't answer the question — like WHY streaming spiked — the move is to combine data from other sources, not to squint harder at the source you have.",
+      "capture": [
+        {
+          "q": "Data provide opportunities for identifying trends, making connections, and ______.",
+          "a": "addressing problems (EK DAT-2.A.2)"
+        },
+        {
+          "q": "A correlation found in data does not necessarily indicate ______.",
+          "a": "that a causal relationship exists — additional research is needed (EK DAT-2.A.3)"
+        },
+        {
+          "q": "When a single source can't support a conclusion, it may be necessary to ______.",
+          "a": "combine data from a variety of sources (EK DAT-2.A.4)"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The Data Proves It Caused It”",
+      "misconception": "If two variables rise and fall together in a dataset, one of them must be causing the other.",
+      "whyItHappens": "Human brains are pattern-matchers: 'moves together' feels like 'makes it happen,' and headlines reward the stronger, more dramatic claim.",
+      "correction": "Digitally processed data may show correlation between variables, but a correlation does not necessarily indicate that a causal relationship exists. Additional research is needed to understand the exact nature of the relationship (EK DAT-2.A.3).",
+      "example": "Ice cream sales and drowning incidents rise together every summer. Ice cream doesn't cause drowning — hot weather drives both. A hidden third variable is often the real explanation, which is exactly why more research is required before claiming cause.",
+      "script": "Here is the trap this topic is famous for. Two variables moving together feels like proof that one drives the other, and our bell ringer baited it deliberately: streams up, sleep down — so streaming must be stealing sleep, right? Not established. Maybe stress causes both late-night streaming and short sleep; maybe night owls just stream more. The classic example is ice cream sales and drownings rising together every summer — the hidden third variable is hot weather. The CED's exact standard: correlation does not necessarily indicate causation, and additional research is needed."
+    },
+    {
+      "type": "two_column",
+      "heading": "One Source vs. Combined Sources",
+      "subheading": "Often the table in front of you cannot answer the question by itself (EK DAT-2.A.4).",
+      "left": {
+        "title": "A single source",
+        "definition": "Often does not contain the data needed to draw a conclusion",
+        "ek": "EK DAT-2.A.4",
+        "examples": [
+          "The streaming export shows streams fell in May — but nothing about WHY",
+          "An attendance sheet shows a dip — but holds no weather, no schedule, no context",
+          "You can see THAT something happened, not what explains it"
+        ]
+      },
+      "right": {
+        "title": "Combined sources",
+        "definition": "Merging data from a variety of sources supplies what one source lacks",
+        "ek": "EK DAT-2.A.4",
+        "examples": [
+          "Streams + the school calendar: the May drop lands exactly on exam week",
+          "Attendance + weather records: the dip matches three storm days",
+          "Each source contributes a piece of the conclusion neither supports alone"
+        ]
+      },
+      "footer": "AP TIP: When a stem says one dataset 'is not enough to conclude,' the credited move is combining it with a DIFFERENT source — not collecting more of the same.",
+      "script": "Two columns, one professional habit. A single source usually shows you that something happened without telling you why: the streaming export sees the May drop but contains no calendar, no context. Combine it with a second source — the school calendar — and the drop lands exactly on exam week, and suddenly a conclusion is in reach. The CED states this directly: often a single source does not contain the data needed, and combining sources may be necessary to formulate a conclusion. On the exam, when a question says one dataset isn't enough, the credited answer adds a different source, not more rows of the same one.",
+      "capture": [
+        {
+          "q": "Often, a single source does not contain ______.",
+          "a": "the data needed to draw a conclusion (EK DAT-2.A.4)"
+        },
+        {
+          "q": "Combining data from a variety of sources lets you ______.",
+          "a": "formulate a conclusion that no single source supports alone"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Claims Under Oath",
+      "subheading": "These map to LO DAT-2.A. Complete on your Guided Notes.",
+      "prompts": [
+        "Using the bell-ringer table: write one piece of INFORMATION the raw numbers genuinely support, and name the data it was extracted from.",
+        "A headline reads: 'Study finds students who stream more music get lower grades — streaming hurts GPA.' Which part is correlation, which part is the leap, and what additional research would be needed?",
+        "A principal wants to know WHY streaming spiked in May, but the app export alone can't say. Name a second source to combine with it, and state the conclusion the combination could support."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.3 page.",
+      "script": "Stop and think — full sentences on your Guided Notes. One: extract a defensible piece of information from the bell-ringer table and point at the data behind it. Two: dissect the headline — the correlation is real, the 'hurts' is the leap, and your answer should say what research would separate them. Three: play analyst for the principal — pick a second source and state exactly what the combined data could conclude that the export alone could not. A few students will be called on to share before we move to metadata."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Metadata: Data About Data",
+      "kicker": "The Describing Layer · Learning Objective DAT-2.B",
+      "script": "Section two. Every file you own carries a second, quieter layer of data: when it was made, how big it is, where it came from. That layer is metadata — data about data — and it is so useful that entire features of every app you use are built on it. It also stars in one of the exam's cleanest facts."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO DAT-2.B)",
+      "terms": [
+        {
+          "term": "Metadata",
+          "definition": "Data about data — the piece of data may be an image, while the metadata may include the date of creation or the file size of the image (EK DAT-2.B.1)."
+        },
+        {
+          "term": "Primary data",
+          "definition": "The data itself — the image, song, or document that metadata describes. Changes and deletions made to metadata do not change the primary data (EK DAT-2.B.2)."
+        }
+      ],
+      "script": "Two terms, one relationship. Metadata is data about data: if the data is a photo, the metadata is the date it was taken, its file size, the camera settings. The primary data is the thing itself — the actual pixels, the actual audio, the actual text. Hold onto the direction of that relationship, because the exam's favorite question about it is what happens to the primary data when you edit the metadata. The answer: nothing."
+    },
+    {
+      "type": "concept",
+      "heading": "What Metadata Is For",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Metadata are used for finding, organizing, and managing information (EK DAT-2.B.3).",
+        "Metadata can increase the effective use of data or data sets by providing additional information (EK DAT-2.B.4).",
+        "Metadata allow data to be structured and organized (EK DAT-2.B.5).",
+        "Changes and deletions made to metadata do NOT change the primary data (EK DAT-2.B.2)."
+      ],
+      "script": "Metadata earns its keep three ways, and the CED names all three: finding, organizing, and managing information. When you search your photos by date, filter songs by artist, or sort files by size, you never touch the primary data — the metadata does all the work. That's why metadata increases the effective use of a dataset: it adds a layer of information that makes the underlying data structurable and organizable. And the clean exam fact: change the metadata, delete the metadata — the primary data is untouched. Removing a photo's location tag does not alter one pixel.",
+      "capture": [
+        {
+          "q": "Metadata are used for finding, ______, and managing information.",
+          "a": "organizing (EK DAT-2.B.3)"
+        },
+        {
+          "q": "Metadata increase the effective use of data by ______.",
+          "a": "providing additional information (EK DAT-2.B.4)"
+        },
+        {
+          "q": "If you edit or delete a photo's metadata, the photo itself ______.",
+          "a": "is untouched — metadata edits never alter the primary data"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Data or Metadata?",
+      "context": "Five items from one phone. Classify each: is it the primary data, or metadata describing it?",
+      "columns": [
+        "Item",
+        "Data or metadata?",
+        "How you can tell"
+      ],
+      "rows": [
+        [
+          "The pixels of a vacation photo",
+          "Primary data",
+          "It IS the content — the thing itself"
+        ],
+        [
+          "The photo's date taken and file size",
+          "Metadata",
+          "Data ABOUT the photo, not the picture itself (EK DAT-2.B.1)"
+        ],
+        [
+          "The audio of a song",
+          "Primary data",
+          "The content you actually hear"
+        ],
+        [
+          "The song's artist, length, and date added",
+          "Metadata",
+          "Describes the song — lets the app find, sort, and organize it (EK DAT-2.B.3)"
+        ],
+        [
+          "You delete the photo's location tag — the picture is now...",
+          "Unchanged",
+          "Changes and deletions to metadata do not change the primary data (EK DAT-2.B.2)"
+        ]
+      ],
+      "highlightCol": 1,
+      "blanks": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "script": "Five items, one sorting rule: is it the content itself, or does it describe the content? The photo's pixels and the song's audio are primary data — they ARE the thing. The date taken, the file size, the artist, the length, the date added — all metadata, all describing the thing, all powering the find-sort-organize features of the phone. The last row is the exam fact in action: delete the location tag and the picture is unchanged, because edits to metadata never touch the primary data. Complete the middle column on your notes as each row is worked."
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: The Photo That Knew Too Much",
+      "track": "enrichment",
+      "bullets": [
+        "Smartphones quietly embed metadata in every photo: GPS coordinates, timestamp, device model, camera settings (the EXIF standard).",
+        "In 2012, a magazine posted a photo of a tech tycoon hiding from authorities abroad — the photo's GPS metadata pointed to his exact location in Guatemala.",
+        "The image looked like an ordinary portrait; the metadata was the leak. Nothing in the pixels gave him away.",
+        "Major social platforms now strip EXIF metadata on upload — and stripping it leaves the image itself pixel-for-pixel identical."
+      ],
+      "script": "A deep dive beyond the exam, but it makes metadata unforgettable. Every smartphone photo carries an invisible EXIF layer: GPS, timestamp, device, settings. In 2012, journalists photographed a tech tycoon who was hiding from authorities, and posted it online — and the photo's GPS metadata handed the world his exact coordinates in Guatemala. The pixels revealed nothing; the metadata revealed everything. It's also a perfect proof of the B.2 rule: platforms now strip that metadata on upload, and the stripped image is pixel-for-pixel identical, because removing metadata never changes the primary data.",
+      "capture": [
+        {
+          "q": "A smartphone photo's hidden metadata can include ______.",
+          "a": "GPS coordinates, timestamp, device model, and camera settings"
+        },
+        {
+          "q": "Stripping a photo's metadata leaves the image ______.",
+          "a": "pixel-for-pixel identical — metadata changes never alter the primary data"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Reading the Describing Layer",
+      "subheading": "These map to LO DAT-2.B. Complete on your Guided Notes.",
+      "prompts": [
+        "A song file's metadata lists artist, length, and date added. In two sentences, explain the difference between the song's primary data and its metadata.",
+        "You remove the location tag from a photo before posting it. A classmate worries the picture is now damaged. Correct them, citing what changes to metadata do to primary data.",
+        "Your music app instantly builds a 'Most played this month' playlist. Which metadata makes that possible, and which job — finding, organizing, or managing — is it doing?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 2.3 page.",
+      "script": "Three prompts, full sentences. One: primary data versus metadata for a song — the audio is the thing, the artist and length describe the thing. Two: reassure the classmate with the CED's own rule — deleting the location tag changes nothing about the picture. Three: reverse-engineer the playlist feature — play counts and dates are metadata, and building that playlist is metadata doing its finding-and-organizing job. Answers are reviewed as a class before the close."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Information is the collection of facts and patterns EXTRACTED from data — data is the raw material (EK DAT-2.A.1–A.2)",
+        "Correlation is never proof of causation — additional research is required (EK DAT-2.A.3)",
+        "One source often can't support a conclusion; combining sources can (EK DAT-2.A.4)",
+        "Metadata is data about data — it powers finding, organizing, and managing, and editing it never changes the primary data (EK DAT-2.B.1–B.5)"
+      ],
+      "nextPoints": [
+        "Day 2: what goes WRONG when you process real data — cleaning, incomplete and invalid values (LO DAT-2.C)",
+        "Why bias survives bigger datasets, and when one computer stops being enough",
+        "Deep dive: how a billion rows actually get counted"
+      ],
+      "teaser": "Tomorrow's disaster preview: a survey asked 'What city are you from?' — and six students from the SAME city produced five different answers. Before tomorrow, predict: what happens when a computer tries to count them?",
+      "script": "That's Day 1. Data is raw; information is the facts and patterns you extract from it. Correlation never proves causation on its own — additional research, always. One source often can't carry a conclusion, so analysts combine sources. And metadata — data about data — powers every find, sort, and organize feature you use, while edits to it never touch the primary data. Tomorrow the survey data comes back dirty: here's the teaser — six students from the same city wrote five different answers to 'What city are you from?' Predict what happens when a computer counts them. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 2.3 — Extracting Information from Data — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "An analyst finds that neighborhoods with more coffee shops also have higher average incomes, and concludes that opening coffee shops raises a neighborhood's income. What is the flaw in this conclusion?",
+        "options": [
+          "The data set was too small to show any correlation between the two variables",
+          "A correlation found in data does not necessarily indicate a causal relationship; additional research is needed",
+          "Income data and business data can never be combined into one analysis",
+          "Digitally processed data cannot reveal relationships between two variables"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-2.A.3",
+        "rationale": "EK DAT-2.A.3 states that digitally processed data may show correlation between variables, but a correlation does not necessarily indicate that a causal relationship exists — additional research is needed to understand the exact nature of the relationship. Here the causation could run backward (wealthy areas attract coffee shops) or a third factor could drive both. A is wrong because a correlation WAS found; sample size is not the named flaw. C is false — combining sources is normal and often necessary (EK DAT-2.A.4). D contradicts the EK, which says processed data may show correlation between variables."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A student wants to know whether bad weather lowered attendance at school events, but the event-attendance spreadsheet contains no weather information. What should the student do?",
+        "options": [
+          "Conclude that weather had no effect, since the attendance data does not mention it",
+          "Collect several more years of attendance data from the same spreadsheet",
+          "Treat the attendance drop by itself as proof that the weather caused it",
+          "Combine the attendance data with weather data from another source to formulate a conclusion"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-2.A.4",
+        "rationale": "EK DAT-2.A.4 states that a single source often does not contain the data needed to draw a conclusion, and it may be necessary to combine data from a variety of sources. The attendance sheet alone cannot connect dips to weather; adding a weather source can. A confuses 'absent from this source' with 'no effect.' B collects more of the same source, which still contains no weather data. C repeats the correlation-causation leap — and here not even a correlation has been established yet."
+      },
+      {
+        "id": "Q3",
+        "kind": "multi",
+        "stem": "Data provide opportunities for which of the following? I. Identifying trends. II. Making connections. III. Addressing problems.",
+        "options": [
+          "I, II, and III",
+          "I and II only",
+          "II and III only",
+          "I only"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-2.A.2",
+        "rationale": "EK DAT-2.A.2 names all three opportunities verbatim: data provide opportunities for identifying trends, making connections, and addressing problems. B wrongly drops problem-solving, which the EK explicitly includes. C drops trend identification — the most familiar use of data. D reflects the misconception that data only describes and never guides action; the EK says otherwise."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A smartphone stores a photo along with the date it was taken, its file size, and the camera settings used. Which statement correctly identifies the metadata?",
+        "options": [
+          "The image is the metadata — a photograph is itself a description of the world",
+          "The camera app is the metadata — it produced and stored the image",
+          "The date, file size, and camera settings are metadata — data about the image",
+          "Nothing here is metadata — metadata exist only for text documents"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-2.B.1",
+        "rationale": "EK DAT-2.B.1 defines metadata as data about data, using this exact example: the piece of data may be an image, while the metadata may include the date of creation or the file size. The image is the primary data; the date, size, and settings describe it. A inverts the relationship — describing the world doesn't make the image metadata. B confuses the tool that created the data with data about the data. D invents a text-only restriction that appears nowhere in the CED; images, songs, and videos all carry metadata."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "Before sharing a document, a writer deletes its metadata — the author name, edit history, and creation date. What happens to the document's text?",
+        "options": [
+          "The text becomes unreadable until the metadata are restored from a backup",
+          "Nothing — changes and deletions made to metadata do not change the primary data",
+          "The text shrinks in size — deleting metadata compresses the primary data",
+          "The most recent edits to the text are lost along with the deleted edit history"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-2.B.2",
+        "rationale": "EK DAT-2.B.2 states that changes and deletions made to metadata do not change the primary data. The document's text — the primary data — is untouched when its describing layer is removed. A invents a dependency: primary data never requires its metadata to be readable. C confuses metadata removal with compression (Topic 2.2); the text itself is unchanged. D confuses the RECORD of edits (metadata) with the edits themselves — deleting the history does not undo the text changes it described."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A music app lets users instantly filter thousands of songs by artist, release year, or date added, without opening a single audio file. This feature works because:",
+        "options": [
+          "Metadata are used for finding, organizing, and managing information",
+          "The app stores a complete extra copy of every song for each filter option",
+          "The audio content of each song secretly contains its own release year",
+          "Filtering the library permanently rewrites each song's primary audio data"
+        ],
+        "answer": "A",
+        "ek": "EK DAT-2.B.3",
+        "rationale": "EK DAT-2.B.3 states that metadata are used for finding, organizing, and managing information — exactly what artist, year, and date-added filters do, and why no audio file needs to be opened (metadata also increases effective use of the data set, EK DAT-2.B.4). B describes an absurdly wasteful design no app uses; the whole point of metadata is avoiding it. C is false — release year is metadata about the audio, not part of the waveform. D contradicts EK DAT-2.B.2: organizing by metadata never rewrites the primary data."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A survey's open text field for 'favorite subject' contains 'CS', 'comp sci', 'Computer Science', and 'computer science'. Before counting, an analyst replaces all four with 'Computer Science'. The analyst is:",
+        "options": [
+          "Introducing bias by changing what the respondents actually meant",
+          "Making the data invalid, since original survey entries must never be altered",
+          "Combining data from multiple different sources into a single conclusion",
+          "Cleaning the data — making it uniform without changing its meaning"
+        ],
+        "answer": "D",
+        "ek": "EK DAT-2.C.4",
+        "rationale": "EK DAT-2.C.4 defines cleaning data as a process that makes the data uniform without changing their meaning — for example, replacing all equivalent abbreviations, spellings, and capitalizations with the same word. All four entries mean the same subject, so standardizing them changes no meaning. A is wrong because bias concerns the type or source of data collected (EK DAT-2.C.5), not standardizing equivalents. B is backward — the un-cleaned, non-uniform column is what breaks counting (EK DAT-2.C.3). C misnames the move: this is one source being cleaned, not sources being combined."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A streaming service surveys viewers about favorite genres, but the survey appears only in its horror-fan forum, and results skew heavily toward horror. Which action would address this problem?",
+        "options": [
+          "Keep the survey where it is, but run it for several more months",
+          "Keep the survey where it is, but collect ten times as many responses",
+          "Change the source of the data — survey viewers beyond the horror forum",
+          "Delete the metadata from each response so the forum cannot be identified"
+        ],
+        "answer": "C",
+        "ek": "EK DAT-2.C.5",
+        "rationale": "EK DAT-2.C.5 states that problems of bias are often created by the type or source of data being collected, and that bias is not eliminated by simply collecting more data. The forum-only placement IS the source problem, so the fix is changing the source. A and B are the same trap in different clothes: more time and more volume from the same skewed source yield more skewed data. D hides the evidence of bias without removing the bias — the responses still come from horror fans."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "A research team's dataset of one billion sensor readings takes weeks to process on a single computer. Which approach directly addresses this challenge?",
+        "options": [
+          "Cleaning the readings first, so the single computer can process them faster",
+          "Processing the data with a parallel system — many computers sharing the work",
+          "Deleting half the readings, since smaller data sets always yield more information",
+          "Converting the readings into metadata, which computers process instantly"
+        ],
+        "answer": "B",
+        "ek": "EK DAT-2.C.7",
+        "rationale": "EK DAT-2.C.7 states that large data sets are difficult to process using a single computer and may require parallel systems — many machines splitting the work (with scalability considerations per EK DAT-2.C.8). A misapplies cleaning: it fixes uniformity, not computational capacity. C is backward — EK DAT-2.C.6 says the size of a data set affects the information extractable from it, so discarding half the readings reduces what can be learned. D is nonsense: metadata describes data (EK DAT-2.B.1); readings cannot be 'converted' to it to skip processing."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 2.3 — Extracting Information from Data — Teacher Guide",
+    "subtitle": "Big Idea 2: Data · Topic 2.3 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 2.3 pivots Big Idea 2 from how data is stored (2.1) and shrunk (2.2) to what data can honestly SAY. Day 1 covers extraction: data vs. information, trends and connections, the correlation-is-not-causation rule, combining sources when one isn't enough — then metadata, the describing layer that powers finding, organizing, and managing, and the clean exam fact that editing metadata never changes primary data. Day 2 covers the challenges of processing real data: non-uniform entries, incomplete and invalid values, cleaning without changing meaning, why bias survives bigger datasets, and how size pushes processing onto parallel, scalable systems.",
+      "The through-line is a fictional class music-streaming survey. On Day 1 students extract claims from its raw table and collide with the causation wall; the Day 1 close teases its hometown column coming back dirty, and Day 2's bell ringer delivers that mess — six students from one city, five different spellings — so every processing challenge lands on data students already own."
+    ],
+    "los": [
+      "LO DAT-2.A — Describe what information can be extracted from data.",
+      "LO DAT-2.B — Describe what information can be extracted from metadata.",
+      "LO DAT-2.C — Identify the challenges associated with processing data."
+    ],
+    "eks": [
+      "EK DAT-2.A.1 — Information is the collection of facts and patterns extracted from data.",
+      "EK DAT-2.A.2 — Data provide opportunities for identifying trends, making connections, and addressing problems.",
+      "EK DAT-2.A.3 — Digitally processed data may show correlation between variables. A correlation found in data does not necessarily indicate that a causal relationship exists. Additional research is needed to understand the exact nature of the relationship.",
+      "EK DAT-2.A.4 — Often, a single source does not contain the data needed to draw a conclusion. It may be necessary to combine data from a variety of sources to formulate a conclusion.",
+      "EK DAT-2.B.1 — Metadata are data about data. For example, the piece of data may be an image, while the metadata may include the date of creation or the file size of the image.",
+      "EK DAT-2.B.2 — Changes and deletions made to metadata do not change the primary data.",
+      "EK DAT-2.B.3 — Metadata are used for finding, organizing, and managing information.",
+      "EK DAT-2.B.4 — Metadata can increase the effective use of data or data sets by providing additional information.",
+      "EK DAT-2.B.5 — Metadata allow data to be structured and organized.",
+      "EK DAT-2.C.1 — The ability to process data depends on the capabilities of the users and their tools.",
+      "EK DAT-2.C.2 — Data sets pose challenges regardless of size, such as: the need to clean data, incomplete data, invalid data, the need to combine data sources.",
+      "EK DAT-2.C.3 — Depending on how data were collected, they may not be uniform. For example, if users enter data into an open field, the way they choose to abbreviate, spell, or capitalize something may vary from user to user.",
+      "EK DAT-2.C.4 — Cleaning data is a process that makes the data uniform without changing their meaning (e.g., replacing all equivalent abbreviations, spellings, and capitalizations with the same word).",
+      "EK DAT-2.C.5 — Problems of bias are often created by the type or source of data being collected. Bias is not eliminated by simply collecting more data.",
+      "EK DAT-2.C.6 — The size of a data set affects the amount of information that can be extracted from it.",
+      "EK DAT-2.C.7 — Large data sets are difficult to process using a single computer and may require parallel systems.",
+      "EK DAT-2.C.8 — Scalability of systems is an important consideration when working with data sets, as the computational capacity of a system affects how data sets can be processed and stored."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies, Days 1–2).",
+      "Printed Topic 2.3 quiz (student copies) for the assessment block.",
+      "Optional: the Day 2 bell-ringer hometown column ('KC', 'Kansas City', 'kansas city MO'...) printed as slips for table groups."
+    ],
+    "prereqs": [
+      "Topics 2.1–2.2 (data as bits; compression trade-offs). No statistics background is assumed — correlation is treated conceptually, never computationally.",
+      "Comfort reading a small data table (rows and columns), activated by the Day 1 bell ringer."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Extract information from data honestly; read the metadata layer (LO DAT-2.A, DAT-2.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI2/T2.3/Q1) + bell ringer (claims from the raw streaming table)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "From data to information: vocab, trends, correlation vs. causation, combining sources (EK DAT-2.A.1–A.4)",
+            "min": 15,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on DAT-2.A",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Metadata: vocab, uses, data-vs-metadata sort (EK DAT-2.B.1–B.5)",
+            "min": 14,
+            "slides": "11-14"
+          },
+          {
+            "segment": "Deep dive: the photo that knew too much (optional enrichment)",
+            "min": 4,
+            "slides": "15"
+          },
+          {
+            "segment": "Stop and Think on DAT-2.B",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + dirty-data teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Identify the challenges of processing data: cleaning, bias, size, and scale (LO DAT-2.C)",
+        "segments": [
+          {
+            "segment": "QOTD (BI2/T2.3/Q2) + bell ringer (the hometown-column pileup)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Why real data is messy: vocab + every dataset's challenges (EK DAT-2.C.1–C.3)",
+            "min": 12,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Cleaning the hometown column, worked (EK DAT-2.C.4)",
+            "min": 8,
+            "slides": "8"
+          },
+          {
+            "segment": "Stop and Think on messy data and cleaning",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Bias, size, and scale (EK DAT-2.C.5–C.8)",
+            "min": 10,
+            "slides": "10-12"
+          },
+          {
+            "segment": "Deep dive: counting a billion rows (optional enrichment)",
+            "min": 4,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think on bias and scale",
+            "min": 5,
+            "slides": "14"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "15-16"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 2.3 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 2.3 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“The data proves it caused it”",
+        "myth": "If two variables rise and fall together in a dataset, one must be causing the other.",
+        "reality": "Correlation is a pattern; causation is a mechanism. A correlation found in data does not necessarily indicate a causal relationship exists — additional research is needed (EK DAT-2.A.3). Arm students with the hidden-third-variable move: ice cream and drownings both follow hot weather."
+      },
+      {
+        "heading": "“Editing metadata damages the file”",
+        "myth": "Deleting a photo's location tag or a document's edit history alters or corrupts the file itself.",
+        "reality": "Changes and deletions made to metadata do not change the primary data (EK DAT-2.B.2). The pixels, audio, or text are untouched — only the describing layer changed. Exam items love the inverse trap too: deleting an edit HISTORY does not undo the edits."
+      },
+      {
+        "heading": "“Just collect more data”",
+        "myth": "Biased results are fixed by gathering more responses — with enough data, bias averages out.",
+        "reality": "Problems of bias come from the TYPE or SOURCE of data collected, and bias is not eliminated by simply collecting more data (EK DAT-2.C.5). A million more rows from the same skewed source are a million more skewed rows; the fix changes the source, not the volume."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give the claim-checking sentence frame: 'The data SHOW ______; the data CANNOT prove ______ because ______.' Students apply it to every scenario before choosing an answer.",
+        "For metadata sorting, give the two-question test: 'Is it the content itself, or does it DESCRIBE the content?' Have students say it aloud for each worked-table row."
+      ],
+      "extension": [
+        "Have students inspect a real photo's EXIF metadata (file properties on any computer) and inventory what a stranger could learn from it — then verify the image survives a metadata strip unchanged.",
+        "Challenge deep-dive students to design a genuinely less-biased version of the streaming survey: who is sampled, through what channel, and why the channel choice matters more than the response count."
+      ]
+    },
+    "discussion": [
+      "Every app you use extracts information from data you generate. Who should decide which patterns get extracted — the users who produce the data or the companies that hold it?",
+      "Cleaning data 'without changing meaning' requires judgment. Where exactly is the line between standardizing an answer ('KC' → 'Kansas City') and rewriting one (guessing a blank)?",
+      "If bias can't be eliminated by collecting more data, what CAN a responsible analyst do about it — and should results ever ship with a warning label about their source?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

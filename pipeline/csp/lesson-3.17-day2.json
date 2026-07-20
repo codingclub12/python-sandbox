@@ -1,0 +1,357 @@
+{
+  "meta": {
+    "lessonId": "3.17",
+    "lessonTitle": "Algorithmic Efficiency",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-4.A",
+    "anchor": "Algorithmic Efficiency",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.17 · Day 2 of 2",
+      "title": "Reasonable, Unreasonable, and Good Enough",
+      "subtitle": "Turning yesterday's counts into a verdict — polynomial-or-slower work runs in reasonable time, exponential and factorial work does not — and meeting the heuristic: the good-enough answer we accept when finding the guaranteed-best one would take forever",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Algorithmic Efficiency. Yesterday we learned to MEASURE work by counting how many times statements run and how that count grows with the input. Today we turn the measurement into a JUDGMENT. The College Board draws a bright line: algorithms whose work grows polynomially or slower — constant, linear, square, cube — run in a reasonable amount of time; algorithms whose work grows exponentially or factorially run in an unreasonable amount of time. Then we face what happens when a problem simply has no efficient algorithm, and the honest response is a heuristic — an approach that gives a good-enough answer, not a guaranteed-best one, because the guaranteed-best would be impractical. By the end you can classify any efficiency as reasonable or unreasonable and say exactly when a heuristic is the smart move."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Classify an algorithm as running in REASONABLE time (polynomial or slower — constant, linear, square, cube) or UNREASONABLE time (exponential, factorial) from how its work grows (LO AAP-4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify situations where a HEURISTIC solution may be more appropriate than an exact one, because a guaranteed-optimal method would be impractical (LO AAP-4.A)"
+        }
+      ],
+      "script": "Two targets today, both still from AAP-4.A. First — this completes part a of the objective — classify an algorithm's running time as reasonable or unreasonable based on how its work grows: polynomial or slower is reasonable, exponential or factorial is unreasonable. Second — this is part b — identify the situations where a heuristic is the appropriate choice, namely when a problem has no efficient algorithm and a guaranteed-optimal method would be impractical. Yesterday's counting skill feeds directly into both: you count how the work grows, then you name the category and decide whether an exact answer is even worth chasing."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser, now decide it. Checking every possible order of 20 delivery stops means examining about 20 factorial routes — roughly 2.4 × 10¹⁸ (over two billion billion). At a billion routes per second, estimate how long the check would take.",
+      "subprompt": "Write down your estimate in years, and your reasoning. Then answer: would buying a computer 1,000 times faster make this approach practical? Why or why not — and if checking every route is hopeless, what would you do instead to get a route you could actually use?",
+      "directions": "Be ready to defend your estimate and your 'what would you do instead.'",
+      "script": "Settle yesterday's teaser. Twenty stops means about twenty factorial routes — 2.4 times ten to the eighteenth. At a billion per second, divide: that is 2.4 billion seconds, which is about 76 years — for just twenty stops, and it explodes further with each stop you add. The kicker: a computer a thousand times faster still needs about a month, and thirty stops would swamp that too — throwing hardware at factorial growth never wins. So if checking every route is hopeless, what would you actually do? Almost every group lands on the same instinct: use a quick, sensible rule that gives a good route fast, even if you cannot PROVE it is the very best. You just invented the idea of a heuristic — today's second big idea, and the rational response when the exact answer runs in unreasonable time."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Reasonable vs Unreasonable Time",
+          "description": "Polynomial-or-slower work runs in reasonable time; exponential and factorial work does not (EK AAP-4.A.7)."
+        },
+        {
+          "title": "When to Reach for a Heuristic",
+          "description": "Why some problems have no efficient algorithm, and what a heuristic is and when it is appropriate (EK AAP-4.A.8–A.9)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.17 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two sections, both green and CB-required. First, the reasonable-versus-unreasonable line — polynomial or slower runs in reasonable time, exponential and factorial do not. Second, heuristics — why some problems have no efficient algorithm at all, and what a heuristic is and when it is the right call. Keep the packet open; every answer also lives on the Topic 3.17 page, along with the paper analysis exercises where you classify efficiencies and decide when a heuristic fits."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Reasonable vs Unreasonable Time",
+      "kicker": "Where the Line Is Drawn · Learning Objective AAP-4.A",
+      "script": "Section one. Yesterday you counted how work grows. Now the College Board turns that growth into two categories with a hard boundary. On one side, reasonable time — work you can actually wait for. On the other, unreasonable time — work that outlasts human patience, and often the universe. Knowing exactly which growth rates fall on which side is the heart of part a of today's objective."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-4.A)",
+      "terms": [
+        {
+          "term": "Reasonable time",
+          "definition": "The running time of an algorithm with polynomial efficiency or slower — constant, linear, square, cube, and so on (EK AAP-4.A.7)."
+        },
+        {
+          "term": "Unreasonable time",
+          "definition": "The running time of an algorithm with exponential or factorial efficiency, which grows too fast to finish on realistic inputs (EK AAP-4.A.7)."
+        },
+        {
+          "term": "Polynomial efficiency",
+          "definition": "Work that grows like a fixed power of n — linear (n), square (n²), or cube (n³) — all of which count as reasonable (EK AAP-4.A.7)."
+        },
+        {
+          "term": "Exponential efficiency",
+          "definition": "Work that grows like a constant raised to the n, such as 2ⁿ, which doubles with each added input and is unreasonable (EK AAP-4.A.7)."
+        },
+        {
+          "term": "Factorial efficiency",
+          "definition": "Work that grows like n! (n × (n−1) × … × 1), such as checking every ordering of n items, which is unreasonable (EK AAP-4.A.7)."
+        }
+      ],
+      "script": "Five words set the boundary. Reasonable time is the running time of any algorithm that is polynomial or slower — constant, linear, square, cube. Unreasonable time is the running time of an exponential or factorial algorithm. Polynomial efficiency means the work grows like a fixed power of n — n, n squared, n cubed — and all of those are reasonable. Exponential efficiency means a constant raised to the n, like two to the n, which DOUBLES every time you add one to the input. Factorial efficiency means n factorial, like checking every possible ordering of n items. Exponential and factorial are the two the CED names as unreasonable — memorize which side each growth rate is on, because that classification is the exam question."
+    },
+    {
+      "type": "concept",
+      "heading": "The Reasonable / Unreasonable Line",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "REASONABLE: algorithms with polynomial efficiency or slower — constant, linear, square, cube, etc. — run in a reasonable amount of time (EK AAP-4.A.7).",
+        "UNREASONABLE: algorithms with exponential or factorial efficiency are the CED's examples of running in an unreasonable amount of time (EK AAP-4.A.7).",
+        "The divide is about GROWTH, not a stopwatch: unreasonable algorithms can exceed a human lifetime — or the age of the universe — even on fast hardware and modest inputs.",
+        "Faster hardware cannot rescue an unreasonable algorithm: doubling machine speed barely dents 2ⁿ or n!, which outrun any constant boost."
+      ],
+      "script": "Here is the line, stated the CED's way. On the reasonable side: any algorithm whose efficiency is polynomial or slower — constant, linear, square, cube, and beyond. On the unreasonable side: the College Board's two named examples, exponential and factorial. The crucial thing is that this is a statement about GROWTH, not about a particular clock reading. An unreasonable algorithm is not merely slow — its work multiplies so fast that even a small input can demand more time than a human lifetime, and a bigger one more than the age of the universe. And you cannot buy your way out: doubling the computer's speed shifts everything by a constant factor, but exponential and factorial growth swallow any constant factor almost immediately. Reasonable versus unreasonable is a property of the algorithm's growth, full stop.",
+      "capture": [
+        {
+          "q": "Algorithms that run in a reasonable amount of time are those with ______.",
+          "a": "polynomial efficiency or slower — constant, linear, square, cube, etc."
+        },
+        {
+          "q": "The CED's two named examples of unreasonable running time are ______.",
+          "a": "exponential and factorial efficiencies"
+        },
+        {
+          "q": "Faster hardware cannot rescue an unreasonable algorithm because ______.",
+          "a": "doubling the machine speed is a constant factor that exploding growth swallows almost immediately"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "When the Numbers Explode",
+      "context": "Each column shows how many operations an algorithm does for input size n. The first two stay manageable; the last two run away. Fill in the blanks, then label each column reasonable or unreasonable.",
+      "columns": [
+        "Input size n",
+        "Linear (n) — reasonable",
+        "Square (n²) — reasonable",
+        "Exponential (2ⁿ) — unreasonable",
+        "Factorial (n!) — unreasonable"
+      ],
+      "rows": [
+        [
+          "5",
+          "5",
+          "25",
+          "32",
+          "120"
+        ],
+        [
+          "10",
+          "10",
+          "100",
+          "1,024",
+          "3,628,800"
+        ],
+        [
+          "20",
+          "20",
+          "400",
+          "1,048,576",
+          "2.4 × 10¹⁸"
+        ],
+        [
+          "40",
+          "40",
+          "1,600",
+          "~1.1 × 10¹²",
+          "~8 × 10⁴⁷"
+        ]
+      ],
+      "highlightCol": 4,
+      "script": "Watch the divide happen. Track across the rows: linear and square stay tame — even at n equal to 40, linear is just 40 and square is 1,600, both easy. Now the runaway columns: at n equal to 10, two to the n is already 1,024 and n factorial is over three and a half million. By n equal to 20, factorial is 2.4 times ten to the eighteenth — over two billion billion. By n equal to 40, exponential is more than a trillion and factorial is 8 times ten to the forty-seventh, a number with no physical meaning. Same input sizes, wildly different fates. This is EK AAP-4.A.7 made visible: polynomial or slower stays reasonable; exponential and factorial become unreasonable fast. Fill in the blanks by continuing each pattern — and notice you never needed Big-O to see it.",
+      "blanks": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Unreasonable Just Means It Takes a Few Minutes”",
+      "misconception": "An algorithm that runs in 'unreasonable time' is just a bit slow — a few minutes instead of a few seconds — and waiting or upgrading fixes it.",
+      "whyItHappens": "Students map 'unreasonable' onto everyday slowness, like a laggy app, instead of onto a rate of growth that overwhelms any machine.",
+      "correction": "Unreasonable time is a category of GROWTH — exponential or factorial — not a stopwatch reading (EK AAP-4.A.7). For a factorial algorithm, 20 items already means ~2.4 × 10¹⁸ steps; at a billion steps per second that is decades, and each added item multiplies it again. No realistic wait and no affordable hardware upgrade closes that gap, because a constant speedup cannot beat multiplicative growth. Polynomial or slower is reasonable; exponential and factorial are not.",
+      "example": "A square-time algorithm on a million items does 10¹² steps — heavy but doable. A factorial-time algorithm on just 25 items does about 1.5 × 10²⁵ steps — longer than the age of the universe, on any computer ever built.",
+      "script": "The trap here is scale. Students hear unreasonable and picture a slightly laggy app — a few minutes, annoying but survivable. The reality is astronomically worse. Unreasonable is a rate of growth, exponential or factorial, that overwhelms any machine. Twenty items in a factorial algorithm is already 2.4 times ten to the eighteenth operations; at a billion per second that is decades, and every extra item multiplies it again. There is no realistic wait and no affordable upgrade that fixes it, because speeding up the machine is a constant factor and the growth is multiplicative. Contrast a square-time algorithm on a MILLION items — a trillion steps, heavy but doable — with a factorial algorithm on just twenty-five items, longer than the universe has existed. Explain, in your own words, why 'just wait a bit longer' is the wrong mental model for unreasonable time."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Reasonable or Unreasonable?",
+      "subheading": "These map to LO AAP-4.A. Complete on your Guided Notes.",
+      "prompts": [
+        "Classify each as reasonable or unreasonable time, and name the growth: (a) work grows like n², (b) work grows like 2ⁿ, (c) work grows like n, (d) work grows like n!.",
+        "In two sentences, explain why 'buy a faster computer' does NOT move a factorial-time algorithm from unreasonable to reasonable. Use the word growth.",
+        "An algorithm's work grows like n³ (cube). A classmate calls it unreasonable 'because cubing is a big jump.' Correct them: which side of the line is n³ on, and why?",
+        "In one sentence, state the CED's rule for which efficiencies count as reasonable and which count as unreasonable."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.17 page.",
+      "script": "Classify, six minutes, full sentences. One: n squared is square, reasonable; two to the n is exponential, unreasonable; n is linear, reasonable; n factorial is factorial, unreasonable. Two: a faster computer is a constant speedup, but factorial GROWTH multiplies with each added input and swallows any constant factor, so the algorithm stays unreasonable. Three: n cubed is polynomial — cube — so it is on the REASONABLE side; polynomial or slower is reasonable no matter how big the jump feels, and only exponential and factorial are unreasonable. Four: the rule in one sentence — polynomial or slower is reasonable, exponential and factorial are unreasonable. That is precisely how AAP-4.A.7 is tested."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "When to Reach for a Heuristic",
+      "kicker": "Good Enough, On Purpose · Learning Objective AAP-4.A",
+      "script": "Section two, and the second half of today's objective. Some problems have no efficient algorithm — the only guaranteed-correct methods run in unreasonable time. When the exact answer is out of reach, we do not give up; we change the goal from perfect to good enough. That deliberate trade is a heuristic, and knowing WHEN it is the right call is exactly what part b of the objective asks."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-4.A)",
+      "terms": [
+        {
+          "term": "Approximate solution",
+          "definition": "A solution that is sought when a problem cannot be solved in a reasonable amount of time because no efficient algorithm exists for it (EK AAP-4.A.8)."
+        },
+        {
+          "term": "Heuristic",
+          "definition": "An approach to a problem that produces a solution not guaranteed to be optimal, used when methods guaranteed to always find an optimal solution are impractical (EK AAP-4.A.9)."
+        },
+        {
+          "term": "Optimal solution",
+          "definition": "The provably best solution to an optimization problem — the exact answer a heuristic gives up the guarantee of in order to finish quickly (EK AAP-4.A.9)."
+        }
+      ],
+      "script": "Three words for the back half of the topic. An approximate solution is what we go looking for when a problem cannot be solved in reasonable time because it has no efficient algorithm — we accept close-enough instead of exact. A heuristic is the approach that produces such a solution: it is not guaranteed to be optimal, but it is used when the guaranteed-optimal methods are impractical. And an optimal solution is the provably best answer — the thing a heuristic deliberately gives up the GUARANTEE of, in exchange for actually finishing. Note the CED excludes specific named heuristics from the exam, so you need the concept and the when, not a particular recipe."
+    },
+    {
+      "type": "concept",
+      "heading": "When No Efficient Algorithm Exists",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Some problems cannot be solved in a reasonable amount of time because there is NO efficient algorithm for them (EK AAP-4.A.8).",
+        "In those cases, we stop demanding the exact best answer and seek an APPROXIMATE solution instead (EK AAP-4.A.8).",
+        "A HEURISTIC is an approach that produces a solution not guaranteed to be optimal, used when guaranteed-optimal methods are impractical (EK AAP-4.A.9).",
+        "EXCLUDED: specific heuristic solutions — you must know WHAT a heuristic is and WHEN it fits, never a particular named heuristic algorithm (EK AAP-4.A.9)."
+      ],
+      "script": "Here is the logic of part b. For some problems, every guaranteed-correct algorithm runs in unreasonable time — the delivery-route problem from the bell ringer is the classic case. When that happens, insisting on the provably best answer means waiting decades, so we change the goal: we seek an approximate solution, one that is close enough to be useful. The tool for that is a heuristic — an approach that produces a solution not guaranteed to be optimal, used precisely when the methods that would guarantee optimality are impractical. One boundary the College Board draws explicitly: specific heuristic solutions are OUT of scope. You must be able to say what a heuristic is and recognize when reaching for one is appropriate — you are never asked to know or apply a particular named heuristic algorithm.",
+      "capture": [
+        {
+          "q": "When a problem has no efficient algorithm, instead of the exact best answer we ______.",
+          "a": "seek an approximate solution that is close enough to be useful"
+        },
+        {
+          "q": "A heuristic produces a solution that is ______.",
+          "a": "not guaranteed to be optimal, but useful when guaranteed-optimal methods are impractical"
+        },
+        {
+          "q": "The CED excludes ______ from the exam, so you learn the concept and the when, not a recipe.",
+          "a": "specific heuristic solutions (particular named heuristic algorithms)"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Exact Solution vs Heuristic",
+      "subheading": "Same problem, two strategies — one guarantees the best answer but may be impractical; the other finishes fast without a guarantee (EK AAP-4.A.8–A.9).",
+      "left": {
+        "title": "Exact (optimal) method",
+        "definition": "Guarantees the provably best answer — but may run in unreasonable time",
+        "ek": "EK AAP-4.A.8",
+        "examples": [
+          "Checks enough possibilities to be CERTAIN it found the best",
+          "For a hard optimization problem, cost can be exponential or factorial",
+          "Perfect answer, but may take longer than a lifetime on real inputs"
+        ]
+      },
+      "right": {
+        "title": "Heuristic approach",
+        "definition": "Produces a good-enough answer quickly, with no guarantee it is optimal",
+        "ek": "EK AAP-4.A.9",
+        "examples": [
+          "Uses a sensible rule to get a solution fast",
+          "Often runs in reasonable (polynomial) time",
+          "May not be the best, but is usable when the exact method is impractical"
+        ]
+      },
+      "footer": "AP TIP: A heuristic is the right choice when the problem has no efficient exact algorithm AND a good-enough answer is acceptable — trade the guarantee for a result you can actually get.",
+      "script": "Put the two strategies side by side. The exact method guarantees the optimal answer — it examines enough possibilities to be certain it found the best — but for a hard optimization problem that certainty can cost exponential or factorial time, longer than a lifetime on realistic inputs. The heuristic approach flips the trade: it uses a sensible rule to produce a good-enough answer fast, often in reasonable polynomial time, but with no promise the answer is the very best. Neither is universally better. The heuristic is the right call exactly when two things are true: the problem has no efficient exact algorithm, AND a good-enough answer is acceptable for the purpose. That is the situation part b of the objective asks you to identify — trade the guarantee for a result you can actually obtain.",
+      "capture": [
+        {
+          "q": "An exact optimal method guarantees the best answer but ______.",
+          "a": "may run in unreasonable (exponential or factorial) time on realistic inputs"
+        },
+        {
+          "q": "A heuristic is the appropriate choice when ______.",
+          "a": "no efficient exact algorithm exists and a good-enough answer is acceptable"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“A Heuristic Is Just a Lazy Guess That's Always Wrong”",
+      "misconception": "Using a heuristic means giving up and guessing randomly, so its answer is basically worthless.",
+      "whyItHappens": "'Not guaranteed to be optimal' gets misread as 'probably wrong,' and settling for less than perfect feels like laziness rather than a deliberate trade-off.",
+      "correction": "A heuristic is a principled approach, not a random guess: it produces a solution that is often very good, just not PROVABLY the best (EK AAP-4.A.9). It is the rational choice precisely when the exact optimal method would run in unreasonable time (EK AAP-4.A.8) — a usable good answer now beats a perfect answer that never arrives. 'Not guaranteed optimal' means 'might not be THE best,' not 'likely bad.'",
+      "example": "A route app suggests a very good delivery route in a second instead of guaranteeing the single shortest route after 76 years of computation. The suggestion may be a hair longer than the true optimum — but it is one you can actually drive today.",
+      "script": "The last trap, and it is about attitude. Because a heuristic is not guaranteed to be optimal, students hear worthless guess. Wrong on both counts. A heuristic is principled, not random — it follows a sensible rule — and its answer is frequently excellent, merely not PROVABLY the best. Far from lazy, it is the rational choice when the exact method would run in unreasonable time: a good answer you can get now beats a perfect answer that arrives after your lifetime. That route app hands you a very good route in a second rather than the guaranteed-shortest route after seventy-six years; it might be a hair longer than the true optimum, but it is one you can actually drive today. Explain, in your own words, why 'not guaranteed optimal' is not the same as 'probably wrong.'"
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — When Does a Heuristic Fit?",
+      "subheading": "These map to LO AAP-4.A. Complete on your Guided Notes.",
+      "prompts": [
+        "In your own words, define a heuristic in one sentence, and name the two conditions that together make a heuristic the appropriate choice.",
+        "For each, say whether a heuristic is appropriate and why: (a) sorting a list of 50 names, (b) planning the shortest route that visits 100 cities, (c) adding two numbers.",
+        "A classmate says 'a heuristic always gives the wrong answer.' Correct the wording precisely — what does 'not guaranteed to be optimal' actually mean?",
+        "Explain why 'buy a faster computer' is often NOT a real fix for a problem with no efficient algorithm, and what we do instead (name it)."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.17 page.",
+      "script": "When does a heuristic fit, six minutes, full sentences. One: a heuristic is an approach that gives a good-enough, not-guaranteed-optimal solution, and it is appropriate when the problem has no efficient exact algorithm AND a good-enough answer is acceptable. Two: sorting 50 names has an efficient exact algorithm, so no heuristic needed; the 100-city shortest-route problem has no efficient exact method, so a heuristic fits; adding two numbers is trivial and exact, no heuristic. Three: not guaranteed to be optimal means the answer might not be THE best, not that it is wrong — heuristic answers are often very good. Four: a faster computer is only a constant speedup and cannot beat exponential or factorial growth, so instead we seek an approximate solution using a heuristic. These are the exact part-b moves AAP-4.A.8 and A.9 test."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.17 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Reasonable/unreasonable is about GROWTH, not the clock",
+          "text": "Reasonable = polynomial or slower (constant, linear, square, cube); unreasonable = exponential or factorial. n³ is still REASONABLE even though cubing feels big; 2ⁿ is unreasonable even for small n. Classify by the growth category, never by a stopwatch."
+        },
+        {
+          "name": "A faster computer never changes the efficiency class",
+          "text": "Efficiency is a property of the algorithm's growth, not the hardware. Doubling machine speed is a constant factor that exponential and factorial growth swallow instantly — it never turns unreasonable into reasonable, and never writes it as O(n): describe growth in words, since formal Big-O is excluded."
+        },
+        {
+          "name": "'Heuristic' ≠ 'wrong guess'",
+          "text": "A heuristic is a principled approach giving a good-enough, not-guaranteed-optimal answer — appropriate when no efficient exact algorithm exists AND good-enough is acceptable. 'Not optimal' means 'maybe not THE best,' not 'probably wrong.'"
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: reasonable versus unreasonable is a GROWTH category, not a clock reading — polynomial or slower, including cube, is reasonable; exponential and factorial are unreasonable, even for small inputs. Trap two: a faster computer never changes the efficiency class, because doubling speed is a constant factor that exploding growth swallows instantly — and remember the CED bans formal Big-O, so describe growth in words, not as O of n. Trap three: a heuristic is not a wrong guess — it is a principled, good-enough approach that is the right choice when no efficient exact algorithm exists and good-enough is acceptable; not guaranteed optimal means maybe-not-the-best, not probably-wrong. Dodge these three and every efficiency question on the exam is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Algorithmic Efficiency, in One Slide",
+      "points": [
+        "A problem is a general task; an instance adds specific input. Decision problems answer yes/no; optimization problems seek the best among many (EK AAP-4.A.1–A.2).",
+        "Efficiency is a function of input size, measured informally by counting statement executions; different correct algorithms can differ greatly, and formal Big-O is excluded (EK AAP-4.A.3–A.6).",
+        "Reasonable time = polynomial or slower (constant, linear, square, cube); unreasonable time = exponential or factorial — a category of growth, not a stopwatch (EK AAP-4.A.7).",
+        "When no efficient algorithm exists, seek an approximate solution: a heuristic gives a good-enough, not-guaranteed-optimal answer when the exact method is impractical (EK AAP-4.A.8–A.9)."
+      ],
+      "next": "Topic 3.18, Undecidable Problems: we have seen problems that are solvable but only in unreasonable time — now we meet problems that no algorithm can solve for all inputs at all, no matter how much time it is given.",
+      "script": "The whole topic in one slide. A problem is the general task and an instance adds specific input; decision problems answer yes or no while optimization problems seek the best. Efficiency is a function of input size, measured by counting how many times statements run, and different correct algorithms can cost very differently — with formal Big-O left out on purpose. Reasonable time is polynomial or slower — constant, linear, square, cube — and unreasonable time is exponential or factorial, a matter of growth, not the clock. And when a problem has no efficient algorithm, we seek an approximate solution: a heuristic, a principled good-enough answer used when the exact method is impractical. Next class is Topic 3.18, Undecidable Problems, where we go one step further — from problems that are merely too slow to problems no algorithm can solve for all inputs at all. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.17 page tonight. Guided Notes are collected at the end of class.",
+      "ican": [
+        "distinguish a problem from an instance, and a decision problem from an optimization problem (LO AAP-4.A)",
+        "measure efficiency informally by counting statement executions as a function of input size, without formal Big-O (LO AAP-4.A)",
+        "classify an algorithm's running time as reasonable (polynomial or slower) or unreasonable (exponential, factorial) (LO AAP-4.A)",
+        "identify when a heuristic is the appropriate choice — no efficient exact algorithm exists and a good-enough answer is acceptable (LO AAP-4.A)"
+      ]
+    }
+  ]
+}

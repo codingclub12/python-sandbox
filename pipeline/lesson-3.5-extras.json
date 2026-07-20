@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "lessonId": "3.5",
+    "lessonTitle": "Detecting Attacks on Networks",
+    "unit": "Unit 3: Securing Networks",
+    "days": 1,
+    "los": "LO 3.5.A, 3.5.B, 3.5.C, 3.5.D, 3.5.E"
+  },
+  "map": {
+    "subtitle": "Unit 3: Securing Networks   •   1 day   •   LO 3.5.A, 3.5.B, 3.5.C, 3.5.D, 3.5.E",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, single comprehensive Day-1 deck (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY, following the five learning objectives)",
+      "Exercise 1: Detection IoC Identifier and Exercise 2: Detective Controls Advisor (student + answer KEY)",
+      "Discussion — Catch Every Attack or Drown in Alarms (3-part: Opening, Mid-lesson, Closing)",
+      "Quiz (student + answer KEY — 14 questions, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-3-detecting-attacks-on-networks"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-5-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-5-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-5-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (tools NIDS/NIPS/SIEM, AI and thresholds, choosing a method, judging its impact, then reading logs to name an attack).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Detecting Attacks on Networks'; the CED scenario is 'Scenario 3B: Configuring a Secure Wireless Network' (recommend detective controls and describe their impact); the unit hub lists this lesson as 'Network Attack Detection.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Detection IoC Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-5-exercise-1",
+    "intro": "You are a SOC analyst on the night shift. Five log entries just surfaced across the network's sensors. For each one you read the recorded indicator, name the specific CB network attack it reveals, and name the detection method or tool involved. Part A works the log row by row; Part B extends the same skills. Everything maps to CB Learning Objectives 3.5.A, 3.5.D, and 3.5.E.",
+    "scenarioTitle": "SOC Log Review: Five Detection Indicators",
+    "narrative": "Your security operations center aggregates data from many sources into one log — switch tables, ARP traffic, wireless scans, ICMP counters, and packet captures. Read each entry's recorded indicator, then answer Part A. Use the cheat sheet from class: match the indicator to the attack, then say how the tool or method that surfaced it works.",
+    "log": {
+      "columns": [
+        "ID",
+        "Source / sensor",
+        "Recorded indicator",
+        "Where to confirm",
+        "User-visible effect"
+      ],
+      "rows": [
+        [
+          "1",
+          "ARP traffic monitor",
+          "Repeated ARP replies mapping two different MAC addresses to the same gateway IP — duplicate-MAC-address ARP packets.",
+          "Check the ARP table on the default gateway.",
+          "Some users' traffic is silently routed through an unexpected host."
+        ],
+        [
+          "2",
+          "Switch port counters",
+          "An unexpected surge of Ethernet frames, each carrying a different (often random) source MAC address, filling the CAM table.",
+          "Check the MAC address table on the switch.",
+          "The switch begins flooding frames out all ports like a hub."
+        ],
+        [
+          "3",
+          "Wireless site scan",
+          "An SSID 'Cafe_Guest_WiFi' appears alongside the legitimate 'Cafe-Guest-WiFi'; the rogue beacon is strongest near a parked car.",
+          "Use signal triangulation to locate the access point.",
+          "Customers connect and hand credentials to a fake portal."
+        ],
+        [
+          "4",
+          "ICMP traffic counter",
+          "A sudden spike of ICMP echo requests addressed to the network's broadcast address, with a spoofed source.",
+          "Watch network traffic volume to the broadcast address.",
+          "Hosts are flooded with echo replies; the link saturates."
+        ],
+        [
+          "5",
+          "Packet-capture (pcap) review",
+          "Outbound connections to a known malicious IP address, plus traffic on a port that does not match its expected application.",
+          "Inspect source/destination IPs, ports, and protocols in the pcap.",
+          "Quiet exfiltration with no single tool flagging it alone."
+        ]
+      ]
+    },
+    "scenarioNote": "Indicators and detection methods follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026); the SSID names and sensor labels are this course's added teaching detail.",
+    "predict": "Before you answer Part A, write one sentence: of the five entries, which is the hardest to name from its indicator alone, and what single detail decides it?",
+    "partALabel": "Part A - Indicator Classification",
+    "partA": [
+      {
+        "ek": "EK 3.5.E.3 / 3.5.E.4",
+        "pts": 6,
+        "q": "Entries 1 and 2 are frequently confused. Name the CB attack each indicator reveals, quote the defining indicator that proves it, and state exactly where an analyst confirms each one.",
+        "answer": "Entry 1 is an ARP poisoning attack (EK 3.5.E.3): the defining indicator is unusual ARP messages — specifically duplicate-MAC-address ARP packets mapping two MACs to the same gateway IP — and it is confirmed by checking the ARP table on the default gateway. Entry 2 is a MAC flooding attack (EK 3.5.E.4): the defining indicator is an unexpected surge of Ethernet frames with many different MAC addresses, confirmed by checking the MAC address table on a switch. The tell: entry 1 is about ARP-to-MAC mappings at the gateway, entry 2 is about a flood of distinct MACs overwhelming the switch's CAM table."
+      },
+      {
+        "ek": "EK 3.5.E.1",
+        "pts": 4,
+        "q": "Classify Entry 3 by its CB attack name, quote the indicator that an analyst scans for, and name the CB technique used to physically locate and disable the rogue access point.",
+        "answer": "Entry 3 is an evil-twin attack (EK 3.5.E.1). The indicator is an SSID that looks suspicious or similar to a legitimate local SSID — here 'Cafe_Guest_WiFi' vs. the real 'Cafe-Guest-WiFi' — found by regularly scanning for look-alike SSIDs. Signal triangulation is the CB technique used to locate and disable the access point broadcasting the evil-twin network (the rogue beacon strongest near the parked car)."
+      },
+      {
+        "ek": "EK 3.5.E.6",
+        "pts": 4,
+        "q": "Entry 4 shows a spike of ICMP requests to the broadcast address. Name the CB attack, quote the exact indicator, and explain why this is detected by traffic volume rather than by a signature of the payload.",
+        "answer": "Entry 4 is a smurf attack (EK 3.5.E.6). The indicator named in the EK is a sudden increase in ICMP requests sent to the network's broadcast address. It is detected by watching network traffic for that volume spike because the attack's signature is its pattern — a flood of echo requests to a broadcast address with a spoofed source — rather than malicious content inside any one packet; the harm comes from amplification across many hosts, which shows up as an abrupt traffic increase."
+      },
+      {
+        "ek": "EK 3.5.E.7",
+        "pts": 4,
+        "q": "Entry 5 comes from a packet-capture file. Name the CB category these findings fall under, list the two indicators shown, and name two MORE indicators in that same category from the CED.",
+        "answer": "Entry 5 is a set of network-based indicators of compromise (IoCs), EK 3.5.E.7, discovered by analyzing network traffic, often in packet-capture files, by inspecting source/destination IP addresses, ports, and protocols. The two shown are: connections to a known malicious IP address, and mismatched port-application traffic (a port that does not match its expected application). Two more indicators in the same category named by the CED are unauthorized network scans and unusual spikes or slowdowns in network traffic."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 3.5.A.2 / 3.5.A.3",
+        "pts": 3,
+        "q": "For the smurf flood in Entry 4, contrast what a NIDS would do with what a NIPS could do, citing the EKs and naming a concrete NIPS action.",
+        "answer": "A NIDS (EK 3.5.A.2) would analyze the traffic, determine that malicious activity is taking place, and generate an alert — but it would not act to stop the flood. A NIPS (EK 3.5.A.3) would do the same analysis but could also mitigate or halt the attack, for example by blocking the spoofed source IP/MAC or rejecting the ICMP protocol at that point. The whole difference is detection vs. detection-plus-response: the NIPS verb is act/halt/block."
+      },
+      {
+        "ek": "EK 3.5.A.4",
+        "pts": 3,
+        "q": "Entry 5 was only caught because one system correlated the malicious-IP connection with the port-application mismatch across firewall and pcap logs. Name that system, and state what the analyst does after the alert fires.",
+        "answer": "That system is a SIEM (security information and event management system), EK 3.5.A.4: it collects and analyzes data from multiple sources — firewalls, NIDS/NIPS, device logs, application logs — to detect patterns no single tool would catch alone and raises an alert. After the alert fires, a security analyst investigates it to determine whether it represents a true threat, then follows standard operating procedures to resolve or escalate it."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Detective Controls Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 scenarios - Scenario 3B",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-3-lesson-5-exercise-2",
+    "intro": "You are a detection consultant. Three organizations need you to recommend a detective control. For each, run the sign check on the indicators they describe, recommend a detection method — signature-based, anomaly-based, or hybrid — and the right tool (NIDS/NIPS/SIEM), and justify the choice criteria while 3.5.D impact you accept. Scenario 1 is CB Scenario 3B (Configuring a Secure Wireless Network). Vague 'add monitoring' advice scores zero.",
+    "standard": "CB Standard (required): sign check + method + tool + impact you accept for all 3. Enrichment (optional): name the detection-method sub-type (signature / anomaly / hybrid) and one trade-off.",
+    "methodHeading": "Three-Step Method - use for every scenario",
+    "method": [
+      [
+        "Step 1 - Sign check",
+        "Read the indicators the org describes and name the attack(s) they point to. Only claim what the scenario shows; tie each indicator to its number."
+      ],
+      [
+        "Step 2 - Choose the method",
+        "Use the four criteria — traffic volume (C.1), pattern consistency (C.2), sensitivity/criticality (C.3), likelihood of novel attacks (C.4) — to pick signature, anomaly, or hybrid, and name the tool (NIDS/NIPS/SIEM) that delivers it."
+      ],
+      [
+        "Step 3 - State the impact",
+        "Name the impact factor you accept on purpose: speed (D.1), cost (D.2), false-positive rate / alert fatigue (D.3), or false-negative / bypass risk (D.4). Every choice carries an impact."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment framing (the trade-off triangle, NOT a new): Signature-based is fast and cheap with almost no false positives but cannot catch novel attacks and is easiest to bypass. Anomaly-based catches novel attacks on consistent networks but costs more hardware and raises false positives → alert fatigue. Hybrid covers the most ground but is the most expensive and most alert-heavy. There is no free lunch.",
+    "fields": [
+      "Sign check (which attack(s) 3.5.E):",
+      "Method + tool recommended:",
+      "Impact you accept on purpose:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "CB Scenario 3B — Configuring a Secure Wireless Network. A coffee-shop chain runs guest Wi-Fi with consistent, predictable evening traffic. They have already seen one evil-twin incident (a look-alike SSID near a parked car). Budget is tight, and they want a detective control that monitors the wireless network and raises an alert for any potential malicious activity. They are NOT worried about brand-new, never-seen attacks — the known wireless attacks are the concern.",
+        "key": {
+          "signs": "Evil-twin attack (EK 3.5.E.1): scan for SSIDs that look suspicious or similar to the legitimate local SSID, and use signal triangulation to locate and disable the rogue AP. Because the known wireless attacks (evil-twin, jamming) are the concern, the indicators are well-characterized signatures.",
+          "mechanism": "Method: signature-based detection (EK 3.5.C.1) — efficient on the chain's high guest-Wi-Fi volume, runs quickly, compares to a database of known IoCs that must be kept updated; deliver it with a NIDS that alerts staff (EK 3.5.A.2), since Scenario 3B asks for a control that raises an alert for potential malicious activity. Consistent evening traffic (EK 3.5.C.2) and tight budget (EK 3.5.D.2) both fit signature/anomaly over costly hybrid.",
+          "subtype": "Signature-based. Trade-off: signature-based has almost no false positives and is cheap and fast (EK 3.5.D.1, D.3), but it cannot detect a new attack and is the easiest to bypass — you accept a higher false-negative risk (EK 3.5.C.4, D.4), which is acceptable here because novel attacks are not the worry. Trap: recommending hybrid wastes the tight budget for coverage they said they don't need."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A regional hospital handles especially sensitive and critical patient data and life-support services. Budget is not the primary constraint. Leadership wants to catch both known attacks AND brand-new ones, and will not tolerate a missed attack on critical systems. Their traffic is fairly consistent ward-to-ward.",
+        "key": {
+          "signs": "All network attack families are in scope (EK 3.5.E.1–E.7): the hospital must catch known IoCs (signatures) AND novel attacks with no signature, so it needs both indicator matching and baseline-anomaly detection. Network-based IoCs (EK 3.5.E.7) in pcap — malicious-IP connections, scans, traffic spikes, port-application mismatch — should be aggregated.",
+          "mechanism": "Method: hybrid detection (EK 3.5.C.3) — chosen because the data/services are especially sensitive or critical; it combines signature- and anomaly-based detection so known and novel attacks are both covered. Anomaly side fits the consistent ward traffic and the baseline must be recorded on uncompromised systems (EK 3.5.C.2, C.4). Deliver it as a SIEM aggregating firewalls, NIDS/NIPS, and device/app logs with analyst investigation (EK 3.5.A.4); a NIPS can also halt attacks on life-support segments (EK 3.5.A.3).",
+          "subtype": "Hybrid. Trade-off: hybrid is the most expensive option (EK 3.5.D.2) and generates the most alerts, deepening false-positive load and risking alert fatigue (EK 3.5.D.3) — acceptable because budget is not the constraint and a missed attack (false negative, EK 3.5.D.4) on critical systems is intolerable. Trap: choosing signature-only to save money leaves novel attacks undetected on a life-safety network."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "A research lab has very consistent, predictable traffic patterns and a credible threat: adversaries are likely to attempt brand-new, never-before-seen attacks against its unpublished work. The lab cannot afford hybrid detection — its budget rules it out — but it still must detect novel intrusions.",
+        "key": {
+          "signs": "The threat is novel attacks that have NO existing signature, so the EK 3.5.E.7 network-based IoCs and attack-specific signatures alone are insufficient — you need deviation from a baseline rather than a known-bad list. Indicators would show up as unusual spikes/slowdowns and traffic outside the normal tolerance range.",
+          "mechanism": "Method: anomaly-based detection (EK 3.5.C.4) — signature-based detection cannot detect a new attack, and when novel attacks are likely AND hybrid's cost is prohibitive, anomaly-based is the CED-preferred method. It fits the lab's consistent traffic (EK 3.5.C.2): compare to a baseline recorded on uncompromised systems and alert when data is outside the tolerance range. Deliver as a NIDS/NIPS tuned to the anomaly baseline.",
+          "subtype": "Anomaly-based. Trade-off: anomaly-based needs more expensive hardware than signature (EK 3.5.D.2), runs slower (EK 3.5.D.1), and raises more false positives → alert fatigue (EK 3.5.D.3) — accepted in exchange for catching novel attacks that signatures would miss (EK 3.5.D.4). Trap: recommending signature-based here fails the stated requirement, since signatures cannot detect a new attack; recommending hybrid ignores the prohibitive-cost condition."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Catch Every Attack or Drown in Alarms",
+    "minutes": "~25 min total - 3 parts - Opening + Mid-lesson + Closing",
+    "overview": "Detection is one long trade-off. A tool can only alert, or it can also act; AI can read millions of log lines a human never could, but the organization still has to choose a threshold between missing real attacks and burying its team in false alarms; and no detection method wins on speed, cost, coverage, and accuracy all at once. Across three short windows in this lesson, your group will connect the CB tools and methods to real life, debate which trade-off is hardest to live with, and decide what an analyst should — and should not — conclude when a 'quiet dashboard' is hiding a missed attack.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The bell ringer had Tool A that only alerts (a NIDS) and Tool B that acts on its own — closing ports and blocking IPs (a NIPS). Would you put an auto-acting NIPS on a hospital's life-support network? What is the real risk of letting a tool halt traffic with no human in the loop?"
+          },
+          {
+            "text": "Question 2. Whose job is it to catch the attack — the AI that classifies millions of log points, or the human analyst who investigates the SIEM's alert? Defend your split with one concrete example."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~8 min, right after the AI-and-threshold debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The quiet dashboard",
+            "text": "A team cranks its AI alert threshold very high so it almost never alerts, and the dashboard goes quiet. In one sentence your whole group agrees on, explain why a quiet dashboard can mean LESS safety, not more — and what a too-high threshold does to real attacks.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which trade-off is hardest to live with?",
+            "text": "Debate for about 3 minutes: of the three methods — signature-based (fast, cheap, low false positives, but easy to bypass), anomaly-based (catches novel attacks, but costly and false-positive-heavy), and hybrid (best coverage, most expensive, most alerts) — which trade-off is hardest for a real team to actually live with, and what is the realistic cost of choosing wrong? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~9 min, after the read-the-log practice",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'we had detection' case",
+            "text": "A research lab ran signature-based detection to save money, kept its database updated, and still got breached by a brand-new attack that no signature matched. Design the defense: which single detection method would most directly have caught this, why did signature-based detection fail here, and when an adversary bypasses detection entirely with NO alert, what should an analyst conclude — and NOT conclude — about whether the network is safe?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (method + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

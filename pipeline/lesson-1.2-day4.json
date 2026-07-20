@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "lessonId": "1.2",
+    "lessonTitle": "Suspicious Website Logins",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 4,
+    "los": "LO 1.2.A, 1.2.B, 1.2.C",
+    "anchor": "Detecting Unauthorized Logins · Quiz + Bridge to Lesson 1.3",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.2 · Day 4 of 4",
+      "title": "Lesson 1.2 Quiz + Bridge to Lesson 1.3",
+      "subtitle": "Demonstrate mastery of LOs 1.2.A, 1.2.B, and 1.2.C, then preview the next threat model",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 4. Today is the quiz day for Lesson 1.2. After the quiz we bridge to Lesson 1.3, which shifts from password-based attacks to wireless network attacks. The quiz covers all three LOs: identifying attack signs, explaining weak authentication exploitation, and explaining defenses. 25 minutes for the quiz, then debrief and bridge."
+    },
+    {
+      "type": "objectives",
+      "heading": "Day 4 Goals",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Demonstrate you can identify the signs of a password attack in a log (LO 1.2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Demonstrate you can explain how adversaries exploit weak authentication (LO 1.2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Demonstrate you can explain and justify the three authentication defenses (LO 1.2.C)"
+        }
+      ],
+      "script": "One goal today: demonstrate mastery of all three Lesson 1.2 learning objectives on the quiz. Identify the signs in a log, explain the attack mechanism, and explain the defenses with their mechanisms. After the quiz we debrief every question and bridge to Lesson 1.3."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Pre-Quiz Activation · 3 Minutes",
+      "prompt": "Before you start the quiz: without looking at your notes, state the three CB-specified signs of a password attack and name the EK for each. Then name the three EK 1.2.C defenses.",
+      "subprompt": "Write them on the top of your quiz paper as your memory activation — then flip the paper and begin.",
+      "directions": "3 minutes. No notes after activation. This is your final preparation step.",
+      "script": "Three minutes. On the top of your quiz paper, write the three signs from EK 1.2.A.2 and the three defenses from EK 1.2.C. This is your final activation before the quiz starts. After three minutes, flip your paper and begin. You may not reference your Guided Notes during the quiz."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Quiz Strategy — Read This Before You Start",
+      "subheading": "Three moves that separate full-credit answers from partial-credit answers on this quiz.",
+      "strategies": [
+        {
+          "name": "Log Questions: Count Before You Write",
+          "text": "For any log analysis question, spend 30 seconds counting failures, checking timestamps, and noting the device name before writing a single word. Your evidence should come from the log, not from your general knowledge."
+        },
+        {
+          "name": "Explain the Mechanism, Not Just the Name",
+          "text": "If a question asks you to recommend a defense, always explain why it stops this specific attack. ‘Use MFA’ earns partial credit. ‘MFA requires a second factor the adversary cannot obtain from cracking the password alone’ earns full credit."
+        },
+        {
+          "name": "EK Numbers Are Your Precision Tool",
+          "text": "Citing the EK number tells the scorer exactly what you know. If you are explaining why a password failed, cite EK 1.2.B.1 or 1.2.B.2. Do not just say the password was weak."
+        },
+        {
+          "name": "Practice more at the site",
+          "text": "The quiz is also available at apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-quiz with instant explanations for every answer choice. Project it for whole-class debrief or assign for individual review."
+        }
+      ],
+      "script": "Three quiz strategies. First: on log questions, count before you write. Thirty seconds of evidence gathering saves you from writing unsupported claims. Second: explain the mechanism. Name plus mechanism is full credit. Name alone is partial. Third: EK numbers signal precision. Use them. You have three minutes from my signal."
+    },
+    {
+      "type": "work_timer",
+      "heading": "Lesson 1.2 Quiz — 25 Minutes",
+      "task": "Complete the quiz independently. No Guided Notes. No devices. Cite EK numbers in your written explanations.",
+      "timer_minutes": 25,
+      "script": "25 minutes. Begin. Time warnings come at 10 minutes and at 2 minutes remaining."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Quiz Debrief — Answer Key",
+      "kicker": "5 Questions · Key C-A-D-B-A · Canonical in the Day-1 Master",
+      "variant": "teacher",
+      "script": "Teacher-only debrief. Walk through all 5 questions. Cold-call students for each before revealing the answer. The canonical answer key is the quiz block on the Day 1 master — C, A, D, B, A after the rebalance — and the printed quiz and key are generated from it. The site quiz at apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-quiz offers instant explanations for whole-class review; re-sync it to this key before projecting."
+    },
+    {
+      "type": "case_study",
+      "heading": "Q1 Answer — Log Analysis: I, II, and III?",
+      "scenarioLabel": "Question [EK 1.2.A.2]",
+      "scenario": "Q1: Three log entries are flagged. I: 23 failed logins from single IP over 4 minutes. II: Successful login at 3:17 AM from a country where user has never logged in. III: One failed login from usual IP then immediate success from same IP. Which show CB-specified signs?",
+      "analysisLabel": "Answer: C — I and II only",
+      "analysis": [
+        "Entry I: 23 failed attempts in 4 minutes = Sign 1 (many failed attempts short duration, EK 1.2.A.2). Clearly automated rate.",
+        "Entry II: 3:17 AM unusual time (Sign 2) + country never visited = unknown device/location (Sign 3, EK 1.2.A.2). Two signs on one entry.",
+        "Entry III: One failed login then success from same IP = normal user mistyping their own password. NOT a sign of attack. This is the trap.",
+        "Common error: students select D (all three) by assuming any failed login indicates an attack. One mistype from a known IP is not EK 1.2.A.2 Sign 1."
+      ],
+      "trap": "Entry III is the distractor. Students must distinguish ‘many failed attempts’ (automated rate) from ‘one mistype’ (normal user behavior). The CB framework requires volume + speed together for Sign 1.",
+      "variant": "teacher",
+      "script": "Q1. Answer C — I and II only. The I/II/III format tests whether students can apply each sign precisely. Entry I is textbook Sign 1 — 23 failures in 4 minutes is automated, not human. Entry II hits Signs 2 and 3 simultaneously — off-hours plus never-visited country. Entry III is the trap: one mistype then success is exactly what a legitimate user does when they fumble their password. That is NOT EK 1.2.A.2. Students who picked D missed the distinction. Write on the board: volume plus speed equals Sign 1. One failure is not Sign 1."
+    },
+    {
+      "type": "case_study",
+      "heading": "Q2 Answer — Weakest Pattern",
+      "scenarioLabel": "Question [EK 1.2.B.1]",
+      "scenario": "Q2: Which password most directly reflects EK 1.2.B.1's word + two-digit year + special character pattern? (A) P@ssword2024! (B) correct-horse-battery-staple (C) qwerty123 (D) Xk#9mQpLv2",
+      "analysisLabel": "Answer: A — P@ssword2024!",
+      "analysis": [
+        "A is the textbook EK 1.2.B.1 pattern: word (Password) + year (2024) + special character (!) at end. The @ substitution is also a predictable pattern.",
+        "B is a passphrase — EK 1.2.C.1 recommends this. Strong, not weak.",
+        "C (qwerty123) lacks the year and special character — weak but not the CB-specified pattern from EK 1.2.B.1.",
+        "D is random-looking — no pattern. Closest to EK 1.2.C.1 long/random/unique."
+      ],
+      "trap": "Students who pick C (qwerty123) mistake 'obviously bad' for 'CB-specified pattern.' The question asks which most directly reflects EK 1.2.B.1's specific word+year+special char formula. That is A.",
+      "variant": "teacher",
+      "script": "Q2. Answer A. The question asks which password most directly matches the CB-specified EK 1.2.B.1 pattern — word plus two-digit year plus special character at end. P@ssword2024! is the exact formula. The @ substitution for the letter a is also a predictable variation adversaries account for. qwerty123 is obviously weak but does not match EK 1.2.B.1's specific pattern. correct-horse-battery-staple is actually strong — an EK 1.2.C.1 passphrase. Xk#9mQpLv2 looks random and is harder to crack than any of the others. The exam tests whether students know the specific CB-named pattern, not just general password weakness."
+    },
+    {
+      "type": "case_study",
+      "heading": "Q3 Answer — OSINT Dictionary Least Likely",
+      "scenarioLabel": "Question [EK 1.2.B.2]",
+      "scenario": "Q3: Target’s Instagram shows dog named Biscuit, birthday March 15, favorite team Chiefs. Adversary builds OSINT dictionary per EK 1.2.B.2. Which password would the dictionary LEAST likely contain? (A) Biscuit2015 (B) Chiefs0315! (C) March15Biscuit (D) Xm7#kR9vLq2p",
+      "analysisLabel": "Answer: D — Xm7#kR9vLq2p",
+      "analysis": [
+        "A: Biscuit (pet name) + 2015 (year pattern). Direct hit on EK 1.2.B.1 pattern from EK 1.2.B.2 personal info. In the dictionary.",
+        "B: Chiefs (team) + 0315 (birthday March 15) + !. Combines two OSINT sources. In the dictionary.",
+        "C: March15 (birthday) + Biscuit (pet). Combines two OSINT sources differently. In the dictionary.",
+        "D: Xm7#kR9vLq2p has no connection to any gathered personal info. A purely random string cannot be constructed from OSINT. LEAST likely to be in the dictionary."
+      ],
+      "trap": "The question asks LEAST likely, not most likely. Students who quickly find the most vulnerable password miss the inversion. D is correct because it has zero personal anchors from the OSINT gathered.",
+      "variant": "teacher",
+      "script": "Q3. Answer D. The inversion is the trap — LEAST likely, not most likely. Students who identified Biscuit2015 as the weakest password answered the wrong question. The OSINT dictionary is built from what the adversary found: Biscuit, March 15, Chiefs. Any combination of those three pieces of information plus common patterns appears in the dictionary. Xm7#kR9vLq2p has no connection to any of that. An adversary cannot construct it from personal information. It would only appear in a brute-force attack, not a targeted dictionary attack. This question tests whether students understand how the EK 1.2.B.2 dictionary is constructed — from personal info, not from random guessing."
+    },
+    {
+      "type": "case_study",
+      "heading": "Q4 Answer — CB-Specified Controls I/II/III",
+      "scenarioLabel": "Question [EK 1.2.C.1–C.3]",
+      "scenario": "Q4: Company implements: I. Password manager with unique random 16-char passwords. II. MFA on all accounts. III. Mandatory password change every 45 days with complexity rules. Which directly implement the CED-specified methods for strengthening authentication?",
+      "analysisLabel": "Answer: B — I and II only",
+      "analysis": [
+        "I: Password manager + unique + random + 16 characters = EK 1.2.C.1 exactly. Directly CB-specified.",
+        "II: MFA + one-time code = EK 1.2.C.3 exactly. Directly CB-specified.",
+        "III: Forced rotation + complexity rules = NOT in EK 1.2.C. NIST SP 800-63B (enrichment) explicitly discourages forced rotation because it causes incremental, predictable changes (Password1! → Password2! → Password3!). Neither rotation nor complexity rules appear in EK 1.2.C.",
+        "Common error: students select A (all three) because 'forced password changes sound like good security.' CB says long/random/unique, not rotation. Note: the EK citations live HERE in the key — the student stem no longer names them, so the question no longer grades itself."
+      ],
+      "trap": "III sounds like security policy but is not in the CB framework. EK 1.2.C specifies three things: long/random/unique + password manager/passphrase (C.1), avoid personal info (C.2), and MFA (C.3). Forced rotation and complexity rules are NOT in EK 1.2.C.",
+      "variant": "teacher",
+      "script": "Q4. Answer B. I and II only. This is one of the highest-leverage questions on this quiz because it tests whether students know what the CB framework actually says about authentication, not just general security lore. Forced password rotation sounds like good practice — change your password often, use special characters — but that is not what EK 1.2.C says. EK 1.2.C says long, random, unique, password manager, and MFA. Complexity rules and rotation schedules are not in the CB framework. In fact, NIST guidance — which is enrichment context for this lesson — explicitly discourages forced rotation because users respond to it by making small predictable increments. If your students ask why, that is the enrichment answer. For the AP exam, they need to know: rotation is not a CB-specified strengthening method. One housekeeping note: earlier drafts cited EK 1.2.C.1 and C.3 inside the student stem, which leaked the answer — those citations now live only here in the teacher key."
+    },
+    {
+      "type": "case_study",
+      "heading": "Q5 Answer — CB Scenario 1B + Missing Control",
+      "scenarioLabel": "Question [EK 1.2.A.2 / 1.2.C]",
+      "scenario": "Q5: Scenario 1B — Entries 4 and 7 are suspicious logins on school days from unknown IP. Student recommends: 'Change the account password immediately.' Per EK 1.2.C, which CB-recommended control is MISSING? (A) Also enable multifactor authentication. (B) Nothing — the recommendation is complete. (C) Also switch to a different web browser. (D) Also force the new password to rotate every 45 days.",
+      "analysisLabel": "Answer: A — MFA (EK 1.2.C.3) is missing",
+      "analysis": [
+        "Changing the password addresses EK 1.2.C.1/C.2 — replacing the compromised credential. This is correct but incomplete.",
+        "A — EK 1.2.C.3: MFA requires a second factor the adversary cannot obtain from cracking or stealing the password alone. Even after a password change, if the adversary finds the new password, MFA is the next line of defense.",
+        "B is wrong: changing the password alone is not complete per EK 1.2.C — the CB framework lists MFA as a separate, distinct control.",
+        "C and D are distractors with no CB basis: browser choice is not in EK 1.2.C, and forced rotation (echoing Q4's item III) is not a CED-specified strengthening method either."
+      ],
+      "trap": "Students who pick B believe changing the password fully solves the problem. The CB framework lists three distinct strengthening methods — recommending only one when the scenario calls for a complete response is an incomplete answer. D rewards students who learned Q4's lesson: rotation is never the CB answer.",
+      "variant": "teacher",
+      "script": "Q5. Answer A. This question is set in the CB Scenario 1B context your students analyzed on Day 2 — the same log they worked through. Changing the password is correct. But per EK 1.2.C, that is only one of three CB-specified controls. MFA is the control that makes it hardest for the adversary to log in again even if they somehow obtain the new password. B is wrong because the CB framework names MFA as a separate required strengthening method. C has no basis in the CB framework at all, and D — forced rotation — deliberately echoes Q4: rotation is never an EK 1.2.C method. The point: on a free-response question, naming one defense when the scenario calls for complete remediation will cost points. The exam expects students to think across all three EK 1.2.C items. This question now has four options like every other item on the quiz."
+    },
+    {
+      "type": "concept",
+      "heading": "Bridge to Lesson 1.3: A Different Attack Surface",
+      "bullets": [
+        "Lesson 1.2 focused on authentication attacks: adversaries targeting login credentials via weak passwords",
+        "Lesson 1.3 shifts to the network layer: adversaries targeting the wireless connection itself before authentication even occurs",
+        "The skill shift: Lesson 1.2 required identifying attack signs in a log. Lesson 1.3 requires identifying wireless attack types from scenario descriptions",
+        "The three CB-specified wireless attacks — evil twin, jamming, war driving — are named explicitly in the CED and tested directly on the AP exam"
+      ],
+      "script": "Bridge. In Lesson 1.2, the adversary attacked the login mechanism. They tried to get your password. In Lesson 1.3, the adversary attacks before you even attempt to log in — they target the wireless connection itself. Evil twin, jamming, war driving. Three wireless attack types named explicitly in the CB framework. The AP skill is the same: read a scenario, identify the attack type, explain the mechanism, recommend defenses. The content is different. Day 1 of Lesson 1.3 starts tomorrow with the same structure you now know."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.2 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Login log analysis — find all three attack signs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Adversary profile builder.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-2"
+        },
+        {
+          "label": "Lesson 1.2 quiz",
+          "tail": "Five questions across all three LOs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything we just did in class is waiting for you on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.2 page and run the self-check so you know where you actually stand. Then do Exercise 1, the login log analysis, where you find all three signs of an attack on your own. Exercise 2 is the adversary profile builder, and the quiz at the bottom is five questions across all three objectives. If you were absent or you want it again at your own speed, the lesson video walks through this exact material slide for slide. Write the lesson page URL down now so you are not hunting for it tonight."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Lesson 1.2, in one slide",
+      "points": [
+        "Three CB signs of an attack (EK 1.2.A.2): many failed attempts, unusual times, unknown device/IP.",
+        "A successful login from an unknown IP at an off-hours time is still an attack — success is not required.",
+        "Adversaries build targeted dictionaries from personal info (EK 1.2.B.1, 1.2.B.2): names, pets, birth years.",
+        "Three defenses (EK 1.2.C): unique random password, no personal info in the password, and MFA.",
+        "MFA is the backstop — it blocks access even after the password is cracked."
+      ],
+      "next": "Lesson 1.3 moves from logins to the network itself — evil twin, jamming, and war driving at the coffee-shop Wi-Fi (Scenario 1C).",
+      "script": "Lesson 1.2 is complete. You built the core skill: read a scenario, find the signs, trace the mechanism, recommend and explain the defense. That skill transfers directly to every other lesson in this course. Lesson 1.3 applies it to wireless networks. Quiz papers come back next class. When you review your score, focus on the mechanism explanations. If you named defenses without explaining the mechanism, that is the one thing to practice before the AP exam."
+    }
+  ]
+}

@@ -1,0 +1,599 @@
+{
+  "meta": {
+    "lessonId": "3.2",
+    "lessonTitle": "Data Abstraction",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-1.C",
+    "anchor": "Data Abstraction",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.2 · Day 1 of 2",
+      "title": "One Name, Many Values",
+      "subtitle": "The list — an ordered sequence of elements, each at a numbered index — and its cousin the string; the exam sheet counts positions starting at 1, and getting that right is half the battle",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.2, Data Abstraction. Yesterday a variable held one value. Today we meet the value that changes everything — a list, one variable holding a whole ordered sequence of values. Day 1 answers what a list actually is: an ordered sequence of elements, each element sitting at a numbered position called an index, and how a string is the same idea for characters. The single most important detail on this exam is that the AP reference sheet numbers list positions starting at one, not zero — we hammer that today. Tomorrow, Day 2, we zoom out to the big idea this unlocks: data abstraction, how naming a whole collection lets one variable tame the complexity of a program."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain that a list is an ordered sequence of elements and that each element is assigned a unique index (LO AAP-1.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Reference a list or string element by its index using the exam sheet's 1-indexed numbering, and define a string as an ordered sequence of characters (LO AAP-1.C)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-1.C, representing a list or string using a variable. First: explain what a list is — an ordered sequence of elements, each element holding a unique index. Second: reference an element by its index using the exam reference sheet's numbering, which starts at one, and know that a string is the same ordered-sequence idea applied to characters. Tomorrow's objective, AAP-1.D, is the payoff: how a list becomes a data abstraction that manages complexity."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A weather station's display shows this week's daily high temperatures in order: 68, 72, 75, 70, 81. A meteorologist says over the radio: 'read me the third value, then the one right after it.' With a partner, answer using only positions — and explain how you knew which numbers those were.",
+      "subprompt": "Write 2–4 sentences: What two things had to be true about that row of numbers for 'the third value' to point to exactly one temperature? What would go wrong if the numbers were not kept in a fixed order?",
+      "directions": "Be ready to name what 'the third value' depends on.",
+      "script": "Five minutes with a partner. The station shows five temperatures in a row: 68, 72, 75, 70, 81. Read the third value — 75 — and the one after it — 70. Easy. But push on WHY it was easy. Two things had to be true: the numbers were kept in a fixed order, and each had a position you could count to. Take away the order and 'the third value' means nothing. You just described a list: an ordered sequence where every value sits at a numbered position. Hold that — order plus position is the entire idea of today's lesson, and the position number has a name: the index."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Lists, Elements, and Indices",
+          "description": "A list as an ordered sequence, each element at a unique index, referenced by natural numbers starting at 1 (EK AAP-1.C.1–C.3)."
+        },
+        {
+          "title": "Strings and the Index",
+          "description": "A string as an ordered sequence of characters, indexed the same way a list is (EK AAP-1.C.3–C.4)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.2 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is today's map — two Guided Notes sections, both green and CB-required. First, lists, elements, and indices: what a list is and how the exam sheet numbers the positions. Second, strings and the index: a string is the same ordered-sequence idea for characters. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.2 Guided Notes page at apcsexamprep.com, along with the interactive coding practice where you build and read lists yourself."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Lists, Elements, and Indices",
+      "kicker": "Ordered Sequences and Their Positions · Learning Objective AAP-1.C",
+      "script": "Section one. Your radio temperatures were a list before we named it. A list is a named, ordered sequence of values, and every value in it sits at a numbered position. Before we can loop over data or search it, this vocabulary has to be exact — the College Board tests the difference between an element and its index directly."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-1.C)",
+      "terms": [
+        {
+          "term": "List",
+          "definition": "An ordered sequence of elements, written [value1, value2, value3, ...], where value1 is the first element, value2 the second, and so on (EK AAP-1.C.1)."
+        },
+        {
+          "term": "Element",
+          "definition": "An individual value in a list, each one assigned a unique index (EK AAP-1.C.2)."
+        },
+        {
+          "term": "Index",
+          "definition": "A way of referencing an element in a list or string by its position, using natural numbers (EK AAP-1.C.3)."
+        },
+        {
+          "term": "Natural number (as an index)",
+          "definition": "The counting numbers used to number positions; on the exam reference sheet a list's indices run from 1 through its length (EK AAP-1.C.3)."
+        },
+        {
+          "term": "String",
+          "definition": "An ordered sequence of characters, such as \"Ada\" (EK AAP-1.C.4)."
+        }
+      ],
+      "script": "Five words carry today. A list is an ordered sequence of elements — note the College Board's own notation, value1, value2, value3, with value1 as the first element. An element is one individual value in that list, and each element is assigned a unique index. An index is how you reference an element by its position, using natural numbers — the counting numbers. On the exam reference sheet those numbers run from one through the length of the list, which is the detail everyone must lock in. And a string is the same ordered-sequence idea, but of characters instead of list elements."
+    },
+    {
+      "type": "concept",
+      "heading": "A List Is an Ordered Sequence",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A list is an ORDERED sequence of elements — the order is part of the data, not an accident (EK AAP-1.C.1).",
+        "The reference-sheet notation [value1, value2, value3, ...] names value1, value2, value3 as the first, second, and third elements (EK AAP-1.C.1).",
+        "Each element is an individual value, and each is assigned a UNIQUE index that pins down its position (EK AAP-1.C.2).",
+        "One variable name, like temps, refers to the whole list, not to any single reading."
+      ],
+      "script": "Here is the mental model. A list is an ordered sequence of elements: the order is genuine data — shuffle it and you have a different list. The College Board writes lists as value1, value2, value3, and that ordering names the first, second, and third elements. Every element is one individual value, and every element is assigned a unique index that fixes where it lives. And the whole thing hides behind one variable name — temps holds the entire sequence, not any one temperature. That last move is what makes a list so powerful, and it is exactly where tomorrow's data-abstraction idea begins.",
+      "capture": [
+        {
+          "q": "Because a list is an ordered sequence, its elements ______.",
+          "a": "hold a fixed position that is itself part of the stored data"
+        },
+        {
+          "q": "An index is what makes each element ______.",
+          "a": "individually referenceable, since every one is assigned its own"
+        },
+        {
+          "q": "A single variable such as temps can stand for ______.",
+          "a": "the entire sequence of values at once, rather than one reading"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Lists",
+      "heading": "Build a List, Read by Index",
+      "caption": "temps[1] is the FIRST reading on the exam sheet; Python writes that same element as temps[0].",
+      "pseudocode": "temps ← [68, 72, 75, 70]\nDISPLAY(temps[1])",
+      "python": "temps = [68, 72, 75, 70]\nprint(temps[0])",
+      "output": "68",
+      "script": "Your first list in code, two columns. On the left is the exam's pseudocode; on the right is runnable Python. The left-arrow builds the list: temps now holds four readings as one ordered sequence. temps[1] on the exam sheet means the FIRST element — 68 — because the reference sheet counts positions starting at one. Now look across the gap: Python writes that very same first element as temps[0], starting from zero. Same reading, two numbering systems. On the exam you read and write the one-indexed pseudocode on the left; when you run the Python in the coding practice you subtract one. temps[3] on the sheet, by the way, would be the third reading, 75."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Element vs Its Index",
+      "subheading": "Two different things live at every position: WHERE it is (the index) and WHAT is there (the element). Confusing them is the classic list error (EK AAP-1.C.2–C.3).",
+      "left": {
+        "title": "Index — where it is",
+        "definition": "The natural-number position of a slot in the list",
+        "ek": "EK AAP-1.C.3",
+        "examples": [
+          "In temps ← [68, 72, 75, 70], the indices are 1, 2, 3, 4",
+          "The index answers 'which position?' — it is an address",
+          "temps[3] uses the index 3 to reach a slot"
+        ]
+      },
+      "right": {
+        "title": "Element — what is there",
+        "definition": "The actual value stored at a given index",
+        "ek": "EK AAP-1.C.2",
+        "examples": [
+          "At index 3 the element is 75 — the value living there",
+          "The element answers 'what value?' — it is the contents",
+          "temps[3] evaluates to 75, the element at that index"
+        ]
+      },
+      "footer": "AP TIP: temps[3] = 75 means 'the element AT index 3 is 75.' The index (3) is the position; the element (75) is the value. Never swap them.",
+      "script": "Every position holds two distinct ideas, and the exam loves to test whether you can tell them apart. The index is WHERE — the natural-number position, like 1, 2, 3, 4 for our four temperatures. It is an address; it answers 'which slot?' The element is WHAT — the actual value living at that slot. In temps, the element at index 3 is 75. So when you write temps[3] equals 75, read it precisely: the element AT index 3 is the value 75. The index is the position, the element is the contents, and a huge share of list mistakes come from mixing up the two.",
+      "capture": [
+        {
+          "q": "The index of an element tells you ______.",
+          "a": "which position, or slot, in the list it occupies"
+        },
+        {
+          "q": "In temps[3] = 75, the number 3 is the index and 75 is ______.",
+          "a": "the value actually stored at that position"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Lists and Indices",
+      "subheading": "These map to LO AAP-1.C. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain what it means to call a list an 'ordered sequence of elements.' Use the word index in your answer.",
+        "For scores ← [88, 92, 79], name the element at index 2 and explain the difference between 'index 2' and 'the value 92.'",
+        "A classmate says 'a list is just a bunch of separate variables.' Give the one word that best describes what a list adds that separate variables do not, and justify it in a sentence."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.2 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: define 'ordered sequence of elements' and work the word index into the answer. Two: for scores 88, 92, 79, the element at index 2 is 92 — then pull apart index 2 the position from 92 the value. Three: the classmate calling a list 'a bunch of separate variables' is missing something — the best one word is 'order,' or 'sequence,' because a list keeps its elements in numbered positions under one name. These are exactly the AAP-1.C moves the exam makes."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Strings and the Index",
+      "kicker": "Ordered Sequences of Characters · Learning Objective AAP-1.C",
+      "script": "Section two. The College Board pairs lists with one more ordered sequence: the string. A string is just an ordered sequence of characters, and it is indexed with natural numbers exactly the way a list is. Seeing lists and strings as the same shape — ordered, positioned, referenced by index — is the point of this short section."
+    },
+    {
+      "type": "concept",
+      "heading": "A String Is an Ordered Sequence of Characters",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A string is an ORDERED sequence of characters, such as \"Ada\" or \"Mon\" (EK AAP-1.C.4).",
+        "Like a list, a string has positions: its characters are referenced by index using natural numbers (EK AAP-1.C.3).",
+        "Order matters — \"note\" and \"tone\" use the same characters but are different strings.",
+        "A list holds elements; a string holds characters. Both are ordered sequences you reach by index."
+      ],
+      "script": "A string is an ordered sequence of characters — 'Ada,' 'Mon,' any run of characters in a fixed order. And just like a list, a string has positions: you reference its characters by index, using natural numbers. Order is real data here too: 'note' and 'tone' are built from the identical characters but are different strings because the order differs. So keep the parallel in your notes — a list holds elements, a string holds characters, and both are ordered sequences you reach into by index. That shared shape is why the exam treats lists and strings together in AAP-1.C.",
+      "capture": [
+        {
+          "q": "A string is best defined as ______.",
+          "a": "an ordered sequence of characters"
+        },
+        {
+          "q": "\"note\" and \"tone\" differ even with the same letters because ______.",
+          "a": "the order of the characters is part of what a string is"
+        },
+        {
+          "q": "Lists and strings are treated together because both are ______.",
+          "a": "positioned sequences whose parts are reached by a natural-number index"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Strings & Lists",
+      "heading": "A List Can Hold Strings",
+      "caption": "days[2] is the SECOND element, the string \"Tue\"; each element is itself an ordered sequence of characters.",
+      "pseudocode": "days ← [\"Mon\", \"Tue\", \"Wed\"]\nDISPLAY(days[2])",
+      "python": "days = [\"Mon\", \"Tue\", \"Wed\"]\nprint(days[1])",
+      "output": "Tue",
+      "script": "Two ideas in one example. First, a list's elements do not have to be numbers — here days holds three strings. Second, the one-indexed rule is unchanged: days[2] on the exam sheet is the SECOND element, the string 'Tue,' while Python reaches the same element with days[1]. Notice each element, like 'Tue,' is itself an ordered sequence of characters — a string. Lists and strings nesting like this is completely normal, and it is a preview of tomorrow: one variable, days, standing in for a whole labeled collection."
+    },
+    {
+      "type": "worked_table",
+      "heading": "What Lives at Each Index",
+      "context": "For temps ← [68, 72, 75, 70], fill in the missing cells. The exam sheet numbers positions from 1; asking for a position past the end is an error.",
+      "columns": [
+        "Index (position)",
+        "Element (value)",
+        "How the exam sheet writes it"
+      ],
+      "rows": [
+        [
+          "1",
+          "68",
+          "temps[1]"
+        ],
+        [
+          "2",
+          "72",
+          "temps[2]"
+        ],
+        [
+          "3",
+          "75",
+          "temps[3]"
+        ],
+        [
+          "4",
+          "70",
+          "temps[4]"
+        ],
+        [
+          "5",
+          "error — index is past the end",
+          "temps[5] halts the program"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "Fill this in as we go — it is the whole one-indexing rule on one slide. For temps, index 1 holds 68, index 2 holds 72, index 3 holds 75, index 4 holds 70. Four elements, indices 1 through 4. Now the trap in the last row: there is no index 5. The list has four elements, so the valid indices stop at four; asking for temps[5] — or temps[0], or any index below 1 or above the length — is an out-of-range error that halts the program. That formal rule gets its EK tomorrow, but you can already see it: indices run from 1 to the length, and nothing outside that exists.",
+      "blanks": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The First Element Is at Index 0”",
+      "misconception": "On the AP exam reference sheet, the first element of a list is at index 0, the way it works in many programming languages.",
+      "whyItHappens": "Popular languages such as Python, Java, and JavaScript number list positions starting at 0, and that habit carries straight over to the pseudocode.",
+      "correction": "The AP Exam Reference Sheet is 1-INDEXED: the first element is at index 1 and the last is at index LENGTH(aList). For temps ← [68, 72, 75, 70], temps[1] is the first reading (68) and temps[4] is the last (70). Reading temps[0] — or any index below 1 or above the length — produces an error and terminates the program (EK AAP-1.C.3).",
+      "example": "temps[1] → 68 (first). temps[4] → 70 (last). temps[0] is NOT 'the first element' — it is an out-of-range error. Off by one here turns a correct answer into a wrong one on every list question.",
+      "script": "This is the single most expensive habit to break, and the exam mines it relentlessly. In Python, Java, and JavaScript, the first slot is index 0 — so students write temps[0] for the first temperature out of pure muscle memory. On the AP reference sheet that is wrong. The exam is one-indexed: the first element is at index 1, the last at index equal to the length. For our four temperatures, temps[1] is 68 and temps[4] is 70. temps[0] is not the first element — it is an out-of-range error that would terminate the program. Train yourself: on this exam, counting starts at one, and being off by one turns a right answer into a wrong one."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Indexing and Strings",
+      "subheading": "These map to LO AAP-1.C. Complete on your Guided Notes.",
+      "prompts": [
+        "For colors ← [\"red\", \"green\", \"blue\", \"gold\"], write what colors[1] and colors[4] each evaluate to, and explain why colors[0] is not the first element.",
+        "In one sentence, state the range of valid indices for a list with 6 elements on the AP exam reference sheet.",
+        "Explain in two sentences why a string like \"stop\" and a list like [\"s\", \"t\", \"o\", \"p\"] are both called ordered sequences, and what each one's parts are called."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.2 page.",
+      "script": "Stop and think, five minutes, full sentences. One: for the colors list, colors[1] is 'red' and colors[4] is 'gold'; colors[0] is not the first element because the exam sheet starts counting at one, so index 0 is out of range. Two: a six-element list has valid indices 1 through 6 — nothing lower, nothing higher. Three: 'stop' the string and the list of single letters are both ordered sequences; the string's parts are characters, the list's parts are elements, but both are reached by index. These are the exact one-indexing and ordered-sequence checks AAP-1.C questions demand."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A list is an ordered sequence of elements; the order is part of the data (EK AAP-1.C.1)",
+        "Each element is an individual value assigned a unique index; the index is the position, the element is the value (EK AAP-1.C.2)",
+        "An index references an element by position using natural numbers — 1 through the list's length on the exam sheet (EK AAP-1.C.3)",
+        "A string is an ordered sequence of characters, indexed the same way a list is (EK AAP-1.C.4)"
+      ],
+      "nextPoints": [
+        "Day 2: data abstraction — how naming a whole collection MANAGES COMPLEXITY (LO AAP-1.D)",
+        "Why one list beats seven separate variables, and what the name lets you ignore",
+        "Building lists with the reference-sheet [ ] notation, and why linked lists are out of scope"
+      ],
+      "teaser": "Before tomorrow, predict it: a weather club stores a whole YEAR of daily highs. Would you rather write 365 separate variables, or one list? Write one sentence on what the list lets you stop worrying about.",
+      "script": "That is Day 1. A list is an ordered sequence of elements; each element has a unique index; the index is the position and the element is the value; indices run from one through the length on the exam sheet; and a string is that same ordered-sequence idea for characters. Tomorrow we step back to the big picture — data abstraction. One list instead of 365 loose variables, and what naming the whole collection lets you ignore. Here is the teaser, and it opens tomorrow's class: a year of daily highs — 365 separate variables or one list? Write one sentence on what the list frees you from worrying about. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.2 — Data Abstraction — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "A classmate reorders names ← [\"Ada\", \"Grace\", \"Alan\"] into [\"Alan\", \"Ada\", \"Grace\"] and says \"it is the same list — same three names.\" Why is that wrong?",
+        "options": [
+          "The two are the same list; only which values it contains matters, not their order",
+          "The two differ only if the names are stored as numbers instead of strings",
+          "A list is an ordered sequence, so changing the order produces a different list even with the same elements",
+          "Reordering is impossible; once a list is created its elements can never move"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-1.C.1",
+        "rationale": "EK AAP-1.C.1 defines a list as an ORDERED sequence of elements, where value1 is the first element, value2 the second, and so on. Order is part of the data, so a reordered list is a different list — C is correct. A denies that order matters, contradicting the EK. B invents an irrelevant type rule. D overcorrects: elements can be rearranged; doing so simply yields a different ordering."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "For scores ← [88, 92, 79, 95], what is the element at index 3, and what does the index itself represent?",
+        "options": [
+          "The element is 3 — the index and the element are the same thing",
+          "The element is 79, and the index 3 represents that element's position in the list",
+          "The element is 95, counting index 3 from the end of the list",
+          "There is no element at index 3; indices label the gaps between values"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-1.C.2",
+        "rationale": "The exam sheet is 1-indexed, so index 3 is the third element, 79; the index is the natural-number position, while the element is the value stored there (EK AAP-1.C.2–C.3). B states both correctly. A confuses the index with the element. C counts from the end, which the reference sheet never does. D invents a 'gaps' model; indices label elements, not gaps."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs temps ← [68, 72, 75, 70], then DISPLAY(temps[1]). What is displayed?",
+        "options": [
+          "72 — the exam sheet numbers the first element as index 0, making index 1 the second",
+          "Nothing; temps[1] is out of range for a four-element list",
+          "70 — index 1 wraps around to the last element",
+          "68 — the exam sheet is 1-indexed, so index 1 is the first element"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-1.C.3",
+        "rationale": "The reference sheet references elements by natural numbers starting at 1, so temps[1] is the first element, 68 (EK AAP-1.C.3). D is correct. A imports 0-indexing from other languages, the exact trap the sheet avoids. B is false; index 1 is valid for any non-empty list. C invents wrap-around behavior that does not exist."
+      },
+      {
+        "id": "Q4",
+        "kind": "recall",
+        "stem": "Which statement correctly defines a string?",
+        "options": [
+          "A string is an ordered sequence of characters",
+          "A string is an unordered collection of numbers",
+          "A string is a single character stored in a variable",
+          "A string is a list that may only hold true or false values"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-1.C.4",
+        "rationale": "EK AAP-1.C.4 defines a string as an ordered sequence of characters, making A correct. B is wrong on both counts — a string is ordered and holds characters, not numbers. C describes a single character, not a string, which may hold many. D confuses a string with a Boolean list."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "A weather program stores a year of daily highs. One version uses 365 separate variables; another stores them in one list. Why does the list version better manage complexity?",
+        "options": [
+          "The list runs faster; a computer stores lists in a special kind of memory",
+          "The list version is better only when 365 is too many variables for a language to allow",
+          "The list gives the whole collection one name, so the program can work with the data without referencing every individual variable",
+          "The list removes the need to keep the temperatures in any particular order"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-1.D.2",
+        "rationale": "EK AAP-1.D.2 says data abstractions manage complexity by giving a collection a name without referencing the specific details of the representation. One name, temperatures, replaces 365 references — C is correct. A invents a speed/memory claim not made by the EK. B is false; the benefit is management, not a hard limit. D contradicts the ordered nature of a list."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A team changes how a roster list is stored internally but still accesses its elements by index as before. Which idea does this illustrate?",
+        "options": [
+          "Data abstraction separates a data type's abstract properties from the concrete details of how it is represented",
+          "Data abstraction requires every list to hold only one type of element",
+          "Data abstraction means the stored values can no longer be read once the list is named",
+          "Data abstraction is only possible when a program uses fewer than ten values"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-1.D.1",
+        "rationale": "EK AAP-1.D.1 states data abstraction provides a separation between the abstract properties of a data type and the concrete details of its representation — exactly the team's situation, so A is correct. B contradicts EK AAP-1.D.5, which allows different types of elements. C is false; abstraction hides representation details, not access to values. D invents a size limit."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "Lists are called arrays in some languages. Which statement about lists is accurate for this course?",
+        "options": [
+          "Since lists are sometimes called arrays, the AP course requires learning the linked-list version as well",
+          "A list lets many related items be treated as one value, though linked lists are outside the scope of this course",
+          "'List' and 'array' name unrelated structures that never behave alike",
+          "Treating items as a single value only works if every item is the same type"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-1.D.6",
+        "rationale": "EK AAP-1.D.6 says the use of lists allows multiple related items to be treated as a single value and that lists are called by other names such as array; its exclusion states linked lists are outside the scope of this course and the AP Exam. B captures both, so it is correct. A contradicts the exclusion. C denies that array is another name for the same idea. D contradicts EK AAP-1.D.5's different-types allowance."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs nums ← [10, 20, 30], then tries DISPLAY(nums[4]). What happens?",
+        "options": [
+          "It displays 30; index 4 is rounded down to the last valid index",
+          "It displays 0, a default value used when an index is missing",
+          "It displays nothing and the program continues silently to the next line",
+          "An error is produced and the program terminates, since index 4 is greater than the list's length"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-1.D.8",
+        "rationale": "EK AAP-1.D.8 states that if a list index is less than 1 or greater than the length of the list, an error is produced and the program terminates. nums has length 3, so index 4 is out of range — D is correct. A invents rounding. B invents a default value. C wrongly claims the program continues; the reference sheet specifies termination."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.2 — Data Abstraction — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.2 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.2 turns the single variable of Topic 3.1 into a collection. Day 1 (LO AAP-1.C) builds the vocabulary every later list topic depends on: a list is an ordered sequence of elements, each element sits at a unique index, indices are natural numbers running 1 through the length on the exam reference sheet, and a string is the same ordered-sequence idea for characters. Day 2 (LO AAP-1.D, both parts) raises the ceiling to the big idea: data abstraction — developing a list to hold multiple related items under one name (part a) and explaining how that naming manages complexity by separating a data type's abstract properties from its concrete representation (part b).",
+      "Because this is a Big Idea 3 programming topic, all code on slides uses the AP Exam Reference Sheet pseudocode (← assignment, DISPLAY, 1-indexed lists) shown beside runnable Python — and the 1-indexed-vs-0-indexed contrast is taught explicitly, since it is the most common list error on the exam. The interactive, auto-graded coding practice on the Topic 3.2 page has students build, append to, and read lists by index against expected output.",
+      "The through-line is a weather station's list of daily high temperatures (temps): students meet it in the Day 1 bell ringer, trace it on paper in Exercise 1, argue about list-vs-separate-variables in Exercise 2, and then type and run harder versions of the same scenario in the coding practice."
+    ],
+    "los": [
+      "LO AAP-1.C — Represent a list or string using a variable.",
+      "LO AAP-1.D — For data abstraction: a. Develop data abstraction using lists to store multiple elements. b. Explain how the use of data abstraction manages complexity in program code."
+    ],
+    "eks": [
+      "EK AAP-1.C.1 — A list is an ordered sequence of elements. For example, [value1, value2, value3, ...] describes a list where value1 is the first element, value2 is the second element, value3 is the third element, and so on.",
+      "EK AAP-1.C.2 — An element is an individual value in a list that is assigned a unique index.",
+      "EK AAP-1.C.3 — An index is a common method for referencing the elements in a list or string using natural numbers.",
+      "EK AAP-1.C.4 — A string is an ordered sequence of characters.",
+      "EK AAP-1.D.1 — Data abstraction provides a separation between the abstract properties of a data type and the concrete details of its representation.",
+      "EK AAP-1.D.2 — Data abstractions manage complexity in programs by giving a collection of data a name without referencing the specific details of the representation.",
+      "EK AAP-1.D.3 — Data abstractions can be created using lists.",
+      "EK AAP-1.D.4 — Developing a data abstraction to implement in a program can result in a program that is easier to develop and maintain.",
+      "EK AAP-1.D.5 — Data abstractions often contain different types of elements.",
+      "EK AAP-1.D.6 — The use of lists allows multiple related items to be treated as a single value. Lists are referred to by different names, such as array, depending on the programming language. X EXCLUSION (EK AAP-1.D.6): The use of linked lists is outside the scope of this course and the AP Exam.",
+      "EK AAP-1.D.7 — The exam reference sheet provides the notation [value1, value2, value3, ...] to create a list with those values as the first, second, third, and so on items. aList <- [value1, value2, value3] creates a new list; aList <- [] creates a new empty list; aList <- bList assigns a copy of the list bList to the list aList.",
+      "EK AAP-1.D.8 — The exam reference sheet describes a list structure whose index values are 1 through the number of elements in the list, inclusive. For all list operations, if a list index is less than 1 or greater than the length of the list, an error message is produced and the program will terminate."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.2 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.2 page for the interactive coding practice (build / append / access a list, 1-indexed).",
+      "Optional: a strip of numbered index cards to physically model a list — the card position is the index, the value written on it is the element."
+    ],
+    "prereqs": [
+      "Topic 3.1 (variables and assignment) is the direct prerequisite: students must already know that a variable holds one value and that assignment (←) evaluates the right side and stores a copy. Topic 3.1 also seeded the key idea that a variable's single value CAN be a list, which this topic develops. No list experience is assumed; the 1-indexed reference-sheet convention is taught from scratch."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Lists, elements, and indices; 1-indexed referencing; strings as ordered sequences (LO AAP-1.C)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.2/Q1) + bell ringer (read the third temperature)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Lists, elements, indices: vocab, the ordered-sequence concept, first code_block, element-vs-index (EK AAP-1.C.1–C.3)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on lists and indices",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Strings and the index: string concept, list-of-strings code_block, index table, the index-0 trap (EK AAP-1.C.3–C.4)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on indexing and strings",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + data-abstraction teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Data abstraction: developing a list abstraction and explaining how it manages complexity (LO AAP-1.D, parts a and b)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.2/Q2) + bell ringer (seven variables vs one list)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "What data abstraction is: the name-without-details concept, building lists code_block, separate-variables-vs-list (EK AAP-1.D.1–D.3, D.6–D.8)",
+            "min": 13,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on developing the abstraction",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "How lists manage complexity: benefits concept, one-value/mixed-types code_block, what-the-name-hides table (EK AAP-1.D.4–D.5)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.2 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.2 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.2 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“The first element is at index 0”",
+        "myth": "The first element of a list is at index 0, the way it is in Python, Java, and JavaScript.",
+        "reality": "The AP Exam Reference Sheet is 1-indexed (EK AAP-1.C.3, AAP-1.D.8): the first element is at index 1 and the last at index LENGTH(aList). temps[1] is the first reading; temps[0] or any index above the length is an out-of-range error that terminates the program. Teach the pseudocode-vs-Python offset explicitly."
+      },
+      {
+        "heading": "“Index and element are the same thing”",
+        "myth": "temps[3] = 75 means the index and the value are interchangeable ways of saying the same number.",
+        "reality": "The index is the POSITION (where), the element is the VALUE stored there (what) (EK AAP-1.C.2–C.3). In temps[3] = 75, 3 is the index and 75 is the element. Confusing the two is the root of most list-reading errors on the exam."
+      },
+      {
+        "heading": "“Data abstraction hides the data from you”",
+        "myth": "Once you put values into a named list, abstraction locks the individual values away so you can no longer read them.",
+        "reality": "Data abstraction hides the concrete details of the REPRESENTATION, not access to the values (EK AAP-1.D.1). You still reach any element by its index; what you get to ignore is how the collection is stored internally. That separation is exactly what manages complexity (EK AAP-1.D.2)."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Hand students a strip of numbered index cards: the printed position number is the index, the value they write on the card is the element. Physically pulling 'card number 1' models 1-indexed access and separates index from element.",
+        "Provide a fill-in index table (like the Day 1 worked example) for a new list so students practice writing temps[1] through temps[LENGTH] and marking which indices are out of range."
+      ],
+      "extension": [
+        "Have students rewrite a seven-variable program (day1..day7) as a single list and explain, in writing, which specific lines got shorter and why maintenance is now easier (EK AAP-1.D.4).",
+        "Point deep-dive students at the Topic 3.2 coding practice to build a list, append readings, and access elements — then explain how Python's 0-indexing forced them to translate every exam-sheet index down by one."
+      ]
+    },
+    "discussion": [
+      "Your radio temperatures made sense only because they were kept in order and each had a position. Where else in everyday life do you rely on 'the third one' or 'the last one' — and what invisible structure makes that phrase meaningful?",
+      "A year of daily highs could be 365 separate variables or one list named temperatures. If the computer could run either, what exactly does the single name buy the PROGRAMMER, and who benefits from that choice months later?",
+      "The reference sheet counts from 1, but Python, Java, and JavaScript count from 0. Why might a testing organization choose 1-indexing for humans reading pseudocode, and what kind of error does mixing the two conventions cause?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

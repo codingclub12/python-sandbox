@@ -1,0 +1,324 @@
+{
+  "meta": {
+    "lessonId": "3.1",
+    "lessonTitle": "Variables and Assignments",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-1.B",
+    "anchor": "Variables and Assignments",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.1 · Day 2 of 2",
+      "title": "Making the Value Move",
+      "subtitle": "The assignment operator ←, why the right side is evaluated before it is stored, and the most-recent-value trace puzzles the AP exam tests directly",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Variables and Assignments. Yesterday a variable was a named box holding one value. Today the value moves: we meet the assignment operator, the left-arrow on the exam reference sheet, and we get precise about what it does — evaluate the right side, then store a copy on the left. Then we work the trace puzzles the College Board loves, including the exact example the CED prints in the standards. By the end you should be able to run any short sequence of assignments in your head and get the right answer every time."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Use the assignment operator ← to change the value a variable holds, knowing it evaluates the right side first, then stores a copy of the result (LO AAP-1.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Determine a variable's value after a sequence of assignments, applying the most-recent-value rule to trace and swap puzzles (LO AAP-1.B)"
+        }
+      ],
+      "script": "Two targets today, both from AAP-1.B, determining the value of a variable after assignment. First: use the left-arrow operator to change a variable's value, and know the exact semantics — the right side is evaluated first, then a copy of that result is stored. Second: trace a sequence of assignments and give the final value of any variable, using the most-recent-value rule, including swap puzzles that need a temporary variable. Everything today is about reading assignment code correctly, which is the single most common thing you do on the exam."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser, now decide it. The program runs: a ← 1, then b ← a, then a ← 2, then DISPLAY(b). Three classmates predict b will show 2, 1, and 0.",
+      "subprompt": "Who is right, and exactly why? Write down what b holds after EACH line, and name the mistake the two wrong classmates made.",
+      "directions": "Be ready to defend your trace line by line.",
+      "script": "Pick up yesterday's teaser and settle it. a gets 1, b gets a, a gets 2, display b. Three classmates say 2, 1, and 0. A few minutes on your own: who is right, and — the part that matters — write down what b holds after every single line. The classmate who said 2 imagined b is permanently tied to a. The one who said 0 invented a reset. The correct answer is 1: when b took a copy of a, a was 1, and changing a afterward never touches b. That copy-and-most-recent idea is the whole lesson today."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "The Assignment Operator",
+          "description": "Changing a variable's value, and the evaluate-then-assign-a-copy rule (EK AAP-1.B.1–B.2)."
+        },
+        {
+          "title": "Most Recent Value & Copies",
+          "description": "Why a variable holds the most recent value assigned, plus trace and swap puzzles (EK AAP-1.B.3)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.1 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two sections, both green and CB-required. First, the assignment operator — how it changes a value and the evaluate-then-copy rule. Second, most recent value and copies — why a variable holds whatever was assigned to it most recently, worked through trace and swap puzzles. Keep the packet open; every answer also lives on the Topic 3.1 page, along with the interactive coding practice where you can run these traces yourself."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Assignment Operator",
+      "kicker": "Evaluate, Then Store a Copy · Learning Objective AAP-1.B",
+      "script": "Section one. Yesterday values just sat in boxes. Today they change, and the tool that changes them is the assignment operator. The College Board defines it precisely on the exam reference sheet, and reading it precisely is what separates a correct trace from a wrong one."
+    },
+    {
+      "type": "concept",
+      "heading": "Assignment: Evaluate, Then Store a Copy",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The assignment operator lets a program CHANGE the value a variable represents (EK AAP-1.B.1).",
+        "On the exam reference sheet it is the left-arrow: a ← expression (EK AAP-1.B.2).",
+        "It works in two steps: (1) evaluate the expression on the right, (2) assign a COPY of that result to the variable on the left (EK AAP-1.B.2).",
+        "Because a copy is stored, the variable becomes independent of wherever the value came from."
+      ],
+      "script": "Here is the precise definition. The assignment operator changes the value a variable holds — that is EK AAP-1.B.1. On the exam reference sheet the operator is the left-arrow: a arrow expression. And EK AAP-1.B.2 spells out the two-step semantics you must internalize: first evaluate the expression on the right, completely, then store a copy of that result in the variable on the left. The word copy is doing heavy lifting. Because a copy is stored, the variable is now independent — it does not stay linked to whatever produced the value. Read every assignment right-side-first, and you will never miss one.",
+      "capture": [
+        {
+          "q": "The assignment operator's job is to ______.",
+          "a": "change the value represented by a variable"
+        },
+        {
+          "q": "The statement a ← expression works by ______.",
+          "a": "evaluating the expression first, then assigning a copy of the result to a"
+        },
+        {
+          "q": "Storing a copy (not a link) means the variable afterward is ______.",
+          "a": "independent of wherever the value originally came from"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Assignment",
+      "heading": "The Right Side Runs First",
+      "caption": "count ← count + 3 evaluates 5 + 3, then stores the copy 8 back into count.",
+      "pseudocode": "count ← 5\ncount ← count + 3\nDISPLAY(count)",
+      "python": "count = 5\ncount = count + 3\nprint(count)",
+      "output": "8",
+      "script": "Watch the two-step rule in action. Count starts at 5. The second line, count arrow count plus 3, looks strange if you read it as math — count equals count plus three is never true. But it is not an equation; it is an instruction. Step one: evaluate the right side using count's current value, five, so five plus three is eight. Step two: store a copy of eight back into count. DISPLAY then shows eight. Same variable on both sides is completely normal in code precisely because the right side is fully evaluated before anything is stored on the left."
+    },
+    {
+      "type": "two_column",
+      "heading": "← Is Not the = From Math Class",
+      "subheading": "The arrow is a command to store; the equals sign in math is a claim of equality. Confusing them breaks every trace (EK AAP-1.B.1–B.2).",
+      "left": {
+        "title": "Math =",
+        "definition": "A statement that two sides are equal — a fact, in no particular direction",
+        "ek": "Contrast",
+        "examples": [
+          "x = x + 3 is impossible — no number equals itself plus 3",
+          "You can read it left-to-right or right-to-left",
+          "It describes a relationship, it does not DO anything"
+        ]
+      },
+      "right": {
+        "title": "Assignment ←",
+        "definition": "A command: evaluate the right side, then store a copy on the left",
+        "ek": "EK AAP-1.B.2",
+        "examples": [
+          "count ← count + 3 is routine — compute 5 + 3, store 8",
+          "It has a direction: right side in, left side out",
+          "It CHANGES the program's state (EK AAP-1.B.1)"
+        ]
+      },
+      "footer": "AP TIP: Read ← as 'becomes' or 'gets,' never as 'equals.' 'count becomes count + 3' is instantly sensible.",
+      "script": "The single biggest source of trace errors is importing the equals sign from math class. In math, x equals x plus 3 is impossible and you can read it in either direction — it is a claim about a relationship, and it does not do anything. The assignment arrow is the opposite: it is a command with a direction. count arrow count plus 3 is routine — evaluate five plus three, store eight. It changes the program's state. The fix is a reading habit: say the arrow as 'becomes' or 'gets,' never 'equals.' 'count becomes count plus three' is instantly sensible, and it keeps you evaluating the right side first.",
+      "capture": [
+        {
+          "q": "The assignment arrow should be read as ______, never as 'equals.'",
+          "a": "'becomes' or 'gets' — a command to store a value"
+        },
+        {
+          "q": "count ← count + 3 is sensible in code but x = x + 3 is impossible in math because ______.",
+          "a": "assignment evaluates the right side and stores it, while math = claims both sides are already equal"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Read the Assignment",
+      "subheading": "These map to LO AAP-1.B. Complete on your Guided Notes.",
+      "prompts": [
+        "Translate a ← b + 2 into a plain-English command using the word 'becomes,' and describe the two steps the computer performs in order.",
+        "A classmate says 'total ← total * 2 can't be right — total can't equal itself doubled.' Explain why the statement is perfectly valid in code.",
+        "After price ← 10 and price ← price - 4, what does price hold? Show the right-side evaluation that produces it."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.1 page.",
+      "script": "Stop and think, six minutes, full sentences. One: turn a arrow b plus 2 into an English command with the word becomes, and list the two steps in order — evaluate b plus 2, then store the copy in a. Two: rescue the classmate stuck on total arrow total times 2 — it is valid because the right side is evaluated first using total's current value, then stored back. Three: trace price arrow 10 then price arrow price minus 4, showing the ten-minus-four evaluation that gives six. These are the exact reading moves AAP-1.B questions demand."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Most Recent Value & Copies",
+      "kicker": "The Value a Variable Keeps · Learning Objective AAP-1.B",
+      "script": "Section two. Now the payoff — the rule the exam turns into puzzles. A variable holds the most recent value assigned to it, nothing older and nothing linked. Once you trust that rule and trace line by line, the classic b-equals-1 puzzle and the swap puzzle become automatic."
+    },
+    {
+      "type": "concept",
+      "heading": "A Variable Keeps Its Most Recent Value",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The value stored in a variable is the MOST RECENT value assigned to it (EK AAP-1.B.3).",
+        "The CED's own example: a ← 1; b ← a; a ← 2; DISPLAY(b) still displays 1 (EK AAP-1.B.3).",
+        "b ← a copies a's value AT THAT MOMENT (1) into b; b is not linked to a.",
+        "Changing a afterward to 2 updates only a — b already holds its own independent copy."
+      ],
+      "script": "One rule, stated by the College Board word for word: a variable holds the most recent value assigned to it. And they print the exact example — a gets 1, b gets a, a gets 2, display b still shows 1. Trace it with the copy rule from section one. b arrow a evaluates a right now, which is one, and stores a copy of one in b. Then a arrow 2 changes a and only a. b is not watching a; it already has its own copy. So b is still one. Every trace puzzle on the exam is this same idea — evaluate at the moment of assignment, store a copy, and the variable keeps whatever was assigned last.",
+      "capture": [
+        {
+          "q": "The value stored in a variable is always ______.",
+          "a": "the most recent value assigned to it"
+        },
+        {
+          "q": "In a ← 1; b ← a; a ← 2, DISPLAY(b) shows 1 because ______.",
+          "a": "b took a copy of a's value (1) at that moment and later changes to a do not affect b"
+        },
+        {
+          "q": "b ← a does NOT create ______.",
+          "a": "a live link between b and a — it stores an independent copy of a's current value"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Most Recent Value",
+      "heading": "The Classic Puzzle",
+      "caption": "b keeps the copy it received; changing a afterward does nothing to b.",
+      "pseudocode": "a ← 1\nb ← a\na ← 2\nDISPLAY(b)",
+      "python": "a = 1\nb = a\na = 2\nprint(b)",
+      "output": "1",
+      "script": "This is the exam's own example, verbatim from the CED, and now the code runs it. a gets 1. b gets a copy of a's current value, one. a is reassigned to 2 — that changes a only. Display b: one, not two. If your instinct said two, you were imagining a link between b and a that assignment never creates. Run this yourself in the Topic 3.1 coding practice and the language will print exactly one — proof that a variable keeps the value it was most recently assigned, independent of where that value came from."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace a Swap, Line by Line",
+      "context": "Swapping two variables needs a temporary holder. Fill in each variable's value AFTER the line runs — a dash means 'no value yet.'",
+      "columns": [
+        "After line",
+        "Statement",
+        "x",
+        "y",
+        "temp"
+      ],
+      "rows": [
+        [
+          "1",
+          "x ← 4",
+          "4",
+          "—",
+          "—"
+        ],
+        [
+          "2",
+          "y ← 9",
+          "4",
+          "9",
+          "—"
+        ],
+        [
+          "3",
+          "temp ← x",
+          "4",
+          "9",
+          "4"
+        ],
+        [
+          "4",
+          "x ← y",
+          "9",
+          "9",
+          "4"
+        ],
+        [
+          "5",
+          "y ← temp",
+          "9",
+          "4",
+          "4"
+        ]
+      ],
+      "highlightCol": 0,
+      "script": "Trace the swap line by line — this is how you should work every trace question. Line one, x becomes 4. Line two, y becomes 9. Line three, temp becomes a copy of x, so temp holds 4 — this is the move that saves x's value before we overwrite it. Line four, x becomes y, so x holds 9; notice x's old 4 is now gone, but we kept it in temp. Line five, y becomes temp, so y holds the saved 4. Final result: x is 9, y is 4 — swapped. The whole trick is the temporary variable: without it, x arrow y would destroy x's value before y could receive it.",
+      "blanks": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“b ← a Links b to a”",
+      "misconception": "After b ← a, the variables b and a are tied together, so a later change to a also changes b.",
+      "whyItHappens": "The statement looks like it connects the two names, and in algebra b = a would express an ongoing equality between them.",
+      "correction": "Assignment stores a COPY of a's value at that instant, not a link (EK AAP-1.B.2). Afterward b holds its own independent value — the most recent one assigned to b (EK AAP-1.B.3). Changing a later updates only a. This is exactly why a ← 1; b ← a; a ← 2; DISPLAY(b) prints 1, not 2.",
+      "example": "Trace it: b ← a copies 1 into b. a ← 2 changes a to 2 but never touches b. DISPLAY(b) → 1. If b were linked to a, it would show 2 — but assignment does not create links.",
+      "script": "The trap that sinks the classic puzzle. Because b arrow a looks like it connects the two names, and because algebra's b equals a would express an ongoing equality, students imagine a live link. There is none. Assignment copies a's value at that instant into b, and from then on b holds its own independent value — the most recent one assigned to it. Change a later and only a changes. That is precisely why the CED's example prints one, not two. Prove it by tracing: copy one into b, change a to two, b is untouched, display shows one."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Trace It",
+      "subheading": "These map to LO AAP-1.B. Show your line-by-line trace on your Guided Notes.",
+      "prompts": [
+        "Trace: p ← 5, q ← p, p ← p + 4, DISPLAY(q). What does q show? Write q's value after each line.",
+        "Trace the swap: m ← 7, n ← 2, temp ← m, m ← n, n ← temp. Give the final values of m and n, and explain what temp saved.",
+        "A programmer tries to swap with only m ← n, n ← m (no temp). Predict the result for m ← 7, n ← 2 and explain what went wrong.",
+        "In one sentence, state the rule that determines the value a variable holds after any sequence of assignments."
+      ],
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 3.1 page.",
+      "script": "Trace it, six minutes, and show every line. One: p gets 5, q gets a copy of p which is 5, p becomes 9 — display q is still 5, because q kept its copy. Two: the swap with m 7 and n 2 ends with m 2 and n 7; temp saved m's original 7 so it could land in n. Three: the broken swap without temp — m arrow n makes m 2, then n arrow m makes n 2 as well, so both end up 2 and the original 7 is destroyed; that is exactly why you need the temporary. Four: one sentence — a variable holds the most recent value assigned to it. Answers are reviewed as a class before the exit."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.1 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Assignment is not equality",
+          "text": "The arrow ← is a command, not the = of math. Read it as 'becomes': evaluate the right side, then store a copy on the left. count ← count + 3 is routine, not a contradiction."
+        },
+        {
+          "name": "b ← a copies the VALUE, not a link",
+          "text": "b ← a stores a copy of a's current value; it does not tie b to a. Changing a afterward leaves b alone — which is why a ← 1; b ← a; a ← 2; DISPLAY(b) shows 1."
+        },
+        {
+          "name": "Only the most recent value",
+          "text": "When several assignments hit one variable, only the last one counts. Trace line by line and overwrite; never average, add, or 'remember' earlier values."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: assignment is not equality — the arrow is a command, read it as becomes, evaluate the right side and store a copy, so count becomes count plus three is perfectly normal. Trap two: b arrow a copies the value, it does not create a link, which is the entire reason the CED's example prints one. Trap three: a variable holds only its most recent value — when multiple assignments hit one variable, trace line by line and overwrite; do not average or remember older values. Dodge these three and every variables question on the exam is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Variables and Assignments, in One Slide",
+      "points": [
+        "A variable is an abstraction that holds exactly one value at a time; meaningful names make code readable (EK AAP-1.A.1–A.2).",
+        "The CED names four types — numbers, Booleans, lists, strings — and some values fit one type better than another (EK AAP-1.A.3–A.4).",
+        "The assignment operator ← changes a variable's value: evaluate the right side, then store a COPY on the left (EK AAP-1.B.1–B.2).",
+        "A variable keeps its MOST RECENT value; b ← a copies a value, it does not link — so a ← 1; b ← a; a ← 2; DISPLAY(b) shows 1 (EK AAP-1.B.3)."
+      ],
+      "next": "Topic 3.2, Data Abstraction: now that a variable can hold one value — even a whole list — how do lists and strings let one variable manage many values and tame program complexity?",
+      "script": "The whole topic in one slide. A variable is an abstraction holding one value at a time, and meaningful names make the code readable. The CED names four types — numbers, Booleans, lists, strings — and some values suit one type better than another, which is why a ZIP code is a string. The assignment operator changes a variable's value by evaluating the right side and storing a copy on the left. And a variable keeps its most recent value; b arrow a copies rather than links, which is why the CED's own example displays one. Next class is Topic 3.2, Data Abstraction, where one variable holding a whole list becomes a tool for managing complexity. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.1 page tonight, including the interactive coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain that a variable is an abstraction holding one value at a time, and choose a meaningful name (LO AAP-1.A)",
+        "name the four types and pick the type best suited to a given value (LO AAP-1.A)",
+        "use the assignment operator ←, evaluating the right side before storing a copy (LO AAP-1.B)",
+        "trace a sequence of assignments and give a variable's most recent value, including swaps (LO AAP-1.B)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "meta": {
+    "lessonId": "3.12",
+    "lessonTitle": "Calling Procedures",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-3.A",
+    "anchor": "Calling Procedures",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.12 · Day 1 of 2",
+      "title": "Push the Button, Trust the Box",
+      "subtitle": "A procedure is a named process someone already wrote and tested — today you learn to CALL one: hand it arguments, watch the flow of control jump in and come back, and read what DISPLAY puts on the screen",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.12, Calling Procedures. Until now every line you traced was code you could see from top to bottom. Today a new move: a procedure — a named group of instructions that someone has already written — and the act of CALLING it. You will not write procedures yet; that is Topic 3.13. Today, Day 1, you learn to USE one that already exists: how to hand it arguments, what its parameters do with them, how the flow of control interrupts your main program to run the procedure and then returns, and how DISPLAY shows a value. Tomorrow, Day 2, procedures start handing values BACK — RETURN, capturing the result, and reading input from the user."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write a statement that calls a procedure — procName(arg1, arg2, ...) — matching each argument to its parameter in order, and use DISPLAY to show a value (LO AAP-3.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Determine the effect of a procedure call by tracing how the flow of control interrupts the main program, runs the procedure, and returns to the calling point (LO AAP-3.A)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-3.A, procedure calls. First, the WRITE half of the objective: write a statement that calls a procedure, passing arguments in the right order so each lands in the matching parameter, and use DISPLAY to put a value on the screen. Second, the DETERMINE half: trace the EFFECT of a call — how calling a procedure interrupts your main program's sequence, runs the procedure's statements, and then returns control to the line right after the call. Tomorrow's objective is the same LO, its return-value side: RETURN, result-gets-procName, and INPUT."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "You are training a new snack-bar worker. Instead of re-explaining a combo every time, you write ONE instruction card titled makeCombo that lists the steps, leaving two blanks: the snack and the drink. Now you just say 'makeCombo with Nachos and Cola,' then later 'makeCombo with Popcorn and Water.'",
+      "subprompt": "Write 2–4 sentences: What did giving the card a NAME let you stop repeating? The two blanks on the card versus the actual words you say out loud each time — what is the difference between them? What has to happen the instant you say 'makeCombo' before the worker can continue with anything else?",
+      "directions": "Be ready to share the difference between the blanks on the card and the words you say each time.",
+      "script": "Five minutes with a partner. The scenario is deliberately ordinary: rather than re-teach a combo every single time, you write one named card, makeCombo, with two blanks — the snack and the drink — and then just invoke it with different fillings. Push on three things. One: naming the card let you stop repeating the whole procedure. That is a PROCEDURE. Two: the blanks on the card are placeholders that wait for values — those are PARAMETERS — while the actual words you say each time, 'Nachos,' 'Cola,' are the ARGUMENTS. Three: the instant you say 'makeCombo,' the worker stops what they were doing, goes and follows the card start to finish, and only then comes back — that is FLOW OF CONTROL. Hold onto all three; you just invented today's lesson before it was named."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "What a Procedure Is & How You Call One",
+          "description": "A procedure as a named, reusable process (called a method or function elsewhere), plus parameters vs. arguments and the call statement (EK AAP-3.A.1–A.3, A.5)."
+        },
+        {
+          "title": "Flow of Control & DISPLAY",
+          "description": "How a call interrupts the main program, runs the procedure, and returns — and how DISPLAY shows a value followed by a space (EK AAP-3.A.4, A.6)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.12 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required. First, what a procedure is and how you call one: the named-process idea, the fact that other languages call it a method or a function, the crucial parameter-versus-argument distinction, and the call statement itself. Second, flow of control and DISPLAY: what actually happens to your program's sequence when a call fires, and the exact behavior of DISPLAY. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.12 Guided Notes page, and the write-and-run coding practice lives on the Topic 3.12 page too."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "What a Procedure Is & How You Call One",
+      "kicker": "Named Processes, Parameters, and the Call · Learning Objective AAP-3.A",
+      "script": "Section one. Your snack-bar card had a name and two blanks, and you invoked it by name with real fillings. That is exactly a procedure and a call. Before we can trace anything, we need three words rock-solid and never confused: procedure, parameter, and argument — and the one line of code that calls a procedure."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-3.A)",
+      "terms": [
+        {
+          "term": "Procedure",
+          "definition": "A named group of programming instructions that may have parameters and return values (EK AAP-3.A.1)."
+        },
+        {
+          "term": "Method / function",
+          "definition": "The names other programming languages use for a procedure — the idea is identical, only the word changes (EK AAP-3.A.2)."
+        },
+        {
+          "term": "Parameter",
+          "definition": "An input variable of a procedure — a named placeholder inside the definition that waits to receive a value (EK AAP-3.A.3)."
+        },
+        {
+          "term": "Argument",
+          "definition": "The actual value supplied for a parameter when a procedure is called; arg1 is assigned to parameter1, and so on (EK AAP-3.A.3, A.5)."
+        },
+        {
+          "term": "Procedure call",
+          "definition": "The statement procName(arg1, arg2, ...) that runs a procedure, assigning each argument to its matching parameter in order (EK AAP-3.A.5)."
+        },
+        {
+          "term": "DISPLAY(expression)",
+          "definition": "The reference-sheet procedure that displays the value of expression, followed by a space (EK AAP-3.A.6)."
+        }
+      ],
+      "script": "Six words carry this topic. A procedure is a named group of instructions that MAY have parameters and return values — 'may,' because some take no inputs and some hand nothing back. Method and function are just other languages' words for the same idea; the exam calls it a procedure. A parameter is an input variable inside the definition, a named placeholder waiting for a value. An argument is the actual value you supply at the call — and the reference sheet is precise: arg1 goes to parameter1, arg2 to parameter2, by position. The procedure call is the statement that fires it, procName with arguments in parentheses. And DISPLAY shows the value of an expression followed by a space — write that trailing space down now, because the exam counts it."
+    },
+    {
+      "type": "concept",
+      "heading": "A Procedure Is a Named, Reusable Process",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A procedure is a NAMED group of programming instructions that may have parameters and return values (EK AAP-3.A.1).",
+        "Give a process a name once, then run it as many times as you like just by calling that name — no copy-pasting the steps.",
+        "The same idea is called a METHOD or a FUNCTION in other languages; only the vocabulary changes, not the concept (EK AAP-3.A.2).",
+        "Today you are a USER of procedures: you call ones already written and tested — writing your own is Topic 3.13."
+      ],
+      "script": "Here is the core idea. A procedure is a named group of programming instructions — and the word 'named' is the whole point. Once a process has a name, you invoke it by that name instead of re-writing its steps, which is exactly what your makeCombo card did. The College Board flags that other languages call this a method or a function; if you have seen those words, they are the same thing, and on the exam it is a procedure. One framing to hold all of today: you are a USER of procedures right now. You call procedures that already exist — someone wrote and tested them — the way you press a button without knowing the wiring. Writing the procedure yourself comes in Topic 3.13.",
+      "capture": [
+        {
+          "q": "A procedure lets you avoid copy-pasting a process because you can rerun it just by ______.",
+          "a": "writing its name in a call"
+        },
+        {
+          "q": "Seeing the words 'method' or 'function' in another language should tell you that ______.",
+          "a": "it is the same idea as a procedure, only the term differs"
+        },
+        {
+          "q": "In this topic your job is to ______, while writing your own procedures waits for Topic 3.13.",
+          "a": "call and use procedures that already exist"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Calling a Procedure",
+      "heading": "Call It by Name, Hand It Arguments",
+      "caption": "showItem is already written; the last line CALLS it, sending \"Popcorn\" to item and 3 to price.",
+      "pseudocode": "PROCEDURE showItem(item, price)\n{\n  DISPLAY(item)\n  DISPLAY(price)\n}\nshowItem(\"Popcorn\", 3)",
+      "python": "def showItem(item, price):\n  print(item, end=\" \")\n  print(price, end=\" \")\n\nshowItem(\"Popcorn\", 3)",
+      "output": "Popcorn 3",
+      "script": "Your first procedure call. The top block is the procedure DEFINITION — treat it as a black box someone handed you; item and price are its parameters, the placeholders. The line that matters today is the last one: showItem with the arguments 'Popcorn' and 3. That is the call. By position, 'Popcorn' is assigned to item and 3 is assigned to price, then the two DISPLAY statements run, printing Popcorn then 3, each followed by a space, so the screen shows Popcorn 3. On the exam you read and write the pseudocode call on the left; in the coding practice you run the Python on the right. Notice you never touched the inside of showItem — you just called it."
+    },
+    {
+      "type": "two_column",
+      "heading": "Parameter vs. Argument — the Line Everyone Blurs",
+      "subheading": "Parameters live in the DEFINITION and wait; arguments live at the CALL and are the actual values (EK AAP-3.A.3, A.5).",
+      "left": {
+        "title": "Parameter",
+        "definition": "An input variable named in the procedure definition — a placeholder that waits for a value",
+        "ek": "EK AAP-3.A.3",
+        "examples": [
+          "In PROCEDURE showItem(item, price), item and price are parameters",
+          "They are named ONCE, where the procedure is defined",
+          "Think: the labeled blanks printed on your makeCombo card"
+        ]
+      },
+      "right": {
+        "title": "Argument",
+        "definition": "The actual value you supply at the call, assigned to a parameter by position",
+        "ek": "EK AAP-3.A.5",
+        "examples": [
+          "In showItem(\"Popcorn\", 3), \"Popcorn\" and 3 are arguments",
+          "They are supplied fresh EACH time you call",
+          "arg1 goes to parameter1, arg2 to parameter2, in order"
+        ]
+      },
+      "footer": "AP TIP: Same slot, two roles. The parameter is the variable that receives; the argument is the value that is sent. Position decides the pairing — not the names.",
+      "script": "This is the distinction the exam probes constantly. A parameter is the input variable named where the procedure is DEFINED — item and price in showItem — a placeholder that just waits. An argument is the actual value you send at the CALL — 'Popcorn' and 3 — supplied fresh every time. The pairing is by POSITION, not by name: the first argument goes to the first parameter, the second to the second. Your card makes it concrete: the labeled blanks are parameters, printed once; the words you say each visit are arguments, different every time. Read the arrow one way — arguments flow IN, and each one lands in the parameter sitting in the same position.",
+      "capture": [
+        {
+          "q": "A parameter is best thought of as a placeholder because, until the procedure is called, it ______.",
+          "a": "holds no value — it is waiting to receive one"
+        },
+        {
+          "q": "The values written in the parentheses of a call are supplied fresh every time, which is why they are the ______.",
+          "a": "arguments, not the parameters"
+        },
+        {
+          "q": "Calling showItem(2, \"Cola\") instead of showItem(\"Cola\", 2) puts the wrong values in the parameters because arguments bind by ______.",
+          "a": "position — the first argument fills the first parameter"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Procedures, Parameters, Arguments",
+      "subheading": "These map to LO AAP-3.A. Complete on your Guided Notes.",
+      "prompts": [
+        "In one sentence, define a procedure using the word 'named,' then state the two other words languages use for the same idea.",
+        "For the call greet(\"Sam\", 5): if the definition is PROCEDURE greet(name, times), which values are the arguments, which words are the parameters, and what value does times receive?",
+        "A classmate writes showItem(3, \"Popcorn\") expecting the same output as showItem(\"Popcorn\", 3). Explain, using the word 'position,' why the two calls are not the same."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.12 page.",
+      "script": "Stop and think, six minutes, full sentences on your Guided Notes. One: define procedure with the word named, and give the two other language words — method and function. Two: in greet with 'Sam' and 5, the arguments are 'Sam' and 5, the parameters are name and times, and times receives 5 by position. Three: the swapped call sends 3 into name and 'Popcorn' into times, because arguments match parameters by position, not by what they look like — so the output is different and probably wrong. That position rule is exactly what AAP-3.A questions test."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Flow of Control & DISPLAY",
+      "kicker": "What Actually Happens When You Call · Learning Objective AAP-3.A",
+      "script": "Section two. You can now write a call — but to predict what a program DOES, you have to trace where the computer goes when the call fires. A call is not just another line in sequence; it is a detour. Get the detour right and DISPLAY output falls into place every time."
+    },
+    {
+      "type": "concept",
+      "heading": "A Call Is a Detour: Interrupt, Run, Return",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A procedure call INTERRUPTS the sequential execution of statements — the main program pauses at the call (EK AAP-3.A.4).",
+        "The program then executes the statements INSIDE the procedure, start to finish (EK AAP-3.A.4).",
+        "Once the last statement (or a return) runs, flow of control goes back to the point immediately AFTER the call (EK AAP-3.A.4).",
+        "So a call is a round trip: leave the main line, do the procedure's work, come back exactly where you left off."
+      ],
+      "script": "This is the mental model that makes every trace question easy. A procedure call interrupts the normal top-to-bottom flow: the main program pauses right at the call. Control jumps into the procedure and runs its statements start to finish. Then — and this is the part students forget — once the procedure's last statement, or a return, has executed, flow of control returns to the point IMMEDIATELY after the call, and the main program picks up from there. It is a round trip: leave, do the work, come back to the exact spot you left. Your snack-bar worker did the same thing: heard makeCombo, dropped everything to follow the card, then resumed. Trace calls as detours and you will never lose your place.",
+      "capture": [
+        {
+          "q": "The moment a call executes, the main program's normal top-to-bottom sequence is ______.",
+          "a": "paused so the procedure can run"
+        },
+        {
+          "q": "While a procedure runs, the computer is executing ______, not the main program's next line.",
+          "a": "the statements inside the procedure, one after another"
+        },
+        {
+          "q": "The reason you can drop a call anywhere and keep going is that control comes back to ______.",
+          "a": "the line right after the call"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Flow of Control + DISPLAY",
+      "heading": "Watch Control Leave and Come Back",
+      "caption": "showItem is the same procedure from before; the call sits between two DISPLAY lines in the main program.",
+      "pseudocode": "DISPLAY(\"Start\")\nshowItem(\"Cola\", 2)\nDISPLAY(\"Done\")",
+      "python": "print(\"Start\", end=\" \")\nshowItem(\"Cola\", 2)\nprint(\"Done\", end=\" \")",
+      "output": "Start Cola 2 Done",
+      "script": "Three lines in the main program, and the middle one is a call to showItem. Trace the flow. Line one displays Start. Line two is the call: the main program pauses, control jumps into showItem, which displays Cola then 2, and then control returns to the point right after the call. Line three resumes and displays Done. Read the output left to right and it records the whole journey: Start, then Cola and 2 from inside the procedure, then Done. Every value is followed by a space because that is what DISPLAY does. The call did not skip anything and did not stay inside the procedure — it made a round trip and came right back."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace the Output, Line by Line",
+      "context": "Main program: DISPLAY(\"Start\"); showItem(\"Cola\", 2); DISPLAY(\"Done\"). showItem does DISPLAY(item) then DISPLAY(price). Fill in the missing cells — remember DISPLAY adds a space after each value.",
+      "columns": [
+        "Step",
+        "Statement executing",
+        "Where control is",
+        "Output so far"
+      ],
+      "rows": [
+        [
+          "1",
+          "DISPLAY(\"Start\")",
+          "Main program",
+          "Start "
+        ],
+        [
+          "2",
+          "showItem(\"Cola\", 2)",
+          "Call — control leaves the main line",
+          "Start "
+        ],
+        [
+          "3",
+          "DISPLAY(item)",
+          "Inside showItem (item is \"Cola\")",
+          "Start Cola "
+        ],
+        [
+          "4",
+          "DISPLAY(price)",
+          "Inside showItem (price is 2)",
+          "Start Cola 2 "
+        ],
+        [
+          "5",
+          "procedure ends",
+          "Control returns to after the call",
+          "Start Cola 2 "
+        ],
+        [
+          "6",
+          "DISPLAY(\"Done\")",
+          "Main program resumes",
+          "Start Cola 2 Done "
+        ]
+      ],
+      "highlightCol": 3,
+      "script": "Trace it as a table, the way you should work every flow question. Step one, the main program displays Start. Step two, the call fires and control LEAVES the main line — notice nothing new prints yet, the call itself does not display. Steps three and four happen INSIDE showItem: item is Cola, price is 2, so the output grows to Start Cola 2, each value with its trailing space. Step five, the procedure ends and control RETURNS to just after the call. Step six, the main program resumes and displays Done. Final output: Start Cola 2 Done. Fill the blank cells yourself and confirm you can say, at every step, exactly which statement is running and where control is.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The Argument Name Must Match the Parameter Name”",
+      "misconception": "When you call a procedure, the variable or value you pass in has to have the same name as the parameter, or the values will not line up.",
+      "whyItHappens": "The definition shows named parameters like (item, price), so it feels like the call must repeat those exact names for the computer to know which is which.",
+      "correction": "Arguments are matched to parameters by POSITION, not by name (EK AAP-3.A.5). The first argument goes to the first parameter, the second to the second, regardless of what they are called. showItem(snack, cost) and showItem(\"Cola\", 2) both work: whatever sits in the first slot becomes item, whatever sits in the second becomes price.",
+      "example": "Call showItem(\"Cola\", 2): \"Cola\" is first, so it becomes item; 2 is second, so it becomes price — even though neither argument is named 'item' or 'price.' Swap them to showItem(2, \"Cola\") and now item is 2 and price is \"Cola\" — same names, wrong values, because position changed.",
+      "script": "Here is a trap the exam loves. Because the definition lists named parameters, students think the call has to use those same names. It does not. Arguments bind to parameters by POSITION. The first argument becomes the first parameter no matter what it is called — a literal like 'Cola,' a number like 2, or a variable named something totally different. What ruins a call is not a mismatched name, it is a mismatched ORDER: showItem(2, 'Cola') compiles fine but puts 2 into item and 'Cola' into price, which is backwards. When students explain WHY this myth is wrong, they should land on the one word that governs the pairing: position."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Trace the Call",
+      "subheading": "These map to LO AAP-3.A. Show your line-by-line reasoning on your Guided Notes.",
+      "prompts": [
+        "Trace and give the exact output: DISPLAY(\"A\"); showItem(\"Chips\", 4); DISPLAY(\"B\"). Mark where control leaves the main program and where it returns.",
+        "The procedure runs its two DISPLAY lines but prints nothing at the moment of the CALL itself. In one sentence, explain what the call statement actually does before any of the procedure's own lines run.",
+        "A program has ten lines and line 4 is a procedure call. In one sentence, state which line runs next after the procedure finishes, and why."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.12 page.",
+      "script": "Stop and think, six minutes, full sentences. One: the output is A Chips 4 B — control leaves the main program at the call to showItem, runs the two DISPLAY lines inside, then returns and displays B. Two: the call statement itself does not display anything; its job is to hand the arguments to the parameters and transfer control INTO the procedure, and only then do the procedure's own lines run. Three: after the procedure on line 4 finishes, line 5 runs next, because flow of control returns to the point immediately after the call. These are the exact flow-of-control moves AAP-3.A turns into questions."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "A procedure is a named group of instructions — called a method or function in other languages — and today you CALL ones already written (EK AAP-3.A.1–A.2)",
+        "Parameters are the placeholders in the definition; arguments are the actual values at the call, matched by POSITION (EK AAP-3.A.3, A.5)",
+        "A call interrupts the main program, runs the procedure, and returns control to the point right after the call (EK AAP-3.A.4)",
+        "DISPLAY(expression) shows the value of expression followed by a space (EK AAP-3.A.6)"
+      ],
+      "nextPoints": [
+        "Day 2: procedures that hand a value BACK — the RETURN statement (LO AAP-3.A)",
+        "Capturing what comes back: result ← procName(arg1, ...)",
+        "Reading a value from the user with INPUT(), then feeding it to a procedure"
+      ],
+      "teaser": "Before tomorrow, predict it: a procedure costFor(count) does RETURN(count * 3). What is the difference between DISPLAY(costFor(2)) and total ← costFor(2)? Which one lets you REUSE the answer later — and why?",
+      "script": "That is Day 1. A procedure is a named, reusable process — method or function elsewhere — and you called ones that already exist. Parameters are the placeholders, arguments are the values you send, matched by position. A call is a detour: interrupt, run, return to the line right after. And DISPLAY shows a value with a trailing space. Tomorrow the procedures start giving something BACK: the RETURN statement, capturing that value with result-gets-procName, and reading from the user with INPUT. Here is the teaser, and it is exactly where we open tomorrow: costFor(count) returns count times 3 — what is the difference between DISPLAYING that result and STORING it in a variable, and which one lets you use the answer again? Write your prediction and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.12 — Calling Procedures — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "In exam pseudocode, what is a procedure?",
+        "options": [
+          "A named group of programming instructions that can be run by calling its name",
+          "A single variable that stores one value",
+          "A list of related data values",
+          "A condition that evaluates to true or false"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.A.1",
+        "rationale": "A procedure is a named, reusable block of instructions invoked by name, so A is correct. B describes a variable, C a list, and D a Boolean condition. Only A matches the meaning of a procedure."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A procedure is defined as PROCEDURE mix(base, add). A program calls mix(\"milk\", \"cocoa\"). Which pairing is correct?",
+        "options": [
+          "base and add are the arguments, and \"milk\" and \"cocoa\" are the parameters",
+          "\"milk\" is assigned to base and \"cocoa\" to add; base and add are the parameters, and the two strings are the arguments",
+          "The values are assigned alphabetically, so \"cocoa\" goes to base",
+          "The call fails, since the arguments are not named base and add"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.A.3",
+        "rationale": "Arguments are matched to parameters by position, so \"milk\" goes to base and \"cocoa\" to add; B is correct. A swaps the terms parameter and argument. C invents alphabetical matching. D is false; arguments need not share the parameter names."
+      },
+      {
+        "id": "Q3",
+        "kind": "code-error",
+        "stem": "PROCEDURE showItem(item, price) displays item then price. A programmer calls showItem(5, \"Gum\") but wanted the name shown before the number. What went wrong?",
+        "options": [
+          "Nothing; the procedure prints the string before the number automatically",
+          "A call can never control the order that values appear",
+          "The arguments are in the wrong order: 5 went to item and \"Gum\" to price, so it should be showItem(\"Gum\", 5)",
+          "The two DISPLAY statements reordered themselves"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.A.5",
+        "rationale": "Arguments bind by position, so 5 became item and \"Gum\" became price; swapping them to showItem(\"Gum\", 5) fixes it, so C is correct. A ignores that order matters. B is false; argument order controls the output. D blames the procedure instead of the call."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs DISPLAY(\"1\"), then calls doStuff (which displays \"2\"), then DISPLAY(\"3\"). What is displayed?",
+        "options": [
+          "1 3 2, because the call is saved for last",
+          "1 3, because a call displays nothing",
+          "2 1 3, because the procedure always runs first",
+          "1 2 3, because the call runs, then control returns"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.A.4",
+        "rationale": "When doStuff is called it runs immediately, displaying 2, then control returns to display 3, giving 1 2 3; D is correct. A delays the call, B ignores its output, and C runs it before the first line. Calls execute in place and return afterward."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "In exam pseudocode, DISPLAY(\"Hi\") runs, then DISPLAY(7) runs. What appears on screen?",
+        "options": [
+          "Hi 7, because each value is shown followed by a space",
+          "Hi7, because the values are joined with no space",
+          "Hi and 7 on two separate lines",
+          "7 Hi, because numbers are displayed first"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.A.6",
+        "rationale": "Each DISPLAY shows its value followed by a space, so the output is Hi 7; A is correct. B omits the space, C invents line breaks, and D reorders the output. DISPLAY does not reorder or line-break on its own."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "Which statement best describes what happens when a procedure is called?",
+        "options": [
+          "The program permanently replaces the main code with the procedure's code",
+          "The procedure runs only if it has no parameters",
+          "The procedure's statements run, then control returns to where the call was made",
+          "The call displays the procedure's name on the screen"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.A.1",
+        "rationale": "A call runs the procedure's statements and then returns control to the caller, so C is correct. A misdescribes a temporary transfer as a permanent replacement. B invents a no-parameter rule. D confuses calling with printing a name."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "stem": "PROCEDURE greet(name, times) displays name, then displays times. What is the exact output of greet(\"Al\", 3)?",
+        "options": [
+          "Al Al Al, because times means repeat the name that many times",
+          "3 Al, because the number is always shown first",
+          "name times, because the parameter names are displayed",
+          "Al 3, because name is \"Al\" and times is 3, each shown followed by a space"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.A.5",
+        "rationale": "name is \"Al\" and times is 3, and each is displayed with a trailing space, giving Al 3; D is correct. A misreads times as a repeat count. B reorders the output. C displays the parameter names literally rather than their values."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "You must run the same three-line 'print a receipt header' process in five different places in a program. What is the advantage of writing it as a procedure and calling it?",
+        "options": [
+          "Calling a procedure makes those three lines execute faster than writing them directly",
+          "The process is written and named once, then run in all five places by calling its name",
+          "A procedure can hold more lines of code than the main program can",
+          "Using a procedure removes the need to pass any arguments"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.A.1",
+        "rationale": "A procedure lets you write the logic once and reuse it by name in many places, so B is correct. A claims a speed benefit that does not exist. C invents a size limit. D is unrelated; reuse does not eliminate arguments."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.12 — Calling Procedures — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.12 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.12 is the course's first encounter with PROCEDURES, and it deliberately stays on the USING side: students call procedures that already exist rather than write their own (that is Topic 3.13). Day 1 (LO AAP-3.A, the 'write a call' and 'trace the effect' halves) builds the vocabulary and the call itself — a procedure is a named group of instructions (a method or function in other languages), parameters are the placeholders in the definition while arguments are the values sent at the call and matched by position, a call interrupts the main program and returns control to the point right after it, and DISPLAY shows a value followed by a space. Day 2 (same LO, the return-value side) adds RETURN, capturing a returned value with result ← procName(...), and reading user input with INPUT().",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (procName(arg1, arg2, ...), DISPLAY, RETURN, ← assignment, INPUT()) shown beside runnable Python. The interactive, auto-graded coding practice lives on the Topic 3.12 page: students call procedures and use their return values, checking real output against expected output.",
+      "The through-line is a snack-bar / point-of-sale scenario introduced in the Day 1 bell ringer (a named makeCombo card with two blanks), carried through the showItem procedure on Day 1 and the costFor(count) return-value procedure on Day 2, and continued in the paper exercises and the coding practice."
+    ],
+    "los": [
+      "LO AAP-3.A — For procedure calls: a. Write statements to call procedures. b. Determine the result or effect of a procedure call."
+    ],
+    "eks": [
+      "EK AAP-3.A.1 — A procedure is a named group of programming instructions that may have parameters and return values.",
+      "EK AAP-3.A.2 — Procedures are referred to by different names, such as method or function, depending on the programming language.",
+      "EK AAP-3.A.3 — Parameters are input variables of a procedure. Arguments specify the values of the parameters when a procedure is called.",
+      "EK AAP-3.A.4 — A procedure call interrupts the sequential execution of statements, causing the program to execute the statements within the procedure before continuing. Once the last statement in the procedure (or a return statement) has executed, flow of control is returned to the point immediately following where the procedure was called.",
+      "EK AAP-3.A.5 — The exam reference sheet provides procName(arg1, arg2, ...) as a way to call PROCEDURE procName(parameter1, parameter2, ...) { <block of statements> } which takes zero or more arguments; arg1 is assigned to parameter1, arg2 is assigned to parameter2, and so on.",
+      "EK AAP-3.A.6 — The exam reference sheet provides the procedure DISPLAY(expression) to display the value of expression, followed by a space.",
+      "EK AAP-3.A.7 — The exam reference sheet provides the RETURN(expression) statement, which is used to return the flow of control to the point where the procedure was called and to return the value of expression.",
+      "EK AAP-3.A.8 — The exam reference sheet provides result <- procName(arg1, arg2, ...) to assign to result the \"value of the procedure\" being returned by calling procName.",
+      "EK AAP-3.A.9 — The exam reference sheet provides procedure INPUT(), which accepts a value from the user and returns the input value."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.12 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.12 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: a physical index card labeled 'makeCombo' with two blank fields, to act out a call live."
+    ],
+    "prereqs": [
+      "Topics 3.1–3.11 supply everything the calls operate on: variables and assignment (3.1), expressions and MOD (3.3), and — for Day 2's return values feeding further computation — arithmetic on the values a procedure hands back. No prior experience with procedures is assumed; this topic introduces them. Students should be fluent reading ← assignment and DISPLAY before starting, since both appear inside and around every call."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "What a procedure is; parameters vs. arguments; writing a call; flow of control and DISPLAY (LO AAP-3.A)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.12/Q1) + bell ringer (the named makeCombo card)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "What a procedure is & how you call one: vocab, named-process concept, first call, parameter vs. argument (EK AAP-3.A.1–A.3, A.5)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on procedures, parameters, arguments",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Flow of control & DISPLAY: the detour concept, the flow code_block, the trace table, the name-matching myth (EK AAP-3.A.4, A.6)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on tracing the call",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + return-value teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "RETURN; capturing a returned value with result ← procName(...); INPUT() (LO AAP-3.A)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.12/Q2) + bell ringer (DISPLAY(costFor(2)) vs. total ← costFor(2))",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Getting a value back: RETURN, result ← procName(...), DISPLAY vs. RETURN, the capture trace (EK AAP-3.A.7–A.8)",
+            "min": 15,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on RETURN and capturing values",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Input from the user: INPUT(), the input→call→display chain, the display-is-not-return myth (EK AAP-3.A.9)",
+            "min": 11,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.12 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.12 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.12 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“The argument must have the same name as the parameter”",
+        "myth": "When you call a procedure, the value or variable you pass must share the parameter's name so the computer knows where it goes.",
+        "reality": "Arguments bind to parameters by POSITION, not by name (EK AAP-3.A.5). The first argument becomes the first parameter no matter what it is called; showItem(\"Cola\", 2) and showItem(snack, cost) both work. What breaks a call is the wrong ORDER, not a different name."
+      },
+      {
+        "heading": "“A procedure call is just the next line in sequence”",
+        "myth": "A call runs top-to-bottom like any other statement, and the main program keeps going while the procedure runs.",
+        "reality": "A call INTERRUPTS sequential execution (EK AAP-3.A.4): the main program pauses, the procedure's statements run to completion, and only then does control return to the point immediately after the call. It is a round trip — leave, run, come back — not a straight line."
+      },
+      {
+        "heading": "“DISPLAY and RETURN do the same thing”",
+        "myth": "Showing a value with DISPLAY and returning it with RETURN are two ways of doing the same job.",
+        "reality": "DISPLAY produces an EFFECT — it puts a value on the screen (followed by a space) and hands nothing back to the program (EK AAP-3.A.6). RETURN produces a VALUE — it sends a result back to the caller so it can be stored or reused, and it returns flow of control (EK AAP-3.A.7). You cannot capture what was only displayed."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Act out a call physically: hand a student the 'makeCombo' index card (the procedure), call out arguments, and have them physically walk to a 'procedure zone' to perform the steps, then walk back to their seat (the return) so flow of control is embodied.",
+        "Give a fill-in trace table like the Day 1 worked example — one row per statement, columns for 'where control is' and 'output so far' — so students narrate every step of a call before predicting output."
+      ],
+      "extension": [
+        "Have students predict the output of a program where a procedure is called THREE times with different arguments, then explain why the same procedure produces different output each time (the parameters receive different arguments).",
+        "Point deep-dive students at the Topic 3.12 coding practice to call a return-value procedure, store the result, and use it in a second computation, then explain how DISPLAY(costFor(2)) differs from total ← costFor(2) in what the program can do next."
+      ]
+    },
+    "discussion": [
+      "Your makeCombo card let you stop re-explaining the steps every time. Where else — in writing, cooking, music, sports — do people 'name a process once and just call it by name,' and what does that naming buy them?",
+      "A procedure call interrupts the main program, runs, and comes back. Why is it useful that control RETURNS to exactly where it left off, rather than continuing from wherever the procedure ended?",
+      "Parameters and arguments are matched by position, not by name. What everyday systems (filling out a form, following GPS directions, a recipe's ingredient list) also depend on things being in the right ORDER rather than the right label, and what goes wrong when the order is off?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

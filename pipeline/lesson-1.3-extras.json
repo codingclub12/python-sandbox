@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "lessonId": "1.3",
+    "lessonTitle": "Best Practices for Public Networks",
+    "unit": "Unit 1: Introduction to Security",
+    "days": 4,
+    "los": "LO 1.3.A, 1.3.B, 1.3.C"
+  },
+  "map": {
+    "subtitle": "Unit 1: Introduction to Security   •   4 days   •   LO 1.3.A, 1.3.B, 1.3.C",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–4 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–4 (student fill-in + answer KEY)",
+      "Exercise 1: Coffee-Shop Forensics and Exercise 2: Red Team: Build & Break (student + answer KEY)",
+      "Discussion — Trusting the Network (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 3)",
+      "Quiz (student + answer KEY — key A-C-B-D-C, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-best-practices-for-public-networks"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 foundation, Day 2 Wireless Attack Identifier incidents, Day 3 Scenario 1C clients, Day 4 quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Best Practices for Public Networks'; the CED scenario is 'Scenario 1C: Verifying Network Authenticity'; the unit hub lists this lesson as 'Public Wi-Fi Security.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Coffee-Shop Forensics",
+    "minutes": "25 minutes",
+    "subtitle": "Reconstruct one real attack from the timeline",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-exercise-1",
+    "intro": "You are helping a friend, Jordan, figure out how their email got broken into after a coffee-shop visit. Below is a reconstructed timeline of Jordan's session. Work it like a forensic analyst: find where the attack actually succeeded, and where one simple habit would have stopped the whole thing.",
+    "scenarioTitle": "Scenario 1C Forensics: How Jordan's Email Was Stolen",
+    "narrative": "Jordan spent twenty minutes on the cafe Wi-Fi and noticed nothing wrong. The next morning, their email showed sign-ins from a city they have never visited. Nothing was broken into by force — Jordan handed the credentials over without realizing it. The timeline below is everything the cafe logs and Jordan's phone recorded.",
+    "log": {
+      "columns": [
+        "Time",
+        "What Jordan did",
+        "What the device showed",
+        "Network detail",
+        "Red flag?"
+      ],
+      "rows": [
+        [
+          "2:01",
+          "Scanned for Wi-Fi at the counter",
+          "Two networks: 'CoffeeCo-Guest' and 'CoffeeCo Free WiFi'",
+          "The second one had a slightly stronger signal",
+          ""
+        ],
+        [
+          "2:02",
+          "Joined the stronger one without checking the posted sign",
+          "Connected instantly, no password needed",
+          "Posted sign by the register actually reads 'CoffeeCo-Guest'",
+          ""
+        ],
+        [
+          "2:04",
+          "Opened the email login page, typed username + password",
+          "Page looked normal; padlock and 'https://' both showed",
+          "Certificate was issued to a domain Jordan never looked at",
+          ""
+        ],
+        [
+          "2:10",
+          "Read a few news sites over HTTPS",
+          "Everything loaded normally",
+          "No visible problem",
+          ""
+        ],
+        [
+          "Next morning",
+          "Opened email on the home laptop",
+          "Account showed logins from an unknown location",
+          "—",
+          ""
+        ]
+      ]
+    },
+    "scenarioNote": "Timeline reconstructed from the Day 1-3 wireless material; the cafe names mirror the lesson bell ringer.",
+    "predict": "Before you analyze: at which single moment do you think the attack actually SUCCEEDED — the moment Jordan connected, or the moment Jordan typed something? Write your guess, then check it against your answers.",
+    "partALabel": "Part A — Reconstruct the attack",
+    "partA": [
+      {
+        "ek": "EK 1.3.B.1",
+        "pts": 6,
+        "q": "Which specific wireless attack did Jordan fall for? Quote the two timeline details that prove it (not just the network names).",
+        "answer": "An evil twin attack. Proof: (1) at 2:02 Jordan joined 'CoffeeCo Free WiFi,' which does NOT match the posted network name 'CoffeeCo-Guest' — a rogue access point impersonating the real one; (2) at 2:04 the adversary's access point served a fake login page that captured Jordan's credentials, which were reused the next morning."
+      },
+      {
+        "ek": "EK 1.3.B.1",
+        "pts": 6,
+        "q": "Jordan saw the padlock and 'https://' on the login page and assumed it was safe. Explain exactly what HTTPS did and did NOT protect here.",
+        "answer": "HTTPS encrypted the data in transit, so a bystander could not read it — but HTTPS does not verify that the destination is the real site. Jordan typed credentials into a fake login form on the attacker's access point, and HTTPS faithfully encrypted them straight to the attacker. HTTPS stops eavesdropping on content; it does not stop credential harvesting on a spoofed page."
+      },
+      {
+        "ek": "EK 1.3.C.3",
+        "pts": 5,
+        "q": "Name the single step at 2:02 that would have stopped the entire attack, and explain why it works so early.",
+        "answer": "Verify the network name (SSID) exactly against the posted sign before joining. The real network was 'CoffeeCo-Guest'; Jordan joined 'CoffeeCo Free WiFi.' Confirming the exact name would have exposed the rogue access point and prevented every later step, because no traffic would ever reach the attacker."
+      },
+      {
+        "ek": "EK 1.3.A.1",
+        "pts": 5,
+        "q": "Based only on the timeline, was this most likely a low-skilled or a high-skilled adversary? Justify with one specific detail.",
+        "answer": "Low-skilled is the best-supported answer: standing up an evil twin with a fake captive portal relies on widely available, pre-built tools and targets ordinary user behavior (joining the strongest open network), not any undocumented flaw. Accept high-skilled only if the student argues a custom, automated portal — but the evidence points to off-the-shelf tooling."
+      }
+    ],
+    "partBLabel": "Part B — Apply it forward",
+    "partBIntro": "Same lesson, new situations. Two AP-style applications.",
+    "partB": [
+      {
+        "ek": "EK 1.3.C.1",
+        "pts": 5,
+        "q": "Jordan now runs a VPN at cafes. On a new visit, Jordan joins an evil twin and logs into a phishing page that mimics their bank. Does the VPN save them? Explain in 2-3 sentences.",
+        "answer": "No. A VPN encrypts traffic to the VPN provider and defeats a local eavesdropper, but it does not verify the destination. Typing credentials into a phishing page hands them to the attacker no matter what the VPN does. The VPN shifts trust to the provider; it does not stop credential harvesting."
+      },
+      {
+        "ek": "EK 1.3.B.2",
+        "pts": 5,
+        "q": "A second cafe-goer that afternoon could not connect at all — every network kept dropping. Which different wireless attack fits that symptom, and why is it a denial-of-service rather than interception?",
+        "answer": "A jamming attack. Flooding the frequency with interference prevents legitimate devices from reaching the access point. Nothing is read or intercepted; service is simply denied, which is why the CB framework classifies jamming as a denial-of-service (DoS) attack."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Red Team: Build & Break",
+    "minutes": "25 minutes",
+    "subtitle": "Think like the adversary, then defeat them",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-exercise-2",
+    "intro": "Switch sides. To defend a network you first have to think like the person attacking it. For each target below, plan the attack the way the adversary would, then break it as the defender.",
+    "standard": "For each target: name the one wireless attack that best fits the adversary's goal, lay out the adversary's moves in order, and name the user habit or defense that breaks each move.",
+    "methodHeading": "The Build-and-Break Method",
+    "method": [
+      [
+        "Step 1 - Map the target",
+        "Read the target's habits and surroundings. Decide which ONE wireless attack — evil twin, jamming/DoS, or war driving — best fits what the adversary is trying to achieve here."
+      ],
+      [
+        "Step 2 - Build the chain",
+        "List the two or three moves, in order, the adversary makes to pull the attack off against THIS target."
+      ],
+      [
+        "Step 3 - Break the chain",
+        "For each move, name the one user habit or required defense that would stop it, and say what the target gives up if they skip it."
+      ],
+      [
+        "Step 4 - Name the limit",
+        "State one thing your chosen defense does NOT protect against, so the target is not left overconfident."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment - Active vs. passive",
+    "enrichmentNote": "For a challenge, label each adversary move as passive (just listening — sniffing or war driving) or active (sitting in the path and altering traffic — an evil twin). The strongest answers explain why an evil twin is an active man-in-the-middle while war driving is purely passive reconnaissance.",
+    "fields": [
+      "Attack the adversary uses:",
+      "The attack chain (the adversary's moves, in order):",
+      "The defense that breaks each move:",
+      "One thing the defense does NOT cover:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Target: a student who always joins the open network with the strongest signal and logs into the school portal to check grades. The adversary wants the student's portal password.",
+        "key": {
+          "signs": "Open network, the habit of grabbing the strongest signal, and a willingness to log in — an ideal setup for an evil twin credential harvest.",
+          "mechanism": "The adversary stands up a rogue access point with a school-like name and a fake portal login; the student connects and submits credentials. Break it: verify the exact network name before joining, and treat any unexpected login page as a red flag. Limit: name-checking does nothing once credentials are typed into a fake page, so the habit has to come first.",
+          "subtype": "Active / man-in-the-middle — the adversary controls the access point."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Target: a remote worker at a hotel who runs a VPN and only visits HTTPS sites, but reuses one password across accounts. The adversary wants into the worker's accounts.",
+        "key": {
+          "signs": "The VPN and HTTPS create a false sense of safety; the reused password is the real weakness.",
+          "mechanism": "An evil twin can still present a convincing phishing login; once the reused password is captured it unlocks several accounts. The VPN guards against local eavesdropping but not against the worker handing credentials to a fake site. Break it: verify the network name, distrust unexpected logins, and (bridging to Lesson 1.2) stop reusing passwords or turn on multifactor authentication. Limit: the VPN provider can still view traffic, and the VPN does nothing against a phishing page.",
+          "subtype": "Active; the gap is human (trust plus password reuse), not the encryption."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "Target: an entire conference of attendees on the venue Wi-Fi. The adversary is not after one login — they want to map who is present and knock the keynote livestream offline. No credential theft.",
+        "key": {
+          "signs": "The goal is reconnaissance plus disruption, not credential capture — which points away from an evil twin.",
+          "mechanism": "War driving and beacon analysis enumerate the devices and networks present (passive recon), then a jamming/DoS burst on the venue frequency drops the livestream. Break it: war driving cannot be stopped by the user, but its payoff shrinks with less signal leakage and unique network names; jamming is a DoS with no clean user-side fix, so mitigation is a wired backup plus detecting and locating the interference. Limit: neither move reads anything, so confidentiality controls like a VPN or name-checking do not address this goal at all.",
+          "subtype": "War driving = passive recon; jamming = active denial of service."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Trusting the Network",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 3)",
+    "overview": "We connect to public Wi-Fi using almost no information — usually just a network name and a gut feeling. Adversaries exploit exactly that. Across three short windows in this lesson, your group will examine why instinct alone fails on public networks, debate which CB defense is most worth teaching a normal person, and decide what an analyst should and should not conclude when a 'protected' user is still compromised.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. At the coffee shop, the only thing most people use to pick a network is the name on the list. Why do we trust a Wi-Fi network just because its name looks right? What would it actually take to make verifying a network a habit (not just 'pay attention')?"
+          },
+          {
+            "text": "Question 2. Whose job is public-Wi-Fi safety — the person connecting, or the venue that runs the network? Defend your split with one concrete example (e.g., the coffee shop, the airport)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the Wireless Attack Identifier debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The HTTPS trap",
+            "text": "The airport victim (Incident 4) used HTTPS and was still compromised. In one sentence your whole group agrees on, explain exactly what HTTPS did protect and what it did NOT protect against in an evil twin attack.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which defense is hardest to live with?",
+            "text": "Debate for about 3 minutes: of the three CED defenses — SSID verification (C.3), VPN (C.1), and protocol-encryption awareness (C.2) — which is hardest for a normal person to actually do every time, and what is the realistic cost of skipping it? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 3, ~9 min, after the Scenario 1C clients",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'did everything right' case",
+            "text": "A remote worker used a VPN at a hotel and still got their email taken over (Client 2). Design the defense: which single CB action would most directly have stopped this, why did the VPN not save them, and when a user who 'used a VPN' is still compromised, what should an analyst conclude — and NOT conclude — about where the credentials were lost?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (defense + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

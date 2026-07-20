@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "lessonId": "2.1",
+    "lessonTitle": "Cyber Foundations",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 4,
+    "los": "LO 2.1.D",
+    "anchor": "Cyber Foundations",
+    "author": "AP CS Exam Prep",
+    "totalDays": 8
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.1 · Day 4 of 8",
+      "title": "Measuring the Danger",
+      "subtitle": "Cyber Foundations: the risk assessment process — how likelihood and severity combine to rate a risk, and what a risk assessment must document",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome back to Lesson 2.1, Cyber Foundations, Day 4 of 8. The first three days were the attacker's side: tactics, adversaries, and attack phases. Today, 2.1.D, we switch to the defender's first job — measuring risk. No organization can fix everything, so they have to decide which dangers matter most. Risk, the College Board says, occurs when a threat can exploit a vulnerability to compromise an asset. The risk assessment process weighs two things — how likely an attack is and how severe the damage would be — and produces a rating that can be quantitative or qualitative. By the end of today you can carry out that process."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A school has two security gaps. (A) A rarely used storage closet has a weak lock; it holds old furniture. (B) The server room holding every student's records has a default admin password that's posted online for that device model.",
+      "subprompt": "Write 3–5 sentences: which gap should the school fix first, and why? What two things did you weigh to decide — and would your answer change if the closet held the records instead?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own. A school has two gaps. Gap A: a weak lock on a closet full of old furniture. Gap B: the server room with every student's records, protected by a default password that's published online for that exact device. Which do you fix first, and why? Here's the real question — what two things did you weigh to make that call? And would your answer flip if the closet held the records instead of furniture? Hold your answer. You just did a risk assessment by instinct; today we'll name the two factors you used — likelihood and severity — and make it formal."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 4 Guided Notes have three sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "What Risk Is, and Its Two Factors",
+          "description": "Risk is a threat exploiting a vulnerability against an asset, weighed by likelihood and severity (EK 2.1.D.1–D.5)."
+        },
+        {
+          "title": "Rating and Documenting Risk",
+          "description": "Results can be quantitative or qualitative, and the documentation must capture assets, threats, vulnerabilities, severity, likelihood, and a final rating (EK 2.1.D.6–D.7)."
+        },
+        {
+          "title": "Enrichment: The Hacktivist's High-Value Target",
+          "description": "Trace the CED's illustrative example — why a food company's webpage is a high-value target to a hacktivist even with no financial payoff (EK 2.1.D.4).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.1 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three sections, the first two green and CB-required, the last blue enrichment. Section one defines risk and its two factors — likelihood and severity — and the things that drive each. Section two is the output: a rating that's quantitative or qualitative, and the documentation a real risk assessment must include. Section three is a quick enrichment on the College Board's own example — the hacktivist who'd attack a food company's webpage even though there's no money in it — to show that ‘value’ depends on the adversary's motivation. Keep your pencil moving."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Define risk as a threat exploiting a vulnerability against an asset, and assess it using the two factors of likelihood and severity (LO 2.1.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain the three drivers of likelihood — target value, skill required, and adversary motivation — for a given scenario (LO 2.1.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Tell a quantitative result from a qualitative one and list what a risk assessment must document (LO 2.1.D)"
+        }
+      ],
+      "script": "Three things to leave with today, all under learning objective 2.1.D, describe the risk assessment process. First, define risk as a threat exploiting a vulnerability to compromise an asset, and assess it with the two factors the College Board names — likelihood and severity. Second, explain what drives likelihood: the value of the target, the skill the exploit requires, and the motivation and capability of likely adversaries. Third, tell a quantitative result — a number or a dollar figure — from a qualitative one — low, medium, high, severe — and list what the documentation must contain. The exam hands you an asset, a vulnerability, and a likely threat, and asks you to reason about its risk; by the end of today you can do exactly that."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "What Risk Is — and Its Two Factors",
+      "kicker": "Cyber Foundations · Learning Objective 2.1.D",
+      "script": "Section one. Learning objective 2.1.D. First the definition of risk, then the two factors every assessment weighs — likelihood and severity — and what drives each. Fifteen minutes here."
+    },
+    {
+      "type": "two_column",
+      "heading": "Risk, Assets, and the Two Assessment Factors",
+      "subheading": "EK 2.1.D.1–D.3 — risk is a threat exploiting a vulnerability against an asset, assessed by likelihood and severity.",
+      "left": {
+        "title": "What Risk and Assets Are (EK 2.1.D.1–D.2)",
+        "definition": "The core definitions",
+        "ek": "EK 2.1.D.1",
+        "examples": [
+          "Risk occurs when a threat can exploit a vulnerability to compromise an asset",
+          "An asset is anything valuable",
+          "Assets include financial resources, intellectual property, and data",
+          "Assets also include digital infrastructure, physical property, and reputation"
+        ]
+      },
+      "right": {
+        "title": "The Two Factors (EK 2.1.D.3, D.5)",
+        "definition": "What a risk assessment weighs",
+        "ek": "EK 2.1.D.3",
+        "examples": [
+          "Risk assessment considers exactly two factors (EK 2.1.D.3)",
+          "Factor 1: the likelihood of an attack against a specific vulnerability",
+          "Factor 2: the severity of the projected damage, often measured by financial cost and also reputational and operational impacts (EK 2.1.D.5)",
+          "A high-likelihood, high-severity risk is the most urgent to address"
+        ]
+      },
+      "footer": "AP TIP: Memorize the risk equation in words — a THREAT exploits a VULNERABILITY to compromise an ASSET (EK 2.1.D.1) — and the two assessment factors, LIKELIHOOD and SEVERITY (EK 2.1.D.3). The exam tests both.",
+      "script": "Two columns of definitions you must own. On the left, EK 2.1.D.1: risk occurs when a threat can exploit a vulnerability to compromise an asset. Three pieces — threat, vulnerability, asset — and all three must be present for there to be risk. And EK 2.1.D.2: an asset is anything valuable — financial resources, intellectual property, data, digital infrastructure, physical property, and reputation. Reputation counts as an asset; don't forget it. On the right, EK 2.1.D.3: a risk assessment considers exactly two factors — the likelihood of an attack against a specific vulnerability, and the severity of the projected damage. That's the whole framework: likelihood times severity, in effect. Highest likelihood and highest severity is what you fix first — that's your bell-ringer server room. Write both columns with EK numbers."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "What Drives Likelihood: Three Factors (EK 2.1.D.4)",
+      "subheading": "EK 2.1.D.4 — likelihood depends on many factors; the CED names these three. (Severity, EK 2.1.D.5, is measured mostly by cost.)",
+      "items": [
+        {
+          "ek": "EK 2.1.D.4",
+          "title": "Value of the Target",
+          "summary": "Adversaries are more likely to attack targets they perceive as valuable, so a high-value asset raises the likelihood that its vulnerability will be exploited.",
+          "ekRef": "EK 2.1.D.4"
+        },
+        {
+          "ek": "EK 2.1.D.4",
+          "title": "Skill Required (Difficulty)",
+          "summary": "Vulnerabilities with well-documented exploits require less skill and can be carried out by more adversaries, raising likelihood; harder exploits limit the pool of capable attackers.",
+          "ekRef": "EK 2.1.D.4"
+        },
+        {
+          "ek": "EK 2.1.D.4",
+          "title": "Adversary Motivation & Capability",
+          "summary": "Highly motivated and skilled adversaries are more likely to be able to perform more complex exploits, raising the likelihood that even a difficult vulnerability gets attacked.",
+          "ekRef": "EK 2.1.D.4"
+        }
+      ],
+      "script": "Now the likelihood drivers. EK 2.1.D.4 says likelihood depends on many factors, and names three. One, the value of the target: adversaries go after what they perceive as valuable, so a high-value asset is more likely to be hit. Two, the skill required, the difficulty: vulnerabilities with well-documented exploits need less skill, so more adversaries can pull them off — that's exactly your bell-ringer's published default password, low difficulty, high likelihood. Three, the motivation and capability of likely adversaries: highly motivated, highly skilled attackers can perform complex exploits, so even a hard vulnerability gets risky when the right adversary is interested. Those are the three likelihood drivers. Hold on to the other factor too — EK 2.1.D.5, severity, which we just saw is measured by financial cost plus reputational and operational impacts. Write all three drivers with EK numbers."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: When ‘Value’ Has Nothing to Do With Money",
+      "subheading": "Not a new EK — it works the CED's own illustrative example to show value depends on the adversary's motivation.",
+      "track": "enrichment",
+      "left": {
+        "title": "The CED's Example (EK 2.1.D.4)",
+        "definition": "A hacktivist and a food company",
+        "ek": "Enrichment",
+        "examples": [
+          "A hacktivist is passionate about illegal fishing practices a food company supports",
+          "The company's main webpage is a high-value target to this hacktivist",
+          "Defacing it would provide no financial gain to the adversary",
+          "But it would raise awareness of the issue that motivates them"
+        ]
+      },
+      "right": {
+        "title": "Why It Matters for Likelihood",
+        "definition": "Value is in the eye of the attacker",
+        "ek": "Enrichment",
+        "examples": [
+          "‘Value of the target’ (EK 2.1.D.4) is judged by the adversary, not by dollars",
+          "A hacktivist (EK 2.1.B.2) values exposure; a criminal org (EK 2.1.B.5) values money",
+          "The same webpage is high-value to one adversary and worthless to another",
+          "So likelihood depends on WHICH adversary is assessing the target"
+        ]
+      },
+      "footer": "TAKEAWAY: ‘Value of the target’ in EK 2.1.D.4 is defined by the adversary's motivation, not by a price tag. Tie this back to 2.1.B — different adversaries value different targets, so likelihood is adversary-specific.",
+      "script": "Quick enrichment on the College Board's own example, because it makes one idea click. A hacktivist cares deeply about illegal fishing that a food company supports. To that hacktivist, the company's main webpage is a high-value target — defacing it earns zero dollars, but it raises awareness of the cause that drives them. So here's the lesson: ‘value of the target’ in EK 2.1.D.4 is judged by the adversary, not by a price tag. Tie it back to Day 2 — a hacktivist, EK 2.1.B.2, values exposure; a transnational criminal organization, EK 2.1.B.5, values money. The very same webpage is high-value to one and worthless to the other. Which means likelihood is adversary-specific — you can't assess it without asking who would attack and what they want."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Rating and Documenting Risk",
+      "kicker": "Cyber Foundations · Learning Objective 2.1.D",
+      "script": "Section two. Still 2.1.D. We've assessed the risk — now we record it. The result is quantitative or qualitative, and the documentation has required contents. Twelve minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Output: Quantitative or Qualitative, and Well-Documented",
+      "subheading": "EK 2.1.D.6 and D.7 — how a risk is rated, and what the assessment must put on paper.",
+      "left": {
+        "title": "Quantitative vs. Qualitative (EK 2.1.D.6)",
+        "definition": "Two ways to express the result",
+        "ek": "EK 2.1.D.6",
+        "examples": [
+          "Quantitative assigns a numeric value — a 1–10 scale or a dollar figure like a $10,000 annual risk",
+          "Qualitative uses descriptive ratings instead of numbers",
+          "Examples: low, medium, high, severe",
+          "Or: unlikely low impact, likely low impact, unlikely high impact, likely high impact"
+        ]
+      },
+      "right": {
+        "title": "Required Documentation (EK 2.1.D.7)",
+        "definition": "What every risk assessment records",
+        "ek": "EK 2.1.D.7",
+        "examples": [
+          "Vulnerable assets and their value",
+          "Descriptions of likely threats and the specific vulnerabilities and how they'd be exploited",
+          "The severity of damage (financial, operational, reputational) and the likelihood of compromise",
+          "A final rating — quantitative or qualitative — for each risk identified"
+        ]
+      },
+      "footer": "AP TIP: QUANTITATIVE = numbers (a 1–10 score or a dollar figure); QUALITATIVE = words (low / medium / high / severe). Both are valid CED outputs (EK 2.1.D.6) — and every assessment ends in a final rating per risk (EK 2.1.D.7).",
+      "script": "Two columns for the output. On the left, EK 2.1.D.6: the result of a risk assessment is quantitative or qualitative. Quantitative assigns a number — a 1-to-10 score, or a dollar figure like a $10,000 annual risk. Qualitative uses words — low, medium, high, severe, or combinations like ‘likely high impact.’ Both are valid; know which is which. On the right, EK 2.1.D.7, the documentation, which the exam can test as a list: the vulnerable assets and their value; descriptions of likely threats and the specific vulnerabilities and how they'd be exploited; the severity of the damage — financial, operational, reputational — and the likelihood of compromise; and a final rating, quantitative or qualitative, for each risk. Notice it folds in everything from today: assets, threats, vulnerabilities, severity, likelihood, rating. Write both columns with EK numbers."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.1.D)",
+      "terms": [
+        {
+          "term": "Risk",
+          "definition": "The condition that occurs when a threat can exploit a vulnerability to compromise an asset (EK 2.1.D.1)."
+        },
+        {
+          "term": "Asset",
+          "definition": "Anything valuable — including financial resources, intellectual property, data, digital infrastructure, physical property, and reputation (EK 2.1.D.2)."
+        },
+        {
+          "term": "Likelihood",
+          "definition": "The probability of an attack against a specific vulnerability — one of the two risk assessment factors, driven by target value, exploit difficulty, and adversary motivation (EK 2.1.D.3)."
+        },
+        {
+          "term": "Severity",
+          "definition": "The magnitude of the projected damage from an attack, often measured by financial cost and also including reputational and operational impacts (EK 2.1.D.5)."
+        },
+        {
+          "term": "Quantitative risk assessment",
+          "definition": "A result expressed as a numeric value — a numeric scale such as 1–10, or a quantifiable financial impact such as a $10,000 annual risk (EK 2.1.D.6)."
+        },
+        {
+          "term": "Qualitative risk assessment",
+          "definition": "A result expressed in descriptive terms rather than numbers, such as low, medium, high, or severe (EK 2.1.D.6)."
+        }
+      ],
+      "script": "Six terms. The risk equation is first: risk is a threat exploiting a vulnerability to compromise an asset, EK 2.1.D.1, and an asset is anything valuable, EK 2.1.D.2 — including reputation. Then the two factors: likelihood, the probability against a specific vulnerability, EK 2.1.D.3, and severity, the size of the damage, EK 2.1.D.5. Finally the two output types: quantitative is numbers — a 1-to-10 score or a dollar figure — and qualitative is words — low, medium, high, severe — both EK 2.1.D.6. Get all six into your notes with EK numbers, and be able to tell quantitative from qualitative on sight."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.1.D. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Return to the bell ringer's server room with the published default password. Identify the asset, the vulnerability, and a likely threat, then explain why both the likelihood and the severity are high.",
+        "A company rates one risk as ‘$100,000 annual risk’ and another as ‘high.’ Label each as quantitative or qualitative, and name two items the company must still include in its risk assessment documentation."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: the server room with the published default password — name the asset, the student records, the vulnerability, the default password, and a likely threat, then explain why likelihood is high, citing at least two EK 2.1.D.4 drivers — the well-documented exploit means low difficulty, and the records are a high-value target — and why severity is high. Question two: ‘$100,000 annual risk’ versus ‘high’ — label each quantitative or qualitative, cite EK 2.1.D.6, and name two required documentation items from EK 2.1.D.7. Be precise and cite."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.1 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-cyber-foundations"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Likelihood-and-severity rating scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Build a documented risk assessment for one asset.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-2"
+        },
+        {
+          "label": "Lesson 2.1 quiz",
+          "tail": "Five questions across the whole topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site, in order. Re-run the Lesson 2.1 self-check, then Exercise 1, where you rate scenarios by likelihood and severity, and Exercise 2, where you build a documented risk assessment for a single asset using EK 2.1.D.7. The quiz at the bottom is five questions across the whole topic — keep it in view; it comes at the end of the lesson. Finish both exercises before tomorrow."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 4 · Day 4 of 8",
+      "heading": "End of Day 4",
+      "todayPoints": [
+        "Defined risk as a threat exploiting a vulnerability to compromise an asset, and listed what counts as an asset (EK 2.1.D.1–D.2)",
+        "Identified the two assessment factors — likelihood and severity — and the three drivers of likelihood (EK 2.1.D.3–D.4)",
+        "Measured severity by financial, reputational, and operational impact (EK 2.1.D.5)",
+        "Distinguished quantitative from qualitative results and listed required documentation (EK 2.1.D.6–D.7)",
+        "Saw that ‘value of the target’ depends on the adversary's motivation, tying risk back to 2.1.B"
+      ],
+      "nextPoints": [
+        "Identify strategies for managing risk — avoid, transfer, mitigate, and accept (LO 2.1.E)",
+        "Learn what residual risk is and why absolute security is unattainable",
+        "Keep the Lesson 2.1 quiz on the horizon — it spans all of 2.1.A through G"
+      ],
+      "teaser": "Tonight, picture a risk you've now assessed as ‘high.’ You can't always make it disappear — so what are your options? You could stop the risky activity, pass the cost to an insurer, add controls, or simply live with it. Tomorrow you'll learn the four strategies for managing risk.",
+      "script": "Day 4 done. You can describe the risk assessment process end to end: what risk is, the two factors that assess it, what drives likelihood, how severity is measured, and what the documentation must contain — quantitative or qualitative. That's the full 2.1.D objective. Tonight's teaser moves to the decision: once you've rated a risk as high, what do you do about it? You can avoid it, transfer it, mitigate it, or accept it. Tomorrow, EK 2.1.E, the four strategies for managing risk, with the next worker picking up the lesson from there. Review your Guided Notes — be able to name the two factors and the three likelihood drivers cold."
+    }
+  ]
+}

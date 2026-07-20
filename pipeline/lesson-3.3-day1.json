@@ -1,0 +1,661 @@
+{
+  "meta": {
+    "lessonId": "3.3",
+    "lessonTitle": "Protecting Networks: Segmentation",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 3: Securing Networks",
+    "day": 1,
+    "los": "LO 3.3.A, LO 3.3.B",
+    "anchor": "Protecting a Network on a Naval Submarine",
+    "author": "AP CS Exam Prep",
+    "totalDays": 1
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 3 · Lesson 3.3 · Day 1 of 1",
+      "title": "Don't Let One Open Door Sink the Ship",
+      "subtitle": "Protecting Networks: Segmentation — carving one flat network into smaller, isolated pieces so a breach in one compartment can't spread to the rest of the vessel.",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 3, Securing Networks, and Topic 3.3, Protecting Networks: Segmentation. Today is a single comprehensive deck covering both learning objectives. A submarine survives a hull breach because it is built from watertight compartments — flood one and the rest stay dry. Network segmentation is the same idea for data: divide one flat network into smaller, isolated pieces so a compromise in one piece cannot spread to all of them. We'll learn the three techniques for segmenting a network, then explain why that segmentation actually increases security. The end-of-lesson quiz and the teacher guide live on this file."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the three techniques for segmenting a network — screened subnets/DMZs, subnetting, and VLANs (LO 3.3.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Match a described setup to the right segmentation technique and cite its EK number (LO 3.3.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain why network segmentation increases security — isolating traffic, applying different policies, and port security against MAC flooding (LO 3.3.B)"
+        }
+      ],
+      "script": "Two learning objectives, three takeaways. First, under 3.3.A, identify the three techniques the College Board names for segmenting a network: the screened subnet or DMZ, subnetting, and VLANs. Second, take any described setup and match it to the right technique, citing the EK number, because that is exactly how the exam asks it. Third, under 3.3.B, explain why segmentation increases security — it isolates traffic so an attack on one subnet can't reach others, it lets different security policies apply to different zones, and port security on a switch stops MAC flooding. By the end of today you can name each technique and say why it makes a network safer."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A small company runs one flat network: every laptop, server, printer, and the public web server all share the same network with no internal dividers. One employee opens a malicious attachment, and the malware begins scanning for other machines to infect.",
+      "subprompt": "Write 3–5 sentences: on this flat network, what can stop the malware from reaching the file server, the finance laptops, and everything else? If you could redesign the network to limit the damage, what would you change?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own, no notes. Picture one flat network — every device on the same segment, no internal walls — and one infected laptop whose malware is now hunting for other machines. In three to five sentences: what is there to stop it from reaching the file server and the finance laptops? And if you could redesign the network to contain the damage, what would you change? Hold your answers. Everything you'd want to add — internal dividers, isolated zones, a separate area for the public server — is exactly what today's standard calls segmentation, and by the end of class you'll name each piece with its EK number."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have sections that match today's lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Three Techniques for Segmenting a Network (LO 3.3.A)",
+          "description": "Screened subnet/DMZ, subnetting by IP addressing, and VLANs on a switch — what each one is and how it divides the network (EK 3.3.A.1–A.3)."
+        },
+        {
+          "title": "Why Segmentation Increases Security (LO 3.3.B)",
+          "description": "Isolating traffic to stop cross-subnet attacks, applying different policies to higher- and lower-security zones, and port security against MAC flooding (EK 3.3.B.1–B.4)."
+        },
+        {
+          "title": "Enrichment: Designing the Submarine Network",
+          "description": "Place each shipboard LAN in a higher- or lower-security zone and decide where a screened subnet belongs, justifying each choice with an EK (EK 3.3.A.1, 3.3.B.3).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 3.3 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three sections today, the first two green and CB-required, the last one a blue enrichment. Section one is learning objective 3.3.A: the three techniques for segmenting a network — screened subnets, subnetting, and VLANs. Section two is 3.3.B: why that segmentation increases security, including port security against MAC flooding. Section three is enrichment: you'll design the submarine network from Scenario 3C, placing each LAN in the right security zone. Keep your pencil moving; Guided Notes are collected at the end of class."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Three Ways to Carve Up a Network",
+      "kicker": "Protecting Networks: Segmentation · Learning Objective 3.3.A",
+      "script": "Section one. Learning objective 3.3.A: identify techniques for segmenting a network. The College Board names exactly three — the screened subnet or DMZ, subnetting, and VLANs. We'll take them one at a time, and the key is to fix each technique to its EK number so you can tell them apart on the exam."
+    },
+    {
+      "type": "two_column",
+      "heading": "Technique 1: The Screened Subnet (DMZ)",
+      "subheading": "EK 3.3.A.1 — firewall zones and rules create a buffer that holds public-facing resources away from the internal network.",
+      "left": {
+        "title": "What It Is (EK 3.3.A.1)",
+        "definition": "A buffer zone between the internet and the internal network",
+        "ek": "EK 3.3.A.1",
+        "examples": [
+          "Firewall zones and rules create a screened subnet, also known as a demilitarized zone (DMZ)",
+          "It sits between public, external networks like the internet and internal, private networks",
+          "It typically holds the organization's publicly facing resources — like a web server",
+          "This separates those exposed resources from the internal network"
+        ]
+      },
+      "right": {
+        "title": "Why It's a LOWER Security Zone (EK 3.3.A.1)",
+        "definition": "Exposed servers are kept out of the trusted interior",
+        "ek": "EK 3.3.A.1",
+        "examples": [
+          "A screened subnet is typically a LOWER security zone than the internal, private networks",
+          "Public-facing servers must be reachable from the internet, so they are the most exposed",
+          "Putting them in the DMZ keeps that exposure out of the trusted internal network",
+          "If a DMZ server is compromised, the adversary has not reached the private interior"
+        ]
+      },
+      "footer": "AP TIP: The DMZ is NOT the most secure zone — EK 3.3.A.1 says it is typically a LOWER security zone. It is the place you put resources that MUST face the public, precisely so their exposure stays out of the private network.",
+      "script": "Technique one, the screened subnet, also called a DMZ. On the left, EK 3.3.A.1: firewall zones and rules create a network segment that sits between public external networks like the internet and the internal, private network. It typically holds the organization's publicly facing resources — think of a public web server — separating them from the internal network. On the right is the part students get backwards: the screened subnet is typically a lower security zone than the internal network, not a higher one. Public servers have to be reachable from the internet, so they're the most exposed; you put them in the DMZ exactly so that exposure stays out of your trusted interior. If a DMZ server is breached, the adversary still hasn't reached the private network. Write the EK and that 'lower security zone' detail — the exam tests it."
+    },
+    {
+      "type": "two_column",
+      "heading": "Technique 2: Subnetting by IP Addressing",
+      "subheading": "EK 3.3.A.2 — dividing the address space into subnets contains a breach to fewer exposed devices.",
+      "left": {
+        "title": "What It Is (EK 3.3.A.2)",
+        "definition": "Different subnets created based on IP addressing",
+        "ek": "EK 3.3.A.2",
+        "examples": [
+          "Subnetting creates different subnets based on IP addressing",
+          "Devices are grouped into separate IP-addressed segments rather than one flat range",
+          "Each subnet is a smaller, bounded piece of the larger network",
+          "This is a logical division of the network by address, done at layer 3"
+        ]
+      },
+      "right": {
+        "title": "Why It Helps (EK 3.3.A.2)",
+        "definition": "It contains a breach to fewer exposed devices",
+        "ek": "EK 3.3.A.2",
+        "examples": [
+          "If a device is compromised by an adversary, subnets can contain a security breach",
+          "Containing the breach reduces the number of exposed devices",
+          "An attacker on one subnet cannot freely reach every device on the network",
+          "Segmentation's value shows up DURING a breach — it limits how far the compromise spreads"
+        ]
+      },
+      "footer": "AP TIP: Subnetting doesn't prevent the first device from being compromised — it limits the blast radius. EK 3.3.A.2 says subnets can CONTAIN a breach to reduce the number of exposed devices.",
+      "script": "Technique two, subnetting. On the left, EK 3.3.A.2: subnetting creates different subnets based on IP addressing — you divide the address space so devices sit in separate, bounded segments instead of one big flat range. On the right is why it matters: if a device is compromised by an adversary, subnets can contain a security breach to reduce the number of exposed devices. Notice the value shows up during a breach, not before it. Subnetting doesn't stop that first laptop from getting infected — it stops the infection from reaching every other device. That's the answer to our bell ringer: on a flat network there's nothing to contain the malware, but subnets give it walls to run into. Write the EK and the word 'contain.'"
+    },
+    {
+      "type": "two_column",
+      "heading": "Technique 3: VLANs on a Switch",
+      "subheading": "EK 3.3.A.3 — switches create VLANs that logically separate devices that are physically connected to the same central switches.",
+      "left": {
+        "title": "What It Is (EK 3.3.A.3)",
+        "definition": "Logical separation configured on a switch",
+        "ek": "EK 3.3.A.3",
+        "examples": [
+          "Switches can be used to create VLANs (virtual local area networks)",
+          "VLANs logically separate devices that are physically connected to central switches",
+          "Two devices on the same physical switch can sit on different VLANs",
+          "The separation is configured on the switch — no re-cabling required"
+        ]
+      },
+      "right": {
+        "title": "Physical vs. Logical (EK 3.3.A.3)",
+        "definition": "Same wires, different networks",
+        "ek": "EK 3.3.A.3",
+        "examples": [
+          "Devices can be physically connected to the same switch yet kept on separate networks",
+          "You don't need separate physical switches to separate the groups",
+          "Example: instruments and workstations share one switch but live on different VLANs",
+          "This makes segmentation flexible — groups can be re-assigned in software"
+        ]
+      },
+      "footer": "AP TIP: The word that matters in EK 3.3.A.3 is LOGICALLY. VLANs separate devices that are PHYSICALLY connected to the same switch — the division is configured, not re-wired.",
+      "script": "Technique three, VLANs. EK 3.3.A.3: switches can be used to create VLANs, which logically separate devices that are physically connected to central switches. The key word is logically. Two devices can be plugged into the very same switch and still be on completely separate networks, because the switch is configured to keep them apart. Students often think you need different physical switches to separate groups — you don't. Lab instruments and office workstations can share one switch and sit on different VLANs, and you can move a device to a different VLAN in software without touching a single cable. Write the EK and underline 'logically' and 'physically connected.'"
+    },
+    {
+      "type": "misconception",
+      "heading": "VLANs Require Separate Physical Switches",
+      "misconception": "To put devices on different VLANs you have to wire them into different physical switches.",
+      "correction": "EK 3.3.A.3 says switches create VLANs that LOGICALLY separate devices that are PHYSICALLY connected to the same central switches. The separation is configured on the switch, not by re-cabling — devices on one switch can sit on different VLANs.",
+      "whyItHappens": "Students hear 'separate networks' and picture separate hardware, since that's how home networks usually look.",
+      "example": "A single classroom switch can place the teacher station on VLAN 10 and the student laptops on VLAN 20, even though every cable runs to the same switch.",
+      "script": "A misconception to clear before we move on. Students assume that putting devices on different VLANs means wiring them into different physical switches. Not so. EK 3.3.A.3 is explicit: VLANs logically separate devices that are physically connected to the same central switches. The separation is configured in the switch, not built with extra hardware. One classroom switch can put the teacher station on VLAN 10 and student laptops on VLAN 20, with every cable running to the same box. Logical, not physical — that distinction is exactly what an exam question will probe."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 3.3.A)",
+      "terms": [
+        {
+          "term": "Screened subnet (DMZ)",
+          "definition": "A network segment created with firewall zones and rules that sits between the internet and the internal network and holds publicly facing resources; typically a lower security zone (EK 3.3.A.1)."
+        },
+        {
+          "term": "Subnetting",
+          "definition": "Creating different subnets based on IP addressing so that, if a device is compromised, a breach can be contained to fewer exposed devices (EK 3.3.A.2)."
+        },
+        {
+          "term": "VLAN",
+          "definition": "A virtual LAN created on a switch that logically separates devices that are physically connected to the same central switches (EK 3.3.A.3)."
+        },
+        {
+          "term": "Publicly facing resource",
+          "definition": "A resource such as a web server that must be reachable from external networks, typically placed in a screened subnet to keep it out of the internal network (EK 3.3.A.1)."
+        }
+      ],
+      "script": "Four terms for section one, one for each technique plus the idea of a publicly facing resource. The screened subnet, or DMZ — a firewall-created segment between the internet and the internal network that holds public resources and is typically a lower security zone, EK 3.3.A.1. Subnetting — different subnets by IP addressing that contain a breach, EK 3.3.A.2. VLAN — logical separation of devices on the same switch, EK 3.3.A.3. And publicly facing resource — the kind of server you'd put in the DMZ. Get all four into your notes with their EK numbers, because the exam gives you a description and asks you to name the technique."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 3.3.A. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A team wants to (a) host a public web server reachable from the internet without exposing the internal network, and (b) keep lab instruments and office PCs that share one switch on separate networks without re-cabling. Name the segmentation technique for each.",
+        "Explain the difference between subnetting and a VLAN. What does each one separate, and at what level — IP addressing or the switch?"
+      ],
+      "directions": "Independent. 5 minutes. Full sentences.",
+      "script": "Two questions, five minutes, independent, full sentences. Question one: name the technique for each situation and cite the EK. The public web server with no path to the interior is a screened subnet, EK 3.3.A.1. The instruments and PCs sharing one switch but kept separate without re-cabling is a VLAN, EK 3.3.A.3. Be precise and cite. Question two: explain the difference between subnetting and a VLAN — subnetting divides by IP addressing at layer 3 to contain a breach, EK 3.3.A.2, while a VLAN logically separates devices on the same switch, EK 3.3.A.3. This is exactly how the exam asks it. Go."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Why Segmentation Makes a Network Safer",
+      "kicker": "Protecting Networks: Segmentation · Learning Objective 3.3.B",
+      "script": "Section two. Learning objective 3.3.B: explain why network segmentation can increase network security. We have the three techniques; now we need the reasons. There are really three: isolating traffic stops attacks from crossing subnets, different segments can run different security policies, and port security on a switch stops MAC flooding. Plus the formal definition of segmentation itself."
+    },
+    {
+      "type": "concept",
+      "heading": "Segmentation, Defined — and Why Isolation Helps",
+      "bullets": [
+        "Network segmentation is the process of dividing a network into smaller, isolated segments or subnetworks (subnets) (EK 3.3.B.1).",
+        "Dividing a network into smaller subnets isolates network traffic (EK 3.3.B.2).",
+        "That isolation can prevent attacks on one subnet from impacting devices on other subnets (EK 3.3.B.2).",
+        "So after an adversary compromises one device, the isolation confines them — they can't freely reach devices on other subnets (EK 3.3.B.2).",
+        "This is the formal version of the bell ringer: a flat network has nothing to confine the malware; segmentation gives it walls."
+      ],
+      "script": "Start with the definition. EK 3.3.B.1: network segmentation is the process of dividing a network into smaller, isolated segments or subnetworks. Then the first and most important benefit, EK 3.3.B.2: dividing a network into smaller subnets isolates network traffic, which can prevent attacks on one subnet from impacting devices on other subnets. Read that as the answer to our bell ringer. On a flat network the malware had nothing to stop it; once you isolate traffic into subnets, an attack that lands on one subnet is confined there and can't impact the others. Write both EKs — B.1 is the definition, B.2 is the isolation benefit."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Two More Reasons Segmentation Increases Security",
+      "subheading": "EK 3.3.B.3 and B.4 — different policies per zone, and port security against MAC flooding.",
+      "items": [
+        {
+          "ek": "EK 3.3.B.3",
+          "title": "Different Policies per Segment",
+          "summary": "Segmentation lets different security policies and controls apply to different segments, allowing higher security zones and lower security zones. Sensitive systems can be governed more strictly than a general-use segment."
+        },
+        {
+          "ek": "EK 3.3.B.3",
+          "title": "Higher vs. Lower Security Zones",
+          "summary": "Because each segment can carry its own rules, a network can have a tightly controlled high-security zone (e.g., command systems) and a looser low-security zone (e.g., guest internet) on the same physical network."
+        },
+        {
+          "ek": "EK 3.3.B.4",
+          "title": "Port Security vs. MAC Flooding",
+          "summary": "Port security on a switch can prevent MAC flooding by limiting the number of addresses assignable to any single switch port, stopping an attacker from overwhelming the switch's address table."
+        }
+      ],
+      "script": "Two more reasons, three cards. The first two are both EK 3.3.B.3: segmentation lets different security policies and controls apply to different segments, which creates higher security zones and lower security zones. That means sensitive command systems can live under strict rules while a guest-internet segment runs looser controls — on the same physical network. The third card is EK 3.3.B.4, a specific control: port security on a switch prevents MAC flooding by limiting the number of addresses assignable to any single port. MAC flooding tries to overwhelm the switch's address table with fake addresses; capping addresses per port shuts that down. Write all three EKs."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Matching the Benefit to the EK",
+      "context": "Each row pairs a security outcome with the technique and EK that produces it — the exact match the exam asks for.",
+      "columns": [
+        "Security outcome",
+        "How segmentation delivers it",
+        "EK"
+      ],
+      "rows": [
+        [
+          "A breach in one subnet can't reach devices on other subnets",
+          "Isolating network traffic between subnets",
+          "EK 3.3.B.2"
+        ],
+        [
+          "Sensitive systems get stricter rules than general-use systems",
+          "Different security policies per segment (higher/lower zones)",
+          "EK 3.3.B.3"
+        ],
+        [
+          "A public web server is reachable but the interior stays protected",
+          "A screened subnet/DMZ holds public-facing resources",
+          "EK 3.3.A.1"
+        ],
+        [
+          "A compromised device exposes fewer other devices",
+          "Subnetting contains the breach",
+          "EK 3.3.A.2"
+        ],
+        [
+          "A switch can't be overwhelmed by fake MAC addresses",
+          "Port security limits MAC addresses per port",
+          "EK 3.3.B.4"
+        ]
+      ],
+      "note": "On the exam, read the OUTCOME described in the scenario, then name the technique and EK that produces it.",
+      "script": "Let's pull section one and section two together in one table, because the exam tests this matching directly. If the outcome is that a breach in one subnet can't reach others, that's isolating traffic, EK 3.3.B.2. If sensitive systems get stricter rules than general ones, that's different policies per segment, EK 3.3.B.3. A reachable public server with a protected interior is the screened subnet, EK 3.3.A.1. A compromised device exposing fewer others is subnetting containing the breach, EK 3.3.A.2. And a switch that can't be flooded with fake MAC addresses is port security, EK 3.3.B.4. The exam move is always the same: read the outcome, name the technique, cite the EK."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Designing the Submarine Network (Scenario 3C)",
+      "subheading": "Not a new EK — it applies EK 3.3.A.1 and 3.3.B.3 to place each shipboard LAN in the right zone.",
+      "track": "enrichment",
+      "left": {
+        "title": "Sort the LANs into Zones",
+        "definition": "Higher security vs. lower security",
+        "ek": "Enrichment",
+        "examples": [
+          "Command and weapons systems → high-security internal zone, strictest policy (EK 3.3.B.3)",
+          "Navigation and engineering controls → high-security internal zone (EK 3.3.B.3)",
+          "Crew morale / general internet access → lower-security zone, looser policy (EK 3.3.B.3)",
+          "A public-facing shore-comms service → screened subnet / DMZ (EK 3.3.A.1)"
+        ]
+      },
+      "right": {
+        "title": "Justify Each Choice with an EK",
+        "definition": "Every zone decision cites a standard",
+        "ek": "Enrichment",
+        "examples": [
+          "Different zones are possible because segmentation allows different policies per segment (EK 3.3.B.3)",
+          "The public service goes in a lower-security screened subnet to keep exposure off the interior (EK 3.3.A.1)",
+          "Isolating the segments means a breach in crew internet can't reach weapons systems (EK 3.3.B.2)",
+          "Port security on shared switches caps MAC addresses to stop flooding (EK 3.3.B.4)"
+        ]
+      },
+      "footer": "TAKEAWAY: A good segmentation design is a set of zone decisions, each justified by an EK. Command systems high, crew internet low, public services in the DMZ — and every divider isolates traffic so one breach can't sink the whole ship.",
+      "script": "Enrichment that pays off the submarine anchor. Take Scenario 3C and design the network as a set of zone decisions. Command, weapons, navigation, and engineering systems go in a high-security internal zone with the strictest policy — that's possible because EK 3.3.B.3 lets different segments carry different policies. Crew morale and general internet access go in a lower-security zone. Any public-facing shore-comms service goes in a screened subnet, EK 3.3.A.1, so its exposure stays off the interior. And each decision cites a standard: isolation by EK 3.3.B.2 means a breach in crew internet can't reach the weapons LAN, and port security by EK 3.3.B.4 protects the shared switches. That's the whole topic applied — every divider keeps one breach from sinking the ship."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 3.3.B)",
+      "terms": [
+        {
+          "term": "Network segmentation",
+          "definition": "The process of dividing a network into smaller, isolated segments or subnetworks (subnets) (EK 3.3.B.1)."
+        },
+        {
+          "term": "Traffic isolation",
+          "definition": "Confining network traffic within a subnet so an attack on one subnet cannot impact devices on other subnets (EK 3.3.B.2)."
+        },
+        {
+          "term": "Security zone",
+          "definition": "A segment with its own security policies and controls; segmentation allows higher security zones and lower security zones (EK 3.3.B.3)."
+        },
+        {
+          "term": "Port security",
+          "definition": "A switch control that prevents MAC flooding by limiting the number of addresses assignable to any single switch port (EK 3.3.B.4)."
+        },
+        {
+          "term": "MAC flooding",
+          "definition": "An attack that overwhelms a switch's address table with many MAC addresses; port security counters it by capping addresses per port (EK 3.3.B.4)."
+        }
+      ],
+      "script": "Five terms for section two. Network segmentation — dividing a network into smaller, isolated subnets, EK 3.3.B.1. Traffic isolation — confining traffic so an attack on one subnet can't reach others, EK 3.3.B.2. Security zone — a segment with its own policies, enabling higher and lower security zones, EK 3.3.B.3. Port security — the switch control that caps MAC addresses per port, EK 3.3.B.4. And MAC flooding — the attack port security defends against. Get all five into your notes with EK numbers."
+    },
+    {
+      "type": "misconception",
+      "heading": "One Edge Firewall Is Enough",
+      "misconception": "Protecting a network means putting a firewall at the edge; the inside can stay one flat network.",
+      "correction": "EK 3.3.B.1 defines segmentation as dividing a network into smaller, isolated subnets, and EK 3.3.B.2 says isolating traffic prevents an attack on one subnet from impacting devices on other subnets. A single edge firewall does nothing to stop an adversary moving between devices once inside a flat internal network.",
+      "whyItHappens": "The edge firewall is the most visible defense, so students assume it protects everything behind it.",
+      "example": "If the bell-ringer malware lands behind a perfect edge firewall on a flat network, it still spreads freely; only internal subnets and VLANs would contain it.",
+      "script": "Last misconception, and it ties back to the bell ringer. Students think protecting a network means a firewall at the edge, and the inside can stay flat. But EK 3.3.B.1 and B.2 are about dividing the network internally and isolating traffic so an attack on one subnet can't impact others. A single edge firewall does nothing once the adversary is already inside a flat network — that's exactly our bell-ringer malware, spreading freely behind a perfect firewall. Internal segmentation, subnets and VLANs, is what actually contains it. The edge firewall is necessary but not sufficient; defense lives on the inside too."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 3.3.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Malware compromises one device in the engineering subnet but cannot reach devices in other subnets. Explain why dividing the network into smaller subnets produces this result.",
+        "A designer wants stricter controls on the command-systems segment than on the crew-internet segment, and also wants to stop a switch from being flooded with fake MAC addresses. That makes each one possible and explain how."
+      ],
+      "directions": "Independent. 5 minutes. Full sentences.",
+      "script": "Two questions, five minutes, independent, full sentences. Question one: why is the malware confined to the engineering subnet? EK 3.3.B.2: dividing the network into smaller subnets isolates network traffic, which prevents an attack on one subnet from impacting devices on other subnets. Question two: stricter controls on command than on crew internet is EK 3.3.B.3, different security policies per segment creating higher and lower zones; and stopping a switch flood is EK 3.3.B.4, port security limiting MAC addresses per port. Name each EK and explain the mechanism. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Segmentation, in One Slide",
+      "points": [
+        "Three techniques segment a network: the screened subnet/DMZ holds public-facing resources in a lower-security zone (EK 3.3.A.1), subnetting divides by IP addressing to contain a breach (EK 3.3.A.2), and VLANs logically separate devices on the same switch (EK 3.3.A.3).",
+        "Segmentation is dividing a network into smaller, isolated subnets (EK 3.3.B.1).",
+        "It increases security by isolating traffic so one subnet's attack can't reach others (EK 3.3.B.2).",
+        "It lets different policies apply to higher- and lower-security zones (EK 3.3.B.3).",
+        "Port security on a switch prevents MAC flooding by limiting addresses per port (EK 3.3.B.4)."
+      ],
+      "next": "Topic 3.4 — firewalls: the rules and zones that enforce the boundaries segmentation creates.",
+      "script": "The whole topic on one slide. Three techniques: the screened subnet or DMZ holds public-facing resources in a lower-security zone, EK 3.3.A.1; subnetting divides by IP addressing to contain a breach, EK 3.3.A.2; VLANs logically separate devices on the same switch, EK 3.3.A.3. Then the why: segmentation is dividing the network into smaller isolated subnets, B.1; it isolates traffic so one attack can't cross subnets, B.2; it lets different policies govern higher and lower security zones, B.3; and port security stops MAC flooding by capping addresses per port, B.4. Next topic is firewalls — the rules and zones that enforce these boundaries. Review your Guided Notes: be able to name each technique and its security benefit cold."
+    }
+  ],
+  "guide": {
+    "title": "Lesson 3.3 — Protecting Networks: Segmentation — Teacher Guide",
+    "subtitle": "Unit 3 · Topic 3.3 · 2 class periods · Scenario 3C: Protecting a Network on a Naval Submarine",
+    "overview": [
+      "Topic 3.3 is the segmentation pillar of Unit 3's 'protect' strand: after naming network attacks (3.1) and managerial/wireless controls (3.2), students now learn to carve a single flat network into smaller, isolated pieces so a breach in one piece cannot spread to the rest. Across two days students learn to identify the techniques for segmenting a network — screened subnets/DMZs, subnetting, and VLANs (EK 3.3.A.1–A.3) — and to explain why that segmentation increases network security: it isolates traffic, lets different security policies apply to different zones, and supports port security against MAC flooding (EK 3.3.B.1–B.4).",
+      "Scenario 3C (Protecting a Network on a Naval Submarine) anchors the topic: students recommend security features for each LAN aboard the vessel and use a diagram to demonstrate the recommended features. Topic 3.3's slice of 3C is the segmentation design — deciding which resources belong in a lower-security screened subnet versus a higher-security internal subnet, and where VLANs and port security apply."
+    ],
+    "los": [
+      "LO 3.3.A — Identify techniques for segmenting a network.",
+      "LO 3.3.B — Explain why network segmentation can increase network security."
+    ],
+    "eks": [
+      "EK 3.3.A.1 — Firewall zones and rules can be used to create a screened subnet (also known as a demilitarized zone, or DMZ) — a network segment that sits between public, external networks like the internet and internal, private networks. A screened subnet is typically a lower security zone than the internal, private networks, and it typically holds an organization's publicly facing resources, separating them from the internal network.",
+      "EK 3.3.A.2 — Subnetting can be used to create different subnets based on IP addressing. If a device is compromised by an adversary, subnets can contain a security breach to reduce the number of exposed devices.",
+      "EK 3.3.A.3 — Switches can be used to create VLANs, which logically separate devices physically connected to central switches.",
+      "EK 3.3.B.1 — Network segmentation refers to the process of dividing a network into smaller, isolated segments or subnetworks (subnets).",
+      "EK 3.3.B.2 — Dividing a network into smaller subnets isolates network traffic, which can prevent attacks on one subnet from impacting devices on other subnets.",
+      "EK 3.3.B.3 — Network segmentation can allow for different security policies and controls to be applied to different segments of the network, allowing for higher security zones and lower security zones.",
+      "EK 3.3.B.4 — Port security on a switch can prevent MAC flooding by limiting the number of addresses assignable to any single switch port."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each day.",
+      "Printed/Digital Day 1–2 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page (apcsexamprep.com/pages/ap-cybersecurity-unit-3-securing-networks), which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 3.3 quiz (student copies) for Day 2.",
+      "Screened-subnet/DMZ diagram (CED Figure 3.3) displayed on the Day 1 deck (no handout needed)."
+    ],
+    "prereqs": [
+      "Topic 3.1 (Network Vulnerabilities and Attacks). Segmentation in 3.3 is a direct response to the attacks and lateral movement students studied in 3.1 — isolating subnets limits how far an adversary who compromises one device can spread."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Identify the three segmentation techniques: screened subnet/DMZ, subnetting, VLANs (LO 3.3.A)",
+        "segments": [
+          {
+            "segment": "QOTD (U3/L3.3/Q1) + bell ringer (one flat network, one breach)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Screened subnet / DMZ: firewall zones, public-facing resources, lower security zone (EK 3.3.A.1)",
+            "min": 12,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Subnetting by IP addressing; containing a breach to fewer exposed devices (EK 3.3.A.2)",
+            "min": 9,
+            "slides": "7-8"
+          },
+          {
+            "segment": "VLANs: switches logically separate physically connected devices (EK 3.3.A.3)",
+            "min": 8,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 6,
+            "slides": "11-12"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 2,
+            "slides": "13-14"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Explain why segmentation increases security, plus port security; apply to Scenario 3C (LO 3.3.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U3/L3.3/Q2) + bell ringer (why does isolation help?)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Segmentation defined; isolating traffic to stop cross-subnet attacks (EK 3.3.B.1–B.2)",
+            "min": 10,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Different security policies per segment; higher vs. lower security zones (EK 3.3.B.3)",
+            "min": 8,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Port security against MAC flooding (EK 3.3.B.4)",
+            "min": 7,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Apply to Scenario 3C: recommend segmentation for each submarine LAN",
+            "min": 8,
+            "slides": "11"
+          },
+          {
+            "segment": "Quiz debrief + bridge to Topic 3.4 (firewalls)",
+            "min": 5,
+            "slides": "12-13"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 3.3 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Segmentation is just one big firewall",
+        "myth": "Protecting a network means putting a firewall at the edge; the inside can stay one flat network.",
+        "reality": "EK 3.3.B.1 defines network segmentation as dividing a network into smaller, isolated subnets, and EK 3.3.B.2 says isolating traffic prevents an attack on one subnet from impacting devices on other subnets. A single edge firewall does nothing to stop an adversary moving between devices once inside a flat internal network."
+      },
+      {
+        "heading": "A DMZ is the most secure zone",
+        "myth": "The screened subnet (DMZ) holds the company's most important servers, so it must be the highest-security zone.",
+        "reality": "EK 3.3.A.1 says a screened subnet is typically a LOWER security zone than the internal, private networks, and it holds publicly facing resources, separating them from the internal network. It sits between the internet and the internal network precisely so exposed, public servers are kept out of the trusted interior."
+      },
+      {
+        "heading": "VLANs require physically separate switches",
+        "myth": "To put devices on different VLANs you must wire them into different physical switches.",
+        "reality": "EK 3.3.A.3 says switches create VLANs that LOGICALLY separate devices that are physically connected to the same central switches. The separation is configured on the switch, not by re-cabling — devices on one switch can sit on different VLANs."
+      },
+      {
+        "heading": "More subnets cannot help once you're breached",
+        "myth": "If an attacker compromises a device, segmentation has already failed and does no good.",
+        "reality": "EK 3.3.A.2 says that if a device is compromised, subnets can CONTAIN a security breach to reduce the number of exposed devices. Segmentation's value shows up exactly during a breach — it limits how far the compromise spreads."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a one-page sorter with three columns — 'Screened subnet/DMZ (A.1)', 'Subnetting (A.2)', 'VLAN (A.3)' — and have them drop each described technique into the right column so they fix the technique to its EK.",
+        "Provide a sentence frame: 'This is ____ (EK 3.3.____) because it ____, which increases security by ____ (isolating traffic / applying a different policy / limiting MAC addresses).'"
+      ],
+      "extension": [
+        "Have students design the submarine network from Scenario 3C: place each LAN in a higher- or lower-security zone, decide where a screened subnet belongs, and justify each choice with an EK number.",
+        "Ask students to explain how subnetting (A.2) and port security (B.4) defend against different attack steps — lateral movement versus MAC flooding — and which network attack from Topic 3.1 each one blunts."
+      ]
+    },
+    "discussion": [
+      "EK 3.3.A.1 places publicly facing servers in a lower-security screened subnet rather than the internal network. Why is it safer to expose those servers in a separate, lower-trust zone than to host them inside the private network?",
+      "EK 3.3.B.2 says isolating traffic prevents an attack on one subnet from reaching others. How does that change an adversary's job after they compromise a single device?",
+      "EK 3.3.B.3 lets different policies apply to different segments. What kinds of devices would you put in a higher-security zone versus a lower-security zone, and why?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  },
+  "quiz": {
+    "title": "Lesson 3.3 — Protecting Networks: Segmentation — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A naval network team wants to host the ship's public-facing web server where it can be reached from the internet without giving outside traffic a path into the internal, private network. Which segmentation technique from EK 3.3.A.1 fits this need?",
+        "options": [
+          "Subnetting the internal network by IP address so a breach is contained to fewer devices",
+          "A screened subnet (DMZ) created with firewall zones and rules, sitting between the internet and the internal network",
+          "A VLAN created on a switch to logically separate devices that share a central switch",
+          "Port security on the switch that limits the MAC addresses assignable to a single port"
+        ],
+        "answer": "B",
+        "ek": "EK 3.3.A.1",
+        "rationale": "EK 3.3.A.1 describes a screened subnet (also called a DMZ), created with firewall zones and rules, that sits between public external networks like the internet and the internal, private network and typically holds publicly facing resources — exactly the public web server case. Option A (subnetting) is a different technique under EK 3.3.A.2, Option C (VLAN) is EK 3.3.A.3, and Option D (port security) is the MAC-flooding control of EK 3.3.B.4; none describes placing public-facing resources in a separate lower-security zone at the network edge."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "An analyst divides a flat network into several subnets based on IP addressing so that if one device is compromised by an adversary, fewer devices are exposed. According to EK 3.3.A.2, what is the security benefit of doing this?",
+        "options": [
+          "It encrypts the traffic moving between devices so an adversary cannot read it",
+          "It logically separates devices that are physically connected to the same switch",
+          "It can contain a security breach to reduce the number of exposed devices",
+          "It limits the number of MAC addresses that can be assigned to a switch port"
+        ],
+        "answer": "C",
+        "ek": "EK 3.3.A.2",
+        "rationale": "EK 3.3.A.2 states that subnetting creates different subnets based on IP addressing and that if a device is compromised, subnets can contain a security breach to reduce the number of exposed devices — the stated benefit. Option A (encryption) is not what subnetting does. Option B describes VLANs (EK 3.3.A.3), and Option D describes port security (EK 3.3.B.4); neither is the benefit EK 3.3.A.2 names for subnetting."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "Several workstations and a few lab instruments are all plugged into the same central switch, but the team wants the instruments kept on a separate logical network without re-cabling anything. Which technique from EK 3.3.A.3 achieves this?",
+        "options": [
+          "Creating VLANs on the switch to logically separate devices that are physically connected to it",
+          "Building a screened subnet with firewall zones to hold publicly facing resources",
+          "Subnetting the address space so a breach is contained to fewer exposed devices",
+          "Applying port security so each switch port accepts only a limited number of MAC addresses"
+        ],
+        "answer": "A",
+        "ek": "EK 3.3.A.3",
+        "rationale": "EK 3.3.A.3 says switches can be used to create VLANs, which logically separate devices that are physically connected to central switches — precisely the 'same switch, separate logical network, no re-cabling' situation. Option B is a screened subnet (EK 3.3.A.1), Option C is subnetting (EK 3.3.A.2), and Option D is port security (EK 3.3.B.4); none provides logical separation of devices sharing one switch."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "Which of the following are techniques the CED names for segmenting a network under LO 3.3.A? I. Creating a screened subnet (DMZ) with firewall zones and rules. II. Subnetting based on IP addressing. III. Using switches to create VLANs.",
+        "options": [
+          "Statement I only is a CED segmentation technique",
+          "Statements II and III only are CED techniques",
+          "Statements I and II only are CED techniques",
+          "Statements I, II, and III are all CED techniques"
+        ],
+        "answer": "D",
+        "ek": "EK 3.3.A.1",
+        "rationale": "All three are CED segmentation techniques under LO 3.3.A: screened subnets/DMZs created with firewall zones and rules (EK 3.3.A.1), subnetting based on IP addressing (EK 3.3.A.2), and VLANs created on switches (EK 3.3.A.3). Because every statement is a CED-named technique, the answer is I, II, and III."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "After malware compromises one device in the engineering subnet, the team finds it cannot reach devices in other subnets across the network. Per EK 3.3.B.2, why does dividing the network into smaller subnets produce this result?",
+        "options": [
+          "Isolating network traffic can prevent an attack on one subnet from impacting devices on other subnets",
+          "Every subnet automatically encrypts its traffic so malware cannot decode it",
+          "Subnetting deletes a device's MAC address once the device is found to be compromised",
+          "Placing devices on a VLAN moves them onto a higher-security physical switch"
+        ],
+        "answer": "A",
+        "ek": "EK 3.3.B.2",
+        "rationale": "EK 3.3.B.2 states that dividing a network into smaller subnets isolates network traffic, which can prevent attacks on one subnet from impacting devices on other subnets — exactly why the malware is confined to the engineering subnet. Option B (automatic encryption), Option C (deleting MAC addresses), and Option D (moving to a higher-security physical switch) are not mechanisms the CED attributes to segmentation."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A network designer wants stricter rules and tighter controls on the segment holding sensitive command systems than on the segment used for crew internet access. According to EK 3.3.B.3, how does network segmentation make this possible?",
+        "options": [
+          "It guarantees that traffic never crosses from a lower zone into a higher zone",
+          "It allows different security policies and controls to be applied to different segments, creating higher and lower security zones",
+          "It limits the number of MAC addresses assignable to any single switch port",
+          "It contains a breach by reducing the number of exposed devices on a subnet"
+        ],
+        "answer": "B",
+        "ek": "EK 3.3.B.3",
+        "rationale": "EK 3.3.B.3 says network segmentation can allow different security policies and controls to be applied to different segments, allowing for higher security zones and lower security zones — exactly what lets the command segment be governed more strictly than the crew internet segment. Option A overstates the guarantee and is not the CED's claim. Option C is port security (EK 3.3.B.4), and Option D is the breach-containment benefit of subnetting (EK 3.3.A.2); neither is the differentiated-policy benefit EK 3.3.B.3 names."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A switch is being flooded with thousands of fake source MAC addresses in an attempt to overwhelm its address table. Which control from EK 3.3.B.4 is designed to prevent this MAC flooding?",
+        "options": [
+          "Creating a screened subnet to move the switch into a lower security zone",
+          "Subnetting the network so the attack is contained to fewer devices",
+          "Port security on the switch, which limits the number of addresses assignable to any single port",
+          "Building a VLAN to logically separate the flooded switch from other devices"
+        ],
+        "answer": "C",
+        "ek": "EK 3.3.B.4",
+        "rationale": "EK 3.3.B.4 states that port security on a switch can prevent MAC flooding by limiting the number of addresses assignable to any single switch port — the direct countermeasure to the described flood. Option A (screened subnet, EK 3.3.A.1), Option B (subnetting, EK 3.3.A.2), and Option D (VLAN, EK 3.3.A.3) are segmentation techniques that do not cap the MAC addresses on a port and so do not stop MAC flooding."
+      },
+      {
+        "id": "Q8",
+        "kind": "recall",
+        "stem": "Per EK 3.3.B.1, what does the term 'network segmentation' refer to?",
+        "options": [
+          "Encrypting all data that travels between two networked devices",
+          "Assigning every device on the network the same IP address range",
+          "Installing a single firewall at the edge of an otherwise flat network",
+          "The process of dividing a network into smaller, isolated segments or subnetworks (subnets)"
+        ],
+        "answer": "D",
+        "ek": "EK 3.3.B.1",
+        "rationale": "EK 3.3.B.1 defines network segmentation as the process of dividing a network into smaller, isolated segments or subnetworks (subnets) — the definition in Option D. Option A (encryption), Option B (one shared address range), and Option C (a single edge firewall on a flat network) describe other ideas and contradict the meaning of segmentation, which is about dividing and isolating."
+      }
+    ]
+  }
+}

@@ -1,0 +1,755 @@
+{
+  "meta": {
+    "lessonId": "1.2",
+    "lessonTitle": "Suspicious Website Logins",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 1,
+    "los": "LO 1.2.A, 1.2.B, 1.2.C",
+    "anchor": "Detecting Unauthorized Logins",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.2 · Day 1 of 4",
+      "title": "How Password Attacks Work",
+      "subtitle": "Suspicious Website Logins: the signs of an attack, how passwords get cracked, and how to stop it",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 1.2, Suspicious Website Logins, Day 1 of 4. Today is the foundation day. By the end of this lesson you will be able to spot the signs of a password attack in a log file, explain exactly how adversaries exploit predictable human password habits, and describe three specific actions that make authentication significantly harder to break. Day 2 and Day 3 are application and practice. Day 4 is the quiz. Everything on the AP exam for this lesson comes from three learning objectives. Let’s lock all three in today."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Without sharing your actual passwords: how many of your accounts share a password with at least one other account? Take 30 seconds and count privately — no one will see your answer.",
+      "subprompt": "Then write 3–5 sentences: why do people reuse passwords even when they know the risk? What would it take to change that habit?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Day 1 bell ringer. No one shares their answer out loud. Count privately: how many of your accounts share a password with at least one other account. Most people have between 3 and 10 password-reuse pairs. Some have more. Now write 3 to 5 sentences: why do people reuse passwords even when they know it is a risk? A few students will be called on after 5 minutes. This isn't about the textbook answer — give your honest reasoning. We will come back to password reuse at the end of today’s lesson when we talk about EK 1.2.C.1 — and by then you will know exactly what makes it so dangerous."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Guided Notes packet has 5 sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Signs of a Password Attack",
+          "description": "Three CB-specified indicators from EK 1.2.A.2. These appear directly on the AP exam as scenario identification questions."
+        },
+        {
+          "title": "How Password Attacks Work",
+          "description": "Dictionary attacks, personal info harvesting, and automated submission tools. Core of EK 1.2.A.1 and 1.2.B.2."
+        },
+        {
+          "title": "Why Weak Passwords Fail",
+          "description": "Three common CB-specified password patterns from EK 1.2.B.1. Know these so you can identify them in exam scenarios."
+        },
+        {
+          "title": "Three Defenses (EK 1.2.C)",
+          "description": "Long-random-unique passwords, avoiding personal info, and MFA. All three are directly testable. Know each defense and its purpose."
+        },
+        {
+          "title": "Enrichment: Attack Type Comparison",
+          "description": "Brute force vs. credential stuffing vs. dictionary attacks. Builds exam reasoning for complex free-response scenarios.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The lesson page at apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks has every answer if you fall behind.",
+      "script": "Take a quick look at your Guided Notes packet. Five sections today. Green sections are CB-required and will appear on the AP exam. Blue is enrichment. The first four sections are your primary focus. Keep your pencil moving. Guided Notes are collected at the end of class."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify common signs of a password attack (LO 1.2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how adversaries take advantage of weak authentication (LO 1.2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how to make authentication stronger (LO 1.2.C)"
+        }
+      ],
+      "script": "Three learning objectives. LO 1.2.A is recognition: given a log or a scenario, can you identify the signs that a password attack is occurring? LO 1.2.B is explanation: can you explain the mechanism by which adversaries exploit weak passwords? LO 1.2.C is also explanation: can you describe specific actions that make authentication stronger? Notice the verbs: identify, explain, explain. The AP exam will give you a scenario and ask you to do exactly those three things. Everything today maps to one of these three."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Spotting the Attack",
+      "kicker": "Signs of a Password Attack · Learning Objective 1.2.A",
+      "script": "Section one. Learning objective 1.2.A. Spotting the attack. The CB framework gives you three specific indicators. If you see any one of these in a scenario on the AP exam, you should immediately think password attack. Seven minutes here."
+    },
+    {
+      "type": "real_artifact",
+      "eyebrow": "Bridge from Lesson 1.1 · Credential Phishing",
+      "heading": "Where Stolen Passwords Come From",
+      "subheading": "One-slide bridge: this fake PayPal login is Lesson 1.1 social engineering — and it is how the stolen credentials that fuel today's password attacks get harvested.",
+      "imagePath": "phishing-login-page.png",
+      "source": "Illustrative example. Pages like this are served millions of times per year.",
+      "callouts": [
+        {
+          "label": "Spoofed URL",
+          "color": "red",
+          "text": "secure-paypal-verify.net is NOT PayPal. Real PayPal is always paypal.com. The ‘secure’ prefix and ‘verify’ suffix are designed to look official."
+        },
+        {
+          "label": "Not Secure Badge",
+          "color": "red",
+          "text": "The browser shows ‘! Not secure’ in red. Legitimate financial sites are always HTTPS with a padlock — a tell the attacker hopes you ignore."
+        },
+        {
+          "label": "Urgency Banner",
+          "color": "amber",
+          "text": "“Verify within 24 hours or face suspension.” Manufactured deadline + threat of legal action = pressure to act before thinking."
+        },
+        {
+          "label": "Why It Works",
+          "color": "primary",
+          "text": "Most people have a PayPal account. The attack harvests your real password — whatever you type goes straight to the adversary, not PayPal."
+        }
+      ],
+      "script": "One bridge slide before we get to today's CB content. In Lesson 1.1 you learned how social engineering manipulates people; this is what it looks like aimed at a password. This is a credential phishing login page — a fake site built to look exactly like PayPal. Look at the URL bar first: secure-paypal-verify.net is not PayPal; real PayPal is always paypal.com, full stop. The word secure in the URL is a trick. The browser itself says Not secure in red — the attacker is hoping you are moving too fast to notice. The bottom banner manufactures urgency: verify within 24 hours, legal action — that is the Lesson 1.1 playbook, intimidation plus urgency. Here is why it matters for Lesson 1.2: whatever password gets typed into that field goes straight to the adversary. Stolen credentials like these become the raw material for the attacks we study today — they seed the stolen-password lists, and the personal info harvested alongside them feeds the dictionary construction you will see in EK 1.2.B.2. That is the hand-off from 1.1 to 1.2: manipulation harvests the credential, and today we study what the adversary does with it."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three CB-Specified Signs of a Password Attack",
+      "subheading": "EK 1.2.A.2 names all three. The AP exam will give you a log or a scenario and ask you to identify which sign is present.",
+      "items": [
+        {
+          "ek": "SIGN 1",
+          "title": "Many Failed Attempts in a Short Duration",
+          "summary": "An unusually high number of failed logins compressed into minutes or hours. Normal users mistype a password once or twice. An automated attack generates dozens to thousands of failures rapidly. Look for volume plus speed together.",
+          "ekRef": "EK 1.2.A.2"
+        },
+        {
+          "ek": "SIGN 2",
+          "title": "Login Attempts at Unusual Times",
+          "summary": "Attempts clustering at 2 a.m., 3 a.m., or off-hours the legitimate user never logs in. Automated tools run around the clock. Legitimate users follow predictable time patterns. Anomalous timestamps are a red flag.",
+          "ekRef": "EK 1.2.A.2"
+        },
+        {
+          "ek": "SIGN 3",
+          "title": "Login Attempts from Unknown Devices",
+          "summary": "Successful or failed attempts originating from device fingerprints, IP addresses, or locations the account owner has never used. The legitimate user logs in from a known laptop or phone. An unknown device is a strong indicator of unauthorized access.",
+          "ekRef": "EK 1.2.A.2"
+        }
+      ],
+      "script": "Three signs. Write all three in the table in your Guided Notes. Sign one: many failures in a short duration. Volume plus speed. A user mistyping will fail once or twice, then succeed. An automated attack generates a pattern: fail, fail, fail, at a rate no human achieves manually. Sign two: unusual timestamps. You, the legitimate user, log in at 7 a.m. and 4 p.m. The attack happens at 2:47 a.m. That timestamp anomaly is the tell. Sign three: unknown device. Your account has a login history from your laptop and your phone. An attempt from a device or IP you have never used before is suspicious regardless of whether it succeeds. The AP exam will give you a log file and ask you to identify which of these is present. Know all three cold."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Why Weak Passwords Fail",
+      "kicker": "Adversary Techniques · Learning Objective 1.2.B",
+      "script": "Section two. Learning objective 1.2.B. Why weak passwords fail. The CB framework is very specific about the patterns adversaries target. If you understand how the attack is constructed, you will understand exactly why certain passwords are vulnerable. Ten minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "How Adversaries Construct the Attack",
+      "subheading": "EK 1.2.B.1 and 1.2.B.2 work together: predictable human patterns feed the attacker’s dictionary.",
+      "left": {
+        "title": "Common Password Patterns (EK 1.2.B.1)",
+        "definition": "Patterns humans use that adversaries specifically target",
+        "ek": "EK 1.2.B.1",
+        "examples": [
+          "One or two words + two-digit number (often a year) + special character at the end",
+          "Names of family members or pets embedded in the password",
+          "Personally significant dates: birthdays, anniversaries, graduation years",
+          "Capitalized first letter, lowercase body, special character appended"
+        ]
+      },
+      "right": {
+        "title": "Dictionary Attack Construction (EK 1.2.B.2)",
+        "definition": "Adversary builds a custom word list from gathered personal info",
+        "ek": "EK 1.2.B.2",
+        "examples": [
+          "Adversary researches target via social media: family names, pet names, significant dates",
+          "Combines that personal info with the predictable patterns from EK 1.2.B.1",
+          "Uses an automated tool to submit the resulting dictionary against the login form",
+          "Rivera2009! = last name + graduation year + appended special character = textbook vulnerable"
+        ]
+      },
+      "footer": "AP TIP: When the exam describes an adversary researching a target on social media before a login attack, that is EK 1.2.B.2 in action. The research phase is part of the attack.",
+      "script": "EK 1.2.B.1 and 1.2.B.2 are a pair. EK 1.2.B.1 says: humans follow predictable patterns when creating passwords. Two words plus a year plus a special character at the end. Pet names. Family names. Significant dates. EK 1.2.B.2 says: adversaries know this and exploit it. They research you on social media, gather your family names and important dates, combine them with the known patterns, and build a custom dictionary. Rivera2009! is a perfect example: last name, graduation year, exclamation point appended. An adversary who knows your last name tries Rivera plus every two-digit year from 1980 to 2024 plus common special characters. That is a targeted dictionary attack."
+    },
+    {
+      "type": "misconception",
+      "heading": "The Special Character Myth",
+      "misconception": "Adding a ! or @ at the end of my password makes it strong.",
+      "whyItHappens": "Password strength meters rate Rivera2009! as ‘strong’ because they count character types — uppercase, lowercase, number, symbol. Students see a green bar and assume that means secure.",
+      "correction": "EK 1.2.B.1 names trailing special characters as one of the PREDICTABLE PATTERNS adversaries specifically target. Their automated tools append !, @, #, and $ by default. A green strength-meter bar measures character variety, not unpredictability. Those are not the same thing.",
+      "example": "Rivera2009! scores ‘strong’ on most meters. Against a targeted dictionary attack it falls in minutes — the adversary knows your last name, assumes a year, and appends common trailing characters automatically. The meter lied.",
+      "script": "This is the most dangerous misconception for this lesson because it creates false confidence. Password strength meters exist to enforce minimum complexity rules, not to measure real-world attack resistance. Rivera2009! has uppercase, lowercase, a number, and a special character. Most meters give it a green bar. But read EK 1.2.B.1 carefully: one or two words, a two-digit year, special character appended at the end. That IS the Rivera2009! formula. Adversaries know this pattern because they studied the same human password habits the meter was built around. Their tools do not brute force every character. They try the pattern: common word or name, plus year from 1970 to 2025, plus exclamation point or at sign or hash. The meter told you the password was strong. The attacker’s dictionary disagrees. Strength meters measure character set diversity. Attackers exploit human predictability. Fix: use a password manager to generate something genuinely random, which has no pattern for a dictionary to exploit."
+    },
+    {
+      "type": "two_column",
+      "heading": "Brute Force vs. Dictionary Attack vs. Credential Stuffing",
+      "subheading": "Enrichment: not directly CB-required, but helps you reason through complex attack scenarios on the free-response.",
+      "track": "enrichment",
+      "left": {
+        "title": "Brute Force",
+        "definition": "Tries every possible combination",
+        "ek": "Enrichment",
+        "examples": [
+          "Starts at aaaaaa, works through every permutation",
+          "Guaranteed to eventually succeed if no lockout",
+          "Extremely slow — short passwords only in practice",
+          "Online rate limits make full brute force impractical against live services"
+        ]
+      },
+      "right": {
+        "title": "Credential Stuffing",
+        "definition": "Uses credentials leaked from a prior breach",
+        "ek": "Enrichment",
+        "examples": [
+          "Attacker buys or downloads a credential dump from a breached site",
+          "Tries those exact username + password combos on other services",
+          "Effective because people reuse passwords across multiple accounts",
+          "Password reuse is the vulnerability, not a weak pattern"
+        ]
+      },
+      "footer": "AP TIP: The CB exam tests the dictionary attack pattern from EK 1.2.B.2. Credential stuffing and brute force give you context to distinguish attack types in a free-response scenario.",
+      "script": "Enrichment. Three attack types to know. Brute force tries everything, which is why short passwords fail and rate limiting matters. Dictionary attacks use a targeted word list tuned to the victim. Credential stuffing is different: the adversary has your actual password from a prior breach and is checking if you reused it somewhere else. The CB exam focuses on the dictionary attack model. These enrichment types help you build the full mental map."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Stronger Authentication",
+      "kicker": "Three CB Defenses · Learning Objective 1.2.C",
+      "script": "Section three. Learning objective 1.2.C. Three defenses. The CB framework is specific about all three. Know each one, know why it works, and know any limitations. Seven minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three CB-Required Authentication Defenses",
+      "subheading": "EKs 1.2.C.1, 1.2.C.2, and 1.2.C.3 each name a specific action. Know what each one does and does not protect against.",
+      "items": [
+        {
+          "ek": "LONG-RANDOM-UNIQUE",
+          "title": "Create Long, Random, Unique Passwords",
+          "summary": "EK 1.2.C.1: Passwords should be long, random, and unique per account. A password manager generates and stores these. Alternatively, use a long, unique passphrase. Length defeats brute force. Randomness defeats dictionary attacks. Uniqueness prevents credential stuffing.",
+          "ekRef": "EK 1.2.C.1"
+        },
+        {
+          "ek": "AVOID PERSONAL INFO",
+          "title": "Avoid Names, Dates, and Personal Words",
+          "summary": "EK 1.2.C.2: Do NOT use names of family or pets, personally significant dates, or other information that could be gathered from social media research. This directly removes the personal info that feeds EK 1.2.B.2 dictionary construction.",
+          "ekRef": "EK 1.2.C.2"
+        },
+        {
+          "ek": "ENABLE MFA",
+          "title": "Enable Multifactor Authentication",
+          "summary": "EK 1.2.C.3: MFA requires extra proof of identity — typically a one-time code — in addition to the password. Even if the password is compromised, MFA blocks access without the second factor. The CB framework states this is the recommended action when available.",
+          "ekRef": "EK 1.2.C.3"
+        }
+      ],
+      "script": "Three defenses. Write all three in your Guided Notes. First: long, random, unique. Long means more guesses needed. Random means no dictionary can be built from your personal life. Unique means one breach does not compromise every account you own. EK 1.2.C.1 specifically names the password manager as the tool to generate and store these. Second: avoid personal info. This is the direct counter to EK 1.2.B.2. If the adversary cannot find your pet’s name in your password, their custom dictionary fails. Third: MFA. Even if the password is completely cracked, a one-time code sent to your phone stops the attacker. They have the password and still cannot log in."
+    },
+    {
+      "type": "misconception",
+      "heading": "MFA Is Not a Password Replacement",
+      "misconception": "If I have MFA enabled, my password doesn’t matter anymore.",
+      "whyItHappens": "MFA is correctly described as a strong second layer. Students hear ‘second layer’ and conclude the first layer is now optional — if the second layer catches everything, why care about the first?",
+      "correction": "MFA reduces risk dramatically but does not eliminate it. Real-time phishing proxies relay your MFA code to the attacker the moment you type it. SIM swapping lets the attacker receive your SMS codes. MFA fatigue floods your authenticator until you accidentally approve. A weak password is always a liability, regardless of what comes after it.",
+      "example": "Attacker cracks your weak password via dictionary attack, then calls your carrier posing as you and ports your number (SIM swap). Now they receive your MFA codes. The password was the first domino. Strong password + MFA together is the correct posture — not either/or.",
+      "script": "MFA is excellent. Enable it everywhere it is available — that is a genuine best practice from EK 1.2.C.3. But I want to be precise about what it does and does not protect you from, because the AP exam will test the mechanism, not just the recommendation. MFA adds a required second factor. It does NOT make the first factor irrelevant. Three real bypass methods: first, real-time phishing proxies. The adversary builds a proxy that sits between you and the real site. You enter your password and your MFA code. The proxy relays both to the real site in real time. By the time your session loads, the attacker is already in. Second, SIM swapping. The attacker calls your carrier, impersonates you with some social engineering, and gets your phone number ported to their SIM. They now receive your SMS codes. Third, MFA fatigue. The attacker sends repeated push notification approvals to your authenticator app at 2 a.m. until you approve one by accident. In all three cases a strong, unique password was the first line of defense that could have slowed or complicated the attack. Strong password plus MFA is defense in depth. Weak password plus MFA is a single point of failure with a safety net that can be bypassed."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary",
+      "terms": [
+        {
+          "term": "Online password attack",
+          "definition": "An adversary attempts to log in using common passwords, common patterns, or stolen credentials against a live, running service (EK 1.2.A.1)."
+        },
+        {
+          "term": "Dictionary attack",
+          "definition": "A password attack that uses a targeted word list, often constructed from personal information gathered about the victim, rather than random guessing (EK 1.2.B.2)."
+        },
+        {
+          "term": "Authentication",
+          "definition": "The process of verifying that a user is who they claim to be, typically via a password, biometric, or security token. Strengthening it is the goal of all three actions in EK 1.2.C (EK 1.2.C.1–C.3)."
+        },
+        {
+          "term": "Multifactor authentication (MFA)",
+          "definition": "Authentication requiring two or more forms of proof of identity. Adds a second factor such as a one-time code beyond the password (EK 1.2.C.3)."
+        },
+        {
+          "term": "Password manager",
+          "definition": "A tool that generates and stores strong, unique, random passwords for every account (EK 1.2.C.1)."
+        },
+        {
+          "term": "Passphrase",
+          "definition": "A long, memorable sequence of words used as a password. Effective because length dramatically increases the search space (EK 1.2.C.1)."
+        }
+      ],
+      "script": "Six terms. Prioritize for the AP exam: online password attack, dictionary attack, the three signs of an attack, and MFA. If you see a scenario on the exam where the attacker is using a list from a prior data breach, that is credential stuffing, not a dictionary attack. The distinction matters in free-response."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "These two questions map to LO 1.2.A and LO 1.2.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Read this log snapshot: 47 failed logins between 2:00 and 2:03 a.m. All from the account owner's usual home IP. The account password is Rivera2009!. Identify which two CB-specified signs of a password attack are present — and name the one that is NOT",
+        "Explain specifically why Rivera2009! Is vulnerable to the type of attack described in. Identify which two patterns the password uses."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one gives you a mini log snapshot: 47 failed logins in three minutes at 2 a.m., all from the owner's usual home IP. Two of the three CB-specified signs are present — name them, cite EK 1.2.A.2, and tell me which sign is NOT present and why. That ‘which sign is missing’ habit will matter on Day 2. Question two: explain exactly why Rivera2009! is vulnerable. Which patterns from EK 1.2.B.1 does it use? Be specific."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.2 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Login log analysis — find all three attack signs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Adversary profile builder.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-exercise-2"
+        },
+        {
+          "label": "Lesson 1.2 quiz",
+          "tail": "Five questions across all three LOs.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-2-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything we just did in class is waiting for you on the site, and the order on this slide is the order I want you to work it. Start on the Lesson 1.2 page and run the self-check so you know where you actually stand. Then do Exercise 1, the login log analysis, where you find all three signs of an attack on your own. Exercise 2 is the adversary profile builder, and the quiz at the bottom is five questions across all three objectives. If you were absent or you want it again at your own speed, the lesson video walks through this exact material slide for slide. Write the lesson page URL down now so you are not hunting for it tonight."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 4",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Identified the three CB-specified signs of a password attack and their EKs (LO 1.2.A)",
+        "Explained how adversaries use personal info to construct a targeted dictionary attack (LO 1.2.B)",
+        "Learned three defenses from EK 1.2.C and busted the special-character myth",
+        "Analyzed Rivera2009! as a textbook example of EK 1.2.B.1 vulnerability"
+      ],
+      "nextPoints": [
+        "Apply all three LOs to CB Scenario 1B — the website login log",
+        "Identify which CB attack signs are present in the real log — with evidence citations",
+        "Map the adversary’s dictionary construction step by step using EK 1.2.B.2"
+      ],
+      "teaser": "Open a browser and go to paypal.com. Now look at the URL carefully. What makes it different from what you just saw on that phishing page?",
+      "script": "Day 1 done. You have the framework: three signs, the dictionary attack mechanism, and three defenses. Day 2 is application. You will take Scenario 1B from the CB framework — the Scenario 1B website login log — and work through it structured. Tonight: review your Guided Notes. Be able to say all three attack signs cold, explain why Rivera2009! fails, and name all three defenses without looking."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 1.2 — Suspicious Website Logins — Quiz",
+    "instructions": "Choose the single best answer. 12 questions, 25 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "multi",
+        "stem": "Three log entries are flagged for review. I. 23 failed logins from a single IP over 4 minutes. II. A successful login at 3:17 a.m. from a country where the user has never logged in. III. One failed login from the user's usual IP followed immediately by a success from that same IP. Which entries show CB-specified signs of a password attack?",
+        "options": [
+          "I only",
+          "II and III only",
+          "I and II only",
+          "I, II, and III"
+        ],
+        "answer": "C",
+        "ek": "EK 1.2.A.2",
+        "rationale": "Entry I is Sign 1 — many failed attempts in a short duration (23 in 4 minutes is an automated rate). Entry II shows Sign 2 (3:17 a.m. is an unusual time) and Sign 3 (a never-visited country means an unknown device/location). Entry III is a legitimate user mistyping once and then succeeding from their own IP — volume plus speed are required for Sign 1, and one mistype has neither."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "Which password most directly reflects the EK 1.2.B.1 pattern of one or two words + a two-digit year + a special character at the end?",
+        "options": [
+          "P@ssword2024!",
+          "correct-horse-battery-staple",
+          "qwerty123",
+          "Xk#9mQpLv2"
+        ],
+        "answer": "A",
+        "ek": "EK 1.2.B.1",
+        "rationale": "P@ssword2024! is the textbook EK 1.2.B.1 formula: word + year + trailing special character (and the @-for-a substitution is itself a predictable variation). correct-horse-battery-staple is a passphrase — an EK 1.2.C.1 recommendation, not a weak pattern. Xk#9mQpLv2 is effectively random. qwerty123 is weak but lacks the year and trailing special character, so it is not the CB-specified pattern the stem asks for."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "A target's public Instagram shows a dog named Biscuit, a birthday of March 15, and a favorite team, the Chiefs. An adversary builds a targeted dictionary from this gathered information. Which password would that dictionary be LEAST likely to contain?",
+        "options": [
+          "Biscuit2015",
+          "Chiefs0315!",
+          "March15Biscuit",
+          "Xm7#kR9vLq2p"
+        ],
+        "answer": "D",
+        "ek": "EK 1.2.B.2",
+        "rationale": "The dictionary is constructed from the gathered personal information — Biscuit, March 15, Chiefs — combined with common patterns, so options A, B, and C are all direct hits. Xm7#kR9vLq2p has no connection to any harvested personal info; a purely random string cannot be derived from OSINT, so it is the LEAST likely entry. Watch the inversion: the question asks least likely, not most vulnerable."
+      },
+      {
+        "id": "Q4",
+        "kind": "multi",
+        "stem": "A company implements three controls. I. A password manager that generates unique, random, 16-character passwords for every account. II. Multifactor authentication on all accounts. III. Mandatory password changes every 45 days with character-complexity rules. Which of these directly implement the CED-specified methods for making authentication stronger?",
+        "options": [
+          "I, II, and III",
+          "I and II only",
+          "II and III only",
+          "I and III only"
+        ],
+        "answer": "B",
+        "ek": "EK 1.2.C.1–C.3",
+        "rationale": "I is EK 1.2.C.1 exactly (password manager generating long, random, unique passwords) and II is EK 1.2.C.3 exactly (MFA). III — forced rotation with complexity rules — is NOT in EK 1.2.C: the CED specifies long/random/unique, avoiding personal information, and MFA. Enrichment context: NIST SP 800-63B discourages forced rotation because users respond with predictable increments (Password1! → Password2!)."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "In CB Scenario 1B, entries 4 and 7 are suspicious sign-ins on school days from an unknown IP. A student recommends: “Change the account password immediately.” Per EK 1.2.C, which CB-recommended control is MISSING from this response?",
+        "options": [
+          "Enabling multifactor authentication on the account",
+          "Nothing — the recommendation is already complete",
+          "Switching the account to a different web browser",
+          "Forcing the new password to rotate every 45 days"
+        ],
+        "answer": "A",
+        "ek": "EK 1.2.C.3",
+        "rationale": "Changing the password addresses EK 1.2.C.1/C.2 by replacing the compromised credential, but the CED lists MFA (EK 1.2.C.3) as a separate, distinct control — it blocks the adversary even if they obtain the new password. B is wrong because one control is not a complete EK 1.2.C response. Browser choice has no CB basis, and forced rotation is not an EK 1.2.C method."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "According to EK 1.2.A.1, what does an adversary attempt during an online password attack?",
+        "options": [
+          "Logging in to a device or service using common passwords, common password patterns, or stolen passwords",
+          "Intercepting network traffic to read passwords as they travel between the user and the server",
+          "Installing keylogging malware on the victim's device to record every keystroke they type",
+          "Tricking the victim into revealing a one-time code through a fraudulent phone call"
+        ],
+        "answer": "A",
+        "ek": "EK 1.2.A.1",
+        "rationale": "EK 1.2.A.1 defines an online password attack as adversaries trying to log in to a device or service using common passwords, common password patterns, or stolen passwords. The other options describe sniffing, keylogging, and vishing — real techniques, but none is the CED definition of an online password attack."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A help-desk log shows a user's account with steady, successful logins every weekday at 8 a.m. from one office laptop. Overnight, the same account logs 3,000 failed attempts in 20 minutes from an IP in another country. Which EK 1.2.A.2 sign is MOST clearly evidenced by the overnight activity?",
+        "options": [
+          "No sign is present — the daytime logins were all successful",
+          "Login attempts from a known device the owner uses daily",
+          "Many failed attempts to log in over a short duration",
+          "A password reset request sent to the owner's email inbox"
+        ],
+        "answer": "C",
+        "ek": "EK 1.2.A.2",
+        "rationale": "EK 1.2.A.2 lists 'many failed attempts to log in over a short duration' as a sign — 3,000 failures in 20 minutes is exactly that volume-plus-speed pattern. The overnight foreign IP also hints at unusual time and unknown device, but the clearest, directly-counted sign is the failed-attempt volume. The daytime success pattern is the legitimate baseline, and a password reset is not one of the three CED signs."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A user wants a password that follows EK 1.2.C.1 and EK 1.2.C.2. Which choice best satisfies both?",
+        "options": [
+          "Their dog's name followed by their birth year and an exclamation point",
+          "A short word repeated three times so it is easy to remember and retype",
+          "A long, random string generated and stored by a password manager",
+          "Their street address with the vowels replaced by matching numbers"
+        ],
+        "answer": "C",
+        "ek": "EK 1.2.C.1–C.2",
+        "rationale": "EK 1.2.C.1 says passwords should be long, random, and unique and names a password manager as the tool to generate and store them; EK 1.2.C.2 says to avoid names, dates, or other personally meaningful words. A long, random manager-generated string satisfies both. The dog-name-plus-year, the repeated word, and the street address all rely on personal or predictable information the CED tells users to avoid."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary scrolls a target's public profiles and records the names of their two children, their wedding anniversary, and their cat's name. They feed these into a tool that auto-submits combinations against the login form. Which EK best describes this method?",
+        "options": [
+          "EK 1.2.A.1 — trying stolen passwords leaked from an unrelated breach",
+          "EK 1.2.B.2 — building a dictionary from gathered personal information",
+          "EK 1.2.C.3 — enabling multifactor authentication on the account",
+          "EK 1.2.A.2 — logging in successfully from a known device"
+        ],
+        "answer": "B",
+        "ek": "EK 1.2.B.2",
+        "rationale": "EK 1.2.B.2 describes adversaries constructing a dictionary of possible passwords from personal information gathered about a target — birthdays, anniversaries, names of pets and family — and using an automated tool to submit them. That is exactly the children's names, anniversary, and cat's name being auto-submitted. EK 1.2.A.1 is stolen-password reuse, EK 1.2.C.3 is a defense, and EK 1.2.A.2 lists attack signs, not this construction method."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An account's history shows logins only from a home laptop on weekday evenings. A security review flags four new events on the same account. Per EK 1.2.A.2, which single event most clearly matches the 'login attempts from unknown devices' sign?",
+        "options": [
+          "A failed login at the user's normal evening hour from the home laptop",
+          "A successful login during the user's usual weekday evening window",
+          "A password change confirmed from the user's own registered laptop",
+          "A login from a phone and IP address the account has never used before"
+        ],
+        "answer": "D",
+        "ek": "EK 1.2.A.2",
+        "rationale": "EK 1.2.A.2 lists 'login attempts from unknown devices' as a sign of an online password attack. A device and IP the account has never used is exactly that unknown-device indicator. The other three events all originate from the user's known laptop during normal hours, so they match the legitimate baseline rather than any of the three CED-specified signs."
+      },
+      {
+        "id": "Q11",
+        "kind": "applied",
+        "stem": "EK 1.2.B.1 lists the common patterns people use when creating passwords. Which choice is NOT one of those CED-listed patterns?",
+        "options": [
+          "Including the names of family members or pets inside the password",
+          "Generating the password as a long, random string with no personal meaning",
+          "Including a personally significant date such as a birthday or anniversary",
+          "Adding a two-digit year and a special character to the end of a word"
+        ],
+        "answer": "B",
+        "ek": "EK 1.2.B.1",
+        "rationale": "EK 1.2.B.1 names three common patterns: a word plus a two-digit year plus a trailing special character, family or pet names in the password, and personally significant dates. Options A, B, and D are those three patterns. A long, random string with no personal meaning is the opposite — it follows the EK 1.2.C.1 guidance for strong passwords, so it is not an EK 1.2.B.1 pattern."
+      },
+      {
+        "id": "Q12",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A user's password is stolen in a breach. With multifactor authentication enabled on the account, the adversary types the correct password into the login form. Per EK 1.2.C.3, what happens next?",
+        "options": [
+          "The stolen password alone grants access since it is the correct one",
+          "The account locks permanently and can never be recovered by the user",
+          "The breach is automatically reported to the adversary's email provider",
+          "The login still requires extra proof of identity, such as a one-time code"
+        ],
+        "answer": "D",
+        "ek": "EK 1.2.C.3",
+        "rationale": "EK 1.2.C.3 states that MFA requires the user to provide extra proof of identity — such as a one-time code — in addition to the password as an extra layer of security. So a correct but stolen password is not enough; the second factor is still demanded. The CED makes no claim about permanent lockout or any automatic breach report, and the whole point of MFA is that the password alone does not grant access."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 1.2 — Suspicious Website Logins — Teacher Guide",
+    "subtitle": "Unit 1 · Topic 1.2 · 4 class periods · Scenario 1B",
+    "overview": [
+      "Lesson 1.2 covers password attacks and authentication. Across four days students learn to identify the three CB-specified signs of a password attack (EK 1.2.A.2), explain how adversaries exploit predictable password patterns to construct targeted dictionary attacks (EK 1.2.B.1–B.2), and explain the three CED-specified ways to make authentication stronger (EK 1.2.C.1–C.3). Scope note: EK 1.2.C names exactly three actions — long/random/unique passwords via a password manager or passphrase, avoiding personal information, and MFA. Forced rotation and complexity rules are NOT in EK 1.2.C; Quiz Q4 tests precisely that distinction.",
+      "Scenario 1B (Detecting Unauthorized Logins) anchors Day 2: an online-game account-activity log showing successful logins only — Signs 2 and 3 are evidenced, Sign 1 is not, and teaching students to say so is the day's key skill. Note: the family name Rivera used in the dictionary-attack thread is this course's added detail; the CED scenario names no family."
+    ],
+    "los": [
+      "LO 1.2.A — Identify common signs of a password attack.",
+      "LO 1.2.B — Explain how adversaries take advantage of weak authentication.",
+      "LO 1.2.C — Explain how to make authentication stronger."
+    ],
+    "eks": [
+      "EK 1.2.A.1 — In an online password attack, adversaries try logging in to a device or service using common passwords, common password patterns, or stolen passwords.",
+      "EK 1.2.A.2 — Signs of an online password attack include: Many failed attempts to log in over a short duration; Login attempts at unusual times; Login attempts from unknown devices.",
+      "EK 1.2.B.1 — Many people use common patterns when creating passwords, such as: Starting a password with one or two words, adding a two-digit number (often signifying a year), and putting a special character at the end; Including the names of family or pets in their passwords; Including personally significant dates in their passwords.",
+      "EK 1.2.B.2 — Adversaries often construct a dictionary of possible passwords based on personal information gathered about a target (e.g., birthday, anniversary, names of pets and family) and use an automated tool to submit potential passwords.",
+      "EK 1.2.C.1 — Users should create passwords that are long, random, and unique. A password manager can be used to generate and store strong passwords, or a user may create long, unique passphrases for their accounts.",
+      "EK 1.2.C.2 — When creating passwords, users should avoid names, dates, or other personally meaningful words or numbers.",
+      "EK 1.2.C.3 — When available, users should enable multifactor authentication (MFA), which will require the user to provide extra proof of identity—such as a one-time code—in addition to the password as an extra layer of security."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each day.",
+      "Printed/Digital Day 1–3 Guided Notes (student copies), including the Day 3 Case Study 1 and 2 handouts in the packet. Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page (apcsexamprep.com/pages/ap-cybersecurity-unit-1-password-attacks), which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 1.2 quiz (student copies) for Day 4.",
+      "Scenario 1B log displayed on the Day 2 deck (no handout needed)."
+    ],
+    "prereqs": [
+      "Lesson 1.1 (social engineering). The Day 1 bridge slide and the dictionary-construction thread both lean on 1.1's harvesting of personal information and credentials."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Signs of an attack, dictionary construction, three defenses (LO 1.2.A, 1.2.B, 1.2.C)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.2/Q1) + bell ringer (password reuse count)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Bridge from 1.1 + three signs of an attack (EK 1.2.A.2)",
+            "min": 10,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Why weak passwords fail (EK 1.2.B.1–B.2) + strength-meter myth",
+            "min": 12,
+            "slides": "8-11"
+          },
+          {
+            "segment": "Three defenses (EK 1.2.C) + MFA misconception",
+            "min": 10,
+            "slides": "12-14"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 7,
+            "slides": "15-16"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Apply all three LOs to the Scenario 1B website login log",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.2/Q2) + Day 1 misconception reset",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Scenario 1B intro + first look at the log",
+            "min": 8,
+            "slides": "3-6"
+          },
+          {
+            "segment": "Independent log analysis (timer)",
+            "min": 3,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Sign-by-sign debrief (Signs 1–3)",
+            "min": 15,
+            "slides": "8-11"
+          },
+          {
+            "segment": "Breach analysis (entries 4 + 7) + summary",
+            "min": 8,
+            "slides": "12-13"
+          },
+          {
+            "segment": "Stop and Think",
+            "min": 6,
+            "slides": "14"
+          },
+          {
+            "segment": "Enrichment: lockout + rate limiting; wrap",
+            "min": 5,
+            "slides": "15-17"
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Case studies, attack classification, AP strategy",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.2/Q3) + bell ringer (3 failures — attack or not?)",
+            "min": 5,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Case Study 1 independent analysis",
+            "min": 8,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Case Study 1 debrief",
+            "min": 7,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Case Study 2 independent analysis",
+            "min": 7,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Case Study 2 debrief (the negative ID)",
+            "min": 7,
+            "slides": "8-9"
+          },
+          {
+            "segment": "Group discussion: the sign-checklist",
+            "min": 5,
+            "slides": "10"
+          },
+          {
+            "segment": "AP exam strategy + wrap",
+            "min": 11,
+            "slides": "11-13"
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Lesson 1.2 quiz + debrief + bridge to 1.3",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.2/Q4) + pre-quiz activation (3 signs + 3 defenses)",
+            "min": 3,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Quiz strategy",
+            "min": 4,
+            "slides": "4"
+          },
+          {
+            "segment": "Lesson 1.2 quiz",
+            "min": 25,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Quiz debrief (answer key walk-through)",
+            "min": 12,
+            "slides": "6-11"
+          },
+          {
+            "segment": "Bridge to Lesson 1.3 + close",
+            "min": 6,
+            "slides": "12-14"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "The special-character myth",
+        "myth": "Adding a ! or @ at the end of my password makes it strong.",
+        "reality": "EK 1.2.B.1 names trailing special characters as one of the predictable patterns adversaries specifically target. Strength meters measure character variety, not unpredictability — Rivera2009! scores ‘strong’ and falls to a targeted dictionary in minutes."
+      },
+      {
+        "heading": "MFA replaces the password",
+        "myth": "With MFA enabled, the password doesn't matter anymore.",
+        "reality": "MFA is a second layer, not a substitute (EK 1.2.C.3). Real-time phishing proxies, SIM swapping, and MFA fatigue can all bypass it — strong password plus MFA is defense in depth, not either/or."
+      },
+      {
+        "heading": "No breach, no attack",
+        "myth": "The attack signs only matter if the adversary actually got in.",
+        "reality": "EK 1.2.A.2 defines signs of an attack in progress — failed attempts ARE the evidence, and a successful login from an unknown IP at an unusual time is still an attack indicator. Success is irrelevant to identifying the signs."
+      },
+      {
+        "heading": "Rotation and complexity are CB defenses",
+        "myth": "Forced password changes and complexity rules are CED-specified ways to strengthen authentication.",
+        "reality": "EK 1.2.C names exactly three actions: long/random/unique passwords (password manager or passphrase), avoiding personal information, and MFA. Rotation schedules and complexity rules are not among them — Quiz Q4 tests this directly."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post the three signs (EK 1.2.A.2) and three defenses (EK 1.2.C) as a word bank before the Day 2 log analysis and the Day 3 case studies, so students focus on matching evidence rather than recall.",
+        "Provide a sentence frame for log evidence: ‘Sign ____ is present because entry ____ shows ____, which differs from the user's normal pattern of ____.’"
+      ],
+      "extension": [
+        "Have students design a log entry that shows all three EK 1.2.A.2 signs at once, then trade and identify each other's evidence.",
+        "Ask students to write the OSINT profile an adversary could build about a fictional target from three social-media posts, then construct (on paper) the first ten dictionary entries per EK 1.2.B.2."
+      ]
+    },
+    "discussion": [
+      "Why does a success-only log (like Scenario 1B) make an attack harder to notice than a log full of failures?",
+      "Which of the three EK 1.2.C defenses would you implement first on your own accounts, and what does that choice cost you in convenience?",
+      "When is a single sign from EK 1.2.A.2 enough to act on, and when do you need two or three?"
+    ],
+    "answerKeyNote": "Each question’s full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  }
+}

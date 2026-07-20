@@ -1,0 +1,307 @@
+{
+  "meta": {
+    "lessonId": "3.6",
+    "lessonTitle": "Conditionals",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-2.G, AAP-2.H"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-2.G, AAP-2.H",
+    "intro": "Everything for this topic lives in this folder. Topic 3.6 teaches selection — the second building block of algorithms — so it ships an interactive, auto-graded coding-practice page alongside the paper exercises. The paper work and the screen work share ONE through-line scenario: the gate (a ride-height and admission decision). Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (selection without a language; the IF statement) and Day 2 (IF-ELSE; determining the result by tracing the branch). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Gate and Exercise 2: Write the Rule (student + answer KEY) — PAPER, hand-traced, no typing",
+      "Discussion — Who Decides? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.G and AAP-2.H, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive gate problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-6-conditionals"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-6-conditionals-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-6-conditionals-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-6-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-6-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-6-conditionals"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: selection and the IF; Day 2: IF-ELSE and tracing the branch). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real code and checks it against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Paper-then-screen: the exercises are the low rungs — students hand-trace the gate and write conditionals with no typing. Then they move to the Topic 3.6 coding page and type-and-run the SAME gate scenario, hardest last. Scheduling: Topic 3.6 is a 2-day topic; the quiz runs as the opener of the NEXT class (spaced retrieval), and Topic 3.7 (Nested Conditionals) builds directly on the conditional defined here."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Gate",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-6-exercise-1",
+    "intro": "You are quality-testing the ride gate before the park opens. The gate runs a conditional on each rider's height. Your job is to TRACE it — for each rider, evaluate the condition FIRST, decide which branch runs, and state exactly what the gate displays. No typing: read the pseudocode and reason. This is the single most tested skill for LO AAP-2.H — determine the result of a conditional — so work the condition to true or false before you look at either block.",
+    "scenarioTitle": "The Ride Gate: One IF-ELSE, Many Riders",
+    "narrative": "The gate runs this conditional for each rider: IF(height ≥ 48){ DISPLAY(\"Board the ride\") } ELSE { DISPLAY(\"Grow a bit more\") }. Read the table top to bottom. For each rider, first evaluate height ≥ 48 to true or false, then name the branch that runs, then write what is displayed. Remember: exactly one branch runs, and ≥ includes the boundary value 48. Work your own trace before answering Part A.",
+    "log": {
+      "columns": [
+        "Rider height",
+        "Condition height ≥ 48 evaluates to",
+        "Branch that runs",
+        "What the gate displays"
+      ],
+      "rows": [
+        [
+          "60",
+          "true",
+          "IF (first block)",
+          "Board the ride"
+        ],
+        [
+          "48",
+          "true (≥ includes 48)",
+          "IF (first block)",
+          "Board the ride"
+        ],
+        [
+          "47",
+          "false",
+          "ELSE (second block)",
+          "Grow a bit more"
+        ],
+        [
+          "50",
+          "true",
+          "IF (first block)",
+          "Board the ride"
+        ],
+        [
+          "30",
+          "false",
+          "ELSE (second block)",
+          "Grow a bit more"
+        ]
+      ]
+    },
+    "scenarioNote": "Scenario adapted from the Day 1 IF and Day 2 IF-ELSE worked traces; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023).",
+    "predict": "Before you answer Part A, predict in one sentence: across all five riders, can the gate ever display BOTH messages for a single rider? Why or why not?",
+    "partALabel": "Part A - Trace the Values",
+    "partA": [
+      {
+        "ek": "EK AAP-2.H.3",
+        "pts": 4,
+        "q": "For a rider whose height is 48, state (a) whether the condition height ≥ 48 is true or false, (b) which branch runs, and (c) exactly what the gate displays. Explain why the boundary value 48 goes the way it does.",
+        "answer": "(a) The condition is true: height ≥ 48 uses greater-than-OR-EQUAL, and 48 is equal to 48, so the test evaluates to true (EK AAP-2.H.3 with the Topic 3.5 ≥ operator). (b) The IF (first) block runs and the ELSE is skipped. (c) The gate displays 'Board the ride'. Full credit requires noting that ≥ includes the boundary, so exactly 48 takes the true branch — a rider of exactly 48 inches boards. If the operator were > (strict), 48 would be false and the ELSE would run instead."
+      },
+      {
+        "ek": "EK AAP-2.H.3",
+        "pts": 4,
+        "q": "A new tester says, 'For the 47-inch rider, the gate shows Grow a bit more AND also shows Board the ride, just in case.' Using the CED definition of IF-ELSE, explain what is wrong and what actually displays.",
+        "answer": "The tester is wrong: an IF-ELSE runs EXACTLY ONE block, never both (EK AAP-2.H.3). For the 47-inch rider, height ≥ 48 evaluates to false, so the first block is skipped and only the ELSE runs, displaying 'Grow a bit more'. 'Board the ride' never appears. The two blocks are alternatives, not sequential statements — the condition selects one and the other is skipped entirely, so no rider ever sees both messages."
+      },
+      {
+        "ek": "EK AAP-2.H.2 / AAP-2.H.3",
+        "pts": 4,
+        "q": "Suppose the ELSE block is deleted, leaving only IF(height ≥ 48){ DISPLAY(\"Board the ride\") }. For the 47-inch and 30-inch riders, what does the gate now display, and what changed about the gate's behavior?",
+        "answer": "With no ELSE, both the 47-inch and 30-inch riders produce NO output at all — the condition is false, and a plain IF takes no action when the condition is false (EK AAP-2.H.2). What changed: the gate went from a two-way fork that always displays a message (EK AAP-2.H.3) to a one-way optional detour that stays silent on false. Short riders now get no feedback instead of 'Grow a bit more' — a real bug if every rider was supposed to see a message. That silence is exactly the missing-ELSE trap."
+      },
+      {
+        "ek": "EK AAP-2.H.3",
+        "pts": 3,
+        "q": "Write, in the correct order, the two-step method you used for EVERY rider to determine what the gate displays. Then apply it to a rider of height 49 to show the method works.",
+        "answer": "Step 1: evaluate the condition (height ≥ 48) to true or false, using the rider's height. Step 2: run only the branch the condition selects — the IF block on true, the ELSE block on false — and skip the other (EK AAP-2.H.3). Applied to height 49: Step 1, 49 ≥ 48 is true. Step 2, the IF block runs and the ELSE is skipped, so the gate displays 'Board the ride'. Evaluating the condition first is what keeps the trace correct, because the condition's value alone decides the branch."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.G.1",
+        "pts": 3,
+        "q": "Express the gate's decision WITHOUT any programming language — as a plain-language rule a new gate attendant could follow. Name the condition and state what happens for true and for false.",
+        "answer": "Plain-language rule: 'Check the rider's height. If the height is at least 48 inches, tell them to board the ride; otherwise, tell them to grow a bit more.' The condition is 'height is at least 48 inches', and the two outcomes are tied to the condition being true (board) or false (grow). This is selection expressed with no code (EK AAP-2.G.1) — the same decision the pseudocode makes, just in natural language. Any equivalent rule that names the condition and both outcomes earns full credit."
+      },
+      {
+        "ek": "EK AAP-2.H.3",
+        "pts": 3,
+        "q": "Write your own three-line IF-ELSE (in exam pseudocode) for a DIFFERENT gate — for example, an age check for a driving-simulator ride — and give one input that runs the IF branch and one that runs the ELSE branch. State what each displays.",
+        "answer": "Example: IF(age ≥ 16){ DISPLAY(\"Drive\") } ELSE { DISPLAY(\"Ride along\") }. Input age = 16: the condition is true (≥ includes 16), so the IF branch runs and it displays 'Drive'. Input age = 15: the condition is false, so the ELSE branch runs and it displays 'Ride along'. Exactly one branch runs for each input (EK AAP-2.H.3). Any correct three-line IF-ELSE with a clear condition and one true-input and one false-input example earns full credit."
+      },
+      {
+        "ek": "EK AAP-2.H.2 / AAP-2.H.3",
+        "pts": 2,
+        "q": "ENRICHMENT: The gate could be written as a plain IF that displays 'Board the ride' on true and does nothing on false, OR as an IF-ELSE that also handles false. Explain which design is correct for a gate that must give EVERY rider feedback, and why the other would be a bug.",
+        "answer": "The IF-ELSE is correct here: because every rider must receive feedback, the false case needs a defined outcome, and only ELSE guarantees one (EK AAP-2.H.3). A plain IF would display 'Board the ride' on true but take no action on false (EK AAP-2.H.2), leaving short riders with no message — a bug, since the requirement was feedback for everyone. The rule of thumb: a plain IF fits when 'do nothing on false' is intended; an IF-ELSE fits when the false case must produce something. Choosing the plain IF here silently drops a required output."
+      },
+      {
+        "ek": "LO AAP-2.H",
+        "pts": 0,
+        "q": "Next step: you traced these gates by hand. Now head to the Topic 3.6 page and type and run the harder versions — a single IF, an IF-ELSE, a computed condition, and one you build from scratch — where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Write the Rule",
+    "minutes": "25 minutes",
+    "subtitle": "5 decisions - choose IF or IF-ELSE, write it, and spot the bug",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-6-exercise-2",
+    "intro": "You are designing the decisions for the park's app. For each situation, decide whether it needs a plain IF (do something only on true) or an IF-ELSE (a defined outcome for both true and false), then write the conditional in exam pseudocode with a clear condition. Two of the items contain a bug to diagnose. Vague answers like 'just use an if' score zero — name the condition, choose the construct, and justify it.",
+    "standard": "CB Standard (required): the right construct (IF vs IF-ELSE) + a correctly written conditional with a clear Boolean condition + the output for a given input, for all 5 items. Enrichment (optional): note a boundary case or an equivalent way to write the decision (EK AAP-2.H.2–H.3).",
+    "methodHeading": "Three-Step Method - use for every decision",
+    "method": [
+      [
+        "Step 1 - Name the condition",
+        "What true-or-false test drives this decision? Write it as a Boolean expression using a relational operator (≥, ≤, =, ≠, >, <). The condition must evaluate to true or false."
+      ],
+      [
+        "Step 2 - Choose IF or IF-ELSE",
+        "Does the FALSE case need an outcome? If nothing should happen on false, a plain IF is enough. If both true and false need a result, use IF-ELSE so exactly one of two blocks runs."
+      ],
+      [
+        "Step 3 - Write it and trace one input",
+        "Write the construct with braces, then evaluate the condition for one sample input and state which branch runs and what displays. Check boundary values on ≥ and ≤ tests."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler construct/boundary judgment): The choice between IF and IF-ELSE is really about the false case — 'do nothing' vs 'do the other thing' (EK AAP-2.H.2–H.3). Watch boundary inputs: a ≥ or ≤ test includes its edge value, while > or < excludes it, and the exam plants inputs exactly at the edge. When you finish, move to the Topic 3.6 coding page to type and run these decisions and confirm the branch with real output.",
+    "fields": [
+      "Condition (a Boolean expression using a relational operator):",
+      "Construct (plain IF or IF-ELSE) + the conditional written in pseudocode:",
+      "Enrichment — a boundary case or an equivalent way to write it:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The app should display 'Free water station ahead' ONLY when the temperature is at least 90 degrees. On cooler days it should show nothing extra.",
+        "key": {
+          "signs": "The false case needs NO action — on cooler days nothing extra appears — so this is a one-way decision. The condition is a comparison: temperature at least 90.",
+          "mechanism": "Use a plain IF: IF(temperature ≥ 90){ DISPLAY(\"Free water station ahead\") }. On true the message shows; on false the block is skipped and nothing happens (EK AAP-2.H.2). No ELSE is needed because 'do nothing on false' is exactly the intended behavior.",
+          "subtype": "Boundary: because the test is ≥, exactly 90 degrees DOES trigger the message. If the intent were 'hotter than 90', the operator would be > and 90 would show nothing."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "At checkout the app must label every order: 'Free shipping' when the cart total is at least 35 dollars, and 'Add $4 shipping' otherwise. Every order gets exactly one label.",
+        "key": {
+          "signs": "Both cases need an outcome — every order gets a label — so this is a two-way decision. The condition compares the total to 35.",
+          "mechanism": "Use an IF-ELSE: IF(total ≥ 35){ DISPLAY(\"Free shipping\") } ELSE { DISPLAY(\"Add $4 shipping\") }. Exactly one label prints per order (EK AAP-2.H.3): the IF block on true, the ELSE block on false. A plain IF here would leave sub-$35 orders with no label — a bug.",
+          "subtype": "Trace total = 35: the condition is true (≥ includes 35), so it displays 'Free shipping'. total = 34.99 is false, so it displays 'Add $4 shipping'."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "SPOT THE BUG. A developer wanted every rider to get a message, but wrote: IF(height ≥ 48){ DISPLAY(\"Board the ride\") }. Testers report that short riders see nothing. Diagnose and fix it.",
+        "key": {
+          "signs": "The requirement is 'every rider gets a message' — both cases need an outcome — but the code is a plain IF, which does nothing on false (EK AAP-2.H.2). That mismatch is the bug: short riders (false) get no message.",
+          "mechanism": "Fix by adding an ELSE so the false case is handled: IF(height ≥ 48){ DISPLAY(\"Board the ride\") } ELSE { DISPLAY(\"Grow a bit more\") }. Now exactly one message always shows (EK AAP-2.H.3). The bug was a missing ELSE where the false case required an outcome — the classic conditional trap.",
+          "subtype": "The general lesson: match the construct to the false case. 'Every input needs a result' means IF-ELSE, not a lone IF."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A locker is FREE when the number of items is 0, and costs money otherwise. The app must show 'Free locker' when count = 0 and 'Locker fee applies' otherwise.",
+        "key": {
+          "signs": "Both cases need a message, so IF-ELSE. The condition is an equality test, not a size comparison: count = 0.",
+          "mechanism": "Use IF-ELSE with the equals operator: IF(count = 0){ DISPLAY(\"Free locker\") } ELSE { DISPLAY(\"Locker fee applies\") }. On true (count is exactly 0) the first block runs; for any other count the ELSE runs (EK AAP-2.H.3). Note the condition uses = to TEST equality, matching the exam reference sheet's relational operator.",
+          "subtype": "Equivalent phrasing: you could test the opposite with IF(count ≠ 0){ DISPLAY(\"Locker fee applies\") } ELSE { DISPLAY(\"Free locker\") } — same two outcomes, condition and branches swapped."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "SPOT THE BUG. This should print 'Adult' for age 18 and up: IF(age > 18){ DISPLAY(\"Adult\") } ELSE { DISPLAY(\"Minor\") }. A tester enters 18 and gets 'Minor'. Diagnose and fix it.",
+        "key": {
+          "signs": "The requirement is '18 and up' counts as Adult, so 18 must take the IF branch. But the condition uses > (strict), so age = 18 is NOT greater than 18 — the condition is false and the ELSE runs, displaying 'Minor'. That boundary mistake is the bug.",
+          "mechanism": "Fix by using ≥ so the boundary is included: IF(age ≥ 18){ DISPLAY(\"Adult\") } ELSE { DISPLAY(\"Minor\") }. Now age = 18 makes the condition true and displays 'Adult' (EK AAP-2.H.3). The construct (IF-ELSE) was right; only the relational operator was wrong.",
+          "subtype": "This is the edge-case trap the exam loves: > excludes the boundary, ≥ includes it. Always test the exact boundary value when a requirement says 'and up' or 'or more'."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Who Decides?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "A program that only runs top to bottom can do exactly one thing. Add selection and it can respond — the same code handles a tall rider and a short one, a paid cart and an empty one. Across three short windows in this topic, your group will pin down what a condition really is, decide when a decision needs a second branch, and settle the trace puzzles where a single boundary value flips the whole outcome.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your gatekeeper rule split into two paths as soon as you named the test 'is the band green?'. What is it about a good condition that makes the decision unambiguous — and what happens to a rule whose condition is vague, like 'if the guest looks important'?"
+          },
+          {
+            "text": "Question 2. Selection lets one set of instructions handle many different inputs. Name a decision an app on your phone makes for you every day. What is the condition it is testing, and what are the two (or more) paths?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the trace-the-IF table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - When is silence correct?",
+            "text": "A plain IF does nothing when its condition is false. In one sentence your whole group agrees on, describe a real situation where 'do nothing on false' is exactly right, and one where a missing action on false would be a bug.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Find the condition",
+            "text": "Pick any everyday either/or moment (a game, a line at a store, a notification). Write the single Boolean condition that decides it and state what runs when the condition is true and when it is false. Debate whether your condition is truly true-or-false, or secretly fuzzy.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The boundary that fools everyone",
+            "text": "Consider IF(height ≥ 48){ DISPLAY(\"Board the ride\") } ELSE { DISPLAY(\"Grow a bit more\") } with a rider of exactly 48 inches. Some people's gut says the ELSE runs; the answer is the IF branch. As a group, write the clearest one-paragraph explanation of WHY 48 boards — one a nervous classmate would understand — using the words 'condition', 'evaluates to true', and 'exactly one branch'. Then change one operator so 48 would NOT board, and say what displays.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'both branches run' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.7",
+    "title": "Nested Conditionals",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in Trace the Gate and Design the Gate. Now build and run them, hardest last. Every problem is the same ride-gate idea — a decision inside a decision — but the nest gets deeper as you go, ending with one you write from scratch. Predict the output first, then run it and let the computer check you. Remember the rule: the inner condition is tested only when the outer branch is taken."
+  },
+  "problems": [
+    {
+      "prompt": "Ride gate. The rider is 50 inches tall and age 15. Write a nested conditional: if height is at least 48, then if age is at least 12 print \"Enjoy the ride\", otherwise print \"Ride with an adult\"; if height is under 48, print \"Too short to ride\". Print exactly the correct message.",
+      "promptHtml": "Ride gate. The rider is <code>50</code> inches tall and age <code>15</code>. Write a nested conditional: if height is at least 48, then if age is at least 12 print <code>Enjoy the ride</code>, otherwise print <code>Ride with an adult</code>; if height is under 48, print <code>Too short to ride</code>. Print exactly the correct message.",
+      "expected": "Enjoy the ride",
+      "starter": {
+        "python": "height = 50\nage = 15\n# OUTER: is height at least 48?\n#   INNER: is age at least 12? -> \"Enjoy the ride\"\n#   otherwise -> \"Ride with an adult\"\n# else (too short) -> \"Too short to ride\"\n",
+        "javascript": "let height = 50;\nlet age = 15;\n// OUTER: is height at least 48?\n//   INNER: is age at least 12? -> \"Enjoy the ride\"\n//   otherwise -> \"Ride with an adult\"\n// else (too short) -> \"Too short to ride\"\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 50\nage ← 15\nIF(height ≥ 48)\n{\n  IF(age ≥ 12)\n  {\n    DISPLAY(\"Enjoy the ride\")\n  }\n  ELSE\n  {\n    DISPLAY(\"Ride with an adult\")\n  }\n}\nELSE\n{\n  DISPLAY(\"Too short to ride\")\n}",
+        "python": "height = 50\nage = 15\nif height >= 48:\n    if age >= 12:\n        print(\"Enjoy the ride\")\n    else:\n        print(\"Ride with an adult\")\nelse:\n    print(\"Too short to ride\")",
+        "javascript": "let height = 50;\nlet age = 15;\nif (height >= 48) {\n  if (age >= 12) {\n    console.log(\"Enjoy the ride\");\n  } else {\n    console.log(\"Ride with an adult\");\n  }\n} else {\n  console.log(\"Too short to ride\");\n}"
+      },
+      "hint": "The age check goes INSIDE the height branch, so it runs only when height is at least 48. With height 50 the outer is true, and with age 15 the inner is true, so the innermost message prints."
+    },
+    {
+      "prompt": "Same ride gate, new rider: 44 inches tall and age 30. Use the exact same nested structure and print the message the gate gives this rider. Predict it before you run: does the age even matter here?",
+      "promptHtml": "Same ride gate, new rider: <code>44</code> inches tall and age <code>30</code>. Use the exact same nested structure and print the message the gate gives this rider. Predict it before you run: does the age even matter here?",
+      "expected": "Too short to ride",
+      "starter": {
+        "python": "height = 44\nage = 30\n# Same nested gate as Problem 1.\n# Trace the OUTER condition first: is 44 >= 48?\n# If the outer is false, the age check never runs.\n",
+        "javascript": "let height = 44;\nlet age = 30;\n// Same nested gate as Problem 1.\n// Trace the OUTER condition first: is 44 >= 48?\n// If the outer is false, the age check never runs.\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 44\nage ← 30\nIF(height ≥ 48)\n{\n  IF(age ≥ 12)\n  {\n    DISPLAY(\"Enjoy the ride\")\n  }\n  ELSE\n  {\n    DISPLAY(\"Ride with an adult\")\n  }\n}\nELSE\n{\n  DISPLAY(\"Too short to ride\")\n}",
+        "python": "height = 44\nage = 30\nif height >= 48:\n    if age >= 12:\n        print(\"Enjoy the ride\")\n    else:\n        print(\"Ride with an adult\")\nelse:\n    print(\"Too short to ride\")",
+        "javascript": "let height = 44;\nlet age = 30;\nif (height >= 48) {\n  if (age >= 12) {\n    console.log(\"Enjoy the ride\");\n  } else {\n    console.log(\"Ride with an adult\");\n  }\n} else {\n  console.log(\"Too short to ride\");\n}"
+      },
+      "hint": "44 >= 48 is false, so control jumps straight to the outer ELSE. The inner age condition is never evaluated — even though 30 >= 12 is true, the program never gets there."
+    },
+    {
+      "prompt": "Add a third level. For a rider who is tall enough (height at least 48) AND at least 12, add a front-row rule: if they are at least 16 print \"Enjoy the ride - front row unlocked\", otherwise print \"Enjoy the ride - back rows only\". Riders age 12 up to 15 still ride, just not up front. Keep \"Ride with an adult\" (age under 12) and \"Too short to ride\" (height under 48). The rider is 52 inches, age 14. Print the correct message.",
+      "promptHtml": "Add a third level. For a rider who is tall enough (height at least 48) AND at least 12, add a front-row rule: if they are at least 16 print <code>Enjoy the ride - front row unlocked</code>, otherwise print <code>Enjoy the ride - back rows only</code>. Riders age 12 up to 15 still ride, just not up front. Keep <code>Ride with an adult</code> (age under 12) and <code>Too short to ride</code> (height under 48). The rider is <code>52</code> inches, age <code>14</code>. Print the correct message.",
+      "expected": "Enjoy the ride - back rows only",
+      "starter": {
+        "python": "height = 52\nage = 14\n# OUTER: height >= 48 ?\n#   MIDDLE: age >= 12 ?\n#     INNER: age >= 16 ? -> \"Enjoy the ride - front row unlocked\"\n#            else        -> \"Enjoy the ride - back rows only\"\n#   else (age < 12) -> \"Ride with an adult\"\n# else (too short)  -> \"Too short to ride\"\n",
+        "javascript": "let height = 52;\nlet age = 14;\n// OUTER: height >= 48 ?\n//   MIDDLE: age >= 12 ?\n//     INNER: age >= 16 ? -> \"Enjoy the ride - front row unlocked\"\n//            else        -> \"Enjoy the ride - back rows only\"\n//   else (age < 12) -> \"Ride with an adult\"\n// else (too short)  -> \"Too short to ride\"\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 52\nage ← 14\nIF(height ≥ 48)\n{\n  IF(age ≥ 12)\n  {\n    IF(age ≥ 16)\n    {\n      DISPLAY(\"Enjoy the ride - front row unlocked\")\n    }\n    ELSE\n    {\n      DISPLAY(\"Enjoy the ride - back rows only\")\n    }\n  }\n  ELSE\n  {\n    DISPLAY(\"Ride with an adult\")\n  }\n}\nELSE\n{\n  DISPLAY(\"Too short to ride\")\n}",
+        "python": "height = 52\nage = 14\nif height >= 48:\n    if age >= 12:\n        if age >= 16:\n            print(\"Enjoy the ride - front row unlocked\")\n        else:\n            print(\"Enjoy the ride - back rows only\")\n    else:\n        print(\"Ride with an adult\")\nelse:\n    print(\"Too short to ride\")",
+        "javascript": "let height = 52;\nlet age = 14;\nif (height >= 48) {\n  if (age >= 12) {\n    if (age >= 16) {\n      console.log(\"Enjoy the ride - front row unlocked\");\n    } else {\n      console.log(\"Enjoy the ride - back rows only\");\n    }\n  } else {\n    console.log(\"Ride with an adult\");\n  }\n} else {\n  console.log(\"Too short to ride\");\n}"
+      },
+      "hint": "Trace outside-in through three levels: 52 >= 48 true, 14 >= 12 true, then 14 >= 16 is false, so the deepest ELSE runs. The front-row check is reached only because both conditions above it were true."
+    },
+    {
+      "prompt": "Write from scratch. A different ride, The Kraken, has these rules: a rider must weigh 300 pounds or less to board. Among riders who can board, if they have a wristband print \"Board now\", otherwise print \"Get a wristband\". A rider over 300 pounds prints \"Cannot ride\". This rider weighs 280 pounds and does NOT have a wristband (hasBand is false). Write the nested conditional and print the correct message.",
+      "promptHtml": "Write from scratch. A different ride, <strong>The Kraken</strong>, has these rules: a rider must weigh <code>300</code> pounds or less to board. Among riders who can board, if they have a wristband print <code>Board now</code>, otherwise print <code>Get a wristband</code>. A rider over 300 pounds prints <code>Cannot ride</code>. This rider weighs <code>280</code> pounds and does NOT have a wristband (<code>hasBand</code> is false). Write the nested conditional and print the correct message.",
+      "expected": "Get a wristband",
+      "starter": {
+        "python": "weight = 280\nhasBand = False\n# Decide the GATING question first (weight <= 300), then nest\n# the wristband question inside the branch where it matters.\n# Put each of the three messages in exactly one branch.\n",
+        "javascript": "let weight = 280;\nlet hasBand = false;\n// Decide the GATING question first (weight <= 300), then nest\n// the wristband question inside the branch where it matters.\n// Put each of the three messages in exactly one branch.\n"
+      },
+      "reference": {
+        "pseudocode": "weight ← 280\nhasBand ← false\nIF(weight ≤ 300)\n{\n  IF(hasBand)\n  {\n    DISPLAY(\"Board now\")\n  }\n  ELSE\n  {\n    DISPLAY(\"Get a wristband\")\n  }\n}\nELSE\n{\n  DISPLAY(\"Cannot ride\")\n}",
+        "python": "weight = 280\nhasBand = False\nif weight <= 300:\n    if hasBand:\n        print(\"Board now\")\n    else:\n        print(\"Get a wristband\")\nelse:\n    print(\"Cannot ride\")",
+        "javascript": "let weight = 280;\nlet hasBand = false;\nif (weight <= 300) {\n  if (hasBand) {\n    console.log(\"Board now\");\n  } else {\n    console.log(\"Get a wristband\");\n  }\n} else {\n  console.log(\"Cannot ride\");\n}"
+      },
+      "hint": "Weight is the gating question, so it is the outer IF. Nest the wristband check inside the can-board branch. Here 280 <= 300 is true and hasBand is false, so the inner ELSE prints \"Get a wristband\"."
+    }
+  ]
+}

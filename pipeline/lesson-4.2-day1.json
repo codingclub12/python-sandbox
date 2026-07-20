@@ -1,0 +1,851 @@
+{
+  "meta": {
+    "lessonId": "4.2",
+    "lessonTitle": "Authentication",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 4: Securing Devices",
+    "day": 1,
+    "los": "LO 4.2.A, 4.2.B, 4.2.C, 4.2.D",
+    "author": "AP CS Exam Prep",
+    "totalDays": 1
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 4 · Lesson 4.2 · Day 1 of 1",
+      "title": "Prove You Are Who You Say",
+      "subtitle": "Authentication: how systems store passwords as salted hashes, how adversaries attack that storage, how factors and MFA verify identity, and how login settings harden the account",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 4, Securing Devices, and Lesson 4.2, Authentication. This is the authentication core of the unit — how a system proves a user is who they claim to be, and how that proof is attacked and defended. Today we cover four learning objectives in one comprehensive deck: 4.2.A, why passwords are stored as hashes; 4.2.B, how password attacks exploit vulnerabilities; 4.2.C, the types of authentication factors and MFA; and 4.2.D, the login settings that harden a device. Think of it as a chain — passwords become salted hashes, adversaries attack that storage online and offline, factors and MFA raise the bar beyond one password, and configurable login settings lock the account down. The end-of-lesson quiz and the teacher guide live on this file and span all four objectives."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain why passwords are stored as hashes — fixed-length, repeatable, one-way digests — and why a unique salt is added to each one (LO 4.2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how password attacks exploit vulnerabilities — online vs. offline, leaked credentials, spraying, stuffing, brute force, dictionary, and rainbow tables (LO 4.2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Determine the type of authentication factor in use — knowledge, possession, biometric, or location — and explain why MFA is stronger than single-factor (LO 4.2.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Configure login settings — complexity, length, maximum age, password history, and account lockout — to make a device more secure (LO 4.2.D)"
+        }
+      ],
+      "script": "Four learning objectives today, one for each link in the chain. First, 4.2.A: explain why a system stores a hash of your password instead of the password itself, and why each one gets a unique salt. Second, 4.2.B: explain how password attacks work, from trying leaked credentials to offline rainbow-table cracking, and why offline attacks are so dangerous. Third, 4.2.C: take any login proof and name its factor type — something you know, have, are, or where you are — and explain why combining types as MFA beats a single password. Fourth, 4.2.D: configure the five login settings that harden an account. By the end you can trace one password from storage, through attack, to the settings that defend it."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A small company stores every user's password in a spreadsheet, in plain text, so the help desk can read them back to users who forget. One day an adversary copies that spreadsheet. Within minutes the adversary can log in as any employee — and because many of those employees reuse the same password elsewhere, the adversary starts trying them on the employees' personal email and banking sites too.",
+      "subprompt": "Write 3–5 sentences: why is storing passwords in plain text so dangerous? If the company could not store the actual passwords but still had to check them at login, how else could it store something that proves a user typed the right password?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own, no notes. A company keeps every password in a plaintext spreadsheet so the help desk can read them back — then an adversary copies the file and instantly owns every account, and starts reusing those passwords on people's personal email and bank logins. In three to five sentences: why is plaintext storage so dangerous? And here's the harder part — if the company can't store the actual password but still has to verify it at login, what could it store instead that proves you typed the right password without revealing it? Hold your answers. The answer is the first thing we cover today, and it has a name: hashing."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Guided Notes have four sections that match today’s four objectives. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Hashing and Salting (LO 4.2.A)",
+          "description": "What a cryptographic hash function is, its four properties, why collisions are unavoidable, why MD5 and SHA-1 are deprecated, and why passwords are stored as salted hashes instead of plaintext (EK 4.2.A.1–A.6)."
+        },
+        {
+          "title": "Password Attacks (LO 4.2.B)",
+          "description": "Online vs. offline attacks, leaked-credential reuse, password spraying, credential stuffing, brute force, dictionary, and rainbow-table attacks — and why offline attacks bypass lockout (EK 4.2.B.1–B.7)."
+        },
+        {
+          "title": "Authentication Factors and MFA (LO 4.2.C)",
+          "description": "The four factor types — knowledge, possession, biometric, location — and why multifactor authentication is more secure than single-factor (EK 4.2.C.1–C.6)."
+        },
+        {
+          "title": "Configuring Login Settings (LO 4.2.D)",
+          "description": "Complexity, minimum length, maximum age, password history, and account lockout — what each setting does and which attack it blunts (EK 4.2.D.1–D.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 4.2 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Four sections, matching the four objectives. Section one, hashing and salting — the storage problem and its solution. Section two, password attacks — every way adversaries defeat that storage, online and offline. Section three, authentication factors and MFA — the four factor types and why mixing them is stronger. Section four, login settings — the five knobs you can turn to harden an account. Keep your pencil moving; Guided Notes are collected at the end of class, and the Lesson 4.2 page has every answer if you fall behind."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Hashing: Storing Proof, Not the Password",
+      "kicker": "Authentication · Learning Objective 4.2.A",
+      "script": "Section one. Learning objective 4.2.A. The bell ringer set up the problem: never store passwords in plaintext. The solution is a cryptographic hash function. Lock onto two ideas here — what a hash is and the four properties that make it safe for password storage — and then why we add salt."
+    },
+    {
+      "type": "concept",
+      "heading": "Cryptographic Hash Functions and Their Four Properties",
+      "bullets": [
+        "A cryptographic hash function takes binary data of arbitrary length and outputs a fixed-length string called the hash, checksum, or message digest; examples include MD5, SHA-1, SHA-256, SHA-512, NTHash, and RIPEMD-160 (EK 4.2.A.1).",
+        "Collision resistant: it is difficult to find two different inputs that produce the same output (EK 4.2.A.3).",
+        "Pre-image resistant: given a hash, it is infeasible to figure out the input that generated it — this is why hashing is one-way (EK 4.2.A.3).",
+        "Repeatable: the same input always produces the same hash, which is what lets a system check a password (EK 4.2.A.3).",
+        "Fixed length: the output length in bits is constant no matter how large the input is (EK 4.2.A.3).",
+        "Because an n-bit hash has only 2-to-the-n possible outputs but infinitely many inputs, two inputs must eventually share a hash — a collision (EK 4.2.A.2)."
+      ],
+      "script": "A cryptographic hash function, also called a message digest function, takes data of any length and produces a fixed-length output — the hash, sometimes called a checksum or message digest. The named examples to know are MD5, the SHA family, NTHash, and RIPEMD-160. Four properties make it usable for passwords: it's collision resistant, so two inputs rarely match; pre-image resistant, so you can't work backward from a hash to the input — that's the one-way property; repeatable, so the same input always gives the same hash, which is exactly how login comparison works; and fixed length, so output size never changes. And because an n-bit hash has only two-to-the-n outputs but infinite inputs, collisions are mathematically guaranteed — write that down, it's tested directly."
+    },
+    {
+      "type": "worked_table",
+      "track": "enrichment",
+      "heading": "Hashing vs. Encryption — Don’t Confuse Them",
+      "context": "The single most common mix-up in this topic. Both scramble data, but only one is reversible. The exam tests whether you know hashing is one-way and used for password storage, while encryption is two-way and used for confidentiality.",
+      "columns": [
+        "Property",
+        "Hashing",
+        "Encryption",
+        "EK"
+      ],
+      "rows": [
+        [
+          "Reversible?",
+          "No — pre-image resistant; given a hash you cannot recover the input. Hashes can't be reversed",
+          "Yes — ciphertext can be decrypted back to the original plaintext with the key",
+          "4.2.A.3, 4.2.B.6"
+        ],
+        [
+          "Output length",
+          "Fixed length regardless of input size",
+          "Varies with input size",
+          "4.2.A.3"
+        ],
+        [
+          "Uses a key?",
+          "No key — just the input (plus a salt for passwords)",
+          "Yes — requires a key to encrypt and decrypt",
+          "4.2.A.1, 4.2.A.6"
+        ],
+        [
+          "How login uses it",
+          "Hash the entered password, compare to the stored hash; if they match, authenticate",
+          "Not how passwords are stored under the CED model",
+          "4.2.A.5"
+        ],
+        [
+          "Main purpose here",
+          "Store passwords so a stolen database doesn't reveal them",
+          "Protect confidentiality of data in transit or at rest",
+          "4.2.A.5"
+        ]
+      ],
+      "note": "Bottom line: a password hash is NOT an encrypted password. There is no key that turns a hash back into a password. Authentication works by hashing what the user types and comparing hashes (EK 4.2.A.5).",
+      "script": "Here's the comparison the exam loves to test. Both hashing and encryption scramble data, but they are not the same thing. Hashing is one-way — pre-image resistance means you cannot recover the input, and the CED states plainly that hashes can't be reversed. Encryption is two-way — ciphertext decrypts back to plaintext with a key. Hashes are fixed length; encrypted output varies with input. Hashing uses no key, just the input plus a salt; encryption requires a key. And critically, authentication doesn't decrypt anything: it hashes the password you type and compares it to the stored hash. If you remember one thing, remember that a password hash is not an encrypted password — there is no key that turns it back."
+    },
+    {
+      "type": "two_column",
+      "heading": "Storing Hashes and Why We Add Salt",
+      "subheading": "EK 4.2.A.5 and A.6 — hash the password for storage, then salt it so identical passwords don't collide into identical hashes.",
+      "left": {
+        "title": "Hash for Storage (EK 4.2.A.5)",
+        "definition": "Store the hash, never the plaintext",
+        "ek": "EK 4.2.A.5",
+        "examples": [
+          "Don't store passwords in plaintext — a stolen user:password directory would reveal every password at once",
+          "Instead, hash each password and store the hash in the database",
+          "At login, the entered password is hashed and compared to the stored hash",
+          "If the hashes match, the user is authenticated — without the system ever holding the plaintext"
+        ]
+      },
+      "right": {
+        "title": "Salt (EK 4.2.A.6)",
+        "definition": "Unique random bits make identical passwords differ",
+        "ek": "EK 4.2.A.6",
+        "examples": [
+          "Two users with the same password would otherwise have identical hashes",
+          "A few random bits called salt are hashed together with the password",
+          "Each user's salt is unique, so identical passwords produce different hashes",
+          "Salt isn't a secret key — its job is to break the link between identical passwords"
+        ]
+      },
+      "footer": "AP TIP: Hashing solves storage (EK 4.2.A.5); salting solves the duplicate-password problem (EK 4.2.A.6). Salt is random, not secret. Adversaries also attack the hash function itself by forcing collisions — when that becomes efficient, the function is deprecated, as with MD5 and SHA-1 (EK 4.2.A.4).",
+      "script": "Now the payoff for the bell ringer. EK 4.2.A.5: don't store plaintext — hash each password and store the hash. At login the system hashes what you type and compares; match means you're in, and the plaintext is never kept. But there's a subtlety in 4.2.A.6: if two people pick the same password, their hashes would be identical, which leaks information. So we add salt — a few unique random bits hashed in with the password — and now identical passwords produce different hashes. Salt is random, not secret; its only job is to break that duplicate link. And note 4.2.A.4: adversaries attack the hash function itself by forcing collisions, and when that becomes efficient the function gets deprecated — that's why MD5 and SHA-1 are retired."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 4.2.A)",
+      "terms": [
+        {
+          "term": "Cryptographic hash function",
+          "definition": "A mathematical algorithm that takes arbitrary-length input and outputs a fixed-length hash (also called a checksum or message digest); e.g., SHA-256 (EK 4.2.A.1)."
+        },
+        {
+          "term": "Collision",
+          "definition": "When two different inputs produce the same hash; unavoidable because an n-bit hash has only 2-to-the-n outputs but infinite inputs (EK 4.2.A.2)."
+        },
+        {
+          "term": "Pre-image resistance",
+          "definition": "The property that, given a hash, it is infeasible to figure out the input that generated it — hashing is one-way (EK 4.2.A.3)."
+        },
+        {
+          "term": "Deprecated hash function",
+          "definition": "A hash function retired from secure use because an efficient algorithm exists to force collisions, such as MD5 and SHA-1 (EK 4.2.A.4)."
+        },
+        {
+          "term": "Salt",
+          "definition": "A few unique random bits hashed with a user's password so that identical passwords produce different stored hashes (EK 4.2.A.6)."
+        }
+      ],
+      "script": "Five terms for 4.2.A. A cryptographic hash function maps any input to a fixed-length hash. A collision is when two inputs share a hash — unavoidable, by the math in A.2. Pre-image resistance is the one-way property: you can't recover the input from the hash. A deprecated hash function is one retired because collisions became easy to force, like MD5 and SHA-1. And salt is the unique random bits we add so identical passwords don't produce identical hashes. Get all five into your notes with their EK numbers."
+    },
+    {
+      "type": "misconception",
+      "heading": "Hashing Is Not Encryption",
+      "misconception": "A password hash is just an encrypted password that can be decrypted back to the original.",
+      "correction": "Hashing is one-way; there is no key and no decryption. Authentication compares hashes, it never recovers the password.",
+      "whyItHappens": "Both hashing and encryption scramble data into something unreadable, so students assume both must be reversible the way encryption is.",
+      "example": "EK 4.2.A.3 gives hashes pre-image resistance — given a hash it is infeasible to find the input — and EK 4.2.B.6 states plainly that hashes can't be reversed. EK 4.2.A.5 shows login works by hashing the entered password and comparing hashes, not by decrypting.",
+      "script": "This is the number-one mistake in the topic, so let's nail it. Because both hashing and encryption turn readable data into scrambled output, students assume a hash can be decrypted like ciphertext. It cannot. EK 4.2.A.3 gives hashes pre-image resistance, and EK 4.2.B.6 says outright that hashes can't be reversed. There is no key. Authentication never recovers your password — it hashes what you type and compares the two hashes, per EK 4.2.A.5. If you see an answer choice claiming a hash is decrypted back to plaintext, eliminate it immediately."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Password Attacks: Online and Offline",
+      "kicker": "Authentication · Learning Objective 4.2.B",
+      "script": "Section two. Learning objective 4.2.B. Now the attack side. The master distinction is online versus offline, because it decides whether your defenses even apply. Then we'll name the specific attacks — leaked credentials, spraying, stuffing, brute force, dictionary, and rainbow tables — and for each one, what it tries and where it runs."
+    },
+    {
+      "type": "two_column",
+      "heading": "What a Stolen Password Unlocks, and Online vs. Offline",
+      "subheading": "EK 4.2.B.1 and B.2 — one compromised password without MFA grants full user access, and attacks split into online and offline.",
+      "left": {
+        "title": "The Stakes Without MFA (EK 4.2.B.1)",
+        "definition": "One password = all of that user's access",
+        "ek": "EK 4.2.B.1",
+        "examples": [
+          "If an adversary compromises a legitimate user's password and MFA is not enabled, they get in",
+          "They can then act with all the access and rights available to that user",
+          "There is no second factor standing between the stolen password and the account",
+          "This is why MFA (EK 4.2.C.6) matters — it breaks the one-password-equals-everything link"
+        ]
+      },
+      "right": {
+        "title": "Online vs. Offline (EK 4.2.B.2)",
+        "definition": "Where the attack runs decides if lockout helps",
+        "ek": "EK 4.2.B.2",
+        "examples": [
+          "Online attacks try user:password combinations against an active authentication portal",
+          "Account-lockout settings can slow or stop online guessing",
+          "Offline attacks run against a captured user:password database on the adversary's own computer",
+          "Offline attacks bypass account-lockout protections entirely — no live portal to lock"
+        ]
+      },
+      "footer": "AP TIP: The online/offline split is the key idea of 4.2.B. Lockout (EK 4.2.D.5) only constrains ONLINE attacks at a live portal. Offline attacks on a stolen database ignore lockout completely — which is why salting and strong hashes still matter.",
+      "script": "Start with the stakes. EK 4.2.B.1: if a password is compromised and MFA isn't on, the adversary acts with all the rights of that user — there's nothing else in the way. That's your motivation for MFA later. Now the master distinction, EK 4.2.B.2: online attacks hammer a live authentication portal, so account lockout can slow them down. Offline attacks are different and scarier — the adversary has already captured the password database and runs attacks on their own machine, which means lockout does nothing because there's no live portal to lock. Burn this in: lockout only helps online. Offline attacks ignore it, which is exactly why salting and strong, non-deprecated hashes still matter."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Credential-Based Attacks: Reuse, Spraying, Stuffing",
+      "subheading": "EK 4.2.B.3, B.4, and B.5 — three attacks that exploit predictable or stolen credentials rather than cracking a hash.",
+      "items": [
+        {
+          "ek": "EK 4.2.B.3",
+          "title": "Leaked-Credential Reuse",
+          "summary": "Because users reuse passwords across services, when one organization's database is stolen and sold or posted, adversaries often begin by trying those stolen or leaked credentials for a target individual on other accounts.",
+          "ekRef": "EK 4.2.B.3"
+        },
+        {
+          "ek": "EK 4.2.B.4",
+          "title": "Password Spraying",
+          "summary": "Because many users pick easy-to-guess passwords, an adversary attempts one common password (like 'Password123') against many different user accounts — spraying one guess broadly rather than many guesses at one account.",
+          "ekRef": "EK 4.2.B.4"
+        },
+        {
+          "ek": "EK 4.2.B.5",
+          "title": "Credential Stuffing",
+          "summary": "Some devices ship with default administrative credentials (switches, routers, IoT). Credential stuffing attempts access using common default credentials or previously stolen account credentials.",
+          "ekRef": "EK 4.2.B.5"
+        }
+      ],
+      "script": "Three attacks that don't crack a hash at all — they exploit bad or stolen credentials. EK 4.2.B.3, leaked-credential reuse: people reuse passwords everywhere, so when one breach dumps a database, adversaries try those exact credentials on the victim's other accounts. EK 4.2.B.4, password spraying: instead of many guesses at one account, the adversary tries one common password across many accounts — that direction matters, because it dodges per-account lockout. EK 4.2.B.5, credential stuffing: many devices ship with default admin passwords, so the adversary tries common defaults or previously stolen credentials. Notice the contrast with spraying — stuffing uses known or default credentials, spraying guesses a common one broadly. Write all three with their EK numbers."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Offline Hash-Cracking: Brute Force, Dictionary, Rainbow Table",
+      "context": "These are the offline attacks from EK 4.2.B.6–B.7. They never reverse a hash — that's impossible. Instead they hash candidate passwords and compare to the captured hash. A match reveals a usable password.",
+      "columns": [
+        "Attack",
+        "How it works",
+        "Speed / storage trade-off",
+        "EK"
+      ],
+      "rows": [
+        [
+          "Brute force",
+          "Hash and test every possible password until one matches the captured hash",
+          "Slowest; guaranteed to find it eventually but compute-heavy",
+          "4.2.B.6"
+        ],
+        [
+          "Dictionary",
+          "Hash and test a list of common passwords against the captured hash",
+          "Faster than brute force; only finds passwords on the list",
+          "4.2.B.6"
+        ],
+        [
+          "Rainbow table",
+          "Precompute a table of passwords paired with their hashes, sort it by hash, then search the sorted hashes for the captured hash",
+          "Fast lookups by trading huge precomputed storage for speed",
+          "4.2.B.7"
+        ]
+      ],
+      "note": "All three are OFFLINE (EK 4.2.B.2): they run on the adversary's computer against a captured hash, so account lockout never applies. Salting raises their cost because each unique salt forces the work to be redone per user.",
+      "script": "Now the offline hash-cracking attacks. None of them reverse a hash — that's impossible. They hash candidate passwords and compare to the captured hash; a match yields a usable password. Brute force, EK 4.2.B.6, tries every possible password — guaranteed but slow. A dictionary attack, also B.6, tries a list of common passwords — much faster, but only finds what's on the list. A rainbow table, EK 4.2.B.7, precomputes passwords paired with their hashes, sorts the table by hash, and searches that sorted list for the captured hash — trading enormous storage for fast lookups. All three are offline, so lockout never touches them. And here's why salt matters again: a unique salt per user forces the attacker to redo the work for every account, which wrecks a precomputed rainbow table."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 4.2.A and 4.2.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "An adversary captures an organization's salted user:password hash database and runs automated cracking tools on their own laptop. Explain why the organization's policy of locking accounts after 5 failed logins does NOT stop this attack, and why the hashes still can't simply be 'reversed.' Cite the EKs.",
+        "Distinguish password spraying from credential stuffing. Give one example of each, explain how the direction of the attack differs."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: an adversary captures the salted hash database and cracks it on their own laptop. Explain why a 5-attempt lockout does nothing here — that's the offline idea, EK 4.2.B.2 — and why the hashes still can't just be reversed — pre-image resistance, EK 4.2.A.3 and B.6. Be precise and cite. Question two: distinguish password spraying, EK 4.2.B.4, from credential stuffing, EK 4.2.B.5 — give an example of each and nail the difference in direction: spraying tries one common password across many accounts, stuffing uses known or default credentials. Go."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Authentication Factors and MFA",
+      "kicker": "Authentication · Learning Objective 4.2.C",
+      "script": "Section three. Learning objective 4.2.C. We move from attacking passwords to proving identity. Authentication mechanisms are technical controls, and the proof you provide is called a factor. There are four types — something you know, have, are, and where you are — and then the big idea: combining different types is MFA."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "The Four Authentication Factor Types",
+      "subheading": "EK 4.2.C.1–C.5 — four categories of proof: something you know, have, are, and where you are.",
+      "items": [
+        {
+          "ek": "EK 4.2.C.2",
+          "title": "Knowledge — something you know",
+          "summary": "Passwords, PINs, or answers to challenge questions. To be effective it must be hard for an adversary to guess — but harder-to-guess knowledge factors are also harder for users to remember.",
+          "ekRef": "EK 4.2.C.2"
+        },
+        {
+          "ek": "EK 4.2.C.3",
+          "title": "Possession — something you have",
+          "summary": "An object unique to the user: an access card, bank card, cell phone, or authentication token. The harder it is for an adversary to obtain or copy the object, the more secure the factor.",
+          "ekRef": "EK 4.2.C.3"
+        },
+        {
+          "ek": "EK 4.2.C.4",
+          "title": "Biometric — something you are",
+          "summary": "A measured feature of the body: fingerprint, palm print, facial recognition, iris or retina scan, or voice. Biometrics are difficult to duplicate because they are unique to an individual.",
+          "ekRef": "EK 4.2.C.4"
+        },
+        {
+          "ek": "EK 4.2.C.5",
+          "title": "Location — somewhere you are",
+          "summary": "Uses Wi-Fi signals, GPS data, time-zone settings, and IP-address information to determine location; rules can allow or deny access based on the location factor.",
+          "ekRef": "EK 4.2.C.5"
+        }
+      ],
+      "script": "Four factor types, and EK 4.2.C.1 frames them: authentication mechanisms are technical controls, and the proof you give is a factor. Knowledge, EK 4.2.C.2 — something you know, like a password, PIN, or challenge answer; note the tension, harder to guess means harder to remember. Possession, EK 4.2.C.3 — something you have, an access card, phone, or token; security scales with how hard the object is to copy. Biometric, EK 4.2.C.4 — something you are, a fingerprint, face, iris, or voice, hard to duplicate because it's unique to you. Location, EK 4.2.C.5 — somewhere you are, judged from Wi-Fi, GPS, time zone, and IP. The exam hands you a login proof and asks for the factor type, so practice sorting them."
+    },
+    {
+      "type": "concept",
+      "heading": "Multifactor Authentication: Combine Different Types",
+      "bullets": [
+        "Multifactor authentication (MFA) is when a system uses more than one factor to authenticate a user (EK 4.2.C.6).",
+        "MFA is more secure than single-factor authentication because it requires at least two separate factors (EK 4.2.C.6).",
+        "The factors must be of different types — a password plus a security question is still single-factor, since both are knowledge factors (EK 4.2.C.2, C.6).",
+        "True MFA combines types: something you know plus something you have, or plus something you are.",
+        "MFA directly blunts a stolen password: even with the password, the adversary still lacks the second factor (ties back to EK 4.2.B.1)."
+      ],
+      "script": "Multifactor authentication, EK 4.2.C.6: a system that uses more than one factor. It's more secure than single-factor because it requires at least two separate factors — and here's the trap the exam sets: those factors must be different types. A password plus a security question is not MFA, because both are knowledge factors. Real MFA mixes types — something you know plus something you have, like a password plus a token, or plus something you are, like a fingerprint. And tie it back to 4.2.B.1: even if an adversary steals your password, MFA stops them cold because they still don't have your second factor."
+    },
+    {
+      "type": "misconception",
+      "heading": "Two Proofs of the Same Type Is Not MFA",
+      "misconception": "Requiring a password and a security-question answer counts as multifactor authentication.",
+      "correction": "Both are knowledge factors, so that's still single-factor. MFA requires at least two DIFFERENT factor types.",
+      "whyItHappens": "Students count two prompts and assume 'two things equals multi-factor,' without checking that the two proofs come from different categories.",
+      "example": "EK 4.2.C.6 says MFA requires at least two separate factors, and EK 4.2.C.2 classifies both passwords and challenge-question answers as knowledge factors. True MFA pairs a knowledge factor with a different type — e.g., a possession factor (token, EK 4.2.C.3) or a biometric factor (fingerprint, EK 4.2.C.4).",
+      "script": "Here's the MFA trap. Students see two prompts — a password and a security question — and call it multifactor. It isn't. EK 4.2.C.2 says both passwords and challenge-question answers are knowledge factors, so requiring both is still single-factor. EK 4.2.C.6 requires at least two separate factors, meaning different types. Real MFA pairs a knowledge factor with a possession factor like a token, or a biometric factor like a fingerprint. On the exam, count the factor types, not the number of prompts."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Configuring Login Settings",
+      "kicker": "Authentication · Learning Objective 4.2.D",
+      "script": "Section four. Learning objective 4.2.D. The defender's toolkit: five configurable login settings that harden an account. This is also Scenario 4B — configuring the local password and account-lockout policies. For each setting, learn what it does and which attack it blunts."
+    },
+    {
+      "type": "worked_table",
+      "heading": "The Five Configurable Login Settings",
+      "context": "These are the settings from EK 4.2.D.1–D.5 that an administrator configures in local security policy (Scenario 4B). For each, know what it enforces and which threat it addresses.",
+      "columns": [
+        "Setting",
+        "What it enforces",
+        "Which threat it blunts",
+        "EK"
+      ],
+      "rows": [
+        [
+          "Complexity",
+          "New passwords must include a character from each set (upper, lower, digits, special)",
+          "Makes passwords significantly harder to crack (brute force / dictionary)",
+          "4.2.D.1"
+        ],
+        [
+          "Minimum length",
+          "Passwords must have at least a set number of characters",
+          "Longer passwords take far longer for a tool to crack",
+          "4.2.D.2"
+        ],
+        [
+          "Maximum age",
+          "Users are prompted to change passwords (often every 90–120 days)",
+          "Limits how long a compromised password stays usable — but some standards warn it breeds patterns like PasswordFall2028",
+          "4.2.D.3"
+        ],
+        [
+          "Password history",
+          "System stores previous password hashes (often 5–10)",
+          "Prevents a user from reusing a recent password",
+          "4.2.D.4"
+        ],
+        [
+          "Account lockout",
+          "Account locks after a number of invalid attempts (often 3–5)",
+          "Stops an adversary continuously guessing at a live portal (online attacks)",
+          "4.2.D.5"
+        ]
+      ],
+      "note": "Lockout (D.5) and maximum age (D.3) are the account-lockout and password policies configured in Scenario 4B. Remember: lockout only constrains ONLINE attacks; offline attacks (EK 4.2.B.2) ignore it.",
+      "script": "Five settings, and for each one know the threat it addresses. Complexity, EK 4.2.D.1: require a character from each set — upper, lower, digit, special — which makes cracking much harder. Minimum length, EK 4.2.D.2: longer passwords take dramatically longer to crack. Maximum age, EK 4.2.D.3: prompt changes every 90 or 120 days to limit how long a stolen password works — but note the caveat, some national standards say forced changes breed predictable patterns like PasswordFall2028. Password history, EK 4.2.D.4: store the last 5 to 10 hashes to block reuse. And account lockout, EK 4.2.D.5: lock after 3 to 5 bad attempts to stop online guessing. One more time — lockout only stops online attacks; offline attacks ignore it."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 4.2.C and 4.2.D. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A bank app asks for a PIN you memorized and then a tap on a hardware token it mailed you. Name the factor type of each proof, state whether this is MFA, and cite the EKs. Then explain why a password plus a security question would NOT be MFA.",
+        "An administrator wants to (a) stop users from cycling back to a recent password and (b) slow an adversary guessing at the login screen. Name the two login settings that address these goals and explain how each works, citing the EKs."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: PIN plus hardware token — name each factor type, the PIN is knowledge per EK 4.2.C.2 and the token is possession per EK 4.2.C.3, say whether it's MFA, it is per EK 4.2.C.6, and then explain why a password plus a security question wouldn't be — both are knowledge factors. Question two: which two settings stop password reuse and slow login guessing? Password history, EK 4.2.D.4, and account lockout, EK 4.2.D.5 — explain how each works. Go."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Authentication, in One Slide",
+      "points": [
+        "Hashing (4.2.A): passwords are stored as fixed-length, repeatable, one-way (pre-image-resistant) hashes, never plaintext (A.1, A.3, A.5); collisions are unavoidable (A.2); MD5 and SHA-1 are deprecated for forced collisions (A.4); a unique salt makes identical passwords hash differently (A.6)",
+        "Hashing is NOT encryption — it is one-way with no key; login compares hashes rather than decrypting (A.3, A.5, B.6)",
+        "Attacks (4.2.B): online attacks hit a live portal and can be slowed by lockout; offline attacks crack a captured database and bypass lockout (B.2). Credential reuse (B.3), spraying (B.4), and stuffing (B.5) exploit bad credentials; brute force, dictionary (B.6), and rainbow tables (B.7) crack hashes offline",
+        "Factors (4.2.C): knowledge (C.2), possession (C.3), biometric (C.4), and location (C.5). MFA combines DIFFERENT types and is stronger than single-factor (C.6) — two knowledge proofs is still single-factor",
+        "Login settings (4.2.D): complexity (D.1), minimum length (D.2), maximum age (D.3), password history (D.4), and account lockout (D.5) — and lockout only constrains online attacks"
+      ],
+      "next": "Authentication proves who a user is; the rest of Unit 4 builds on it to secure the devices and data behind that login — applying the hashing, attack, factor, and login-setting ideas you locked in today.",
+      "script": "Authentication in one slide. 4.2.A: passwords are stored as one-way, salted hashes, never plaintext; collisions are unavoidable; MD5 and SHA-1 are deprecated; and salt makes identical passwords hash differently. Remember hashing is not encryption — one-way, no key. 4.2.B: online attacks can be slowed by lockout, offline attacks bypass it; reuse, spraying, and stuffing exploit bad credentials, while brute force, dictionary, and rainbow tables crack hashes offline. 4.2.C: four factor types — know, have, are, where — and MFA combines different types to beat a single stolen password. 4.2.D: five settings — complexity, length, age, history, lockout — and lockout only stops online attacks. That's the whole chain: store it, attack it, prove it, harden it."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 4.2 — Authentication — Quiz",
+    "instructions": "Choose the single best answer. 11 questions, 20 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "applied",
+        "stem": "A developer feeds a 2-byte file and then a 4-gigabyte file into the same cryptographic hash function and notices both outputs are exactly the same number of bits long. The developer also confirms that re-hashing the 2-byte file always yields the identical output. Which two properties of cryptographic hash functions are being observed?",
+        "predictFirst": true,
+        "options": [
+          "Fixed length and repeatability — the output length is constant regardless of input size, and the same input always produces the same hash",
+          "Pre-image resistance and collision resistance — the input cannot be recovered, and two inputs rarely collide",
+          "Encryption and reversibility — the data is scrambled but can be decrypted back to the original",
+          "Salting and deprecation — random bits are added and weak algorithms are retired"
+        ],
+        "answer": "A",
+        "ek": "EK 4.2.A.3",
+        "rationale": "EK 4.2.A.3 lists the properties of cryptographic hash functions: hashes have a fixed length (the length in bits is constant regardless of the size of the input) and hashes are repeatable (the same input always produces the same hash). The constant output length and the consistent re-hash result are exactly these two properties. Option B names real properties but neither matches the two observations described. Option C is wrong — hashes are not encryption and cannot be reversed. Option D describes salting (EK 4.2.A.6) and deprecation (EK 4.2.A.4), not the observed behavior."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "A security architect explains that because a hash function accepts inputs of arbitrary length but produces a fixed-length output, an infinite number of inputs map to a finite number of outputs, so two different inputs must eventually produce the same hash. What is this unavoidable event called, and what does it imply about output count for an n-bit hash?",
+        "options": [
+          "A pre-image; an n-bit hash has exactly n possible outputs",
+          "A salt; an n-bit hash has an infinite number of possible outputs",
+          "A collision; an n-bit hash has 2 to the n possible outputs, while the number of inputs is infinite",
+          "A checksum; an n-bit hash has 10 to the n possible outputs"
+        ],
+        "answer": "C",
+        "ek": "EK 4.2.A.2",
+        "rationale": "EK 4.2.A.2 says an n-bit hash has 2 to the n possible outputs, the number of inputs is infinite, and so inevitably two different inputs will produce the same hash — this is called a collision. Option A misuses pre-image (EK 4.2.A.3) and gives the wrong output count. Option B misuses salt (EK 4.2.A.6). Option D gives the wrong base for the output count."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "Two employees independently choose the exact same password. An administrator notices that in the user:password directory their stored password hashes are different from each other, even though the hash function is deterministic. According to EK 4.2.A.6, what mechanism produces this result?",
+        "options": [
+          "Each password is encrypted with the user's private key, so the stored values differ",
+          "A few unique random bits called salt are hashed with each user's password, so identical passwords produce different hashes",
+          "The directory stores the plaintext passwords, which only appear different due to character encoding",
+          "Each hash is reversed and re-hashed a different number of times for every user"
+        ],
+        "answer": "B",
+        "ek": "EK 4.2.A.6",
+        "rationale": "EK 4.2.A.6 says that if two users had the same password their hashes would be identical, so a few random bits called salt are hashed with a user's password to generate the hash; each user's salt is unique, so even identical passwords produce different hashes. Option A invents key-based encryption. Option C contradicts EK 4.2.A.5, which says passwords should not be stored in plaintext. Option D invents a re-hashing scheme not in the CED."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "stem": "An adversary obtains a leaked database from one company and, knowing that people reuse credentials, tries those exact username-and-password pairs on a victim's unrelated email account. Separately, a second adversary tries one very common password (like 'Password123') against thousands of different user accounts at one organization. Which two attacks are these, in order?",
+        "predictFirst": true,
+        "options": [
+          "A brute force attack, then a rainbow table attack",
+          "A dictionary attack, then a credential-stuffing attack",
+          "Trying stolen or leaked credentials, then a password-spraying attack",
+          "A collision attack, then an offline hash-cracking attack"
+        ],
+        "answer": "C",
+        "ek": "EK 4.2.B.4",
+        "rationale": "EK 4.2.B.3 says adversaries often begin by trying stolen or leaked credentials for a target individual, matching the first scenario. EK 4.2.B.4 defines password spraying as attempting a common password against many different user accounts, matching the second. Option A misuses brute force and rainbow tables (EK 4.2.B.6, B.7). Option B misuses dictionary and credential stuffing. Option D names a hash-collision idea (EK 4.2.A.2) that does not fit."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "An adversary has captured an organization's user:password hash database and copies it to their own computer, where they run automated hash-cracking tools against it offline. A colleague asks why this approach is dangerous even though the organization locks accounts after 5 failed logins. Per EK 4.2.B.2 and B.6, what is the CED's reasoning?",
+        "options": [
+          "Offline attacks bypass account-lockout protections, and automated tools hash many possible passwords to compare against the captured hash",
+          "Offline attacks reverse the hashes directly back into plaintext passwords in a single step",
+          "Offline attacks force a collision in the hash function, instantly revealing every user's salt",
+          "Offline attacks must use the live authentication portal, so lockout always stops them"
+        ],
+        "answer": "A",
+        "ek": "EK 4.2.B.6",
+        "rationale": "EK 4.2.B.2 says offline password attacks work against a captured database on the adversary's own computer and bypass any account-lockout protections. EK 4.2.B.6 says offline attacks use automated hash-cracking tools to hash possible passwords and compare them against the captured hash; although hashes can't be reversed, a match reveals a usable password. Option B is false — the EK states hashes can't be reversed. Option C confuses this with collisions (EK 4.2.A.2). Option D describes an online attack (EK 4.2.B.2)."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "An adversary precomputes a large list pairing each candidate password with its hash, sorts that list by the hash values, and then uses an automated tool to search the sorted hashes for a captured target hash. When a match is found, the paired password lets them log in. Which offline attack is described?",
+        "predictFirst": true,
+        "options": [
+          "A password-spraying attack, which tries one common password across many accounts",
+          "A rainbow table attack, which searches a precomputed table of passwords and hashes sorted by hash for the captured hash",
+          "A credential-stuffing attack, which uses default administrative credentials on devices",
+          "An online dictionary attack run directly against a live authentication portal"
+        ],
+        "answer": "B",
+        "ek": "EK 4.2.B.7",
+        "rationale": "EK 4.2.B.7 says a rainbow table contains each potential password and its hash, is sorted by the hashes, and the adversary uses an automated tool to search the list of hashes for the captured hash; a match reveals a usable password. Option A is password spraying (EK 4.2.B.4). Option C is credential stuffing (EK 4.2.B.5). Option D mislabels it as online — rainbow table attacks are offline (EK 4.2.B.2)."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A bank's app requires a user to enter a PIN they memorized and then tap a hardware token the bank mailed them. A security analyst classifies each proof by the type of authentication factor it represents. Which classification is correct, per EK 4.2.C.1–C.3?",
+        "options": [
+          "Both the PIN and the token are knowledge factors, since the user must remember how to use each",
+          "The PIN is a biometric factor and the token is a location factor",
+          "The PIN is a knowledge factor (something the user knows) and the token is a possession factor (something the user has)",
+          "The PIN is a possession factor and the token is a knowledge factor"
+        ],
+        "answer": "C",
+        "ek": "EK 4.2.C.2",
+        "rationale": "EK 4.2.C.1 names the factor categories, EK 4.2.C.2 says knowledge factors include PINs (something the user knows), and EK 4.2.C.3 says a possession factor is an object the user has, such as an authentication token. So the PIN is a knowledge factor and the token is a possession factor. Option A wrongly makes the token a knowledge factor. Option B misclassifies both. Option D swaps the two."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "An organization currently requires only a password to log in. It adds a requirement that users also pass a fingerprint scan. A manager asks how this changes the security posture and what the new setup is called. Per EK 4.2.C.4 and C.6, what is the best description?",
+        "options": [
+          "It is multifactor authentication — adding a biometric factor means at least two separate factors are required, which is more secure than single-factor authentication",
+          "It is still single-factor authentication, since a fingerprint and a password are both knowledge factors",
+          "It is location-based authentication, since fingerprints are read from the device's GPS sensor",
+          "It is less secure, since biometric factors are easy for an adversary to duplicate"
+        ],
+        "answer": "A",
+        "ek": "EK 4.2.C.6",
+        "rationale": "EK 4.2.C.4 says biometric factors (such as fingerprints) measure features of the body and are difficult to duplicate because they are unique. EK 4.2.C.6 says MFA uses more than one factor and is more secure than single-factor authentication because it requires at least two separate factors. Adding a fingerprint to a password is MFA. Option B wrongly calls a fingerprint a knowledge factor. Option C confuses biometric with location (EK 4.2.C.5). Option D contradicts EK 4.2.C.4."
+      },
+      {
+        "id": "Q9",
+        "kind": "applied",
+        "stem": "An enterprise system inspects Wi-Fi signals, GPS data, time-zone settings, and IP-address information to decide whether to allow or deny a login attempt. A new analyst wants to know which authentication factor this represents. Per EK 4.2.C.5, what is the correct factor?",
+        "predictFirst": true,
+        "options": [
+          "A knowledge factor — something the user knows, such as a password or PIN",
+          "A possession factor — an object unique to the user, such as an access card",
+          "A biometric factor — a measured feature of the user's body, such as an iris scan",
+          "A location factor — somewhere the user is, determined from Wi-Fi, GPS, time zone, and IP information"
+        ],
+        "answer": "D",
+        "ek": "EK 4.2.C.5",
+        "rationale": "EK 4.2.C.5 says location factors use information about Wi-Fi signals, GPS data, time-zone settings, and even IP-address information to make determinations about location, and rules can allow or deny access based on a location factor. Option A is a knowledge factor (EK 4.2.C.2), Option B a possession factor (EK 4.2.C.3), and Option C a biometric factor (EK 4.2.C.4) — none of which use Wi-Fi, GPS, or IP data."
+      },
+      {
+        "id": "Q10",
+        "kind": "scenario",
+        "stem": "An administrator configuring local security settings wants to stop users from cycling back to an old password they used recently, and also wants to slow an adversary who keeps guessing passwords at the login screen. Per EK 4.2.D.4 and D.5, which two login settings address these goals?",
+        "options": [
+          "Requiring complexity, and requiring a maximum password age",
+          "Storing a number of previous password hashes to block reuse, and requiring a lockout period after a number of invalid login attempts",
+          "Requiring a minimum password length, and requiring a maximum password age",
+          "Requiring salting on every password, and disabling all hashing"
+        ],
+        "answer": "B",
+        "ek": "EK 4.2.D.4",
+        "rationale": "EK 4.2.D.4 says requiring the system to store a number of previous password hashes (often 5–10) prevents a user from reusing a password. EK 4.2.D.5 says requiring a lockout period after a number of invalid login attempts (often 3–5) prevents an adversary from continuously guessing wrong passwords. Option A and Option C name real settings (EK 4.2.D.1, D.2, D.3) but neither pairing matches both goals. Option D invents settings not in the EK."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "While configuring password policy, an administrator reads that some national standards recommend NOT forcing users to change their passwords on a fixed schedule. Per EK 4.2.D.3, what is the reasoning behind that recommendation?",
+        "options": [
+          "Forcing scheduled changes makes hashes reversible, exposing the plaintext",
+          "Forcing scheduled changes disables the account-lockout setting entirely",
+          "Forcing scheduled changes removes the requirement for any minimum password length",
+          "Forcing scheduled changes can lead users to develop predictable password patterns, such as PasswordFall2028"
+        ],
+        "answer": "D",
+        "ek": "EK 4.2.D.3",
+        "rationale": "EK 4.2.D.3 says requiring a maximum password age prompts users to change passwords (often every 90 or 120 days), but some national standards recommend not requiring changes on predefined intervals to discourage users from developing password patterns (e.g., PasswordFall2028). Options B, C, and D invent consequences the CED does not connect to maximum password age."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 4.2 — Authentication — Teacher Guide",
+    "subtitle": "Unit 4 · Topic 4.2 · 5 class periods · Scenario 4B",
+    "overview": [
+      "Lesson 4.2 is the authentication core of Unit 4's device-security arc: having looked at the device threat landscape, students now study how systems prove a user is who they claim to be, and how that proof is attacked and defended. Across five days students explain why hashes (also called hash outputs, checksums, message digests, or digests) are used to store passwords (LO 4.2.A); explain how password attacks exploit vulnerabilities (LO 4.2.B); determine the type of authentication used to verify a user's identity (LO 4.2.C); and configure login settings to make a device more secure (LO 4.2.D). The organizing idea is a chain: passwords are stored as salted hashes rather than plaintext, adversaries use online and offline attacks (including brute force, dictionary, and rainbow table attacks) to defeat that storage, authentication factors and MFA raise the bar beyond a single password, and configurable login settings (complexity, length, age, history, and lockout) harden the account.",
+      "Scenario 4B (Configuring Authentication Settings) anchors the topic: students configure the local security settings related to the password and account-lockout policies, which maps directly onto LO 4.2.D and is informed by the hashing and attack concepts in LO 4.2.A–C."
+    ],
+    "los": [
+      "LO 4.2.A — Explain why hashes (also called hash outputs, checksums, message digests, or digests) are used to store passwords.",
+      "LO 4.2.B — Explain how password attacks exploit vulnerabilities.",
+      "LO 4.2.C — Determine the type of authentication used to verify the identity of a user.",
+      "LO 4.2.D — Configure login settings to make a device more secure."
+    ],
+    "eks": [
+      "EK 4.2.A.1 — A cryptographic hash function (also called a message digest function) is a mathematical algorithm that takes binary data of an arbitrary length, processes it according to a set of instructions, and outputs a fixed-length binary string called the hash (or checksum or message digest). Well-known cryptographic hashes include MD5; SHA-1, SHA-256, SHA-512 (SHA stands for Secure Hash Algorithm); NTHash; and RIPEMD-160.",
+      "EK 4.2.A.2 — An n-bit hash has 2 to the n possible outputs. The number of inputs is infinite, and so inevitably two different inputs will produce the same hash. This is called a collision.",
+      "EK 4.2.A.3 — Cryptographic hash functions have these properties: hashes are collision resistant (it is difficult to find two different inputs that produce the same output); hashes have pre-image resistance (given a hash, it is infeasible to figure out the input that generated it); hashes are repeatable (the same input always produces the same hash); and hashes have a fixed length (the length in bits is constant regardless of the size of the input).",
+      "EK 4.2.A.4 — Adversaries try to compromise hashing functions by forcing collisions in their output. If an efficient algorithm exists to force a collision for a specific hash function, then that hash function will be deprecated (no longer used in secure settings). MD5 and SHA-1 are examples of deprecated hash functions.",
+      "EK 4.2.A.5 — Password-based authentication services shouldn't store passwords in plaintext, so that if an adversary gains access to the user:password directory they won't immediately know the passwords for all users. Instead, user passwords should be hashed and the hash stored in a database. When a user enters their password, it is hashed and compared to the hash stored on file; if the hashes match, the user is authenticated.",
+      "EK 4.2.A.6 — If two users had the same password, their passwords would have identical hashes in the user:password directory. To prevent this, a few random bits (called salt) are hashed with a user's password to generate the hash. Each user's salt is unique, so even if two users have the same password they will have a different password hash because they have different salt.",
+      "EK 4.2.B.1 — If an adversary can compromise the password of a legitimate user, and that user's organization has not enabled MFA or other authentication protections, then the adversary can act within that organization with all the access and rights available to the user.",
+      "EK 4.2.B.2 — Password attacks can be classified as online or offline. Online password attacks attempt user:password combinations in an active authentication portal. Offline password attacks have captured a user:password database and can run attacks against the database on their own computer, which bypasses any account-lockout protections that may be in place.",
+      "EK 4.2.B.3 — Many users reuse the same passwords (or variations) across all their services and accounts. When an organization's user database is stolen, the usernames, emails, and passwords are sold to adversaries or posted online, and adversaries often begin an attempt to compromise an account by trying stolen or leaked credentials for a target individual.",
+      "EK 4.2.B.4 — Many users set passwords that are easy to guess, and adversaries will attempt to guess common passwords. Password spraying is an attack where an adversary attempts a common password against many different user accounts.",
+      "EK 4.2.B.5 — Some services and devices (e.g., switches, routers, and IoT devices) are preconfigured with a default administrative user and password. Credential stuffing is an attack where an adversary attempts to gain access using common default credentials or account credentials that have been stolen.",
+      "EK 4.2.B.6 — Offline password attacks use automated hash-cracking tools to hash possible passwords and compare them against a captured hash. Although hashes can't be reversed, an adversary can hash many potential passwords and compare them to the target hash; a match yields a usable password. Offline attacks include brute force attacks (testing all potential passwords) and dictionary attacks (testing a list of common passwords).",
+      "EK 4.2.B.7 — A rainbow table attack uses a list of common passwords to generate a rainbow table — a table containing each potential password and its hash. The table is sorted by the hashes, and the adversary uses an automated tool to search the list of hashes for the captured hash; a match reveals a password that will allow the adversary to log in.",
+      "EK 4.2.C.1 — Authentication mechanisms are technical controls that verify the identity of a user to ensure that only authorized users access a system. The proof the user provides is called a factor. Common factors include something the user knows (knowledge factor), something the user has (possession factor), something the user is (biometric factor), and somewhere the user is (location factor).",
+      "EK 4.2.C.2 — Knowledge factors can be passwords, PINs, or answers to preselected challenge questions. For a knowledge factor to be effective it needs to be something an adversary can't easily guess; however, knowledge factors that are difficult for an adversary to figure out can also be harder for a user to remember.",
+      "EK 4.2.C.3 — A possession factor is an object a user has that is unique to them, such as an access card, a bank card, a cell phone, or an authentication token. The more difficult it is for an adversary to obtain the object (or a copy of it), the more secure the possession factor is.",
+      "EK 4.2.C.4 — Biometric factors measure features of the human body and can include fingerprints, palm prints, facial recognition, iris or retina scans, or voice identification. Biometric factors are difficult for an adversary to duplicate because they are unique to an individual.",
+      "EK 4.2.C.5 — Location factors use information about Wi-Fi signals, GPS data, time-zone settings, and even IP-address information to make determinations about location. Rules can be established for allowing or denying access based on a location factor.",
+      "EK 4.2.C.6 — Multifactor authentication (MFA) is when a system uses more than one factor to authenticate a user. MFA is more secure than single-factor authentication because it requires the user to provide at least two separate factors of authentication.",
+      "EK 4.2.D.1 — Requiring complexity in passwords is a configurable login setting. When enabled, a new password must include at least one character from each character set. Passwords with characters from each set are significantly harder to crack. The main character sets are uppercase letters (A–Z), lowercase letters (a–z), numeric digits (0–9), and special characters.",
+      "EK 4.2.D.2 — Requiring a minimum password length is a configurable login setting, meaning users must have at least a certain number of characters in their password. The longer and more complex a password is, the longer it will take a digital tool to crack it.",
+      "EK 4.2.D.3 — Requiring a maximum password age is a configurable login setting; users are prompted to change their password a certain number of days after their last change (usually every 90 or 120 days). Changing a compromised password could prevent continued access. However, some national standards recommend not requiring changes on predefined intervals to discourage users from developing password patterns (e.g., PasswordFall2028).",
+      "EK 4.2.D.4 — Requiring the system to store a certain number of previous user passwords is a configurable login setting that prevents a user from reusing a password. Many organizations store users' previous 5–10 password hashes to prevent reuse.",
+      "EK 4.2.D.5 — Requiring a lockout period after a certain number of invalid login attempts is a configurable login setting that prevents an adversary from continuously randomly attempting wrong passwords. Many organizations lock a user's account after 3–5 invalid login attempts; the period of the lockout varies."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Hashes and why passwords are stored as salted hashes (LO 4.2.A)",
+        "segments": [
+          {
+            "segment": "QOTD (U4/L4.2/Q1) + bell ringer: why not just store passwords as-is?",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 5,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Cryptographic hash functions and their properties (EK 4.2.A.1, A.3)",
+            "min": 12,
+            "slides": "5"
+          },
+          {
+            "segment": "Collisions, output count, and deprecation of MD5/SHA-1 (EK 4.2.A.2, A.4)",
+            "min": 10,
+            "slides": "6"
+          },
+          {
+            "segment": "Hashing for storage and salting identical passwords (EK 4.2.A.5, A.6)",
+            "min": 10,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 5,
+            "slides": "9"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "10"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Password attacks, part 1: online vs. offline and credential reuse (LO 4.2.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U4/L4.2/Q2) + bell ringer: what does a stolen password unlock?",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "Impact of a compromised password without MFA (EK 4.2.B.1)",
+            "min": 8,
+            "slides": "11"
+          },
+          {
+            "segment": "Online vs. offline attacks and lockout bypass (EK 4.2.B.2)",
+            "min": 12,
+            "slides": "12"
+          },
+          {
+            "segment": "Leaked credentials, spraying, and stuffing (EK 4.2.B.3, B.4, B.5)",
+            "min": 12,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 5,
+            "slides": "14"
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Password attacks, part 2: offline hash cracking (LO 4.2.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U4/L4.2/Q3) + bell ringer: if hashes can't be reversed, how are they cracked?",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "Automated hash-cracking: brute force and dictionary (EK 4.2.B.6)",
+            "min": 14,
+            "slides": "15"
+          },
+          {
+            "segment": "Rainbow tables: precompute, sort, search (EK 4.2.B.7)",
+            "min": 14,
+            "slides": "16"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 7,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Authentication factors and MFA (LO 4.2.C)",
+        "segments": [
+          {
+            "segment": "QOTD (U4/L4.2/Q4) + bell ringer: sort five log-in proofs into factor types",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "The four factor types: know, have, are, where (EK 4.2.C.1–C.5)",
+            "min": 16,
+            "slides": "18"
+          },
+          {
+            "segment": "Multifactor authentication and why it is stronger (EK 4.2.C.6)",
+            "min": 12,
+            "slides": "19"
+          },
+          {
+            "segment": "Factor-matching practice + Stop and Think",
+            "min": 7,
+            "slides": "20"
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Configuring login settings, Scenario 4B, and quiz (LO 4.2.D)",
+        "segments": [
+          {
+            "segment": "QOTD (U4/L4.2/Q5) + bell ringer: which setting blocks password reuse?",
+            "min": 5,
+            "slides": "Website"
+          },
+          {
+            "segment": "Complexity, length, and maximum age (EK 4.2.D.1, D.2, D.3)",
+            "min": 10,
+            "slides": "21"
+          },
+          {
+            "segment": "Password history and account lockout (EK 4.2.D.4, D.5)",
+            "min": 8,
+            "slides": "22"
+          },
+          {
+            "segment": "Scenario 4B: configure password and account-lockout policies",
+            "min": 7,
+            "slides": "23"
+          },
+          {
+            "segment": "Lesson 4.2 quiz",
+            "min": 20,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Hashing is the same as encryption",
+        "myth": "A password hash is just an encrypted password that can be decrypted back to the original.",
+        "reality": "EK 4.2.A.3 says hashes have pre-image resistance — given a hash, it is infeasible to figure out the input — and EK 4.2.B.6 states plainly that hashes can't be reversed. Hashing is one-way; authentication works by hashing the entered password and comparing hashes (EK 4.2.A.5), not by decrypting."
+      },
+      {
+        "heading": "Salt is meant to be secret",
+        "myth": "Salt is a secret key that hides the password the way a password hides an account.",
+        "reality": "EK 4.2.A.6 says salt is a few random bits hashed with the password so that two users with the same password get different hashes. Its purpose is to make identical passwords produce different hashes, not to act as a secret."
+      },
+      {
+        "heading": "Account lockout stops every password attack",
+        "myth": "Locking an account after a few bad guesses defeats all password attacks.",
+        "reality": "EK 4.2.B.2 says offline attacks run against a captured database on the adversary's own computer and bypass account-lockout protections entirely. Lockout (EK 4.2.D.5) only constrains online guessing at a live portal."
+      },
+      {
+        "heading": "More factors of the same type means MFA",
+        "myth": "Requiring a password and a security question counts as multifactor authentication.",
+        "reality": "EK 4.2.C.6 says MFA requires at least two separate factors. A password and a challenge-question answer are both knowledge factors (EK 4.2.C.2), so requiring both is still single-factor; true MFA combines different factor types, such as something you know plus something you have."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post a four-column factor word bank — 'knowledge: password / PIN / challenge answer', 'possession: access card / bank card / phone / token', 'biometric: fingerprint / face / iris / voice', 'location: Wi-Fi / GPS / time zone / IP' — so students sort a proof into the right factor instead of recalling all four cold.",
+        "Provide a sentence frame for LO 4.2.D: 'To stop ____, configure the ____ setting, which per EK 4.2.D.____ works by ____.'"
+      ],
+      "extension": [
+        "Have students trace, step by step, what happens to one password from account creation (hash + unique salt stored, EK 4.2.A.5–A.6) through an offline rainbow-table attempt (EK 4.2.B.7), explaining where salting and deprecation (EK 4.2.A.4) raise the adversary's cost.",
+        "Have students draft a defensible password-and-lockout policy for a small organization using EK 4.2.D.1–D.5, then argue whether to require a maximum password age given the national-standard caveat in EK 4.2.D.3."
+      ]
+    },
+    "discussion": [
+      "Why does the CED say passwords should be hashed and salted rather than encrypted or stored in plaintext?",
+      "Which password attacks does enabling MFA help defeat, and which login settings help against offline attacks versus online attacks?",
+      "When might requiring a maximum password age make an organization less secure rather than more, per EK 4.2.D.3?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  }
+}

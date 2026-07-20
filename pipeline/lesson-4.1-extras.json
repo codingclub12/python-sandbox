@@ -1,0 +1,288 @@
+{
+  "meta": {
+    "lessonId": "4.1",
+    "lessonTitle": "Device Vulnerabilities",
+    "unit": "Unit 4: Securing Devices",
+    "days": 6,
+    "los": "LO 4.1.A, 4.1.B, 4.1.C, 4.1.D"
+  },
+  "map": {
+    "subtitle": "Unit 4: Securing Devices   •   6 days   •   LO 4.1.A, 4.1.B, 4.1.C, 4.1.D",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–6 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–6 (student fill-in + answer KEY)",
+      "Exercise 1: Malware/Device Vulnerability Identifier and Exercise 2: Device Risk Assessor (student + answer KEY)",
+      "Discussion — Every Machine Is a Door (3-part: Opening Day 1, Mid-lesson Day 4, Closing Day 6)",
+      "Quiz (student + answer KEY — 11 questions spanning 4.1.A–D, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-4-device-vulnerabilities"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-1-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-1-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-1-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Days 1–2 device types, Days 3–4 the malware toolkit, Days 5–6 device weaknesses and risk).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Device Vulnerabilities'; the unit scenario is 'Scenario 4A: Designing Secure Connected Farm Equipment'; the deck title is 'Every Machine Is a Door.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Malware/Device Vulnerability Identifier",
+    "minutes": "~25 min",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-1-exercise-1",
+    "intro": "You are a security analyst triaging incidents on the connected farm. Five cases just landed in the queue. For each one you will name the CB malware type or the exact device vulnerability. Part A works the case log; Part B extends the same skills. Everything maps to CB Learning Objectives 4.1.A, 4.1.B, and 4.1.C.",
+    "scenarioTitle": "Incident Log: Five Connected-Farm Cases",
+    "narrative": "Five incidents were reported across the farm's network this week. Your operations log captured the device, what the adversary did, what the user observed, and the after-effect. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the one defining behavior, then match it to the exact malware type or device vulnerability.",
+    "log": {
+      "columns": [
+        "ID",
+        "Device",
+        "What the adversary did",
+        "What the user observed",
+        "After-effect"
+      ],
+      "rows": [
+        [
+          "1",
+          "Records PC",
+          "Emailed an invoice attachment; nothing ran until the employee opened the file.",
+          "Opened the file; records on that one machine began corrupting.",
+          "Damaged records on a single computer; no spread to other machines."
+        ],
+        [
+          "2",
+          "Records PC",
+          "Encrypted every file on the drive and posted a countdown screen.",
+          "Locked out of all files; a screen demanded payment for a decryption key.",
+          "Operations halted until backups were restored; a deadline was set."
+        ],
+        [
+          "3",
+          "Email server",
+          "Built an exploit for a known vulnerability the latest update would have patched.",
+          "Services crashed; later, data was issued out by adversary commands.",
+          "Sensitive customer records stolen from an unpatched, internet-facing server."
+        ],
+        [
+          "4",
+          "Office laptop",
+          "With brief physical access, booted into recovery mode and loaded their own OS from an external drive.",
+          "Found their account password silently changed the next morning.",
+          "Adversary gained higher privileges and altered a user profile."
+        ],
+        [
+          "5",
+          "Grain sensor",
+          "Sent crafted malicious data directly to the device, which had nothing to filter it.",
+          "Sensor behaved erratically, then started reporting false readings.",
+          "Device disrupted and partially taken over over the network."
+        ]
+      ]
+    },
+    "scenarioNote": "Cases adapted from the Lesson 4.1 deck and scenario 4A (Designing Secure Connected Farm Equipment); malware types and vulnerability EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026).",
+    "predict": "Before you answer Part A, write one sentence: of the five cases, which two are easiest to confuse, and what single detail tells them apart?",
+    "partALabel": "Part A - Case Classification",
+    "partA": [
+      {
+        "ek": "EK 4.1.B.2",
+        "pts": 6,
+        "q": "Case 1 (the invoice attachment) and a hypothetical variant where the SAME code spread to every machine with no one clicking are different CB malware types. Name the type in Case 1, name the variant's type, and quote the one defining detail that separates them.",
+        "answer": "Case 1 is a virus (EK 4.1.B.2): the log states 'nothing ran until the employee opened the file' — a virus must be activated by a user executing or opening a file. The spreading variant would be a worm (EK 4.1.B.2): a worm spreads from one computer to another without human interaction. The single defining detail is whether human action is required to spread — the employee opening the file (virus) versus 'no one clicking' (worm). This human-action line is the most-tested distinction in 4.1.B."
+      },
+      {
+        "ek": "EK 4.1.B.2",
+        "pts": 3,
+        "q": "Case 2 encrypted the files and posted a countdown demanding payment. Name the CB malware type, and quote the two behaviors from the log that prove it is this type and not a rootkit.",
+        "answer": "Case 2 is ransomware (EK 4.1.B.2): ransomware encrypts a device's files, preventing access, and typically demands payment for a decryption key within a fixed amount of time. The two proving behaviors are 'encrypted every file on the drive' and 'a screen demanded payment for a decryption key' with a countdown/deadline. A rootkit (EK 4.1.B.2) hides in the OS and makes itself invisible — it does not encrypt files or demand payment, so the visible ransom screen rules it out."
+      },
+      {
+        "ek": "EK 4.1.C.1",
+        "pts": 4,
+        "q": "Case 3 hit the email server. Name the exact CB device vulnerability, and explain the chain from the missing update to the stolen customer records.",
+        "answer": "Case 3 is unpatched software (EK 4.1.C.1): adversaries develop exploits for known vulnerabilities in software, and a device running an unpatched version is exposed to that exploit. The chain: the latest update patched a known vulnerability, but it was not installed; the adversary built an exploit for that known hole; per EK 4.1.C.1 the exploit let them crash services and ultimately take control to issue their own commands, including commands to steal information — here, the sensitive customer records. The fix is the missing patch itself."
+      },
+      {
+        "ek": "EK 4.1.C.3",
+        "pts": 4,
+        "q": "Case 4 (the office laptop) is frequently misread as weak authentication. Name the correct CB vulnerability, and explain the detail that rules out weak authentication.",
+        "answer": "Case 4 is a missing BIOS/UEFI password (EK 4.1.C.3): with no password on the BIOS/UEFI, an adversary can boot into a special mode such as recovery mode for higher-level privileges, load their own operating system from an external drive, and alter user profiles including changing passwords — exactly the log's 'booted into recovery mode and loaded their own OS' and 'password silently changed.' The detail that rules out weak authentication (EK 4.1.C.2): the adversary never guessed or socially-engineered the existing password — they bypassed it entirely by booting an external OS, which is a firmware/boot weakness, and they needed brief PHYSICAL access to do it."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 4.1.C.6",
+        "pts": 3,
+        "q": "Case 5 (the grain sensor) had crafted malicious data sent straight to it. Name the CB vulnerability, then explain why this is a different weakness from an open port.",
+        "answer": "Case 5 is a missing/misconfigured firewall (EK 4.1.C.6): adversaries send malicious data to disrupt or take control of a device, and a device with no firewall cannot filter out that malicious data. An open port (EK 4.1.C.5) is about an adversary leveraging a port to CONNECT to the device — reaching it in the first place — whereas a missing firewall is about failing to FILTER the malicious data once it arrives. C.5 is the way in; C.6 is the failure to screen what comes through."
+      },
+      {
+        "ek": "EK 4.1.B.3",
+        "pts": 3,
+        "q": "An analyst scans the records PC's drive and finds nothing, yet the machine is clearly compromised and the threat is using a legitimate installed program. Name the CB malware type, and explain why a drive scan missed it.",
+        "answer": "This is fileless malware (EK 4.1.B.3): it is malicious code that lives in RAM and uses legitimate programs already installed on the device rather than existing as a file on disk. A drive scan missed it because there is no file on the drive for the scanner to find, and because it rides trusted, installed tools it looks like normal activity. EK 4.1.B.3 is the exception to 'malware is a file' — defense shifts from scanning the disk to watching the behavior of trusted programs."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: A departing technician plants code on a server that does nothing for weeks, then wipes records at midnight on a set date. Name the CB malware type and explain how it differs from a virus.",
+        "answer": "This is a logic bomb (EK 4.1.B.2): it is set to trigger its effect only when a specific set of conditions is met — here a particular date. It differs from a virus in its trigger: a virus must be activated by a user executing or opening a file (a human action), while a logic bomb fires automatically once its preset condition (a date or event) is satisfied, with no user opening anything. This is why an insider can plant one before leaving."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Device Risk Assessor",
+    "minutes": "~25 min",
+    "subtitle": "4 devices - scenario 4A method",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-1-exercise-2",
+    "intro": "You are documenting risk for the connected farm (scenario 4A). For each device you will name the exact vulnerability 4.1.C number, assign a CB risk level — high, moderate, or low — and justify the level from the device's criticality and the impact of exploitation. Advanced students also name the malware or technique an adversary would most likely use.",
+    "standard": "CB Standard (required): name the vulnerability + assign H/M/L + justify from criticality and impact, for all 4 devices. Enrichment (optional): name the malware/technique an adversary would use.",
+    "methodHeading": "Three-Step Method - use for every device",
+    "method": [
+      [
+        "Step 1 - Name the vulnerability",
+        "Identify the exact CB device weakness the device has — unpatched software (C.1), weak authentication (C.2), missing BIOS/UEFI password (C.3), autorun (C.4), open ports (C.5), missing firewall (C.6), or missing anti-malware (C.7) — number."
+      ],
+      [
+        "Step 2 - Assign the risk level",
+        "Rate the risk high, moderate, or low. The same vulnerability can sit at different levels depending on the device."
+      ],
+      [
+        "Step 3 - Justify + document",
+        "Explain WHY the level fits, from the device's criticality and the data or services it provides, then write the one-line documentation entry: device, vulnerability, technique, impact, level."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (NOT required by the CED for assigning the level): also name the malware or technique an adversary would use against each device — e.g., a known-vulnerability exploit against unpatched software (C.1), ransomware that encrypts the records drive, a RAT for remote control, or crafted malicious packets against a device with no firewall (C.6). Naming the technique sharpens the impact half of the risk rating but is not required for the H/M/L score.",
+    "fields": [
+      "Vulnerability:",
+      "Risk (H/M/L):",
+      "Justification (criticality + impact):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The farm's email server is missing the latest update, which patched a known critical vulnerability. The server stores sensitive customer records and is reachable from the internet. The owner wants this device documented first.",
+        "key": {
+          "signs": "Vulnerability: unpatched software (EK 4.1.C.1) — a known critical vulnerability with an available patch left uninstalled on an internet-facing server.",
+          "mechanism": "Risk: HIGH (EK 4.1.D.2) — exploitation could compromise sensitive data or critical operations. Justification: the device is highly critical (it stores sensitive customer records and provides email service to the org), and the CED names exactly this case — an unpatched email server with a known critical vulnerability — as high. Documentation line: email server / unpatched known critical vulnerability / exploit for the known hole / theft of customer records / HIGH.",
+          "subtype": "Technique: an adversary develops an exploit for the known vulnerability (EK 4.1.C.1) to crash services and issue commands to steal data; ransomware on the same drive would also raise impact."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Embedded pump controllers on the farm's water line can be reached remotely with only a username and password — no multi-factor authentication. Exploitation is possible but constrained, and the impact would be contained to that pump line.",
+        "key": {
+          "signs": "Vulnerability: weak authentication (EK 4.1.C.2) — remote access with only a guessable/divulgeable username and password and no MFA.",
+          "mechanism": "Risk: MODERATE (EK 4.1.D.3) — the CED states moderate risks can arise from weak authentication requirements, and this mirrors the CED's own water-treatment pump example. Justification: the device matters but the impact is constrained and contained to one pump line, and exploitation depends on guessing or social-engineering the password rather than a wide-open critical hole. Documentation line: pump controller / weak authentication, no MFA / password guessing or social engineering / contained disruption of the pump line / MODERATE.",
+          "subtype": "Technique: password guessing or social engineering (EK 4.1.C.2) to obtain the login; a RAT could then provide ongoing remote control of the controller."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "An employee's office laptop has telnet port 23 open. The laptop holds only routine, non-sensitive scheduling notes and sits behind the office firewall; if exploited, the practical impact would be minimal.",
+        "key": {
+          "signs": "Vulnerability: open port (EK 4.1.C.5) — telnet port 23 is open, a way for an adversary to connect to the device over the network.",
+          "mechanism": "Risk: LOW (EK 4.1.D.4) — low risks are vulnerabilities that, if exploited, would have little impact, and the CED uses exactly this example (a laptop with telnet port 23 open). Justification: the device has low criticality (only routine non-sensitive notes) and the impact of exploitation is minimal, so the level is low even though the port is genuinely open. Documentation line: office laptop / open telnet port 23 / connect over the network / minimal impact on non-sensitive data / LOW.",
+          "subtype": "Technique: an adversary leverages the open port (EK 4.1.C.5) to connect; note the level would RISE if the same port sat on a critical, sensitive-data device (EK 4.1.D.1)."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A connected grain-moisture sensor in the silo has no firewall and runs no anti-malware. It controls automated drying that, if disrupted, could spoil a season's stored grain, and it bridges to the farm's internal network.",
+        "key": {
+          "signs": "Vulnerability: missing/misconfigured firewall (EK 4.1.C.6) — crafted malicious data sent to the device cannot be filtered out; also missing anti-malware (EK 4.1.C.7), so installed malware is harder to stop. Name the primary (C.6) and note the second (C.7).",
+          "mechanism": "Risk: HIGH (EK 4.1.D.2) — though a sensor seems minor, this one controls critical operations (the drying that protects a season's grain) and bridges to the internal network, so exploitation threatens critical operations and a pivot point. Per EK 4.1.D.1 the level follows the device's criticality and impact, not its size. Documentation line: grain sensor / no firewall + no anti-malware / crafted malicious data, then malware install / disrupted drying and a network pivot / HIGH.",
+          "subtype": "Technique: crafted malicious packets the missing firewall can't filter (EK 4.1.C.6); with no anti-malware (EK 4.1.C.7) the adversary then installs malware to take control and pivot inward."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Every Machine Is a Door",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 4) + Closing (Day 6)",
+    "overview": "On a connected farm, the riskiest computers are often the ones no one thinks of as computers — the tractor controller, the grain sensor, the thermostat. Adversaries reach them with a small toolkit of malware and a short list of common weaknesses. Across three short windows in this lesson, your group will connect the CB device categories, malware types, and vulnerabilities to real life, debate which weakness is hardest to actually close, and decide how to rate the risk when the same flaw sits on very different devices.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The CED says any computer can be a server, and the same tractor controller is BOTH embedded and IoT. Why do we tend to classify devices by how they look (size, price) instead of by what they're for? What would it take to make 'classify by purpose' a habit?"
+          },
+          {
+            "text": "Question 2. A farm runs servers, laptops, phones, and a swarm of embedded/IoT sensors. Which category do you think is the most overlooked door for an adversary, and why? Defend your pick with one concrete farm example."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 4, ~8 min, right after the malware toolkit debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The behavior, not the name",
+            "text": "The exam gives you a behavior and asks for the malware name. In one sentence your whole group agrees on, state the single detail that separates a virus from a worm — and why that one detail decides it.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which weakness is hardest to close?",
+            "text": "Debate for about 3 minutes: of the seven CED weaknesses — unpatched software (C.1), weak authentication (C.2), missing BIOS/UEFI password (C.3), autorun (C.4), open ports (C.5), missing firewall (C.6), missing anti-malware (C.7) — which is hardest for a real organization to keep closed on every device, and what is the realistic cost of skipping it? Record your group's pick and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 6, ~9 min, after the risk-rating worked table",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'same flaw, different device' case",
+            "text": "An open telnet port 23 on an employee's laptop is rated LOW, but the CED says the same vulnerability can be HIGH on another device. Design the rating: name a farm device where an open port would be HIGH risk and explain why, then state what an analyst must document for each risk — and what they should NOT conclude from the vulnerability alone, without weighing the device's criticality.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (device + level + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

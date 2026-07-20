@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.16",
+    "title": "Simulations",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in the Trace the Rain Simulation and Audit for Bias exercises. Now build and run the same weather model for real, hardest last. Because RANDOM makes the raw output change every run, each problem grades a DETERMINISTIC property or summary of many trials — never a single random draw. Predict what will print before you run it."
+  },
+  "problems": [
+    {
+      "prompt": "Simulate ONE day of weather. Set chance to 40, roll a RANDOM number from 1 to 100, and make the day \"rain\" if the roll is 40 or less, otherwise \"shine\". The raw outcome changes each run, so instead print whether the outcome is a valid state: print \"valid\" if the day is \"rain\" or \"shine\".",
+      "promptHtml": "Simulate <strong>one day</strong> of weather. Set <code>chance</code> to 40, roll a <code>RANDOM</code> number from 1 to 100, and make the day <code>\"rain\"</code> if the roll is 40 or less, otherwise <code>\"shine\"</code>. The raw outcome changes each run, so instead print whether the outcome is a valid state: print <code>valid</code> if the day is <code>\"rain\"</code> or <code>\"shine\"</code>.",
+      "expected": "valid",
+      "starter": {
+        "python": "import random\n# chance of rain out of 100\nchance = 40\n# roll a random number from 1 to 100 (this is the variability)\nroll = random.randint(1, 100)\n# set sky to \"rain\" if roll <= chance, else \"shine\"\n\n# the model only ever produces two states -- print \"valid\" if sky is one of them\n",
+        "javascript": "// chance of rain out of 100\nlet chance = 40;\n// roll a random number from 1 to 100 (this is the variability)\nlet roll = Math.floor(Math.random() * 100) + 1;\n// set sky to \"rain\" if roll <= chance, else \"shine\"\n\n// the model only ever produces two states -- print \"valid\" if sky is one of them\n"
+      },
+      "reference": {
+        "pseudocode": "chance ← 40\nroll ← RANDOM(1, 100)\nIF(roll ≤ chance)\n{\n  sky ← \"rain\"\n}\nELSE\n{\n  sky ← \"shine\"\n}\nIF(sky = \"rain\" OR sky = \"shine\")\n{\n  DISPLAY(\"valid\")\n}",
+        "python": "import random\nchance = 40\nroll = random.randint(1, 100)\nif roll <= chance:\n    sky = \"rain\"\nelse:\n    sky = \"shine\"\nif sky == \"rain\" or sky == \"shine\":\n    print(\"valid\")\nelse:\n    print(\"error\")",
+        "javascript": "let chance = 40;\nlet roll = Math.floor(Math.random() * 100) + 1;\nlet sky;\nif (roll <= chance) {\n  sky = \"rain\";\n} else {\n  sky = \"shine\";\n}\nif (sky === \"rain\" || sky === \"shine\") {\n  console.log(\"valid\");\n} else {\n  console.log(\"error\");\n}"
+      },
+      "hint": "This is the abstraction from class: the whole sky collapses to two states. Build sky with an if/else, then a second if checks that sky is \"rain\" or \"shine\" — which is always true — so it prints valid no matter what RANDOM rolled."
+    },
+    {
+      "prompt": "Now run the model 1000 times. Loop 1000 days; each day roll RANDOM(1, 100) and count it as rainy if the roll is 40 or less. The rainy count changes every run, so DON'T print it. Instead count how many days you simulated and print that number (it should be 1000).",
+      "promptHtml": "Now run the model <strong>1000 times</strong>. Loop 1000 days; each day roll <code>RANDOM(1, 100)</code> and count it as rainy if the roll is 40 or less. The rainy count changes every run, so <strong>don't</strong> print it. Instead count how many days you simulated and print that number (it should be <code>1000</code>).",
+      "expected": "1000",
+      "starter": {
+        "python": "import random\ndays = 0\nrainy = 0\n# repeat 1000 times: add 1 to days; roll RANDOM(1,100); if roll <= 40 add 1 to rainy\n\n# rainy varies every run, so print the number of days you simulated instead\n",
+        "javascript": "let days = 0;\nlet rainy = 0;\n// repeat 1000 times: add 1 to days; roll RANDOM(1,100); if roll <= 40 add 1 to rainy\n\n// rainy varies every run, so print the number of days you simulated instead\n"
+      },
+      "reference": {
+        "pseudocode": "days ← 0\nrainy ← 0\nREPEAT 1000 TIMES\n{\n  days ← days + 1\n  IF(RANDOM(1, 100) ≤ 40)\n  {\n    rainy ← rainy + 1\n  }\n}\nDISPLAY(days)",
+        "python": "import random\ndays = 0\nrainy = 0\nfor i in range(1000):\n    days = days + 1\n    if random.randint(1, 100) <= 40:\n        rainy = rainy + 1\nprint(days)",
+        "javascript": "let days = 0;\nlet rainy = 0;\nfor (let i = 0; i < 1000; i = i + 1) {\n  days = days + 1;\n  if (Math.floor(Math.random() * 100) + 1 <= 40) {\n    rainy = rainy + 1;\n  }\n}\nconsole.log(days);"
+      },
+      "hint": "Add 1 to days on every pass of the loop, and add 1 to rainy only when the roll is 40 or less. The number of TRIALS (days) is deterministic — it is exactly 1000 — even though rainy is different each run."
+    },
+    {
+      "prompt": "Turn the run into an INFERENCE. Simulate 1000 days as before and count the rainy days. Compute the rainy fraction (rainy divided by 1000). This fraction wobbles near 0.40 each run, so instead print \"valid\" if the fraction is a legal probability between 0.0 and 1.0 inclusive.",
+      "promptHtml": "Turn the run into an <strong>inference</strong>. Simulate 1000 days and count the rainy days. Compute the rainy fraction (<code>rainy / 1000</code>). This fraction wobbles near <code>0.40</code> each run, so instead print <code>valid</code> if the fraction is a legal probability between 0.0 and 1.0 inclusive.",
+      "expected": "valid",
+      "starter": {
+        "python": "import random\nrainy = 0\n# loop 1000 days; if RANDOM(1,100) <= 40, add 1 to rainy\n\n# fraction = rainy / 1000  (this is the inference, and it varies)\n# print \"valid\" if 0.0 <= fraction <= 1.0, else \"error\"\n",
+        "javascript": "let rainy = 0;\n// loop 1000 days; if RANDOM(1,100) <= 40, add 1 to rainy\n\n// let fraction = rainy / 1000  (this is the inference, and it varies)\n// print \"valid\" if fraction is between 0.0 and 1.0, else \"error\"\n"
+      },
+      "reference": {
+        "pseudocode": "rainy ← 0\nREPEAT 1000 TIMES\n{\n  IF(RANDOM(1, 100) ≤ 40)\n  {\n    rainy ← rainy + 1\n  }\n}\nfraction ← rainy / 1000\nIF(fraction ≥ 0 AND fraction ≤ 1)\n{\n  DISPLAY(\"valid\")\n}",
+        "python": "import random\nrainy = 0\nfor i in range(1000):\n    if random.randint(1, 100) <= 40:\n        rainy = rainy + 1\nfraction = rainy / 1000\nif 0.0 <= fraction <= 1.0:\n    print(\"valid\")\nelse:\n    print(\"error\")",
+        "javascript": "let rainy = 0;\nfor (let i = 0; i < 1000; i = i + 1) {\n  if (Math.floor(Math.random() * 100) + 1 <= 40) {\n    rainy = rainy + 1;\n  }\n}\nlet fraction = rainy / 1000;\nif (fraction >= 0.0 && fraction <= 1.0) {\n  console.log(\"valid\");\n} else {\n  console.log(\"error\");\n}"
+      },
+      "hint": "The fraction rainy/1000 is the inference the model exists to produce, and it lands near 0.40 but never exactly. A count of rainy days can never be below 0 or above 1000, so the fraction is always between 0.0 and 1.0 — that property is what you grade on."
+    },
+    {
+      "prompt": "Write a procedure rainyDays(chance, days) from scratch. Inside it, loop days times; each day roll RANDOM(1, 100) and add to a rainy counter if the roll is <= chance, otherwise add to a shine counter. Every day must be counted exactly once, so rainy + shine must equal days. Return \"balanced\" if that invariant holds, else \"leak\". Then call rainyDays(40, 1000) and print the result.",
+      "promptHtml": "Write a procedure <code>rainyDays(chance, days)</code> from scratch. Inside it, loop <code>days</code> times; each day roll <code>RANDOM(1, 100)</code> and add to a <code>rainy</code> counter if the roll is <code>&le; chance</code>, otherwise add to a <code>shine</code> counter. Every day must be counted exactly once, so <code>rainy + shine</code> must equal <code>days</code>. Return <code>\"balanced\"</code> if that invariant holds, else <code>\"leak\"</code>. Then call <code>rainyDays(40, 1000)</code> and print the result.",
+      "expected": "balanced",
+      "starter": {
+        "python": "import random\n# define rainyDays(chance, days):\n#   count rainy and shine separately as you loop days times\n#   each day: roll RANDOM(1,100); if roll <= chance -> rainy else -> shine\n#   every day is exactly one state, so rainy + shine should equal days\n#   return \"balanced\" if rainy + shine == days, else \"leak\"\n\n# call rainyDays(40, 1000) and print the returned value\n",
+        "javascript": "// define rainyDays(chance, days):\n//   count rainy and shine separately as you loop days times\n//   each day: roll RANDOM(1,100); if roll <= chance -> rainy else -> shine\n//   every day is exactly one state, so rainy + shine should equal days\n//   return \"balanced\" if rainy + shine === days, else \"leak\"\n\n// call rainyDays(40, 1000) and print the returned value\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE rainyDays(chance, days)\n{\n  rainy ← 0\n  shine ← 0\n  REPEAT days TIMES\n  {\n    IF(RANDOM(1, 100) ≤ chance)\n    {\n      rainy ← rainy + 1\n    }\n    ELSE\n    {\n      shine ← shine + 1\n    }\n  }\n  IF(rainy + shine = days)\n  {\n    RETURN(\"balanced\")\n  }\n  RETURN(\"leak\")\n}\nDISPLAY(rainyDays(40, 1000))",
+        "python": "import random\ndef rainyDays(chance, days):\n    rainy = 0\n    shine = 0\n    for i in range(days):\n        if random.randint(1, 100) <= chance:\n            rainy = rainy + 1\n        else:\n            shine = shine + 1\n    if rainy + shine == days:\n        return \"balanced\"\n    return \"leak\"\nprint(rainyDays(40, 1000))",
+        "javascript": "function rainyDays(chance, days) {\n  let rainy = 0;\n  let shine = 0;\n  for (let i = 0; i < days; i = i + 1) {\n    if (Math.floor(Math.random() * 100) + 1 <= chance) {\n      rainy = rainy + 1;\n    } else {\n      shine = shine + 1;\n    }\n  }\n  if (rainy + shine === days) {\n    return \"balanced\";\n  }\n  return \"leak\";\n}\nconsole.log(rainyDays(40, 1000));"
+      },
+      "hint": "This is the abstraction as an invariant: because the model classifies every day as exactly one of two states, rainy + shine must equal days no matter what RANDOM rolls. If you forget the else and only count rainy, the totals won't add up and it prints \"leak\" — so \"balanced\" proves your two-state logic is correct."
+    }
+  ]
+}

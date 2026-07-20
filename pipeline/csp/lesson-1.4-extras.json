@@ -1,0 +1,292 @@
+{
+  "meta": {
+    "lessonId": "1.4",
+    "lessonTitle": "Identifying and Correcting Errors",
+    "unit": "Big Idea 1: Creative Development",
+    "days": 2,
+    "los": "LO CRD-2.I, CRD-2.J"
+  },
+  "map": {
+    "subtitle": "Big Idea 1: Creative Development   •   2 days   •   LO CRD-2.I, CRD-2.J",
+    "intro": "Everything for Topic 1.4 lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: Error Hunt — The Bug Report Log and Exercise 2: Boundary Patrol (student + answer KEY)",
+      "Discussion — Ship It Anyway? (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 8 questions across LO CRD-2.I and CRD-2.J, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Topic page",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-identifying-correcting-errors"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-identifying-correcting-errors-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-identifying-correcting-errors"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-identifying-correcting-errors"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi1-identifying-correcting-errors"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1: the four error types and the five ways to find and correct them; Day 2: testing with defined inputs at and just beyond the extremes, closing with Common AP Traps and the exit check).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Identifying and Correcting Errors'; the running examples across both days are the sabotaged pancake recipe (Day 1 bell ringer) and the 0–100 grade calculator (Day 1 teaser → Day 2 payoff). All materials refer to this one topic."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Error Hunt — The Bug Report Log",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-1-4-exercise-1",
+    "intro": "You are the triage lead at your school's student help desk. Five bug reports are waiting in the queue. For each report you will classify the error by its CED name — logic, syntax, run-time, or overflow — and prescribe the discovery method from the CED's five ways that would have caught it. Part A works the log; Part B extends the same skills. Everything maps to CB Learning Objectives CRD-2.I and CRD-2.J.",
+    "scenarioTitle": "Help Desk Queue: Five Bug Reports Under Triage",
+    "narrative": "The help desk inbox delivers five reports, each from a different student project. Your job is to triage every one before any 'fix' gets attempted. Read the log row by row, then answer Part A. Use the three-step method: anchor your first instinct, ask what execution looked like (never ran, died mid-run, number left its range, or ran fine and lied), then match the symptom to the tool that exposes it.",
+    "log": {
+      "columns": [
+        "ID",
+        "Program",
+        "Reported behavior",
+        "What the report includes",
+        "Detail worth noticing"
+      ],
+      "rows": [
+        [
+          "1",
+          "GradePro average tool",
+          "Averages print too high for every student; no error message has ever appeared",
+          "Output samples for six students, all wrong in the same direction",
+          "The formula reads 'avg <- (q1 + q2 + q3) / 2'"
+        ],
+        [
+          "2",
+          "Field-trip signup form",
+          "The program will not start; the language reports it cannot understand line 4",
+          "The exact message, with the line number",
+          "Line 4 reads 'IF permission THEN' with nothing after it"
+        ],
+        [
+          "3",
+          "Bill-splitter app",
+          "Worked every lunch period for weeks, then halted mid-run today",
+          "The crash happened when a user entered 0 diners",
+          "The formula reads 'each <- total / diners'"
+        ],
+        [
+          "4",
+          "Step-count badge",
+          "A student who walked all day saw the badge suddenly show 0",
+          "The badge's counter has a defined maximum value",
+          "The reset happened right as the count passed that maximum"
+        ],
+        [
+          "5",
+          "Quiz streak animation",
+          "The 'streak!' celebration sometimes fires after WRONG answers",
+          "No crash, ever; the streak number itself displays correctly",
+          "The animation check reads 'IF streak > 0' instead of testing the newest answer"
+        ]
+      ]
+    },
+    "scenarioNote": "Reports adapted from the Day 1 Name-That-Error worked table and the Day 1 bell ringer; all terms and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which one report describes an error that NO error message will ever announce, and what single phrase in its row tells you?",
+    "partALabel": "Part A - Triage Rulings on the Log",
+    "partA": [
+      {
+        "ek": "EK CRD-2.I.1 / EK CRD-2.I.2",
+        "pts": 4,
+        "q": "Reports 1 and 2: one of these programs never runs at all, and one runs perfectly every time. Classify BOTH errors by their CED names, and state the tell-tale sign in each row that gives the classification away.",
+        "answer": "Report 2 is a SYNTAX error: the rules of the programming language are not followed (EK CRD-2.I.2) — 'IF permission THEN' is an incomplete statement, so the language cannot understand it and the program never starts. The tell: 'the language reports it cannot understand line 4.' Report 1 is a LOGIC error: the program runs but behaves incorrectly or unexpectedly (EK CRD-2.I.1) — dividing three quizzes by 2 inflates every average. The tell: 'no error message has ever appeared' paired with consistently wrong output. Full credit requires both names AND both tells; naming the types without evidence earns half."
+      },
+      {
+        "ek": "EK CRD-2.I.3 / EK CRD-2.I.5",
+        "pts": 5,
+        "q": "Report 3 ran cleanly for weeks before halting today. Classify the error, explain why weeks of clean runs do NOT contradict your classification, and name the discovery method from the CED's five ways that would have exposed it before launch — including the exact input that method would use.",
+        "answer": "Report 3 is a RUN-TIME error: a mistake that occurs during the execution of a program (EK CRD-2.I.3) — 'each <- total / diners' is legal code, and division by zero is a run-time error the language defines. Weeks of clean runs prove only that diners was never 0 in those runs; a run-time error sleeps until execution meets the input it can't survive. The discovery method: a TEST CASE (EK CRD-2.I.5) with the defined input diners = 0 — an input at the extreme of the input data (0 diners is the minimum possible party), which is exactly where Day 2's testing rule says to look (EK CRD-2.J.2). Full credit names the type, resolves the 'it worked for weeks' paradox, and specifies the input 0."
+      },
+      {
+        "ek": "EK CRD-2.I.4",
+        "pts": 4,
+        "q": "Report 4: classify the error and explain what the counter's defined maximum has to do with it. Then draw the line: why is this NOT a logic error, even though the badge displayed a wrong number?",
+        "answer": "Report 4 is an OVERFLOW error: it occurs when a computer attempts to handle a number that is outside of the defined range of values (EK CRD-2.I.4) — the step total passed the largest value the counter's storage can represent. It is not a logic error because the algorithm was correct: add one step per step. Nothing about the DESIGN misbehaved; the VALUE outgrew the range the computer could handle, which is a different named failure on the CED taxonomy. (The fixed-bit machinery behind that range arrives in Topic 2.1, EK DAT-1.B.1 — for this LO, the taxonomy name is the answer.) Full credit requires the overflow classification plus the algorithm-vs-range distinction."
+      },
+      {
+        "ek": "EK CRD-2.I.1 / EK CRD-2.I.5",
+        "pts": 5,
+        "q": "Report 5: name the error type, then choose TWO of the CED's five ways that would pin down the guilty line, and justify why each tool fits this particular symptom.",
+        "answer": "Report 5 is a LOGIC error: the program runs and never crashes, but its behavior — celebrating wrong answers — is incorrect (EK CRD-2.I.1). Two strong tools from EK CRD-2.I.5: (1) HAND TRACING the answer-checking segment with a wrong answer while streak is positive — the trace shows 'IF streak > 0' firing the animation with no test of the newest answer; (2) a TEST CASE with defined input 'wrong answer, streak currently 3' and expected behavior 'no celebration' — the observed celebration fails the test and localizes the check. Extra output statements (printing the tested condition) or a debugger breakpoint on the IF line also earn credit. Any two of the five, each justified against the silent-wrong-behavior symptom, score full marks; naming tools without justification earns half."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK CRD-2.I.5",
+        "pts": 3,
+        "q": "Two situations: (a) a value goes wrong SOMEWHERE in a 40-line program, location unknown; (b) you suspect ONE specific formula line. Choose the better tool from the five ways for each situation, and explain the difference in one sentence each.",
+        "answer": "For (a), a DEBUGGER (or adding extra output statements) fits: stepping through the live run with the variables visible sweeps all 40 lines efficiently and shows the exact line where the value turns wrong (EK CRD-2.I.5). For (b), HAND TRACING fits: one suspect line traced on paper with real values is faster than any tooling and forces you to compute what the line actually does rather than what you assume it does. The difference in one line: broad, unknown territory calls for tools that watch the whole run; a narrow suspect calls for tracing it by hand. Reasonable alternate pairings earn credit if the justification matches the tool to the search space."
+      },
+      {
+        "ek": "EK CRD-2.J.1",
+        "pts": 3,
+        "q": "GradePro's formula gets fixed to divide by 3. Write ONE complete test case that confirms the fix — defined input, expected output — and state what the team must do if the test fails anyway (cite the CED's testing loop).",
+        "answer": "Test case: defined input q1 = 90, q2 = 80, q3 = 70; expected output avg = 80 (and the matching letter grade if the requirements assign one). Any input trio with a hand-computed expected average earns credit — the non-negotiable part is that BOTH halves appear, since testing uses defined inputs to ensure the program produces the expected outcomes (EK CRD-2.J.1). If the test fails anyway, the team uses the result to REVISE the algorithm or program and then re-tests — per EK CRD-2.J.1, test results exist to drive revision, not to be explained away."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Modern code editors underline illegal statements as you type, and 'fuzzers' hammer programs with millions of random inputs hunting for crashes. Map each tool onto the CED error type it catches best — then name the error type NEITHER can reliably catch, and explain what a human must supply to catch it.",
+        "answer": "Editor underlining catches SYNTAX errors (EK CRD-2.I.2) before the program ever runs — it is the language's rules, checked live. Fuzzing catches RUN-TIME errors (EK CRD-2.I.3), and sometimes overflow (EK CRD-2.I.4), by brute-forcing execution into situations the developer never tried. Neither reliably catches LOGIC errors (EK CRD-2.I.1): a fuzzer can see that a program crashed, but it cannot see that a clean answer is WRONG — that judgment requires an expected outcome, which comes from the program requirements (EK CRD-2.J.3). The human contribution is the standard of correctness: defined inputs paired with known expected outputs (EK CRD-2.J.1)."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Boundary Patrol",
+    "minutes": "25 minutes",
+    "subtitle": "4 patrols - LO CRD-2.J",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-1-4-exercise-2",
+    "intro": "You are the quality gatekeeper. Four programs claim they are ready to ship, each backed by a handful of passing tests. For each patrol: pull the extremes out of the requirements, build the test set at AND just beyond them, and state the expected outcome for every input. Advanced students also name the subtler second boundary each scenario hides. Vague 'try some numbers' plans score zero.",
+    "standard": "CB Standard (required): extremes named from the requirements + a test set at AND just beyond them + the expected outcome for every input, for all 4 patrols. Enrichment (optional): also name the subtler second boundary the scenario hides.",
+    "methodHeading": "Three-Step Method - use for every patrol",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Before analyzing, write the single input you would bet breaks the program. Anchoring your instinct first keeps the requirements reading honest — and every real test starts as a prediction anyway."
+      ],
+      [
+        "Step 2 - Pull the extremes from the requirements",
+        "The requirements define the minimum and maximum of the input data (EK CRD-2.J.3). Name both, and name WHAT is being measured (a value? a length? a count?). If the requirements don't define an extreme, say so — that gap is a finding, not a failure."
+      ],
+      [
+        "Step 3 - Test at AND just beyond",
+        "Build the set: the minimum, the maximum, and one step outside each — with the expected outcome written next to every input (EK CRD-2.J.1–J.2). An input without its expected outcome is not a test case."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (the hidden second boundary): strong patrols notice that most requirements hide more than one boundary — a length rule inside a value rule, a running total whose range the requirements never mention (an overflow error waiting to happen, EK CRD-2.I.4 — the fixed-bit mechanism arrives in Topic 2.1), or a count of zero items that turns a legal formula into a run-time error (EK CRD-2.I.3). Naming the hidden boundary, and what the requirements SHOULD say about it, is the mark of a tester who reads like a programmer.",
+    "fields": [
+      "Extremes named (the minimum and maximum the requirements define, and what is measured):",
+      "Test set + expected outcome for each input (at and just beyond the extremes):",
+      "Enrichment — the subtler second boundary this scenario hides:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A gradebook accepts quiz scores as whole numbers from 0 to 100 and prints a letter grade. The developer tested 85, 92, and 74 — all three produced correct grades — and wants to ship this afternoon.",
+        "key": {
+          "signs": "the requirements define the range explicitly — minimum 0, maximum 100, measured on the score value (EK CRD-2.J.3). The red flag is that all three passing tests are comfortable middle values: EK CRD-2.J.2 says defined inputs should demonstrate the different expected outcomes at or just beyond the extremes, and none of these three goes anywhere near an extreme.",
+          "mechanism": "test 0 and 100 (at the extremes — both are LEGAL scores and must produce correct grades) plus -1 and 101 (just beyond — expected outcome: rejected, never averaged). This set defends against the classic boundary slips: a comparison written 'score > 0' instead of 'score ≥ 0' fails only the 0 test, and a program that cheerfully grades 101 fails the just-beyond test even though it never crashes (EK CRD-2.J.1–J.2). Ship only after all four behave as the requirements say.",
+          "subtype": "the 'whole number' clause is a second boundary the star tests never touch — what should the program do with 89.5, or with 'ninety'? The requirements define a range but never a rejection behavior for non-integers; a complete patrol flags that gap and proposes the missing requirement rather than guessing (EK CRD-2.J.3)."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A review site lets users rate films from 1 to 5 stars, and the average rating shows on every film's page. The rating box is free-type — users can enter any number. The lead developer says the star range 'is obvious, so nobody will type anything else.'",
+        "key": {
+          "signs": "the extremes are 1 and 5, measured on the star value (EK CRD-2.J.3) — and the free-type box means every number is physically enterable, so 'nobody will type it' is a hope, not a defense. When a developer argues an input 'isn't real,' that is precisely the input EK CRD-2.J.2 orders you to test: expected outcomes just beyond the extremes.",
+          "mechanism": "test 1 and 5 (at the extremes — legal ratings that must store and average correctly) plus 0 and 6 (just beyond — expected outcome: rejected before touching the average). The defense matters doubly here: a single accepted 0 silently drags a film's average down forever — wrong behavior on a clean run, a logic error by fingerprint (EK CRD-2.I.1) — and only boundary test cases expose it, since typical ratings keep passing (EK CRD-2.J.1–J.2).",
+          "subtype": "the average itself hides a second extreme: a film with ZERO ratings. 'Sum of ratings divided by count of ratings' is legal code that becomes division by zero at the minimum of a DIFFERENT input — the count, not the stars — a run-time error (EK CRD-2.I.3). Patrols that only test star values never meet it; the fix is a defined expected behavior for the no-ratings case."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "A sign-up page requires passwords of 8 to 16 characters. The intern tested 'sunshine12' — ten characters, accepted, works — and marked the story done.",
+        "key": {
+          "signs": "the extremes are LENGTHS, not values: minimum 8 characters, maximum 16 (EK CRD-2.J.3). Naming what is measured is the whole game in this patrol — the boundary lives on a property OF the input, and the intern's single 10-character test sits squarely in the middle of it (the exact weak-test pattern EK CRD-2.J.2 exists to correct).",
+          "mechanism": "test passwords of exactly 8 and exactly 16 characters (at the extremes — both must be ACCEPTED) plus 7 and 17 characters (just beyond — expected outcome: rejected, with the length rule explained to the user). The defense: an off-by-one comparison like 'length > 8' silently locks out every legal 8-character password — no crash, no message, just users who can never register — and only the at-the-extreme test catches it (EK CRD-2.J.1–J.2).",
+          "subtype": "the hidden boundary is the definition of 'character' itself: do spaces count? Emoji? Accented letters that some systems store as two units? A 16-character emoji password may measure as 32 units in storage and be wrongly rejected. The requirements should define the counting rule; a patrol that asks that question has done EK CRD-2.J.3's real job — exposing a requirement that doesn't exist yet."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A wellness app logs nightly sleep in whole minutes, from 0 to 1440 (a full day). It stores each night AND a running lifetime total in the same size of numeric storage, and a school pilot will run it for a full semester. The developer tested 420 and 480 minutes — a good night's sleep either way — and both worked.",
+        "key": {
+          "signs": "the stated extremes are 0 and 1440, measured on the nightly minutes (EK CRD-2.J.3), and once again the passing tests are middle values (EK CRD-2.J.2). The scenario's real tell is the SECOND number: a lifetime running total that grows every single night, stored in the same fixed-size storage — a value whose maximum the requirements never define at all.",
+          "mechanism": "test 0 and 1440 (at the extremes — a sleepless night and a full day are both legal and must log correctly) plus -1 and 1441 (just beyond — expected outcome: rejected). Then test the total: a semester at roughly 480 minutes a night approaches 87,000 minutes, so feed the app a simulated long history as a defined input and verify the lifetime total still reads correctly — and use any failure to revise before the pilot, not during it (EK CRD-2.J.1).",
+          "subtype": "the running total is an overflow error waiting to happen: a number the computer must handle that can drift outside the defined range of values (EK CRD-2.I.4). The nightly value can never overflow — 1440 is tiny — but the ACCUMULATED value grows without bound, and the requirements never mention its ceiling. Topic 2.1 supplies the fixed-bit arithmetic; today's patrol job is naming the boundary the requirements forgot."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Ship It Anyway?",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "Every program you have ever used shipped with errors still in it — the team just decided which ones they could live with. A recipe can be broken three different ways, a grade calculator can pass every test its author imagined and fail the first real student, and somewhere tonight a team is voting on whether a known bug is worth delaying a launch. Across three short windows in this topic, your group will decide how errors should be hunted, who should do the hunting, and what a team owes its users before it clicks ship.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Look back at the sabotaged recipe. Which of the three broken steps could you catch just by READING the recipe, and which could you only catch by actually COOKING it? What does that split suggest about when different kinds of program errors get discovered?"
+          },
+          {
+            "text": "Question 2. Think of a real glitch you've personally hit — an app crash, a wrong score, a bus time that lied, a game counter doing something absurd. Retell it in today's vocabulary as best you can: did it stop, or did it lie? Which error type do you suspect, and which of the four do you think users hit most often without ever knowing?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the extremes comparison",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The tester's oath",
+            "text": "In one sentence your whole group agrees on, state the rule for what makes an input WORTH testing. Test your sentence against these three: score 60 on a 0–100 quiz scale; score 0; score 101. If your rule keeps 60 and drops the other two, rewrite it until it does the opposite.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Who tests the code?",
+            "text": "Debate for about 3 minutes: should the programmer who WROTE the code be the one who chooses its test inputs, or should someone who never saw the code choose them? Record your group's position and the strongest cost of the side you chose (what the author knows that a stranger doesn't — or what the author can no longer see).",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~9 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The ship-it meeting",
+            "text": "A studio's game launches tomorrow. Testing at and just beyond every extreme in the requirements passed clean — but one tester found a crash that takes three precise steps almost no player would ever perform. Delaying costs real money; shipping means some player, somewhere, will eventually hit it. Build your group's ruling: what did the passing boundary tests actually prove, what can testing never prove, and what does the studio owe the players it ships this to — a delay, a warning, a fast patch, or nothing?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (ship or delay + the one-sentence principle behind it):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

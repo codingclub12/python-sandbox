@@ -1,0 +1,353 @@
+{
+  "meta": {
+    "lessonId": "4.1",
+    "lessonTitle": "The Internet",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 4: Computer Systems and Networks",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO CSN-1.C, CSN-1.D",
+    "anchor": "The Internet",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 4 · Topic 4.1 · Day 2 of 2",
+      "title": "Your Video Arrives in Pieces",
+      "subtitle": "Data streams, packets, and the metadata that reassembles them — plus the exam's favorite trick: the Web is NOT the Internet",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of The Internet. Yesterday built the network itself: devices, paths, routing, bandwidth, and the open-protocol design that lets interconnected networks act as one. Today we ride along with the data. Last night's video really did arrive as thousands of separate pieces, shuffled in transit, and today has the vocabulary to explain why that's not just tolerable but brilliant: streams, chunks, packets, and metadata. Then we end with the distinction the AP exam loves to test — the World Wide Web and the Internet are two different things."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain how data are sent through the Internet via packets: streams split into chunks, chunks encapsulated in packets, and metadata used for routing AND reassembly (LO CSN-1.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Describe the differences between the Internet and the World Wide Web (LO CSN-1.D)"
+        }
+      ],
+      "script": "Two targets today. First, CSN-1.C: how data actually travels — a data stream broken into chunks, each chunk encapsulated in a packet, each packet carrying metadata that does two jobs: routing it to the destination and reassembling the data once it's there. That includes the fact exam writers adore: packets may arrive in order, out of order, or not at all — and all three are normal. Second, CSN-1.D: the Internet versus the World Wide Web, which are different things in a layered relationship, and confusing them is one of the most reliable distractors on the exam."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser: the 3-minute video you streamed last night arrived as thousands of separate pieces. They may have shown up out of order — a few may not have shown up at all. It played smoothly anyway.",
+      "subprompt": "Write 3–5 sentences: what would YOU attach to every piece so the receiver could rebuild the whole — and notice pieces that never arrived?",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own — this is yesterday's teaser coming due. Thousands of pieces, shuffled, some missing, smooth playback anyway: design the labeling system that makes it possible. Most students will invent an address so each piece finds the right device, a sequence number so pieces can be put back in order, and some way to notice and re-request a missing piece. Keep those answers visible — every one of those inventions has an official CED name today: the labels are metadata, the pieces are packets, and noticing the gap is exactly what reassembly metadata is for. Students who just invented sequence numbers have independently re-derived the core of TCP, and they should get to enjoy that fact in a few minutes."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Packets and Protocols",
+          "description": "Streams → chunks → packets, metadata's two jobs, the three arrival fates, and IP/TCP/UDP (EK CSN-1.C.1–C.4)."
+        },
+        {
+          "title": "The Internet vs. the World Wide Web",
+          "description": "Linked pages, programs, and files; HTTP; and why the Web USES the Internet (EK CSN-1.D.1–D.3)."
+        },
+        {
+          "title": "Deep Dive: One Click, Two Layers",
+          "description": "What actually happens between clicking a link and seeing the page — HTTP riding on TCP/IP.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 4.1 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two green, CB-required — packets and protocols, then the Internet-versus-Web distinction. The third is the blue deep-dive: one click, two layers, which traces a single link click down through HTTP, TCP, and IP. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 4.1 Guided Notes page at apcsexamprep.com for anyone absent or missing pages."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Packets: Data in Pieces",
+      "kicker": "How Data Travels · Learning Objective CSN-1.C",
+      "script": "Section one. Yesterday ended with a mystery: your video arrives as thousands of shuffled pieces and plays smoothly anyway. This section names every part of that mystery — the stream, the chunks, the packets, and the metadata that both steers each piece and puts the puzzle back together. By the end, out-of-order delivery will look like what it is: the design working exactly as intended."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CSN-1.C)",
+      "terms": [
+        {
+          "term": "Data stream",
+          "definition": "The flow of information passed through the Internet; data streams contain chunks of data, which are encapsulated in packets (EK CSN-1.C.1)."
+        },
+        {
+          "term": "Packet",
+          "definition": "The unit of data sent across the Internet: one chunk of the data stream wrapped together with metadata (EK CSN-1.C.1–C.2)."
+        },
+        {
+          "term": "Metadata",
+          "definition": "The labeling data attached to each packet's chunk — used for routing the packet between origin and destination, AND for data reassembly at the destination (EK CSN-1.C.2)."
+        }
+      ],
+      "script": "Three terms, one pipeline. Information travels the Internet as a data stream — think of the whole video as a river of bits. The stream is broken into chunks, and each chunk gets encapsulated in a packet: the chunk plus its labels. Those labels are metadata — data about the data — and the CED is precise about their two jobs: routing the packet from origin to destination, and reassembling the data once everything arrives. Notice this is the same word 'metadata' from Big Idea 2: data describing data. On a packet, the description is essentially an address and a sequence number — which is exactly what most of the class invented in the bell ringer."
+    },
+    {
+      "type": "concept",
+      "heading": "From Stream to Packets",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Information passes through the Internet as a DATA STREAM; the stream is broken into chunks of data (EK CSN-1.C.1).",
+        "Each chunk is encapsulated in a PACKET — chunk + metadata (EK CSN-1.C.1–C.2).",
+        "The metadata has two jobs: ROUTING the packet from origin to destination, and REASSEMBLING the data at the destination (EK CSN-1.C.2).",
+        "Packets travel independently — routing is dynamic, so they may take different paths (EK CSN-1.B.5) — and they may arrive in order, out of order, or not at all (EK CSN-1.C.3). All three outcomes…"
+      ],
+      "script": "Here's the whole mechanism on one slide. A message of any size becomes a data stream; the stream is split into chunks; each chunk is sealed inside a packet with its metadata. Because yesterday's routing is dynamic, each packet finds its own way — two packets from the same video can cross the planet on different routes. That freedom has a price the CED states bluntly: packets may arrive in order, out of order, or not at all. And here's the key mental shift — that's not a bug list, it's the accepted cost of a design that lets every packet route around congestion and failures. The metadata is what makes the price payable: sequence information turns a shuffled pile of packets back into your video.",
+      "capture": [
+        {
+          "q": "Each chunk of a data stream travels wrapped in ______.",
+          "a": "its own envelope of data plus metadata — the unit the Internet actually ships"
+        },
+        {
+          "q": "Metadata does two jobs: steering the packet, and ______.",
+          "a": "letting the receiver rebuild the original order at the far end"
+        },
+        {
+          "q": "Packets may arrive at the destination in order, out of order, or ______.",
+          "a": "not at all — and the system is designed to handle all three outcomes"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Five Packets, Three Fates",
+      "context": "A phone sends a photo as five packets, each stamped with sequence-number metadata. Track each packet and fill in what the receiver does.",
+      "columns": [
+        "Packet",
+        "What happens in transit",
+        "What the receiver does"
+      ],
+      "rows": [
+        [
+          "#1 arrives first",
+          "Took the shortest route",
+          "Places it in position 1 — in order"
+        ],
+        [
+          "#3 arrives second",
+          "Its route was quicker than #2's",
+          "Holds it in position 3 — the sequence metadata says two pieces belong before it"
+        ],
+        [
+          "#2 arrives third",
+          "Detoured around a busy link",
+          "Places it in position 2 — out of order is NORMAL; sequence metadata restores the order"
+        ],
+        [
+          "#4 never arrives",
+          "Dropped along the way",
+          "Sees the gap in the sequence numbers; with a protocol like TCP, the missing piece is re-sent"
+        ],
+        [
+          "#5 arrives last",
+          "Ordinary trip",
+          "Places it in position 5 — once every position is filled, the photo is reassembled"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Five packets, and among them all three fates the CED names. Packet 1: in order, easy. Packet 3 arrives second — early, because its route was faster — so the receiver parks it in position 3; the sequence metadata says two pieces belong ahead of it. Packet 2 wanders in third, out of order, and nothing is wrong: the metadata slots it into position 2. Packet 4 is the interesting one — it never arrives, and the receiver KNOWS, because the sequence numbers show a gap; with a protocol like TCP the missing piece gets re-sent. Packet 5 completes the set, every position fills, and the photo reassembles perfectly. The diagnosis skill to build here: given any arrival story, name the fate — in order, out of order, or not at all — and say what the metadata does about it.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "concept",
+      "heading": "Three Protocol Names to Recognize: IP, TCP, UDP",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A protocol is an agreed-upon set of rules that specify the behavior of a system (EK CSN-1.B.3) — yesterday's word, now doing today's work.",
+        "IP, TCP, and UDP are common protocols used on the Internet (EK CSN-1.C.4).",
+        "Working picture: IP addresses and routes every packet toward its destination; TCP numbers the chunks, confirms arrival, and gets missing packets re-sent; UDP skips the confirmations for speed — a…",
+        "For the exam: recognize all three as common Internet protocols. The deep mechanics stay out of scope."
+      ],
+      "script": "The rules that run the packet machinery have names, and the CED expects you to recognize three: IP, TCP, and UDP — all protocols, meaning agreed-upon rules that specify a system's behavior. A working picture, one sentence each: IP is the addressing-and-routing layer that moves every packet toward its destination. TCP is the careful one — it numbers the chunks, confirms what arrived, and arranges re-sends for anything missing, which is why the photo in our table came out perfect. UDP is the fast one — no confirmations, no waiting — which is why live calls and games accept a lost packet as a brief glitch rather than pausing the world. The exam asks for recognition, not engineering: IP, TCP, UDP, common protocols of the Internet.",
+      "capture": [
+        {
+          "q": "IP, TCP, and UDP are common ______ used on the Internet.",
+          "a": "protocols (agreed-upon sets of rules that specify the behavior of a system)"
+        },
+        {
+          "q": "Of the three protocol names, the one that confirms delivery and re-requests missing pieces is ______.",
+          "a": "the transmission-control one — the middle letter pair of the classic trio"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Packets and Protocols",
+      "subheading": "These map to LO CSN-1.C. Complete on your Guided Notes.",
+      "prompts": [
+        "A friend sees 'packets received out of order' in a game's network stats and concludes the network is broken. In two sentences, explain why nothing is wrong — and name the TWO jobs packet metadata performs.",
+        "During a live video call, the picture freezes for a moment and then jumps ahead rather than replaying what you missed. Which packet fate occurred, and why might a live call choose to skip instead of wait?",
+        "Trace a text message's journey from your phone to a friend's phone using all three terms correctly: data stream, chunk, packet."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.1 page.",
+      "script": "Stop and think — six minutes, complete sentences. One: out-of-order arrival is one of the three normal fates the CED lists, and metadata's two jobs — routing and reassembly — mean the receiver reorders everything anyway; the stats screen is describing routine behavior. Two: the frozen-then-jump call is 'not at all' — packets were lost — and a live call skips rather than waits because a re-sent moment would arrive after the conversation has moved on; that's the UDP-style trade. Three: the text message becomes a data stream, the stream is split into chunks, each chunk rides inside a packet, and metadata reassembles them on the friend's phone. Precision with these three terms is what CSN-1.C questions grade."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Internet vs. the World Wide Web",
+      "kicker": "Two Different Things · Learning Objective CSN-1.D",
+      "script": "Section two, and it's short, sharp, and worth real points: the Internet and the World Wide Web are not the same thing. One is the packet-moving infrastructure we've spent two days building; the other is a system of linked pages, programs, and files that rides on top of it. The College Board wrote an entire learning objective about telling them apart — which tells you exactly how often students don't."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CSN-1.D)",
+      "terms": [
+        {
+          "term": "World Wide Web",
+          "definition": "A system of linked pages, programs, and files (EK CSN-1.D.1). The Web is the linked content — not the wires, routers, and packets that carry it."
+        },
+        {
+          "term": "HTTP",
+          "definition": "HyperText Transfer Protocol — a protocol used by the World Wide Web to request and deliver its linked pages (EK CSN-1.D.2)."
+        }
+      ],
+      "script": "Two terms that finish the topic. The World Wide Web is a system of linked pages, programs, and files — note what's absent from that definition: no wires, no routers, no packets. The Web is content connected by links, and it is a thing you can define without mentioning hardware at all. HTTP — HyperText Transfer Protocol — is a protocol used by the World Wide Web: the agreed-upon rules a browser and a server follow to request and deliver pages. Connect it backward: protocol was yesterday's word, an agreed-upon set of rules specifying a system's behavior — HTTP is simply that idea applied to the Web's system of linked pages."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Internet vs. the World Wide Web",
+      "subheading": "One is the road system; the other is one service traveling on it (EK CSN-1.D.1–D.3).",
+      "left": {
+        "title": "The Internet",
+        "definition": "A network of interconnected networks using standardized, open protocols",
+        "ek": "EK CSN-1.B.1",
+        "examples": [
+          "The infrastructure: devices, connections, packets, and protocols like IP, TCP, UDP",
+          "Carries MANY services — email, online games, video calls, app data — and the Web is just one of them",
+          "Existed first: the Internet's ancestors ran in the 1970s–80s; the Web arrived in 1991"
+        ]
+      },
+      "right": {
+        "title": "The World Wide Web",
+        "definition": "A system of linked pages, programs, and files",
+        "ek": "EK CSN-1.D.1",
+        "examples": [
+          "Speaks HTTP — a protocol of the WEB, not of the whole Internet (EK CSN-1.D.2)",
+          "USES the Internet: it is one service running on top of the infrastructure (EK CSN-1.D.3)",
+          "No browser, no pages, no links? Then it's the Internet at work — not the Web"
+        ]
+      },
+      "footer": "AP TIP: Wires, routers, packets, IP/TCP/UDP → the Internet. Linked pages, browsers, HTTP → the Web. The Web uses the Internet — never the reverse.",
+      "script": "The exam distinction, side by side. Left column: the Internet — interconnected networks, open protocols, packets, IP, TCP, UDP. It's the road system, and it carries every kind of traffic: email, game sessions, video calls, smart-home chatter, and, among them, the Web. Right column: the World Wide Web — a system of linked pages, programs, and files, speaking HTTP. The relationship is one directional word: the Web USES the Internet. It's a service riding on the infrastructure, the way a delivery company uses roads without being the roads. Two quick sanity checks for any exam item: if the sentence involves wires, routers, or packets, it's about the Internet; if it involves linked pages, browsers, or HTTP, it's about the Web. And history agrees: the Internet's ancestors were running in the 1970s, while the Web didn't exist until 1991.",
+      "capture": [
+        {
+          "q": "Strip away the browser chrome and the Web is just ______.",
+          "a": "documents and programs that point to each other by link"
+        },
+        {
+          "q": "HTTP belongs to which layer of the stack? ______",
+          "a": "the Web layer — it fetches pages, riding on the Internet beneath"
+        },
+        {
+          "q": "The relationship in one word: the Web ______ the Internet.",
+          "a": "USES — it is one service running on top of the Internet's infrastructure"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The Internet and the Web Are the Same Thing”",
+      "misconception": "'Internet' and 'Web' are interchangeable — browsing websites IS the Internet, so the two words name one thing.",
+      "whyItHappens": "Browsers are how most people meet the Internet, and everyday speech blurs the words constantly — 'surf the web,' 'find it on the internet,' used for the same act. Even news broadcasts swap the terms freely.",
+      "correction": "Different layers: the Internet is the network of interconnected networks (EK CSN-1.B.1); the World Wide Web is a system of linked pages, programs, and files that USES the Internet (EK CSN-1.D.1, D.3). HTTP is the Web's protocol (EK CSN-1.D.2). One carries; the other is cargo.",
+      "example": "A multiplayer game session, a smart thermostat reporting temperatures, and an email app all use the Internet with no web pages involved. If the Web vanished tonight, the Internet — and all three of those — would keep running.",
+      "script": "The final misconception, and the CED considers it important enough to deserve its own learning objective. Because browsers are most people's window onto the Internet, the words blur — but they name different layers. The Internet moves packets between interconnected networks; the Web is linked pages, programs, and files riding on top via HTTP. The test that makes it stick: list things that use the Internet but not the Web — a game session, a thermostat, an email app, a video call. If the Web vanished tonight, all of them keep working, because the road system doesn't care that one delivery company closed. Students should be able to state the relationship in one direction only: the Web uses the Internet."
+    },
+    {
+      "type": "concept",
+      "heading": "Deep Dive: One Click, Two Layers",
+      "track": "enrichment",
+      "bullets": [
+        "Click a link and the WEB layer speaks first: your browser composes an HTTP request — 'GET this page' — addressed to a server.",
+        "Then the INTERNET layer takes over: TCP splits the request (and later the returning page) into chunks, and IP addresses and routes each packet hop by hop.",
+        "The page you see is reassembled from packets exactly like today's five-packet photo — the Web never touches a wire; it rides the Internet's machinery.",
+        "That layering is why the CED insists the Web USES the Internet: each layer does one job and trusts the layer below."
+      ],
+      "script": "A deep dive that puts the whole two days into a single click. When a link is clicked, the Web layer acts first: the browser writes an HTTP request for the page. Then everything from this morning kicks in — TCP chunks the request and the returning page, IP stamps and routes each packet, routers forward them hop by hop, and the sequence metadata reassembles the page at your machine, exactly like the five-packet photo. Notice what the Web layer never does: it never touches a router or moves a packet. It writes requests and trusts the layer below — and that division of labor is the precise technical meaning behind the CED's sentence 'the World Wide Web uses the Internet.'",
+      "capture": [
+        {
+          "q": "In one click, the Web-layer request protocol that fires first is ______.",
+          "a": "the hypertext transfer protocol, before the Internet layer carries it"
+        },
+        {
+          "q": "The Web never moves packets itself — instead it ______.",
+          "a": "uses the Internet layer (TCP/IP) beneath it to carry its requests and pages"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Internet vs. Web",
+      "subheading": "These map to LO CSN-1.D. Complete on your Guided Notes.",
+      "prompts": [
+        "Write ONE sentence that uses 'the Internet' and 'the World Wide Web' correctly together — the word 'uses' must appear.",
+        "Classify each as 'the Web' or 'the Internet without the Web': a blog, a smart doorbell streaming video to a phone app, an online game's live match.",
+        "HTTP is 'a protocol used by the World Wide Web.' Using yesterday's definition of protocol, explain what HTTP must therefore consist of."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.1 page.",
+      "script": "Last stop and think of the topic — five minutes. One: the target sentence is some form of 'the World Wide Web is a system of linked pages, programs, and files that uses the Internet' — the direction of 'uses' is what's being graded. Two: the blog is the Web — linked pages over HTTP; the doorbell and the game match are the Internet without the Web — packets flowing with no pages or links involved. Three: since a protocol is an agreed-upon set of rules specifying a system's behavior, HTTP must consist of the agreed rules browsers and servers follow to request and deliver linked pages. Answers are reviewed as a class before the traps slide."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 4.1 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Internet ≠ World Wide Web",
+          "text": "The Internet moves data between networks; the Web is linked pages/programs/files riding on it (EK CSN-1.D.1-D.3). 'Same thing' options are always wrong."
+        },
+        {
+          "name": "Out of order is NORMAL",
+          "text": "Packets may arrive in order, out of order, or not at all — that's the design, not a failure (EK CSN-1.C.3). Metadata handles reassembly."
+        },
+        {
+          "name": "Bandwidth is a max rate",
+          "text": "The MAXIMUM amount of data in a FIXED time, measured in bits per second (EK CSN-1.A.7-A.8) — not total data, not speed of one packet."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: the Internet and the Web — different things, layered relationship, and the sentence to memorize is 'the Web uses the Internet.' Sort any item by its nouns: packets and routers mean Internet, pages and HTTP mean Web. Trap two: out-of-order packets are normal — the CED lists in order, out of order, and not at all as the three expected fates, and metadata handles the cleanup; distractors that cry malfunction are wrong. Trap three: bandwidth is a maximum — data per fixed time, in bits per second — never a promise, and exam arithmetic loves the fact that a byte is eight bits. Dodge these three and Topic 4.1 is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "The Internet, in One Slide",
+      "points": [
+        "Device → system → network: a computer network is interconnected devices that send or receive data — and it is a type of computing system (EK CSN-1.A.1–A.4).",
+        "A path is a sequence of directly connected devices from sender to receiver; routing finds one; bandwidth caps data per fixed time, in bits per second (EK CSN-1.A.5–A.8).",
+        "The Internet = interconnected networks + standardized OPEN protocols + dynamic routing + scalability by design (EK CSN-1.B.1–B.7).",
+        "Data streams → chunks → packets; metadata routes AND reassembles; arrival may be in order, out of order, or not at all; IP, TCP, and UDP are the protocol names to know (EK CSN-1.C.1–C.4).",
+        "The World Wide Web is a system of linked pages, programs, and files speaking HTTP — one service that USES the Internet (EK CSN-1.D.1–D.3)."
+      ],
+      "next": "Topic 4.",
+      "script": "The whole topic in one slide. The vocabulary ladder: devices form systems, and a network is a type of system. Paths are sequences of directly connected devices; routing finds them; bandwidth caps the flow in bits per second. The Internet is interconnected networks on open protocols — dynamically routed, scalable by design, no center. Data crosses it as streams chopped into chunks riding in packets, with metadata doing double duty for routing and reassembly, under protocols named IP, TCP, and UDP. And the Web — linked pages, programs, and files over HTTP — is a service that uses the Internet, not a synonym for it. Next class is Topic 4.2, Fault Tolerance: what happens when links die, and why the answer is 'surprisingly little.' Before packing up, run the exit check — four 'I can' statements; any unchecked box is tonight's review target on the Topic 4.1 page. Guided Notes are collected at the end of class.",
+      "ican": [
+        "classify devices, systems, and networks — and trace a valid path (LO CSN-1.A)",
+        "explain what makes the Internet open, scalable, and dynamic (LO CSN-1.B)",
+        "explain packets: chunks + metadata for routing and reassembly (LO CSN-1.C)",
+        "tell the Internet from the World Wide Web on any exam item (LO CSN-1.D)"
+      ]
+    }
+  ]
+}

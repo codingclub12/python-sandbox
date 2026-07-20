@@ -1,0 +1,571 @@
+{
+  "meta": {
+    "lessonId": "3.15",
+    "lessonTitle": "Random Values",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO AAP-3.E",
+    "anchor": "Random Values",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.15 · Day 1 of 1",
+      "title": "Rolling the Dice",
+      "subtitle": "How RANDOM(a, b) generates a random integer between two bounds, why you can name every possible result but never predict the next one, and how programmers test random code without knowing what it will print",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.15, Random Values. Up to now every program you have traced was fully predictable — same input, same output, every time. Today we add controlled unpredictability with one procedure from the exam reference sheet: RANDOM(a, b). It generates a random integer between two bounds you choose. There is a beautiful tension in it: you get to decide the complete SET of values that could come out, but you can never decide which one actually appears on a given run. By the end of today you will be able to write RANDOM expressions, list every possible result of one, and — the part that trips people up — explain why testing random code means checking a property of the answer rather than the answer itself."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write RANDOM(a, b) expressions to generate a random integer across a chosen range, knowing both bounds are inclusive and every value is equally likely (LO AAP-3.E)"
+        },
+        {
+          "tag": "CB",
+          "text": "Evaluate a RANDOM expression to list its complete set of possible results and explain why each execution may produce a different value (LO AAP-3.E)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-3.E, generating random values — and notice this LO has two parts. Part a is to WRITE expressions that generate possible values: you will build RANDOM(a, b) calls for a chosen range. Part b is to EVALUATE those expressions to determine the possible results: given a RANDOM call, you list every value it could return and reason about how the outputs behave across runs. Both parts show up on the exam, so we hit both today."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A mystery-reward machine picks its prize by generating a number from 1 to 3: 1 = coins, 2 = a gem, 3 = a key. With a partner, 'run' the machine six times using any fair method (roll a die and re-roll on 4–6, or each secretly pick 1, 2, or 3 and reveal). Record the six prizes in order.",
+      "subprompt": "Write 2–4 sentences: Before you ran it, could you have predicted the EXACT six-prize sequence? Could you have predicted the complete list of prizes that were even POSSIBLE? What is the difference between those two questions?",
+      "directions": "Be ready to share the list of possible prizes and whether the exact order was predictable.",
+      "script": "Five minutes with a partner. Run the mystery machine six times and write down the sequence of prizes. Then wrestle with the two questions, because they are the whole lesson in disguise. Could you have predicted the exact sequence beforehand? No — that is the essence of random: each run may differ. Could you have predicted the complete list of prizes that were possible? Absolutely — coins, gem, key, the three outcomes of picking a number from one to three. That split is exactly the two parts of today's objective: you can always determine the SET of possible results, and you can never determine WHICH result comes next. Hold onto that. And notice the machine is literally RANDOM(1, 3), the exact example the College Board prints in the standards."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Writing RANDOM Expressions",
+          "description": "RANDOM(a, b) returns a random integer from a to b inclusive, with each result equally likely (EK AAP-3.E.1)."
+        },
+        {
+          "title": "The Set of Possible Results",
+          "description": "Listing every value a RANDOM call can return, counting them, and why each run may differ (EK AAP-3.E.1–E.2)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.15 Guided Notes page at apcsexamprep.com — where the write-and-run coding practice for this topic also lives.",
+      "script": "Here is the map for today's Guided Notes — two sections, both green and CB-required. First, writing RANDOM expressions: the syntax, the inclusive bounds, and the equal-likelihood rule. Second, the set of possible results: how to list every value a RANDOM call could return, how to count them, and why two runs of the same line can disagree. Keep the packet open and fill it in as we go; a digital copy and the interactive coding practice both live on the Topic 3.15 page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Writing RANDOM Expressions",
+      "kicker": "Generate a Value · Learning Objective AAP-3.E",
+      "script": "Section one, and it maps to part a of the objective: writing expressions that generate random values. Your bell-ringer machine chose from three prizes. Now we meet the tool that does that in code — RANDOM — and we get precise about exactly what it produces."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-3.E)",
+      "terms": [
+        {
+          "term": "Random value",
+          "definition": "A value produced by chance rather than set directly in code, so a program may behave differently each time it runs (EK AAP-3.E.2)."
+        },
+        {
+          "term": "RANDOM(a, b)",
+          "definition": "The reference-sheet procedure that generates and returns a random integer from a to b, inclusive, with each result equally likely to occur (EK AAP-3.E.1)."
+        },
+        {
+          "term": "Inclusive",
+          "definition": "Both endpoints count as possible results — RANDOM(a, b) can return a, b, or any integer between them (EK AAP-3.E.1)."
+        },
+        {
+          "term": "Equally likely",
+          "definition": "Every value in the range has the same chance of being chosen; RANDOM favors no value over another (EK AAP-3.E.1)."
+        },
+        {
+          "term": "Possible results",
+          "definition": "The full set of values a random expression could return — from a to b — which you can determine even though the exact result varies (EK AAP-3.E.1)."
+        }
+      ],
+      "script": "Five words carry this topic. A random value is one produced by chance, which is why a program using it can act differently each run. RANDOM of a comma b is the reference-sheet procedure that returns a random integer from a to b — memorize that wording. Inclusive is the word that trips students: both endpoints count, so RANDOM can return a itself, b itself, or anything between. Equally likely means no value is favored — the middle is not more common than the ends. And possible results is the whole set a RANDOM call could return, which — crucially — you can always figure out even though you cannot predict the single next value."
+    },
+    {
+      "type": "concept",
+      "heading": "RANDOM(a, b): a Random Integer, Inclusive",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "RANDOM(a, b) generates and returns a random INTEGER from a to b, inclusive — both endpoints can occur (EK AAP-3.E.1).",
+        "Every value in that range is EQUALLY LIKELY; RANDOM does not favor the middle or the ends (EK AAP-3.E.1).",
+        "The CED's own example: RANDOM(1, 3) could return 1, 2, or 3 — three outcomes, each just as likely (EK AAP-3.E.1).",
+        "a and b are the only things you control; the value that actually comes out is not something you can know in advance."
+      ],
+      "script": "The mental model for the whole topic. RANDOM(a, b) hands you a random whole number from a up to b, and both a and b are on the table as results — that is what inclusive means. Every value in the range has the same chance; RANDOM is not biased toward the middle the way two-dice totals are. The College Board prints one example word for word: RANDOM(1, 3) could return 1, 2, or 3, three equally likely outcomes. And here is the framing to keep: the two numbers you pass are the only thing you control. Once the range is set, which specific value appears is out of your hands until the program runs.",
+      "capture": [
+        {
+          "q": "In RANDOM(a, b), the values a and b are themselves ______.",
+          "a": "possible results — RANDOM can return the low bound, the high bound, or anything between"
+        },
+        {
+          "q": "RANDOM treats every value in its range as ______.",
+          "a": "having the same chance to be chosen, with no bias toward any value"
+        },
+        {
+          "q": "The programmer controls the range, but ______.",
+          "a": "cannot know which single value will actually come out until the program runs"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Random Values",
+      "heading": "Generate a Random Integer",
+      "caption": "RANDOM(1, 6) can return 1, 2, 3, 4, 5, or 6. The value changes every run — you cannot predict which.",
+      "pseudocode": "roll ← RANDOM(1, 6)\nDISPLAY(roll)",
+      "python": "import random\nroll = random.randint(1, 6)\nprint(roll)",
+      "script": "Your first random code, in two columns. On the left is the exam's pseudocode: roll gets RANDOM(1, 6), then DISPLAY roll. On the right is runnable Python — random.randint(1, 6) does the exact same job, and note randint in Python is also inclusive of both ends, which lines up perfectly with the reference sheet. Deliberately, there is no OUTPUT box on this slide, because there is no single output to show — run it now and you might see 4, run it again and see 1. That absence is the point: a RANDOM call has no fixed answer. Which leads straight to a problem we solve on the next code slide: if the output keeps changing, how do you ever TEST a program like this?"
+    },
+    {
+      "type": "two_column",
+      "heading": "What You Set vs. What You Get",
+      "subheading": "You choose the bounds, which fixes the set of possible results — but not which one actually comes out on a given run (EK AAP-3.E.1–E.2).",
+      "left": {
+        "title": "You control the bounds",
+        "definition": "The programmer picks a and b, which fixes the complete set of possible results",
+        "ek": "EK AAP-3.E.1",
+        "examples": [
+          "RANDOM(1, 6) → the possible results are 1, 2, 3, 4, 5, 6",
+          "Change the bounds and the whole set shifts: RANDOM(2, 7) → 2 through 7",
+          "The count of outcomes is always b − a + 1"
+        ]
+      },
+      "right": {
+        "title": "You can't control the outcome",
+        "definition": "Which value actually appears is unpredictable and may change on every run",
+        "ek": "EK AAP-3.E.2",
+        "examples": [
+          "Run RANDOM(1, 6) now and you might get 4; run it again, maybe 1",
+          "Each execution may produce a different result",
+          "You can name all the possibilities, never the next one"
+        ]
+      },
+      "footer": "AP TIP: On the exam, never answer 'RANDOM returns 4.' Answer with the SET — 'any of 1, 2, 3, 4, 5, or 6, each equally likely.'",
+      "script": "This slide splits the two parts of the objective. On the left, what you control: you choose a and b, and that instantly fixes the set of possible results and how many there are — b minus a plus one. Change either bound and the whole set slides: RANDOM(2, 7) gives two through seven, not one through six. On the right, what you do not control: which value actually comes out. Run the same line twice and you may get different numbers, because each execution may produce a different result — that is EK AAP-3.E.2 verbatim. The exam tip falls right out of this: a correct answer names the set of possibilities, never a single value.",
+      "capture": [
+        {
+          "q": "A programmer can always determine a RANDOM call's ______, but not which one occurs next.",
+          "a": "full set of possible results, running from the low bound to the high bound"
+        },
+        {
+          "q": "Running the exact same RANDOM expression twice may ______.",
+          "a": "give two different values, because each run is independent of the last"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Write the Expression",
+      "subheading": "These map to LO AAP-3.E (part a). Complete on your Guided Notes.",
+      "prompts": [
+        "Write a single RANDOM expression that could return any whole number from 1 to 6, and list all six values it could produce.",
+        "You need a random value that is either 0 or 1 (a coin flip stored as 0 or 1). Write the RANDOM call and explain why RANDOM(0, 1) — not RANDOM(0, 2) — is correct.",
+        "A game needs a random floor number from 10 to 20 inclusive. Write the expression and give the number of different floors it could choose."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.15 page.",
+      "script": "Stop and think — five minutes, on your Guided Notes. One: write RANDOM(1, 6) and list the six outcomes; this is part a in its simplest form. Two: the coin flip is RANDOM(0, 1); RANDOM(0, 2) is wrong because it would add a third outcome, 2, that a coin does not have — inclusive bounds mean 0, 1, AND 2. Three: floors 10 to 20 is RANDOM(10, 20), and the count is twenty minus ten plus one, which is eleven floors. Writing the call and counting the outcomes is exactly what part a asks."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Set of Possible Results",
+      "kicker": "Evaluate the Outcomes · Learning Objective AAP-3.E",
+      "script": "Section two, and it maps to part b: evaluating a RANDOM expression to determine its possible results. You can already write the calls. Now we get systematic about reading one and stating every value it could return — and about the fact that testing such code needs a different strategy than testing ordinary code."
+    },
+    {
+      "type": "concept",
+      "heading": "Every Value from a to b, and Each Run May Differ",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The possible results of RANDOM(a, b) are a, a+1, a+2, …, up to and including b (EK AAP-3.E.1).",
+        "The NUMBER of possible results is b − a + 1 — the plus one is because both ends are counted (EK AAP-3.E.1).",
+        "Using random number generation means each execution may produce a different result (EK AAP-3.E.2).",
+        "So you can state the whole set of outcomes with certainty, even though you can never state which single one will occur."
+      ],
+      "script": "Here is the systematic version of part b. To list the possible results of RANDOM(a, b), start at a and count up by ones to b, taking every integer along the way. To COUNT them, use b minus a plus one — and the plus one exists precisely because both endpoints are included. Then EK AAP-3.E.2: each execution may produce a different result, so across many runs you will see the values scattered through that set. Put the two ideas together and you get the signature of randomness on the exam — total certainty about the SET of outcomes, total uncertainty about the NEXT one.",
+      "capture": [
+        {
+          "q": "To list the possible results of RANDOM(a, b), you take ______.",
+          "a": "every integer starting at a and counting up by one through b"
+        },
+        {
+          "q": "The count of possible outcomes is b − a + 1, where the extra one exists because ______.",
+          "a": "both the low and high bounds are themselves counted as outcomes"
+        },
+        {
+          "q": "You can state the complete set of outcomes with certainty, yet ______.",
+          "a": "you can never state which single value a given run will produce"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Testing Randomness",
+      "heading": "You Can't Print the Number — Print a Property",
+      "caption": "The roll changes every run, but it is ALWAYS between 1 and 6, so \"in range\" prints every single time.",
+      "pseudocode": "roll ← RANDOM(1, 6)\nIF(roll ≥ 1 AND roll ≤ 6)\n{\n  DISPLAY(\"in range\")\n}",
+      "python": "import random\nroll = random.randint(1, 6)\nif 1 <= roll <= 6:\n    print(\"in range\")",
+      "output": "in range",
+      "script": "This is the trick that makes random code testable, and it is why the coding practice for this topic works the way it does. We cannot check the raw roll — it changes every run, so no fixed expected answer exists. Instead we check a PROPERTY of the roll that is ALWAYS true: the roll is between 1 and 6. That IF is true on every possible outcome, so the program prints 'in range' every single time. Now the output IS predictable — 'in range' — even though the roll is not. On the Topic 3.15 coding page, every graded problem uses this move: you print whether a result is in range, or how many outcomes are possible, never the random number itself. Run the raw-number version there and watch the grader have nothing stable to check."
+    },
+    {
+      "type": "worked_table",
+      "heading": "List the Possible Results",
+      "context": "For each RANDOM call, list every value it could return and count them. Remember: both bounds are included, so the count is b − a + 1.",
+      "columns": [
+        "RANDOM call",
+        "Possible results",
+        "How many"
+      ],
+      "rows": [
+        [
+          "RANDOM(1, 3)",
+          "1, 2, 3",
+          "3"
+        ],
+        [
+          "RANDOM(5, 8)",
+          "5, 6, 7, 8",
+          "4"
+        ],
+        [
+          "RANDOM(0, 1)",
+          "0, 1",
+          "2"
+        ],
+        [
+          "RANDOM(4, 4)",
+          "4",
+          "1"
+        ],
+        [
+          "RANDOM(2, 6)",
+          "2, 3, 4, 5, 6",
+          "5"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Let us build the counting reflex. RANDOM(1, 3): one, two, three — three outcomes, the CED's own example. RANDOM(5, 8): five, six, seven, eight — four outcomes, and notice eight minus five plus one is four. RANDOM(0, 1): just zero and one, two outcomes — this is the coin flip. RANDOM(4, 4): the bounds are equal, so the only possible result is four, a single outcome; that surprises students but it is perfectly legal. RANDOM(2, 6): two through six, five outcomes. Fill in the blanked cells yourself and check each against b minus a plus one.",
+      "blanks": [
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“RANDOM(1, 6) Tops Out at 5”",
+      "misconception": "RANDOM(1, 6) returns values from 1 up to 5 — the second number, 6, is an upper limit that is never actually reached.",
+      "whyItHappens": "Several real languages use half-open ranges (like list traversal that stops one before the end), so students assume the top bound of RANDOM is excluded too.",
+      "correction": "On the AP reference sheet RANDOM(a, b) is INCLUSIVE of BOTH ends: 6 is a genuine possible result, and the number of outcomes is b − a + 1 = 6, not 5 (EK AAP-3.E.1). The high bound is a value you can get, not a limit you stop before.",
+      "example": "RANDOM(1, 6) models a standard six-sided die, so it must be able to roll a 6 — a die that could never show 6 would be broken. The outcomes are 1, 2, 3, 4, 5, and 6: six of them, counted as 6 − 1 + 1.",
+      "script": "This is the number-one RANDOM error, and the exam uses it. Because so many language features stop one short of the end, students assume RANDOM(1, 6) tops out at 5. It does not. The reference sheet is explicit: RANDOM is inclusive of both ends, so 6 is a real outcome and the count is b minus a plus one — six, not five. The die picture makes it obvious: RANDOM(1, 6) is a standard die, and a die has to be able to roll a six. Whenever you see a RANDOM call, count with the plus-one and put the top bound in your list."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Determine the Possible Results",
+      "subheading": "These map to LO AAP-3.E (part b). Complete on your Guided Notes.",
+      "prompts": [
+        "List every possible result of RANDOM(3, 7) and state how many there are. Show the b − a + 1 count.",
+        "A program runs DISPLAY(RANDOM(1, 4)) and prints 2. A classmate says, 'so the program always prints 2.' Correct them using the idea that each execution may differ.",
+        "Two students run the exact same RANDOM(1, 100) line and get different numbers. Explain why this is expected behavior, not a bug.",
+        "In one sentence, give the rule for the number of possible outcomes of RANDOM(a, b), and say why the '+ 1' is there."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.15 page.",
+      "script": "Determine the possible results — six minutes, full sentences. One: RANDOM(3, 7) is three, four, five, six, seven — five outcomes, seven minus three plus one. Two: the classmate is wrong; printing 2 once shows 2 is ONE possible result, but each execution may differ, so the next run could print 1, 3, or 4. Three: two runs of RANDOM(1, 100) disagreeing is exactly what random means — independent executions producing different results, not a bug. Four: the count is b minus a plus one, and the plus one is there because both endpoints are included. These are the precise part-b moves the exam rewards."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.15 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Both bounds are included",
+          "text": "RANDOM(a, b) can return a AND b, so the number of possible results is b − a + 1. RANDOM(1, 6) can roll a 6, giving six outcomes — not five. Never treat the top number as 'one past the end.'"
+        },
+        {
+          "name": "Name the set, not the next value",
+          "text": "You can never say what a single RANDOM call 'will' return — only what it COULD return. If a run shows 2, that is one possibility, not a fixed answer; each execution may produce a different result."
+        },
+        {
+          "name": "The bounds set the whole range",
+          "text": "Shifting a or b shifts every possible outcome: RANDOM(2, 7) returns 2 through 7, not 1 through 6. Read both arguments carefully and re-list the outcomes whenever either bound changes."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: both bounds are included, so the count is b minus a plus one — RANDOM(1, 6) can roll a six; never stop one short. Trap two: name the set, not the next value — a single run showing 2 does not mean the program returns 2; it means 2 is one of the possibilities, and each execution may differ. Trap three: the two arguments define the whole range — RANDOM(2, 7) is two through seven, not one through six, so re-list the outcomes the instant a bound changes. Dodge these three and every random-values question on the exam is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Random Values, in One Slide",
+      "points": [
+        "RANDOM(a, b) returns a random integer from a to b, INCLUSIVE, and every value is equally likely (EK AAP-3.E.1).",
+        "The possible results run from a to b, so there are b − a + 1 outcomes; RANDOM(1, 3) can return 1, 2, or 3 (EK AAP-3.E.1).",
+        "Each execution may produce a different result — you can predict the set of possibilities, never the next value (EK AAP-3.E.2).",
+        "Because the output varies, tested random programs check a PROPERTY (is the result in range?) instead of the raw number, so the expected result stays predictable."
+      ],
+      "next": "Topic 3.16, Simulations: RANDOM becomes the engine that mimics real-world variability — rolling dice, modeling weather, or running a game thousands of times to see what patterns emerge.",
+      "script": "The whole topic in one slide. RANDOM(a, b) returns a random integer from a to b, inclusive, with every value equally likely. The possible results run from a to b, so there are b minus a plus one of them — RANDOM(1, 3) can return one, two, or three. Each execution may produce a different result, which is why you can name the set of possibilities but never the next value. And because the output varies, a program you want to TEST checks a property of the result — is it in range — instead of printing the raw number, so the expected output stays fixed. Next up is Topic 3.16, Simulations, where RANDOM becomes the engine that models real-world variability. Before you pack up, run the exit check — any box you cannot honestly tick tells you what to review on the Topic 3.15 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "write a RANDOM(a, b) expression to generate a random integer across a chosen inclusive range (LO AAP-3.E)",
+        "list the complete set of possible results of a RANDOM expression and count them as b − a + 1 (LO AAP-3.E)",
+        "explain why each execution of a random program may produce a different result (LO AAP-3.E)",
+        "explain why a tested random program checks a property of the result rather than the exact value (LO AAP-3.E)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.15 — Random Values — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "Which of the following best describes what RANDOM(1, 6) returns?",
+        "options": [
+          "A random integer equally likely to be 1, 2, 3, 4, 5, or 6",
+          "A random decimal somewhere between 1 and 6",
+          "The number 6 every time, since 6 is the upper bound",
+          "A random integer from 1 to 5, since the upper bound is excluded"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.E.1",
+        "rationale": "RANDOM(a, b) returns an integer from a to b inclusive, each equally likely, so A is correct. B returns a decimal. C fixes the result. D excludes the upper bound, which reference-sheet RANDOM includes."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "A spinner app uses RANDOM(2, 5) to pick a slice. Which statement correctly describes the possible results?",
+        "options": [
+          "Only 2, 3, and 4, since the top bound 5 is excluded",
+          "Only 2 and 5, the two bounds",
+          "2, 3, 4, and 5, four equally likely outcomes",
+          "1, 2, 3, 4, and 5, starting from 1"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.E.1",
+        "rationale": "Both bounds are included, so the results are 2, 3, 4, and 5; C is correct. A drops the upper bound. B keeps only the endpoints. D adds 1, which is below the lower bound."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "A die-roll program should have exactly six equally likely outcomes. How many possible results does RANDOM(1, 6) produce, and why?",
+        "options": [
+          "Five, because you subtract the bounds, 6 minus 1",
+          "Six, because inclusive bounds make the count b minus a plus 1",
+          "Six, but only because a die has six sides, not because of the bounds",
+          "Seven, both endpoints plus every value between them"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.E.1",
+        "rationale": "Inclusive bounds give b − a + 1 = 6 − 1 + 1 = 6 outcomes, so B is correct. A forgets the +1 for inclusive endpoints. C credits the die instead of the range. D double-counts the endpoints."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A student runs a program with DISPLAY(RANDOM(1, 100)) on Monday and sees 42, then runs the identical program Tuesday and sees 7. What best explains this?",
+        "options": [
+          "The program has a bug; identical code must always produce identical output",
+          "The second run was affected by the first; RANDOM remembers previous values",
+          "The value 42 was cached and 7 is an error code",
+          "This is expected; random generation may produce a different result each run"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.E.2",
+        "rationale": "Random generation can yield a different value each execution, so D is correct. A assumes determinism that RANDOM breaks. B invents memory between runs. C misreads a normal random value as an error."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Evaluate the complete set of possible results of RANDOM(4, 4).",
+        "options": [
+          "The values 0, 1, 2, 3, and 4",
+          "Any of the values 1, 2, 3, or 4",
+          "Exactly one value, 4, since the equal bounds leave only 4",
+          "An error, since equal bounds a and b are not allowed"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-3.E.1",
+        "rationale": "When both bounds are 4, the only integer from 4 to 4 inclusive is 4, so C is correct. A and B include values below the lower bound. D is false; equal bounds are allowed and simply give one result."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A programmer wants a random integer that could be any value from 1 to 6 but wrote RANDOM(1, 5). What is wrong, and how should it be fixed?",
+        "options": [
+          "The call can never return 6; change it to RANDOM(1, 6) so all six values are possible",
+          "Nothing is wrong; RANDOM(1, 5) already includes 6 through its inclusive bounds",
+          "It should be RANDOM(1, 7), to leave room above an excluded top bound",
+          "It should be RANDOM(0, 6), so the range starts at 0"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-3.E.1",
+        "rationale": "RANDOM(1, 5) tops out at 5, so it can never return 6; RANDOM(1, 6) fixes it and A is correct. B misreads the upper bound. C assumes an excluded endpoint that does not apply. D shifts the range downward incorrectly."
+      },
+      {
+        "id": "Q7",
+        "kind": "recall",
+        "stem": "Which statement best describes how likely each outcome of RANDOM(1, 4) is?",
+        "options": [
+          "1 is the most likely, as the first-listed value",
+          "The middle values 2 and 3 are more likely than 1 and 4",
+          "It cannot be determined without running the program many times",
+          "All four values are equally likely, each with the same chance"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-3.E.1",
+        "rationale": "RANDOM produces a uniform distribution, so every value is equally likely; D is correct. A and B invent a bias toward certain positions. C is wrong; the equal likelihood is known from the definition, not measured."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "An auto-grader must check a program that uses RANDOM(1, 6), but its raw output changes every run. Which approach lets the grader compare against a single fixed expected result?",
+        "options": [
+          "Require the program to always print 3, the middle value of the range",
+          "Grade a property instead, checking that the result is within 1 to 6, which is always true",
+          "Run the program only once and accept whatever number appears",
+          "It is impossible to grade any program that uses RANDOM"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-3.E.2",
+        "rationale": "Testing a property that holds for every random value gives a stable check, so B is correct. A defeats the purpose of randomness. C is unreliable across runs. D is too pessimistic; property-based checks work fine."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.15 — Random Values — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.15 · 1 class period + assessment block",
+    "overview": [
+      "Topic 3.15 introduces controlled randomness with one procedure from the exam reference sheet: RANDOM(a, b). It is a single-day topic covering both parts of LO AAP-3.E. Part a (write expressions to generate possible values) is the mechanical skill — building RANDOM(a, b) calls for a chosen inclusive range. Part b (evaluate expressions to determine the possible results) is the reasoning skill — listing every value a call could return, counting them as b − a + 1, and recognizing that each execution may produce a different result.",
+      "The organizing tension is 'the set vs. the next value': a programmer fully controls the SET of possible outcomes (by choosing a and b) but cannot control or predict WHICH outcome appears on a given run. This directly generates the two most common exam errors — treating the top bound as excluded, and trying to name a single value a RANDOM call 'will' return instead of the set it 'could' return.",
+      "Because random output varies, the topic also teaches how random code is TESTED: a graded program must print a deterministic PROPERTY of the result (is it in range? how many outcomes are possible?) rather than the raw random number. This is the through-line into the interactive coding practice on the Topic 3.15 page, where every graded problem has a fixed expected output even though a RANDOM call is running underneath. All code on slides uses the AP Exam Reference Sheet pseudocode (RANDOM(a, b), ← assignment, DISPLAY) beside runnable Python."
+    ],
+    "los": [
+      "LO AAP-3.E — For generating random values: a. Write expressions to generate possible values. b. Evaluate expressions to determine the possible results."
+    ],
+    "eks": [
+      "EK AAP-3.E.1 — The exam reference sheet provides RANDOM(a, b), which generates and returns a random integer from a to b, inclusive. Each result is equally likely to occur. For example, RANDOM(1, 3) could return 1, 2, or 3.",
+      "EK AAP-3.E.2 — Using random number generation in a program means each execution may produce a different result."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1.",
+      "Printed Topic 3.15 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.15 page for the interactive coding practice (in class or assigned).",
+      "Optional: a physical six-sided die (or several) for the inclusive-bounds and equal-likelihood demonstrations."
+    ],
+    "prereqs": [
+      "Students need variables and assignment (Topic 3.1), procedure calls and return values (Topic 3.12), and comfort reading an IF condition (Topic 3.6), since the property-check demonstration uses IF(roll ≥ 1 AND roll ≤ 6). RANDOM(a, b) is itself a library-style procedure that returns a value, so Topic 3.14 (libraries) is helpful but not required. No probability background beyond 'equally likely' is assumed."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Writing RANDOM expressions and evaluating their possible results; why tested random code checks a property (LO AAP-3.E, parts a and b)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.15/Q1) + bell ringer (the mystery-reward machine, RANDOM(1, 3))",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Writing RANDOM expressions: vocab, the inclusive/equally-likely concept, first code_block, set vs. outcome (EK AAP-3.E.1)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on writing expressions (part a)",
+            "min": 5,
+            "slides": "10"
+          },
+          {
+            "segment": "The set of possible results: counting b − a + 1, the property-check code_block, list-the-results table, the inclusive-bound trap (EK AAP-3.E.1–E.2)",
+            "min": 14,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on determining possible results (part b)",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.15 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.15 page — where students type and run the property-checked random programs — can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.15 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“The top bound is excluded”",
+        "myth": "RANDOM(1, 6) returns 1 through 5; the second number is a limit the call stops before reaching.",
+        "reality": "RANDOM(a, b) is inclusive of BOTH ends (EK AAP-3.E.1), so 6 is a real outcome and the count is b − a + 1 = 6, not 5. The reflex comes from half-open ranges elsewhere; anchor it with a die, which must be able to roll a 6."
+      },
+      {
+        "heading": "“RANDOM returns one predictable value”",
+        "myth": "If a run of DISPLAY(RANDOM(1, 4)) shows 2, then the program 'returns 2.'",
+        "reality": "Each execution may produce a different result (EK AAP-3.E.2). A single observed value is one member of the set of possible results, not a fixed answer. Correct exam responses name the whole set — 'any of 1, 2, 3, or 4' — never a single value."
+      },
+      {
+        "heading": "“Middle values are more likely”",
+        "myth": "In RANDOM(1, 6), values near the middle come up more often than the ends.",
+        "reality": "Every result is equally likely (EK AAP-3.E.1). The 'middle is more common' intuition comes from summing TWO dice, where 7 is likeliest; a single RANDOM call has no such bias. Each outcome shares exactly the same chance."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a physical die: have them roll it, confirm 6 can appear, and build the list 1–6 by hand so 'inclusive' and 'six outcomes' become concrete before the b − a + 1 formula.",
+        "Provide a fill-in table (RANDOM call | list the results | count) for several calls, so students practice the count as b − a + 1 rather than memorizing it abstractly."
+      ],
+      "extension": [
+        "Ask students to design a RANDOM call whose outcomes are the even numbers 2, 4, 6, 8 — and discover that RANDOM alone gives every integer in a range, so producing only evens needs arithmetic (e.g., 2 × RANDOM(1, 4)); this previews Topic 3.16.",
+        "On the Topic 3.15 coding page, have students write a loop that generates many RANDOM values and prints whether ALL of them fell in range, then explain why that property is always true and why it is the right thing to grade."
+      ]
+    },
+    "discussion": [
+      "Your mystery-reward machine could not tell you the exact next prize, yet you could name every prize that was possible. Where else in real life do we reason confidently about the set of outcomes while accepting we cannot predict the individual one?",
+      "RANDOM(1, 6) can roll a 6, but many programming tools stop one before the end. Why do you think the AP reference sheet chose INCLUSIVE bounds, and how would forgetting that change a dice game or a lottery program?",
+      "To grade a program that prints a random number, we check a property (is it in range?) instead of the number itself. What does that reveal about how you would test any program whose output is not fully predictable?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

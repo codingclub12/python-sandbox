@@ -1,0 +1,359 @@
+{
+  "meta": {
+    "lessonId": "3.9",
+    "lessonTitle": "Developing Algorithms",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-2.M",
+    "anchor": "Developing Algorithms",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.9 · Day 2 of 2",
+      "title": "Building New from Old",
+      "subtitle": "Create algorithms from an idea, and combine or modify the standard building blocks — max/min, sum/average, divisibility via MOD, and a robot's path through a maze — to solve new problems faster and with fewer bugs",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Developing Algorithms. Yesterday we compared algorithms; today we build them. The big idea from the College Board is that you rarely start from nothing — you create from an idea, or you combine and modify algorithms you already trust. We work through the standard building blocks the CED names for your game: the maximum and minimum of numbers, the sum and average, checking divisibility with MOD, and a robot walking a maze. Then we combine and modify those blocks into new algorithms, and we name exactly why reuse pays off — less development time, less testing, and easier debugging."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Create an algorithm from an idea, using the standard building blocks — max/min, sum/average, divisibility via MOD, and a robot's maze path (LO AAP-2.M)"
+        },
+        {
+          "tag": "CB",
+          "text": "Combine and modify existing algorithms to solve a new problem, and explain how reusing correct building blocks reduces development time, testing, and errors (LO AAP-2.M)"
+        }
+      ],
+      "script": "Two targets today, both from AAP-2.M, and notice it has two parts. Part a: create an algorithm from an idea, drawing on the building blocks you already know — finding a max or min, computing a sum or average, testing divisibility with MOD, and steering a robot through a maze. Part b: combine and modify existing algorithms to build something new, and explain the payoff — reusing correct blocks cuts development time, cuts testing, and makes errors easier to find. Create, combine, modify: those three verbs are the whole objective."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Here is a correct algorithm that finds the larger of two scores: IF(a > b) { result ← a } ELSE { result ← b }. Do NOT rewrite it from scratch. Change as little as possible to make it find the SMALLER score instead.",
+      "subprompt": "Write 1–3 sentences: What is the single change you made, and why did modifying the working algorithm beat starting over? What did you get to keep — the structure, the variable names, the tested shape?",
+      "directions": "Be ready to show the one character you changed.",
+      "script": "Three minutes, on your own. You already have a correct find-the-larger algorithm. Resist the urge to start over — change as little as you can to make it find the smaller value. Almost everyone lands on the same move: flip the greater-than to a less-than, one character. That is EK AAP-2.M.1 in miniature: a new algorithm created by modifying an existing one. You kept the structure, the names, and the tested shape, and you only had to re-check the one thing you touched. That is exactly why building from existing algorithms beats reinventing them, which is today's whole theme."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "The Building Blocks You Already Know",
+          "description": "Max/min, sum/average, divisibility via MOD, and a robot's path through a maze (EK AAP-2.M.2)."
+        },
+        {
+          "title": "Create, Combine, and Modify",
+          "description": "Making new algorithms from an idea, by combining, or by modifying — and why reuse pays off (EK AAP-2.M.1, M.3)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.9 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's map: two sections, both green and CB-required. First, the standard building blocks the CED expects you to know — max and min, sum and average, divisibility with MOD, and the robot maze path. Second, the three ways to make a new algorithm — from an idea, by combining, by modifying — plus the concrete benefits of reusing correct code. Keep the packet open; every building block also appears on the Topic 3.9 coding page, where you type, run, combine, and modify them for real."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Building Blocks You Already Know",
+      "kicker": "Existing Algorithms as Tools · Learning Objective AAP-2.M",
+      "script": "Section one. The College Board names a specific short list of algorithms every CSP student is expected to know cold, because they show up again and again as pieces of bigger programs. We walk through each one in the Level Up game, then use them as raw material in section two."
+    },
+    {
+      "type": "concept",
+      "heading": "Knowing Existing Algorithms Helps You Build New Ones",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Knowledge of existing algorithms can help in constructing new ones (EK AAP-2.M.2).",
+        "The CED's building blocks: MAX or MIN of two or more numbers; SUM or AVERAGE of two or more numbers.",
+        "Also: is an integer EVENLY DIVISIBLE by another (test with MOD); and determining a ROBOT'S PATH through a maze (EK AAP-2.M.2).",
+        "You are not expected to invent these — you are expected to recognize and reuse them."
+      ],
+      "script": "The core idea of section one, straight from EK AAP-2.M.2: knowing existing algorithms helps you construct new ones. The College Board names four you must have at your fingertips. One: the maximum or minimum of two or more numbers. Two: the sum or average of two or more numbers. Three: whether one integer is evenly divisible by another — which you test with MOD. Four: determining a robot's path through a maze. These are not things you should have to invent under time pressure on the exam; they are vocabulary. Recognize each one, know its shape, and reuse it. We will build all four right now.",
+      "capture": [
+        {
+          "q": "EK AAP-2.M.2 says that knowledge of existing algorithms can help in ______.",
+          "a": "constructing new ones"
+        },
+        {
+          "q": "The four building blocks the CED names are max/min, sum/average, ______.",
+          "a": "testing even divisibility of one integer by another, and determining a robot's path through a maze"
+        },
+        {
+          "q": "You test whether one integer is evenly divisible by another using ______.",
+          "a": "the MOD operator — n MOD d = 0 means d divides n evenly"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Building Block · Max & Min",
+      "heading": "Largest and Smallest of Two Numbers",
+      "caption": "The same compare, flipped: > gives the max, < gives the min. With a=88, b=95 the max is 95 and the min is 88.",
+      "pseudocode": "a ← 88\nb ← 95\nIF(a > b) { largest ← a } ELSE { largest ← b }\nIF(a < b) { smallest ← a } ELSE { smallest ← b }\nDISPLAY(largest)\nDISPLAY(smallest)",
+      "python": "a = 88\nb = 95\nlargest = a if a > b else b\nsmallest = a if a < b else b\nprint(largest)\nprint(smallest)",
+      "output": "95 88",
+      "script": "Building block one: max and min of two numbers. The structure is identical — a comparison and an else — and the only difference between them is the operator. Greater-than gives the largest; less-than gives the smallest. With eighty-eight and ninety-five, largest is ninety-five, smallest is eighty-eight. Notice how tiny the modification is between the two: this is the same one-character change from the bell ringer. To extend to more than two numbers you chain the same compare against a running largest, which is exactly what you will do on the coding page."
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Building Block · Sum & Average",
+      "heading": "Total and Average of the Scores",
+      "caption": "Sum first, then divide by how many. Average = 270 / 3 = 90.",
+      "pseudocode": "a ← 80\nb ← 90\nc ← 100\nsum ← a + b + c\naverage ← sum / 3\nDISPLAY(average)",
+      "python": "a = 80\nb = 90\nc = 100\ntotal = a + b + c\naverage = total / 3\nprint(average)",
+      "output": "90",
+      "script": "Building block two: sum and average. Add the values to get the total, then divide by how many there are. Three playtester scores — eighty, ninety, a hundred — sum to two hundred seventy, and dividing by three gives an average of ninety. The average building block literally contains the sum building block inside it: you cannot compute an average without first computing a sum. That nesting is your first glimpse of combining algorithms, which is the whole point of section two. Note Python prints ninety-point-zero because division yields a decimal — the value is the same ninety."
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Building Block · Divisibility (MOD)",
+      "heading": "Does a Coin Appear on This Tile?",
+      "caption": "A coin sits on every 3rd tile. tile MOD 3 = 0 means 3 divides the tile number evenly.",
+      "pseudocode": "tile ← 12\nIF(tile MOD 3 = 0)\n{ DISPLAY(\"coin\") }\nELSE\n{ DISPLAY(\"no coin\") }",
+      "python": "tile = 12\nif tile % 3 == 0:\n    print(\"coin\")\nelse:\n    print(\"no coin\")",
+      "output": "coin",
+      "script": "Building block three: testing divisibility with MOD. In the game a coin appears on every third tile, so we ask whether three divides the tile number evenly. The test is tile MOD three equals zero — MOD gives the remainder, and a remainder of zero means it divides exactly. Tile twelve: twelve MOD three is zero, so a coin appears. This same block checks 'is this number even' with MOD two equals zero, or 'is it a multiple of ten' with MOD ten equals zero. Any 'is X evenly divisible by Y' question is this one building block with different numbers."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace the Robot's Path Through the Maze",
+      "context": "The hero starts at (1,1) facing East (Right). Run the commands in order and fill in the facing and position AFTER each command. On this grid, moving East increases the column; a right turn from East faces South (row increases when moving).",
+      "columns": [
+        "Step",
+        "Command",
+        "Facing after",
+        "Position after (row, col)"
+      ],
+      "rows": [
+        [
+          "start",
+          "—",
+          "East",
+          "(1, 1)"
+        ],
+        [
+          "1",
+          "MOVE_FORWARD()",
+          "East",
+          "(1, 2)"
+        ],
+        [
+          "2",
+          "MOVE_FORWARD()",
+          "East",
+          "(1, 3)"
+        ],
+        [
+          "3",
+          "ROTATE_RIGHT()",
+          "South",
+          "(1, 3)"
+        ],
+        [
+          "4",
+          "MOVE_FORWARD()",
+          "South",
+          "(2, 3)"
+        ]
+      ],
+      "highlightCol": 3,
+      "script": "Building block four: determining a robot's path through a maze. The hero starts at row one, column one, facing East — to the right. We trace the commands the way the reference sheet defines them. Move forward once: still facing East, now at column two. Move forward again: column three. Rotate right: the robot turns in place, so position is unchanged but it now faces South. Move forward: facing South, so the row increases to two — the robot is at row two, column three. The key discipline is that ROTATE changes only facing, and MOVE_FORWARD changes only position, in the direction currently faced. Fill in the blanks by applying exactly those two rules.",
+      "blanks": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — The Building Blocks",
+      "subheading": "These map to LO AAP-2.M. Complete on your Guided Notes.",
+      "prompts": [
+        "Write the divisibility test that displays 'even' when a number n is even and 'odd' otherwise. Which building block did you reuse, and what did you change?",
+        "The average building block 'contains' the sum building block. Explain what that means, and why computing an average is really two algorithms working together.",
+        "The robot is at (2,3) facing South and executes ROTATE_LEFT() then MOVE_FORWARD(). Give its new facing and position, stating the rule for each command."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.9 page.",
+      "script": "Stop and think, six minutes, full sentences. One: the even/odd test reuses the divisibility block with divisor two — n MOD two equals zero prints even, else odd. Two: average contains sum because you must total the values before dividing, so average is the sum algorithm plus a division step — two algorithms cooperating. Three: from row two column three facing South, rotate left turns the robot to face East, then move forward increases the column to four, giving row two column four. Name the rule each command follows. These are exactly the AAP-2.M building-block moves the exam expects."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Create, Combine, and Modify",
+      "kicker": "Making New Algorithms · Learning Objective AAP-2.M",
+      "script": "Section two. Now we use those blocks as raw material. The College Board says a new algorithm can come from three places: a fresh idea, a combination of existing algorithms, or a modification of one. We do all three, and we name the concrete payoff of building this way instead of starting from scratch every time."
+    },
+    {
+      "type": "concept",
+      "heading": "Three Ways to Make an Algorithm",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Algorithms can be created from an IDEA — starting from the problem and writing new steps (EK AAP-2.M.1).",
+        "Algorithms can be created by COMBINING existing algorithms — using two or more blocks together (EK AAP-2.M.1).",
+        "Algorithms can be created by MODIFYING an existing algorithm — changing a working one to do a new job (EK AAP-2.M.1).",
+        "Most real programs use all three, and combining/modifying usually beats reinventing."
+      ],
+      "script": "Here are the three sources of a new algorithm, from EK AAP-2.M.1. First, from an idea: you start at the problem and write fresh steps — sometimes there is no block to reuse. Second, by combining: you snap two or more existing algorithms together, like feeding a sum into a division to get an average, or checking divisibility inside a loop. Third, by modifying: you take a working algorithm and change it to do a related job, like flipping find-max into find-min. Real programs use all three constantly, and the last two — combine and modify — are usually faster and safer than building from nothing, which is precisely part b of today's objective.",
+      "capture": [
+        {
+          "q": "The three ways to create an algorithm (EK AAP-2.M.1) are from an idea, by ______.",
+          "a": "combining existing algorithms, or by modifying an existing algorithm"
+        },
+        {
+          "q": "Flipping a working find-max into find-min is an example of creating an algorithm by ______.",
+          "a": "modifying an existing algorithm"
+        },
+        {
+          "q": "Feeding a computed sum into a division to get an average is an example of ______.",
+          "a": "combining existing algorithms"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Combine",
+      "heading": "Combine Blocks: Average, Then Pass/Fail",
+      "caption": "The average building block feeds a comparison block: compute the average, then decide pass or fail.",
+      "pseudocode": "s1 ← 80\ns2 ← 90\ns3 ← 100\navg ← (s1 + s2 + s3) / 3\nIF(avg ≥ 60) { DISPLAY(\"pass\") }\nELSE { DISPLAY(\"fail\") }",
+      "python": "s1, s2, s3 = 80, 90, 100\navg = (s1 + s2 + s3) / 3\nif avg >= 60:\n    print(\"pass\")\nelse:\n    print(\"fail\")",
+      "output": "pass",
+      "script": "Combining, live. We take two building blocks you already trust — the sum/average block and a comparison block — and snap them together. First compute the average of the three scores, ninety. Then feed that average into a compare against the passing threshold of sixty: ninety is at least sixty, so it displays pass. Neither block is new; the new algorithm is the combination. This is EK AAP-2.M.1's 'combining existing algorithms,' and because each piece was already correct, the only thing you must test carefully is the seam where they join — did you pass the right value along?"
+    },
+    {
+      "type": "two_column",
+      "heading": "Modify Blocks: From Max to Min",
+      "subheading": "Modifying reuses a correct algorithm's whole structure and changes only what must change (EK AAP-2.M.1).",
+      "left": {
+        "title": "Original: find the MAX",
+        "definition": "A tested algorithm for the larger of two",
+        "ek": "EK AAP-2.M.1",
+        "examples": [
+          "IF(a > b) { result ← a }",
+          "ELSE { result ← b }",
+          "Correct and already tested"
+        ]
+      },
+      "right": {
+        "title": "Modified: find the MIN",
+        "definition": "The same structure, one operator changed",
+        "ek": "EK AAP-2.M.1",
+        "examples": [
+          "IF(a < b) { result ← a }",
+          "ELSE { result ← b }",
+          "Only > became < — re-test just that"
+        ]
+      },
+      "footer": "AP TIP: Modifying keeps the structure and names, so you only re-check what you touched — far less than rewriting from scratch.",
+      "script": "Modifying, side by side. On the left, the correct find-max block. On the right, find-min — the exact same structure, same variable names, same else, with a single operator flipped from greater-than to less-than. That is the entire modification. Because you kept everything else, the only thing that could have broken is the one character you changed, so your testing shrinks to that. Compare that with rewriting the whole thing from scratch, where any line could be wrong. Modifying a correct algorithm is faster and safer, which flows directly into why reuse is worth it — the next slide.",
+      "capture": [
+        {
+          "q": "To modify find-max into find-min you change only ______.",
+          "a": "the comparison operator from > to < — the structure and names stay the same"
+        },
+        {
+          "q": "Modifying a correct algorithm shrinks your testing because ______.",
+          "a": "only the part you changed can have broken, not the whole algorithm"
+        }
+      ]
+    },
+    {
+      "type": "concept",
+      "heading": "Why Build from Existing Blocks",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Using existing CORRECT algorithms as building blocks reduces DEVELOPMENT TIME (EK AAP-2.M.3).",
+        "It reduces TESTING — a block that already works does not need to be re-proven from zero (EK AAP-2.M.3).",
+        "It SIMPLIFIES FINDING ERRORS — a bug is likelier in the new seam than in the trusted block (EK AAP-2.M.3).",
+        "Caution: the benefits assume the reused block is correct AND is used correctly in the new context."
+      ],
+      "script": "Here is the payoff, EK AAP-2.M.3, and it is exam-quotable. Reusing existing correct algorithms as building blocks reduces development time — you are not writing the piece again. It reduces testing — a block that already works does not have to be re-proven from scratch. And it simplifies finding errors — when something breaks, you look first at the new connections you made, not at the trusted block. One honest caution the exam sometimes probes: these benefits assume the block really is correct and that you used it correctly in the new setting. Combining two good blocks the wrong way still produces a bug — so you always test the combination.",
+      "capture": [
+        {
+          "q": "The three benefits of reusing correct building blocks (EK AAP-2.M.3) are reducing development time, reducing testing, and ______.",
+          "a": "simplifying the identification of errors"
+        },
+        {
+          "q": "Errors in a program built from trusted blocks are most likely to be found ______.",
+          "a": "in the new seams where blocks are combined, not inside the already-correct blocks"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Reusing Tested Blocks Means No Testing Needed”",
+      "misconception": "If every building block was already tested and correct, the new program built from them needs no testing at all.",
+      "whyItHappens": "EK AAP-2.M.3 says reuse REDUCES testing, and students round 'reduces' up to 'eliminates,' assuming correct parts guarantee a correct whole.",
+      "correction": "Reuse reduces testing and eases debugging, but it does not eliminate them (EK AAP-2.M.3). Correct blocks can still be combined incorrectly — the wrong value passed along, blocks in the wrong order, or a block used outside the range it was built for. The combination itself is new, so the seams where blocks join must always be tested.",
+      "example": "Two correct blocks — compute a sum, and divide by a count — combine wrongly if you divide by 2 when there are 3 scores. Each block is fine; the combination gives the wrong average. Only testing the seam catches it.",
+      "script": "The trap. EK AAP-2.M.3 says reuse reduces testing, and it is tempting to hear that as 'no testing needed.' Not so. Correct blocks can still be wired together incorrectly — you pass the wrong variable, order the blocks wrong, or use a block outside the inputs it was designed for. The combination is brand new even when every part is old. Picture a correct sum block and a correct divide block joined to make an average, but you divide by two when there are three scores — both blocks are perfect, the average is wrong. Reuse shrinks testing to the seams; it never removes it. That nuance is exactly what a careful exam question checks."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Create, Combine, Modify",
+      "subheading": "These map to LO AAP-2.M. Complete on your Guided Notes.",
+      "prompts": [
+        "You need an algorithm that displays the average of three scores only if none of them is below 50. Name which building blocks you would COMBINE and describe the order you would connect them.",
+        "Start from find-max of two numbers. MODIFY it so it displays 'tie' when the two numbers are equal and otherwise displays the larger. State every change you made.",
+        "A classmate reuses a correct 'compute the average' block in a new program and says 'it was already tested, so I don't need to test my program.' Using EK AAP-2.M.3, explain what still must be tested and why."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.9 page.",
+      "script": "Stop and think, six minutes. One: combine a min building block (or three comparisons) to check none is below fifty, then the average block, then a conditional to display — describe that order. Two: modify find-max by adding a branch — if the two are equal, display tie; otherwise the existing larger-of-two logic — and list each change. Three: the classmate still must test the new program, because the average block is reused inside new seams; reuse reduces testing but the combination is new and can still be wrong. These are the create, combine, and modify moves AAP-2.M rewards."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.9 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Result and side effect are not the same",
+          "text": "When a question asks whether two algorithms are 'the same,' check BOTH: same computed result AND same side effect (what is displayed). Two algorithms can match on one and differ on the other — a version that also prints each step shares the result but not the side effect."
+        },
+        {
+          "name": "Trace similar-looking code; don't eyeball it",
+          "text": "Algorithms that look almost identical can behave differently. A single > vs ≥, a missing ELSE, or a reordering flips the output on boundary inputs. Always trace both on the same inputs, including ties and zeros."
+        },
+        {
+          "name": "Reuse reduces testing — it does not remove it",
+          "text": "Building from correct blocks cuts development time, testing, and debugging (M.3), but the combination is new. Correct blocks can be combined incorrectly, so the seams where they join still must be tested."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: result and side effect are different — a 'same algorithm?' question can hinge on either, so check both the computed value and what is displayed. Trap two: never eyeball similar-looking code; a single operator or a dropped else changes behavior on ties and zeros, so trace both on the same inputs. Trap three: reuse reduces testing but does not eliminate it — correct blocks combined wrongly still produce bugs, so test the seams. Dodge these three and every 3.9 question on the exam is within reach."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Developing Algorithms, in One Slide",
+      "points": [
+        "Compare algorithms on TWO axes — same result (value) and same side effect (what is displayed/changed); similar-looking code can still differ (EK AAP-2.L.1–L.2, L.5).",
+        "A conditional that only stores true/false equals a Boolean expression, and back again (EK AAP-2.L.3–L.4).",
+        "Create algorithms from an idea, by combining, or by modifying existing ones; know the building blocks — max/min, sum/average, divisibility via MOD, robot maze path (EK AAP-2.M.1–M.2).",
+        "Reusing correct blocks reduces development time, testing, and errors — but the new combination still must be tested (EK AAP-2.M.3)."
+      ],
+      "next": "Topic 3.10, Lists: the same building-block thinking — max, min, sum, average, and search — now applied across every element of a list with a traversal.",
+      "script": "The whole topic in one slide. Comparing algorithms is two questions — same result and same side effect — and near-identical code can behave differently, so you trace the boundaries. A conditional that only stores true or false is a one-line Boolean expression, an equivalence you run both directions. You create algorithms three ways — from an idea, by combining, by modifying — and you know the standard blocks: max, min, sum, average, divisibility via MOD, and the robot maze. Reusing correct blocks saves time and testing and eases debugging, but the combination is new and still needs testing. Next class is Topic 3.10, Lists, where these same building blocks — max, min, sum, average, search — run across every element of a list. Before you pack up, run the exit check: any box you cannot honestly check tells you what to review on the Topic 3.9 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "compare two algorithms for the same result and the same side effect, and explain why similar-looking algorithms can differ (LO AAP-2.L)",
+        "rewrite a conditional as an equivalent Boolean expression and back again (LO AAP-2.L)",
+        "create an algorithm from an idea using the standard building blocks — max/min, sum/average, divisibility via MOD, and a robot's maze path (LO AAP-2.M)",
+        "combine and modify existing algorithms, and explain how reusing correct blocks reduces development time, testing, and errors (LO AAP-2.M)"
+      ]
+    }
+  ]
+}

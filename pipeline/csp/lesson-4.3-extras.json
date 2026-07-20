@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "lessonId": "4.3",
+    "lessonTitle": "Parallel and Distributed Computing",
+    "unit": "Big Idea 4: Computer Systems and Networks",
+    "days": 1,
+    "los": "LO CSN-2.A, CSN-2.B"
+  },
+  "map": {
+    "subtitle": "Big Idea 4: Computer Systems and Networks   •   1 day   •   LO CSN-2.A, CSN-2.B",
+    "intro": "Everything for this topic lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (speaker notes on every slide: timing, share-out cues, misconception alerts)",
+      "Teacher Guide (pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Render Farm Dispatcher and Exercise 2: The Scheduling Consultant (student + answer KEY)",
+      "Discussion — The One-Rack Problem (3-part: Opening, Mid-lesson, Closing — all inside the single teach day)",
+      "Quiz (student + answer KEY — 7 questions across LO CSN-2.A and CSN-2.B, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi4-parallel-distributed-computing"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi4-parallel-distributed-computing-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi4-parallel-distributed-computing"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi4-parallel-distributed-computing"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi4-parallel-distributed-computing"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (one teach day: the three computing models, the CED's time-and-speedup arithmetic in the 'Do the Math' worked table, then benefits and limits — when distributed wins and why the sequential portion caps every parallel gain).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Scheduling: Topic 4.3 is a 1-day topic and closes Big Idea 4. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Big Idea 5 (Topic 5.1, Beneficial and Harmful Effects) begins immediately after the quiz."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Render Farm Dispatcher",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-4-3-exercise-1",
+    "intro": "You are the dispatcher for an animation studio's render farm — a rack of identical computers ('nodes') that turn scene files into finished video frames. Five jobs are in tonight's queue. For each job you will compute the sequential completion time (one node doing everything), the parallel completion time (the CED model: sequential tasks + the LONGEST parallel task), and the speedup. Part A works the job list; Part B extends the same skills. Everything maps to CB Learning Objectives CSN-2.A and CSN-2.B.",
+    "scenarioTitle": "Job Queue: Five Render Jobs Awaiting Dispatch",
+    "narrative": "The farm manager exported tonight's queue with notes on each job. Your job is to schedule it. Read the queue row by row, then answer Part A. Use the three-step method: find the sequential task (the part no node can share), find the longest parallel task (the straggler that sets the finish line), then do the division — speedup is always sequential time divided by parallel time.",
+    "log": {
+      "columns": [
+        "ID",
+        "Render job",
+        "Sequential task (one node only)",
+        "Parallel tasks (each on its own node)",
+        "Manager's note"
+      ],
+      "rows": [
+        [
+          "1",
+          "title_card.job",
+          "Load fonts and assets: 10 s",
+          "Frame batch A: 20 s · Frame batch B: 30 s",
+          "Small job — a good warm-up for checking your method"
+        ],
+        [
+          "2",
+          "scene_market.job",
+          "None — the frame batches are fully independent (0 s)",
+          "Batch A: 40 s · Batch B: 60 s · Batch C: 20 s",
+          "Three batches, three nodes — the farm's dream job"
+        ],
+        [
+          "3",
+          "scene_finale.job",
+          "Physics simulation pre-pass: 90 s (cannot be split)",
+          "Batch A: 10 s · Batch B: 10 s · Batch C: 10 s",
+          "The pre-pass must finish before any frame batch can start"
+        ],
+        [
+          "4",
+          "credits.job",
+          "Encoder setup: 20 s",
+          "Single credit roll: 40 s (one continuous shot; cannot be subdivided)",
+          "Adding nodes to this job has never helped. Why?"
+        ],
+        [
+          "5",
+          "trailer_4k.job",
+          "— (see note)",
+          "— (see note)",
+          "900 GB of frames: no single farm machine can store the assets, and one node would need weeks to render them. The studio is pricing 500 rented cloud machines."
+        ]
+      ]
+    },
+    "scenarioNote": "Jobs adapted from the Day 1 bell ringer and the 'Do the Math' worked table; terminology and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which job (1-4) will show the SMALLEST speedup when moved onto the farm, and which single number in its row tells you?",
+    "partALabel": "Part A - Work the Queue",
+    "partA": [
+      {
+        "ek": "EK CSN-2.A.5 / CSN-2.A.6 / CSN-2.A.7",
+        "pts": 4,
+        "q": "Job 1 (title_card.job): compute the sequential time, the parallel time on the farm, and the speedup. Show all three pieces of arithmetic, and state which parallel task sets the finish line and why the other one does not matter.",
+        "answer": "Sequential time = the sum of ALL steps (EK CSN-2.A.5): 10 + 20 + 30 = 60 s. Parallel time = the sequential tasks plus the LONGEST parallel task (EK CSN-2.A.6): 10 + 30 = 40 s. Speedup = sequential ÷ parallel (EK CSN-2.A.7): 60 ÷ 40 = 1.5. Batch B (30 s) sets the finish line: batches A and B start together on separate nodes after the 10-s asset load, and the job ends when the slower batch ends — batch A's 20 s are fully overlapped inside B's 30 s, so they add nothing to the total. Common errors to reject: 30 s (forgot the sequential task) and 10 + 20 + 30 = 60 s in the parallel column (summed the parallel tasks instead of taking the longest)."
+      },
+      {
+        "ek": "EK CSN-2.A.6 / CSN-2.B.1 / CSN-2.B.5",
+        "pts": 5,
+        "q": "Jobs 2 and 3 have IDENTICAL sequential times. Compute both (show the sums), then compute each job's parallel time and speedup — and explain, citing the CED, why two jobs with the same sequential time end up with such different speedups.",
+        "answer": "Job 2 sequential: 0 + 40 + 60 + 20 = 120 s. Job 3 sequential: 90 + 10 + 10 + 10 = 120 s — identical. Job 2 parallel: 0 + 60 (longest batch) = 60 s, so speedup = 120 ÷ 60 = 2.0. Job 3 parallel: 90 + 10 = 100 s, so speedup = 120 ÷ 100 = 1.2. The difference is the SEQUENTIAL PORTION: parallel computing consists of a parallel portion and a sequential portion (EK CSN-2.B.1), and the efficiency of the solution is still limited by the sequential portion (EK CSN-2.B.5). Job 2's work is almost entirely parallel portion, so the farm bites deep; Job 3 spends 90 of its 120 seconds in a pre-pass no node can share, so the farm can only attack the last 30 seconds. Same total work, different split, different payoff."
+      },
+      {
+        "ek": "EK CSN-2.A.6 / CSN-2.A.7",
+        "pts": 4,
+        "q": "Job 4 (credits.job): compute the sequential time, the parallel time, and the speedup — then answer the manager's note: why has adding nodes to this job never helped?",
+        "answer": "Sequential time: 20 + 40 = 60 s. Parallel time: 20 + 40 = 60 s — the single 40-s credit roll IS the longest parallel task (it is the only one), so nothing overlaps with anything. Speedup = 60 ÷ 60 = 1.0: no gain at all. Adding nodes never helps because parallel computing only pays when the program is broken into multiple smaller sequential operations, SOME of which run simultaneously (EK CSN-2.A.2) — this job has exactly one indivisible parallel task, so there is nothing for a second node to run at the same time. A job with one task is effectively sequential no matter how many machines are pointed at it."
+      },
+      {
+        "ek": "EK CSN-2.B.5",
+        "pts": 5,
+        "q": "The manager wants to triple the nodes assigned to Job 3 and promises the director it will finish 'in about 40 seconds.' Assume the 90-s pre-pass can never be split, but the frame batches could be split into arbitrarily many smaller pieces. Compute the best time ANY number of nodes could approach, the maximum possible speedup, and write the one-sentence correction you would send the manager.",
+        "answer": "Floor: the 90-s pre-pass is the sequential portion and runs at full length regardless of node count; the 30 s of batch work shrinks toward 0 as it splits across more nodes, so the total time approaches (but never beats) 90 s. Maximum possible speedup = 120 ÷ 90 ≈ 1.33. The promised 40 s is impossible — it is below the sequential floor. Correction to send: 'Per the sequential-portion limit (EK CSN-2.B.5), Job 3 can never finish faster than its 90-second pre-pass, so extra nodes stop meaningfully helping almost immediately — if you want 40 seconds, we must re-engineer the pre-pass itself, not buy nodes.' Full credit requires the 90-s floor, the ≈1.33 ceiling arithmetic, and the redirect toward shrinking the sequential portion."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK CSN-2.A.4 / CSN-2.B.2",
+        "pts": 3,
+        "q": "The studio's producer asks for proof that the farm beats the old single-node workflow. Per the CED, what is the ONE legitimate way to compare the efficiency of the two solutions — and why will the farm's advantage GROW as the studio's films get longer?",
+        "answer": "Comparing efficiency of solutions can be done by comparing the time it takes them to perform the SAME task (EK CSN-2.A.4) — run the same job both ways and compare the clock, exactly what Part A did (e.g., Job 2: 120 s sequential vs. 60 s on the farm). The advantage grows with film length because solutions that use parallel computing can scale more effectively than solutions that use sequential computing (EK CSN-2.B.2): a longer film means more frame batches, and the farm can spread new batches across more nodes, while the single node must pay for every added frame in full, one at a time."
+      },
+      {
+        "ek": "EK CSN-2.B.3 / CSN-2.B.4",
+        "pts": 3,
+        "q": "Job 5 (trailer_4k.job) is different in kind, not just in size. Explain why renting 500 cloud machines makes this a DISTRIBUTED computing solution, and name the TWO single-computer limits from the CED that this job runs into.",
+        "answer": "With 500 separate rented machines working on one render program, multiple DEVICES are used to run a program — the definition of distributed computing (EK CSN-2.A.3); this is no longer cores inside one box. The job hits both single-computer limits named in EK CSN-2.B.3: STORAGE (900 GB of assets exceed what any single farm machine can hold) and PROCESSING TIME (one node would need weeks). Distributed computing allows problems like this to be solved at all, and allows much larger problems to be solved quicker than a single computer could (EK CSN-2.B.4). Strong answers name both limits explicitly — the exam lists them as a pair."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Suppose every frame batch in Jobs 1-4 could be split into arbitrarily small pieces across unlimited nodes, but the sequential tasks (and Job 4's one-shot credit roll) can never be split. Compute the minimum possible time for each job, then write the single sentence that describes the pattern you found.",
+        "answer": "Job 1: batches shrink toward 0, floor = the 10-s asset load → minimum ≈ 10 s (max speedup 60 ÷ 10 = 6). Job 2: no sequential portion at all, so the time shrinks toward 0 — with no sequential portion there is no ceiling, which is why 'embarrassingly parallel' jobs are the farm's dream. Job 3: floor = the 90-s pre-pass → minimum ≈ 90 s (max speedup ≈ 1.33). Job 4: the 40-s roll cannot be split, so the floor is 20 + 40 = 60 s — unlimited nodes buy nothing (speedup 1.0). The pattern in one sentence: every job's minimum time is exactly its unsplittable (sequential) portion, so the sequential portion — not the node count — sets each job's ceiling (the idea behind EK CSN-2.B.5, known to engineers as Amdahl's Law)."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "The Scheduling Consultant",
+    "minutes": "25 minutes",
+    "subtitle": "5 scenarios - classify, compute, defend",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-4-3-exercise-2",
+    "intro": "You are the consultant clients call before they buy hardware. Five scheduling scenarios follow. For each one: identify the computing model in play (sequential, parallel, or distributed) and the sign that gives it away; then do the arithmetic — total times and speedup where numbers are given, or the governing CED rule where they are not — and defend your verdict. Advanced students also tag each scenario with its deeper pattern: ceiling, scaling, or distributed-wins. Vague 'just add more computers' advice scores zero.",
+    "standard": "CB Standard (required): the model identified with its giveaway sign + the time/speedup arithmetic (or the CED rule) + a defense of the verdict, for all 5 scenarios. Enrichment (optional): also tag the deeper pattern — ceiling (EK CSN-2.B.5), scaling (EK CSN-2.B.2), or distributed-wins (EK CSN-2.B.3–B.4).",
+    "methodHeading": "Three-Step Method - use for every scenario",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your own number or verdict before analyzing. Writing it down first keeps a confident client (or a convincing distractor) from swaying you."
+      ],
+      [
+        "Step 2 - Find the sequential portion",
+        "Every job hides one: the task that cannot be shared. Circle it — it is paid in full in the parallel time (sequential tasks + longest parallel task), and it caps the speedup forever."
+      ],
+      [
+        "Step 3 - Compute, then defend",
+        "Show the arithmetic: sequential time = sum of all steps; parallel time = sequential tasks + longest parallel task; speedup = sequential ÷ parallel. Then defend the verdict with the CED rule it rests on — a number without its rule is an incomplete recommendation."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (pattern tagging): strong consultants file every scenario under one of three deeper patterns. CEILING: the sequential portion caps the gain, so at some point more processors stop meaningfully helping (EK CSN-2.B.1, B.5). SCALING: parallel solutions absorb growing workloads more effectively than sequential ones (EK CSN-2.B.2). DISTRIBUTED-WINS: the problem exceeds a single computer's processing time or storage, so multiple devices are the only play — and they solve big problems faster too (EK CSN-2.B.3–B.4).",
+    "fields": [
+      "Sign check — the model in play (sequential, parallel, distributed) and its giveaway:",
+      "Mechanism + defense — the arithmetic (times, speedup) or CED rule, and why the verdict holds:",
+      "Enrichment sub-type — ceiling, scaling, or distributed-wins (and why):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The yearbook app must export 400 finished pages. On one core, the export runs as a single 20-minute layout pass that must run alone, followed by four batches of 45 minutes each. A student claims the school's 4-core laptop will finish everything in 50 minutes flat ('200 minutes divided by 4 cores'). Rule on the claim.",
+        "key": {
+          "signs": "parallel computing — one machine (the laptop) splitting one program across its 4 cores, so we count ONE device (EK CSN-2.A.2). The giveaway that the student's math is wrong: the 20-minute layout pass 'must run alone' — that phrase marks the sequential portion, and dividing the WHOLE job by the core count pretends it doesn't exist.",
+          "mechanism": "sequential time = 20 + 45 + 45 + 45 + 45 = 200 min (EK CSN-2.A.5). Parallel time = sequential tasks + longest parallel task (EK CSN-2.A.6): each 45-min batch gets its own core, so 20 + 45 = 65 min. Speedup = 200 ÷ 65 ≈ 3.1 (EK CSN-2.A.7) — real and worth having, but not 4.0 and not '50 minutes flat.' The student's 200 ÷ 4 = 50 divides the sequential pass by four cores, which no hardware can do.",
+          "subtype": "ceiling. The 20-minute layout pass is this job's drying rack: even with 400 cores (one per page), the export could never beat 20 + 45... in fact with infinitely divisible batches it approaches 20 minutes, a maximum speedup of 200 ÷ 20 = 10. The sequential portion, not the core count, sets the limit (EK CSN-2.B.1, B.5)."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A biology teacher's phone edits one video using all 8 cores of its chip at once. That evening, the same teacher's citizen-science app joins 2 million other phones overnight, all running one protein-folding program. The teacher calls both setups 'distributed computing.' Rule on the label.",
+        "key": {
+          "signs": "two different models, and the device count separates them. The video edit is PARALLEL computing: one program broken into smaller sequential operations running simultaneously on the cores of ONE device (EK CSN-2.A.2). The overnight folding run is DISTRIBUTED computing: multiple devices — 2 million phones — used to run one program (EK CSN-2.A.3). The teacher's label is half right.",
+          "mechanism": "the defense is definitional, and the CED's definitions turn on exactly one question: how many machines? Eight cores in one chip never leave the phone's case, so the edit stays parallel no matter how impressive the core count; the folding project crosses the device boundary two million times. On the exam, distractors quote the parallel definition under the distributed name and vice versa — answering 'count the devices: one vs. 2,000,000' is a complete defense.",
+          "subtype": "distributed-wins (for the folding half). No single phone — no single supercomputer, even — could fold proteins at this scale: the processing time on one machine would be absurd, which is precisely the problem EK CSN-2.B.3 says distributed computing exists to solve, and the fleet solves it much quicker than any one computer could (EK CSN-2.B.4)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "A robotics team parallelized its vision code: it took 100 seconds sequentially and now takes 60 seconds. Three log entries disagree: one member wrote 'speedup = 40,' another wrote 'speedup ≈ 1.67,' and a third predicted 'the speedup will double as soon as we double the cores.' Rule on all three entries.",
+        "key": {
+          "signs": "parallel computing being MEASURED — the scenario is a pure EK CSN-2.A.7 item dressed as a logbook dispute. The giveaway that entry one is wrong sits in its units: '40' is seconds saved, and a true speedup is a unitless ratio, not a difference.",
+          "mechanism": "speedup is measured in the time it took to complete the task sequentially DIVIDED by the time it took to complete the task when done in parallel (EK CSN-2.A.7): 100 ÷ 60 ≈ 1.67 — the second entry is correct. Entry one subtracted (100 − 60 = 40), which the CED's definition simply is not. Entry three fails on EK CSN-2.B.5: the vision code has a sequential portion (sensor readout, frame handoff), so doubling cores accelerates only the parallel portion — the speedup rises by less than double, and each doubling buys less than the last.",
+          "subtype": "ceiling. The 60-second parallel time already contains the sequential portion at full length; as cores multiply, the total time flattens against that floor, so the team should measure WHERE the 60 seconds go before buying hardware — if 40 of them are sequential, the ceiling is 100 ÷ 40 = 2.5 and no core count reaches 3."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A vendor pitches a game studio: 'Your build takes 30 seconds of setup that can't be split, then 60 seconds of compiling that splits perfectly across cores. Buy our 64-core box and your builds run 64 times faster.' Price the pitch honestly: what does the 64-core box actually deliver?",
+        "key": {
+          "signs": "parallel computing (one 64-core machine — still one device), pitched with the classic linear-speedup lie. The giveaway is arithmetic: the pitch promises 64×, but the job's own numbers cap the speedup below 3 — '30 seconds of setup that can't be split' is a sequential portion announcement (EK CSN-2.B.1).",
+          "mechanism": "sequential time = 30 + 60 = 90 s (EK CSN-2.A.5). On 64 cores the compile splits into ~0.94-s slivers, so parallel time ≈ 30 + 0.94 ≈ 31 s (EK CSN-2.A.6: sequential tasks + longest parallel task). Actual speedup = 90 ÷ 31 ≈ 2.9 (EK CSN-2.A.7) — and the CEILING, with infinite cores, is 90 ÷ 30 = 3.0. The box delivers a real ~2.9×, which is excellent, but the 64× claim is off by a factor of 22: per EK CSN-2.B.5, adding parallel portions past a point no longer meaningfully increases efficiency.",
+          "subtype": "ceiling, with a scaling footnote. The honest consultant's counter-offer: a cheaper 8-core box already achieves 30 + 7.5 = 37.5 s (speedup 2.4) — 83% of the 64-core benefit at a fraction of the cost — and the money saved should attack the 30-second setup itself, because shrinking the sequential portion is the only way past 3.0."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A genomics nonprofit holds 2 petabytes of DNA readings. No single computer it could ever buy will store the dataset, and the best single machine would need roughly 80 years to process it. The board is split between 'wait a few years for a bigger computer' and 'redesign the analysis to run across thousands of machines.' Advise the board.",
+        "key": {
+          "signs": "distributed computing is the only viable model — the scenario states BOTH of the CED's named single-computer limits: STORAGE needs (2 PB exceeds any one machine) and PROCESSING TIME (80 years). When either limit binds, EK CSN-2.B.3 applies; here both do, so 'wait for a bigger computer' is not a plan, it's a decade of nothing.",
+          "mechanism": "distributed computing allows problems to be solved that could not be solved on a single computer because of either the processing time or storage needs involved (EK CSN-2.B.3): split the 2 PB across thousands of machines, each storing and processing a shard of the data while running one program. It also allows much larger problems to be solved quicker than a single computer could (EK CSN-2.B.4) — 80 machine-years spread across ~4,000 machines is weeks, not lifetimes. Defense against 'wait': storage and data volume grow too — the single-computer target moves away as fast as hardware improves, while a distributed design scales by adding machines (EK CSN-2.B.2's logic at the device level).",
+          "subtype": "distributed-wins — the pure case, since the problem is IMPOSSIBLE on one computer, not merely slow. Enrichment caveat worth a consultant's fee: distribution is not magic — whatever portion of the analysis cannot be split (merging results, final statistics) becomes the new sequential portion, so even this system will meet its own ceiling (EK CSN-2.B.5) — just at a scale where the problem is already solved."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The One-Rack Problem",
+    "minutes": "~20 min total - 3 parts - Opening + Mid-lesson + Closing (all Day 1)",
+    "overview": "Every system you will ever wait on — a checkout line, a group project, a 64-core game console — hides a drying rack: the one step that refuses to be shared. Across three short windows in this lesson, your group will hunt for the unsharable steps in everyday jobs, spend an imaginary hardware budget where it can actually help, and decide what problems are worth borrowing a million strangers' phones to solve.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The drying rack ruined the 20-minute dream. Hunt for 'drying racks' in real life: one oven at a bake sale, one register at lunch, one person who signs every form. What property makes a step unsharable — and can you think of a step that LOOKS unsharable but isn't?"
+          },
+          {
+            "text": "Question 2. Name one chore that would split almost perfectly among four people, and one that four people would barely speed up. What is different about the two jobs — and where would YOUR group of four be wasted?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the 'Do the Math' worked table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Spend the cores",
+            "text": "Your group is handed 16 free processor cores for any one app or game you actually use. Decide together where they would help most — and name one part of that app where the cores would sit idle (the sequential portion: loading, saving, waiting on the network). Write your pick and its hidden drying rack.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Is 1.5 worth it?",
+            "text": "The bell ringer tripled the washers and got a speedup of 2. The worked table's last row tripled the processors and got 1.5. Debate for about 3 minutes: when is doubling the hardware for a 1.2-1.5× speedup worth the money and electricity — and when should the answer be 'fix the sequential part instead'? Record your group's dividing line.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The volunteer supercomputer",
+            "text": "A research project asks to run on your phones while they charge overnight — joining two million devices as one distributed computer. Build your group's policy: name one problem big enough to justify borrowing a million phones (what makes it impossible for a single computer — processing time, storage, or both?), one use you would refuse, and what a volunteer should get in return (results, credit, a battery guarantee?). Justify each call with what distributed computing can and cannot do.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the use we'd refuse + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

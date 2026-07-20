@@ -1,0 +1,435 @@
+{
+  "meta": { "unitId": "Unit 3", "title": "Securing Networks", "unitLabel": "Unit 3 • Securing Networks" },
+  "timeMinutes": 60,
+  "partI": {
+    "instructions": "Choose the single best answer.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary sends falsified ARP packets to the default gateway so that the target's IP address is linked to the adversary's MAC address, and traffic meant for the target now flows to the adversary instead. Which attack is this?",
+        "options": [
+          "ARP poisoning — falsified ARP packets remap the gateway table to the adversary's MAC",
+          "DNS poisoning — a fake DNS record redirects browser traffic to a malicious site",
+          "MAC flooding — many frames with different MAC addresses force the switch to broadcast",
+          "Smurf attack — spoofed ICMP requests flood the network's broadcast address"
+        ],
+        "answer": "A",
+        "ek": "EK 3.1.A.1",
+        "rationale": "An ARP poisoning attack is when an adversary sends falsified ARP packets to the default gateway to modify the table so the adversary's device receives traffic intended for the target by linking the target's IP address to the adversary's MAC address."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Both a client and a server believe they are talking directly to each other, but an attacker is sitting between them, capturing both parties' data and altering messages before passing them on. Which category of attack BEST describes this?",
+        "options": [
+          "An eavesdropping attack that only records copies of data without ever altering it",
+          "An on-path (man-in-the-middle) attack that intercepts and can alter the data stream",
+          "A denial-of-service attack that makes the server unavailable to authorized users",
+          "A credential-harvesting attack that relies on a fake login page to collect passwords"
+        ],
+        "answer": "B",
+        "ek": "EK 3.1.A.1",
+        "rationale": "An on-path (or man-in-the-middle) attack is when an adversary interrupts a data stream between two parties, captures both parties' data, and copies or alters the data before sending them on, while both parties think they communicate directly."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An attacker floods a switch with many Ethernet frames, each carrying a different MAC address, hoping the switch will start broadcasting all traffic. Per the CED, what is the attacker's goal in forcing broadcast mode?",
+        "options": [
+          "To overwhelm the network with ICMP requests aimed at the broadcast address",
+          "To plant a fake DNS record that redirects users to a malicious website",
+          "To collect all the frames on the network and access sensitive information",
+          "To create a rogue access point that bypasses the network's firewalls"
+        ],
+        "answer": "C",
+        "ek": "EK 3.1.A.2",
+        "rationale": "A MAC flooding attack sends many Ethernet frames with different MAC addresses, which can force the switch into broadcast mode so the adversary can collect all frames on the network and access sensitive information — an example of eavesdropping (sniffing)."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary finds an open network port in a conference room and plugs a wireless access point into it, then connects to the internal LAN wirelessly from the parking lot. What has the adversary created, and why is it dangerous?",
+        "options": [
+          "An evil twin that simply mimics the SSID of a nearby legitimate hotspot",
+          "A screened subnet that isolates publicly facing resources from the LAN",
+          "A jamming source that prevents devices from connecting to the wireless network",
+          "A rogue access point that grants direct LAN access while bypassing any firewalls"
+        ],
+        "answer": "D",
+        "ek": "EK 3.1.B.6",
+        "rationale": "If there is an open network port, an adversary can plug a wireless access point into it to create a rogue access point, allowing direct access to the LAN wirelessly (even from outside the physical space) while bypassing any firewalls."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A router security policy at an organization bans all local user accounts, disables Telnet, and requires a firewall. By TYPE of security control, what kind of control is this policy?",
+        "options": [
+          "A managerial control that sets a minimum configuration standard for routers",
+          "A technical control implemented purely as firmware on the router hardware",
+          "A detective control whose purpose is to identify attacks as they occur",
+          "A corrective control that restores a router after it has been compromised"
+        ],
+        "answer": "A",
+        "ek": "EK 3.2.A.1",
+        "rationale": "A router security policy is a managerial control that sets forth a minimum configuration standard for routers and may include banning local user accounts, disabling unnecessary services such as Telnet, and requiring a firewall."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A company is drafting a VPN policy for remote employees. According to the CED, which provision belongs in such a policy?",
+        "options": [
+          "A requirement that all switch logins use an approved authentication server",
+          "A mandate to disable beacon frames on every wireless access point",
+          "A prohibition against split tunneling, also called dual tunneling",
+          "A rule requiring port security and MAC filtering on every switch port"
+        ],
+        "answer": "C",
+        "ek": "EK 3.2.A.3",
+        "rationale": "A VPN policy details minimum security requirements for employees using a VPN and may include allowed roles, authentication requirements such as a public/private key system or MFA, and a prohibition against split tunneling (also called dual tunneling)."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A security team must choose a wireless encryption protocol that has no known fatal weaknesses. Per the CED, which choice is appropriate, and which should be avoided?",
+        "options": [
+          "Choose WEP — the original WPA and WPS are the only insecure protocols",
+          "Choose WPS — it is the currently recommended strong encryption standard",
+          "Choose the original WPA — only WEP carries known vulnerabilities today",
+          "Choose WPA3 — WEP, WPS, and the original WPA all have known vulnerabilities"
+        ],
+        "answer": "D",
+        "ek": "EK 3.2.B.3",
+        "rationale": "Organizations should enable strong wireless encryption; WEP, WPS, and the original WPA have known vulnerabilities and are insecure, while WPA3 is currently the strongest wireless encryption algorithm."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "To make it harder for adversaries to find a wireless network and learn its basic properties, a network administrator turns off a particular broadcast on the access points. Which configuration step is this?",
+        "options": [
+          "Enabling MAC filtering so unauthorized devices cannot join the network",
+          "Disabling beacon frame broadcasting on the wireless access points",
+          "Reducing the WAP signal strength so it stays inside the building",
+          "Requiring users to authenticate through EAP to an authentication server"
+        ],
+        "answer": "B",
+        "ek": "EK 3.2.B.1",
+        "rationale": "Organizations can disable beacon frame broadcasting on wireless access points (WAPs) to make it harder for adversaries to find their wireless network and learn its basic properties."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An organization wants a network segment that sits between the public internet and its private internal network to hold its publicly facing web servers, separating them from the LAN. Which segmentation technique is this?",
+        "options": [
+          "A VLAN that logically separates devices physically connected to one switch",
+          "A screened subnet (DMZ) — a lower-security zone holding public-facing resources",
+          "Port security that limits the number of MAC addresses per switch port",
+          "A subnet split purely by IP addressing to contain a compromised device"
+        ],
+        "answer": "B",
+        "ek": "EK 3.3.A.1",
+        "rationale": "Firewall zones and rules can create a screened subnet (also known as a DMZ) — a segment between public external networks and internal private networks that is typically a lower security zone and holds an organization's publicly facing resources."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Switches in an office are configured so that devices plugged into the same physical switch are logically separated into different groups that cannot freely reach one another. Which segmentation technique is being used?",
+        "options": [
+          "VLANs created on switches to logically separate physically connected devices",
+          "A screened subnet placed between the internet and the internal network",
+          "Subnetting based on IP addressing to limit the number of exposed devices",
+          "MAC filtering applied at the wireless access point to block unknown devices"
+        ],
+        "answer": "A",
+        "ek": "EK 3.3.A.3",
+        "rationale": "Switches can be used to create VLANs, which logically separate devices that are physically connected to central switches."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "After a single workstation is compromised, a defender notes that the malware could not spread to devices on other subnets because traffic between subnets was isolated. Which benefit of network segmentation does this illustrate?",
+        "options": [
+          "Segmentation guarantees that no device on any subnet can ever be compromised",
+          "Segmentation removes the need for firewalls between the internet and the LAN",
+          "Dividing a network into subnets isolates traffic and can prevent attacks on one subnet from impacting others",
+          "Segmentation works only on wireless networks and not on wired switched networks"
+        ],
+        "answer": "C",
+        "ek": "EK 3.3.B.2",
+        "rationale": "Dividing a network into smaller subnets isolates network traffic, which can prevent attacks on one subnet from impacting devices on other subnets."
+      },
+      {
+        "id": "Q12",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A switch is configured to limit the number of MAC addresses that may be assigned to any single port. Which attack does the CED say this specifically helps prevent?",
+        "options": [
+          "DNS poisoning, by validating authoritative name server records",
+          "Smurf attacks, by blocking ICMP traffic to the broadcast address",
+          "Evil-twin attacks, by triangulating rogue SSID broadcasts",
+          "MAC flooding, by limiting addresses assignable to any single port"
+        ],
+        "answer": "D",
+        "ek": "EK 3.3.B.4",
+        "rationale": "Port security on a switch can prevent MAC flooding by limiting the number of addresses assignable to any single switch port."
+      },
+      {
+        "id": "Q13",
+        "kind": "recall",
+        "stem": "Which statement correctly describes what a firewall is and where it can run?",
+        "options": [
+          "It is software that allows or denies traffic and can run on a standalone device or a router",
+          "It is dedicated hardware that can never be integrated into another device",
+          "It is a logging tool that records traffic but cannot block any packets",
+          "It is a physical cable tap that copies traffic for later analysis"
+        ],
+        "answer": "A",
+        "ek": "EK 3.4.A.1",
+        "rationale": "A firewall is used to allow or deny network traffic in or out of a network; the firewall itself is software that can be hosted on a standalone device or integrated into another network device such as a router."
+      },
+      {
+        "id": "Q14",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A firewall filters traffic only by examining information in packet headers such as IP addresses, ports, and protocols, without tracking the state of any connection. Which firewall type is this?",
+        "options": [
+          "A stateful firewall that tracks the state of network connections",
+          "A stateless firewall that filters based on packet-header information",
+          "A next-generation firewall performing deep packet inspection",
+          "A network intrusion prevention system that blocks malicious flows"
+        ],
+        "answer": "B",
+        "ek": "EK 3.4.A.2",
+        "rationale": "A stateless firewall filters traffic based on information in packet headers, such as IP addresses, ports, and protocols."
+      },
+      {
+        "id": "Q15",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A security architect wants one device that does ordinary stateless and stateful filtering but also adds intrusion prevention, deep packet inspection, and filtering by application type. Which firewall meets all of these needs?",
+        "options": [
+          "A stateless firewall, since header filtering already covers applications",
+          "A stateful firewall, since connection tracking includes deep packet inspection",
+          "A next-generation firewall (NGFW) with stateless, stateful, and advanced features",
+          "A screened subnet, since a DMZ inspects application-layer traffic by design"
+        ],
+        "answer": "C",
+        "ek": "EK 3.4.A.4",
+        "rationale": "A next-generation firewall (NGFW) has both the capabilities of typical stateless and stateful firewalls plus advanced features such as intrusion prevention, deep packet inspection, and filtering by application type."
+      },
+      {
+        "id": "Q16",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "An administrator writes an access control list and must understand how the firewall evaluates it. According to the CED, how are ACL rules processed?",
+        "options": [
+          "All rules are evaluated and the most restrictive matching rule always wins",
+          "Rules are checked in order and the first rule that matches is executed",
+          "Rules are checked in random order so administrators cannot predict the outcome",
+          "Only outbound rules are ordered, while inbound rules are processed in parallel"
+        ],
+        "answer": "B",
+        "ek": "EK 3.4.B.2",
+        "rationale": "ACL rules are checked in order, and the first rule that matches the criteria will be executed for the specified data."
+      },
+      {
+        "id": "Q17",
+        "kind": "multi",
+        "stem": "A typical ACL rule specifies several elements. Which of the following does the CED list as part of a typical ACL rule?\nI. The direction of traffic (inbound or outbound)\nII. The criterion to filter by (IP address, port, service, or application)\nIII. The action to take (permit or deny)",
+        "options": [
+          "I and II only",
+          "II and III only",
+          "I and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK 3.4.B.3",
+        "rationale": "A typical ACL specifies the direction of traffic (inbound or outbound), the criterion to filter by (IP addresses, logical port, service, or application), and the action to take (permit or deny) — all three elements."
+      },
+      {
+        "id": "Q18",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An administrator orders these rules: Rule 1 DENY inbound TCP ALL from ALL; Rule 2 ALLOW inbound TCP port 22 from ALL. SSH traffic is unexpectedly blocked. Per the CED, why, and what fixes it?",
+        "options": [
+          "ACLs ignore order, so the SSH problem must come from a hardware fault",
+          "Port 22 is reserved for HTTP, so SSH can never be permitted by an ACL",
+          "The deny rule is matched first; reversing the order so ALLOW 22 precedes DENY ALL fixes it",
+          "Stateful firewalls cannot filter by port, so the rules have no effect on SSH"
+        ],
+        "answer": "C",
+        "ek": "EK 3.4.D.3",
+        "rationale": "Rules are implemented in order, and the first match executes; a leading DENY inbound TCP ALL blocks SSH. The CED shows that placing ALLOW inbound TCP port 22 before DENY inbound TCP ALL permits SSH while denying other inbound TCP traffic."
+      },
+      {
+        "id": "Q19",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A network tool analyzes traffic to determine whether malicious activity is occurring, and when it detects an attack it also closes ports and blocks specific IP addresses to halt the attack. Which automated tool is this?",
+        "options": [
+          "A network intrusion detection system (NIDS) that only generates an alert",
+          "A network intrusion prevention system (NIPS) that can also mitigate or halt an attack",
+          "A SIEM that solely correlates logs from multiple sources for analysts",
+          "A vulnerability scanner that produces a report of known weaknesses"
+        ],
+        "answer": "B",
+        "ek": "EK 3.5.A.3",
+        "rationale": "A network intrusion prevention system (NIPS), like an IDS, analyzes data to determine if malicious activity is occurring, but it can also mitigate or halt an attack by closing ports, blocking specific IP or MAC addresses, or rejecting specific protocols."
+      },
+      {
+        "id": "Q20",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A high-traffic network needs detection that runs quickly by comparing observed activity against a database of known indicators of compromise. Which detection method fits, and what is its key limitation?",
+        "options": [
+          "Signature-based detection — fast on high-volume networks but cannot detect a new attack",
+          "Anomaly-based detection — it cannot detect any attack already in its baseline",
+          "Hybrid detection — the cheapest option that also produces the fewest alerts",
+          "Signature-based detection — slower than anomaly detection but immune to novel attacks"
+        ],
+        "answer": "A",
+        "ek": "EK 3.5.C.1 + EK 3.5.C.4",
+        "rationale": "Signature-based detection compares data to a database of known IoCs (signatures), is more efficient for high-traffic networks, and runs faster than anomaly-based detection; however, signature-based detection cannot detect a new attack."
+      },
+      {
+        "id": "Q21",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A network with very consistent traffic patterns wants detection that flags activity falling outside a tolerance range built from recorded normal behavior. Which method fits, and what must be true of its baseline?",
+        "options": [
+          "Signature-based detection — its signatures must be recorded on a busy network",
+          "Hybrid detection — its baseline is unnecessary since signatures cover everything",
+          "Anomaly-based detection — its baseline should be captured during an active attack",
+          "Anomaly-based detection — its baseline must be recorded on uncompromised systems"
+        ],
+        "answer": "D",
+        "ek": "EK 3.5.C.2",
+        "rationale": "Anomaly-based detection is most effective on networks with consistent traffic patterns; it compares data to a baseline of recorded activity, baselines must be recorded on uncompromised systems, and it triggers an alert when data types or volumes fall outside a specified tolerance range."
+      },
+      {
+        "id": "Q22",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A manager worries that responders are starting to dismiss alerts without investigating because so many turn out to be harmless. Per the CED, which detection trade-off is driving this, and what is the named condition?",
+        "options": [
+          "A high false negative rate, producing a condition called signature drift",
+          "A high false positive rate, producing a condition called alert fatigue",
+          "A low false positive rate from signature detection, producing alert fatigue",
+          "A high false negative rate, producing a condition called baseline collapse"
+        ],
+        "answer": "B",
+        "ek": "EK 3.5.D.3",
+        "rationale": "A high false positive rate wastes time on nonmalicious activity and causes alert fatigue, a condition where responders get accustomed to false positives and take alerts less seriously, assuming they are false before investigating. Anomaly-based and hybrid detection have higher false positive rates."
+      },
+      {
+        "id": "Q23",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A defender suspects an evil-twin wireless attack near the office. According to the CED, which detection approach is appropriate?",
+        "options": [
+          "Scan for SSIDs that look suspicious or similar to legitimate ones and triangulate the signal",
+          "Watch for a sudden increase in ICMP requests sent to the broadcast address",
+          "Check the ARP table on the gateway for duplicate MAC address ARP packets",
+          "Examine DNS records after an abrupt, unexplained drop in website traffic"
+        ],
+        "answer": "A",
+        "ek": "EK 3.5.E.1",
+        "rationale": "Evil-twin attacks can be detected by regularly scanning for SSIDs that look suspicious or similar to local legitimate SSIDs; signal triangulation can then locate and disable the access point broadcasting the evil-twin network."
+      },
+      {
+        "id": "Q24",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "Analyzing a packet capture file, a defender looks for network-based indicators of compromise. Which finding is one the CED lists as a network-based IoC?",
+        "options": [
+          "A password reuse warning generated by the corporate identity provider",
+          "A clean-desk violation reported by a physical security guard on patrol",
+          "Mismatched port-application traffic, such as a service running on the wrong port",
+          "An employee who fails an annual phishing-awareness training module"
+        ],
+        "answer": "C",
+        "ek": "EK 3.5.E.7",
+        "rationale": "Network-based IoCs are found when analyzing network traffic (often packet capture files) in source/destination IPs, ports, and protocols, and include connections to known malicious IPs, unauthorized network scans, unusual spikes or slowdowns, and mismatched port-application traffic."
+      }
+    ]
+  },
+  "partII": {
+    "instructions": "Answer in complete sentences; cite specific attacks, controls, or detection methods.",
+    "questions": [
+      {
+        "id": "FR1",
+        "prompt": "A small company runs a single flat internal network reachable over a wireless network that uses weak encryption, and on that same network sits a server hosting the company's proprietary web application. Management wants you to assess the risk and redesign the network so a single compromise cannot reach everything.",
+        "parts": [
+          "(a) Explain why this configuration is a HIGH network-vulnerability risk, citing at least two specific dangers an adversary could realize.",
+          "(b) Recommend a SEGMENTATION technique to place the publicly facing web application where it is separated from the internal LAN, and explain how segmentation limits the blast radius of a compromise.",
+          "(c) Identify one managerial/wireless control that hardens the wireless network and explain what it prevents."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) This is a HIGH risk because high risks from network vulnerabilities allow an adversary to easily have a significant impact by capturing network traffic, spoofing a legitimate device, or launching a DoS attack (EK 3.1.C.4); the CED's own illustrative example is exactly a single unsegmented internal network reachable over weak wireless encryption with a proprietary web-application server on it. Because the network is flat and unsegmented, an adversary who compromises one device often leverages that access to compromise other devices on the LAN (EK 3.1.B.2), and the weak wireless encryption lets adversaries break the encryption to intercept, steal, or compromise data on the network (EK 3.1.B.7). These threaten confidentiality, integrity, and availability (EK 3.1.C.1).",
+          "(b) I would place the public web application in a screened subnet (DMZ) created with firewall zones and rules — a lower-security segment that sits between the public internet and the internal private network and holds publicly facing resources, separating them from the internal LAN (EK 3.3.A.1). More generally, dividing the network into smaller, isolated subnets isolates traffic so that an attack on one subnet cannot impact devices on other subnets (EK 3.3.B.1, EK 3.3.B.2), and segmentation lets different security policies and controls apply to higher- and lower-security zones (EK 3.3.B.3). So if the public-facing server is breached, the internal LAN is not directly exposed.",
+          "(c) I would require strong wireless encryption, enabling WPA3 because WEP, WPS, and the original WPA have known vulnerabilities and are insecure while WPA3 is currently the strongest wireless encryption algorithm (EK 3.2.B.3). This ensures wireless frames are not readable by adversaries who intercept them, preventing the eavesdropping and cryptographic attacks that weak encryption invites (EK 3.1.B.4, EK 3.1.B.7)."
+        ],
+        "rubric": [
+          "3 pts (part a): rates the setup HIGH risk per EK 3.1.C.4 (1 pt) and names two concrete dangers grounded in EK 3.1.B.2 / 3.1.B.7 / 3.1.C.1 such as lateral movement and breaking weak wireless encryption (2 pts).",
+          "3 pts (part b): names a screened subnet/DMZ (or subnetting/VLAN) per EK 3.3.A.1 (1 pt) and explains traffic isolation limiting blast radius per EK 3.3.B.2 / 3.3.B.3 (2 pts).",
+          "3 pts (part c): names a specific wireless/managerial control such as WPA3 strong encryption per EK 3.2.B.3 (2 pts) and states what it prevents — readable/interceptable frames or cryptographic attacks (1 pt)."
+        ],
+        "ek": "EK 3.1.C.4 + EK 3.1.B.2 + EK 3.1.B.7 + EK 3.1.C.1 + EK 3.3.A.1 + EK 3.3.B.2 + EK 3.3.B.3 + EK 3.2.B.3"
+      },
+      {
+        "id": "FR2",
+        "prompt": "An organization's internal LAN connects to the public internet, and it is deploying a new web server that the public must reach on TCP port 443 while everything else inbound should be blocked. You are asked to design the firewall layout and write the access control list.",
+        "parts": [
+          "(a) Explain where firewalls should be placed in this network and why, using the CED's guidance on firewall placement.",
+          "(b) Recommend a firewall TYPE for the perimeter and justify the choice relative to stateless and stateful firewalls.",
+          "(c) Write an ordered ACL (at least two rules) that allows inbound TCP port 443 from all but denies other inbound TCP traffic, and explain why rule order matters."
+        ],
+        "points": 9,
+        "sample": [
+          "(a) Each point of data ingress and egress between the internal network and the public internet should have a firewall (EK 3.4.C.3), and each segment of the network should have a firewall to control the flow of data in and out of that segment (EK 3.4.C.1). Because segments may have different security needs based on their data and services, the level of security for each firewall can be set independently (EK 3.4.C.2); placing the public web server in a screened subnet with its own firewall lets the internal LAN firewall be stricter.",
+          "(b) I would use a next-generation firewall (NGFW) at the perimeter. It has the capabilities of both stateless and stateful firewalls and adds advanced features such as intrusion prevention, deep packet inspection, and filtering by application type (EK 3.4.A.4). A stateless firewall only filters on packet-header fields like IPs, ports, and protocols (EK 3.4.A.2), and a stateful firewall adds connection-state tracking (EK 3.4.A.3); the NGFW gives the most control over the publicly exposed service.",
+          "(c) Rule 1: ALLOW inbound TCP port 443 from ALL; Rule 2: DENY inbound TCP ALL from ALL. ACL rules are checked in order and the first rule that matches is executed (EK 3.4.B.2), so the specific ALLOW for port 443 must precede the broad DENY. Rules are implemented in order and changing the order changes which traffic is allowed or denied (EK 3.4.D.3): if the DENY came first it would block all inbound TCP including the intended HTTPS traffic. Each rule specifies the direction, the criterion to filter by, and the action to take (EK 3.4.B.3)."
+        ],
+        "rubric": [
+          "3 pts (part a): states a firewall at each internet ingress/egress point per EK 3.4.C.3 (2 pts) and notes per-segment firewalls with independently set security per EK 3.4.C.1 / 3.4.C.2 (1 pt).",
+          "3 pts (part b): names an NGFW (or defends stateful) and justifies with EK 3.4.A.4 advanced features versus stateless/stateful per EK 3.4.A.2 / 3.4.A.3.",
+          "3 pts (part c): writes ordered rules with ALLOW 443 before DENY ALL (2 pts) and explains first-match ordering per EK 3.4.B.2 / 3.4.D.3 (1 pt)."
+        ],
+        "ek": "EK 3.4.C.3 + EK 3.4.C.1 + EK 3.4.C.2 + EK 3.4.A.4 + EK 3.4.A.2 + EK 3.4.A.3 + EK 3.4.B.2 + EK 3.4.B.3 + EK 3.4.D.3"
+      },
+      {
+        "id": "FR3",
+        "prompt": "A managed-security provider is choosing a detection strategy for a hospital network that carries highly sensitive data, has fairly consistent traffic patterns, and is a likely target for new, never-before-seen attacks. During a trial, analysts begin ignoring alerts because so many are false. You must recommend and defend a detection design.",
+        "parts": [
+          "(a) Compare signature-based and anomaly-based detection on speed, false positives, and ability to catch novel attacks, citing the CED.",
+          "(b) Recommend a detection approach for this sensitive, novel-attack-prone network and justify it.",
+          "(c) Explain the alert problem the analysts are experiencing and how an organization's alert threshold relates to it."
+        ],
+        "points": 8,
+        "sample": [
+          "(a) Signature-based detection compares data to a database of known IoCs (signatures), runs faster than anomaly-based detection (especially on high-volume networks), and has almost no false positives, but it cannot detect a new attack and is easier to bypass (EK 3.5.C.1, EK 3.5.D.1, EK 3.5.D.3, EK 3.5.C.4, EK 3.5.D.4). Anomaly-based detection compares data to a baseline of recorded normal activity and is most effective on networks with consistent traffic patterns, so it can flag novel attacks, but it has higher false positive rates and needs more expensive hardware (EK 3.5.C.2, EK 3.5.D.2, EK 3.5.D.3).",
+          "(b) Because the hospital network handles highly sensitive and critical data, it should use a hybrid approach that combines signature-based and anomaly-based detection (EK 3.5.C.3). Networks with more sensitive or critical data or services will likely consider hybrid detection; it catches both known and novel attacks, which matters here since signature-based detection alone cannot detect the new attacks the hospital is likely to face (EK 3.5.C.4). The trade-off is that hybrid detection is the most expensive option and generates more alerts (EK 3.5.C.3, EK 3.5.D.2).",
+          "(c) The analysts are experiencing alert fatigue, a condition where responders get accustomed to false positives and take alerts less seriously, assuming they are false before investigating (EK 3.5.D.3); anomaly-based and hybrid detection have higher false positive rates that drive this. The organization sets its own threshold for what likelihood of a threat triggers an alert: if the threshold is too low the team is overwhelmed with false alerts (the current problem), and if it is too high real attacks may go undetected (EK 3.5.B.4). Tuning the threshold balances missed attacks against alert fatigue."
+        ],
+        "rubric": [
+          "3 pts (part a): contrasts signature vs anomaly on speed (EK 3.5.D.1), false positives (EK 3.5.D.3), and novel-attack detection (EK 3.5.C.4) — 1 pt each dimension.",
+          "3 pts (part b): recommends hybrid detection for sensitive/critical data per EK 3.5.C.3 (2 pts) and ties it to the novel-attack need per EK 3.5.C.4, acknowledging higher cost/more alerts (1 pt).",
+          "2 pts (part c): names alert fatigue per EK 3.5.D.3 (1 pt) and explains the too-low/too-high threshold trade-off per EK 3.5.B.4 (1 pt)."
+        ],
+        "ek": "EK 3.5.C.1 + EK 3.5.C.2 + EK 3.5.C.3 + EK 3.5.C.4 + EK 3.5.D.1 + EK 3.5.D.2 + EK 3.5.D.3 + EK 3.5.D.4 + EK 3.5.B.4"
+      }
+    ]
+  }
+}

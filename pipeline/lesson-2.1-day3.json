@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "lessonId": "2.1",
+    "lessonTitle": "Cyber Foundations",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 3,
+    "los": "LO 2.1.C",
+    "anchor": "Cyber Foundations",
+    "author": "AP CS Exam Prep",
+    "totalDays": 8
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.1 · Day 3 of 8",
+      "title": "Anatomy of an Attack",
+      "subtitle": "Cyber Foundations: the six phases of a cyberattack — reconnaissance, initial access, persistence, lateral movement, taking action, and evading detection",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome back to Lesson 2.1, Cyber Foundations, Day 3 of 8. You've learned the tactics, 2.1.A, and the adversaries, 2.1.B. Today, 2.1.C, you learn the choreography — the phases a cyberattack moves through. The College Board names six: reconnaissance, initial access, persistence, lateral movement, taking action, and evading detection. Two things to lock in from the start. First, these are in order — the sequence matters and the exam tests it. Second, not every attack uses every phase. Today you'll learn to read an incident, name each phase, and put them in the right order."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "An investigator's report lists what an attacker did, but out of order: ‘copied and exported the customer database; logged in with a stolen password; researched employees on LinkedIn; deleted the server log files; installed malware to keep the connection open; used an admin account to reach the finance server.’",
+      "subprompt": "Write 3–5 sentences: put these six actions in the order you think they actually happened. What has to come first? What would an attacker do last, and why?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own. Here's an investigator's report with six attacker actions listed out of order: exported the customer database, logged in with a stolen password, researched employees on LinkedIn, deleted the server logs, installed malware to stay connected, and used an admin account to reach the finance server. Put them in the order they actually happened. What has to come first? What comes last, and why? Hold your answer — every one of those actions is a named phase in today's standard, and getting the order right is exactly the skill 2.1.C tests."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 3 Guided Notes have two sections that match today’s lesson. Both are CB-required.",
+      "sections": [
+        {
+          "title": "Getting In and Staying In",
+          "description": "Reconnaissance, initial access, and persistence — how an adversary scouts, breaks in, and keeps the door open (EK 2.1.C.1–C.4)."
+        },
+        {
+          "title": "Spreading, Acting, and Hiding",
+          "description": "Lateral movement, taking action, and evading detection — escalating privileges, hitting the objective, and covering tracks (EK 2.1.C.5–C.7)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.1 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Two sections, both CB-required, and together they cover all six phases in order. Section one is getting in and staying in: reconnaissance to scout the target, initial access to break in, and persistence to keep the door open. Section two is spreading, acting, and hiding: lateral movement to escalate privileges, taking action to hit the objective, and evading detection to cover tracks. Down the left margin of your notes, number the phases one through six — the order is half the points on this objective. Keep your pencil moving."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Name each of the six attack phases — reconnaissance, initial access, persistence, lateral movement, taking action, evading detection — from a description of what an adversary did (LO 2.1.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Put the phases in the correct CED order and explain why each phase sets up the next (LO 2.1.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply the caveat that not every attack uses every phase, identifying only the phases that are actually present (LO 2.1.C)"
+        }
+      ],
+      "script": "Three things to leave with today, all under learning objective 2.1.C, describe the phases of a cyberattack. First, name each of the six phases — reconnaissance, initial access, persistence, lateral movement, taking action, evading detection — from a description of what an adversary did. Second, put them in the correct order and explain why each phase sets up the next, since the sequence is half the points. Third, apply the College Board's caveat that not every attack uses every phase — identify only the phases that are actually present rather than forcing all six. By the end of today you can read an incident and both name and order the phases."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Getting In and Staying In",
+      "kicker": "Cyber Foundations · Learning Objective 2.1.C",
+      "script": "Section one. Learning objective 2.1.C. The first three phases — scout, break in, dig in. As we go, notice how each phase sets up the next. Fifteen minutes here."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Phases 1–3: Reconnaissance, Initial Access, Persistence",
+      "subheading": "EK 2.1.C.2, C.3, and C.4 — the attacker scouts the target, gets a foothold, and keeps it.",
+      "items": [
+        {
+          "ek": "EK 2.1.C.2",
+          "title": "1 · Reconnaissance",
+          "summary": "Adversaries gather as much information as possible about their target, often using open source intelligence (OSINT) — freely available information from public websites, social media, and records.",
+          "ekRef": "EK 2.1.C.2"
+        },
+        {
+          "ek": "EK 2.1.C.3",
+          "title": "2 · Initial Access",
+          "summary": "Adversaries establish a foothold on the target's computer, often through social engineering or through compromised or weak credentials — connecting back to the tactics of 2.1.A.",
+          "ekRef": "EK 2.1.C.3"
+        },
+        {
+          "ek": "EK 2.1.C.4",
+          "title": "3 · Persistence",
+          "summary": "Adversaries maintain access without needing to regain it, often using a command and control (C2) protocol to send commands and receive output, via malware like a remote access trojan (RAT) or rootkit.",
+          "ekRef": "EK 2.1.C.4"
+        }
+      ],
+      "script": "First three phases, in order. Phase one, EK 2.1.C.2, reconnaissance: the adversary gathers everything they can about the target, often using open source intelligence — OSINT — which is just freely available information from public websites, social media, public records. No break-in yet; this is scouting. Phase two, EK 2.1.C.3, initial access: they establish a foothold on the target's computer, often through social engineering — there's yesterday's and Day 1's material — or through compromised or weak credentials. Phase three, EK 2.1.C.4, persistence: now they make sure they can get back in without breaking in again, often using a command and control, or C2, protocol to send commands and receive output, usually through malware like a remote access trojan, a RAT, or a rootkit. Write all three, numbered, with EK numbers and the key term in each."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Spreading, Acting, and Hiding",
+      "kicker": "Cyber Foundations · Learning Objective 2.1.C",
+      "script": "Section two. Still 2.1.C. Phases four through six — spread, strike, and clean up. And remember the standard's caveat: not every attack uses every phase. Twelve minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Phases 4–6: Lateral Movement, Taking Action, Evading Detection",
+      "subheading": "EK 2.1.C.5, C.6, and C.7 — the attacker spreads, hits the objective, and covers tracks.",
+      "items": [
+        {
+          "ek": "EK 2.1.C.5",
+          "title": "4 · Lateral Movement",
+          "summary": "Adversaries try to escalate their privileges by accessing computers and user accounts with elevated permissions to services and data — moving from their foothold toward what they actually want.",
+          "ekRef": "EK 2.1.C.5"
+        },
+        {
+          "ek": "EK 2.1.C.6",
+          "title": "5 · Taking Action",
+          "summary": "Adversaries act on their objectives — collecting targeted data and exfiltrating it, and disrupting services or destroying data. This is the phase where the actual damage is done.",
+          "ekRef": "EK 2.1.C.6"
+        },
+        {
+          "ek": "EK 2.1.C.7",
+          "title": "6 · Evading Detection",
+          "summary": "In the final phase, many adversaries try to evade detection by removing or editing log files and erasing other files they may have planted on devices, such as malware.",
+          "ekRef": "EK 2.1.C.7"
+        }
+      ],
+      "script": "The last three phases, in order. Phase four, EK 2.1.C.5, lateral movement: from their initial foothold, adversaries try to escalate privileges by reaching computers and user accounts with elevated permissions — admin accounts, service accounts — that get them to the data they actually want. Phase five, EK 2.1.C.6, taking action: this is the payoff, where they act on their objectives — collecting targeted data and exfiltrating it, disrupting services, or destroying data. This is where the real damage happens. Phase six, EK 2.1.C.7, evading detection: the cleanup, where many adversaries remove or edit log files and erase other files they planted, like malware, so the defenders never see how it happened. Write all three, numbered, with EK numbers. Now you have all six in order."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘Every Attack Hits All Six Phases’ Myth",
+      "misconception": "Every cyberattack runs through all six phases in the same fixed order, so if you can't find one phase, you've analyzed the attack wrong.",
+      "whyItHappens": "The phases are taught as a numbered list, which makes them look like a mandatory checklist every attack must complete from one through six.",
+      "correction": "EK 2.1.C.1 states plainly that the phases may not all be used in every attack. A quick smash-and-grab might skip persistence and lateral movement entirely; an attacker may never bother to cover their tracks. The order is the typical arc, but it is descriptive, not a rule every attack obeys. Your job is to identify the phases that ARE present and place them correctly — not to force-fit all six.",
+      "example": "A hacktivist who defaces a public website may do light reconnaissance, gain initial access, take action (the defacement), and stop — no persistence, no lateral movement, and no attempt to evade detection, because being seen IS the point. The attack is still real; it simply used three of the six phases.",
+      "script": "Here's the misconception the exam loves. Because we teach the phases as a numbered one-through-six list, students assume every attack must hit all six in order — and that if you can't find, say, lateral movement, you've made a mistake. But read EK 2.1.C.1: the phases may not all be used in every attack. A quick data grab might skip persistence and lateral movement. A hacktivist defacing a website may do a little recon, get access, deface it — that's taking action — and stop, with no persistence, no lateral movement, and no evading detection, because being seen is the whole point. The order is the typical arc, not a checklist every attack completes. On the exam, identify the phases that are present and order those — don't force all six onto an attack that only used three."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.1.C)",
+      "terms": [
+        {
+          "term": "Reconnaissance",
+          "definition": "The phase in which adversaries gather as much information as possible about a target, often using OSINT (EK 2.1.C.2)."
+        },
+        {
+          "term": "Open source intelligence (OSINT)",
+          "definition": "Freely available information — from public websites, social media, and records — that adversaries gather during reconnaissance (EK 2.1.C.2)."
+        },
+        {
+          "term": "Initial access",
+          "definition": "The phase in which adversaries establish a foothold on a target's computer, often through social engineering or compromised or weak credentials (EK 2.1.C.3)."
+        },
+        {
+          "term": "Persistence",
+          "definition": "The phase in which adversaries maintain access without regaining it, often via a command and control (C2) protocol using malware like a RAT or rootkit (EK 2.1.C.4)."
+        },
+        {
+          "term": "Lateral movement",
+          "definition": "The phase in which adversaries escalate privileges by accessing computers and accounts with elevated permissions to services and data (EK 2.1.C.5)."
+        },
+        {
+          "term": "Taking action",
+          "definition": "The phase in which adversaries act on their objectives — collecting and exfiltrating data, disrupting services, or destroying data (EK 2.1.C.6)."
+        },
+        {
+          "term": "Evading detection",
+          "definition": "The final phase in which adversaries remove or edit log files and erase other files they planted, such as malware (EK 2.1.C.7)."
+        }
+      ],
+      "script": "Seven terms — the six phases plus OSINT. Memorize the phases in order: reconnaissance, initial access, persistence, lateral movement, taking action, evading detection. For each, hold the one-line description, because the exam describes the action and asks the phase. OSINT is the term to know inside reconnaissance — freely available information. And note the connections: initial access often uses the social engineering from earlier this week, and persistence uses the malware terms RAT and rootkit. Get all seven into your notes with EK numbers."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.1.C. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Take the six actions from the bell ringer and label each with its phase name number, then list them in the correct CED order. Explain why reconnaissance has to come before initial access.",
+        "A ransomware group breaks into a network, immediately encrypts everything they can reach, demands payment, and makes no attempt to hide. Which phases did this attack use and which did it skip? In your answer."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: take the six bell-ringer actions, label each with its phase name and EK number, and put them in the correct order — researching employees is reconnaissance, stolen-password login is initial access, malware to stay connected is persistence, admin account to the finance server is lateral movement, exporting the database is taking action, deleting logs is evading detection. Then explain why recon has to come before access. Question two: a ransomware group breaks in, encrypts everything, demands payment, and doesn't hide — which phases did they use, which did they skip, and cite EK 2.1.C.1, the not-every-attack caveat. Be precise."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.1 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-cyber-foundations"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Name-the-phase-from-the-action scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Order the phases of a full attack timeline.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-2"
+        },
+        {
+          "label": "Lesson 2.1 quiz",
+          "tail": "Five questions across the whole topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site, in order. Re-run the Lesson 2.1 self-check, then Exercise 1, where you name the phase from each action, and Exercise 2, where you order the phases of a full attack timeline. The quiz at the bottom is five questions across the whole topic — keep it in view; it comes at the end of the lesson. Finish both exercises before tomorrow."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 3 · Day 3 of 8",
+      "heading": "End of Day 3",
+      "todayPoints": [
+        "Described all six phases of a cyberattack in order (LO 2.1.C)",
+        "Mapped getting in and staying in: reconnaissance, initial access, persistence (EK 2.1.C.2–C.4)",
+        "Mapped spreading, acting, and hiding: lateral movement, taking action, evading detection (EK 2.1.C.5–C.7)",
+        "Learned the CED caveat that not every attack uses every phase (EK 2.1.C.1) — identify the phases that are present"
+      ],
+      "nextPoints": [
+        "Describe the risk assessment process (LO 2.1.D)",
+        "Learn how likelihood and severity combine to rate a risk, and what a risk assessment must document",
+        "Keep the Lesson 2.1 quiz on the horizon — it spans all of 2.1.A through G"
+      ],
+      "teaser": "Tonight, think about which of today's attacks would actually keep a company executive up at night. How would they decide which vulnerability to fix first when they can't fix them all? Tomorrow you'll learn the risk assessment process — how organizations measure and rank the very attacks you just learned to map.",
+      "script": "Day 3 done. You can describe all six phases of a cyberattack, in order, and you know the caveat that not every attack uses every phase. That two-part skill — name the phase, order the sequence — is exactly what 2.1.C tests. Tonight's teaser turns to defense. An organization can't fix every vulnerability at once, so how do they decide which risks to worry about first? Tomorrow, EK 2.1.D, the risk assessment process — weighing likelihood against severity to rate and rank risk. Review your Guided Notes — be able to put the six phases in order cold."
+    }
+  ]
+}

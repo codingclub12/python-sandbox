@@ -1,0 +1,598 @@
+{
+  "meta": {
+    "lessonId": "3.8",
+    "lessonTitle": "Iteration",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-2.J, AAP-2.K",
+    "anchor": "Iteration",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.8 · Day 1 of 2",
+      "title": "Doing It Again (and Again)",
+      "subtitle": "The third building block of every program — iteration: repeating a block of steps a set number of times with REPEAT n TIMES, or until a condition is met with REPEAT UNTIL",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.8, Iteration — the third and final building block of algorithms, after sequencing and selection. Iteration is how a program does the same work again and again without you writing the same line over and over. Today, Day 1, we do two things: first, describe a repeating process as iteration in plain language, with no code at all; then learn to WRITE the two loop forms the exam reference sheet gives us — REPEAT n TIMES for a set count, and REPEAT UNTIL for 'keep going until a condition is met.' Tomorrow, Day 2, we trace loops to determine their results and meet the two cases the exam loves to trap you on: the infinite loop and the loop that runs zero times."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Express a repeating process as iteration without using a programming language, saying whether it repeats a set number of times or until a condition is met (LO AAP-2.J)"
+        },
+        {
+          "tag": "CB",
+          "text": "Write iteration statements using REPEAT n TIMES and REPEAT UNTIL(condition) from the exam reference sheet (LO AAP-2.K)"
+        }
+      ],
+      "script": "Two targets today. The first is AAP-2.J: take a process that repeats and describe it as iteration in ordinary language — is it a fixed count, or does it run until something is true? The second is AAP-2.K part a, the writing half: use the exam's two loop constructs — REPEAT n TIMES and REPEAT UNTIL — to actually write iteration. Tomorrow's objective is the other half of AAP-2.K, part b: determining what a loop produces, including the infinite and zero-times cases."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Maya is saving for a $20 game. She writes her plan out longhand: 'Add $5. Add $5. Add $5. Add $5.' Then she learns next month's game will cost $35 — and the month after that, who knows.",
+      "subprompt": "Write 2–4 sentences: Rewrite Maya's plan so it works for ANY price without listing 'Add $5' over and over. You will likely find you need TWO kinds of instruction — one that repeats a set number of times, and one that repeats until she reaches the price. Write both.",
+      "directions": "Be ready to share both versions of the plan.",
+      "script": "Five minutes with a partner. Maya's plan works, but only by copying 'Add $5' four times — and it breaks the moment the price changes. Rewrite it so a single instruction handles any price. Watch what groups produce: almost everyone lands on one of two phrasings — 'add $5 four times' (a set number of repeats) or 'keep adding $5 until she has enough' (repeat until a condition is true). Those two instincts ARE the two loop forms we learn today. Nobody needs the word 'iteration' yet; they just invented it. Collect one of each phrasing on the board before naming them."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Iteration Without a Language",
+          "description": "What iteration is, and describing a repeating process as 'a set number of times' or 'until a condition is met' (EK AAP-2.J.1)."
+        },
+        {
+          "title": "Writing the Two Loop Forms",
+          "description": "REPEAT n TIMES and REPEAT UNTIL(condition) from the exam reference sheet, and how each controls the flow of repetition (EK AAP-2.K.1–K.3)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.8 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is today's map — two sections, both green and CB-required. First, iteration without a language: what iteration is and how to describe any repeating process in words. Second, writing the two loop forms — REPEAT n TIMES and REPEAT UNTIL. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.8 Guided Notes page. The write-and-run coding practice for this topic — where you type and run these loops — lives on the Topic 3.8 page too."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Iteration Without a Language",
+      "kicker": "Describing Repetition · Learning Objective AAP-2.J",
+      "script": "Section one. Before any code, we name the idea. Maya's rewritten plan repeated a block of steps — that is iteration. The College Board first asks you to express iteration in plain language, so we start there: what iteration is, and the two ways a repeat can be controlled."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.J, AAP-2.K)",
+      "terms": [
+        {
+          "term": "Iteration",
+          "definition": "A repeating portion of an algorithm; it repeats a specified number of times or until a given condition is met (EK AAP-2.J.1)."
+        },
+        {
+          "term": "Loop",
+          "definition": "The programming construct that carries out iteration by executing a block of statements repeatedly (EK AAP-2.K.1)."
+        },
+        {
+          "term": "REPEAT n TIMES",
+          "definition": "A count-controlled loop that executes its block of statements exactly n times (EK AAP-2.K.2)."
+        },
+        {
+          "term": "REPEAT UNTIL",
+          "definition": "A condition-controlled loop that repeats its block until a Boolean condition evaluates to true (EK AAP-2.K.3)."
+        },
+        {
+          "term": "Stopping condition",
+          "definition": "The Boolean expression a REPEAT UNTIL loop tests; iteration ends as soon as it becomes true (EK AAP-2.K.1)."
+        }
+      ],
+      "script": "Five words carry the topic. Iteration is a repeating portion of an algorithm — the College Board's exact phrasing. A loop is the construct that performs it. REPEAT n TIMES is the count-controlled loop: you give it a number and it runs that many times. REPEAT UNTIL is the condition-controlled loop: no number, it just keeps going until a Boolean condition becomes true. And the stopping condition is that Boolean the loop tests — the moment it is true, iteration ends. Notice the two loops answer the same question differently: 'how many times?' versus 'until what?'"
+    },
+    {
+      "type": "concept",
+      "heading": "What Iteration Is",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Iteration is a repeating portion of an algorithm — the same block of steps carried out again and again (EK AAP-2.J.1).",
+        "It repeats in one of two ways: a SPECIFIED NUMBER of times, or UNTIL a given condition is met (EK AAP-2.J.1).",
+        "You can express iteration with no programming language at all: 'do this 4 times,' or 'keep going until the jar is full.'",
+        "Every algorithm is built from just three ideas — sequencing, selection, and iteration — and this is the third."
+      ],
+      "script": "Here is the whole idea in one slide. Iteration is a repeating portion of an algorithm — a block of steps done over and over instead of just once. The College Board says it repeats one of exactly two ways: a specified number of times, or until a given condition is met. And crucially for AAP-2.J, you can express iteration with no code at all — 'do this four times' and 'keep going until the jar is full' are both iteration described in English. This is the third building block; every algorithm you ever write is some mix of sequencing, selection, and iteration.",
+      "capture": [
+        {
+          "q": "Iteration means a portion of an algorithm ______.",
+          "a": "runs over and over instead of only once"
+        },
+        {
+          "q": "The two ways a repeat can be controlled are a set count or ______.",
+          "a": "until a stopping condition becomes true"
+        },
+        {
+          "q": "Iteration is the third algorithm building block, joining ______.",
+          "a": "sequencing and selection"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Say It Once, Not Ten Times",
+      "subheading": "The point of iteration is to DESCRIBE a repeat instead of copying it out — the same idea whether you count the repeats or stop on a condition (EK AAP-2.J.1).",
+      "left": {
+        "title": "Unrolled by hand",
+        "definition": "Every repeat written out as its own line — brittle and long",
+        "ek": "EK AAP-2.J.1",
+        "examples": [
+          "Add $5. Add $5. Add $5. Add $5.",
+          "Breaks the moment the price changes",
+          "Imagine writing this for 1,000 repeats"
+        ]
+      },
+      "right": {
+        "title": "Expressed as iteration",
+        "definition": "One instruction that names the repeat and how it is controlled",
+        "ek": "EK AAP-2.J.1",
+        "examples": [
+          "Count form: 'Add $5, four times.'",
+          "Condition form: 'Add $5 until savings reach the price.'",
+          "One line adapts to any price or count"
+        ]
+      },
+      "footer": "AP TIP: AAP-2.J asks you to express iteration WITHOUT code — decide first whether the repeat is controlled by a count or by a condition, then say it in one sentence.",
+      "script": "Iteration earns its keep by describing a repeat instead of copying it. On the left, Maya's plan unrolled by hand: four identical lines that break the instant the price changes and would be absurd at a thousand repeats. On the right, the same work expressed as iteration in one sentence — and notice it comes in the two flavors from the last slide. 'Add $5, four times' is count-controlled. 'Add $5 until savings reach the price' is condition-controlled. On the exam, AAP-2.J questions ask you to do exactly this: decide whether a described repeat is controlled by a count or a condition, and state it in one clean sentence.",
+      "capture": [
+        {
+          "q": "The advantage of expressing a repeat as iteration instead of writing every line is that ______.",
+          "a": "one instruction adapts to any number of repeats"
+        },
+        {
+          "q": "When you describe iteration without code, first decide whether the repeat is controlled by ______.",
+          "a": "a fixed count or a condition that ends it"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Describe the Repeat",
+      "subheading": "These map to LO AAP-2.J. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain what makes a process 'iteration.' Use the phrase 'repeating portion of an algorithm.'",
+        "For each, say whether it is count-controlled or condition-controlled, and why: (a) do 20 jumping jacks, (b) keep stirring until the sauce thickens, (c) knock on the door until someone answers.",
+        "Describe, in one sentence and no code, an everyday repeating task of your own — then state which of the two controls it uses."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.8 page.",
+      "script": "Stop and think, six minutes, full sentences on the Guided Notes. One: define iteration in your own words using the phrase 'repeating portion of an algorithm.' Two: classify each repeat — jumping jacks is count-controlled, a fixed 20; stirring until thick and knocking until answered are condition-controlled, no set number. Three: invent your own repeating task and label its control. These are exactly the AAP-2.J moves: describe a repeat in plain language and name what controls it."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Writing the Two Loop Forms",
+      "kicker": "REPEAT n TIMES and REPEAT UNTIL · Learning Objective AAP-2.K",
+      "script": "Section two. Now we turn those two English descriptions into actual code the exam recognizes. The reference sheet gives exactly two iteration statements, and part a of AAP-2.K is about writing them correctly — the count-controlled REPEAT n TIMES, and the condition-controlled REPEAT UNTIL."
+    },
+    {
+      "type": "concept",
+      "heading": "Two Loops on the Reference Sheet",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Iteration statements change the sequential flow of control by repeating a set of statements until a stopping condition is met (EK AAP-2.K.1).",
+        "REPEAT n TIMES { <block> } runs the block exactly n times — a fixed count (EK AAP-2.K.2).",
+        "REPEAT UNTIL(condition) { <block> } repeats the block until the Boolean condition becomes true (EK AAP-2.K.3).",
+        "Pick REPEAT n TIMES when you know the count in advance; pick REPEAT UNTIL when a condition, not a number, decides when to stop."
+      ],
+      "script": "The exam reference sheet gives exactly two iteration statements, and both change the flow of control by repeating a block until some stopping point. REPEAT n TIMES takes a number and runs the block exactly that many times — count-controlled. REPEAT UNTIL takes a Boolean condition inside parentheses and repeats the block until that condition becomes true — condition-controlled. The choice is simple: if you already know how many repeats, REPEAT n TIMES; if a condition decides when to stop and you cannot know the count in advance, REPEAT UNTIL. Write the block of statements inside the braces for both.",
+      "capture": [
+        {
+          "q": "An iteration statement changes the flow of control by ______.",
+          "a": "repeating a block of statements until it is time to stop"
+        },
+        {
+          "q": "Choose REPEAT n TIMES when ______.",
+          "a": "you already know the exact number of repeats in advance"
+        },
+        {
+          "q": "Choose REPEAT UNTIL when ______.",
+          "a": "a Boolean condition, not a fixed number, decides when to stop"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "REPEAT n TIMES",
+      "heading": "A Fixed Count",
+      "caption": "savings starts at 0; the block runs exactly 4 times, adding 5 each pass, ending at 20.",
+      "pseudocode": "savings ← 0\nREPEAT 4 TIMES\n{\n  savings ← savings + 5\n}\nDISPLAY(savings)",
+      "python": "savings = 0\nfor i in range(4):\n    savings = savings + 5\nprint(savings)",
+      "output": "20",
+      "script": "Maya's count-controlled plan, now in code. On the left is the exam pseudocode: savings starts at 0, then REPEAT 4 TIMES runs the block — savings becomes savings plus 5 — exactly four times. Five, ten, fifteen, twenty. DISPLAY shows twenty. On the right, runnable Python does the same with a for-loop over range 4; you write and run that version in the coding practice. Notice REPEAT n TIMES never mentions a condition — the number four is baked in, so you know before it runs that the block executes four times."
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "REPEAT UNTIL",
+      "heading": "Until a Condition Is Met",
+      "caption": "The same +5 block, but now it repeats UNTIL savings ≥ 20 — the condition, not a count, ends it.",
+      "pseudocode": "savings ← 0\nREPEAT UNTIL(savings ≥ 20)\n{\n  savings ← savings + 5\n}\nDISPLAY(savings)",
+      "python": "savings = 0\nwhile savings < 20:\n    savings = savings + 5\nprint(savings)",
+      "output": "20",
+      "script": "Maya's condition-controlled plan. Same block — add 5 — but now REPEAT UNTIL keeps going until savings is at least 20. It happens to run four times here and also ends at twenty, but the loop was never told 'four'; the condition decided. Read the two columns carefully: 'REPEAT UNTIL savings is greater than or equal to 20' becomes, in Python, 'while savings is less than 20' — a loop that runs WHILE the condition is still false and stops when it turns true. Same behavior, mirror-image wording. That flip between 'until true' and 'while false' is worth writing down."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Build a REPEAT Loop, Pass by Pass",
+      "context": "This is the REPEAT 4 TIMES loop that adds 5 to savings. Fill in savings AFTER each pass runs. 'Start' is before any pass.",
+      "columns": [
+        "After pass #",
+        "Statement run",
+        "savings"
+      ],
+      "rows": [
+        [
+          "Start",
+          "savings ← 0",
+          "0"
+        ],
+        [
+          "1",
+          "savings ← savings + 5",
+          "5"
+        ],
+        [
+          "2",
+          "savings ← savings + 5",
+          "10"
+        ],
+        [
+          "3",
+          "savings ← savings + 5",
+          "15"
+        ],
+        [
+          "4",
+          "savings ← savings + 5",
+          "20"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Trace the count-controlled loop pass by pass — this is how you should work every loop. Start: savings is 0. Pass one adds 5, savings is 5. Pass two, 10. Pass three, 15. Pass four, 20. After exactly four passes the block stops because REPEAT 4 TIMES was told four — no condition is checked. Fill in the blank savings cells yourself and confirm the running total climbs by 5 each pass. This same table shape is how we will trace REPEAT UNTIL loops tomorrow, where the number of passes is not handed to you.",
+      "blanks": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“REPEAT UNTIL Runs a Number of Times You Set”",
+      "misconception": "A REPEAT UNTIL loop runs a fixed number of times that the programmer chooses, just like REPEAT n TIMES.",
+      "whyItHappens": "Both statements start with the word REPEAT, so they look interchangeable, and REPEAT n TIMES's visible count trains students to expect a number inside every loop.",
+      "correction": "REPEAT n TIMES is count-controlled — you give it n and the block runs exactly n times (EK AAP-2.K.2). REPEAT UNTIL is condition-controlled — there is no number; it repeats until a Boolean condition becomes true, which might take 3 passes, 100 passes, or none at all (EK AAP-2.K.3). The number of passes is a RESULT of the condition, not something written into the loop.",
+      "example": "REPEAT UNTIL(savings ≥ 20) adding +5 each pass runs 4 times. Change the deposit to +2 and the SAME loop runs 10 times. Nothing about the loop's text changed — the condition decided the count.",
+      "script": "The trap that starts here and pays off tomorrow. Because both statements begin with REPEAT, students expect a number in each — but only REPEAT n TIMES has one. REPEAT UNTIL has a condition instead, and the number of passes is whatever it takes to make that condition true. The example nails it: the same REPEAT UNTIL, adding 5, runs four times; switch to adding 2 and it runs ten times — with zero changes to the loop's text. The count is a consequence of the condition, never a setting you typed. Have students explain in their notes why the two loops are not interchangeable."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Write the Loop",
+      "subheading": "These map to LO AAP-2.K. Complete on your Guided Notes.",
+      "prompts": [
+        "Write a REPEAT n TIMES loop in exam pseudocode that displays the word GO five times. Then say how many times the block runs and how you know.",
+        "Rewrite this as a REPEAT UNTIL loop: 'starting from count ← 0, add 1 to count until count reaches 6.' Then state the stopping condition you used.",
+        "A task says 'ring the bell 3 times.' Which loop form fits, and why would REPEAT UNTIL be the wrong choice here?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.8 page.",
+      "script": "Stop and think, six minutes. One: write REPEAT 5 TIMES with DISPLAY of GO inside, and note the block runs exactly five times because the count is fixed. Two: turn 'add 1 until count reaches 6' into REPEAT UNTIL with the condition count is greater than or equal to 6. Three: 'ring the bell 3 times' is a known count, so REPEAT n TIMES fits; REPEAT UNTIL would force you to invent a counter and a condition for something you already know is exactly three. These are the writing moves AAP-2.K part a tests."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Iteration is a repeating portion of an algorithm; it repeats a set number of times or until a condition is met (EK AAP-2.J.1)",
+        "You can express iteration without code — decide whether a repeat is count-controlled or condition-controlled (EK AAP-2.J.1)",
+        "REPEAT n TIMES { } runs its block exactly n times — a fixed count (EK AAP-2.K.2)",
+        "REPEAT UNTIL(condition) { } repeats until a Boolean condition becomes true — the condition, not a number, ends it (EK AAP-2.K.1, K.3)"
+      ],
+      "nextPoints": [
+        "Day 2: TRACE loops to determine their result or side effect (LO AAP-2.K part b)",
+        "The infinite loop: when a REPEAT UNTIL condition can never become true (EK AAP-2.K.4)",
+        "The zero-times loop: when the condition is already true before the loop even starts (EK AAP-2.K.5)"
+      ],
+      "teaser": "Predict it for tomorrow: savings ← 25, then REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 }, then DISPLAY(savings). How many times does the block run, and what prints? Write your answer AND your reasoning.",
+      "script": "That is Day 1. Iteration is a repeating portion of an algorithm, controlled either by a count or by a condition; you can describe it with no code at all; and the reference sheet gives two loops — REPEAT n TIMES for a fixed count and REPEAT UNTIL for 'repeat until a condition is true.' Tomorrow we stop writing loops and start TRACING them to find their results, and we meet the two cases the exam builds traps from: the loop that never stops, and the loop that runs zero times. Here is the teaser, and it is exactly where we open tomorrow: savings starts at 25, and the loop says repeat until savings is at least 20. Since 25 is already at least 20 — how many times does the block run? Write your answer and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.8 — Iteration — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "Maya's plan is \"keep adding $5 each week until I have at least $20.\" Which statement best describes why this is iteration?",
+        "options": [
+          "repeats a portion of the process until a given condition is met",
+          "stores several related values inside one variable",
+          "chooses between two different actions based on a fact",
+          "carries out each step exactly once in the order written"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.J.1",
+        "rationale": "EK AAP-2.J.1 defines iteration as a repeating portion of an algorithm that repeats a set number of times or until a condition is met; 'keep adding until I have at least $20' repeats until a condition, so A is correct. B describes a list (data abstraction), not repetition. C describes selection (an if-statement). D describes sequencing, which runs each step once."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "Which statement correctly describes the two ways a loop can repeat?",
+        "options": [
+          "Only until the program runs out of memory or is stopped",
+          "A specified number of times, or until a given condition is met",
+          "Either forward or backward through a list of values",
+          "Once for each variable that appears in the program"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.J.1",
+        "rationale": "EK AAP-2.J.1 states iteration repeats a specified number of times or until a given condition is met, so B is correct. A invents a memory rule the EK never states. C describes list traversal direction, unrelated to how a repeat is controlled. D confuses repetition with the number of variables."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs savings ← 0; REPEAT 4 TIMES { savings ← savings + 5 }; DISPLAY(savings). What is displayed?",
+        "options": [
+          "5 (one pass only)",
+          "0 (block skipped)",
+          "20 (four passes of +5)",
+          "9 (4 plus 5)"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.K.2",
+        "rationale": "EK AAP-2.K.2 says REPEAT n TIMES runs the block exactly n times; four passes of +5 give 5, 10, 15, 20, so C is correct. A stops after one pass. B wrongly claims the block is skipped. D adds unrelated quantities (4 + 5) instead of tracing the accumulation."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "A loop starts count ← 0 and runs REPEAT UNTIL(count ≥ 3) { count ← count + 1 }. How many times does the block run?",
+        "options": [
+          "0 times",
+          "2 times",
+          "It loops forever",
+          "3 times"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.K.3",
+        "rationale": "EK AAP-2.K.3 says the block repeats until the condition becomes true. count goes 0→1→2→3 across three passes; once count is 3, count ≥ 3 is true and the loop stops, so D is correct. A applies the zero-times case, but the condition is false at the start here. B stops one pass early. C ignores that count does reach 3."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "A student writes total ← 1; REPEAT UNTIL(total = 10) { total ← total + 2 }. What happens?",
+        "options": [
+          "It runs exactly five times and then stops",
+          "It never stops; total skips over 10 forever",
+          "The body runs zero times and total stays 1",
+          "It stops with an error before the first pass"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.K.4",
+        "rationale": "EK AAP-2.K.4 says an infinite loop occurs when the ending condition can never become true. Starting at 1 and adding 2, total takes only odd values and skips 10 entirely, so total = 10 is never true and the loop never stops; B is correct. A assumes total lands on 10. C is the zero-times case, which does not apply since 1 = 10 is false. D invents an error that pseudocode does not produce."
+      },
+      {
+        "id": "Q6",
+        "kind": "scenario",
+        "stem": "A loop runs bottles ← 12; REPEAT UNTIL(bottles ≥ 10) { bottles ← bottles + 1 }; DISPLAY(bottles). What is displayed?",
+        "options": [
+          "12; the condition is already true and the body is skipped",
+          "13; a REPEAT UNTIL body always runs at least once",
+          "10; the loop stops exactly at the threshold value",
+          "It never ends, adding 1 to bottles forever"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.K.5",
+        "rationale": "EK AAP-2.K.5 says the condition is checked before the loop, so if it is true initially the body runs zero times. bottles is 12, and 12 ≥ 10 is already true, so the body never runs and 12 prints; A is correct. B assumes REPEAT UNTIL always runs once, contradicting K.5. C invents a clamp to the threshold. D describes an infinite loop, but here the loop simply never starts."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs n ← 0; sum ← 0; REPEAT 3 TIMES { n ← n + 1; sum ← sum + n }; DISPLAY(sum). What is displayed?",
+        "options": [
+          "3 (the final value of n)",
+          "9 (three passes times three)",
+          "0 (sum never changes)",
+          "6 (running total 1, 2, 3)"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.K.1",
+        "rationale": "Tracing pass by pass: pass 1 makes n=1 and sum=1; pass 2 makes n=2 and sum=3; pass 3 makes n=3 and sum=6, so DISPLAY shows 6 and D is correct. A reports n instead of sum. B multiplies unrelated numbers. C ignores that sum ← sum + n changes sum each pass (EK AAP-2.K.1, repeating a set of statements)."
+      },
+      {
+        "id": "Q8",
+        "kind": "multi",
+        "stem": "Which statements about REPEAT UNTIL(condition) loops are true? I. The condition is checked before each pass. II. If the condition is true at the start, the body runs zero times. III. The loop always runs its body at least once.",
+        "options": [
+          "I only",
+          "III only",
+          "I and II only",
+          "I, II, and III"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.K.5",
+        "rationale": "Statement I is true — the condition is checked before the loop (EK AAP-2.K.5); statement II is the direct consequence (a zero-times run when the condition is already true). Statement III is false because it contradicts II. So I and II only, option C. A omits the correct II. B selects the false statement III. D includes the false III alongside the true ones."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.8 — Iteration — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.8 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.8 introduces iteration — the third building block of algorithms after sequencing (3.2–3.3) and selection (3.6–3.7). Day 1 (LO AAP-2.J and AAP-2.K part a) builds the concept and the writing skill: what iteration is, how to describe a repeat in plain language as count-controlled or condition-controlled, and how to WRITE the exam reference sheet's two loops — REPEAT n TIMES and REPEAT UNTIL(condition). Day 2 (LO AAP-2.K part b) is about determining results: tracing loops pass by pass and mastering the two cases the exam turns into traps — the infinite loop (EK AAP-2.K.4) and the loop that executes zero times because its condition is true before the loop starts (EK AAP-2.K.5).",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (← assignment, DISPLAY, REPEAT n TIMES, REPEAT UNTIL) shown side by side with runnable Python. One notation flip is worth drilling: REPEAT UNTIL(condition) becomes Python's while (NOT condition) — 'repeat until true' equals 'loop while false.' The interactive, auto-graded coding practice on the Topic 3.8 page has students type and run progressively harder versions of the same savings-jar scenario, including a REPEAT UNTIL that runs zero times.",
+      "The through-line is the Day 1 bell ringer: Maya's savings plan, written out longhand, pushes students to invent both loop forms — 'add $5 four times' and 'add $5 until she reaches the price' — before either is named."
+    ],
+    "los": [
+      "LO AAP-2.J — Express an algorithm that uses iteration without using a programming language.",
+      "LO AAP-2.K — For iteration: a. Write iteration statements. b. Determine the result or side effect of iteration statements."
+    ],
+    "eks": [
+      "EK AAP-2.J.1 — Iteration is a repeating portion of an algorithm. Iteration repeats a specified number of times or until a given condition is met.",
+      "EK AAP-2.K.1 — Iteration statements change the sequential flow of control by repeating a set of statements zero or more times, until a stopping condition is met.",
+      "EK AAP-2.K.2 — The exam reference sheet provides REPEAT n TIMES { <block of statements> } in which the block of statements is executed n times.",
+      "EK AAP-2.K.3 — The exam reference sheet provides REPEAT UNTIL(condition) { <block of statements> } in which the code in block of statements is repeated until the Boolean expression condition evaluates to true.",
+      "EK AAP-2.K.4 — In REPEAT UNTIL(condition) iteration, an infinite loop occurs when the ending condition will never evaluate to true.",
+      "EK AAP-2.K.5 — In REPEAT UNTIL(condition) iteration, if the conditional evaluates to true initially, the loop body is not executed at all, due to the condition being checked before the loop."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.8 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.8 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: a jar and play coins/bills for a physical 'savings jar' demonstration of REPEAT n TIMES vs REPEAT UNTIL."
+    ],
+    "prereqs": [
+      "Students need variables and assignment (Topic 3.1, the ← operator and most-recent-value tracing), arithmetic and MOD (Topic 3.3), Boolean and relational expressions (Topic 3.5, since REPEAT UNTIL tests a Boolean condition), and conditionals (Topics 3.6–3.7). Tracing an accumulator like savings ← savings + 5 depends directly on the assignment skills from 3.1."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "What iteration is; describing a repeat without code; writing REPEAT n TIMES and REPEAT UNTIL (LO AAP-2.J, AAP-2.K part a)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.8/Q1) + bell ringer (Maya's longhand savings plan)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Iteration without a language: vocab, what iteration is, say-it-once comparison (EK AAP-2.J.1)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on describing the repeat",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Writing the two loops: the two forms, REPEAT n TIMES code_block, REPEAT UNTIL code_block, build-a-loop table, count-vs-condition trap (EK AAP-2.K.1–K.3)",
+            "min": 15,
+            "slides": "10-15"
+          },
+          {
+            "segment": "Stop and Think on writing the loop",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + zero-times teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Tracing loops for their result; the infinite loop and the zero-times loop (LO AAP-2.K part b)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.8/Q2) + bell ringer (predict the zero-times savings loop)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Tracing loops: how to trace, REPEAT UNTIL count_weeks code_block, trace table (EK AAP-2.K.1)",
+            "min": 13,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Stop and Think on tracing",
+            "min": 6,
+            "slides": "9"
+          },
+          {
+            "segment": "Two subtle cases: infinite loop, zero-times loop, code_blocks, at-least-once trap (EK AAP-2.K.4–K.5)",
+            "min": 14,
+            "slides": "10-15"
+          },
+          {
+            "segment": "Stop and Think on the two cases",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.8 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.8 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.8 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“REPEAT UNTIL runs a number of times you set”",
+        "myth": "A REPEAT UNTIL loop runs a fixed number of passes chosen by the programmer, just like REPEAT n TIMES.",
+        "reality": "REPEAT n TIMES is count-controlled with an explicit n (EK AAP-2.K.2); REPEAT UNTIL is condition-controlled with no number — the passes are however many it takes for the Boolean condition to become true (EK AAP-2.K.3). Change the step size and the same REPEAT UNTIL runs a different number of times."
+      },
+      {
+        "heading": "“A REPEAT UNTIL loop always runs at least once”",
+        "myth": "The body of a REPEAT UNTIL loop must execute at least one time before the condition is checked.",
+        "reality": "The reference sheet checks the condition BEFORE each pass, including the first (EK AAP-2.K.5). If the condition is already true when the loop is reached, the body runs zero times. Drill the teaser: savings ← 25; REPEAT UNTIL(savings ≥ 20) never runs its body."
+      },
+      {
+        "heading": "“Every loop eventually stops”",
+        "myth": "A REPEAT UNTIL loop will always reach its condition and end on its own.",
+        "reality": "An infinite loop occurs when the ending condition can never become true (EK AAP-2.K.4). If the body never moves the state toward the condition — or steps over it, like +2 skipping an exact = 10 — the loop runs forever. Checking that each pass moves toward the stopping condition is the fix."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a physical savings jar and coins: for REPEAT n TIMES, count out exactly n deposits; for REPEAT UNTIL, keep depositing and check the condition out loud before each deposit so 'checked before the pass' is concrete.",
+        "Provide a blank trace table (columns: pass #, condition true?, variable after body) for Day 2 so students rewrite each variable's value and the condition check on every pass."
+      ],
+      "extension": [
+        "Have students convert each REPEAT UNTIL on the board into an equivalent REPEAT n TIMES when the count is knowable, and explain when that conversion is impossible (a condition that depends on unpredictable input).",
+        "Point deep-dive students at the Topic 3.8 coding practice to build the zero-times and infinite cases, then explain how the runnable output (or a deliberate step limit) confirms EK AAP-2.K.4 and K.5."
+      ]
+    },
+    "discussion": [
+      "Maya's longhand plan broke the moment the price changed. What does that reveal about why iteration — describing a repeat instead of copying it — is one of the most powerful ideas in programming?",
+      "REPEAT n TIMES tells you the count up front; REPEAT UNTIL makes you discover it by tracing. When is each the honest choice, and what real-world tasks genuinely have an unknown number of repeats?",
+      "The same REPEAT UNTIL loop can run four times, zero times, or forever depending only on its starting values and step. What does that say about how carefully you must reason about a loop's condition before trusting it?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

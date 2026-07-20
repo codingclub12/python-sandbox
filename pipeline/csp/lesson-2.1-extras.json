@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "lessonId": "2.1",
+    "lessonTitle": "Binary Numbers",
+    "unit": "Big Idea 2: Data",
+    "days": 2,
+    "los": "LO DAT-1.A, DAT-1.B, DAT-1.C"
+  },
+  "map": {
+    "subtitle": "Big Idea 2: Data   •   2 days   •   LO DAT-1.A, DAT-1.B, DAT-1.C",
+    "intro": "Everything for Topic 2.1 lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, share-out cues, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: The Wraparound Bug and Exercise 2: Binary Help Desk (student + answer KEY)",
+      "Discussion — Finite by Design (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 9 questions across LO DAT-1.A, DAT-1.B, and DAT-1.C, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Topic page",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-binary-numbers"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-binary-numbers-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-binary-numbers"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-binary-numbers"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-binary-numbers"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1: bits, abstraction, same-bits-different-contexts, and sampling, then the two costs of finite bits — overflow vs. round-off; Day 2: binary ↔ decimal in both directions and compare-and-order, closing with Common AP Traps and the exit check).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Scheduling: Topic 2.1 is a 2-day topic that opens Big Idea 2. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 2.2 (Data Compression) begins immediately after the quiz."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "The Wraparound Bug",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-1-exercise-1",
+    "intro": "You are the newest member of the QA team for the StrideTrak fitness-tracker beta. Overnight, five incident reports landed in the queue — a step count that mysteriously restarted, a distance total with a suspicious tail of digits, and raw binary values nobody has decoded yet. For each incident you will read the evidence, convert the binary where needed, and name the failure mode — or prove there isn't one. Part A works the incident log; Part B extends the same skills. Everything maps to CB Learning Objectives DAT-1.A, DAT-1.B, and DAT-1.C.",
+    "scenarioTitle": "QA Incident Log: Five Reports from the Overnight Build",
+    "narrative": "The lead engineer exported the five open tickets along with the raw values pulled from the device log. Your job is to work the queue. Read the log row by row, then answer Part A. Use the three-step method: write the place values under every binary number before reading it, do the arithmetic, then name the failure mode by asking which limit was hit — size, precision, or none at all.",
+    "log": {
+      "columns": [
+        "ID",
+        "Incident",
+        "What the log shows",
+        "Field / raw value",
+        "Detail worth noticing"
+      ],
+      "rows": [
+        [
+          "1",
+          "Step-count wrap",
+          "A 300-step test walk ends with the step display showing 44",
+          "Steps stored in an 8-bit field (legacy format)",
+          "300 was never displayed; the count appeared to restart partway through the walk"
+        ],
+        [
+          "2",
+          "Distance tail",
+          "Adding the 0.2 km warm-up to the 0.1 km cooldown displays 0.30000000000000004 km",
+          "Distances stored as floating-point real numbers",
+          "The error is microscopically small — but visible to every user who opens the app"
+        ],
+        [
+          "3",
+          "Undecoded heart rate",
+          "A support ticket asks what resting heart rate the app should display",
+          "Raw transmitted byte: 01011010",
+          "The sensor transmits readings as raw bytes; the app does the interpreting"
+        ],
+        [
+          "4",
+          "The double-duty byte",
+          "The byte 01000001 appears twice in one log pull",
+          "Once in the heart-rate column, once in the user-initials column",
+          "The heart-rate screen shows 65 bpm; the profile screen shows the letter A — and neither screen is reported broken"
+        ],
+        [
+          "5",
+          "Alert thresholds",
+          "Firmware lists three alert levels in binary: LOW = 110, MED = 1001, HIGH = 1100",
+          "A new SEVERE level must be added at decimal 22",
+          "The ticket asks for the existing levels in order, plus the new level's binary form"
+        ]
+      ]
+    },
+    "scenarioNote": "Incidents adapted from the Day 1 finite-bits worked table and the Day 2 conversion practice; terminology and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which one incident is NOT actually a bug, and what single detail in its log row tells you so?",
+    "partALabel": "Part A - Incident-by-Incident Rulings",
+    "partA": [
+      {
+        "ek": "EK DAT-1.B.1 / DAT-1.B.2",
+        "pts": 4,
+        "q": "Incident 1: name the failure mode, then account for the exact number 44 — show the arithmetic that produces it from a 300-step walk and an 8-bit field. Finally, state the CED's exception: in what kind of language would this bug be impossible?",
+        "answer": "INTEGER OVERFLOW. An 8-bit field can represent at most 2^8 − 1 = 255; per EK DAT-1.B.1, representing integers with a fixed number of bits limits the range of integer values and the mathematical operations on them, which can result in overflow or other errors. At step 256 the count wrapped back to 0, so a 300-step walk ends at 300 − 256 = 44 — exactly what the display shows, and the 'restart partway through the walk' is the wrap itself. The exception (EK DAT-1.B.2): some languages provide an abstraction through which the size of representable integers is limited only by the size of the computer's memory — including the language defined in the AP exam reference sheet — so the same count could not overflow there. Full credit requires the name, the 300 − 256 = 44 arithmetic, and the range limit — not just 'it ran out of space.'"
+      },
+      {
+        "ek": "EK DAT-1.B.3",
+        "pts": 4,
+        "q": "Incident 2: name this failure mode and explain why the machine cannot store 0.1 or 0.2 exactly, no matter how carefully the app was programmed. Then explain why this is NOT the same failure as Incident 1.",
+        "answer": "ROUND-OFF ERROR. Per EK DAT-1.B.3, the fixed number of bits used to represent real numbers limits the range and the mathematical operations on those values, which can result in round-off and other errors — some real numbers are represented as approximations in computer storage. 0.1 and 0.2 have no exact binary form (like 1/3 in decimal, their binary expansions never terminate), so the machine stores the closest representable values, and adding two approximations made the tiny error visible: 0.30000000000000004. It is NOT overflow: no maximum was exceeded — the value is the right SIZE but too PRECISE for the bits. Overflow is a range failure of fixed-width integers; round-off is a precision failure of floating-point reals. Diagnosing by which limit was hit is exactly how exam items separate the two."
+      },
+      {
+        "ek": "EK DAT-1.C.4 / DAT-1.C.5",
+        "pts": 4,
+        "q": "Incident 3: decode the byte 01011010. Write the place value under every bit, then show the addition that produces the resting heart rate the app should display.",
+        "answer": "Place values right to left are powers of 2 — 1, 2, 4, 8, 16, 32, 64, 128 — because each place value is the base raised to the power of the position, with positions numbered from 0 at the rightmost position (EK DAT-1.C.5). Written under 01011010: 128 64 32 16 8 4 2 1. Each digit contributes its bit value (0 or 1) multiplied by the place value of its position (EK DAT-1.C.4), so the 1s sit over the 64, 16, 8, and 2, and the heart rate is 64 + 16 + 8 + 2 = 90 bpm. The leading 0 contributes nothing — a 0 bit times any place value is 0. Full credit requires the written place values and the addition, not just '90': the place-value habit is the skill being graded."
+      },
+      {
+        "ek": "EK DAT-1.A.6 / DAT-1.A.7",
+        "pts": 4,
+        "q": "Incident 4: the same byte 01000001 shows up as 65 bpm on one screen and as the letter 'A' on another — and neither screen is broken. Explain how both can be true, and state what actually decides what a sequence of bits means.",
+        "answer": "Both are correct because the same sequence of bits may represent different types of data in different contexts (EK DAT-1.A.7). Bits are grouped to represent abstractions — numbers, characters, colors, and more (EK DAT-1.A.6) — but nothing inside the bits announces which abstraction they belong to. Read as a binary number, 01000001 is 64 + 1 = 65; read as a character code, that same 65 is the letter 'A'. The CONTEXT — which field the byte sits in, i.e., the interpretation contract the software applies — decides the meaning. Ruling: NOT A BUG, working as designed. This is also why opening a file with the wrong program shows garbage even though every bit is intact: the bits survived, the interpretation didn't."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "LO DAT-1.C / EK DAT-1.C.4",
+        "pts": 3,
+        "q": "Incident 5: order LOW (110), MED (1001), and HIGH (1100) from least to greatest WITHOUT fully converting — name the shortcut used for each comparison. Then write the new SEVERE level (decimal 22) in binary and state where it lands in the order.",
+        "answer": "Shortcut 1 — digit count: a binary number with more digits is always larger, so LOW (110, three digits) is the least. Shortcut 2 — equal lengths compare bit by bit from the left: 1001 vs. 1100 tie on the first bit, then 0 < 1 in the next position, so MED (1001) < HIGH (1100). Both shortcuts are place value in disguise: a 1 in a higher position outweighs everything below it, because a digit's value is its bit times the place value of its position (EK DAT-1.C.4, with place values set by EK DAT-1.C.5). Order: 110 < 1001 < 1100 — check by converting: 6 < 9 < 12. SEVERE by repeated subtraction: 22 − 16 = 6, 6 − 4 = 2, 2 − 2 = 0, so 1s go in the 16s, 4s, and 2s places: 10110. Five digits beats every four-digit code, so SEVERE lands at the top — exactly where an alert ladder wants it."
+      },
+      {
+        "ek": "EK DAT-1.A.8 / DAT-1.A.10",
+        "pts": 3,
+        "q": "The tracker's optical sensor watches your pulse — a signal that rises and falls smoothly, with infinitely many in-between values — yet the device stores only a list of binary numbers. Name what kind of data the pulse is, name the technique that turns it into bits, and state what the tracker gains by measuring MORE often.",
+        "answer": "The pulse is ANALOG data — values that change smoothly, rather than in discrete intervals, over time (EK DAT-1.A.8). The tracker uses SAMPLING: measuring values of the analog signal at regular intervals called samples, with each sample measured to figure out the exact bits required to store it (EK DAT-1.A.10). Measuring more often makes the digital copy a closer approximation of the smooth original — at the cost of more bits stored. And the whole move is an abstraction: using digital data to approximate real-world analog data (EK DAT-1.A.9) lets the app work with a clean list of numbers and ignore the continuous reality underneath."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: The firmware team proposes fixing Incident 1 by widening the step field from 8 bits to 16 bits (maximum 65,535). State the general ceiling for an n-bit field, show what the display would read after an ultramarathoner logs 70,000 steps on the NEW firmware, and explain why 'just add more bits' raises the ceiling but never abolishes overflow as a category.",
+        "answer": "An n-bit field tops out at 2^n − 1: 8 bits give 255, 16 bits give 65,535, 32 bits give 4,294,967,295. On the widened firmware, 70,000 steps still overflows: the display would read 70,000 − 65,536 = 4,464 — the same wrap, just at a higher ceiling. Adding bits enlarges the range, but ANY fixed number of bits represents only a fixed set of values (the root cause behind EK DAT-1.B.1), so some real-world value can always exceed it — the famous video view counter that froze at 2,147,483,647 was a 'wide' field meeting a bigger world. The only true escape is the EK DAT-1.B.2 abstraction — integers limited only by the computer's memory — which trades the ceiling away for variable-size storage."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Binary Help Desk",
+    "minutes": "25 minutes",
+    "subtitle": "5 tickets - convert, diagnose, order",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-1-exercise-2",
+    "intro": "You are on call at the device lab's binary help desk. Five tickets arrive from five different gadgets, each stuck on a number. For each ticket, decide what it is asking (a conversion, a diagnosis, or an ordering), write the place values under every binary number before reading it, show the arithmetic, and — where something went wrong — name the failure mode BY NAME (integer overflow or round-off error). Advanced students also name the sub-type or shortcut behind the answer. Vague 'the computer glitched' rulings score zero.",
+    "standard": "CB Standard (required): the conversion or ordering shown with place values, or the failure mode named with the arithmetic that proves it, for all 5 tickets. Enrichment (optional): also name the sub-type or shortcut involved (range vs. precision failure, digit-count ordering shortcut, the 2^n − 1 ceiling).",
+    "methodHeading": "Three-Step Method - use for every ticket",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your gut answer before computing. Writing your own number or diagnosis first keeps a convincing wrong option from swaying you."
+      ],
+      [
+        "Step 2 - Write the place values",
+        "Under every binary number, write 128 64 32 16 8 4 2 1 (as many as needed) before reading it — the place-value habit defeats the decimal reflex. For decimal → binary, subtract the largest power of 2 that fits, and repeat until nothing remains."
+      ],
+      [
+        "Step 3 - Diagnose by the limit hit",
+        "If a value went wrong, ask which limit was hit: too BIG for the bits is integer overflow (a range failure of fixed-width integers); too PRECISE for the bits is round-off error (a precision failure of floating-point reals). Show the arithmetic — the wrap subtraction or the stored approximation — that proves the diagnosis."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (sub-types and shortcuts): strong answers name the pattern behind the answer. An n-bit field tops out at 2^n − 1, so widening a field raises the ceiling without abolishing overflow. Ordering binary numbers rarely needs full conversion: more digits always means a larger number, and equal lengths compare bit by bit from the left. And the AP exam's own pseudocode language is the famous exception — its integers are limited only by the size of the computer's memory (EK DAT-1.B.2).",
+    "fields": [
+      "What this ticket asks (conversion, diagnosis, or ordering) + your predicted answer:",
+      "Work shown (place values / repeated subtraction / wrap arithmetic) + final answer or failure mode named:",
+      "Enrichment — sub-type or shortcut named (range vs. precision, digit-count, 2^n − 1):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A smart thermostat's install log records the current room temperature as the binary value 10011. The installer needs the decimal temperature to confirm the sensor is reading sanely — and warns that the last trainee reported it as 'ten thousand eleven degrees.'",
+        "key": {
+          "signs": "No failure mode here — this ticket is a straight binary → decimal read. The evidence is a 5-digit binary value and a question about what number it represents; the trainee's 'ten thousand eleven' is the decimal reflex (pronouncing binary digits as if they were base 10), which is exactly the mistake the method prevents.",
+          "mechanism": "Write the place values under the bits first: 16 8 4 2 1. The 1s sit over the 16, the 2, and the 1 (the 8s and 4s places hold 0s), so 10011 = 16 + 2 + 1 = 19 degrees. Each digit's numeric value is its bit (0 or 1) multiplied by the place value of its position (EK DAT-1.C.4), and each place value is the base raised to the power of the position, counting from 0 at the rightmost position (EK DAT-1.C.5). Defense against the reflex: never read a binary number until the place values are physically written beneath it.",
+          "subtype": "The place-value read-off — binary (base 2) uses only combinations of the digits zero and one (EK DAT-1.C.2), so '10011' is nineteen, never ten thousand eleven. Exam distractors are built from precisely this reflex."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A delivery drone must transmit its approved ceiling altitude — decimal 45 meters — to a ground station that accepts only binary. Write the exact bit sequence the drone should send, and prove the sequence decodes back to 45 before it is transmitted.",
+        "key": {
+          "signs": "The reverse direction: decimal → binary. The evidence that repeated subtraction is the tool: a decimal target (45) and a required binary output. Predict the length first — 45 is between 32 (2^5) and 63, so the answer needs six bits.",
+          "mechanism": "Repeated subtraction of the largest power of 2 that fits: 45 − 32 = 13 (1 in the 32s place); 13 − 8 = 5 (1 in the 8s); 5 − 4 = 1 (1 in the 4s); 1 − 1 = 0 (1 in the 1s). The unused 16s and 2s places get 0s. Read it off: 101101. Proof by decoding with place values 32 16 8 4 2 1: 32 + 8 + 4 + 1 = 45. Both directions are the same rule — a digit's value is its bit times its place value (EK DAT-1.C.4) — run forward and backward.",
+          "subtype": "The repeated-subtraction method (LO DAT-1.C part a, decimal → binary direction), closed with the decode-your-own-answer verification loop: a conversion is not finished until it round-trips."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "A retro arcade cabinet stores the high score in 8 bits. A player sitting at 250 points clears a 15-point bonus and the marquee proudly displays 9. The player files a ticket demanding the missing points back.",
+        "key": {
+          "signs": "The score did not just stop — it shot PAST a ceiling and reappeared as a small number. That wrap signature points at fixed-width integer storage: an 8-bit field tops out at 2^8 − 1 = 255, and the true total 250 + 15 = 265 is over the line.",
+          "mechanism": "265 − 256 = 9 — exactly what the marquee shows, which proves the diagnosis. Per EK DAT-1.B.1, in many programming languages integers are represented by a fixed number of bits, which limits the range of integer values and mathematical operations on those values, and this limitation can result in overflow or other errors. Defense: widen the score field (a 16-bit field tops out at 65,535) or clamp the score at 255 so it saturates instead of wrapping — either way, the fix is chosen knowing the ceiling exists.",
+          "subtype": "Integer overflow — the RANGE failure of fixed-width integers (too BIG for the bits). Contrast worth naming: some languages abstract this away entirely, with integer size limited only by the computer's memory — including the language defined in the AP exam reference sheet (EK DAT-1.B.2). This cabinet is not running one of them."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A budgeting app adds a $0.10 transit fare to a $0.20 coffee and the running total displays $0.30000000000000004. A one-star review claims the app 'invented money out of nowhere,' and a teammate proposes fixing it by moving the math to a bigger, more expensive processor.",
+        "key": {
+          "signs": "No ceiling was hit — the number is barely wrong, off only in the far decimal places. That microscopic-error signature is the precision failure, not the range failure: the value is the right size but too precise for the bits.",
+          "mechanism": "Per EK DAT-1.B.3, the fixed number of bits used to represent real numbers limits the range and mathematical operations on those values, which can result in round-off and other errors — some real numbers are represented as approximations in computer storage. Neither 0.1 nor 0.2 has an exact binary form (their binary expansions never terminate), so the app stored the closest representable values and the sum exposed the gap. The teammate's fix fails: a bigger processor stores the same approximations — hardware speed cannot create an exact binary 0.1. Real defense: keep money in whole cents (integers) or round the DISPLAY, not the hope.",
+          "subtype": "Round-off error — the PRECISION failure of floating-point reals (too PRECISE for the bits). Diagnosis rule worth memorizing: overflow = too big for the bits, round-off = too precise for the bits; name the failure by asking which limit was hit."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A warehouse sensor network assigns each device a binary priority code: DOOR = 1001, FAN = 110, CAMERA = 1100. A new SIREN must be inserted at decimal priority 22. Order the three existing codes from least to greatest WITHOUT fully converting (name the shortcut used at each step), then write the SIREN's code in binary and state where it lands in the order.",
+        "key": {
+          "signs": "Two tasks in one ticket: an ordering (compare binary numbers, LO DAT-1.C part b) and a decimal → binary conversion. The ordering evidence: the codes have different digit counts, so most of the comparison never needs a conversion at all.",
+          "mechanism": "Shortcut 1 — digit count: more binary digits always means a larger number, so FAN (110, three digits) is the least. Shortcut 2 — equal lengths compare bit by bit from the left: DOOR (1001) vs. CAMERA (1100) tie on the leading 1, then 0 < 1 in the next position, so DOOR < CAMERA. Order: 110 < 1001 < 1100; spot-check by converting: 6 < 9 < 12. SIREN by repeated subtraction: 22 − 16 = 6, 6 − 4 = 2, 2 − 2 = 0 → 1s in the 16s, 4s, and 2s places: 10110. At five digits it outranks every four-digit code, so the final order is 110 < 1001 < 1100 < 10110.",
+          "subtype": "The digit-count and left-to-right comparison shortcuts — both are place value in disguise: a 1 in a higher position outweighs every position below it, because each place value is the base raised to the power of the position (EK DAT-1.C.5) and a digit contributes its bit times that place value (EK DAT-1.C.4)."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Finite by Design",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "Underneath every photo, song, and high score is the same quiet bargain: the smooth, unlimited world gets traded for a fixed handful of 0s and 1s — and the machine never announces what the trade cost. Across three short windows in this topic, your group will decide whether meaning lives in bits or is given to them, hunt the two ways the bargain fails, and rule on the oldest fix in computing: can 'just add more bits' ever make the problem go away?",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions, then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your 8-switch temperature scheme only works if your friend knows the rules for reading it. Suppose a stranger intercepts the switches without the rules: what could they honestly claim to have learned? Use your answer to settle a bigger question — do bits CONTAIN meaning, or are they GIVEN meaning?"
+          },
+          {
+            "text": "Question 2. A voice memo of someone you love is analog reality turned into samples — measurements taken at regular intervals, with everything between them thrown away. Is the recording still 'their voice'? Would your answer change with far more samples — or far fewer? Where is the line?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~6 min, after the both-directions worked table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-rule claim",
+            "text": "Here is a claim: this entire topic runs on a single rule — a digit's value is its bit times the place value of its position. Test the claim as a group: state the rule in one sentence your whole group agrees on, then show how EACH conversion direction (binary → decimal and decimal → binary) is just that rule run forward or backward. If your group thinks a second rule is hiding somewhere, name it.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Why does 'eleven' feel so right?",
+            "text": "Debate: nearly every new student, every year, reads binary 11 as 'eleven.' Diagnose WHY the reflex is that strong — what ten years of reading base 10 trained your eyes to do — then design the one habit your group would teach next year's class to beat it. Record the habit and why it works.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The glitch triage",
+            "text": "One firmware update, three bug reports: (a) a step counter that displayed 44 after a 300-step test walk, (b) a distance total that reads 0.30000000000000004 km, and (c) a profile screen that shows the letter 'A' where the number 65 belongs. Triage all three: name each failure — or non-failure — and state which limit was involved: size, precision, or interpretation. Then rule on the intern's proposed fix, 'just store everything in more bits': which of the three does it truly fix, which does it merely postpone, and which does it not touch at all?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the report 'more bits' cannot fix + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

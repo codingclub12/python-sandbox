@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "lessonId": "1.3",
+    "lessonTitle": "Best Practices for Public Networks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 3,
+    "los": "LO 1.3.B, LO 1.3.C",
+    "anchor": "Public Wi-Fi Security",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.3 · Day 3 of 4",
+      "title": "Network Trust Advisor",
+      "subtitle": "Three clients. Three threat profiles. One framework.",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 1.3, Day 3 of 4. Today you move from analyst to consultant. Yesterday you identified the attacks. Today three real clients need your advice on what to actually DO about public Wi-Fi. The CB Scenario 1C coffee shop is Client 1. Recommendations must cite a specific CB defense. Vague 'be careful' answers score zero."
+    },
+    {
+      "type": "discussion",
+      "eyebrow": "Warmup · 3 minutes",
+      "prompt": "Three captive-portal login pages are on the board. For each one: REAL or FAKE? Vote, then name the red flag that gave it away.",
+      "subprompt": "Red flags to watch for: SSL certificate warning · URL domain mismatch · portal asking for social media or email credentials.",
+      "script": "Three minutes. Look at the three portals on the board. For each one, I want a vote — real or fake — and then one student to name the specific red flag. The goal is to build the instinct so fast that walking into any coffee shop you'd catch it in under ten seconds. Real coffee shops almost never ask for a social media login. A URL that doesn't match the venue name is almost always a giveaway. An SSL warning is a five-alarm fire."
+    },
+    {
+      "type": "objectives",
+      "heading": "Full Credit on Every Recommendation",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Name the specific wireless threat the client faces (EK 1.3.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply one or more CB-required defenses by name and EK number (EK 1.3.C.1, 1.3.C.2, or 1.3.C.3)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain WHY the defense addresses this client's specific risk — tie it to the threat mechanism"
+        },
+        {
+          "tag": "CB",
+          "text": "Layer defenses: full credit comes when multiple CB defenses apply and you name each one"
+        }
+      ],
+      "script": "Before you open the exercise: here is the rubric in one sentence. Every recommendation needs three things: the specific threat, the specific CB defense by name and EK number, and one line explaining why that defense addresses this client's exact risk. A single defense answer is almost never the full-credit answer when multiple defenses apply. That is the AP pattern."
+    },
+    {
+      "type": "work_timer",
+      "eyebrow": "Exercise 2 · Network Trust Advisor",
+      "heading": "Three Clients. Your Recommendations.",
+      "duration": "27:00",
+      "durationLabel": "MINUTES",
+      "tasks": [
+        "Client 1 — Sunshine Coffee Shop (CB Scenario 1C): identify the attack, recommend changes for the owner, write a customer safety card.",
+        "Client 2 — Remote Workers: identify the likely attack, draft three policy rules (one per CB EK), weigh the VPN trade-off.",
+        "Client 3 — Taylor, High School Senior: classify each activity by risk, design an SSID-verification habit, name three cellular-only situations."
+      ],
+      "script": "Twenty-seven minutes. Work through all three clients in order. Each one has sub-questions — don't skip the EK citation lines, those are worth points. On Client 2 there's a VPN trade-off question about whether a company should run their own VPN or use a consumer service. There's no single right answer — the points are for reasoning tied to EK 1.3.C.1. On Client 3 the risk matrix earns four points — don't just say HIGH or LOW, name the defense."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Debrief: The Three Clients",
+      "kicker": "CB defense + rationale + the common-error trap for each.",
+      "script": "Pencils down. We're walking through all three. For each client, students are called on for the attack identification, then the defense recommendation. The trap on each one is where most points get dropped — pay attention to those."
+    },
+    {
+      "type": "case_study",
+      "heading": "Client 1 — Sunshine Coffee Shop [CB Scenario 1C]",
+      "scenarioLabel": "The Situation",
+      "scenario": "Jamie connected to 'Guest Wi-Fi' instead of 'Sunshine Coffee Wi-Fi.' A fake captive portal asked for a social media login. Credentials harvested. The shop owner wants to prevent recurrence AND give customers a safety card.",
+      "analysisLabel": "Full-Credit Answers",
+      "analysis": [
+        "Attack: Evil Twin (EK 1.3.B.1). Jamie's mistake: didn't verify the exact SSID AND entered credentials into an unverified captive portal.",
+        "Shop recommendation 1 — Post the exact SSID visibly at the register and each table (EK 1.3.C.3). Customers need a trusted reference.",
+        "Shop recommendation 2 — Remove any third-party credential login from the real captive portal. Shop Wi-Fi should NEVER ask for a social media password.",
+        "Customer safety card — Verify the SSID (1.3.C.3); never enter account passwords into a portal; use VPN or cellular for sensitive activity (1.3.C.1 + 1.3.C.2)."
+      ],
+      "trap": "Students who recommend VPN as the SHOP fix miss the point — VPN helps the individual customer after connecting. The shop fix is SSID signage and removing credential portals before anyone connects.",
+      "script": "Client 1, the coffee shop. Cold call: what was the attack? Evil twin. What was Jamie's specific mistake? Two things — didn't verify the SSID, AND entered social media credentials into a portal on an untrusted network. The shop recommendations: post the exact SSID prominently, and drop any third-party login requirement from the portal. The customer safety card needs to map to specific EKs. Watch the trap: VPN is a customer defense, not a shop fix. The shop can't install VPNs on customers' devices."
+    },
+    {
+      "type": "case_study",
+      "heading": "Client 2 — Remote Workers",
+      "scenarioLabel": "The Situation",
+      "scenario": "25 employees work from coffee shops, hotels, and co-working spaces. A senior sales employee's email was compromised at a hotel — forensics suggest credentials were harvested there. No formal public-Wi-Fi policy exists.",
+      "analysisLabel": "Full-Credit Answers",
+      "analysis": [
+        "Likely attack: Evil Twin (EK 1.3.B.1) in the hotel. Hotels are high-risk: guests expect portal logins, names vary, time-pressured travelers skip verification.",
+        "Policy Rule 1 — Mandatory VPN for all work activity on non-office Wi-Fi (EK 1.3.C.1). Company-run, not consumer — shifts trust to the employer.",
+        "Policy Rule 2 — SSID verification via a pre-approved venue list (EK 1.3.C.3). New venues: verify the SSID with staff before connecting.",
+        "Policy Rule 3 — High-sensitivity activity on cellular hotspot only (EK 1.3.C.2). Client financials, password changes: never on public Wi-Fi.",
+        "VPN trade-off: a company-run VPN means the EMPLOYER is the trusted operator (already authorized for company data); a consumer VPN trusts a third party with ALL traffic."
+      ],
+      "trap": "Students who write 'use a VPN' without addressing the trust trade-off (EK 1.3.C.1 says the VPN provider can VIEW the traffic) lose the points. The question is WHO you trust, not just whether to use one.",
+      "script": "Client 2, remote workers. Likely attack: evil twin in the hotel. Hotels are the highest-risk venue because guests expect login portals and are time-pressured. The three policy rules map one-to-one to the three CB EKs — that's the design. The VPN trade-off question is the hardest one: EK 1.3.C.1 is explicit that the VPN provider can VIEW traffic. A company-run VPN shifts trust to the employer, who already has authorized access to company data. A consumer VPN shifts trust to a stranger. Full credit requires naming who you trust and why."
+    },
+    {
+      "type": "case_study",
+      "heading": "Client 3 — Taylor, High School Senior Traveler",
+      "scenarioLabel": "The Situation",
+      "scenario": "A 17-year-old visiting colleges across 5 cities in 8 days using airport, hotel, coffee shop, and mall Wi-Fi. Activities: email, Instagram, Google Docs, Venmo, Netflix, school email. Phone has cellular data.",
+      "analysisLabel": "Full-Credit Answers",
+      "analysis": [
+        "HIGH RISK: personal email (credentials) and Venmo (financial) — need VPN (1.3.C.1) + SSID verify (1.3.C.3), or cellular data.",
+        "LOW-MED RISK: Instagram, Netflix, Google Docs (HTTPS by default, EK 1.3.C.2) — still verify the SSID first.",
+        "SSID-verification habit — find the posted SSID, compare exact spelling/casing/punctuation, and if uncertain, don't connect — use cellular instead.",
+        "Cellular-only: Venmo transactions, password changes, and sensitive school email (each tied to data sensitivity per EK 1.3.C.2)."
+      ],
+      "trap": "Students who mark Instagram and Netflix as HIGH RISK over-apply the framework — those use HTTPS by default and don't involve credential entry. The exam tests knowing WHEN the defense is necessary.",
+      "script": "Client 3 is the most practical one for students because Taylor is their age. The risk matrix is four points — emphasis on justification. Email and Venmo are high risk because they involve credential entry and financial transactions. Instagram and Netflix use HTTPS and don't require entering sensitive credentials in a risky way, so low risk. The SSID habit is the most transferable skill in this whole lesson: find the posted name, compare exactly, when uncertain use cellular. That's the CB defense simplified for a real person."
+    },
+    {
+      "type": "discussion",
+      "eyebrow": "Discussion · Day 3",
+      "prompt": "EK 1.3.C gives three CB defenses: VPN, protocol awareness, and SSID verification. If you could only teach your family ONE, which would you choose and why?",
+      "subprompt": "Follow-up: a VPN 'shifts trust' from the Wi-Fi operator to the VPN provider. Is that actually safer? Who would you trust more — a coffee shop or a VPN company?",
+      "script": "Open discussion. I want to hear real arguments, not safe answers. Which one CB defense has the biggest real-world impact for a typical person who isn't a security professional? SSID verification is the highest-leverage because it prevents the most common attack before you're even connected. VPN is the most powerful once connected but requires trusting a new party. Protocol awareness is the most passive. The follow-up is the one worth arguing: the VPN trade-off. EK 1.3.C.1 is blunt about it — the VPN provider can view your traffic. Is a VPN company more trustworthy than a coffee shop Wi-Fi operator? There's no right answer. The CB tests that you know the trade-off exists."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "The AP Exam Pattern for This Lesson",
+      "subheading": "These three moves appear repeatedly in wireless-security questions.",
+      "strategies": [
+        {
+          "name": "Layered Defense",
+          "text": "A single CB defense almost never earns full credit when multiple apply. For a public-Wi-Fi scenario, evaluate all three: SSID verification, VPN, and protocol awareness. The exam rewards the right combination."
+        },
+        {
+          "name": "Match Defense to Threat",
+          "text": "Each defense stops a specific mechanism. SSID verification stops evil twins; protocol awareness reduces passive eavesdropping; VPN encrypts post-connection. Naming a real defense that doesn't fit the attack earns zero."
+        },
+        {
+          "name": "Know the Trade-offs",
+          "text": "EK 1.3.C.1 explicitly states the VPN provider can view traffic; EK 1.3.C.2 says to consider data sensitivity before joining. The exam tests that you know these limits — not just that the defenses exist."
+        }
+      ],
+      "script": "Three patterns to write on your notes before tomorrow's quiz. One: layered defense. The exam rarely wants just one defense. Two: match the defense to the specific threat mechanism — wrong defense, no credit. Three: know the trade-offs. The VPN trade-off is explicitly in the CED. If a question mentions that someone used a VPN but was still compromised, you need to know why."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 3 · Day 3 of 4",
+      "heading": "Day 4 is the Quiz",
+      "todayPoints": [
+        "Applied all three CB defenses to real clients with specific justifications",
+        "Worked through CB Scenario 1C as Client 1",
+        "Weighed the VPN trade-off: shifting trust is not the same as eliminating risk",
+        "Identified which activities need cellular and which are safe on HTTPS public Wi-Fi"
+      ],
+      "nextPoints": [
+        "5 AP-style questions, timed and independent — matches actual AP exam pacing",
+        "Full debrief: cold-call predictions and name the misconception each wrong answer targets",
+        "Bridge to Lesson 1.4: AI-based attacks scale what you've already learned"
+      ],
+      "script": "Day 4 is the quiz. Five AP-style questions, timed at about three minutes per question, which is actual AP exam pacing. Full debrief after. Review tonight: the three attack types, the three CB defenses, and the trade-offs — especially the HTTPS-doesn't-stop-credential-harvesting point from Day 2 and the VPN-shifts-trust point from today. Those are the two highest-probability exam traps in this lesson."
+    }
+  ]
+}

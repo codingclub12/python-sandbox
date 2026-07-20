@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "lessonId": "5.2",
+    "lessonTitle": "Protecting Data: Managerial Controls",
+    "unit": "Unit 5: Securing Applications and Data",
+    "days": 7,
+    "los": "LO 5.2.A, 5.2.B, 5.2.C, 5.2.D"
+  },
+  "map": {
+    "subtitle": "Unit 5: Securing Applications and Data   •   7 days   •   LO 5.2.A, 5.2.B, 5.2.C, 5.2.D",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–7 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–7 (student fill-in + answer KEY)",
+      "Exercise 1: Access Control Identifier and Exercise 2: Permissions Advisor (student + answer KEY)",
+      "Discussion — Right Data, Right Lock (3-part: Opening Day 1, Mid-lesson Day 5, Closing Day 7)",
+      "Quiz (student + answer KEY — canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-5-protecting-data-managerial-controls"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-2-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-2-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-2-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Days 1–2 data states and classification, Day 3 managerial policies, Days 4–5 access control models, Days 6–7 Linux permissions and quiz).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Protecting Data: Managerial Controls'; the anchor performance task is 'Protecting Sensitive Data' (Performance Task 5A); the unit hub lists this lesson under Securing Applications and Data. All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Access Control / Data Classification Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-2-exercise-1",
+    "intro": "You are a data protection analyst. A worklog of five cases just landed on your desk. For each one you will name the data classification or the access control model that fits, cite the law/standard or the, and justify it from the specific detail in the row. Part A works the case log; Part B extends the same skills. Everything maps to CB Learning Objectives 5.2.A and 5.2.C.",
+    "scenarioTitle": "Case Log: Five Data-Protection Decisions",
+    "narrative": "Five cases crossed your desk this week. Your team logged each one with the situation, the data or access detail, the question it raises, and the decision owner. Read the log row by row, then answer Part A. Use the three-step method: name the data classification (PII/PHI/PCI) or the access control model (RBAC/RuBAC/DAC/MAC) the case turns on, cite the governing law or, then justify it from the row.",
+    "log": {
+      "columns": [
+        "Case",
+        "Situation",
+        "Data / access detail",
+        "Decision owner"
+      ],
+      "rows": [
+        [
+          "1",
+          "Clinic uploads charts to a new server",
+          "Test results, treatment notes, and doctor-visit records for each patient",
+          "Compliance officer"
+        ],
+        [
+          "2",
+          "Online store stores checkout records",
+          "Card account number, expiration date, and CVV captured at payment",
+          "Payments lead"
+        ],
+        [
+          "3",
+          "HR app gates the payroll module",
+          "Only subjects assigned the 'accountant' role may open payroll; everyone else is denied",
+          "Identity admin"
+        ],
+        [
+          "4",
+          "Shared drive lets staff share files",
+          "Bob, who owns budget.xlsx, grants Alice read access himself; a super user can override",
+          "File owner / sysadmin"
+        ],
+        [
+          "5",
+          "Defense network labels every file",
+          "An external admin assigns each subject and object a level; a Secret user may not read a Top Secret file",
+          "Security administrator"
+        ]
+      ]
+    },
+    "scenarioNote": "Cases adapted from the Lesson 5.2 worked examples; classifications, models, and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026).",
+    "predict": "Before you answer Part A, write one sentence: of the five cases, which one is the trickiest to classify, and what is the single detail that decides it?",
+    "partALabel": "Part A - Case Classification",
+    "partA": [
+      {
+        "ek": "EK 5.2.A.4",
+        "pts": 6,
+        "q": "Cases 1 and 2 are both regulated data but different classifications. For EACH, name the CB classification (PII, PHI, or PCI), name the governing law or standard, and quote the specific data detail from the row that proves the classification.",
+        "answer": "Case 1 is PHI — protected health information — governed by the Health Insurance Portability and Accountability Act of 1996 (HIPAA); the proof is 'test results, treatment notes, and doctor-visit records,' which are data related to an individual's health, treatment, or care (EK 5.2.A.4). Case 2 is PCI — payment card information — governed by the Payment Card Industry Data Security Standard (PCI-DSS); the proof is 'card account number, expiration date, and CVV captured at payment,' which is data collected to process card payments (EK 5.2.A.4). Full credit requires the correct law paired with each classification, not just the acronym."
+      },
+      {
+        "ek": "EK 5.2.C.2 / 5.2.C.3",
+        "pts": 4,
+        "q": "Case 3 names the access control model directly, but a layered model is frequently added on top of it. Name the model in Case 3, name the model most often layered on top of it, and explain the one-word difference between the two.",
+        "answer": "Case 3 is role-based access control (RBAC, EK 5.2.C.2): every subject is assigned to a role and roles define access — only the 'accountant' role may open payroll, so access keys on WHO you are. The model most often layered on top is rule-based access control (RuBAC, EK 5.2.C.3), which checks a set of rules — e.g., blocking access outside working hours — and is typically layered on top of another model. The one-word difference: RBAC decides by ROLE (who you are), RuBAC decides by RULE (what the conditions are)."
+      },
+      {
+        "ek": "EK 5.2.C.4",
+        "pts": 4,
+        "q": "Case 4 is discretionary access control. Name the defining detail in the row that makes it DAC rather than any other model, and explain the role the super user plays per the CED.",
+        "answer": "Case 4 is discretionary access control (DAC, EK 5.2.C.4): the defining detail is that Bob, the OWNER of budget.xlsx, himself sets the access another subject (Alice) has on the object he owns — owner discretion is the DAC signature. The super user's CED role is the override: in DAC models some subjects are designated administrators or super users who can override the access controls established by other subjects, so the owner's choice is not the final word."
+      },
+      {
+        "ek": "EK 5.2.C.5 / 5.2.C.6",
+        "pts": 4,
+        "q": "Case 5 is mandatory access control implemented as Bell-LaPadula. Name the property that makes 'a Secret user may not read a Top Secret file' true, state the WURD summary, and explain in one sentence why writing DOWN is also forbidden.",
+        "answer": "The relevant rule is the Simple Security Property (EK 5.2.C.6): subjects may not READ objects above their level — 'no read up' — so a Secret user cannot read a Top Secret file. The full Bell-LaPadula summary is write up, read down (WURD). Writing down is forbidden by the * (Star) Security Property because a high-level subject pasting high-level content into a lower-level object would leak sensitive information to a lower level. Note also that under MAC (EK 5.2.C.5) an external administrator — not the owner — assigns every subject and object level."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 5.2.A.2",
+        "pts": 3,
+        "q": "The Case 1 charts exist in three states at once: backed up on a drive, emailed to a specialist, and open on a nurse's screen. Name each state and its matching protection, and explain why the on-screen copy cannot simply be left encrypted..",
+        "answer": "On the backup drive the data is AT REST — protect the physical drive and encrypt it so a thief cannot read it. Emailed across the internet it is IN TRANSIT — protect the media and encrypt it so an interceptor cannot read it. Open on the nurse's screen it is IN USE — protected by access controls that limit who may view or edit it. The on-screen copy cannot stay encrypted because EK 5.2.A.2 states data must be unencrypted to be used: a person literally cannot read ciphertext, so access controls, not encryption, guard data in use."
+      },
+      {
+        "ek": "EK 5.2.A.3 / 5.2.A.5",
+        "pts": 3,
+        "q": "A public marketing brochure and a patient's PHI live on the same server. Explain why the organization spends more securing the PHI, and state what requires the organization to do with the regulated data specifically.",
+        "answer": "EK 5.2.A.3 says organizations categorize data by sensitivity and prioritize a higher degree of security for more sensitive information, so the PHI — which can harm a patient and triggers legal duties — gets stronger protection than an unregulated brochure, which is not sensitive. EK 5.2.A.5 adds that organizations collecting regulated data must LABEL it and maintain policies that comply with the legal or regulatory requirements for its safe storage, transmission, and handling — labeling and compliance policies are required for the PHI, not the brochure."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Permissions Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 scenarios - chmod + least privilege",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-2-exercise-2",
+    "intro": "You are a Linux administrator applying the principle of least privilege. Three scenarios need permissions set. For each, read the access requirement, translate it to the rwx string for owner/group/other, then give the chmod command BOTH ways — numeric and symbolic. Vague 'lock it down' advice scores zero; show the exact bits. Everything maps to CB Learning Objectives 5.2.C.7 and 5.2.D.",
+    "standard": "CB Standard (required): permission string + numeric chmod + symbolic chmod, tied to least privilege, for all 3 scenarios. Enrichment (optional): name what ls -l / getfacl would reveal about extra permissions.",
+    "methodHeading": "Three-Step Method - use for every scenario",
+    "method": [
+      [
+        "Step 1 - Read the requirement",
+        "Decide, per least privilege, exactly what each entity needs: owner, group, others. No more access than the function requires."
+      ],
+      [
+        "Step 2 - Write the rwx string",
+        "Translate to nine characters in owner-group-other order, using a dash for each absent permission."
+      ],
+      [
+        "Step 3 - Give both chmod commands",
+        "Numeric: sum 4 read + 2 write + 1 execute per entity. Symbolic: u/g/o/a with +/- and r/w/x. Show the digit math."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 5.2): after setting permissions, ls -l shows the resulting string; a trailing + means extra ACL permissions exist that getfacl reveals. Spotting a + that grants access nobody needs is least privilege enforcement made visible.",
+    "fields": [
+      "Permission string (owner / group / other):",
+      "Numeric chmod command (show 4+2+1 math):",
+      "Symbolic chmod command (u/g/o/a +/- rwx):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A patient-record file, record.txt, should be read AND write for the owning clinician, read-only for the care-team group, and nothing for all other users — least privilege for PHI.",
+        "key": {
+          "signs": "Owner needs read+write; group needs read only; others need nothing — the textbook least-privilege string for a regulated PHI record (EK 5.2.C.7).",
+          "mechanism": "Permission string rw-r----- (owner rw-, group r--, other ---). Numeric: chmod 640 record.txt — owner 6 = 4 read + 2 write, group 4 = read, others 0 = none (EK 5.2.D.6). Symbolic from a blank file: chmod u+rw,g+r record.txt (EK 5.2.D.7).",
+          "subtype": "ls -l should display -rw-r----- ; if a trailing + appears, getfacl would reveal extra ACL access that violates least privilege (EK 5.2.D.4)."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A program named deploy should be readable AND executable by the owner and the group (so both can run it), but others must have no access at all. The owner must also be able to edit it.",
+        "key": {
+          "signs": "Owner needs read+write+execute (edit and run); group needs read+execute (run only); others need nothing (EK 5.2.C.7).",
+          "mechanism": "Permission string rwxr-x--- (owner rwx, group r-x, other ---). Numeric: chmod 750 deploy — owner 7 = 4 + 2 + 1, group 5 = 4 + 1, others 0 (EK 5.2.D.6). Symbolic from a blank file: chmod u+rwx,g+rx deploy (EK 5.2.D.7).",
+          "subtype": "Execute (x) is what lets the binary run; a missing x on the group would let them read the file but not run it — ls -l shows the difference (EK 5.2.D.2)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "A config file already exists as rw-rw-rw- (world-writable — a least-privilege violation). Tighten it so only the owner keeps write, the group keeps read only, and others lose ALL access. Use the SYMBOLIC method because you are adjusting an existing file, not setting it from scratch.",
+        "key": {
+          "signs": "The current rw-rw-rw- gives write to group and others and read to others — all excess access that least privilege forbids (EK 5.2.C.7). Target string: rw-r----- (owner rw-, group r--, other ---).",
+          "mechanism": "Symbolic is the right tool because it ADDS or REMOVES specific bits rather than replacing everything: chmod go-w config.cfg removes write from group and others, then chmod o-r config.cfg removes read from others — combinable as chmod go-w,o-r config.cfg (EK 5.2.D.7). The equivalent numeric replace is chmod 640 config.cfg (6=4+2, 4, 0), which sets the whole string at once (EK 5.2.D.6).",
+          "subtype": "Numeric REPLACES the full permission set while symbolic adjusts individual bits — the CED contrast in EK 5.2.D.6 vs D.7; both reach rw-r----- here."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Right Data, Right Lock",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 5) + Closing (Day 7)",
+    "overview": "You don't protect every piece of data the same way — its state and its sensitivity decide how much protection it deserves, policy writes the rules down, a model enforces who can touch it, and a single chmod command makes it real. Across three short windows in this lesson, your group will connect data states and classification to real life, debate which access control model and which principle is hardest to actually live with, and decide how the whole pipeline — classify, set policy, pick a model, set the bits — protects a single sensitive record.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The same medical record can be at rest on a drive, in transit across the internet, and in use on a nurse's screen all at once. Why can't the strongest single protection — encryption — be applied to all three states? What does that force you to do for the copy being read?"
+          },
+          {
+            "text": "Question 2. Who should decide how sensitive a piece of data is and how much it gets protected — the organization that holds it, or the law? Defend your split with one concrete example (e.g., a patient chart, a card number, a marketing brochure)."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 5, ~8 min, right after the Bell-LaPadula / least-privilege debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Write up, read down",
+            "text": "Under Bell-LaPadula a Top Secret analyst CAN read an Unclassified memo but CANNOT write Top Secret content into it. In one sentence your whole group agrees on, explain why 'no write down' protects secrets even though it feels backwards that higher clearance can't write to lower files.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which is hardest to live with?",
+            "text": "Debate for about 3 minutes: of the access control ideas — RBAC by role, RuBAC layered rules, DAC owner discretion, MAC strict levels — which is hardest for a real organization to maintain alongside the principle of least privilege, and what is the realistic cost of getting it wrong? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 7, ~9 min, after the chmod practice",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "One record, every layer",
+            "text": "Trace a single patient record from classification down to the command: it is PHI under HIPAA (5.2.A), the cryptography policy fixes its encryption (5.2.B), least privilege says only the care team gets access (5.2.C), and chmod 640 record.txt enforces rw-r----- (5.2.D). Design the defense: explain how each of the four layers is necessary, why chmod 640 IS least privilege made concrete, and what an admin should conclude if ls -l shows a trailing + on that file.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single layer you'd protect hardest + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

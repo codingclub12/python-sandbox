@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "lessonId": "1.5",
+    "lessonTitle": "Leveraging AI in Cyber Defense",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 2,
+    "los": "LO 1.5.B",
+    "anchor": "AI-Powered Cyber Defense",
+    "author": "AP CS Exam Prep",
+    "totalDays": 2
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.5 · Day 2 of 2",
+      "title": "AI at the Speed of the Attack",
+      "subtitle": "Leveraging AI in Cyber Defense: how AI sorts millions of events, alerts or acts, and lets response teams intervene before damage is done",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome back to Lesson 1.5, Day 2. Yesterday, 1.5.A, was AI as an advisor — reviewing configurations, code, and detection rules, always with a human signing off. Today is 1.5.B, and the story changes from advice to alarm. The problem is scale: a real network throws off millions of events a day, and a few of them are an attack. No human can read them all. Today you'll learn how AI is trained to sort the dangerous events from the harmless ones, to alert people or take action the instant it finds something, and to let response teams intervene fast enough to prevent the loss. Then we take the Lesson 1.5 quiz."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "Yesterday's order app launched. On day one it logged about four million events — logins, searches, clicks, database reads. Somewhere in that flood, an adversary is testing the very input fields your team fixed before launch.",
+      "subprompt": "Write 3–5 sentences: could a team of human analysts read all four million events to find the attack in time? If not, what would AI need to do to that stream to make the problem solvable?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own. Your order app from yesterday is live, and on day one it logged about four million events — every login, search, click, and database read. Hidden in there, an adversary is probing the exact input fields you patched. In three to five sentences: could human analysts realistically read all four million events and catch that attack in time? If not, what would AI have to do to that flood to make it solvable? Hold your answer — this is EK 1.5.B.1, the scale problem, and it is where today begins."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have two sections that match today’s lesson. Both are CB-required.",
+      "sections": [
+        {
+          "title": "The Scale Problem and AI Triage",
+          "description": "Millions of daily events are too many for humans, so AI is trained to sort likely-malicious from harmless (EK 1.5.B.1, B.2)."
+        },
+        {
+          "title": "Alert, Act, and Intervene Fast",
+          "description": "AI alerts personnel or takes corrective action, letting response teams catch attacks and intervene quickly to prevent loss (EK 1.5.B.3, B.4)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 1.5 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Two sections today, both CB-required. First, the scale problem and triage: why humans can't examine millions of events, and how AI sorts the likely-malicious from the harmless. Second, what happens once AI finds something — it alerts people or takes corrective action, and that lets response teams intervene fast enough to stop the damage. Keep the packet open; Guided Notes are collected at the end."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain the scale problem — why millions of daily events are too many for human analysts to examine (LO 1.5.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Describe how AI triages events, sorting likely-malicious from harmless, then alerts the team or takes corrective action (LO 1.5.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how AI-driven detection enables a faster, more accurate response while a human stays in the loop (LO 1.5.B)"
+        }
+      ],
+      "script": "Three objectives today under learning objective 1.5.B — the scale problem, AI triage and response, and why a human stays in the loop. Two words in that objective do the work: faster and more accurate. Faster, because AI processes millions of events in the time a human reads one. More accurate, because it is trained to tell the dangerous events from the harmless ones. By the end of class you'll be able to explain both, and how AI's response lets a human team intervene before the loss happens."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "The Scale Problem",
+      "kicker": "Threat Detection & Response · Learning Objective 1.5.B",
+      "script": "Section three of the lesson. Learning objective 1.5.B. Before we talk about what AI does, we have to feel the problem it solves: scale. Eight minutes."
+    },
+    {
+      "type": "two_column",
+      "heading": "Why Defenders Need AI: The Numbers Don't Work",
+      "subheading": "EK 1.5.B.1 and B.2 — the flood of events is the problem; AI triage is the answer.",
+      "left": {
+        "title": "The Flood (EK 1.5.B.1)",
+        "definition": "Millions of events, a few of them an attack",
+        "ek": "EK 1.5.B.1",
+        "examples": [
+          "Networks generate millions of digital events every day",
+          "Logins, file accesses, connections, queries — most are completely normal",
+          "Some small number likely represent an adversary conducting malicious activity",
+          "Humans cannot carefully examine all those events to find the malicious ones"
+        ]
+      },
+      "right": {
+        "title": "The Triage (EK 1.5.B.2)",
+        "definition": "AI sorts the stream so humans don't have to",
+        "ek": "EK 1.5.B.2",
+        "examples": [
+          "AI-powered tools can be trained to quickly analyze digital events",
+          "They sort events that are likely malicious from those that are harmless",
+          "The handful of suspicious events rises to the top for attention",
+          "This is the ‘more accurate’ half of the objective — fewer needles, less haystack"
+        ]
+      },
+      "footer": "AP TIP: EK 1.5.B.1 is the PROBLEM (too many events for humans) and EK 1.5.B.2 is the ANSWER (AI triages them). On the exam, name both — the scale problem is WHY AI detection exists.",
+      "script": "Here is why defenders reach for AI, in two columns. On the left, EK 1.5.B.1, the flood: a real network produces millions of events a day — logins, file accesses, connections — and the overwhelming majority are perfectly normal. But some small number are an adversary at work, and the College Board states it plainly: humans cannot carefully examine all those events to find the malicious activity. The math simply doesn't work. On the right, EK 1.5.B.2, the triage: AI-powered tools can be trained to quickly analyze those events and sort the likely-malicious from the harmless. That's the ‘more accurate’ half of today's objective — AI shrinks millions of events down to the handful a human should actually look at. Write both EKs, and write which one is the problem and which is the answer."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Alert, Act, and Intervene",
+      "kicker": "Threat Detection & Response · Learning Objective 1.5.B",
+      "script": "Section four. Same objective, 1.5.B. Triage finds the suspicious event — now what? AI alerts a human or takes action, and that speed is what lets a team stop the damage. Twelve minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "From Detection to Response: Three CB-Specified Capabilities",
+      "subheading": "EK 1.5.B.2, B.3, and B.4. Triage feeds the alert; the alert feeds a fast human response.",
+      "items": [
+        {
+          "ek": "EK 1.5.B.2",
+          "title": "Sort the Events",
+          "summary": "AI-powered tools, trained on what normal and malicious activity look like, quickly analyze digital events and sort the events that are likely malicious from those that are harmless — turning millions of events into a short list worth a human's attention.",
+          "ekRef": "EK 1.5.B.2"
+        },
+        {
+          "ek": "EK 1.5.B.3",
+          "title": "Alert or Take Action",
+          "summary": "AI-powered tools can be programmed to alert human cybersecurity personnel when likely malicious activity is detected, or to take specific corrective actions based on the type of malicious activity detected — for example, isolating a device or blocking a connection.",
+          "ekRef": "EK 1.5.B.3"
+        },
+        {
+          "ek": "EK 1.5.B.4",
+          "title": "Intervene Quickly",
+          "summary": "These tools enable threat-detection and response teams to catch malicious activity and intervene quickly — fast enough to prevent loss, harm, damage, and destruction to digital infrastructure and data before an attack can finish.",
+          "ekRef": "EK 1.5.B.4"
+        }
+      ],
+      "script": "Three capabilities, in the order they actually happen. First, EK 1.5.B.2, sort: the AI, trained on what normal and malicious traffic look like, turns millions of events into a short list of likely-malicious ones. Second, EK 1.5.B.3, alert or act: the tool is programmed either to alert human cybersecurity personnel, or to take a specific corrective action chosen for the type of activity — isolating a device, blocking a connection. Note the ‘or’ — it can hand off to a human, or it can act, depending on how it's set up. Third, EK 1.5.B.4, intervene quickly: because all of this happens in seconds rather than days, threat-detection and response teams can catch the attack and step in fast enough to prevent loss, harm, damage, and destruction. That speed is the ‘faster’ half of the objective. Write all three with their EK numbers."
+    },
+    {
+      "type": "misconception",
+      "heading": "The ‘AI Replaces the Analyst’ Myth",
+      "misconception": "If AI detects threats and can take corrective action on its own, a security team no longer needs human analysts.",
+      "whyItHappens": "EK 1.5.B.3 says AI can take specific corrective actions automatically, so it is easy to assume the humans are now optional — the machine watches, decides, and acts by itself.",
+      "correction": "Read the EKs together. AI solves the scale problem — triaging millions of events (B.1, B.2) — but EK 1.5.B.3 has it alert human cybersecurity personnel, and EK 1.5.B.4 describes human threat-detection and response TEAMS doing the intervening. AI handles volume and speed; humans handle judgment and response. It is the same human-in-the-loop idea you saw in 1.5.A, now on the response side.",
+      "example": "An AI tool can flag and even auto-isolate a device showing ransomware behavior in milliseconds — but a human team decides whether it was a true attack, how far it spread, what to restore, and whether to escalate. Hand judgment entirely to the tool and a false positive could shut down a hospital's systems; remove the AI and the real attack is lost in four million events. The CED keeps both.",
+      "script": "This is the Day 2 version of yesterday's misconception, and it's just as tempting. EK 1.5.B.3 says the AI can take corrective action on its own, so students conclude the analysts are obsolete — the machine watches and acts, done. But read all four EKs together. AI exists here to beat scale and speed: it triages the millions of events no human could read, and it can react in milliseconds. What it does NOT do is replace judgment. EK 1.5.B.3 has it alert human personnel, and EK 1.5.B.4 names human response teams as the ones who intervene. Picture it: AI can auto-isolate a device behaving like ransomware in the blink of an eye — but a person decides if it was truly an attack, how far it reached, what to restore, whether to call it an incident. Give the tool all the judgment and one false positive could take a hospital offline; take the tool away and the real attack vanishes into four million events. That is why the College Board keeps both — the same human-in-the-loop you met in 1.5.A, now on response."
+    },
+    {
+      "type": "two_column",
+      "heading": "Scenario 1E, After Launch: Detection at Scale",
+      "subheading": "Yesterday AI helped secure the code (1.5.A.2). Now the live app shows why detection (1.5.B) matters — against the faster attacks of Lesson 1.4.",
+      "left": {
+        "title": "The Attack in the Flood",
+        "definition": "What slips into four million events",
+        "ek": "Recap 1.4 → 1.5",
+        "examples": [
+          "The order app is live; an adversary probes the input fields for any missed flaw",
+          "AI-augmented attacks from Lesson 1.4 come faster and at greater scale (EK 1.4.A.6)",
+          "Those probe attempts are a few events hidden among millions (EK 1.5.B.1)",
+          "No human watching dashboards could catch them in time"
+        ]
+      },
+      "right": {
+        "title": "AI Catches and the Team Responds",
+        "definition": "Triage → alert/act → intervene",
+        "ek": "EK 1.5.B.2–B.4",
+        "examples": [
+          "Trained AI sorts the probing attempts out of the harmless traffic (EK 1.5.B.2)",
+          "It alerts the security team and can block the source automatically (EK 1.5.B.3)",
+          "The response team intervenes quickly, before data is read or altered (EK 1.5.B.4)",
+          "Defense AI now matches the speed and scale of the attack AI"
+        ]
+      },
+      "footer": "KEY SKILL: 1.5.A secured the code BEFORE launch; 1.5.B defends it AFTER launch. Together they show AI on defense across the whole life of the app — and let defenders move at the speed of an AI-powered attack.",
+      "script": "Let's carry Scenario 1E forward and connect the whole unit. Yesterday, before launch, AI helped secure the code — that was 1.5.A.2. Now the app is live, and here's why 1.5.B matters. On the left: an adversary probes those input fields for anything the team missed, and remember from Lesson 1.4 that AI-augmented attacks come faster and at greater scale — EK 1.4.A.6. Those probe attempts are just a few events buried in millions; no human staring at a dashboard catches them in time. On the right: trained AI sorts the probes out of the harmless traffic, EK 1.5.B.2; it alerts the security team and can automatically block the source, EK 1.5.B.3; and the response team intervenes quickly, before any data is read or altered, EK 1.5.B.4. Here's the key skill: 1.5.A secured the app before launch, 1.5.B defends it after — AI on defense across the entire life of the application. And it's the answer to Lesson 1.4: when attacks move at AI speed, only AI-assisted defense can move fast enough to meet them."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 1.5.B)",
+      "terms": [
+        {
+          "term": "Digital event",
+          "definition": "Any recorded activity on a network — a login, file access, connection, or query — of which there are millions daily and only a few are malicious (EK 1.5.B.1)."
+        },
+        {
+          "term": "AI event triage",
+          "definition": "Training AI-powered tools to quickly analyze digital events and sort the likely-malicious activity from the harmless activity (EK 1.5.B.2)."
+        },
+        {
+          "term": "Automated alert / corrective action",
+          "definition": "Programming an AI tool to notify human cybersecurity personnel, or to take a specific corrective action, when likely malicious activity is detected (EK 1.5.B.3)."
+        },
+        {
+          "term": "Threat detection and response team",
+          "definition": "The human team that uses AI-flagged detections to catch malicious activity and intervene quickly to prevent loss, harm, damage, and destruction (EK 1.5.B.4)."
+        },
+        {
+          "term": "False positive",
+          "definition": "A harmless event AI flags as malicious; the risk that keeps a human in the loop before drastic corrective action is taken (EK 1.5.B.3)."
+        }
+      ],
+      "script": "Five terms for today. The two the exam leans on are AI event triage — sorting malicious from harmless, EK 1.5.B.2 — and the threat detection and response team, the humans who intervene, EK 1.5.B.4. A digital event is just any recorded activity on the network, and there are millions a day. Automated alert or corrective action is the EK 1.5.B.3 step — and notice it's ‘alert OR act.’ And know the term false positive: a harmless event flagged as malicious, which is exactly why a human stays in the loop before anything drastic is done automatically. Get all five into your notes with EK numbers."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 1.5.B. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A network produces millions of events a day and a security team of five people. Explain why AI-powered detection is necessary here, and describe exactly what the AI does to make the problem manageable.",
+        "An AI tool detects likely ransomware behavior and can either alert the team or automatically isolate the affected device. Then explain — using the ‘AI replaces the analyst’ idea — why a human response team is still essential."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: millions of events, five analysts — explain why AI detection is necessary, cite EK 1.5.B.1 for the scale problem and EK 1.5.B.2 for the triage, and say exactly what the AI does to the stream. Question two: AI spots likely ransomware and can alert or auto-isolate — cite EK 1.5.B.3 for that, then use today's misconception to explain why the human response team in EK 1.5.B.4 is still essential. Be precise about who does what."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.5 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-leveraging-ai-cyber-defense"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Name-the-defensive-AI-use scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-5-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Trace detection-to-response on Scenario 1E.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-5-exercise-2"
+        },
+        {
+          "label": "Lesson 1.5 quiz",
+          "tail": "Five questions across both objectives.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-5-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site. Re-run the Lesson 1.5 self-check, finish both exercises if you haven't, and the quiz is your five-question check across both objectives. If you want any of today again at your own pace, the lesson video walks the material slide for slide. The quiz you take in class today is the same standard."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Lesson 1.5 · Day 2 of 2",
+      "heading": "End of Lesson 1.5",
+      "todayPoints": [
+        "Explained the scale problem: millions of daily events are too many for humans (EK 1.5.B.1)",
+        "Showed how AI triages events, sorting likely-malicious from harmless (EK 1.5.B.2)",
+        "Traced detection to response: AI alerts or acts (B.3) so human teams intervene quickly (B.4)",
+        "Saw AI defend Scenario 1E across the app's whole life — secured before launch, watched after",
+        "Took the Lesson 1.5 quiz"
+      ],
+      "nextPoints": [
+        "Unit 2 begins the next stage of the course: securing physical spaces",
+        "Keep the human-in-the-loop idea: AI advises and accelerates, humans decide",
+        "Carry forward how attack (1.4) and defense (1.5) use the same AI on opposite sides"
+      ],
+      "teaser": "AI made both the attack and the defense faster. The rest of the course is about the controls and monitoring that decide who wins that race — starting next lesson.",
+      "script": "Lesson 1.5 is complete. You can explain both halves of the topic: 1.5.A, the three ways defenders use AI as an advisor with a human signing off, and 1.5.B, how AI beats the scale and speed problem to enable faster, more accurate detection and response. Tie it to the whole unit: Lesson 1.4 showed AI in the attacker's hands, 1.5 showed the same technology in the defender's — and across both, the human-in-the-loop is what keeps the defense trustworthy. Next is Unit 2, where we shift from attacks and AI to securing physical spaces. Review your Guided Notes — be able to name all four EK 1.5.B capabilities and explain why humans stay in the loop."
+    }
+  ]
+}

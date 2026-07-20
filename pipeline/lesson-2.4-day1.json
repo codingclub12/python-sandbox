@@ -1,0 +1,675 @@
+{
+  "meta": {
+    "lessonId": "2.4",
+    "lessonTitle": "Detecting Attacks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 1,
+    "los": "LO 2.4.A",
+    "anchor": "Securing Xtensr Labs",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.4 · Day 1 of 4",
+      "title": "Catching the Intruder in the Act",
+      "subtitle": "Detecting Attacks: the four CB-specified ways physical security controls detect an attack — cameras, security guards, motion sensors, and the employees who notice first",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 2.4, Detecting Attacks, Day 1 of 4. Topic 2.3 was about protecting a physical space — the managerial controls and mitigation strategies that keep adversaries out. But no control is perfect, so this lesson is about the next layer: detection, noticing that an attack is happening or has happened. Today, Day 1, is learning objective 2.4.A — the four specific ways the College Board says security controls can detect a physical attack: cameras, security guards, motion sensors, and the employees who work in the space. Tomorrow, Day 2, is 2.4.B, where we place that equipment effectively. Day 3 applies all of it to Scenario 2A, Securing Xtensr Labs. Day 4 is review and practice for the whole topic. Notice across today's four detection methods a recurring idea: detection only matters if someone or something is actually watching and can respond. A camera no one monitors, a sensor no one answers — those detect nothing. Keep that in mind."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "A research lab has a locked back door to its server room. One night an adversary slips through that door while no one is around. The lab has cameras in the hallway, a motion sensor inside the server room, a guard at the front lobby, and employees who work in nearby offices during the day.",
+      "subprompt": "Write 3–5 sentences: which of those four things could actually CATCH this intruder, and what has to be true for each one to work? Name at least one that would fail to detect anything, and say why.",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own, no notes. Read it: a lab with a locked server-room door, and overnight an adversary gets through it. The lab has hallway cameras, a motion sensor in the server room, a guard at the front lobby, and employees who work in nearby offices during the day. Question: which of those four could actually catch this intruder, and what has to be true for each one to work? Name at least one that would catch nothing here, and tell me why. Hold your answer. Those four — cameras, guards, motion sensors, employees — are exactly the four detection methods the College Board names in 2.4.A, and by the end of class you'll know the strengths and the blind spots of each."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have three sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Four Ways Controls Detect an Attack",
+          "description": "Cameras record and are monitored, guards watch and respond, motion sensors alert to movement, and employees notice intruders first (EK 2.4.A.1, A.2, A.3, A.4)."
+        },
+        {
+          "title": "Detect vs. Prevent: Where 2.4 Fits",
+          "description": "Topic 2.3 controls PREVENT attacks; Topic 2.4 controls DETECT them when prevention fails — the next layer of defense-in-depth (EK 2.4.A.1)."
+        },
+        {
+          "title": "Enrichment: Recorded vs. Live Detection",
+          "description": "Some methods catch an attack as it happens (live monitoring, guards, sensors); others help after the fact (recorded camera footage in investigations) (EK 2.4.A.1).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.4 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three sections today, all green except the last. Section one is the heart of 2.4.A: the four ways security controls detect a physical attack — cameras, guards, motion sensors, and employees — each with the condition that makes it actually work. Section two situates this lesson: Topic 2.3 was about preventing attacks, and Topic 2.4 is about detecting the ones that get through, the next layer of defense-in-depth. Section three is a quick enrichment on live versus recorded detection — catching the attack as it happens versus reconstructing it afterward. Keep your pencil moving; Guided Notes are collected at the end of class."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Name the four ways security controls detect a physical attack — cameras, security guards, motion sensors, and employees (LO 2.4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Match a given detector to what it actually detects and the condition it needs — a monitored/recorded camera, a present guard, a movement-only sensor, an alert employee (LO 2.4.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Distinguish these detective controls from the preventive controls of Topic 2.3 — detection notices an attack rather than stopping it (LO 2.4.A)"
+        }
+      ],
+      "script": "Three objectives today, all under learning objective 2.4.A. First, name the four ways security controls detect a physical attack — cameras, security guards, motion sensors, and the employees who work in the space. Second, match each detector to what it actually detects and the condition it needs to work: a camera must be recorded and monitored, a guard must be present to respond, a sensor only signals movement, and an employee must be present and paying attention. Third, distinguish these detective controls from the preventive controls you met in Topic 2.3 — detection notices an attack rather than stopping it. The verb is identify, so the exam will give you a scenario and ask which method is in play, or which one would or would not catch a given intruder. By the end of today you can do all three."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Four Ways Controls Detect an Attack",
+      "kicker": "Securing Xtensr Labs · Learning Objective 2.4.A",
+      "script": "Section one. Learning objective 2.4.A. Four ways security controls detect a physical attack — cameras, security guards, motion sensors, and employees. As we go, watch for the condition each one needs to actually work. Twelve minutes here."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Detection Methods: Three That Are Equipment-Based",
+      "subheading": "EK 2.4.A.1, A.2, and A.3 — cameras, guards, and motion sensors. Each detects something different, and each needs a condition to work.",
+      "items": [
+        {
+          "ek": "EK 2.4.A.1",
+          "title": "Cameras",
+          "summary": "Cameras can capture a visual record of an adversary's malicious activity. The feed from a camera should be recorded and monitored for maximum effect. Recordings can be especially helpful in after-incident investigations.",
+          "ekRef": "EK 2.4.A.1"
+        },
+        {
+          "ek": "EK 2.4.A.2",
+          "title": "Security Guards",
+          "summary": "Security guards can monitor activity in an area and respond to suspicious activity once detected. Unlike a passive sensor, a guard both notices the activity and can act on it immediately.",
+          "ekRef": "EK 2.4.A.2"
+        },
+        {
+          "ek": "EK 2.4.A.3",
+          "title": "Motion Sensors",
+          "summary": "Motion sensors can alert security to movement in an area. They do not identify who or what is moving — they simply signal that something is moving where it should not be.",
+          "ekRef": "EK 2.4.A.3"
+        }
+      ],
+      "script": "Three equipment-based detection methods first. EK 2.4.A.1, cameras: they capture a visual record of an adversary's activity, and the feed should be both recorded AND monitored for maximum effect — recorded so you can investigate after an incident, monitored so someone can react during one. EK 2.4.A.2, security guards: they monitor an area and, crucially, can respond to suspicious activity the moment they detect it. A guard is the one method that detects and responds in the same person. EK 2.4.A.3, motion sensors: they alert security to movement in an area. Note what a sensor does NOT do — it doesn't tell you who is moving or whether it's a threat, only that something is moving. Write all three with their EK numbers, and for each write the condition that makes it useful: a camera must be monitored or recorded, a guard must be present, a sensor must alert someone who responds."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Fourth Detector: People Who Work There",
+      "subheading": "EK 2.4.A.4 — the human element that no piece of equipment replaces.",
+      "left": {
+        "title": "What EK 2.4.A.4 Says",
+        "definition": "Employees are often the first to notice an intruder",
+        "ek": "EK 2.4.A.4",
+        "examples": [
+          "Employees that work in a physical space are often the first to notice the presence of an unauthorized person",
+          "They know who belongs in the space and who does not",
+          "They can alert security when they see someone unfamiliar",
+          "No camera or sensor was needed — a person simply noticed"
+        ]
+      },
+      "right": {
+        "title": "Why It Matters",
+        "definition": "Free, everywhere, and context-aware",
+        "ek": "EK 2.4.A.4",
+        "examples": [
+          "Employees are already present throughout the space during work hours",
+          "They notice things equipment misses — an unfamiliar face, an odd badge, the wrong uniform",
+          "This is why 'see something, say something' training is a detection control",
+          "The weakness: it only works when people are present and paying attention"
+        ]
+      },
+      "footer": "AP TIP: EK 2.4.A.4 is the human detection method — the people who work in a space are often the FIRST to notice an unauthorized person. On the exam, don't forget employees count as a detection control alongside the equipment.",
+      "script": "The fourth detection method is the one students forget, because it isn't a gadget. EK 2.4.A.4: employees that work in a physical space are often the first to notice the presence of an unauthorized person, and they can alert security. Think about why — employees know who belongs in their area, so an unfamiliar face stands out to them in a way no motion sensor could parse. They're already everywhere in the building during work hours, for free, with context that equipment doesn't have: the wrong uniform, an odd badge, someone in a place they shouldn't be. This is exactly why organizations train staff to report anything suspicious — 'see something, say something' is a detection control. The weakness is the flip side: it only works when people are present and paying attention. Overnight, in an empty building, your employees detect nothing — which is exactly where cameras and sensors earn their keep. Write EK 2.4.A.4 and its one weakness."
+    },
+    {
+      "type": "concept",
+      "heading": "Detect vs. Prevent: Where Topic 2.4 Fits",
+      "script": "Step back for a second and place this lesson in the unit. Topic 2.3 was prevention: locks, access-control vestibules, managerial controls — everything designed to stop an adversary from getting in. But here's the security mindset the whole course is built on: assume prevention will sometimes fail. Topic 2.4 is the answer to 'what then?' These four methods are detective controls — their job isn't to stop the adversary at the door, it's to make sure that if the adversary does get in, they can't operate unnoticed. That's defense-in-depth: prevention as the first layer, detection as the next. On the exam, if a question describes noticing an attack rather than blocking it, you're in 2.4 territory. Write the distinction: 2.3 prevents, 2.4 detects.",
+      "bullets": [
+        "Topic 2.3 was about PREVENTING physical attacks — locks, managerial controls, and mitigation strategies that stop an adversary from getting in.",
+        "Topic 2.4 assumes some attacks will get through anyway, and asks a different question: when prevention fails, how do you DETECT that an attack is happening or has happened?",
+        "The four EK 2.4.A methods — cameras, guards, motion sensors, employees — are detective controls, the next layer of a defense-in-depth strategy.",
+        "A detective control's job is not to stop the adversary but to make sure the adversary cannot operate unnoticed."
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Live Detection vs. After-the-Fact Record",
+      "subheading": "Not a separate EK, but a distinction inside EK 2.4.A.1 worth making — when does each method actually catch the attack?",
+      "track": "enrichment",
+      "left": {
+        "title": "Live / Real-Time Detection",
+        "definition": "Catches the attack as it happens",
+        "ek": "Enrichment",
+        "examples": [
+          "A guard monitoring an area responds the moment they see something (EK 2.4.A.2)",
+          "A motion sensor alerts security while the intruder is still there (EK 2.4.A.3)",
+          "A monitored camera feed lets someone react in real time (EK 2.4.A.1)",
+          "An employee spots and reports an intruder on the spot (EK 2.4.A.4)"
+        ]
+      },
+      "right": {
+        "title": "Recorded / After-Incident",
+        "definition": "Helps reconstruct what already happened",
+        "ek": "Enrichment",
+        "examples": [
+          "Recorded camera footage is reviewed after an incident (EK 2.4.A.1)",
+          "It shows the adversary's path, timing, and actions",
+          "It supports investigations, attribution, and improving defenses",
+          "But by itself, an unmonitored recording detects nothing in the moment"
+        ]
+      },
+      "footer": "TAKEAWAY: EK 2.4.A.1 says the feed should be recorded AND monitored — because those are two different jobs. Monitoring catches the attack live; recording helps you reconstruct it after. The best setups do both.",
+      "script": "Quick enrichment, because it sharpens a distinction the CED packs into one EK. EK 2.4.A.1 says a camera feed should be recorded AND monitored for maximum effect — and those two words do different jobs. On the left, live detection: a monitored feed, a guard, a sensor, an alert employee — each can catch the attack while it's happening and let someone respond in time. On the right, the recorded record: camera footage reviewed after an incident, which can't stop what already happened but is invaluable for reconstructing the adversary's path and actions, for investigations, and for fixing the gap. Here's the trap: a camera that is only recorded and never monitored detects nothing in the moment — it's purely an after-the-fact tool. That's why the EK insists on both. Note which of the four methods are live, which produce a record, and which can do both."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.4.A)",
+      "terms": [
+        {
+          "term": "Detective control",
+          "definition": "A security control whose job is to detect that an attack is happening or has happened, rather than prevent it — the focus of all of Topic 2.4 (EK 2.4.A.1)."
+        },
+        {
+          "term": "Surveillance camera",
+          "definition": "A control that captures a visual record of an adversary's activity; the feed should be recorded and monitored for maximum effect, and recordings aid after-incident investigations (EK 2.4.A.1)."
+        },
+        {
+          "term": "Security guard",
+          "definition": "A person who can monitor activity in an area and respond to suspicious activity once it is detected, detecting and acting in one (EK 2.4.A.2)."
+        },
+        {
+          "term": "Motion sensor",
+          "definition": "A control that alerts security to movement in an area without identifying who or what is moving (EK 2.4.A.3)."
+        },
+        {
+          "term": "Employee awareness",
+          "definition": "The detection method in which employees who work in a space are often the first to notice an unauthorized person and can alert security (EK 2.4.A.4)."
+        },
+        {
+          "term": "After-incident investigation",
+          "definition": "The review of recorded camera footage after an attack to reconstruct an adversary's actions, an especially helpful use of recordings (EK 2.4.A.1)."
+        }
+      ],
+      "script": "Six terms, anchored on the four EKs. The four you must know cold are the detection methods themselves: surveillance camera, security guard, motion sensor, and employee awareness — and for each, what it detects and the condition it needs. Detective control is the umbrella term for all four and the whole topic, so make sure it's in your notes — that's how you'll recognize a 2.4 question. After-incident investigation is the specific value of recorded footage from EK 2.4.A.1. Know all six by name and EK number."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.4.A. Complete on your Guided Notes packet.",
+      "prompts": [
+        "A motion sensor in a server room alerts security to movement at 2 a.m. For this detection method, explain exactly what the sensor does and does NOT tell security, and explain why a camera or guard is still needed to know what is actually happening.",
+        "An adversary enters a lab during business hours wearing a fake delivery uniform. What 2.4.A detection method is most likely to catch them, and why? Explain who notices, and the one condition that has to be true for that method to work."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: a motion sensor fires at 2 a.m. — name the EK, that's 2.4.A.3, and be precise about what it tells you, movement, and what it does NOT tell you, who or what is moving or whether it's a real threat — then explain why you still need a camera or guard to interpret it. Question two: an adversary walks in during business hours in a fake delivery uniform. Which method catches them? Employees, EK 2.4.A.4 — they know who belongs — and the condition is that people are present and paying attention. Be precise about who notices and why."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.4 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-detecting-attacks"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Name-the-detection-method scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Match each method to what it detects and its blind spot.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-2"
+        },
+        {
+          "label": "Lesson 2.4 quiz",
+          "tail": "Five questions across the topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything from class is on the site, and work it in the order shown. Start on the Lesson 2.4 page and run the self-check. Then Exercise 1, where you name the detection method in each scenario, and Exercise 2, where you match each method to what it detects and its blind spot. The quiz at the bottom is five questions across the topic — you'll be fully ready after Day 4, but try it now to see where you stand. Write the lesson page URL down now."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 4",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Named the four CB-specified ways security controls detect a physical attack: cameras, security guards, motion sensors, and employees (LO 2.4.A)",
+        "Tied each method to what it detects and the condition it needs: a camera must be recorded/monitored (A.1), a guard must be present to respond (A.2), a sensor must alert someone (A.3), employees must be present and alert (A.4)",
+        "Placed Topic 2.4 in the unit: 2.3 PREVENTS attacks, 2.4 DETECTS the ones that get through",
+        "Distinguished live detection from after-the-fact recorded evidence (A.1)"
+      ],
+      "nextPoints": [
+        "Learn how to place detection and monitoring equipment effectively (LO 2.4.B)",
+        "See why a motion sensor in a busy hallway is nearly useless — false alarms",
+        "Cover camera angles, locks and access control vestibules, and stationary vs. patrolling guards"
+      ],
+      "teaser": "Tonight, think about this: you have one motion sensor. Do you put it in the busy lobby where everyone walks, or in the server room nobody should enter? Tomorrow you'll learn why placement decides whether detection equipment works at all.",
+      "script": "Day 1 done. You can name the four detection methods and, for each, what it detects and the condition it needs to work — that's the core of 2.4.A and the exam tests it directly. Tonight's teaser sets up tomorrow: you've got the equipment, but where do you put it? One motion sensor — the busy lobby, or the empty server room? Tomorrow, 2.4.B, is all about effective placement: camera angles and coverage, where motion sensors belong and where they create useless false alarms, locks and access control vestibules, and stationary versus patrolling guards. Review your Guided Notes — be able to name all four methods, their EK numbers, what each detects, and its blind spot."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 2.4 — Detecting Attacks — Quiz",
+    "instructions": "Choose the single best answer. 12 questions, 25 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "multi",
+        "stem": "A lab is reviewing how it might detect a physical intruder. I. A camera feed is recorded and monitored so staff can watch live and review footage later. II. A motion sensor in the server room alerts security to movement after hours. III. A reinforced lock is installed on the server-room door to keep the adversary out entirely. Which of these are detection (detective) controls as described in Topic 2.4?",
+        "options": [
+          "I only (the camera)",
+          "I and II only (camera and sensor)",
+          "II and III only (sensor and lock)",
+          "I, II, and III (all three)"
+        ],
+        "answer": "B",
+        "ek": "EK 2.4.A.1 + EK 2.4.A.3",
+        "rationale": "Use I is EK 2.4.A.1 — a recorded and monitored camera that captures a visual record of an adversary's activity. Use II is EK 2.4.A.3 — a motion sensor that alerts security to movement in an area. Both are detective controls: their job is to detect an attack. Use III is excluded because a lock is a PREVENTIVE control from Topic 2.3 — it stops the adversary from entering rather than detecting an attack in progress. The answer is I and II only."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "It is 2 a.m. and a research lab is empty. An adversary slips into a restricted server room. The lab relies entirely on its daytime employees noticing unfamiliar people (EK 2.4.A.4) to detect intruders. Why does this detection approach fail in this scenario?",
+        "options": [
+          "Employees can never detect an intruder, even during business hours, so the method is useless at all times",
+          "Motion sensors are legally required in every server room, making employee detection irrelevant",
+          "Employees would detect the intruder, so the approach does not actually fail here",
+          "EK 2.4.A.4 detection only works when employees are present and paying attention, and at 2 a.m. the building is empty"
+        ],
+        "answer": "D",
+        "ek": "EK 2.4.A.4",
+        "rationale": "EK 2.4.A.4 says employees who work in a space are often the FIRST to notice an unauthorized person — but that depends on employees being present. At 2 a.m. in an empty building, there are no employees to notice anything, so this detection method fails and equipment-based detection (cameras, sensors) is needed to cover off-hours. Option A overstates the case — employee detection works well during business hours. Option B invents a legal rule. Option D ignores that the building is empty."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "A security manager says, 'Our cameras only need to record footage to a hard drive — no one has to watch the live feed.' Per EK 2.4.A.1, what is the problem with relying on recording alone?",
+        "options": [
+          "Recorded footage is legally inadmissible, so recording cameras serve no purpose at all",
+          "Cameras cannot record and be monitored at the same time, so the manager must pick only one",
+          "A camera that is only recorded but never monitored cannot help anyone respond while the attack is happening; the EK says the feed should be recorded AND monitored",
+          "Motion sensors already capture everything a camera would, so recording footage is unnecessary"
+        ],
+        "answer": "C",
+        "ek": "EK 2.4.A.1",
+        "rationale": "EK 2.4.A.1 states the feed from a camera should be recorded AND monitored for maximum effect. Recording supports after-incident investigations, but only a monitored feed lets someone respond while the attack is in progress. Relying on recording alone gives up real-time detection. Option A is false — recorded footage is in fact useful for investigations. Option C is wrong; a feed can be both recorded and monitored. Option D confuses two different controls — a sensor signals movement but captures no visual record."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "An adversary walks into a lab during business hours wearing a delivery company's uniform that does not match any real vendor. There are no cameras in that hallway and no motion sensors. Which EK 2.4.A detection method is most likely to catch this adversary?",
+        "options": [
+          "The employees who work in the space, who often notice an unfamiliar person and can alert security (EK 2.4.A.4)",
+          "A motion sensor that would identify the adversary's fake uniform (EK 2.4.A.3)",
+          "An after-incident investigation that stops the adversary before any harm occurs (EK 2.4.A.1)",
+          "A patrolling guard on the building's exterior perimeter, who watches the interior hallways"
+        ],
+        "answer": "A",
+        "ek": "EK 2.4.A.4",
+        "rationale": "With no cameras or sensors in the hallway, EK 2.4.A.4 applies: employees who work in the space are often the first to notice an unauthorized person and can alert security — and a mismatched uniform is exactly the kind of context cue a person catches but equipment does not. Option B is wrong because a motion sensor detects movement only, not identity or uniforms. Option C is wrong — an after-incident investigation happens after the fact and cannot stop the adversary in the moment. Option D misplaces an exterior perimeter guard inside interior hallways."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "A motion sensor alerts security to movement in a normally empty storage room at night, but the sensor alone cannot tell security what is causing the movement. According to Topic 2.4, what does this reveal about motion sensors as a detection method?",
+        "options": [
+          "Motion sensors should be removed from any space where they cannot identify what is moving",
+          "A motion sensor alerts security to movement in an area but does not reveal who or what is moving, so it works best alongside a method that can verify the cause",
+          "Motion sensors replace the need for cameras and guards entirely once installed",
+          "A motion sensor can only detect adversaries, never authorized employees or animals"
+        ],
+        "answer": "B",
+        "ek": "EK 2.4.A.3",
+        "rationale": "EK 2.4.A.3 says a motion sensor alerts security to movement in an area — that is all it does. It does not identify who or what is moving or whether the movement is a genuine threat, so it is most effective paired with a method that can verify the cause, such as a monitored camera or a responding guard. Option A overstates the limitation — a movement alert is still valuable. Option B is wrong; a sensor cannot replace the visual record a camera provides. Option D is false — a sensor reacts to any movement, including authorized people or animals, which is why verification matters."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "A security team is deciding where to mount cameras in a new lab. Per EK 2.4.B.1, which consideration should most shape the placement decision?",
+        "predictFirst": true,
+        "options": [
+          "Visual coverage, angle, and tamper-resistance, with points of ingress and egress often monitored by camera",
+          "Mounting cameras only in low-traffic closets where an adversary is least likely ever to appear",
+          "Placing every camera at floor level so its lens stays well within easy arm's reach",
+          "Choosing spots purely for tidy cabling, regardless of what the camera could capture there"
+        ],
+        "answer": "A",
+        "ek": "EK 2.4.B.1",
+        "rationale": "EK 2.4.B.1 says camera placement should consider visual coverage, angle, and the ability to be tampered with by an adversary, along with what a camera in a given area could capture and how useful that would be — and it notes that points of ingress and egress are often monitored by camera. Option B hides cameras away from where adversaries travel, defeating coverage. Option C invites tampering by putting the lens in reach. Option D ignores the captured-activity consideration the EK names."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A manager wants to mount a motion sensor in the building's busy main lobby, where dozens of people pass every minute all day. Per EK 2.4.B.2, what is the likely problem with this placement?",
+        "predictFirst": true,
+        "options": [
+          "A lobby sensor would be unable to detect any movement at all in such a wide-open space",
+          "Motion sensors are barred from public lobbies and may only be installed in server rooms",
+          "Constant traffic triggers many false alarms, so real alerts are less likely to be taken seriously",
+          "High-traffic placement makes the sensor identify each individual person far too accurately"
+        ],
+        "answer": "C",
+        "ek": "EK 2.4.B.2",
+        "rationale": "EK 2.4.B.2 says motion sensors belong where traffic is unexpected, like server rooms or areas with sensitive materials and few people — and that sensors in high-traffic areas create many false alarms, making alarms less likely to be taken seriously during a real event. Option A is false; the sensor would constantly detect movement. Option B invents a rule. Option D misstates what a sensor does — it signals movement, not identity."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A lab stores particularly sensitive systems behind one door and wants to stop adversaries from slipping in close behind an authorized person. Per EK 2.4.B.3, which placement decision best fits?",
+        "options": [
+          "Leave the door unlocked during the day so authorized staff are never slowed down at all",
+          "Rely on a sign asking visitors politely not to follow staff through the doorway",
+          "Replace the door entirely with an open archway to speed up authorized foot traffic",
+          "Lock the entry and add an access control vestibule to prevent piggybacking or tailgating"
+        ],
+        "answer": "D",
+        "ek": "EK 2.4.B.3",
+        "rationale": "EK 2.4.B.3 says locks should be placed on all entries to areas with sensitive information or systems, and for particularly sensitive areas an organization could use an access control vestibule at the entry point to prevent piggybacking or tailgating. Option A removes the lock the EK requires. Option B relies on a sign, which does not physically prevent tailgating. Option C removes the entry control entirely."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "A facility needs constant protection at its main lobby entrance, which funnels all visitor traffic, and also wants coverage that is hard for an adversary to plan around along its outdoor perimeter. Per EK 2.4.B.4, how should the guards be deployed?",
+        "predictFirst": true,
+        "options": [
+          "Patrolling guards in the lobby and a single stationary guard hidden in a back storage closet",
+          "A stationary guard at the lobby entrance and patrolling guards covering the exterior perimeter",
+          "Stationary guards on the perimeter only, leaving the funneling lobby entrance fully unwatched",
+          "Patrolling guards everywhere, since a stationary post can never protect a specific entrance well"
+        ],
+        "answer": "B",
+        "ek": "EK 2.4.B.4",
+        "rationale": "EK 2.4.B.4 says stationary guards give constant protection for a specific area or entrance and are highly effective at places that funnel traffic such as main entrances and lobbies, while patrolling guards are harder to plan around and better suited to perimeters and exterior areas. Option A inverts both roles. Option C leaves the funneling lobby unguarded. Option D denies the value of a stationary post the EK affirms."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "After a breach is detected, defenders want to follow exactly where an adversary went inside the building and to get an alert the moment an unauthorized person enters a controlled area. Per EK 2.4.C.1, what capability supports this?",
+        "options": [
+          "A motion sensor's log, which records the adversary's identity and full route through the building",
+          "Cameras paired with facial recognition for entry alerts, plus footage to track the adversary's path",
+          "A door lock's keyhole, which captures a visual record of everyone who passes through it",
+          "An employee's memory alone, which is sufficient to reconstruct the exact path without any footage"
+        ],
+        "answer": "A",
+        "ek": "EK 2.4.C.1",
+        "rationale": "EK 2.4.C.1 says cameras provide visual monitoring and a visual record, can be paired with facial recognition software that alerts when unauthorized individuals enter controlled areas, and that once a breach is detected defenders can use live and recorded footage to track an adversary's path and actions. Option A wrongly attributes identity and route tracking to a motion sensor. Option C invents a capability a lock does not have. Option D overstates unaided memory."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "A motion detector in a restricted archive fires at 3 a.m., but security cannot tell from the alert alone whether it is a real intruder or a false alarm. Per EK 2.4.C.2, what is the best way to confirm what is happening?",
+        "predictFirst": true,
+        "options": [
+          "Wait until morning and ask employees whether they remember anyone entering the archive overnight",
+          "Treat every motion alert as a confirmed breach and dispatch a full response without checking first",
+          "Use cameras covering the archive to check the space visually and verify a physical security breach",
+          "Add a second motion detector beside the first so the two sensors can identify the intruder together"
+        ],
+        "answer": "C",
+        "ek": "EK 2.4.C.2",
+        "rationale": "EK 2.4.C.2 says motion detectors work best when paired with cameras: when a motion detector raises an alert, defenders can use cameras to check the space visually and verify a physical security breach. Option A delays verification until the moment has passed. Option B treats every alert as real, ignoring false alarms. Option D adds sensors that still only signal movement, not identity."
+      },
+      {
+        "id": "Q12",
+        "kind": "applied",
+        "stem": "Employees badge in to a restricted room, and a sensor records how long each door is held open. A defender reviewing the entry logs notices one door stayed open far longer than usual. Per EK 2.4.C.3, what can this finding help detect?",
+        "options": [
+          "The exact identity of every authorized employee who used their badge on that particular door",
+          "Whether the building's overall electrical power was interrupted during the badge-in event",
+          "The precise camera angle needed to cover the doorway during the next security upgrade",
+          "Potential piggybacking or tailgating, since doors open longer than normal can signal an extra person"
+        ],
+        "answer": "D",
+        "ek": "EK 2.4.C.3",
+        "rationale": "EK 2.4.C.3 says when employees badge in to unlock a restricted door, a sensor can record how long the door was open, and reviewing entry logs can detect potential piggybacking or tailgating from doors being open longer than normal lengths of time. Option A is not what the door-open-time log reveals. Option B is unrelated to door-open duration. Option C confuses log review with camera placement."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 2.4 — Detecting Attacks — Teacher Guide",
+    "subtitle": "Unit 2 · Topic 2.4 · 4 class periods · Scenario 2A",
+    "overview": [
+      "Lesson 2.4 is the detection layer of Unit 2's physical-security arc: after Topic 2.3's preventive and managerial controls, this topic asks how an organization NOTICES an attack that prevention did not stop. Across four days students learn to identify the four CB-specified ways security controls detect physical attacks (EK 2.4.A.1–A.4), determine effective placement of that detection equipment (EK 2.4.B.1–B.4), and apply detection techniques to identify physical attacks (EK 2.4.C.1–C.3), all anchored on Scenario 2A, Securing Xtensr Labs. The Day 1 organizing idea is that detection only works under a condition: a camera must be recorded and monitored, a guard must be present to respond, a sensor must alert someone who acts, and employees must be present and paying attention. The Day 2 idea is placement; Day 3 applies everything to Xtensr Labs; Day 4 consolidates and practices the whole topic.",
+      "Scenario 2A (Securing Xtensr Labs) anchors the lesson: students work on the physical security team at Xtensr Research Labs, which is acquiring a smaller research company in the same town and must conduct a physical vulnerability assessment of the new lab — reviewing plans and controls, identifying physical vulnerabilities, assessing risk, recommending controls, and recommending the placement of monitoring equipment to detect physical security breaches. Topic 2.4's specific scenario connection is the last of those tasks: recommend the placement of monitoring equipment for detecting physical security breaches. Naming note: the CB scenario is written in the second person and names no individuals; none is added in this lesson."
+    ],
+    "los": [
+      "LO 2.4.A — Identify ways security controls can detect physical attacks.",
+      "LO 2.4.B — Determine effective placement of security controls for detecting physical attacks.",
+      "LO 2.4.C — Apply detection techniques to identify physical attacks."
+    ],
+    "eks": [
+      "EK 2.4.A.1 — Cameras can capture a visual record of an adversary's malicious activity. The feed from a camera should be recorded and monitored for maximum effect. Recordings can be especially helpful in after-incident investigations.",
+      "EK 2.4.A.2 — Security guards can monitor activity in an area and respond to suspicious activity once detected.",
+      "EK 2.4.A.3 — Motion sensors can alert security to movement in an area.",
+      "EK 2.4.A.4 — Employees that work in a physical space are often the first to notice the presence of an unauthorized person and can alert security.",
+      "EK 2.4.B.1 — When placing cameras, consideration should be given to visual coverage, angle, and the ability to be tampered with by an adversary. Consideration should also be given to what a camera in a specific area could capture an adversary doing and how that information would be helpful. Points of ingress and egress are often monitored by camera.",
+      "EK 2.4.B.2 — Motion sensors should be placed in areas where traffic is unexpected, like server rooms, or areas where sensitive materials are stored and few people have access. Motion sensors in high-traffic areas create many false alarms, making the alarms less likely to be taken seriously when there is a real security event.",
+      "EK 2.4.B.3 — Locks should be placed on all entries to areas containing sensitive information or systems. For areas with particularly sensitive information or systems, an organization could use an access control vestibule at the entry point to prevent piggybacking or tailgating.",
+      "EK 2.4.B.4 — Security guards can be stationary or patrolling. Stationary guards can provide constant protection for a specific area, entrance, or high-value item. Patrolling guards are more difficult for an adversary to plan around and can create time pressure for an adversary. Placing stationary guards at places that funnel traffic (e.g., entry gates, main entrances or lobbies, and entrances to more secure access areas) can be highly effective, while patrolling guards are better suited for perimeters and exterior areas.",
+      "EK 2.4.C.1 — Cameras provide visual monitoring and a visual record of activity within a designated space. Cameras can be paired with facial recognition software that can provide alerts when unauthorized individuals enter controlled areas. Once a physical breach has been detected, defenders can use live and recorded camera footage to track an adversary's path and actions.",
+      "EK 2.4.C.2 — Motion detectors work best when paired with cameras. When a security alert is raised because a motion detector has been activated, defenders can use cameras to check the space visually and verify a physical security breach.",
+      "EK 2.4.C.3 — When employees are required to use an electronic badge to unlock a door to a restricted area, a sensor can record how long the door was open. In reviewing entry logs for the door, potential piggybacking or tailgating can be detected by doors being open for longer than normal lengths of time."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each day.",
+      "Printed/Digital Day 1–4 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page (apcsexamprep.com/pages/ap-cybersecurity-unit-2-detecting-attacks), which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 2.4 quiz (student copies) for Day 4.",
+      "Scenario 2A narrative (Securing Xtensr Labs) displayed on the decks (no handout needed)."
+    ],
+    "prereqs": [
+      "Topic 2.3 (Protecting Physical Spaces). Lesson 2.4 is the detection counterpart: 2.3 controls PREVENT physical attacks, and 2.4 controls DETECT the ones that get through — the next layer of defense-in-depth. Students should be comfortable with locks and access control vestibules from 2.3, which reappear here in EK 2.4.B.3."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "The four ways security controls detect a physical attack (LO 2.4.A)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.4/Q1) + bell ringer (which method catches the intruder?)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Cameras, guards, motion sensors, and employees (EK 2.4.A.1–A.4)",
+            "min": 12,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Detect vs. prevent: where Topic 2.4 fits in defense-in-depth",
+            "min": 6,
+            "slides": "8"
+          },
+          {
+            "segment": "Live vs. recorded detection enrichment",
+            "min": 7,
+            "slides": "9"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 7,
+            "slides": "10-11"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "12-13"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Effective placement of detection and monitoring equipment (LO 2.4.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.4/Q2) + bell ringer (one motion sensor — where?)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Placing cameras: coverage, angle, tamper-resistance, ingress/egress (EK 2.4.B.1)",
+            "min": 10,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Motion sensors, locks/vestibules, and stationary vs. patrolling guards (EK 2.4.B.2–B.4)",
+            "min": 12,
+            "slides": "7-9"
+          },
+          {
+            "segment": "False-alarm misconception + placement enrichment",
+            "min": 8,
+            "slides": "10-11"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 7,
+            "slides": "12-13"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "14-15"
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Apply detection techniques to Scenario 2A, Securing Xtensr Labs (LO 2.4.C)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.4/Q3) + bell ringer (the Xtensr Labs walkthrough)",
+            "min": 5,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Cameras + facial recognition; tracking an adversary's path (EK 2.4.C.1)",
+            "min": 10,
+            "slides": "4-5"
+          },
+          {
+            "segment": "Motion detectors paired with cameras to verify a breach (EK 2.4.C.2)",
+            "min": 8,
+            "slides": "6-7"
+          },
+          {
+            "segment": "Badge entry logs and detecting tailgating by door-open time (EK 2.4.C.3)",
+            "min": 9,
+            "slides": "8"
+          },
+          {
+            "segment": "Apply all three to Xtensr Labs + Stop and Think",
+            "min": 10,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "11-12"
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Review and practice the whole topic + quiz (LO 2.4.A, LO 2.4.B, LO 2.4.C)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.4/Q4) + bell ringer (cumulative Xtensr scenario)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Worked review table: every method — what it detects, where to place it, how to apply it",
+            "min": 10,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Cumulative scenario: full detection plan for Xtensr Labs",
+            "min": 10,
+            "slides": "7"
+          },
+          {
+            "segment": "Vocab recap + Stop and Think practice",
+            "min": 9,
+            "slides": "8-9"
+          },
+          {
+            "segment": "Quiz debrief + bridge to next topic",
+            "min": 6,
+            "slides": "10-11"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Lesson Quiz)",
+        "focus": "Not a numbered prep day. Run it as a block-period extension or as the next lesson’s warm-up (doubles as spaced retrieval). The quiz already ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Lesson 2.4 quiz",
+            "min": 25,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Detection equals prevention",
+        "myth": "If a space has cameras and motion sensors, those controls will stop an adversary from breaking in.",
+        "reality": "Detective controls (Topic 2.4) detect an attack; they do not prevent it. A camera or sensor notices the intruder but does not stop them — prevention is Topic 2.3's locks and vestibules. Detection's value is ensuring an adversary cannot operate unnoticed and that a response can follow."
+      },
+      {
+        "heading": "A recorded camera is enough",
+        "myth": "As long as a camera records footage, the space is protected; no one needs to watch the feed.",
+        "reality": "EK 2.4.A.1 says the feed should be recorded AND monitored for maximum effect. Recording alone is an after-incident tool — it cannot trigger a real-time response. Monitoring is what catches the attack while it is still happening."
+      },
+      {
+        "heading": "Motion sensors identify the intruder",
+        "myth": "A motion sensor tells security who has entered an area and whether they are a threat.",
+        "reality": "EK 2.4.A.3 says a sensor alerts security to MOVEMENT only — it does not reveal who or what is moving. That is why EK 2.4.C.2 pairs motion detectors with cameras: the sensor raises the alert, the camera verifies the cause."
+      },
+      {
+        "heading": "Only equipment detects attacks",
+        "myth": "Detection is about cameras and sensors; people are not a detection control.",
+        "reality": "EK 2.4.A.4 names employees as a detection method — they are often the FIRST to notice an unauthorized person because they know who belongs and can catch context cues equipment misses. Trained, attentive staff are a genuine detective control."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post a four-column word bank before the Stop and Think — 'cameras (A.1) / record + monitor', 'guards (A.2) / detect + respond', 'motion sensors (A.3) / alert to movement', 'employees (A.4) / notice intruders first' — so students match the method to what it detects rather than recall both cold.",
+        "Provide a sentence frame: 'This is EK 2.4.A.____ because the method ____, and it only works when ____.'"
+      ],
+      "extension": [
+        "Have students classify each of the four methods as live, recorded/after-the-fact, or both, and defend the classification using EK 2.4.A.1's 'recorded and monitored' language.",
+        "Ask students to argue which single detection method they would keep if they could keep only one, and to defend it for both a staffed daytime lab and an empty overnight one."
+      ]
+    },
+    "discussion": [
+      "Of the four EK 2.4.A detection methods, which is most affected by time of day, and why?",
+      "Why does the CED insist a camera feed be both recorded AND monitored — what does each half buy you?",
+      "Employees are free and everywhere during work hours. Why can't an organization rely on them alone for detection?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  }
+}

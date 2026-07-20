@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "lessonId": "4.2",
+    "lessonTitle": "Fault Tolerance",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 4: Computer Systems and Networks",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO CSN-1.E",
+    "anchor": "Fault Tolerance",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 4 · Topic 4.2 · Day 1 of 1",
+      "title": "The Backhoe Test",
+      "subtitle": "Why the Internet keeps working when parts fail, what that protection costs, and how to find the one piece a system can't lose",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 4.2, Fault Tolerance — one day, one learning objective with three parts. Topic 4.1 established how data moves across the Internet; today's question is what happens when the road it was taking suddenly disappears. Somewhere right now a backhoe is cutting a fiber line, a router is dying, a storm is taking down a whole region — and almost nobody notices, because the Internet was engineered to survive exactly that. By the end of the period, students can describe why fault tolerance matters, explain how redundancy produces it, and find the one weak point in any system the exam describes — the full three-part LO CSN-1.E."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Describe the benefits of fault tolerance — why a network built to survive failure keeps users connected even when components fail unexpectedly and in groups (LO CSN-1.E)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain how a given system is fault-tolerant, pointing to its redundancy: the extra components and alternate paths that let data take a different route when something fails (LO CSN-1.E)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify a system's vulnerabilities to failure — the single point of failure every path depends on — and decide where added redundancy would remove them (LO CSN-1.E)"
+        }
+      ],
+      "script": "Three targets, and they are literally the three lettered parts of LO CSN-1.E — the College Board wrote this objective as a checklist, so the lesson follows it. Part a: the benefits — what fault tolerance buys users. Part b: the mechanism — explaining HOW a specific system survives failure, which always comes back to the word redundancy. Part c: the diagnosis — reading a described network and finding its weak point. Exam items on this topic almost always hand students a specific system and ask one of these three questions, so all three get explicit practice today."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "The town of Cedar Bend has 5 sites on its fiber network, joined by 5 lines: School–Library, Library–Town Hall, Town Hall–Clinic, School–Town Hall, and Clinic–Fire Station. A backhoe on Main Street is about to cut exactly ONE line.",
+      "subprompt": "Sketch the map. Which single cut does the most damage, and why that one? Then: the town can afford ONE new line — where do you add it to best protect Cedar Bend?",
+      "directions": "Draw the map, mark the worst cut, and draw your one new line. Be ready to defend both choices.",
+      "script": "A few minutes, on your own — sketch the five sites and five lines first, because the answer is invisible until the map exists. Most students discover that cutting Town Hall–Clinic is the disaster: it strands BOTH the clinic and the fire station, because every path to them runs through that one line. Cutting School–Library, by contrast, hurts nobody — traffic just goes around through Town Hall. Without knowing the words yet, students have just found a single point of failure and noticed that some links have backup paths and some don't. The second question makes them engineers: the strongest answers connect the Fire Station back to the School or Library, giving the two stranded sites a second, independent way in. Keep the sketches visible all period — today's entire lesson is the analysis students just invented, and by the end they will know the College Board's names for it."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Redundancy: Extra Paths on Purpose",
+          "description": "How the Internet survives failure — extra components, more than one path, and rerouting (EK CSN-1.E.1–E.4)."
+        },
+        {
+          "title": "The Benefit, the Bill, and the Weak Points",
+          "description": "What fault tolerance buys, what redundancy costs, and how to find a system's single point of failure (EK CSN-1.E.5–E.7)."
+        },
+        {
+          "title": "Deep Dive: The Backhoe Test, Formalized",
+          "description": "Bridges, independent paths, and the graph thinking behind every redundancy audit.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 4.2 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two are green and CB-required — first the mechanism, redundancy and rerouting, then the trade-off and the diagnosis skill. The third is the blue deep dive: the graph-theory version of the backhoe test, which is beyond the exam but turns the hunt for weak points into something students can do systematically. Packets stay open all period; a digital copy lives on the Topic 4.2 Guided Notes page at apcsexamprep.com for anyone absent."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Redundancy: Extra Paths on Purpose",
+      "kicker": "How the Internet Survives Failure · Learning Objective CSN-1.E",
+      "script": "Section one — the mechanism. Before students can judge benefits or hunt vulnerabilities, they need the engineering idea underneath everything: the Internet expects its parts to fail, so it carries spares. This section names what Cedar Bend was missing — redundancy — and states the rule that makes the whole Internet work: when something fails, data takes a different route, if one exists. That two-word condition, 'if possible,' is where every exam question on this topic lives."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CSN-1.E)",
+      "terms": [
+        {
+          "term": "Redundancy",
+          "definition": "The inclusion of extra components that can be used to mitigate failure of a system if other components fail (EK CSN-1.E.2)."
+        },
+        {
+          "term": "Fault-tolerant",
+          "definition": "Describes a system that can support failures and still continue to function — important because elements of complex systems fail at unexpected times, often in groups (EK CSN-1.E.5)."
+        }
+      ],
+      "script": "Two terms carry the whole topic, and each is a whole sentence worth memorizing. Redundancy is the inclusion of extra components that can mitigate failure if other components fail — note that in networking this is a compliment, not the everyday insult meaning 'unnecessary.' Fault-tolerant describes the RESULT: a system that can support failures and still continue to function. Students should underline 'continue to function' — fault tolerance never promises that nothing breaks, only that the system keeps working while things break. And the definition's warning matters: complex systems fail at unexpected times, often in groups, which is why the spare must not share fate with the original."
+    },
+    {
+      "type": "concept",
+      "heading": "Extra Components, Extra Paths",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The Internet has been engineered to be fault-tolerant, with abstractions for routing and transmitting data (EK CSN-1.E.1).",
+        "One way to accomplish network redundancy is by having more than one path between any two connected devices (EK CSN-1.E.3).",
+        "If a particular device or connection on the Internet fails, subsequent data will be sent via a different route, if possible (EK CSN-1.E.4).",
+        "'If possible' is the whole game: rerouting only works when a second path EXISTS — which is exactly what your one new Cedar Bend line was for."
+      ],
+      "script": "Three EKs, one mechanism. The Internet was engineered from the start to be fault-tolerant — its routing abstractions assume components will die. The main way networks get redundancy is geometric: more than one path between any two connected devices, so no single line is sacred. Then the rule in action: when a device or connection fails, subsequent data is sent via a different route — if possible. Press hard on that condition. In Cedar Bend, cutting School–Library was survivable because a different route existed; cutting Town Hall–Clinic was a catastrophe because for the clinic and fire station no other route existed at all. Same backhoe, same network — the difference was purely whether a second path was there to reroute onto.",
+      "capture": [
+        {
+          "q": "Redundancy protects a system by building in ______.",
+          "a": "spare parts and links that take over when something fails"
+        },
+        {
+          "q": "On a network map, redundancy looks like ______.",
+          "a": "at least two separate routes between any two devices"
+        },
+        {
+          "q": "When a connection dies mid-transfer, the data ______.",
+          "a": "keeps flowing along another route — when one exists"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Where the Rerouting Rule Breaks",
+      "subheading": "These map to LO CSN-1.E. Complete on your Guided Notes.",
+      "prompts": [
+        "In your bell-ringer map, explain why cutting School–Library barely mattered while cutting Town Hall–Clinic was a disaster. Use the phrase 'different route' in your answer.",
+        "Mid-download, a router along your path to a game server dies completely — yet the download finishes. Explain what happened to the rest of your data, and name the property of the Internet that made it possible.",
+        "The Internet's designers assumed its components WOULD fail and planned around it, instead of trying to build parts that never fail. Why is that the smarter engineering bet for a complex system?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.2 page.",
+      "script": "Five minutes, full sentences on the Guided Notes. One: the cut comparison — School–Library had a different route around it, Town Hall–Clinic did not, so 'if possible' failed exactly there; students should say the clinic and fire station had only one path. Two: the dead router — subsequent data was sent via a different route, and the property is redundancy: more than one path existed between the two devices. Three: the design-philosophy question previews EK CSN-1.E.5 — complex systems have too many parts failing at unexpected times, often in groups, for 'perfect parts' to ever be realistic; surviving failure beats forbidding it. A few students will be called on to share before the next section."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Benefit, the Bill, and the Weak Points",
+      "kicker": "Costs, Payoffs, and Single Points of Failure · Learning Objective CSN-1.E",
+      "script": "Section two — the judgment calls. Redundancy is never free: Cedar Bend's new line costs real money and might sit nearly idle for years. This section weighs what fault tolerance buys against what redundancy costs, then turns students into auditors: given any described network, decide whether it is fault-tolerant, find its single point of failure, and say where one addition would fix it. That three-question audit is precisely what parts a and c of the LO look like on the exam."
+    },
+    {
+      "type": "two_column",
+      "heading": "What Redundancy Buys vs. What It Costs",
+      "subheading": "The CED prices the trade in one sentence: additional resources, in exchange for fault tolerance (EK CSN-1.E.5–E.7).",
+      "left": {
+        "title": "The benefit: fault tolerance",
+        "definition": "The system supports failures and CONTINUES TO FUNCTION — users keep working through the breakage",
+        "ek": "EK CSN-1.E.5",
+        "examples": [
+          "Users stay connected even when components fail unexpectedly — often in groups",
+          "Redundant routing between two points increases the Internet's reliability (EK CSN-1.E.7)",
+          "The same redundancy helps the Internet scale to more devices and more people (EK CSN-1.E.7)"
+        ]
+      },
+      "right": {
+        "title": "The bill: additional resources",
+        "definition": "Extra lines, devices, power, and money that stand ready instead of staying busy",
+        "ek": "EK CSN-1.E.6",
+        "examples": [
+          "Cedar Bend's new line costs real money and may carry little traffic most days",
+          "Backup routers and second connections must be bought, powered, and maintained",
+          "The trade is deliberate: spend resources now so the system keeps functioning during failure later"
+        ]
+      },
+      "footer": "AP TIP: EK CSN-1.E.6 is a two-sided sentence — redundancy often requires additional resources BUT can provide the benefit of fault tolerance. Full-credit answers name both halves.",
+      "script": "Here is the whole trade on one slide. Left: what fault tolerance buys. Users keep using the network when parts fail — and the CED's phrase 'often in groups' deserves a beat, because real failures cascade: a storm takes out ten routers, not one. EK CSN-1.E.7 adds the double payoff of redundant routing: reliability goes UP, and the Internet can also SCALE to more devices and more people — the extra paths that absorb failures also absorb growth. Right: the bill. Extra components are not free; they cost money, power, and maintenance, and much of the time they sit there doing apparently nothing. Neither column wins in general — the exam wants students who can name both sides of the trade, which is exactly what EK CSN-1.E.6 does in a single sentence.",
+      "capture": [
+        {
+          "q": "A system earns the name fault-tolerant when it ______.",
+          "a": "keeps working even while some of its parts are broken"
+        },
+        {
+          "q": "The price of redundancy is ______.",
+          "a": "paying for equipment that sits unused until a failure"
+        },
+        {
+          "q": "Redundant routing helps the Internet grow because ______.",
+          "a": "extra paths absorb both failures and new traffic as it scales"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Network Triage: The Three-Question Audit",
+      "context": "For each network, run the audit the exam expects: Is it fault-tolerant? Where is the vulnerability — the single point of failure? Where would ONE addition create redundancy? (EK CSN-1.E.2–E.5)",
+      "columns": [
+        "Network",
+        "Fault-tolerant?",
+        "Vulnerability (single point of failure)",
+        "Where to add redundancy"
+      ],
+      "rows": [
+        [
+          "A chain: five routers connected in a line, A–B–C–D–E",
+          "No — any one cut splits the network in two",
+          "Every middle link and device; cutting B–C strands D and E",
+          "Link E back to A, closing the chain into a loop"
+        ],
+        [
+          "A ring: six routers in a closed loop, each linked to two neighbors",
+          "Yes, for any single failure — traffic reroutes the long way around",
+          "No single point of failure — but TWO simultaneous cuts split the ring",
+          "A cross-link through the middle of the ring guards against double failures"
+        ],
+        [
+          "A star: every device in a school connects to one central switch",
+          "No — one device failure can take down every connection at once",
+          "The central switch: every path in the network passes through it",
+          "A second switch, with each device linked to both"
+        ],
+        [
+          "A mesh of six offices, each linked to three others — all reaching the Internet through ONE ISP line",
+          "Inside the mesh, yes; as a whole system, no",
+          "The single ISP line — the entire mesh goes dark together",
+          "A second ISP connection from a different provider on a different physical path"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Four network shapes, three questions each — this is the diagnosis skill of LO CSN-1.E parts b and c. The chain: one path between everything, so every middle piece is a single point of failure; closing it into a loop fixes every one of them with a single new link. The ring: genuinely fault-tolerant against any ONE failure, because two paths exist between every pair — but the audit doesn't stop at 'yes'; two cuts still split it, which is why real backbones add cross-links. The star: the shape of most school networks, and its center is the classic single point of failure — forty working cables mean nothing when the one switch they share dies. The mesh with one ISP line is the trap row: gorgeous redundancy inside, yet the whole system hangs from one wire — a vulnerability can sit OUTSIDE the pretty part of the diagram. Students complete the blanked cells before answers are revealed; the reasoning matters more than the verdicts.",
+      "blanks": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Redundancy Is Wasteful Duplication”",
+      "misconception": "A second line that sits unused all year is money down the drain. In plain English 'redundant' literally means unnecessary — so cutting the duplicate is just good budgeting.",
+      "whyItHappens": "Everyday language is working against the CED here: calling an employee or a sentence 'redundant' means it should be removed. And for 364 days a year the extra line really does look idle — its value is invisible until the exact moment something breaks.",
+      "correction": "The CED prices the trade: redundancy often requires additional resources but buys fault tolerance (EK CSN-1.E.6) — the 'idle' line is what lets the system keep functioning through failures (EK CSN-1.E.5), and redundant routing also improves reliability and scaling (EK CSN-1.E.7). The cost is the point.",
+      "example": "Cedar Bend's second fiber line carries almost no traffic all spring. In June a backhoe cuts the main line — and the school, clinic, and fire station never notice. The 'wasted' line was the town staying online.",
+      "script": "This misconception has ordinary English on its side, which is what makes it dangerous. In networking, redundant is praise: the extra component is doing its job by standing ready. The move students need for the exam is to treat EK CSN-1.E.6 as a two-sided sentence and refuse to drop either side — yes, additional resources are required; yes, fault tolerance is what they purchase. Free-response answers that call redundancy free lose credit in one direction, and answers that call it waste lose credit in the other. The Cedar Bend example makes it land: an idle line is not doing nothing; it is waiting — and the one day it works is the day that pays for all the days it didn't."
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: The Backhoe Test, Formalized",
+      "subheading": "The CED never requires graph theory — but two ideas from it turn weak-point hunting into a system.",
+      "track": "enrichment",
+      "left": {
+        "title": "Bridges: links you cannot lose",
+        "definition": "A link is a BRIDGE if removing it disconnects part of the network",
+        "ek": "Deep Dive",
+        "examples": [
+          "Cedar Bend's Town Hall–Clinic line was a bridge — one cut, two sites dark",
+          "Engineers hunt bridges exactly the way you did: try every single cut on the map",
+          "A network with zero bridges survives ANY one line failure"
+        ]
+      },
+      "right": {
+        "title": "Independent paths: counting your spares",
+        "definition": "Two paths are independent if they share NO line or device between the endpoints",
+        "ek": "Deep Dive",
+        "examples": [
+          "k independent paths between two points survive k−1 failures",
+          "Two 'separate' lines through one conduit are NOT independent — they fail as a group",
+          "One smart new link can turn several bridges into loop segments at once"
+        ]
+      },
+      "footer": "Deep dive only — the AP exam asks you to spot the single point of failure in a described system, never to prove graph theorems.",
+      "script": "A deep dive for students who want the backhoe test as an algorithm — this is beyond what the exam requires. Idea one: a bridge is any link whose removal disconnects the network, and the bell-ringer method of trying every cut is literally how you find them; a zero-bridge network shrugs off any single line failure. Idea two sharpens 'more than one path': the paths only count if they are independent — sharing no line and no device — because two paths through the same conduit are one backhoe swing away from being zero paths, which is EK CSN-1.E.5's 'fail in groups' warning in geometric form. The counting rule generalizes the whole lesson: k independent paths survive k minus one failures, so engineers literally budget in units of disaster. Fast finishers can hunt the bridges in the worked-table networks and check that the prescribed fixes eliminate them.",
+      "capture": [
+        {
+          "q": "A link is a bridge if removing it ______.",
+          "a": "disconnects part of the network"
+        },
+        {
+          "q": "Two paths between the same endpoints are independent only if they share ______.",
+          "a": "no line or device"
+        },
+        {
+          "q": "With k fully independent paths, the network survives ______.",
+          "a": "any k − 1 simultaneous cuts — one path always remains"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Run the Audit",
+      "subheading": "These map to LO CSN-1.E. Complete on your Guided Notes.",
+      "prompts": [
+        "A gaming café connects 30 PCs through one router, which reaches the Internet through one cable modem. State whether the system is fault-tolerant, identify its vulnerability to failure, and prescribe ONE addition — with the resource cost the owner must accept.",
+        "A friend says Cedar Bend should cancel its second fiber line since 'it did nothing all year.' Respond in two sentences using the exact trade described in EK CSN-1.E.6.",
+        "Name the TWO distinct benefits that redundant routing between two points provides to the Internet, and explain in one sentence why the second one is about growth, not failure."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 4.2 page.",
+      "script": "Six minutes, full sentences — this is the whole topic as one routine. One: the café is not fault-tolerant; the router and modem are single points of failure in series, so every path shares them; the fix is a second router or a second Internet connection, and a complete answer names the cost — buying and maintaining equipment that sits idle most days. Two: the friend gets EK CSN-1.E.6 back — redundancy often requires additional resources BUT provides the benefit of fault tolerance; the line 'doing nothing' is the town's protection against the day the main line dies. Three: from EK CSN-1.E.7 — redundant routing increases reliability AND helps the Internet scale to more devices and more people; the scaling half is about growth, because extra paths carry new traffic, not just rerouted traffic. Answers are reviewed as a class before the traps slide."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 4.2 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Vulnerability = the SPOF",
+          "text": "When asked for a system's vulnerability, point to the single component every path depends on — not just any part that could break (LO CSN-1.E part c)."
+        },
+        {
+          "name": "Redundancy has a price",
+          "text": "EK CSN-1.E.6 is two-sided: additional resources, exchanged for fault tolerance. Answers that treat backup capacity as free lose the point."
+        },
+        {
+          "name": "Tolerating ≠ preventing",
+          "text": "A fault-tolerant system still fails — it CONTINUES FUNCTIONING through failures by rerouting (EK CSN-1.E.4-E.5). Prevention language is the distractor."
+        }
+      ],
+      "script": "One minute, three traps. Trap one: exam items love networks with forty healthy cables and one overworked switch — students who answer 'any cable could fail' miss that the vulnerability is the component ALL paths share. Trap two: the cost side of EK CSN-1.E.6 is the most-forgotten clause in this topic; a justification that never mentions additional resources is incomplete, and a distractor calling redundancy free is bait. Trap three: watch for the word 'prevent' — fault tolerance never prevents failure, it survives failure, and any option promising components that never fail contradicts EK CSN-1.E.5 outright. Students write each trap in their own words in the packet."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Fault Tolerance, in One Slide",
+      "points": [
+        "The Internet has been engineered to be fault-tolerant, with abstractions for routing and transmitting data (EK CSN-1.E.1).",
+        "Redundancy — extra components, including more than one path between any two devices — is how that tolerance is built (EK CSN-1.E.2–E.3).",
+        "When a device or connection fails, subsequent data is sent via a different route, if possible (EK CSN-1.E.4).",
+        "Fault-tolerant = supports failures and continues to function — vital because complex systems fail unexpectedly, often in groups (EK CSN-1.E.5).",
+        "Redundancy costs additional resources but buys fault tolerance — and redundant routing increases reliability AND helps the Internet scale (EK CSN-1.E.6–E.7)."
+      ],
+      "next": "Topic 4.3, Parallel and Distributed Computing: a network built to survive failure can also share work — how do many computers split one problem, and when is that actually faster?",
+      "script": "The whole topic in one slide, and it reads as one story. The Internet assumes breakage, so it carries spares — redundancy, meaning extra components and above all extra paths. When something dies, data reroutes, if a route exists. A system that keeps functioning through failure is fault-tolerant, and that matters because complex systems fail at the worst times and in groups. The protection is bought with additional resources, and the same redundancy that absorbs failure also raises reliability and lets the network grow. Next class opens with the Topic 4.2 quiz, then Topic 4.3 asks how connected computers share work. Before packing up, students run the exit check below — any unchecked box is tonight's review target on the Topic 4.2 page. Guided Notes are collected at the end of class.",
+      "ican": [
+        "describe the benefits of fault tolerance for users and for scaling (LO CSN-1.E a)",
+        "explain how a system is fault-tolerant by pointing to its redundancy (LO CSN-1.E b)",
+        "identify a system's single point of failure and where to add redundancy (LO CSN-1.E c)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 4.2 — Fault Tolerance — Quiz",
+    "instructions": "Choose the single best answer. 7 questions, 12 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": false,
+        "stem": "During a video call, a router along the path fails completely, yet the call continues with barely a pause. What best explains why it kept working?",
+        "options": [
+          "The failed router stored the video data and forwarded it after restarting",
+          "The data was small enough to finish transmitting before the router shut down",
+          "Subsequent data was sent along a different route between the two devices",
+          "The Internet redirected extra power to keep the router from failing"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-1.E.4",
+        "rationale": "When a device or connection fails, subsequent data is sent via a different route, if one exists — and more than one path exists between the endpoints. A invents a mechanism; a fully failed router forwards nothing, and rerouting goes around it. B dodges the question, since a live call transmits continuously. D is the prevention myth: fault tolerance survives failures rather than preventing them."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which of the following best defines redundancy in a computer network?",
+        "options": [
+          "Extra components included so the system can keep working if others fail",
+          "Removing duplicate components so the network runs as efficiently as possible",
+          "A guarantee that no component in the network will ever fail",
+          "Sending every message twice so the receiver can compare the copies"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-1.E.2",
+        "rationale": "Redundancy is the inclusion of extra components that can mitigate failure if other components fail. B is the everyday meaning of 'redundant' (removable) applied backwards; in networking redundancy is added on purpose. C is the prevention myth — redundancy assumes components will fail. D confuses spare infrastructure with retransmitting duplicate data."
+      },
+      {
+        "id": "Q3",
+        "kind": "multi",
+        "predictFirst": false,
+        "stem": "Which of these are benefits that fault tolerance and redundant routing provide to the Internet? I. Users stay connected when components fail. II. Reliability between two points increases. III. The Internet can scale to more devices and people.",
+        "options": [
+          "I and II only",
+          "I and III only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "D",
+        "ek": "EK CSN-1.E.5 + EK CSN-1.E.7",
+        "rationale": "All three are stated benefits: fault tolerance lets users keep using the network when components fail, and the redundancy of routing options both increases reliability and helps the Internet scale to more devices and people. A drops the scaling benefit students most often forget. B drops reliability. C drops the user-facing benefit."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": false,
+        "stem": "An office connects all 40 of its buildings to one central switch, which links to the Internet. What is the network's main vulnerability to failure?",
+        "options": [
+          "Any one of the 40 building cables, since any cable could eventually fail",
+          "The central switch, since every path in the network depends on it",
+          "Nothing, because 40 separate building connections already provide redundancy",
+          "The buildings farthest from the switch, since longer cables fail first"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-1.E.2",
+        "rationale": "The vulnerability is the single point of failure — the component every path depends on. All 40 buildings share the central switch, so one failure there disconnects everything with no alternate route. A is the classic trap: losing one cable strands only one building. C mistakes many spokes for redundancy; no pair of buildings has a path avoiding the switch. D is fabricated, since cable length does not set failure order."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": false,
+        "stem": "A town debates paying for a second Internet line that would sit mostly unused beside the first. Which statement best frames the decision?",
+        "options": [
+          "The second line needs additional resources but can provide fault tolerance if the first fails",
+          "The second line is wasteful, since a component that sits unused provides no benefit",
+          "The second line is unnecessary, because a well-built first line would never fail",
+          "The second line doubles the speed of every connection, which is the point of redundancy"
+        ],
+        "answer": "A",
+        "ek": "EK CSN-1.E.6",
+        "rationale": "Redundancy often requires additional resources but can provide the benefit of fault tolerance — option A names both the cost and the payoff. B is the 'redundancy is waste' misconception; the idle line's value is standing ready. C is the prevention myth, since components fail at unexpected times. D justifies the purchase with a speed claim redundancy does not make."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "predictFirst": false,
+        "stem": "Which statement best describes a fault-tolerant system?",
+        "options": [
+          "A system whose components are so reliable they never fail",
+          "A system that can support failures and still continue to function",
+          "A system that repairs every failure within a few minutes",
+          "A system that avoids failure by using only simple components"
+        ],
+        "answer": "B",
+        "ek": "EK CSN-1.E.5",
+        "rationale": "A fault-tolerant system can support failures and still continue to function — the definition presumes failures happen, at unexpected times and often in groups. A and D are the prevention myth: no component is unfailable, which is why redundancy exists. C invents a repair-speed requirement; the system tolerates failure by rerouting, not by fast fixes."
+      },
+      {
+        "id": "Q7",
+        "kind": "applied",
+        "predictFirst": false,
+        "stem": "Between any two points on the Internet there are usually many possible routes. What does this redundancy of routing options provide?",
+        "options": [
+          "It guarantees packets always arrive in order, removing the need for protocols",
+          "It lowers cost by removing the need for any extra components",
+          "It increases reliability and helps the Internet scale to more devices and people",
+          "It prevents any router from failing and doubles transmission speed"
+        ],
+        "answer": "C",
+        "ek": "EK CSN-1.E.7",
+        "rationale": "The redundancy of routing options increases the reliability of the Internet and helps it scale to more devices and people. A contradicts packet behavior — packets may still arrive out of order regardless of routes. B inverts the trade: redundancy requires additional resources, so it costs more. D is the prevention myth plus a fabricated speed claim."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 4.2 — Fault Tolerance — Teacher Guide",
+    "subtitle": "Big Idea 4: Computer Systems and Networks · Topic 4.2 · 1 class period + assessment block",
+    "overview": [
+      "Topic 4.2 answers the question Topic 4.1 quietly raises: if data crosses dozens of devices and connections, what happens when one of them dies? Students learn the mechanism (redundancy — extra components and more than one path between devices — lets subsequent data take a different route, if possible), the vocabulary (a system that supports failures and continues to function is fault-tolerant), the trade (redundancy costs additional resources but buys fault tolerance, plus reliability and scale), and the diagnosis skill the exam tests hardest — reading a described system and finding its single point of failure. All three parts of LO CSN-1.E get explicit practice: describing benefits, explaining how a given system is fault-tolerant, and identifying vulnerabilities.",
+      "The through-line is the bell ringer: a text-described map of the town of Cedar Bend's five fiber lines. Students hunt the one backhoe cut that does the most damage, then spend the town's budget on a single protective new line — inventing single-point-of-failure analysis and redundancy before either is named. Every later slide formalizes, prices, and tests the audit they already ran themselves."
+    ],
+    "los": [
+      "LO CSN-1.E — For fault-tolerant systems, like the Internet: a. Describe the benefits of fault tolerance. b. Explain how a given system is fault-tolerant. c. Identify vulnerabilities to failure in a system."
+    ],
+    "eks": [
+      "EK CSN-1.E.1 — The Internet has been engineered to be fault-tolerant, with abstractions for routing and transmitting data.",
+      "EK CSN-1.E.2 — Redundancy is the inclusion of extra components that can be used to mitigate failure of a system if other components fail.",
+      "EK CSN-1.E.3 — One way to accomplish network redundancy is by having more than one path between any two connected devices.",
+      "EK CSN-1.E.4 — If a particular device or connection on the Internet fails, subsequent data will be sent via a different route, if possible.",
+      "EK CSN-1.E.5 — When a system can support failures and still continue to function, it is called fault-tolerant. This is important because elements of complex systems fail at unexpected times, often in groups, and fault tolerance allows users to continue to use the network.",
+      "EK CSN-1.E.6 — Redundancy within a system often requires additional resources but can provide the benefit of fault tolerance.",
+      "EK CSN-1.E.7 — The redundancy of routing options between two points increases the reliability of the Internet and helps it scale to more devices and more people."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies).",
+      "Printed Topic 4.2 quiz (student copies) for the assessment block.",
+      "Optional: blank paper or whiteboards for bell-ringer network sketches (students draw the Cedar Bend map and their added line)."
+    ],
+    "prereqs": [
+      "Topic 4.1 (The Internet): students should already know that data travels as packets through routers along paths of connected devices — fault tolerance is framed as 'what happens when part of that path dies.' The bell ringer assumes no prior fault-tolerance knowledge."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Redundancy and rerouting, then the cost-benefit trade and the single-point-of-failure audit (LO CSN-1.E, all three parts)",
+        "segments": [
+          {
+            "segment": "QOTD (BI4/T4.2/Q1) + bell ringer (the Cedar Bend backhoe test)",
+            "min": 7,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Redundancy and rerouting: vocab + extra components, extra paths (EK CSN-1.E.1–E.4)",
+            "min": 12,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Stop and Think: where the rerouting rule breaks",
+            "min": 5,
+            "slides": "8"
+          },
+          {
+            "segment": "Benefits vs. costs, network triage table, and the redundancy-is-waste misconception (EK CSN-1.E.5–E.7)",
+            "min": 15,
+            "slides": "9-12"
+          },
+          {
+            "segment": "Deep dive: bridges and independent paths (optional enrichment)",
+            "min": 5,
+            "slides": "13"
+          },
+          {
+            "segment": "Stop and Think: run the audit",
+            "min": 6,
+            "slides": "14"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "15-16"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 4.2 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed.",
+        "segments": [
+          {
+            "segment": "Topic 4.2 quiz",
+            "min": 12,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Redundancy is wasteful duplication”",
+        "myth": "A backup line or spare component that sits unused most of the time is money wasted — 'redundant' literally means unnecessary, so the duplicate should be cut.",
+        "reality": "EK CSN-1.E.6 prices the trade explicitly: redundancy often requires additional resources but can provide the benefit of fault tolerance. The idle component is what lets users continue using the network when other components fail (EK CSN-1.E.5), and redundant routing also increases reliability and helps the Internet scale (EK CSN-1.E.7). Exam answers must name BOTH the cost and the benefit — treating redundancy as free loses in one direction, treating it as waste loses in the other."
+      },
+      {
+        "heading": "“Fault-tolerant means failure-proof”",
+        "myth": "If a system is fault-tolerant, its components never fail — so any observed failure proves the system was not fault-tolerant after all.",
+        "reality": "EK CSN-1.E.5 defines fault tolerance as supporting failures while CONTINUING TO FUNCTION — the definition presumes failures happen, at unexpected times and often in groups. The Internet is fault-tolerant precisely because it reroutes around dead components (EK CSN-1.E.4), not because its parts are unbreakable. Watch for the word 'prevent' in distractors; fault tolerance survives failure, never prevents it."
+      },
+      {
+        "heading": "“The vulnerability is anything that could fail”",
+        "myth": "Since any cable, router, or server could break, every component counts as a vulnerability — so students answer 'the cables' or 'any router' when asked to identify a system's weak point.",
+        "reality": "In a redundant network, most individual failures are survivable — data reroutes, if possible (EK CSN-1.E.4). The vulnerability worth naming is the SINGLE POINT OF FAILURE: the component every path depends on, whose loss disconnects the system with no different route available. The star network's central switch, the mesh's one ISP line, the chain's middle links. Train the three-question audit: fault-tolerant? single point of failure? where does one addition create redundancy?"
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give the audit as a sentence frame: 'The vulnerability is ______ , since every path depends on it; adding ______ would create a second path, so the system could keep functioning if ______ failed.' Students fill it for every scenario before writing free-form answers.",
+        "Anchor every new network back to the bell-ringer map: 'Find the backhoe cut that hurts most.' Sketching the described system first turns every abstract item into the same concrete hunt students already ran on Cedar Bend."
+      ],
+      "extension": [
+        "Have deep-dive students hunt the bridges in each worked-table network, verify the prescribed fix eliminates them, then design the cheapest possible zero-bridge network for six sites (a ring — six links) and defend why nothing cheaper works.",
+        "Challenge students to find a real outage post-mortem (airline, cloud provider, game platform) and identify the single point of failure the engineers named — and whether the published fix was more redundancy, and at what stated cost."
+      ]
+    },
+    "discussion": [
+      "Hospitals, airlines, and 911 call centers pay heavily for redundancy they hope never to use; most schools and homes do not. Who should decide how much fault tolerance a system deserves — and what facts about the system should drive that decision?",
+      "Cedar Bend could afford only one new line, and real engineers face the same budget wall at Internet scale. Is there such a thing as TOO much redundancy? Where is the line between resilient and wasteful, and who draws it?",
+      "EK CSN-1.E.5 warns that complex systems fail 'often in groups' — like two 'independent' fiber lines sharing one trench. Find another example, in technology or daily life, where backups secretly share a single point of failure with the thing they back up."
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

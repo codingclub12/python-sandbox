@@ -1,0 +1,599 @@
+{
+  "meta": {
+    "lessonId": "3.4",
+    "lessonTitle": "Strings",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO AAP-2.D",
+    "anchor": "Strings",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.4 · Day 1 of 1",
+      "title": "Joining and Slicing Text",
+      "subtitle": "How programs build new text out of old text — concatenation joins strings end-to-end, a substring is a piece taken from an existing string, and reading positions correctly keeps you off the exam's favorite off-by-one trap",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Today is Topic 3.4, Strings — a short, single-day topic with two ideas the exam tests directly. First, string concatenation: joining two or more strings end-to-end to make one new string. Second, substrings: a piece taken from an existing string. Both live under one learning objective, AAP-2.D, evaluate expressions that manipulate strings — so the whole day is about reading a string expression and giving its exact value. The traps here are small but costly: forgetting that concatenation adds no spaces of its own, and miscounting character positions. Get those right and every string question on the exam is quick points."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Evaluate string concatenation expressions, joining two or more strings end-to-end to build one new string (LO AAP-2.D)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify and evaluate substrings — the pieces taken from an existing string — and read character positions without off-by-one errors (LO AAP-2.D)"
+        }
+      ],
+      "script": "Two targets, both from learning objective AAP-2.D, which is about evaluating expressions that manipulate strings. First: evaluate concatenation — join strings end-to-end and produce the exact resulting text, including any spaces you had to add yourself. Second: identify and evaluate substrings — recognize a piece pulled from a string and read character positions correctly, because the exam reference sheet counts positions from one while Python and JavaScript count from zero. That position-base difference is where most string points are lost."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "On scratch paper, build your 'coding-club handle' by following these steps EXACTLY, in order: (1) write the first 3 letters of your first name; (2) directly after them, with no space, write the last 2 letters of your last name; (3) directly after that, with no space, write your favorite one-digit number.",
+      "subprompt": "Write 2–4 sentences: Which steps JOINED pieces together, and which step pulled out just PART of a longer word? Your name normally has a space in it — where did the spaces go in your handle, and why?",
+      "directions": "Be ready to share your handle and say which steps joined pieces versus took a piece.",
+      "script": "Five minutes, on your own. Follow the recipe exactly and build your handle — first three letters of your first name, then the last two of your last name, then a digit, all with no spaces. Then answer the reflection. Watch what you naturally did: steps that stuck pieces together are concatenation — joining strings end-to-end. The step that pulled 'the first three letters' out of your whole name took a substring — a piece of an existing string. And notice the spaces vanished: nothing put a space between the pieces, because joining text adds no spaces of its own. You just invented today's two ideas before we named them."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Concatenation",
+          "description": "Joining two or more strings end-to-end into one new string, and why no space appears unless you add it (EK AAP-2.D.1)."
+        },
+        {
+          "title": "Substrings",
+          "description": "A substring as a piece of an existing string, and reading character positions without off-by-one errors (EK AAP-2.D.2)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.4 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is today's map — two sections, both green and CB-required: concatenation, then substrings. Keep the packet open and fill it in as we go; if you were absent or lost it, a digital copy lives on the Topic 3.4 Guided Notes page at apcsexamprep.com. This topic also has write-and-run coding practice on the Topic 3.4 page — you will warm the ideas up on paper here, then type and run harder versions of the same string problems online."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Concatenation",
+      "kicker": "Joining Strings End-to-End · Learning Objective AAP-2.D",
+      "script": "Section one. Your handle stuck pieces of text together — that is concatenation, the first of two string ideas. The College Board's definition is one sentence, but the exam builds a whole family of quick questions on it, and almost all of them turn on one detail: what concatenation does NOT add for you."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.D)",
+      "terms": [
+        {
+          "term": "String",
+          "definition": "An ordered sequence of characters, such as \"code\" or \"AP CSP\" (EK AAP-1.C.4)."
+        },
+        {
+          "term": "Character",
+          "definition": "A single element of a string — one letter, digit, space, or symbol (EK AAP-1.C.4)."
+        },
+        {
+          "term": "Concatenation",
+          "definition": "Joining two or more strings end-to-end to make one new string (EK AAP-2.D.1)."
+        },
+        {
+          "term": "Substring",
+          "definition": "A part of an existing string — one or more of its characters, taken together (EK AAP-2.D.2)."
+        },
+        {
+          "term": "Position (index)",
+          "definition": "The number used to reference a character's place in a string; the exam reference sheet counts from 1 (EK AAP-1.C.3)."
+        }
+      ],
+      "script": "Five words carry this topic. A string is an ordered sequence of characters — text, always the same characters in the same order. A character is one element of that sequence: a letter, a digit, a space, or a symbol. Concatenation is joining two or more strings end-to-end into one new string — the first big idea. A substring is a part of an existing string, one or more of its characters taken together — the second. And a position, or index, is the number that tells you where a character sits; write this down now because it is the source of the day's trap — the exam reference sheet counts positions starting at one, but Python and JavaScript start at zero."
+    },
+    {
+      "type": "concept",
+      "heading": "Concatenation Joins Strings End-to-End",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "String concatenation joins two or more strings end-to-end to make one new string (EK AAP-2.D.1).",
+        "Nothing is inserted between the pieces — no space, comma, or separator appears unless you concatenate one yourself.",
+        "Order is preserved, so \"AP\" joined before \"CSP\" is not the same result as \"CSP\" joined before \"AP\".",
+        "The original strings are left alone; concatenation produces a brand-new string as its value."
+      ],
+      "script": "Here is the definition to keep. Concatenation joins two or more strings end-to-end to make one new string — that is EK AAP-2.D.1, word for word. The detail the exam lives on: nothing is inserted between the pieces. No space, no comma, no separator appears unless you concatenate one yourself. Order is preserved, so the left piece always lands first — 'AP' before 'CSP' gives a different string than the reverse. And the originals are untouched; concatenation hands you a new string as its value. Read a concatenation left to right and write down exactly the characters given, and only those.",
+      "capture": [
+        {
+          "q": "If you concatenate \"code\" and \"NOW\" with nothing between them, the result is ______.",
+          "a": "codeNOW — the two strings sit directly against each other with no gap"
+        },
+        {
+          "q": "To make joined strings read as separate words, you must ______.",
+          "a": "concatenate an explicit space, the string \" \", between them"
+        },
+        {
+          "q": "\"AP\" + \"CSP\" and \"CSP\" + \"AP\" give different results because concatenation ______.",
+          "a": "preserves the order of the pieces, so swapping the operands swaps the halves"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Concatenation",
+      "heading": "The Space Only Appears If You Add It",
+      "caption": "first + last runs the names together; first + \" \" + last inserts the space you supplied.",
+      "pseudocode": "first ← \"Ada\"\nlast ← \"Lovelace\"\nDISPLAY(first + last)\nDISPLAY(first + \" \" + last)",
+      "python": "first = \"Ada\"\nlast = \"Lovelace\"\nprint(first + last)\nprint(first + \" \" + last)",
+      "output": "AdaLovelace   Ada Lovelace",
+      "script": "Watch the trap in code. Left is the exam pseudocode with the plus sign for concatenation; right is runnable Python. First holds 'Ada', last holds 'Lovelace'. The first DISPLAY joins them end-to-end — AdaLovelace, run together, because nothing sits between them. The second DISPLAY concatenates first, then a space string, then last — Ada space Lovelace. The only difference is that middle quote-space-quote, and it is the only reason a space exists. On the exam, if you see two strings joined with no space literal between them, write them touching."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Evaluate Each Concatenation",
+      "context": "Give the exact string each expression produces. Watch for spaces that are — and are not — supplied.",
+      "columns": [
+        "Expression",
+        "Result",
+        "Why"
+      ],
+      "rows": [
+        [
+          "\"cat\" + \"dog\"",
+          "catdog",
+          "joined end-to-end; no space is added for you"
+        ],
+        [
+          "\"cat\" + \" \" + \"dog\"",
+          "cat dog",
+          "the middle \" \" supplies the only space"
+        ],
+        [
+          "\"AP\" + \"CSP\"",
+          "APCSP",
+          "left piece first, then the right piece"
+        ],
+        [
+          "\"CSP\" + \"AP\"",
+          "CSPAP",
+          "swapping the operands swaps the halves"
+        ],
+        [
+          "\"7\" + \"3\"",
+          "73",
+          "these are text characters, so they join — they are NOT added to make 10"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "Evaluate each one, and fill the blanks yourself. Cat plus dog is catdog — joined, no space. Cat plus quote-space-quote plus dog is cat space dog — the middle space is the only reason there is a gap. AP plus CSP is APCSP; CSP plus AP is CSPAP — same pieces, opposite order, different string. And the sneaky one: quote-seven-quote plus quote-three-quote is seventy-three as text, seven-three, NOT the number ten — these are strings, so the plus concatenates rather than adds. That last row is the exam's reminder that quotes make something a string, and strings only ever join.",
+      "blanks": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Joining Strings Adds a Space Between Them”",
+      "misconception": "When you concatenate two strings, the computer automatically puts a space (or other separator) between them.",
+      "whyItHappens": "In writing and speech we always leave spaces between words, so joining 'words' feels like it should space them out the way a sentence does.",
+      "correction": "Concatenation joins strings end-to-end with nothing added in between (EK AAP-2.D.1). \"code\" + \"NOW\" is \"codeNOW\", not \"code NOW\". If you want a gap, you must concatenate an explicit space string \" \" yourself, exactly where you want it.",
+      "example": "\"Ada\" + \"Lovelace\" evaluates to \"AdaLovelace\" — no space. \"Ada\" + \" \" + \"Lovelace\" evaluates to \"Ada Lovelace\". The space exists only because the middle \" \" was concatenated in.",
+      "script": "This is the number-one string mistake. Because we always put spaces between words when we write, students assume the computer will too. It will not. Concatenation joins end-to-end with nothing added — code plus NOW is codeNOW, one word. To get a gap you concatenate a space string yourself, right where you want it. The Ada example makes it concrete: no space unless the quote-space-quote is in there. On any concatenation question, the rule is simple — count only the characters actually written into the expression."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Evaluate the Join",
+      "subheading": "These map to LO AAP-2.D. Complete on your Guided Notes.",
+      "prompts": [
+        "Evaluate by hand: DISPLAY(\"low\" + \"key\"). Write the exact string, then explain in one sentence why there is no space in it.",
+        "You want the output My rank is 4 from the text piece \"My rank is\" and the value 4. Write the concatenation expression, being explicit about the space and about writing the 4 as a text character.",
+        "A classmate writes \"CSP\" + \"AP\" and expects \"AP CSP\". Give the actual result and name the two separate things they got wrong."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.4 page.",
+      "script": "Stop and think, six minutes, full sentences. One: low plus key is lowkey — one word, because no space literal sits between the pieces. Two: to get 'My rank is 4' you need the space before the four and the four written as text, so 'My rank is' plus quote-space-quote plus quote-four-quote. Three: 'CSP' plus 'AP' is CSPAP — the classmate got the order wrong, expecting AP first, AND expected a space that no piece supplies. These are exactly the moves AAP-2.D concatenation questions test."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Substrings",
+      "kicker": "A Piece of an Existing String · Learning Objective AAP-2.D",
+      "script": "Section two. Concatenation builds bigger strings; a substring goes the other way — it is a piece taken from a string you already have. The definition is again one sentence, and the exam pairs it with a counting trap: which character is the third one, really?"
+    },
+    {
+      "type": "concept",
+      "heading": "A Substring Is Part of an Existing String",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A substring is part of an existing string — one or more of its characters, taken together (EK AAP-2.D.2).",
+        "Taking a substring does not change the original string; it hands you a separate, usually shorter, string.",
+        "You describe a substring by the POSITIONS of its characters — for example, the first 4 characters, or the 3rd character.",
+        "Position bases differ: the exam reference sheet counts from 1, while Python and JavaScript count from 0."
+      ],
+      "script": "Here is the second definition, verbatim: a substring is part of an existing string — EK AAP-2.D.2. Three things to write down. First, taking a substring does not change the original; you get back a separate, shorter string, and the source is untouched. Second, you name a substring by positions — 'the first four characters,' 'the third character.' Third, and this is the trap: the exam reference sheet counts positions starting at one, so the third character is position three, but Python and JavaScript count from zero, so that same third character is index two. Before you index anything, ask which base you are in.",
+      "capture": [
+        {
+          "q": "A substring is best described as ______.",
+          "a": "a run of one or more characters pulled out of a longer string"
+        },
+        {
+          "q": "Taking a substring leaves the original string ______.",
+          "a": "untouched — the operation returns a separate, shorter string"
+        },
+        {
+          "q": "On the exam the 3rd character is position 3, but in Python that same character is at ______.",
+          "a": "index 2, because code counts positions starting from 0"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Substring",
+      "heading": "Take a Piece, Leave the Original",
+      "caption": "The exam describes a substring in words (there is no SUBSTRING procedure on the reference sheet); Python takes the piece with a slice, counting from 0.",
+      "pseudocode": "word ← \"computer\"\npart ← first 4 characters of word\nDISPLAY(part)\nDISPLAY(word)",
+      "python": "word = \"computer\"\npart = word[0:4]\nprint(part)\nprint(word)",
+      "output": "comp   computer",
+      "script": "Substrings in code. The reference sheet has no SUBSTRING function — the exam describes substrings in words, so the pseudocode says 'the first four characters of word.' Python takes that piece with a slice: word bracket zero colon four, which grabs positions counting from zero up to but not including four, giving comp. The second DISPLAY proves the point — word is still 'computer', completely unchanged. A substring reads from a string; it never edits it. And notice the slice starts at zero, not one, which is the whole reason the counting trap matters."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Read the Substring by Position",
+      "context": "Using exam positions (counting from 1), give the substring each description names. The last column shows the matching Python index.",
+      "columns": [
+        "Word",
+        "Take...",
+        "Substring",
+        "Python index note"
+      ],
+      "rows": [
+        [
+          "rainbow",
+          "the first 3 characters",
+          "rai",
+          "positions 1–3 = indexes 0–2"
+        ],
+        [
+          "rainbow",
+          "the 4th character",
+          "n",
+          "position 4 = index 3"
+        ],
+        [
+          "rainbow",
+          "the last 3 characters",
+          "bow",
+          "positions 5–7 = indexes 4–6"
+        ],
+        [
+          "science",
+          "the 3rd character",
+          "i",
+          "position 3 = index 2"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Read each substring by position, and fill the blanks. In 'rainbow', the first three characters are r-a-i, 'rai' — exam positions one through three, Python indexes zero through two. The fourth character is 'n' — position four, index three. The last three are b-o-w, 'bow'. And in 'science', the third character is 'i' — position three on the exam, but index two in Python, because 'science' bracket three would wrongly give 'e', the fourth letter. Every row is the same discipline: name the positions, then convert the base if you are writing code.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The 3rd Character Is at Index 3”",
+      "misconception": "To get the 3rd character of a string in Python or JavaScript, you use index 3.",
+      "whyItHappens": "Everyday counting starts at 1, so the 3rd item feels like number 3 — and the AP exam reference sheet really does count positions from 1, which reinforces the habit.",
+      "correction": "The exam reference sheet counts positions from 1, so the 3rd character is position 3. But Python and JavaScript count from 0, so the 3rd character is index 2. Using index 3 in code gives you the 4th character — the classic off-by-one bug (EK AAP-2.D.2). Read the base first: exam positions start at 1, code indexes start at 0.",
+      "example": "In \"science\", position 3 on the exam is 'i'. In Python, \"science\"[3] is 'e' — the 4th letter — because code counts from 0; you need \"science\"[2] to get 'i'.",
+      "script": "This is the substring trap, and it feeds today's coding practice directly. Because we count from one in daily life — and because the exam reference sheet also counts from one — the third character feels like number three. In Python and JavaScript, though, indexing starts at zero, so index three is actually the fourth character. In 'science', index three is 'e', not the 'i' you wanted; you need index two. The fix is a habit: before you index, decide which base you are in — exam positions start at one, code indexes start at zero — and convert if needed."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Take a Piece",
+      "subheading": "These map to LO AAP-2.D. Complete on your Guided Notes.",
+      "prompts": [
+        "For word = \"function\", write the substring that is (a) the first 3 characters and (b) the 5th character. State the exam position for each.",
+        "In Python, \"function\"[3] returns 'c', not the 3rd character. Explain the off-by-one cause and give the index that returns the 3rd character.",
+        "In one sentence, explain how a substring differs from concatenation — what each one does to the strings involved."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.4 page.",
+      "script": "Take a piece, six minutes, full sentences. One: in 'function', the first three characters are 'fun', and the fifth character — position five — is 't'. Two: 'function' bracket three is 'c' because Python counts from zero, so index three is the fourth character; the third character is index two, which gives 'n'. Three: in one sentence — a substring takes a piece OUT of one existing string and leaves it unchanged, while concatenation joins strings together to build a new, longer one. Those are the two directions of string manipulation the exam tests."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.4 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Concatenation adds no spaces",
+          "text": "Joining strings inserts nothing between them. \"code\" + \"NOW\" is \"codeNOW\", not \"code NOW\". A space appears only if you concatenate an explicit \" \" yourself — count only the characters actually written in the expression."
+        },
+        {
+          "name": "Order matters, and the originals survive",
+          "text": "Concatenation keeps operand order, so \"AP\" + \"CSP\" ≠ \"CSP\" + \"AP\", and it builds a NEW string while leaving the pieces unchanged. A substring likewise takes a copy of a piece — it never edits the source string."
+        },
+        {
+          "name": "Position base: exam counts from 1, code from 0",
+          "text": "On the exam reference sheet the 3rd character is position 3. In Python or JavaScript that same character is index 2 — using index 3 grabs the 4th character. Decide which base you are in before you count."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: concatenation adds no spaces — code plus NOW is codeNOW, and a space exists only if you wrote a space literal in. Trap two: order matters and the originals survive — AP plus CSP is not CSP plus AP, concatenation builds a new string, and a substring copies a piece without editing the source. Trap three: position base — the exam counts characters from one, Python and JavaScript from zero, so the third character is index two in code; using index three grabs the fourth. Dodge these three and strings are free points on the exam."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Strings, in One Slide",
+      "points": [
+        "String concatenation joins two or more strings end-to-end to make one new string, and it adds no spaces of its own (EK AAP-2.D.1).",
+        "Concatenation preserves operand order and leaves the original strings unchanged — \"AP\" + \"CSP\" ≠ \"CSP\" + \"AP\" (EK AAP-2.D.1).",
+        "A substring is part of an existing string — one or more of its characters — and taking it does not change the source (EK AAP-2.D.2).",
+        "Character positions differ by base: the exam reference sheet counts from 1, while Python and JavaScript count from 0 (EK AAP-2.D.2)."
+      ],
+      "next": "Topic 3.5, Boolean Expressions: now that you can evaluate expressions on numbers and strings, how do relational operators turn two values into a single true-or-false answer?",
+      "script": "The whole topic in one slide. Concatenation joins strings end-to-end into one new string and adds no spaces of its own. It preserves order and leaves the originals alone, so AP plus CSP is not CSP plus AP. A substring is a piece of an existing string, and taking it never changes the source. And character positions depend on the base — the exam counts from one, Python and JavaScript from zero — which is the off-by-one trap. Next class is Topic 3.5, Boolean Expressions, where relational operators turn two values into a single true-or-false answer. Before you pack up, run the exit check — any 'I can' box you cannot honestly tick tells you what to run tonight on the Topic 3.4 coding page. Guided Notes are collected at the end of class.",
+      "ican": [
+        "evaluate a string concatenation and give the exact result, adding spaces only where I concatenate them (LO AAP-2.D)",
+        "explain that concatenation preserves order and produces a new string without changing the originals (LO AAP-2.D)",
+        "identify a substring as a piece of an existing string and read it by position (LO AAP-2.D)",
+        "convert between exam positions (from 1) and code indexes (from 0) to avoid off-by-one errors (LO AAP-2.D)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.4 — Strings — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program runs DISPLAY(\"sun\" + \"flower\"). What is displayed?",
+        "options": [
+          "sun flower",
+          "sunflower",
+          "\"sun\" + \"flower\"",
+          "flowersun"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.D.1",
+        "rationale": "EK AAP-2.D.1 says concatenation joins strings end-to-end to make a new string, adding nothing between them, so \"sun\" + \"flower\" is \"sunflower\". A inserts a space that neither operand supplies. C fails to evaluate the expression. D reverses the operand order, which concatenation preserves."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "A game must show Level: 7 — the word Level, a colon, one space, then 7. Which expression produces exactly that?",
+        "options": [
+          "\"Level\" + \"7\"",
+          "\"Level:\" + \"7\"",
+          "\"Level \" + \": \" + \"7\"",
+          "\"Level: \" + \"7\""
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.D.1",
+        "rationale": "Concatenation adds nothing on its own (EK AAP-2.D.1), so the colon and the single space must be written into a string literal. \"Level: \" carries the colon and one trailing space, so \"Level: \" + \"7\" gives \"Level: 7\". A produces \"Level7\" (no colon or space). B produces \"Level:7\" (no space). C produces \"Level : 7\" — the extra space in \"Level \" puts a space before the colon. Only D supplies exactly the colon and one space."
+      },
+      {
+        "id": "Q3",
+        "kind": "recall",
+        "stem": "Which statement best defines a substring?",
+        "options": [
+          "A substring is part of an existing string.",
+          "A substring is two or more strings joined end-to-end.",
+          "A substring is a string that has been converted into a number.",
+          "A substring is a list whose elements are separate strings."
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.D.2",
+        "rationale": "EK AAP-2.D.2 states a substring is part of an existing string, so A is correct. B describes concatenation (EK AAP-2.D.1), not a substring. C describes a type conversion, which is unrelated. D confuses a substring with a list of strings."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "In Python, word = \"planet\" and a programmer writes word[3] to get the 3rd character, 'a'. What actually prints, and why?",
+        "options": [
+          "'a', as if code counted positions from 1",
+          "'l', the 2nd character of the word",
+          "'n', the 4th character — code indexes from 0",
+          "an error — strings have no index access"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.D.2",
+        "rationale": "Python indexes from 0, so word[3] is the 4th character, 'n'; the 3rd character 'a' is at index 2. C states this correctly. A assumes the 1-based counting of the exam reference sheet, which code does not use. B miscounts the position. D is false — strings are indexable by position."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A program sets a ← \"back\" and b ← \"pack\", then runs DISPLAY(a + b) and then DISPLAY(b + a). What is displayed, in order?",
+        "options": [
+          "backpack packback",
+          "packback backpack",
+          "backpack backpack",
+          "back pack pack back"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.D.1",
+        "rationale": "Concatenation preserves operand order (EK AAP-2.D.1): a + b joins \"back\" then \"pack\" → \"backpack\"; b + a joins \"pack\" then \"back\" → \"packback\". So A is correct. B swaps the two outputs. C ignores the order change in the second DISPLAY. D invents spaces that no operand supplies."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "What is the substring formed by the first 3 characters of \"keyboard\" (positions 1–3)?",
+        "options": [
+          "boa",
+          "eyb",
+          "ard",
+          "key"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.D.2",
+        "rationale": "A substring is part of the existing string (EK AAP-2.D.2). The first 3 characters are positions 1–3: k, e, y → \"key\", so D is correct. B starts at position 2. A and C take characters from later in the word, not the first three."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A badge builder stores first ← \"Grace\" and last ← \"Hopper\". Which expression outputs Grace Hopper with a single space between the names?",
+        "options": [
+          "first + last",
+          "first + \" \" + last",
+          "first + last + \" \"",
+          "\" \" + first + last"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.D.1",
+        "rationale": "Because concatenation adds no space of its own (EK AAP-2.D.1), a space literal must sit between the names: first + \" \" + last → \"Grace Hopper\". A gives \"GraceHopper\" (no space). C puts the space at the end → \"GraceHopper \". D puts it at the front → \" GraceHopper\". Only B places the space between the names."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "Concatenate the 1st character of \"Monday\" with the 1st character of \"Wednesday\", in that order. What is displayed?",
+        "options": [
+          "Mon",
+          "WM",
+          "MW",
+          "MoWe"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.D.2",
+        "rationale": "The 1st character of each word is a one-character substring (EK AAP-2.D.2): \"M\" and \"W\". Concatenating them end-to-end in that order (EK AAP-2.D.1) gives \"MW\", so C is correct. A takes three characters from just one word. B has the right characters but in reversed order, which concatenation would not do. D takes the first two characters of each word instead of only the first."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.4 — Strings — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.4 · 1 class period + assessment block",
+    "overview": [
+      "Topic 3.4 is a tight, single-day topic under one learning objective, AAP-2.D — evaluate expressions that manipulate strings. It covers exactly two ideas the CED names: string concatenation (EK AAP-2.D.1), which joins two or more strings end-to-end into one new string, and substrings (EK AAP-2.D.2), which are pieces taken from an existing string. The day is built around the two small errors that cost the most points: concatenation adds no spaces of its own, and character positions differ by base — the exam reference sheet counts from 1 while Python and JavaScript count from 0.",
+      "Because this is a programming topic, all code on slides uses the AP Exam Reference Sheet conventions (← for assignment, DISPLAY, + for concatenation) shown beside runnable Python. The reference sheet does not provide a substring procedure, so substrings are described in words on the pseudocode side (\"the first 4 characters of word\") and taken with a slice in Python — the deliberate honesty here previews the off-by-one trap. The interactive, auto-graded coding practice on the Topic 3.4 page is the screen rung: students type and run harder versions of the same string problems they warm up on paper.",
+      "The through-line is a 'badge builder' — assembling club handles, display names, and labels out of string pieces. The bell ringer has students build their own handle by hand, discovering concatenation (joining pieces) and substring (taking part of a name) before either word is defined; the paper exercises and the coding practice reuse the same badge-builder scenario."
+    ],
+    "los": [
+      "LO AAP-2.D — Evaluate expressions that manipulate strings."
+    ],
+    "eks": [
+      "EK AAP-1.C.3 — An index is a common method for referencing the elements in a list or string using natural numbers.",
+      "EK AAP-1.C.4 — A string is an ordered sequence of characters.",
+      "EK AAP-2.D.1 — String concatenation joins together two or more strings end-to-end to make a new string.",
+      "EK AAP-2.D.2 — A substring is part of an existing string."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for the Topic 3.4 lesson.",
+      "Printed Topic 3.4 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.4 page for the interactive coding practice (in class, or assigned).",
+      "Optional: paper scraps or index cards for a physical 'join the pieces / take a piece' demonstration of concatenation and substrings."
+    ],
+    "prereqs": [
+      "Topic 3.1 (variables and assignment) and Topic 3.3 (arithmetic expressions) provide the evaluate-an-expression habit this topic extends to text. Students should already know that a string is an ordered sequence of characters (Topic 3.2) and that a variable holds one value. No prior string methods are assumed; the two operations here — concatenation and substring — are introduced from their CED definitions."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "String concatenation and substrings; the no-space and off-by-one traps (LO AAP-2.D)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.4/Q1) + bell ringer (build your coding-club handle by hand)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Concatenation: vocab, join end-to-end, the no-space code_block, evaluate-each table, the space misconception (EK AAP-2.D.1)",
+            "min": 14,
+            "slides": "5-10"
+          },
+          {
+            "segment": "Stop and Think on evaluating the join",
+            "min": 6,
+            "slides": "11"
+          },
+          {
+            "segment": "Substrings: part of a string, the take-a-piece code_block, read-by-position table, the index-base misconception (EK AAP-2.D.2)",
+            "min": 14,
+            "slides": "12-16"
+          },
+          {
+            "segment": "Stop and Think on taking a piece",
+            "min": 6,
+            "slides": "17"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "18-19"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.4 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.4 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.4 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Joining strings adds a space between them”",
+        "myth": "Concatenating two strings automatically puts a space (or separator) between them.",
+        "reality": "Concatenation joins strings end-to-end with nothing added (EK AAP-2.D.1). \"code\" + \"NOW\" is \"codeNOW\". A space appears only if the programmer concatenates an explicit \" \" where they want it. Enforce the habit: count only the characters actually written in the expression."
+      },
+      {
+        "heading": "“The 3rd character is at index 3”",
+        "myth": "To read the 3rd character of a string in Python or JavaScript, you use index 3.",
+        "reality": "The exam reference sheet counts positions from 1, but Python and JavaScript count from 0 (EK AAP-2.D.2 / AAP-1.C.3). The 3rd character is position 3 on the exam and index 2 in code; index 3 grabs the 4th character. Decide the base before counting."
+      },
+      {
+        "heading": "“Order does not matter / a substring edits the string”",
+        "myth": "\"AP\" + \"CSP\" is the same as \"CSP\" + \"AP\", and taking a substring changes the original string.",
+        "reality": "Concatenation preserves operand order, so the two joins differ (EK AAP-2.D.1). Both concatenation and substring produce a NEW string value and leave the originals unchanged; a substring copies a piece, it never mutates the source (EK AAP-2.D.2)."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students paper scraps: write each string piece on its own scrap, physically push two scraps together to 'see' that concatenation leaves no gap, then insert a scrap that is just a blank space to produce the separator.",
+        "Provide a position ruler for each example word — a strip numbered 1,2,3,... above the letters and 0,1,2,... below — so students can literally read the exam position and the code index for the same character."
+      ],
+      "extension": [
+        "Have students write, in words, a rule that converts any exam position p to the Python index, then test it on the 'science' and 'function' examples and explain why it always holds.",
+        "Point deep-dive students at the Topic 3.4 coding practice to build the badge (substring + concatenation), then to count the vowels in a word, explaining how examining each character extends today's two operations."
+      ]
+    },
+    "discussion": [
+      "You built your handle by hand and the spaces disappeared. What does that reveal about the difference between how humans read text and how a program joins it — and why must a programmer be explicit about every space and separator?",
+      "The exam counts characters from 1 and Python counts from 0, yet both describe the same string. Who benefits from each choice, and what everyday off-by-one mistakes (floors of a building, fence posts, calendar dates) rhyme with this one?",
+      "Concatenation builds text up and substring breaks it down. Where in the apps you use every day (usernames, receipts, URLs, message previews) can you see one of these two operations at work, and which one is it?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

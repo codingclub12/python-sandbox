@@ -1,0 +1,692 @@
+{
+  "meta": {
+    "lessonId": "1.3",
+    "lessonTitle": "Best Practices for Public Networks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 1: Introduction to Security",
+    "day": 1,
+    "los": "LO 1.3.A, LO 1.3.B, LO 1.3.C",
+    "anchor": "Public Wi-Fi Security",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 1 · Lesson 1.3 · Day 1 of 4",
+      "title": "Best Practices for Public Networks",
+      "subtitle": "Three wireless attacks, three defenses, and why instinct alone is not enough",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Lesson 1.3, Best Practices for Public Networks, Day 1 of 4. Today is the foundation day. By the time you leave, you will know three specific wireless attacks the AP exam tests by name, three CB-required defenses, and two things that most people believe about public Wi-Fi that are flat-out wrong. Days 2 and 3 are application. Day 4 is the quiz. Let's go."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "You're at a coffee shop. Three networks show up: CoffeeShop_Guest · CoffeeShop Free · FreeCoffeeShop-5G. Which one do you connect to, and why?",
+      "subprompt": "After you pick one: what information did you actually use to make that decision? Is that enough to keep you safe?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Five minutes. Pick one of those three networks and write down your reasoning. I'm not looking for a right answer right now, I'm looking for your instinct. What made you choose that one? Was it the name? The signal strength? A gut feeling? Most people connect to public Wi-Fi using exactly the kind of reasoning you just wrote down. By the end of this lesson, you'll know exactly what an attacker exploits about that reasoning."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Guided Notes packet has 6 sections that match today's lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Adversary Classification",
+          "description": "Low-skilled vs high-skilled adversaries, plus six motivations. All CB-required for LO 1.3.A."
+        },
+        {
+          "title": "Three Wireless Attacks",
+          "description": "Evil twin, jamming/DoS, and war driving. All three are CB-specified, high-frequency exam items (LO 1.3.B)."
+        },
+        {
+          "title": "Three CB Defenses",
+          "description": "SSID verification, VPN use, and protocol-encryption awareness. Know all three and their limitations (LO 1.3.C)."
+        },
+        {
+          "title": "Attack-Defense Mapping",
+          "description": "Connect each CB attack to the CB defense that stops it. The AP exam loves to test this mapping."
+        },
+        {
+          "title": "Enrichment: Active vs Passive",
+          "description": "MITM vs packet sniffing. Not directly CB-required, but it helps you reason through complex scenarios.",
+          "track": "enrichment"
+        },
+        {
+          "title": "Stop and Think",
+          "description": "Two full-sentence written responses before you leave. Maps directly to LO 1.3.B and LO 1.3.C."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 1.3 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Take a quick look at your Guided Notes packet. Six sections today. Green sections are CB-required and will appear on the AP exam. Blue is enrichment. Start with sections 1 through 4 on the CB Standard path, or all six if you are in the Deep Dive track. Keep your pencil moving throughout the video and lecture. Section 5 is the Stop and Think, your two written responses. These are collected at the end of class."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify the type of adversary conducting a cyberattack (LO 1.3.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify types of wireless cyberattacks (LO 1.3.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Describe actions individuals can take to increase protection of sensitive data when using the internet and Wi-Fi (LO 1.3.C)"
+        }
+      ],
+      "script": "Three learning objectives, three CB verbs: identify, identify, describe. These map directly to what the AP exam will ask. LO 1.3.A is adversary classification. LO 1.3.B is the three wireless attacks. LO 1.3.C is the three defenses. Notice that all three LOs are skill 1 and skill 2 in the CB framework. That means you need to be able to recognize an attack from a description AND explain how a defense reduces risk. Both will appear on the exam."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Who's Behind the Attack?",
+      "kicker": "Adversary Classification · Learning Objective 1.3.A",
+      "script": "Section one. Adversary classification. This is LO 1.3.A. The CB framework wants you to be able to look at a cyberattack and identify the type of adversary who carried it out, based on the tools they used, the vulnerabilities they exploited, and what motivated them. Seven minutes here."
+    },
+    {
+      "type": "two_column",
+      "heading": "Adversary Skill Levels",
+      "subheading": "The CB framework classifies adversaries by skill. Skill level determines which attacks they can carry out.",
+      "left": {
+        "title": "Low-Skilled",
+        "definition": "Relies on tools created by others",
+        "ek": "EK 1.3.A.1",
+        "examples": [
+          "Purchases pre-built malware or exploit kits online",
+          "Targets known, publicly documented vulnerabilities",
+          "Cannot adapt tools when defenses are updated",
+          "Also called a script kiddie in informal usage"
+        ]
+      },
+      "right": {
+        "title": "High-Skilled",
+        "definition": "Can build and modify their own attack tools",
+        "ek": "EK 1.3.A.1",
+        "examples": [
+          "Creates new malware or modifies existing tools",
+          "Can discover zero-day vulnerabilities (undocumented flaws unknown to defenders)",
+          "Adapts techniques as defenses evolve",
+          "Nation-state actors and advanced persistent threat groups"
+        ]
+      },
+      "footer": "AP TIP: If the attacker ran a purchased tool against a known flaw, that is low-skilled. If they exploited an undocumented vulnerability or customized the attack, that is high-skilled.",
+      "script": "Two categories. Low-skilled adversaries rely on tools other people built. They download exploit kits, point them at known weaknesses, and run them. If those known vulnerabilities are patched, they are stuck. High-skilled adversaries can build their own tools and adapt them. The critical marker for high-skilled is zero-days: vulnerabilities that have NOT been publicly documented yet, so defenders have no patch. If the AP exam describes an attacker using an undocumented flaw or creating a custom payload, that is high-skilled. If they ran a purchased tool against a known CVE, that is low-skilled."
+    },
+    {
+      "type": "concept",
+      "heading": "Six Adversary Motivations (EK 1.3.A.2)",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Greed — financial gain through theft, ransomware, or fraud",
+        "Desire for recognition — proving skill or gaining notoriety in hacking communities",
+        "Dedication to a cause — hacktivism targeting organizations tied to a political or social goal",
+        "Revenge — targeting a former employer, competitor, or individual",
+        "Politics — state-sponsored attacks advancing national interests or disrupting adversaries",
+        "Beliefs — ideological motivation to expose, disrupt, or destroy perceived wrongdoing"
+      ],
+      "script": "EK 1.3.A.2 lists exactly six motivations. Memorize all six: greed, recognition, dedication to a cause, revenge, politics, beliefs. The AP exam can give you a scenario and ask you to identify the most likely motivation. A hacker leaking corporate secrets to protest environmental damage is dediction to a cause. A hacker demanding a ransom payment is greed. A government operation targeting foreign infrastructure is politics. Skill level and motivation together let you build a full picture of the adversary. Write all six in your Guided Notes."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Three Wireless Attacks",
+      "kicker": "Evil Twin · Jamming · War Driving · Learning Objective 1.3.B",
+      "script": "Section two. Three wireless attacks, and the CB framework names all three explicitly. The AP exam will describe one of them and ask you to identify which attack it is. The descriptions are distinct enough that if you know the mechanism of each one, you can always pick the right answer. Ten minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three CB-Specified Wireless Attacks",
+      "subheading": "The AP exam names all three. Know the mechanism, not just the name.",
+      "items": [
+        {
+          "ek": "EK 1.3.B.1",
+          "title": "Evil Twin Attack",
+          "summary": "Adversary sets up a WAP with an SSID matching a real network. Victims connect unknowingly and the adversary captures their traffic. HTTPS limits eavesdropping on content, but NOT credential harvesting via a fake login form.",
+          "ekRef": "EK 1.3.B.1"
+        },
+        {
+          "ek": "EK 1.3.B.2",
+          "title": "Jamming / DoS Attack",
+          "summary": "Adversary floods an area with a strong EM signal on the same frequency as the target network, so legitimate users cannot reach the access point. The CB framework classifies this explicitly as a denial-of-service (DoS) attack.",
+          "ekRef": "EK 1.3.B.2"
+        },
+        {
+          "ek": "EK 1.3.B.3",
+          "title": "War Driving Attack",
+          "summary": "Adversary detects wireless network beacons while driving or walking an area, mapping network types and where signals extend beyond the building perimeter. This is reconnaissance, not access.",
+          "ekRef": "EK 1.3.B.3"
+        }
+      ],
+      "script": "Three attacks. Fill in the attack table in your Guided Notes as we go through these. First: evil twin. The adversary sets up their own WAP with an SSID that looks like the real network. You connect to the attacker's AP thinking it is the coffee shop Wi-Fi. Now all your traffic flows through their equipment. Second: jamming. The adversary floods the wireless frequency with electromagnetic interference. Your device can hear the AP but the signal is overwhelmed. Nobody on that network can communicate. Third: war driving. The adversary drives or walks through an area detecting which wireless networks are broadcasting and where the signal bleeds outside the building. This is pure reconnaissance. They are not inside your network yet, they are mapping the attack surface."
+    },
+    {
+      "type": "misconception",
+      "heading": "The HTTPS Myth",
+      "misconception": "If I use HTTPS, an evil twin cannot hurt me.",
+      "whyItHappens": "EK 1.3.B.1 says the adversary cannot read traffic that uses an encrypted protocol like HTTPS. Students read this and assume they are fully protected from evil twin attacks as long as they see the padlock.",
+      "correction": "HTTPS defeats eavesdropping on content. It does NOT stop credential harvesting. If you submit your username and password to a fake login form, you are handing them to the attacker regardless of whether the form is served over HTTPS.",
+      "example": "An adversary's fake captive portal can have a valid SSL certificate. You see HTTPS in the address bar, you log in with your Google account — and HTTPS faithfully encrypts the traffic straight to the attacker's server.",
+      "script": "This is the most common misconception I see on this topic, and the CB framework practically guarantees it will show up on the exam. Yes, EK 1.3.B.1 says HTTPS defeats evil twin eavesdropping. That is true. If your traffic is HTTPS-encrypted, the attacker cannot read the content of your sessions. But here is what students miss: HTTPS does nothing when you willingly type your password into a fake form. The adversary does not need to intercept traffic. You gave them the credentials yourself. Always ask: am I logging into anything? If yes, HTTPS on the connection means nothing if the destination is fake."
+    },
+    {
+      "type": "two_column",
+      "heading": "Active vs Passive Interception",
+      "subheading": "Enrichment: not directly CB-required, but it helps you distinguish attack mechanisms in complex scenarios.",
+      "track": "enrichment",
+      "left": {
+        "title": "Packet Sniffing",
+        "definition": "Passively observes network traffic",
+        "ek": "Passive · Enrichment",
+        "examples": [
+          "Listens to traffic on the same network segment",
+          "Does NOT modify or redirect traffic",
+          "HTTPS defeats it — encrypted content is unreadable",
+          "Tool example: Wireshark on a NIC in monitor mode"
+        ]
+      },
+      "right": {
+        "title": "Man-in-the-Middle (MITM)",
+        "definition": "Actively sits between victim and destination",
+        "ek": "Active · Enrichment",
+        "examples": [
+          "Can modify traffic in transit, not just observe it",
+          "An evil twin IS a form of MITM — the attacker controls the AP",
+          "Can serve fake pages, inject content, or redirect requests",
+          "Active attacks are harder to execute but more powerful"
+        ]
+      },
+      "footer": "AP TIP: All evil twins are MITM attacks; not all MITM attacks are evil twins. The CB exam tests the specific attack name, not the general category.",
+      "script": "Enrichment track only. Packet sniffing is passive. You are sitting on a network and listening to what other devices broadcast. You observe, you do not touch. HTTPS defeats this completely because the content is encrypted. MITM is active. You position yourself between the victim and the destination and can modify what they see and send. An evil twin is a specific form of MITM where the attacker controls the access point itself. That is a more powerful position than just sniffing. When the CB exam describes an evil twin, call it an evil twin, not MITM. Both are accurate, but the exam rewards precision."
+    },
+    {
+      "type": "section_divider",
+      "number": "03",
+      "label": "Three CB Defenses",
+      "kicker": "SSID Verification · VPN · Protocol Awareness · Learning Objective 1.3.C",
+      "script": "Section three. The three defenses. LO 1.3.C says you need to be able to describe actions individuals can take to protect themselves. The CB framework specifies exactly three. Know all three, know their limitations, and know which one stops which attack."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three CB-Required Protections",
+      "subheading": "EKs 1.3.C.1, 1.3.C.2, and 1.3.C.3 each name a specific action. Know the limitation of each one.",
+      "items": [
+        {
+          "ek": "EK 1.3.C.3",
+          "title": "Verify the Network Name Exactly",
+          "summary": "Before joining, confirm the SSID exactly matches the network you intend to join. A single-character difference can signal an evil twin. This is the direct defense against EK 1.3.B.1.",
+          "ekRef": "EK 1.3.C.3"
+        },
+        {
+          "ek": "EK 1.3.C.1",
+          "title": "Use a Virtual Private Network",
+          "summary": "Encrypts all traffic from your device to the VPN operator's system, preventing a local attacker from reading it. CRITICAL: the VPN provider can still view the traffic — a VPN shifts trust, it does not eliminate it.",
+          "ekRef": "EK 1.3.C.1"
+        },
+        {
+          "ek": "EK 1.3.C.2",
+          "title": "Consider Protocol Encryption",
+          "summary": "Most modern internet protocols are encrypted, but some data (e.g., DNS queries) can leak even on HTTPS connections. Consider whether your activity is sensitive enough to avoid unencrypted Wi-Fi entirely.",
+          "ekRef": "EK 1.3.C.2"
+        }
+      ],
+      "script": "Three defenses. First: verify the SSID exactly. Before you connect to anything, look at the name character by character. Coffee shop posted a sign? Check it against the SSID. One extra space, a zero for an O, a lowercase L for a capital I -- those are evil twin tells. Second: VPN. VPN encrypts your traffic from your device to the VPN company's server. A local attacker on the same network cannot read it. BUT -- and this is in the EK verbatim -- the VPN provider can view the traffic. You shifted trust from the coffee shop Wi-Fi to the VPN company. You did not eliminate trust. Third: protocol encryption awareness. This one is about knowing that not all your activity is equally risky. DNS queries in particular can leak even when you are on HTTPS sites. If the data is sensitive, consider whether the network is worth the risk at all."
+    },
+    {
+      "type": "misconception",
+      "heading": "VPN ≠ Invisible + Safe",
+      "misconception": "Using a VPN makes me anonymous and completely safe on public Wi-Fi.",
+      "whyItHappens": "VPN marketing promises 'military-grade encryption' and 'complete privacy.' Students interpret this as total protection from all threats on any network.",
+      "correction": "Per EK 1.3.C.1, the VPN provider can view the traffic. A VPN shifts trust from the Wi-Fi operator to the VPN company. It does not hide your account activity from websites, and it provides zero protection if you submit credentials to a phishing site.",
+      "example": "You use a VPN at a coffee shop and log into a phishing site mimicking your bank. The VPN encrypted the traffic — and delivered your credentials to the attacker perfectly.",
+      "script": "VPNs are not magic. They are a trust-shifting tool. Without a VPN on public Wi-Fi, you trust the Wi-Fi operator and everyone else on that network not to sniff your traffic. With a VPN, you remove the Wi-Fi threat but you are now trusting the VPN company with everything. EK 1.3.C.1 is explicit about this. On the AP exam, any answer choice that says 'VPN protects you completely' or 'VPN makes you anonymous' is wrong. Look for that on the distractors. The correct framing is always: VPN reduces exposure to local attackers while shifting trust to the VPN provider."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 1.3.A–C)",
+      "terms": [
+        {
+          "term": "Wireless access point (WAP)",
+          "definition": "Hardware device that creates a wireless network, allowing devices to connect via Wi-Fi (EK 1.3.B.1)."
+        },
+        {
+          "term": "Service set identifier (SSID)",
+          "definition": "The name of a wireless network that devices display when scanning for available connections (EK 1.3.B.1)."
+        },
+        {
+          "term": "Evil twin attack",
+          "definition": "An adversary's rogue WAP mimicking a legitimate network's SSID to intercept victim traffic (EK 1.3.B.1)."
+        },
+        {
+          "term": "Jamming attack",
+          "definition": "Flooding a wireless frequency with EM interference to prevent legitimate network communication; a form of DoS (EK 1.3.B.2)."
+        },
+        {
+          "term": "Denial of service (DoS)",
+          "definition": "Any attack that prevents legitimate users from accessing a resource; jamming is a wireless DoS (EK 1.3.B.2)."
+        },
+        {
+          "term": "War driving",
+          "definition": "Detecting wireless network beacons while moving through an area to map networks and find signal leakage (EK 1.3.B.3)."
+        },
+        {
+          "term": "Virtual private network (VPN)",
+          "definition": "Encrypts traffic from your device to the VPN operator's server; shifts, but does not eliminate, trust (EK 1.3.C.1)."
+        },
+        {
+          "term": "HTTPS",
+          "definition": "Encrypted web protocol that defeats eavesdropping on content but does not protect against fake login forms (EK 1.3.C.2)."
+        },
+        {
+          "term": "Low-skilled adversary",
+          "definition": "Uses pre-built tools purchased online and exploits known, documented vulnerabilities; cannot adapt tools (EK 1.3.A.1)."
+        },
+        {
+          "term": "High-skilled adversary",
+          "definition": "Creates or modifies their own tools and can discover zero-day vulnerabilities not yet known to defenders (EK 1.3.A.1)."
+        }
+      ],
+      "script": "Ten terms. Copy any you do not already have locked in. The ones the AP exam tests most directly are evil twin, SSID, VPN, and the two adversary skill levels. Zero-day is also worth memorizing cold: it means an undocumented vulnerability that defenders have no patch for, which is the defining capability of a high-skilled adversary. If you see zero-day in an AP scenario, classify the attacker as high-skilled."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "These two questions map to LO 1.3.B and LO 1.3.C. Complete on your Guided Notes packet.",
+      "prompts": [
+        "Describe an evil twin attack. Identify one specific thing HTTPS prevents an evil twin attacker from doing, and one thing HTTPS does NOT prevent. In your answer.",
+        "A student says using a VPN at a coffee shop makes them completely safe. Identify one way the VPN does protect them, and one way the VPN does NOT protect them. Use in your response."
+      ],
+      "directions": "Independent. 7 minutes. Full sentences.",
+      "script": "Pencils down on everything else. Seven minutes. Two questions. Both are LO-mapped and both types have appeared on released AP Cybersecurity materials. Question one: describe the evil twin and give me the specific HTTPS limitation from EK 1.3.B.1. I do not want a general answer. I want the exact mechanism. Question two: quote the EK 1.3.C.1 limitation on VPNs in your response. The answer is in the essential knowledge, so if you have it in your Guided Notes, you can use it. Go."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It’s All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 1.3 page",
+          "tail": "Read the lesson and run the self-check on today’s material.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-1-best-practices-for-public-networks"
+        },
+        {
+          "label": "Wireless-attack practice",
+          "tail": "Read a scenario and name the attack — today’s skill.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-exercise-1"
+        },
+        {
+          "label": "Lesson 1.3 quiz",
+          "tail": "AP-style questions across all three objectives.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-1-lesson-3-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything from class is on the site. Start on the Lesson 1.3 page and run the self-check, then the wireless-attack practice where you name the attack in each scenario. Write the lesson page URL down now."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 4",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Classified adversaries by skill level (low vs high) and memorized six CB-listed motivations (LO 1.3.A)",
+        "Identified three CB-specified wireless attacks: evil twin, jamming/DoS, and war driving (LO 1.3.B)",
+        "Learned three CB-required defenses and their critical limitations (LO 1.3.C)",
+        "Busted two high-frequency misconceptions about HTTPS and VPN coverage"
+      ],
+      "nextPoints": [
+        "Analyze four real Wi-Fi incidents as a security analyst using the Wireless Attack Identifier",
+        "Classify each scenario with the CB attack framework and name the defense that stops it",
+        "Practice the predict-first strategy on AP-style wireless attack questions"
+      ],
+      "teaser": "Next class you stop being the student and become the analyst: four real Wi-Fi incidents, and for each one you name the attack and the defense that would have stopped it.",
+      "script": "Wrap up. Today you classified adversaries, learned three CB-required attacks and three CB-required defenses, and worked through the two misconceptions that trip up the most students on this topic. Next class you apply all of it. Four real Wi-Fi incidents, classify the attack in each one, name the defense that would have stopped it. You are going to work through those like a security analyst, not like a student guessing at answers. Before you leave, hand in your Guided Notes. And think about the bell ringer: the network name alone was your entire decision-making process. That is exactly what an evil twin exploits."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 1.3 — Best Practices for Public Networks — Quiz",
+    "instructions": "Choose the single best answer. 9 questions, 20 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "An adversary buys a ready-made hacking tool online and uses it to exploit a vulnerability that has been publicly documented for months. The adversary cannot write or modify the tool themselves. How does the CB framework classify this adversary?",
+        "options": [
+          "Low-skilled — relies on tools created by others that exploit known vulnerabilities",
+          "High-skilled — creates new tools and discovers undocumented zero-day vulnerabilities",
+          "Low-skilled — discovers undocumented zero-day vulnerabilities without using any tools",
+          "High-skilled — purchases finished tools that only ever target publicly known flaws"
+        ],
+        "answer": "A",
+        "ek": "EK 1.3.A.1",
+        "rationale": "EK 1.3.A.1 says low-skilled adversaries rely on malicious cyber tools created by others that can be purchased online, and those tools exploit known vulnerabilities — exactly this adversary. Option B describes a high-skilled adversary. Options C and D scramble the skill-level traits, pairing the wrong capabilities with each label."
+      },
+      {
+        "id": "Q2",
+        "kind": "recall",
+        "stem": "According to the CB framework, what distinguishes a high-skilled adversary from a low-skilled one?",
+        "options": [
+          "They can only purchase tools that exploit vulnerabilities already documented publicly",
+          "They can create or modify malicious tools and discover undocumented zero-day vulnerabilities",
+          "They are motivated solely by greed and never by recognition, politics, or beliefs",
+          "They jam wireless signals while low-skilled adversaries set up evil twin access points"
+        ],
+        "answer": "B",
+        "ek": "EK 1.3.A.1",
+        "rationale": "EK 1.3.A.1 states high-skilled adversaries can create new tools or modify existing ones and can discover undocumented vulnerabilities, known as zero days. Option A describes the low-skilled adversary. Option C wrongly narrows motivation, which EK 1.3.A.2 lists broadly. Option D invents a skill-to-attack mapping the CED does not make."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "A threat report notes that an attacker group is driven by a mix of revenge, dedication to a cause, and desire for recognition. Which CB-specified idea does this directly illustrate?",
+        "options": [
+          "That adversaries are classified only by their technical skill level",
+          "That encrypted protocols like HTTPS protect traffic from an evil twin",
+          "That adversaries have a variety of motivations behind their attacks",
+          "That jamming attacks are a form of denial-of-service attack"
+        ],
+        "answer": "C",
+        "ek": "EK 1.3.A.2",
+        "rationale": "EK 1.3.A.2 lists motivations including greed, desire for recognition, dedication to a cause, revenge, politics, or beliefs — the report names several of these. Option A addresses skill (EK 1.3.A.1), not motivation. Options B and D are true CED statements but concern wireless attacks, not adversary motivation."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "At a coffee shop, a victim connects to a wireless access point whose SSID is identical to the shop's real network but is actually run by an adversary, who then captures the victim's traffic. The victim's banking session over HTTPS stays unreadable to the attacker. Which attack is this, and why is the banking traffic safe?",
+        "options": [
+          "War driving — the adversary detected the beacon while walking past the building",
+          "Evil twin — a rogue access point imitates the SSID, yet HTTPS encryption hides that traffic",
+          "Jamming — a strong EM signal blocks the access point, though HTTPS still functions normally",
+          "Evil twin — the rogue access point can read all traffic, including the encrypted HTTPS session"
+        ],
+        "answer": "B",
+        "ek": "EK 1.3.B.1",
+        "rationale": "EK 1.3.B.1 describes an evil twin as a rogue WAP using an SSID similar or identical to the target so victims unknowingly connect and the adversary captures traffic — but the adversary cannot read traffic using an encrypted protocol like HTTPS. Option D names the attack right but contradicts the encryption point. Options A and C name different attacks."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "A wireless network suddenly becomes unusable because an adversary floods the area with a strong electromagnetic signal in the network's frequency range, preventing legitimate traffic between the access point and users. Under the CB framework, this jamming attack is also an example of what?",
+        "options": [
+          "A zero-day exploit against an undocumented vulnerability",
+          "An evil twin attack using a duplicated service set identifier",
+          "A war driving attack conducted from a moving vehicle",
+          "A denial-of-service attack that blocks access to resources"
+        ],
+        "answer": "D",
+        "ek": "EK 1.3.B.2",
+        "rationale": "EK 1.3.B.2 says jamming floods an area with a strong EM signal in the network's frequency range, preventing legitimate traffic, and that this attack preventing users from accessing resources is called a denial-of-service (DoS) attack. Options A, B, and C name unrelated concepts or different wireless attacks."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "In the CB framework, what does an adversary attempt to do during a war driving attack?",
+        "options": [
+          "Flood the frequency range with electromagnetic noise to block legitimate traffic",
+          "Stand up a rogue access point with an SSID identical to a target network",
+          "Detect wireless network beacons while driving or walking around a target",
+          "Decrypt HTTPS sessions captured from victims on a public network"
+        ],
+        "answer": "C",
+        "ek": "EK 1.3.B.3",
+        "rationale": "EK 1.3.B.3 says in a war driving attack adversaries try to detect wireless network beacons while driving or walking around a target, then gather information and find where the signal extends outside the building. Option A is jamming (EK 1.3.B.2), option B is an evil twin (EK 1.3.B.1), and option D contradicts EK 1.3.B.1."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "Before joining the airport Wi-Fi, a traveler carefully compares the network name shown on their device against the official name posted at the help desk to make sure they match exactly. Which CB-specified protective action is the traveler taking?",
+        "options": [
+          "Verifying that the network name exactly matches the network they intend to join",
+          "Using a VPN so that all of their traffic is encrypted to the VPN operator",
+          "Avoiding unencrypted networks to protect data such as their DNS queries",
+          "Relying on HTTPS to keep an evil twin from reading their network traffic"
+        ],
+        "answer": "A",
+        "ek": "EK 1.3.C.1",
+        "rationale": "EK 1.3.C.1 says individuals should verify that the name of any wireless network they join exactly matches the name of the network they intend to join — precisely the matching check described. Options B, C, and D are other real CED defenses (EK 1.3.C.3, 1.3.C.2, 1.3.B.1) but not the action shown here."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A user worried about sensitive data on public Wi-Fi installs a VPN. According to the CB framework, what is the key limitation they should understand about this choice?",
+        "options": [
+          "The VPN leaves DNS queries fully exposed to every nearby wireless user",
+          "The VPN provider itself can view the user's traffic even though the service provider cannot",
+          "The VPN only works on networks whose name matches the intended network exactly",
+          "The VPN converts every jamming attack into a denial-of-service attack automatically"
+        ],
+        "answer": "B",
+        "ek": "EK 1.3.C.3",
+        "rationale": "EK 1.3.C.3 says a VPN encrypts all traffic to the VPN operator's system, and although this prevents a service provider from viewing traffic, the VPN provider can view the traffic. Options A, C, and D misstate the CED or attach unrelated concepts to the VPN."
+      },
+      {
+        "id": "Q9",
+        "kind": "recall",
+        "stem": "The CB framework notes that most internet protocols are encrypted, yet still advises individuals to weigh the sensitivity of their data before joining unencrypted Wi-Fi. What example of vulnerable data does the CED give?",
+        "options": [
+          "Saved passwords stored inside the device's local keychain",
+          "Cloned voice samples scraped from social-media videos",
+          "DNS queries that may not be protected on an unencrypted network",
+          "Beacon frames broadcast by the wireless access point"
+        ],
+        "answer": "C",
+        "ek": "EK 1.3.C.2",
+        "rationale": "EK 1.3.C.2 says most internet protocols are encrypted, but individuals may consider the sensitivity of their data when choosing whether to join unencrypted Wi-Fi to protect vulnerable data such as DNS queries. Options A, B, and D are not the example the CED gives here."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 1.3 — Best Practices for Public Networks — Teacher Guide",
+    "subtitle": "Unit 1 · Topic 1.3 · 4 class periods · Scenario 1C",
+    "overview": [
+      "Lesson 1.3 covers the hazards of public Wi-Fi. Across four days students learn to classify the adversary behind an attack (by skill level and motivation), identify the three wireless attacks the CED names (evil twin, jamming, war driving), and describe the actions individuals can take to protect their data online. Day 1 builds the framework; Days 2–3 apply it as a security analyst and consultant; Day 4 is the quiz and debrief.",
+      "Scope note: LO 1.3.A is about adversary SKILL and MOTIVATION — not the five named adversary categories, which belong to Unit 2, Topic 2.1.B. Keep Lesson 1.3 to skill level (low vs high / zero days) and motivation.",
+      "Scenario 1C (Verifying Network Authenticity) anchors Day 3: a coffee-shop captive portal on a look-alike “Guest Wi-Fi” harvests the victim's platform login and is used to take over a linked music account."
+    ],
+    "los": [
+      "LO 1.3.A — Identify the type of adversary conducting a cyberattack.",
+      "LO 1.3.B — Identify types of wireless cyberattacks.",
+      "LO 1.3.C — Describe actions individuals can take to increase protection of sensitive data when using the internet and Wi-Fi."
+    ],
+    "eks": [
+      "EK 1.3.A.1 — Adversaries can be classified by their skill levels. Low-skilled adversaries rely on malicious cyber tools created by others that can be purchased online; the tools they use exploit known vulnerabilities. High-skilled adversaries have the capacity to create new malicious cyber tools or modify existing ones to adapt to new defensive techniques and tools; they also have the capacity to discover undocumented vulnerabilities, known as zero days.",
+      "EK 1.3.A.2 — Adversaries have a variety of motivations, including greed, desire for recognition, dedication to a cause, revenge, politics, or beliefs.",
+      "EK 1.3.B.1 — In an evil twin attack, an adversary sets up their own wireless access point (WAP) with a service set identifier (SSID) similar or identical to a target network; the adversary's network is called the evil twin. Victims could unknowingly connect to the evil twin, allowing the adversary to capture their network traffic. The adversary cannot read traffic that uses an encrypted protocol like HTTPS.",
+      "EK 1.3.B.2 — In a jamming attack, an adversary floods an area with a strong electromagnetic (EM) signal in the same frequency range as the wireless network, which prevents legitimate traffic between the access point (AP) and users. This type of attack that prevents users from accessing resources is called a denial of service (DoS) attack.",
+      "EK 1.3.B.3 — In a war driving attack, adversaries try to detect wireless network beacons while driving or walking around a target. If a wireless signal is detected, the adversary can gather information about the type of wireless network used and find areas where the wireless signal extends outside the physical building.",
+      "EK 1.3.C.1 — Individuals may consider using a virtual private network (VPN), which encrypts all their traffic to the VPN operator's system. Although this action prevents a service provider from viewing traffic, the VPN provider can view the traffic.",
+      "EK 1.3.C.2 — Most internet protocols are encrypted to protect network traffic. However, individuals may consider the sensitivity of their data in choosing whether to join unencrypted Wi-Fi networks to protect vulnerable data such as DNS queries.",
+      "EK 1.3.C.3 — Individuals should verify that the name of any wireless network they join exactly matches the name of the network they intend to join."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version) for each of the four days.",
+      "Printed Day 1–4 Guided Notes (student copies).",
+      "Printed Exercise 1 — Wireless Attack Identifier (Day 2) and Exercise 2 — Network Trust Advisor (Day 3).",
+      "Printed Lesson 1.3 quiz (student copies) for Day 4.",
+      "Scenario 1C displayed on the Day 3 deck (no handout needed)."
+    ],
+    "prereqs": [
+      "Lesson 1.1 (social engineering) and 1.2 (authentication) help, since Scenario 1C ends in a credential-capture and account takeover, but neither is strictly required."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Classify adversaries; identify wireless attacks; the three CB defenses (LO 1.3.A–C)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.3/Q1) + bell ringer (three coffee-shop networks — which do you join?)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Adversary skill levels + six motivations (EK 1.3.A.1–A.2)",
+            "min": 10,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Three wireless attacks: evil twin, jamming/DoS, war driving (EK 1.3.B.1–B.3)",
+            "min": 10,
+            "slides": "8-9"
+          },
+          {
+            "segment": "The HTTPS myth + active vs passive (enrichment)",
+            "min": 6,
+            "slides": "10-11"
+          },
+          {
+            "segment": "Three CB defenses + the VPN myth (EK 1.3.C.1–C.3)",
+            "min": 9,
+            "slides": "12-14"
+          },
+          {
+            "segment": "Vocab + Stop and Think",
+            "min": 5,
+            "slides": "15-16"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 2,
+            "slides": "17-18"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Wireless Attack Identifier: classify four real incidents and match defenses (LO 1.3.A–C)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.3/Q2) + correction from Day 1 (MITM modifies vs sniffing observes)",
+            "min": 4,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Objectives + the three-step analyst method",
+            "min": 5,
+            "slides": "3-4"
+          },
+          {
+            "segment": "Independent analysis: Exercise 1, four incidents",
+            "min": 22,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Debrief the four incidents (attack · adversary · defense)",
+            "min": 14,
+            "slides": "5-11"
+          },
+          {
+            "segment": "Stop and Think + active vs passive extension",
+            "min": 5,
+            "slides": "12-14"
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "Network Trust Advisor: defense recommendations for three clients; Scenario 1C (LO 1.3.C)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.3/Q3) + warmup: real or fake captive portals",
+            "min": 3,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Objectives + the full-credit rubric",
+            "min": 5,
+            "slides": "3"
+          },
+          {
+            "segment": "Exercise 2: three clients (incl. CB Scenario 1C)",
+            "min": 22,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Debrief the three clients (defense + rationale + trap)",
+            "min": 14,
+            "slides": "4-8"
+          },
+          {
+            "segment": "Discussion + the AP exam pattern for this lesson",
+            "min": 6,
+            "slides": "9-11"
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "Quiz, debrief, and bridge to Lesson 1.4 (assess)",
+        "segments": [
+          {
+            "segment": "QOTD (U1/L1.3/Q4) + memory-challenge bell ringer (the 8 items)",
+            "min": 4,
+            "slides": "1-2"
+          },
+          {
+            "segment": "AP strategy review (predict · keywords · slash the trash)",
+            "min": 4,
+            "slides": "3"
+          },
+          {
+            "segment": "Lesson 1.3 quiz (5 questions, AP pacing)",
+            "min": 15,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Quiz debrief (Q1–Q5: distractors and common misses)",
+            "min": 20,
+            "slides": "4-10"
+          },
+          {
+            "segment": "Bridge to Lesson 1.4 (AI-based attacks)",
+            "min": 5,
+            "slides": "11-12"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "If the name matches, it's safe",
+        "myth": "A Wi-Fi network is trustworthy if its name matches the venue.",
+        "reality": "An evil twin uses an SSID similar or identical to the real one (EK 1.3.B.1). A matching name proves nothing; verify the exact posted name and protect your traffic."
+      },
+      {
+        "heading": "A VPN makes you invisible",
+        "myth": "Using a VPN means no one can ever see my traffic.",
+        "reality": "A VPN hides traffic from the local service provider, but the VPN provider itself can view it (EK 1.3.C.1). A VPN shifts trust; it does not remove it."
+      },
+      {
+        "heading": "LO 1.3.A is the five adversary types",
+        "myth": "LO 1.3.A is about the five adversary types (script kiddies, hacktivists, and so on).",
+        "reality": "Topic 1.3 classifies adversaries only by skill level and motivation. The five named categories are Unit 2, Topic 2.1.B — don't import them here."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give a two-column word bank (skill: low/high; motivation: the six listed) before the Stop and Think so students focus on matching.",
+        "Provide an attack-name card (evil twin / jamming / war driving) with a one-line cue for each as a sorting aid."
+      ],
+      "extension": [
+        "Have students design a public-Wi-Fi setup for a fictional cafe and list which of the three attacks each of their choices defends against.",
+        "Ask students to explain how war driving could be a precursor to an evil twin attack, using the reconnaissance idea from Unit 2 phrasing."
+      ]
+    },
+    "discussion": [
+      "Why is war driving dangerous even though it doesn't break into anything by itself?",
+      "If a VPN provider can see your traffic, what makes a VPN worth using on public Wi-Fi anyway?",
+      "Which single habit would have protected the Scenario 1C victim, and why is it more reliable than ‘looking for the right name’?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

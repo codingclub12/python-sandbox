@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "lessonId": "3.7",
+    "lessonTitle": "Nested Conditionals",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 1,
+    "los": "LO AAP-2.I"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   1 day   •   LO AAP-2.I",
+    "intro": "Everything for this topic lives in this folder. Topic 3.7 is a single focused day on nested conditionals — a decision inside a decision — and it ships an interactive, auto-graded coding-practice page that continues the same ride-gate scenario the paper exercises use. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (writing a nested conditional; tracing one outside-in to determine the result). Speaker notes on every slide.",
+      "Teacher Guide (one-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Gate and Exercise 2: Design the Gate (student + answer KEY)",
+      "Discussion — Why Order the Questions? (3-part: Opening, Mid-lesson, Closing across the single day)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.I, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-7-nested-conditionals"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-7-nested-conditionals-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-7-nested-conditionals-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-7-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-7-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-7-nested-conditionals"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Section 1: writing a nest; Section 2: tracing one to find the result). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real nested conditionals and checks each output against the expected message, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.7 is a 1-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a second day. Topic 3.8 (Iteration) begins right after the quiz, moving from choosing WHICH statements run to REPEATING a block."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Gate",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-7-exercise-1",
+    "intro": "You are the attendant at The Vortex ride gate, and the gate's rule is a nested conditional. Your job is to TRACE it — for each rider, work OUTSIDE-IN: test the outer height condition first, decide whether the program even enters the height branch, and only then look at the inner age condition. This is the single most tested skill for LO AAP-2.I part b: determine the result of a nested conditional, remembering that the inner condition is checked only when the outer branch is taken.",
+    "scenarioTitle": "The Vortex Gate: A Nested Conditional",
+    "narrative": "Here is the gate, in exam pseudocode:  IF(height ≥ 48) { IF(age ≥ 12) { DISPLAY(\"Enjoy the ride\") } ELSE { DISPLAY(\"Ride with an adult\") } } ELSE { DISPLAY(\"Too short to ride\") }.  Read it outside-in. First evaluate height ≥ 48. If it is FALSE, control jumps straight to the outer ELSE and the age condition is never even looked at. Only if it is TRUE does the program enter the height branch and test age ≥ 12. The table shows four riders already traced; study the pattern, then answer Part A for new riders.",
+    "log": {
+      "columns": [
+        "Rider",
+        "Outer: height ≥ 48?",
+        "Enter height branch?",
+        "Inner: age ≥ 12?",
+        "Message displayed"
+      ],
+      "rows": [
+        [
+          "Maya — 51 in, age 14",
+          "true",
+          "Yes",
+          "true",
+          "Enjoy the ride"
+        ],
+        [
+          "Theo — 45 in, age 30",
+          "false",
+          "No",
+          "not checked",
+          "Too short to ride"
+        ],
+        [
+          "Ava — 48 in, age 10",
+          "true",
+          "Yes",
+          "false",
+          "Ride with an adult"
+        ],
+        [
+          "Sam — 47 in, age 12",
+          "false",
+          "No",
+          "not checked",
+          "Too short to ride"
+        ]
+      ]
+    },
+    "scenarioNote": "Program adapted from the Day 1 worked trace; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023). ≥ 48 means 48 or taller; ≥ 12 means age 12 or older.",
+    "predict": "Before you answer Part A, predict in one sentence: can any rider under 48 inches ever see 'Ride with an adult'? Why or why not?",
+    "partALabel": "Part A - Trace the Values",
+    "partA": [
+      {
+        "ek": "EK AAP-2.I.1",
+        "pts": 4,
+        "q": "Trace a new rider, Nia, who is 52 inches and age 9. Give the outer result, whether the program enters the height branch, whether the inner condition is checked, and the exact message displayed.",
+        "answer": "Outer: 52 ≥ 48 is true, so the program ENTERS the height branch. Inner: it is now checked — 9 ≥ 12 is false, so the inner ELSE runs. Message: 'Ride with an adult'. Full credit requires showing that the inner condition was reached (because the outer was true) and then evaluated to false, landing on the inner ELSE (EK AAP-2.I.1)."
+      },
+      {
+        "ek": "EK AAP-2.I.1",
+        "pts": 4,
+        "q": "Theo is 45 inches and age 30. Explain, step by step, why the gate displays 'Too short to ride' even though 30 ≥ 12 is clearly true.",
+        "answer": "Trace outside-in. The outer condition 45 ≥ 48 is false, so control goes straight to the outer ELSE and displays 'Too short to ride'. The inner condition age ≥ 12 is never evaluated because the program never entered the height branch that contains it (EK AAP-2.I.1). So 30 ≥ 12 being true is irrelevant — the age question is only asked of riders who are tall enough, and Theo is not. Being visible in the code is not the same as being executed."
+      },
+      {
+        "ek": "EK AAP-2.I.1",
+        "pts": 4,
+        "q": "Explain why NO rider under 48 inches can ever receive 'Ride with an adult' or 'Enjoy the ride', no matter their age.",
+        "answer": "Both 'Ride with an adult' and 'Enjoy the ride' live INSIDE the height branch — the block that runs only when height ≥ 48 is true. A rider under 48 fails the outer condition, so control never enters that branch; it jumps to the outer ELSE and can only display 'Too short to ride' (EK AAP-2.I.1). Because those two messages are nested inside the outer IF, they are unreachable for a short rider regardless of age. This is exactly what nesting is for: gating the inner outcomes behind the outer decision."
+      },
+      {
+        "ek": "EK AAP-2.I.1",
+        "pts": 3,
+        "q": "The inner condition age ≥ 12 appears once, yet it decides between two of the three messages. Which two does it choose between, and why does it never affect 'Too short to ride'?",
+        "answer": "When the program has entered the height branch (outer true), the inner condition chooses between 'Enjoy the ride' (age ≥ 12 true) and 'Ride with an adult' (age ≥ 12 false). It never affects 'Too short to ride' because that message lives in the OUTER ELSE, reached only when the outer condition is false — and when the outer is false the inner condition is never evaluated at all (EK AAP-2.I.1). The inner condition only matters once the outer branch has already been taken."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.I.1",
+        "pts": 3,
+        "q": "Invent your own rider (a height and an age) that makes the INNER ELSE run, so the gate displays 'Ride with an adult'. State both conditions that must hold and confirm the outer is checked first.",
+        "answer": "Any rider with height ≥ 48 AND age < 12 works — for example 49 inches, age 7. Trace: the outer condition 49 ≥ 48 is true, so the program enters the height branch and THEN checks the inner condition; 7 ≥ 12 is false, so the inner ELSE runs and displays 'Ride with an adult' (EK AAP-2.I.1). Full credit requires a tall-enough height (so the inner is reached) and an age under 12 (so the inner condition is false), plus a statement that the outer height check happens before the age check."
+      },
+      {
+        "ek": "EK AAP-2.I.1",
+        "pts": 3,
+        "q": "A classmate says, 'The gate checks age for every rider.' Using the CED definition of nested conditional statements, explain precisely what is wrong.",
+        "answer": "It is wrong: nested conditional statements consist of conditional statements within conditional statements (EK AAP-2.I.1), and the age check is written INSIDE the height branch. So the age condition is evaluated only for riders who pass the height check — for a rider under 48 inches, control goes to the outer ELSE and the age condition is never evaluated. The classmate is confusing 'the age check appears in the code' with 'the age check always runs'; in a nest, an inner condition runs only when its enclosing branch is taken."
+      },
+      {
+        "ek": "EK AAP-2.I.1",
+        "pts": 2,
+        "q": "ENRICHMENT: Add a nested rule for short riders: any rider UNDER 48 inches who is at least 18 should instead see 'Staff entrance only'. Write where the new inner conditional goes and give its pseudocode. Which branch must it live in, and why?",
+        "answer": "It goes inside the OUTER ELSE — the too-short branch — because the staff message applies only to short riders: IF(height ≥ 48) { ... unchanged ... } ELSE { IF(age ≥ 18) { DISPLAY(\"Staff entrance only\") } ELSE { DISPLAY(\"Too short to ride\") } }. It must live in the outer ELSE because that is the only branch reached when height < 48; placing it there means the age ≥ 18 question is asked only of short riders, which is exactly the dependency the rule describes (EK AAP-2.I.1). Any equivalent nesting inside the outer ELSE earns full credit."
+      },
+      {
+        "ek": "LO AAP-2.I",
+        "pts": 0,
+        "q": "Next step: you traced these by hand. Now head to the Topic 3.7 page and type and run the harder versions, where the computer checks your output for you — including a three-level nest and a gate you write from scratch.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Design the Gate",
+    "minutes": "25 minutes",
+    "subtitle": "4 rule sets - write the nested conditional",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-7-exercise-2",
+    "intro": "Now you WRITE the gates instead of tracing them (LO AAP-2.I part a). For each rule set, decide which question must be answered FIRST — the gating question that the others depend on — make it the outer condition, and nest the dependent question inside the correct branch. Put every outcome's message in exactly one branch. Vague answers like 'just use two IFs' score zero when the rules require nesting.",
+    "standard": "CB Standard (required): correct nested IF/ELSE pseudocode for each rule set, with the right message in each branch and the gating question as the OUTER condition. Enrichment (optional): state whether the rule genuinely requires nesting or whether separate IFs would also work, and why (EK AAP-2.I.1).",
+    "methodHeading": "Three-Step Method - use for every rule set",
+    "method": [
+      [
+        "Step 1 - Find the gating question",
+        "Which decision must be answered FIRST because the other only matters afterward? That question becomes the OUTER condition. Ask: if this fails, should the second question be skipped entirely? If yes, it gates."
+      ],
+      [
+        "Step 2 - Nest the dependent question",
+        "Put the question that only matters after the first inside the correct branch of the outer IF - usually the true branch. Its own outcomes become an inner IF-ELSE."
+      ],
+      [
+        "Step 3 - Place every message in exactly one branch",
+        "Each outcome gets its own DISPLAY in its own branch. Check your work: could a rider who FAILS the outer condition ever reach an inner message? If so, the message is nested in the wrong place."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (nesting vs separate IFs): A rule needs NESTING when the second question must be skipped for some outcomes of the first (EK AAP-2.I.1). If both questions should always be answered independently, two separate IFs are fine. A quick test: write the rule as 'only after ... then ask ...' — the words 'only after' signal a nest. When you finish, move to the Topic 3.7 coding page to type and run these gates and let the computer check each message.",
+    "fields": [
+      "The gating question (your OUTER condition):",
+      "Your nested IF/ELSE pseudocode (put each message in one branch):",
+      "Enrichment - does this rule require nesting, or would separate IFs work? Why?"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The Vortex gate: a rider must be at least 48 inches tall to ride. Among tall-enough riders, those at least age 12 see 'Enjoy the ride'; those under 12 see 'Ride with an adult'. Riders under 48 inches see 'Too short to ride'.",
+        "key": {
+          "signs": "The gating question is the height check — the age question only matters after a rider is tall enough, so height must be the OUTER condition (EK AAP-2.I.1). The words 'among tall-enough riders' are the signal that the age rule is nested inside the height branch.",
+          "mechanism": "IF(height ≥ 48) { IF(age ≥ 12) { DISPLAY(\"Enjoy the ride\") } ELSE { DISPLAY(\"Ride with an adult\") } } ELSE { DISPLAY(\"Too short to ride\") }. The age IF-ELSE sits inside the height branch so it runs only for tall-enough riders; 'Too short to ride' lives in the outer ELSE and is the only message a short rider can reach.",
+          "subtype": "This rule REQUIRES nesting: a short rider's age must not be checked, which two separate IFs could not guarantee. The 'only after tall enough' dependency is exactly what the nest encodes."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A social site shows the 'Post' button only to users who are logged in. Among logged-in users, only those whose email is verified see 'Post'; logged-in users without a verified email see 'Verify your email'. Anyone not logged in sees 'Please log in'.",
+        "key": {
+          "signs": "The gating question is 'logged in?' — the email-verified question is meaningless for someone who is not logged in, so loggedIn is the OUTER condition (EK AAP-2.I.1). 'Only to users who are logged in' marks the outer gate.",
+          "mechanism": "IF(loggedIn) { IF(emailVerified) { DISPLAY(\"Post\") } ELSE { DISPLAY(\"Verify your email\") } } ELSE { DISPLAY(\"Please log in\") }. The emailVerified check is nested inside the loggedIn branch; 'Verify your email' is the INNER ELSE (for logged-in but unverified users), while 'Please log in' is the OUTER ELSE. Watch that students do not swap these two ELSE messages.",
+          "subtype": "Requires nesting: the email check must be skipped for logged-out visitors. A common error is putting 'Verify your email' in the outer ELSE — trace a logged-out visitor to see why that is wrong."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "A grader: a score of at least 60 is passing. Among passing scores, a score of at least 90 earns 'A', otherwise 'Pass'. A score under 60 earns 'Fail'.",
+        "key": {
+          "signs": "The gating question is 'passing? (score ≥ 60)'. The 'A vs Pass' distinction only matters for passing scores, so score ≥ 60 is the OUTER condition and score ≥ 90 is nested inside its true branch (EK AAP-2.I.1).",
+          "mechanism": "IF(score ≥ 60) { IF(score ≥ 90) { DISPLAY(\"A\") } ELSE { DISPLAY(\"Pass\") } } ELSE { DISPLAY(\"Fail\") }. The same variable, score, is tested at both levels — that is fine. 'Fail' is the outer ELSE; 'A' and 'Pass' are the two inner outcomes, reached only once score ≥ 60 is true.",
+          "subtype": "Requires nesting because 'A' must be reachable only for passing scores. Note both conditions test score: a score of 95 is ≥ 60 AND ≥ 90, so it enters the outer branch and then the inner IF — trace 95, 72, and 40 to confirm."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "An online store: free shipping is offered only to members. Among members, orders over $50 see 'Free shipping'; members with orders of $50 or less see 'Add more for free shipping'. Anyone who is not a member sees 'Members only'.",
+        "key": {
+          "signs": "The gating question is 'member?'. The order-total question only matters for members, so isMember is the OUTER condition and total > 50 is nested inside the member branch (EK AAP-2.I.1). 'Only to members' is the outer gate.",
+          "mechanism": "IF(isMember) { IF(total > 50) { DISPLAY(\"Free shipping\") } ELSE { DISPLAY(\"Add more for free shipping\") } } ELSE { DISPLAY(\"Members only\") }. The total check is nested inside the member branch; 'Members only' is the outer ELSE, so a non-member never reaches the order check.",
+          "subtype": "Requires nesting: a non-member must never be asked about the order total. Swapping the order (checking total first) is the classic mistake — it would ask non-members about their total and mislabel a small non-member order. The single condition isMember AND total > 50 also fails because it drops the 'Add more' and 'Members only' messages."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Why Order the Questions?",
+    "minutes": "~20 min total - 3 parts - Opening + Mid-lesson + Closing (all Day 1)",
+    "overview": "A nested conditional forces you to ask questions in a fixed order: the outer decision first, and the inner decision only if the outer branch is taken. That single feature — a decision living inside another decision — is what separates a nest from two independent IFs, and it is where nearly every trace error comes from. Across three short windows, your group will argue about why order matters, decide when a rule truly needs nesting, and settle the trace that fools almost everyone: a rider whose condition looks true but is never checked.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. At the ride gate you never asked rider A (46 inches) about age. What made the age question pointless for that rider, and what does that reveal about how one decision can DEPEND on another?"
+          },
+          {
+            "text": "Question 2. Name a real situation outside of code where you must answer a first question before a second one even makes sense (think: forms, permissions, recipes, games). What goes wrong if someone asks the two questions in the wrong order?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the separate-vs-nested comparison",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-question test",
+            "text": "Two separate IFs and a nested IF can hold the exact same two conditions. In one sentence your whole group agrees on, write the single question you would ask about a rule to decide whether it NEEDS nesting rather than two separate IFs.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Find a rule that fights back",
+            "text": "Debate for about 3 minutes: name one real-world rule where your group DISAGREES about whether it needs nesting, or where it honestly depends on the details. Record the rule, the two defensible structures, and the piece of information that would settle it.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 1, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The trace that fools everyone",
+            "text": "Consider the gate with a rider who is 44 inches and age 30. Most people's gut says the age (30 ≥ 12) matters; the program never checks it. As a group, write the clearest one-paragraph explanation you can of WHY the age is never checked — one a nervous classmate would actually understand — using the phrases 'outer condition' and 'inner condition is never evaluated'. Then invent one more nested example that would fool the same person, and give its correct output.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'every condition always gets checked' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

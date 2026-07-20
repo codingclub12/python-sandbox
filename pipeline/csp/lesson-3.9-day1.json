@@ -1,0 +1,653 @@
+{
+  "meta": {
+    "lessonId": "3.9",
+    "lessonTitle": "Developing Algorithms",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-2.L",
+    "anchor": "Developing Algorithms",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.9 · Day 1 of 2",
+      "title": "Same Answer, Different Path",
+      "subtitle": "Two algorithms can look almost identical yet behave differently — today we compare algorithms for the same result and the same side effect, and learn when a conditional and a Boolean expression are two ways of saying the same thing",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Topic 3.9, Developing Algorithms — where everything you have learned about sequencing, selection, and iteration comes together. Our through-line for these two days is a small game you are building, Level Up: playtester scores, coins on the tiles, and a hero that walks a maze. Today, Day 1, we compare algorithms: two programs can produce the same result, or the same side effect, or neither — and algorithms that look nearly identical can behave very differently. We also learn a clean trick the exam loves: some conditional statements are exactly equivalent to a one-line Boolean expression, and the other way around. Tomorrow, Day 2, we build new algorithms out of the standard building blocks."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Compare two algorithms to decide whether they yield the same result, the same side effect, both, or neither — and explain why similar-looking algorithms can still differ (LO AAP-2.L)"
+        },
+        {
+          "tag": "CB",
+          "text": "Rewrite a conditional statement as an equivalent Boolean expression, and a Boolean expression as an equivalent conditional statement (LO AAP-2.L)"
+        }
+      ],
+      "script": "Two targets today, both from learning objective AAP-2.L, comparing multiple algorithms. First: take two algorithms and decide whether they give the same result, the same side effect, both, or neither — and be ready to explain why two algorithms that look almost the same can still behave differently. Second: move fluently between a conditional statement and the equivalent Boolean expression in both directions. Everything today is comparison and equivalence; tomorrow, AAP-2.M, is construction — building new algorithms from known building blocks."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Two teammates each wrote a snippet to award a 'Perfect Run' badge. Both start with finished ← true and noDamage ← true. Snippet A: IF(finished) { IF(noDamage) { badge ← true } }. Snippet B: IF(finished) { badge ← true } IF(noDamage) { badge ← true }. Trace both with those values, then trace both again with finished ← true, noDamage ← false.",
+      "subprompt": "Write 2–4 sentences: For which inputs do A and B agree, and for which do they DISAGREE? The two snippets look almost the same — what one structural difference makes them behave differently?",
+      "directions": "Be ready to share the exact input where the two snippets disagree.",
+      "script": "Five minutes, with a partner. Both snippets are trying to award a badge only when the player finished AND took no damage. Trace them with both flags true — they agree, badge is true. Now trace with finished true but noDamage false. Snippet A, the nested one, correctly leaves badge unset, because both conditions must hold. Snippet B, two separate ifs, wrongly sets badge to true the moment finished is true. Almost identical code, opposite behavior on that one input. That is today's whole first idea: algorithms that appear similar can yield different results, and you find the difference by tracing, not by eyeballing."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Same Result, Same Side Effect?",
+          "description": "Comparing algorithms: result vs side effect, and why similar-looking algorithms can differ (EK AAP-2.L.1–L.2, L.5)."
+        },
+        {
+          "title": "Conditionals ⟷ Boolean Expressions",
+          "description": "Rewriting a conditional as an equivalent Boolean expression and back again (EK AAP-2.L.3–L.4)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.9 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is today's map — two sections, both green and CB-required. First, comparing algorithms: the difference between a result and a side effect, and why two similar-looking algorithms can still disagree. Second, the equivalence between conditionals and Boolean expressions, in both directions. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.9 page, along with the interactive coding practice where you type and run these comparisons yourself."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Same Result, Same Side Effect?",
+      "kicker": "Comparing Algorithms · Learning Objective AAP-2.L",
+      "script": "Section one. Your bell-ringer proved that near-identical code can behave differently. To compare algorithms precisely, we need two separate words for what an algorithm produces: its result and its side effect. Once those are clear, deciding whether two algorithms 'do the same thing' becomes a careful trace, not a guess."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.L)",
+      "terms": [
+        {
+          "term": "Algorithm",
+          "definition": "A finite set of instructions that accomplishes a specific task; the same task can be written in different ways (EK AAP-2.L.1)."
+        },
+        {
+          "term": "Result",
+          "definition": "The value an algorithm computes or returns — what you would store or use afterward, such as the higher of two scores (EK AAP-2.L.1)."
+        },
+        {
+          "term": "Side effect",
+          "definition": "An observable change an algorithm makes as it runs — what it DISPLAYs or how it changes program state — separate from any value it returns (EK AAP-2.L.2)."
+        },
+        {
+          "term": "Equivalent algorithms",
+          "definition": "Two algorithms that yield the same side effect or result even though they are written differently (EK AAP-2.L.1)."
+        },
+        {
+          "term": "Boolean expression",
+          "definition": "An expression that evaluates directly to true or false, which can sometimes replace an entire conditional statement (EK AAP-2.L.3)."
+        }
+      ],
+      "script": "Five words carry today. An algorithm is a finite set of instructions for a task, and the same task can be written many ways. A result is the value the algorithm computes — the higher score, the average. A side effect is what the algorithm does as it runs, like what it DISPLAYs on the screen — a separate thing from the value it produces. Equivalent algorithms yield the same result or side effect even though the code differs. And a Boolean expression evaluates straight to true or false, which will let us collapse a whole conditional into a single line."
+    },
+    {
+      "type": "concept",
+      "heading": "One Task, Many Algorithms — Result vs Side Effect",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Algorithms can be written in different ways and still accomplish the same task (EK AAP-2.L.1).",
+        "Different algorithms can be developed or used to solve the SAME problem (EK AAP-2.L.5).",
+        "To compare two algorithms, check BOTH things: do they compute the same RESULT, and do they produce the same SIDE EFFECT (what is displayed / changed)?",
+        "Two algorithms can match on one and differ on the other — same result but different side effects, or the reverse."
+      ],
+      "script": "Here is the framework for comparing algorithms. The College Board says algorithms can be written different ways and still accomplish the same task, and that different algorithms can solve the same problem. So 'do these do the same thing?' is really two questions. One: do they compute the same result — the same final value? Two: do they produce the same side effect — the same things displayed on screen, the same changes to state? The subtle exam cases are when the two answers disagree: two algorithms compute the exact same result but one of them also prints every step, so their side effects differ. You must check both.",
+      "capture": [
+        {
+          "q": "To compare two algorithms you must check two things: whether they compute the same ______.",
+          "a": "result, and whether they produce the same side effect (what is displayed or changed)"
+        },
+        {
+          "q": "The CED states that different algorithms can be developed or used to ______.",
+          "a": "solve the same problem"
+        },
+        {
+          "q": "Two algorithms can agree on the result yet still differ because ______.",
+          "a": "their side effects differ — for example, one displays intermediate steps and the other does not"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Result Is the Value; Side Effect Is What Happens",
+      "subheading": "Same words, different meanings. The exam asks about 'the same side effect OR result' — you must be able to tell them apart (EK AAP-2.L.1–L.2).",
+      "left": {
+        "title": "Result",
+        "definition": "The value the algorithm computes or returns",
+        "ek": "EK AAP-2.L.1",
+        "examples": [
+          "The higher of scoreA and scoreB is 95",
+          "The average of the three playtest scores is 90",
+          "You could store it, compare it, or return it"
+        ]
+      },
+      "right": {
+        "title": "Side effect",
+        "definition": "What the algorithm DOES as it runs — output or state change",
+        "ek": "EK AAP-2.L.2",
+        "examples": [
+          "DISPLAY(higher) prints 95 to the screen",
+          "One version also prints each score as it checks it",
+          "Two algorithms can share a result but not this"
+        ]
+      },
+      "footer": "AP TIP: 'Same result' means same final value. 'Same side effect' means same observable behavior (usually what is displayed). A question can turn on either one.",
+      "script": "Keep these two straight. The result is the value the algorithm computes — the higher of two scores is ninety-five, the average is ninety. It is the thing you would store or return. The side effect is what the algorithm does on the way there — DISPLAY of higher prints ninety-five to the screen, and a chattier version might also print each score as it inspects it. Those two versions share a result but not a side effect. The College Board deliberately writes the objective as 'the same side effect OR result,' so a comparison question can hinge on either one. Read carefully which one is being asked.",
+      "capture": [
+        {
+          "q": "The RESULT of an algorithm is ______.",
+          "a": "the value it computes or returns, such as the higher score or the average"
+        },
+        {
+          "q": "A SIDE EFFECT is ______.",
+          "a": "an observable change the algorithm makes as it runs, usually what it displays"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Comparing Algorithms",
+      "heading": "Find the Higher Score",
+      "caption": "One concrete algorithm: compare two scores and display the larger. Its RESULT is 95; its SIDE EFFECT is printing 95.",
+      "pseudocode": "scoreA ← 88\nscoreB ← 95\nIF(scoreA > scoreB) { higher ← scoreA }\nELSE { higher ← scoreB }\nDISPLAY(higher)",
+      "python": "scoreA = 88\nscoreB = 95\nif scoreA > scoreB:\n    higher = scoreA\nelse:\n    higher = scoreB\nprint(higher)",
+      "output": "95",
+      "script": "Here is a concrete building block we will reuse tomorrow: find the higher of two scores. Read the pseudocode on the left, the exam's notation; the runnable Python is on the right. If scoreA is greater, higher becomes scoreA; otherwise higher becomes scoreB. With eighty-eight and ninety-five, higher becomes ninety-five, and DISPLAY prints it. Name the two pieces we defined: the result is the value ninety-five now stored in higher; the side effect is that ninety-five is printed to the screen. A second algorithm that computed higher the same way but never displayed it would share the result and have no side effect at all."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Similar-Looking, Different Behavior",
+      "context": "Two snippets each try to report the higher score. Algo A: IF(a > b){DISPLAY(a)} IF(b > a){DISPLAY(b)}. Algo B: IF(a ≥ b){DISPLAY(a)} ELSE {DISPLAY(b)}. Fill in what each DISPLAYs for each input — watch the tie.",
+      "columns": [
+        "Input (a, b)",
+        "Algo A displays",
+        "Algo B displays",
+        "Same behavior?"
+      ],
+      "rows": [
+        [
+          "(88, 95)",
+          "95",
+          "95",
+          "Yes — both print 95"
+        ],
+        [
+          "(95, 88)",
+          "95",
+          "95",
+          "Yes — both print 95"
+        ],
+        [
+          "(70, 70)",
+          "(nothing)",
+          "70",
+          "No — A prints nothing on a tie"
+        ]
+      ],
+      "highlightCol": 3,
+      "script": "This is EK AAP-2.L.2 in a table — algorithms that appear similar yielding different results. Algo A uses two strict greater-than ifs; Algo B uses greater-than-or-equal with an else. For eighty-eight and ninety-five they agree, both print ninety-five. Swap the order, still agree. But feed them a tie, seventy and seventy: Algo A checks a greater than b — false — then b greater than a — also false — so it prints nothing at all. Algo B's greater-than-or-equal is true, so it prints seventy. Same-looking code, and on the tie their side effects differ completely. The only way you catch this is a trace that includes the edge case.",
+      "blanks": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“If Two Algorithms Look Alike, They Behave Alike”",
+      "misconception": "When two algorithms are structured almost identically, you can assume they produce the same result and the same side effects.",
+      "whyItHappens": "The code reads the same at a glance, so the brain fills in 'same behavior' without tracing the edge cases where a small difference actually shows up.",
+      "correction": "Algorithms that appear similar can yield different side effects or results (EK AAP-2.L.2). A single changed operator (> vs ≥), a missing ELSE, or a different order can flip the behavior on some inputs. The only reliable comparison is to trace BOTH algorithms on the same inputs — including boundary cases like ties and zeros.",
+      "example": "The tie case (70, 70): 'two greater-than ifs' prints nothing, but 'greater-than-or-equal with an else' prints 70. Identical-looking code, different side effect — found only by tracing the boundary.",
+      "script": "The trap the exam sets over and over. Two algorithms are lined up, nearly identical, and the instinct is 'same code, same behavior.' But a single operator change — greater-than versus greater-than-or-equal — a dropped else, or a reordering can flip the outcome on specific inputs. The reliable move is never to eyeball it; trace both algorithms on the same inputs, and deliberately include boundary cases: ties, zeros, empty situations. The seventy-seventy tie is exactly where our two snippets split. Similar appearance is not sameness — EK AAP-2.L.2 says so directly."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Result vs Side Effect",
+      "subheading": "These map to LO AAP-2.L. Complete on your Guided Notes.",
+      "prompts": [
+        "In your own words, give the difference between an algorithm's RESULT and its SIDE EFFECT, using the higher-score example.",
+        "Algorithm X computes the average and DISPLAYs it. Algorithm Y computes the same average but DISPLAYs each score first, then the average. Do they share a result? A side effect? Explain both answers.",
+        "A classmate says 'these two loops look identical, so they must do the same thing.' State the one move that actually settles whether two algorithms behave the same, and name a boundary input worth testing."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.9 page.",
+      "script": "Stop and think, six minutes, full sentences. One: pin down result versus side effect using the higher-score example — the result is the value in higher; the side effect is what got printed. Two: X and Y compute the same average, so they share a result, but Y also prints each score, so their side effects differ. Say both parts explicitly. Three: the settling move is to trace both on the same inputs, and a smart boundary input is a tie or a zero. These are exactly the AAP-2.L comparison moves the exam rewards."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Conditionals ⟷ Boolean Expressions",
+      "kicker": "Two Ways to Say the Same Thing · Learning Objective AAP-2.L",
+      "script": "Section two. Some conditional statements are doing nothing more than producing a true-or-false value — and when that is all they do, a single Boolean expression says the same thing. The College Board names this equivalence in both directions, and it is one of the cleanest 'are these the same?' questions on the exam."
+    },
+    {
+      "type": "concept",
+      "heading": "When an IF Is Just a Boolean in Disguise",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Some conditional statements can be written as equivalent Boolean expressions (EK AAP-2.L.3).",
+        "Some Boolean expressions can be written as equivalent conditional statements (EK AAP-2.L.4).",
+        "The tell-tale pattern: an IF/ELSE that only sets a variable to true or false based on a condition IS that condition.",
+        "IF(cond) { flag ← true } ELSE { flag ← false } is exactly the same as flag ← cond — same result, same side effect."
+      ],
+      "script": "Here is the equivalence, straight from the standards. EK AAP-2.L.3: some conditionals can be rewritten as an equivalent Boolean expression. EK AAP-2.L.4: some Boolean expressions can be rewritten as an equivalent conditional — the reverse direction. The pattern to recognize is an if-else whose entire job is to store true in one branch and false in the other. If that condition is, say, score greater-than-or-equal sixty, then the whole four-line if-else is identical to the single line flag gets score greater-than-or-equal sixty. Same result, same side effect, far less code. Learn to spot this both ways: collapse a verbose conditional into a Boolean, and expand a Boolean back into an if-else when a question asks.",
+      "capture": [
+        {
+          "q": "The CED says some conditional statements can be written as ______.",
+          "a": "equivalent Boolean expressions (EK AAP-2.L.3), and some Boolean expressions as equivalent conditionals (EK AAP-2.L.4)"
+        },
+        {
+          "q": "IF(cond) { flag ← true } ELSE { flag ← false } is exactly equivalent to ______.",
+          "a": "the single line flag ← cond"
+        },
+        {
+          "q": "The give-away pattern for this equivalence is a conditional whose only job is ______.",
+          "a": "to set a variable to true or false based on the condition"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Conditional → Boolean",
+      "heading": "Four Lines That Are Really One",
+      "caption": "This IF/ELSE is equivalent to the single line passed ← (score ≥ 60). Same result, same side effect.",
+      "pseudocode": "score ← 72\nIF(score ≥ 60) { passed ← true }\nELSE { passed ← false }\nDISPLAY(passed)",
+      "python": "score = 72\nif score >= 60:\n    passed = True\nelse:\n    passed = False\nprint(passed)",
+      "output": "true",
+      "script": "Watch the collapse. This if-else sets passed to true when score is at least sixty and false otherwise, then displays it. But look at what it actually does: it copies the truth value of score greater-than-or-equal sixty into passed. So the entire block equals one line — passed gets score greater-than-or-equal sixty. With score seventy-two the condition is true, so passed is true and it prints. One notation note across the columns: the pseudocode Boolean is lowercase true, while Python capitalizes it True — same value, different spelling, which is why we anchor to the reference sheet on the left. The one-line Boolean version prints exactly the same thing."
+    },
+    {
+      "type": "two_column",
+      "heading": "Collapse It, or Expand It",
+      "subheading": "The equivalence runs both directions — conditional to Boolean (L.3) and Boolean to conditional (L.4) (EK AAP-2.L.3–L.4).",
+      "left": {
+        "title": "Conditional form",
+        "definition": "An IF/ELSE that stores true or false",
+        "ek": "EK AAP-2.L.4",
+        "examples": [
+          "IF(coins ≥ 100) { win ← true }",
+          "ELSE { win ← false }",
+          "Verbose, but sometimes clearer for a beginner"
+        ]
+      },
+      "right": {
+        "title": "Boolean form",
+        "definition": "One expression that evaluates to true or false",
+        "ek": "EK AAP-2.L.3",
+        "examples": [
+          "win ← coins ≥ 100",
+          "One line, no branches",
+          "Same result AND same side effect as the IF/ELSE"
+        ]
+      },
+      "footer": "AP TIP: To expand a Boolean back to a conditional (L.4), wrap it: IF(expr) { x ← true } ELSE { x ← false }. To collapse a conditional to a Boolean (L.3), keep just the condition.",
+      "script": "The equivalence is a two-way street. On the left, the conditional form: an if-else that sets win to true when coins is at least a hundred and false otherwise. On the right, the Boolean form: win gets coins greater-than-or-equal a hundred — one line, no branches, and provably the same result and side effect. Going left-to-right is collapsing, EK AAP-2.L.3; going right-to-left is expanding, EK AAP-2.L.4. The exam asks both. To expand, wrap the expression in the if-true-else-false template; to collapse, throw the template away and keep the bare condition.",
+      "capture": [
+        {
+          "q": "To COLLAPSE a conditional into a Boolean expression (L.3) you ______.",
+          "a": "keep just the condition and drop the IF/ELSE that sets true/false"
+        },
+        {
+          "q": "To EXPAND a Boolean expression into a conditional (L.4) you ______.",
+          "a": "wrap it as IF(expr) { x ← true } ELSE { x ← false }"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Match Each Conditional to Its Boolean",
+      "context": "Each row is one equivalence. Fill in the missing equivalent form — the two forms must give the same result for every input.",
+      "columns": [
+        "Conditional form",
+        "Equivalent Boolean expression"
+      ],
+      "rows": [
+        [
+          "IF(score ≥ 60) { passed ← true } ELSE { passed ← false }",
+          "passed ← score ≥ 60"
+        ],
+        [
+          "IF(lives = 0) { gameOver ← true } ELSE { gameOver ← false }",
+          "gameOver ← lives = 0"
+        ],
+        [
+          "IF(coins ≥ 100) { win ← true } ELSE { win ← false }",
+          "win ← coins ≥ 100"
+        ],
+        [
+          "IF(NOT ready) { waiting ← true } ELSE { waiting ← false }",
+          "waiting ← NOT ready"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "Every row is one equivalence, and the pattern never changes: whatever condition the if tests, that condition IS the Boolean expression. Passed gets score greater-than-or-equal sixty. Game-over gets lives equals zero. Win gets coins greater-than-or-equal a hundred. Waiting gets NOT ready — even a logical operator drops straight in. Fill the blanks by copying the condition out of the if and assigning it. If you can do this instantly in both directions, the exam's conditional-versus-Boolean questions become free points.",
+      "blanks": [
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Conditionals ⟷ Booleans",
+      "subheading": "These map to LO AAP-2.L. Complete on your Guided Notes.",
+      "prompts": [
+        "Collapse this conditional to a single Boolean expression: IF(health > 0) { alive ← true } ELSE { alive ← false }.",
+        "Expand this Boolean expression into an equivalent IF/ELSE that stores true or false: eligible ← age ≥ 13.",
+        "A classmate rewrites IF(x > 5) { y ← true } ELSE { y ← false } as y ← x > 5 and claims it is a DIFFERENT algorithm because it looks nothing alike. Explain why the two are equivalent — name the result and the side effect they share."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.9 page.",
+      "script": "Stop and think, six minutes. One: collapse the health conditional — alive gets health greater-than zero. Two: expand the eligibility Boolean into the if-true-else-false template. Three: settle the classmate — the two forms are equivalent because for every input they assign the same value to y (same result) and, if displayed, print the same thing (same side effect); looking different is not being different. These are the exact L.3 and L.4 moves the exam tests."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Comparing algorithms means checking TWO things: same result (value computed) and same side effect (what is displayed/changed) (EK AAP-2.L.1–L.2)",
+        "Different algorithms can solve the same problem, and algorithms that LOOK alike can behave differently — trace boundary cases (EK AAP-2.L.2, L.5)",
+        "A conditional that only sets true/false collapses to an equivalent Boolean expression (EK AAP-2.L.3)",
+        "A Boolean expression expands back into an equivalent IF/ELSE (EK AAP-2.L.4)"
+      ],
+      "nextPoints": [
+        "Day 2: CREATE new algorithms from an idea, and COMBINE or MODIFY existing ones (LO AAP-2.M)",
+        "The standard building blocks: max/min, sum/average, divisibility via MOD, and a robot's path through a maze",
+        "Why reusing correct building blocks cuts development time, testing, and debugging"
+      ],
+      "teaser": "Before tomorrow: you already wrote 'find the higher of two scores.' In one line, what would you change to make it find the LOWER score instead? Write it down.",
+      "script": "That is Day 1. Comparing algorithms is two questions — same result and same side effect — and near-identical code can still differ, so you trace the boundaries. And a conditional that only stores true or false is exactly a one-line Boolean expression, an equivalence you can run in both directions. Tomorrow we stop comparing and start building: creating algorithms from scratch, and combining and modifying the standard building blocks — max, min, sum, average, divisibility, and the robot maze. Here is the teaser, and it is exactly how tomorrow opens: you have find-the-higher-of-two; what single change turns it into find-the-lower? Write it down. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.9 — Developing Algorithms — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "Algorithm P computes the average of three scores and displays only the average. Algorithm Q computes the same average but also displays each score first. How do P and Q compare?",
+        "options": [
+          "Same result, different side effects: both compute the same average, but only Q also displays each score",
+          "Different results: displaying extra values changes the average that is computed",
+          "Fully equivalent: the final number displayed is identical, so nothing differs",
+          "Same side effect, different results: printing more lines counts as a different result"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.L.2",
+        "rationale": "The result is the value computed — both produce the same average — so results match. The side effect is what is displayed; Q prints each score while P does not, so side effects differ (EK AAP-2.L.2). A states exactly this. B is wrong: displaying values does not change the computed average. C ignores the different output. D swaps the two terms — the extra printing is a side effect, not a result."
+      },
+      {
+        "id": "Q2",
+        "kind": "code-error",
+        "stem": "Two snippets report the larger of a and b. Snippet 1: IF(a > b){DISPLAY(a)} IF(b > a){DISPLAY(b)}. Snippet 2: IF(a ≥ b){DISPLAY(a)} ELSE {DISPLAY(b)}. For which input do their outputs differ?",
+        "options": [
+          "When a is much larger than b",
+          "When b is much larger than a",
+          "When a and b are equal, such as (70, 70)",
+          "They never differ; the snippets are equivalent"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.L.2",
+        "rationale": "On a tie, Snippet 1 finds a > b false and b > a false, so it displays nothing; Snippet 2's a ≥ b is true, so it displays a. They differ on equal inputs (EK AAP-2.L.2). A and B are inputs where both correctly display the larger value, so they match. D is false — the tie case shows the snippets are not equivalent, which is exactly why similar-looking code must be traced."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "Which single Boolean expression is equivalent to IF(coins ≥ 100) { win ← true } ELSE { win ← false }?",
+        "options": [
+          "win ← coins",
+          "win ← coins ≥ 100",
+          "win ← 100",
+          "win ← coins = 100"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.L.3",
+        "rationale": "A conditional whose only job is to store true/false based on a condition equals that condition (EK AAP-2.L.3), so win ← coins ≥ 100. A assigns the number of coins, not a Boolean. C assigns the number 100. D uses = , which is only true at exactly 100, changing the behavior for coins above 100."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "stem": "Which IF/ELSE statement is equivalent to the Boolean expression gameOver ← lives = 0?",
+        "options": [
+          "IF(lives = 0) { gameOver ← false } ELSE { gameOver ← true }",
+          "IF(gameOver) { lives ← 0 } ELSE { lives ← 1 }",
+          "IF(lives > 0) { gameOver ← true } ELSE { gameOver ← false }",
+          "IF(lives = 0) { gameOver ← true } ELSE { gameOver ← false }"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.L.4",
+        "rationale": "Expanding a Boolean into a conditional wraps the same condition in the if-true-else-false template (EK AAP-2.L.4), giving option D. A inverts the branches, so it is the opposite. B assigns to lives instead of gameOver, reversing cause and effect. C tests lives > 0, the negation of the original condition."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "A student claims two algorithms are \"the same\" because they look almost identical. What is the most reliable way to decide whether they truly behave the same?",
+        "options": [
+          "Compare the number of lines in each; equal length means equal behavior",
+          "Run only the first algorithm, since the second one looks the same",
+          "Trace both algorithms on the same inputs, including boundary cases like ties and zeros",
+          "Assume they behave the same, since similar code always produces the same output"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.L.2",
+        "rationale": "Algorithms that appear similar can yield different results or side effects (EK AAP-2.L.2), so the only reliable check is tracing both on the same inputs, especially boundaries. C says this. A uses line count, which has no bearing on behavior. B never tests the second algorithm at all. D is the exact misconception the EK warns against."
+      },
+      {
+        "id": "Q6",
+        "kind": "multi",
+        "stem": "Which statements about comparing algorithms are true? I. Different algorithms can solve the same problem. II. Two algorithms with the same result always share side effects. III. A conditional that only stores true/false can become a Boolean expression.",
+        "options": [
+          "I and III only",
+          "I and II only",
+          "II and III only",
+          "I, II, and III"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.L.5",
+        "rationale": "I is true (EK AAP-2.L.5) and III is true (EK AAP-2.L.3), so A. II is false: two algorithms can share a result but differ in side effects, such as one that also displays each step (EK AAP-2.L.2). Any option containing II (B, C, D) is therefore wrong."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "You have a correct algorithm that finds the MAXIMUM of two numbers: IF(a > b){max ← a} ELSE {max ← b}. What is the simplest way to get an algorithm that finds the MINIMUM?",
+        "options": [
+          "Rewrite the entire algorithm from scratch with a completely new approach",
+          "Add a second unrelated algorithm and run both",
+          "Change DISPLAY so it prints the value twice",
+          "Modify the existing algorithm by changing the comparison from a > b to a < b"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.M.1",
+        "rationale": "Algorithms can be created by modifying existing ones (EK AAP-2.M.1); flipping a > b to a < b turns find-max into find-min with a one-operator change — option D. A discards a correct, tested building block unnecessarily. B adds unrelated code that does not find the minimum. C changes only the side effect, not which value is chosen."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A team reuses an already-tested \"compute the average\" algorithm as a building block in a new program. What is a benefit of doing this?",
+        "options": [
+          "The program will automatically run faster than any other solution",
+          "Reusing a correct building block reduces development time and testing and simplifies finding errors",
+          "The program no longer needs any testing at all",
+          "Building blocks guarantee the final program is completely bug-free"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.M.3",
+        "rationale": "Using existing correct algorithms as building blocks reduces development time, reduces testing, and simplifies error identification (EK AAP-2.M.3) — option B. A claims a speed guarantee the EK does not make. C and D overstate the benefit: reuse reduces testing and eases debugging, but the new combination still must be tested and can still contain errors."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.9 — Developing Algorithms — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.9 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.9 is where the constructs from 3.6–3.8 (selection and iteration) become tools for building and comparing whole algorithms. Day 1 (LO AAP-2.L) is about COMPARISON: two algorithms can share a result, a side effect, both, or neither; algorithms that look almost identical can behave differently on boundary inputs; and a conditional that only stores true/false is exactly equivalent to a Boolean expression, in both directions. Day 2 (LO AAP-2.M) is about CONSTRUCTION: creating algorithms from an idea, and combining or modifying the standard building blocks the CED names — maximum/minimum of numbers, sum/average, divisibility via MOD, and a robot's path through a maze.",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (← for assignment, DISPLAY, relational operators ≥ ≤ ≠, MOD, and the robot procedures MOVE_FORWARD / ROTATE_LEFT / ROTATE_RIGHT / CAN_MOVE) shown beside runnable Python. The interactive, auto-graded coding practice lives on the Topic 3.9 page, where students combine and modify the building blocks in real code.",
+      "The through-line is a small game, 'Level Up': playtester scores drive max/min/sum/average, coins on every third tile motivate divisibility via MOD, and a hero navigating a maze motivates the robot path. The Day 1 bell ringer (two near-identical badge snippets that disagree on one input) makes students discover EK AAP-2.L.2 before it is named."
+    ],
+    "los": [
+      "LO AAP-2.L — Compare multiple algorithms to determine if they yield the same side effect or result.",
+      "LO AAP-2.M — For algorithms: a. Create algorithms. b. Combine and modify existing algorithms."
+    ],
+    "eks": [
+      "EK AAP-2.L.1 — Algorithms can be written in different ways and still accomplish the same tasks.",
+      "EK AAP-2.L.2 — Algorithms that appear similar can yield different side effects or results.",
+      "EK AAP-2.L.3 — Some conditional statements can be written as equivalent Boolean expressions.",
+      "EK AAP-2.L.4 — Some Boolean expressions can be written as equivalent conditional statements.",
+      "EK AAP-2.L.5 — Different algorithms can be developed or used to solve the same problem.",
+      "EK AAP-2.M.1 — Algorithms can be created from an idea, by combining existing algorithms, or by modifying existing algorithms.",
+      "EK AAP-2.M.2 — Knowledge of existing algorithms can help in constructing new ones. Some existing algorithms include: determining the maximum or minimum value of two or more numbers; computing the sum or average of two or more numbers; identifying if an integer is or is not evenly divisible by another integer; determining a robot's path through a maze.",
+      "EK AAP-2.M.3 — Using existing correct algorithms as building blocks for constructing another algorithm has benefits such as reducing development time, reducing testing, and simplifying the identification of errors."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.9 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.9 page for the interactive coding practice (optional in class, or assigned).",
+      "Optional: a printed grid and a game piece for a physical robot-maze trace."
+    ],
+    "prereqs": [
+      "Topics 3.5–3.8 are load-bearing: students must already write and evaluate Boolean expressions (relational and logical operators), conditional statements including nesting, and iteration (REPEAT n TIMES, REPEAT UNTIL). Arithmetic and MOD from Topic 3.3 are needed for the divisibility and average building blocks. No new syntax is introduced here — 3.9 is about assembling and comparing algorithms built from constructs students already know."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Comparing algorithms: result vs side effect, similar-looking differences, and conditional ⟷ Boolean equivalence (LO AAP-2.L)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.9/Q1) + bell ringer (two badge snippets that disagree)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Result vs side effect: vocab, concept, two_column, higher-score code_block (EK AAP-2.L.1–L.2, L.5)",
+            "min": 15,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Similar-looking difference table + misconception + Stop and Think",
+            "min": 9,
+            "slides": "10-12"
+          },
+          {
+            "segment": "Conditional ⟷ Boolean: concept, code_block, two_column, equivalence table (EK AAP-2.L.3–L.4)",
+            "min": 14,
+            "slides": "13-17"
+          },
+          {
+            "segment": "Stop and Think on equivalence + day close",
+            "min": 6,
+            "slides": "18-19"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Creating, combining, and modifying algorithms from the standard building blocks (LO AAP-2.M)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.9/Q2) + bell ringer (turn find-max into find-min)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Building blocks: max/min, sum/average, divisibility via MOD, robot maze trace (EK AAP-2.M.2)",
+            "min": 20,
+            "slides": "5-11"
+          },
+          {
+            "segment": "Create / combine / modify + benefits of reuse (EK AAP-2.M.1, M.3)",
+            "min": 16,
+            "slides": "12-16"
+          },
+          {
+            "segment": "Misconception + Stop and Think + Common AP Traps + exit check",
+            "min": 10,
+            "slides": "17-20"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.9 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive coding practice on the Topic 3.9 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.9 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Same result means same algorithm”",
+        "myth": "If two algorithms produce the same final value, they are equivalent in every way.",
+        "reality": "Comparison has two axes: result AND side effect (EK AAP-2.L.1–L.2). Two algorithms can compute the identical result yet differ in side effects — for instance, one displays each intermediate step. The objective is deliberately worded 'same side effect OR result,' so both must be checked."
+      },
+      {
+        "heading": "“Similar-looking code behaves the same”",
+        "myth": "Two algorithms written almost identically must produce the same output.",
+        "reality": "Algorithms that appear similar can yield different results or side effects (EK AAP-2.L.2). A single operator (> vs ≥), a missing ELSE, or a reordering can flip behavior on boundary inputs like ties and zeros. The reliable check is tracing both on the same inputs."
+      },
+      {
+        "heading": "“A conditional and a Boolean expression are unrelated”",
+        "myth": "An IF/ELSE and a one-line Boolean assignment are fundamentally different constructs.",
+        "reality": "A conditional whose only job is to store true or false based on a condition is exactly equivalent to assigning that condition (EK AAP-2.L.3–L.4). IF(c){x ← true} ELSE {x ← false} is identical to x ← c, in both directions."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give a two-column trace sheet for the comparison table: one column per algorithm, one row per input, so students physically write each algorithm's output including the tie case.",
+        "Provide a fill-in equivalence template — IF(____) { flag ← true } ELSE { flag ← false }  ⟷  flag ← ____ — so students practice moving the condition in and out of the template."
+      ],
+      "extension": [
+        "Have students prove two of their own algorithms equivalent (or find an input that breaks equivalence) and justify it with the words result and side effect.",
+        "Point deep-dive students at the Topic 3.9 coding practice to implement find-max, then modify it to find-min and combine sum + divide into average, explaining how reuse reduced their testing (EK AAP-2.M.3)."
+      ]
+    },
+    "discussion": [
+      "Your two badge snippets looked almost identical but disagreed on one input. What does that suggest about reviewing a teammate's code by reading it versus by tracing it on real inputs?",
+      "A conditional and a one-line Boolean can be provably equivalent, yet a beginner might find the longer IF/ELSE clearer. When is 'more code but more readable' the better choice, and who is readability for?",
+      "The CED says reusing correct building blocks reduces testing and debugging. What is the risk if you assume a reused block is correct in a new context without re-checking its boundaries?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

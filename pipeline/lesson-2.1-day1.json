@@ -1,0 +1,878 @@
+{
+  "meta": {
+    "lessonId": "2.1",
+    "lessonTitle": "Cyber Foundations",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 1,
+    "los": "LO 2.1.A",
+    "anchor": "Cyber Foundations",
+    "author": "AP CS Exam Prep",
+    "totalDays": 8
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.1 · Day 1 of 8",
+      "title": "The Con Before the Code",
+      "subtitle": "Cyber Foundations: the psychological tactics social engineers use to manipulate a target into taking a desired action — pretexting, authority, intimidation, consensus, scarcity, urgency, and familiarity",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Unit 2, Securing Spaces, and Lesson 2.1, Cyber Foundations — Day 1 of 8. This is a big topic: eight class periods that build the vocabulary the rest of the course rests on. Today, Day 1, is learning objective 2.1.A: social engineering attacks. Before an adversary writes a single line of malicious code, the easiest way into a system is often a person. Social engineers use psychological tactics — pretexting, authority, intimidation, consensus, scarcity, urgency, and familiarity — to manipulate a target into doing what the attacker wants. Over the next eight days we'll go from these human attacks all the way to defense-in-depth. Today we start with the con before the code. The end-of-lesson quiz and the teacher guide live on this Day 1 file, and they span the whole topic, A through G."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer · 5 minutes",
+      "prompt": "You get a phone call at work. The caller says he is from the IT help desk, that your account has been flagged in a security audit, and that he needs your password in the next ten minutes or your access will be cut off and your manager notified. He knows your name and your department.",
+      "subprompt": "Write 3–5 sentences: list every trick the caller is using to pressure you into handing over your password. What does he gain by sounding official, by knowing your details, and by giving you a deadline?",
+      "directions": "Independent writing. Be ready to share your thinking.",
+      "script": "Two minutes, on your own, no notes. Read it carefully: someone calls claiming to be IT, says your account was flagged in an audit, and demands your password in ten minutes or you lose access and your manager hears about it — and he already knows your name and department. In three to five sentences, list every trick in that call. What does he get by sounding official? By knowing your details? By putting you on a clock? Hold your answers. Every single pressure tactic in that call has a name in today's standard, and by the end of class you'll be able to label each one with its EK number."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You’ll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have three sections that match today’s lesson. Green = CB required. Blue = enrichment.",
+      "sections": [
+        {
+          "title": "Social Engineering: The Big Idea",
+          "description": "Social engineers use psychological tactics to manipulate a target into taking a desired action — the attack targets the person, not the machine (EK 2.1.A.1)."
+        },
+        {
+          "title": "The Seven Named Tactics",
+          "description": "Pretexting, authority, intimidation, consensus, scarcity, familiarity, and urgency — what each one is and how to spot it (EK 2.1.A.2–A.8)."
+        },
+        {
+          "title": "Enrichment: Stacking the Tactics",
+          "description": "Real attacks rarely use just one lever — see how a single phishing call layers authority, urgency, and intimidation at once (EK 2.1.A.3, A.4, A.8).",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. The Lesson 2.1 page on apcsexamprep.com has every answer if you fall behind.",
+      "script": "Three sections today, the first two green and CB-required, the last one a blue enrichment. Section one is the big idea: social engineering manipulates a person, not a machine. Section two is the heart of the day — the seven psychological tactics the College Board names, from pretexting to urgency, with a quick way to spot each. Section three is enrichment: real attacks stack these levers, so we'll pull apart one call that uses three at once. Keep your pencil moving; Guided Notes are collected at the end of class."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Name the seven social-engineering tactics — pretexting, authority, intimidation, consensus, scarcity, familiarity, and urgency — and the lever each one pulls (LO 2.1.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Match a real pretext, phishing, or scam scenario to the specific tactic in play and cite its EK number (LO 2.1.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain why a single attack stacks several tactics at once and why slowing down to verify defeats all of them (LO 2.1.A)"
+        }
+      ],
+      "script": "Three things to walk out with today, all under learning objective 2.1.A, identify social engineering attacks. First, name the seven tactics — pretexting, authority, intimidation, consensus, scarcity, familiarity, urgency — and the psychological lever each one pulls. Second, take any scenario — a call, an email, a text — and match it to the tactic in play, citing the EK number, because that's exactly how the exam asks it. Third, explain why a real attack stacks several of these levers at once, and why the same fix — slow down and verify through a channel you trust — defeats every one. By the end of today you can read any scenario and label the lever the attacker is pulling."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Social Engineering: Hacking the Human",
+      "kicker": "Cyber Foundations · Learning Objective 2.1.A",
+      "script": "Section one. Learning objective 2.1.A. Before we name the seven tactics, we have to understand the one idea underneath all of them: social engineering attacks the person. Five minutes here, then we get into the specific levers."
+    },
+    {
+      "type": "two_column",
+      "heading": "The Big Idea: Manipulate the Target",
+      "subheading": "EK 2.1.A.1 and A.2 — social engineering works on people, and it usually starts with a believable cover story.",
+      "left": {
+        "title": "Psychological Manipulation (EK 2.1.A.1)",
+        "definition": "The attack targets a person, not a machine",
+        "ek": "EK 2.1.A.1",
+        "examples": [
+          "Social engineers use psychological tactics to manipulate targets",
+          "The goal is to get the target to take a desired action",
+          "That action might be revealing a password, clicking a link, or wiring money",
+          "No exploit code is needed — the human is the vulnerability"
+        ]
+      },
+      "right": {
+        "title": "Pretexting (EK 2.1.A.2)",
+        "definition": "A believable reason to make contact",
+        "ek": "EK 2.1.A.2",
+        "examples": [
+          "Pretexting is when adversaries create a believable reason to contact a target",
+          "The pretext is the cover story that makes the contact seem legitimate",
+          "‘I’m from the IT help desk doing a security audit’ is a pretext",
+          "A strong pretext is what makes every other tactic land"
+        ]
+      },
+      "footer": "AP TIP: EK 2.1.A.1 is the WHY (manipulate a person into an action) and EK 2.1.A.2, pretexting, is the OPENING MOVE (a believable reason to make contact). Name both — the pretext sets up every tactic that follows.",
+      "script": "Two columns set up everything else. On the left, EK 2.1.A.1, the big idea: social engineers use psychological tactics to manipulate targets into taking a desired action. Read that carefully — the target is a person, and the desired action is whatever the attacker wants, handing over a password, clicking a link, wiring money. No malware required; the human is the vulnerability. On the right, EK 2.1.A.2, pretexting: adversaries create a believable reason to contact a target. The pretext is the cover story — ‘I'm from IT running a security audit.’ It's the opening move because a believable reason is what makes every tactic that follows actually work. Write both EKs, and note that A.1 is the why and A.2 is the setup."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "The Seven Levers",
+      "kicker": "Cyber Foundations · Learning Objective 2.1.A",
+      "script": "Section two. Still 2.1.A. Now the specific tactics — six psychological levers an attacker pulls once the pretext is in place. We'll take them in two grids of three. Watch for the one-line tell on each. Fifteen minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Tactics of Pressure: Authority, Intimidation, Urgency",
+      "subheading": "EK 2.1.A.3, A.4, and A.8 — three ways adversaries push a target to act fast and without questioning.",
+      "items": [
+        {
+          "ek": "EK 2.1.A.3",
+          "title": "Authority",
+          "summary": "Authority is when adversaries impersonate someone with power over a target — a boss, an executive, an official — or pretend to relay instructions from that person, so the target feels obligated to comply.",
+          "ekRef": "EK 2.1.A.3"
+        },
+        {
+          "ek": "EK 2.1.A.4",
+          "title": "Intimidation",
+          "summary": "Intimidation is when adversaries state negative consequences if their demands aren’t met — threatening to cut off access, report the target, or cause some other harm — to frighten the target into compliance.",
+          "ekRef": "EK 2.1.A.4"
+        },
+        {
+          "ek": "EK 2.1.A.8",
+          "title": "Urgency",
+          "summary": "Urgency is when adversaries create a deadline that requires quick action by a target to avert negative consequences, leaving no time to stop, verify, or ask anyone else.",
+          "ekRef": "EK 2.1.A.8"
+        }
+      ],
+      "script": "First grid of three — the pressure tactics, the ones that push a target to act fast. EK 2.1.A.3, authority: the adversary impersonates someone with power over you, a boss or an executive or an official, or pretends to be relaying that person's instructions, so you feel you have to comply. EK 2.1.A.4, intimidation: they state negative consequences if you don't do what they ask — you'll lose access, you'll be reported, something bad happens — fear drives the action. EK 2.1.A.8, urgency: they put you on a clock, a deadline that demands quick action to avoid a consequence, so you don't have time to stop and verify. Notice how naturally these three combine — that bell-ringer call used all three at once. Write all three with their EK numbers and the one-line tell for each."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Three Tactics of Trust: Consensus, Scarcity, Familiarity",
+      "subheading": "EK 2.1.A.5, A.6, and A.7 — three ways adversaries lower a target's guard rather than raise their fear.",
+      "items": [
+        {
+          "ek": "EK 2.1.A.5",
+          "title": "Consensus",
+          "summary": "Consensus is when adversaries create social pressure by making a target believe everyone else is already doing the desired action — ‘the whole team already approved this’ — so the target follows the crowd.",
+          "ekRef": "EK 2.1.A.5"
+        },
+        {
+          "ek": "EK 2.1.A.6",
+          "title": "Scarcity",
+          "summary": "Scarcity is when adversaries create a sense of limited availability — a one-time offer, only a few spots left, a closing window — so the target acts before the supposed opportunity disappears.",
+          "ekRef": "EK 2.1.A.6"
+        },
+        {
+          "ek": "EK 2.1.A.7",
+          "title": "Familiarity",
+          "summary": "Familiarity is when adversaries pretend to be, or to know, someone close to a target in order to establish trust, trading on a relationship the target already has.",
+          "ekRef": "EK 2.1.A.7"
+        }
+      ],
+      "script": "Second grid of three — the trust tactics, which lower your guard instead of raising your fear. EK 2.1.A.5, consensus: they create social pressure by making you believe everyone else is already doing the thing — ‘the whole team signed off, you're the last one’ — so you go along with the crowd. EK 2.1.A.6, scarcity: they manufacture limited availability, a one-time deal, only a few left, a window about to close, so you grab it before it's gone. EK 2.1.A.7, familiarity: they pretend to be or to know someone close to you to establish trust, borrowing a relationship you already have. Pressure tactics scare you into acting; trust tactics make you comfortable acting. Adversaries mix both. Write all three with EK numbers."
+    },
+    {
+      "type": "two_column",
+      "heading": "Enrichment: Real Attacks Stack the Levers",
+      "subheading": "Not a new EK — it shows how the bell-ringer call layers several named tactics into one con.",
+      "track": "enrichment",
+      "left": {
+        "title": "The Help-Desk Call, Decoded",
+        "definition": "One call, several tactics at once",
+        "ek": "Enrichment",
+        "examples": [
+          "‘I’m from the IT help desk’ — pretext, a believable reason to make contact (EK 2.1.A.2)",
+          "‘…doing a required security audit’ — authority, posing as someone with power (EK 2.1.A.3)",
+          "‘…in the next ten minutes’ — urgency, a deadline to force quick action (EK 2.1.A.8)",
+          "‘…or your manager will be notified’ — intimidation, a stated negative consequence (EK 2.1.A.4)"
+        ]
+      },
+      "right": {
+        "title": "Why Stacking Works",
+        "definition": "Each lever covers the last one's weakness",
+        "ek": "Enrichment",
+        "examples": [
+          "The pretext makes the call plausible so you don't hang up",
+          "Authority makes refusing feel insubordinate",
+          "Urgency removes the time you'd need to verify with the real IT desk",
+          "Intimidation raises the cost of saying no — fear closes the deal"
+        ]
+      },
+      "footer": "TAKEAWAY: Exam scenarios often blend tactics on purpose. Don't stop at the first one you spot — name EVERY named tactic in the scenario and cite each EK. The fix is the same for all of them: slow down and verify through a known, independent channel.",
+      "script": "Quick enrichment that pays off the bell ringer. Take that one help-desk call apart, line by line. ‘I'm from the IT help desk’ — that's the pretext, EK 2.1.A.2, a believable reason to contact you. ‘Doing a required security audit’ — authority, EK 2.1.A.3, posing as someone with power. ‘In the next ten minutes’ — urgency, EK 2.1.A.8, a deadline that forces quick action. ‘Or your manager gets notified’ — intimidation, EK 2.1.A.4, a stated negative consequence. Four tactics, one call. And they're stacked on purpose: the pretext keeps you on the line, authority makes refusing feel wrong, urgency strips away the time you'd use to call the real IT desk, and intimidation makes saying no feel costly. On the exam, don't stop at the first tactic — name every one and cite each EK. And notice the fix is identical for all of them: slow down and verify through a channel you trust, not the one the attacker handed you."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.1.A)",
+      "terms": [
+        {
+          "term": "Social engineering",
+          "definition": "An attack in which adversaries use psychological tactics to manipulate a target into taking a desired action, rather than exploiting a technical flaw (EK 2.1.A.1)."
+        },
+        {
+          "term": "Pretexting",
+          "definition": "Creating a believable reason to contact a target — the cover story that makes the contact seem legitimate (EK 2.1.A.2)."
+        },
+        {
+          "term": "Authority",
+          "definition": "Impersonating someone with power over a target, or pretending to relay instructions from that person, so the target feels obligated to comply (EK 2.1.A.3)."
+        },
+        {
+          "term": "Intimidation",
+          "definition": "Stating negative consequences if demands aren’t met, using fear to pressure a target into compliance (EK 2.1.A.4)."
+        },
+        {
+          "term": "Consensus",
+          "definition": "Creating social pressure by making a target believe everyone else is already doing the desired action (EK 2.1.A.5)."
+        },
+        {
+          "term": "Scarcity",
+          "definition": "Creating a sense of limited availability so a target acts before a supposed opportunity disappears (EK 2.1.A.6)."
+        },
+        {
+          "term": "Familiarity",
+          "definition": "Pretending to be or to know someone close to a target in order to establish trust (EK 2.1.A.7)."
+        },
+        {
+          "term": "Urgency",
+          "definition": "Creating a deadline that requires quick action by a target to avert negative consequences (EK 2.1.A.8)."
+        }
+      ],
+      "script": "Eight terms, one for the big idea and seven for the tactics. Social engineering is the umbrella — manipulating a person, not a machine, EK 2.1.A.1. Then the seven levers, each tied to its EK: pretexting is the believable reason to make contact; authority impersonates power; intimidation threatens consequences; consensus says everyone's already doing it; scarcity says it's almost gone; familiarity pretends a close relationship; urgency sets a deadline. Memorize these by name and EK number, because the exam gives you a scenario and asks you to name the tactic. Get all eight into your notes."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.1.A. Complete on your Guided Notes packet.",
+      "prompts": [
+        "An email says: ‘This is the CFO. I’m in a board meeting and need you to buy five $200 gift cards in the next 30 minutes and send me the codes — don’t loop in anyone else.’ Name every social engineering tactic in play.",
+        "Explain the difference between a tactic of pressure (such as intimidation or urgency) and a tactic of trust (such as familiarity or consensus). Give one example of each from a scenario you invent."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences. Question one: that gift-card email from the ‘CFO’ — name every tactic and cite each EK. You should find authority, posing as the CFO, EK 2.1.A.3; urgency, the 30-minute deadline, EK 2.1.A.8; and arguably intimidation or familiarity in the ‘don't loop anyone in.’ Be precise and cite. Question two: explain the difference between pressure tactics like intimidation and urgency and trust tactics like familiarity and consensus, then invent one example of each and cite the EK. This is exactly how the exam asks it. Go."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.1 page",
+          "tail": "Read the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-cyber-foundations"
+        },
+        {
+          "label": "Exercise 1",
+          "tail": "Name-the-social-engineering-tactic scenario set.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-1"
+        },
+        {
+          "label": "Exercise 2",
+          "tail": "Decode a multi-tactic phishing message line by line.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-exercise-2"
+        },
+        {
+          "label": "Lesson 2.1 quiz",
+          "tail": "Five questions across the whole topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-1-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything from class is on the site, in this order. Start on the Lesson 2.1 page and run the self-check. Then Exercise 1, where you name the tactic in each scenario, and Exercise 2, where you take a phishing message apart line by line. The quiz at the bottom is five questions across the whole topic — you'll be ready for it by the end of the lesson, not today. Write the lesson page URL down now."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 8",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "Learned the big idea: social engineers use psychological tactics to manipulate a target into a desired action (EK 2.1.A.1)",
+        "Named pretexting as the believable reason to make contact that sets up every other tactic (EK 2.1.A.2)",
+        "Identified the pressure tactics — authority, intimidation, urgency (EK 2.1.A.3, A.4, A.8)",
+        "Identified the trust tactics — consensus, scarcity, familiarity (EK 2.1.A.5, A.6, A.7)",
+        "Saw how a real attack stacks several tactics into one con, and that the fix is to verify independently"
+      ],
+      "nextPoints": [
+        "Identify the types of adversaries behind these attacks — who they are and what motivates them (LO 2.1.B)",
+        "Connect each adversary's motivation to the social engineering tactics they favor",
+        "Keep the Lesson 2.1 quiz on the horizon — it spans all of 2.1.A through G"
+      ],
+      "teaser": "Tonight, picture the people on the other end of that help-desk call. Is it a bored teenager running someone else's tool? An activist with a cause? An insider who already has a badge? Tomorrow you'll learn the five types of adversaries — and why their motivation tells you what they'll do next.",
+      "script": "Day 1 done. You can name the big idea of social engineering and all seven tactics, each with its EK number, and you can take apart a real attack that stacks several at once. That skill — read a scenario, name the lever — is exactly what 2.1.A is tested on. Tonight's teaser sets up tomorrow: who is actually on the other end of these attacks? Tomorrow, EK 2.1.B, the five types of adversaries, from script kiddies to transnational criminal organizations, and what motivates each. Review your Guided Notes — be able to name all seven tactics and their EK numbers cold."
+    }
+  ],
+  "quiz": {
+    "title": "Lesson 2.1 — Cyber Foundations — Quiz",
+    "instructions": "Choose the single best answer. 16 questions, 30 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "scenario",
+        "stem": "An employee gets a text from an unknown number: ‘This is Dana, your new VP of Finance — I’m about to board a flight and need the vendor banking file in the next five minutes or we miss the payment deadline.’ Which social engineering tactics are most clearly in play?",
+        "options": [
+          "Authority and urgency — the sender claims power over the target and imposes a tight deadline",
+          "Scarcity and consensus — the sender stresses limited supply and group behavior",
+          "Familiarity and pretexting only — no time pressure or claim of power is present",
+          "No social engineering is present, since the message arrived by text rather than email"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.A.3 + EK 2.1.A.8",
+        "rationale": "EK 2.1.A.3 defines authority as impersonating someone with power over the target — here, a VP of Finance — and EK 2.1.A.8 defines urgency as a deadline forcing quick action, the five-minute window before a flight. Option B names the wrong tactics: nothing here suggests limited supply (scarcity) or that everyone else is doing it (consensus). Option C ignores the explicit deadline and the claim of a senior title. Option D is wrong because social engineering is defined by the psychological manipulation, not the channel used to deliver it."
+      },
+      {
+        "id": "Q2",
+        "kind": "applied",
+        "stem": "A caller tells a help-desk worker, ‘Everyone else on your floor already reset their password through this link today — you’re the only one who hasn’t.’ The caller is trying to make the worker comply by following the group. Which tactic is this, and what is its defining feature?",
+        "options": [
+          "Scarcity — it stresses that the opportunity is about to run out",
+          "Intimidation — it threatens a negative consequence for refusing",
+          "Consensus — it creates social pressure by claiming everyone else is already doing it",
+          "Pretexting — it is simply the believable reason given for making contact"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.A.5",
+        "rationale": "EK 2.1.A.5 defines consensus as creating social pressure by making the target believe everyone else is already doing the desired action — exactly the ‘everyone else already reset’ framing. Option A (scarcity, EK 2.1.A.6) is about limited availability, which is not claimed here. Option B (intimidation, EK 2.1.A.4) requires a stated negative consequence, which this line lacks. Option D (pretexting, EK 2.1.A.2) is the cover story for making contact, not the group-pressure lever being pulled."
+      },
+      {
+        "id": "Q3",
+        "kind": "multi",
+        "stem": "A security team is sorting adversaries. I. A low-skilled attacker runs a downloaded tool he doesn’t understand, hoping for recognition. II. An employee with valid credentials copies confidential files out of revenge before quitting. III. A group deploys ransomware purely for financial gain and sells stolen intellectual property in illegal markets. Match each to the correct adversary type.",
+        "options": [
+          "I = hacktivist, II = cyberterrorist, III = script kiddie",
+          "I = script kiddie, II = insider adversary, III = transnational criminal organization",
+          "I = insider adversary, II = script kiddie, III = hacktivist",
+          "I = transnational criminal organization, II = hacktivist, III = insider adversary"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.B.1 + EK 2.1.B.3 + EK 2.1.B.5",
+        "rationale": "EK 2.1.B.1 defines script kiddies as low-skilled adversaries using tools developed by others without understanding them, often motivated by recognition — that is I. EK 2.1.B.3 defines insider adversaries as those with legitimate credentials and access, who can be motivated by revenge — that is II. EK 2.1.B.5 defines transnational criminal organizations as seeking financial gain through ransomware and selling stolen IP in illegal markets — that is III. Only option B matches all three correctly; the others misassign at least one type."
+      },
+      {
+        "id": "Q4",
+        "kind": "scenario",
+        "stem": "Investigators reconstruct an attack: the adversary first gathered freely available information about the company from public websites and social media, then used a stolen password to log in. Later they installed a remote access trojan to keep their connection alive. In CED terms, which phases occurred, in order?",
+        "options": [
+          "Lateral movement, then persistence, then reconnaissance",
+          "Taking action, then evading detection, then initial access",
+          "Persistence, then reconnaissance, then initial access",
+          "Reconnaissance, then initial access, then persistence"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.C.2 + EK 2.1.C.3 + EK 2.1.C.4",
+        "rationale": "EK 2.1.C.2 describes reconnaissance as gathering information, often via open source intelligence (OSINT) — the public-website research. EK 2.1.C.3 describes initial access as establishing a foothold, often through compromised or weak credentials — the stolen password. EK 2.1.C.4 describes persistence as maintaining access, often via a command-and-control protocol using malware like a remote access trojan (RAT). The correct order is reconnaissance, initial access, persistence, so option D is right; the others scramble the sequence defined in EK 2.1.C.1."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "A risk analyst is rating an online store’s checkout system. The system processes valuable payment data, a documented exploit for its flaw is widely available, and a successful attack would cost an estimated $250,000 in losses. Per the CED, which factors is the analyst legitimately weighing to assess this risk?",
+        "options": [
+          "The likelihood of an attack against the vulnerability and the severity of the projected damage",
+          "Only the dollar cost of the attack, since severity is the single factor in any risk assessment",
+          "Whether the store is liked by customers, which determines risk independent of any vulnerability",
+          "The number of employees at the store, which the CED names as the primary driver of risk"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.D.3 + EK 2.1.D.4 + EK 2.1.D.5",
+        "rationale": "EK 2.1.D.3 states that risk assessment considers two factors: the likelihood of an attack against a specific vulnerability and the severity of the projected damage. EK 2.1.D.4 lists likelihood factors including the value of the target and the skill required (a documented exploit lowers that skill), and EK 2.1.D.5 ties severity to financial cost — the $250,000 estimate — so option A is correct. Option B wrongly drops likelihood. Options C and D invent factors the CED never names; risk requires a threat exploiting a vulnerability to compromise an asset (EK 2.1.D.1), not customer sentiment or headcount."
+      },
+      {
+        "id": "Q6",
+        "kind": "multi",
+        "stem": "A threat-intelligence team labels four adversaries by type. I. A former employee using still-valid credentials to exfiltrate data out of revenge. II. A group defacing a company website to protest its environmental record. III. A syndicate deploying ransomware purely for financial gain. Which labels are correct?",
+        "options": [
+          "I = hacktivist, II = insider, III = script kiddie",
+          "I = insider, II = hacktivist, III = transnational criminal organization",
+          "I = transnational criminal organization, II = cyberterrorist, III = insider",
+          "I = script kiddie, II = insider, III = hacktivist"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.B.2 + EK 2.1.B.3 + EK 2.1.B.5",
+        "rationale": "An insider has legitimate credentials and access and may be motivated by revenge (EK 2.1.B.3). A hacktivist is driven by a social, political, or personal cause (EK 2.1.B.2). A transnational criminal organization seeks financial gain, primarily through ransomware (EK 2.1.B.5). Options A, C, and D each swap at least two of these categories."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "Investigators reconstruct an intrusion: after gaining a foothold, the adversary moved from a low-privilege workstation to a domain-admin account, then copied the customer database to an outside server, and finally deleted the security logs on the way out. In order, which phases does this sequence show?",
+        "options": [
+          "Reconnaissance, then initial access, then persistence",
+          "Initial access, then persistence, then reconnaissance",
+          "Lateral movement, then taking action, then evading detection",
+          "Taking action, then reconnaissance, then lateral movement"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.C.5 + EK 2.1.C.6 + EK 2.1.C.7",
+        "rationale": "Escalating privileges across systems is lateral movement (EK 2.1.C.5); copying the database is acting on objectives, the taking-action phase (EK 2.1.C.6); deleting logs is evading detection (EK 2.1.C.7). The other options name early phases (reconnaissance, initial access, persistence) that occur before this point or place the phases out of order."
+      },
+      {
+        "id": "Q8",
+        "kind": "applied",
+        "stem": "A risk analyst writes: 'Our unpatched web server could be used by an outside attacker to take down our customer portal.' Matching the underlined items to risk-assessment terms, the unpatched server, the attacker, and the portal are respectively the:",
+        "options": [
+          "asset, vulnerability, and threat — and a risk exists only once an attack has already succeeded",
+          "threat, asset, and vulnerability — risk is just another word for a vulnerability",
+          "asset, threat, and vulnerability — and risk can be expressed only in qualitative terms",
+          "vulnerability, threat, and asset — and risk exists when a threat can exploit a vulnerability to compromise an asset"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.D.1 + EK 2.1.D.2 + EK 2.1.D.6",
+        "rationale": "Risk occurs when a threat can exploit a vulnerability to compromise an asset (EK 2.1.D.1): the unpatched server is the vulnerability, the attacker is the threat, and the portal is the asset (EK 2.1.D.2). The added claims in A, B, and C are false — risk is not only post-attack, is not the same as a vulnerability, and its results can be quantitative or qualitative (EK 2.1.D.6)."
+      },
+      {
+        "id": "Q9",
+        "kind": "scenario",
+        "stem": "A hospital decides it cannot stop offering online appointment booking because patients depend on it, so instead it buys cyber-insurance to cover losses from a possible breach of that system. Which risk-management strategy is the hospital primarily using?",
+        "options": [
+          "Avoidance — it has stopped the activity that generates the risk",
+          "Transference — it shifts the financial burden of the risk to another entity",
+          "Mitigation — it installs controls that lower the likelihood of an attack",
+          "Acceptance — it takes no action and simply absorbs any loss itself"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.E.1 + EK 2.1.E.3",
+        "rationale": "Buying insurance is risk transference: it places the burden of the risk on another entity (EK 2.1.E.3). Avoidance would mean stopping the booking service, which the hospital cannot do because it is mission-critical (EK 2.1.E.2); mitigation installs security controls (EK 2.1.E.4); acceptance takes no action at all."
+      },
+      {
+        "id": "Q10",
+        "kind": "applied",
+        "stem": "To cut the chance that a phishing attack succeeds, a company rolls out multi-factor authentication and email filtering. In risk-management terms, this step is BEST described as:",
+        "options": [
+          "Risk avoidance — it removes the phishing threat entirely",
+          "Risk transference — it moves the risk to the software vendor",
+          "Risk mitigation — it implements controls to reduce the risk",
+          "Residual risk — it is whatever risk is left after other steps"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.E.4",
+        "rationale": "Implementing security controls to reduce the likelihood or impact of a risk is mitigation (EK 2.1.E.4). It does not remove the underlying threat (avoidance), does not shift the burden to another entity (transference), and is an action taken rather than the leftover residual risk."
+      },
+      {
+        "id": "Q11",
+        "kind": "scenario",
+        "stem": "After avoiding, transferring, and mitigating where it can, a firm finds a small amount of risk still remains. Leadership formally signs off on operating with that remaining risk because eliminating it entirely is not realistic. Which concept does this BEST illustrate?",
+        "options": [
+          "Risk avoidance applied to a mission-critical activity",
+          "Choosing a cost-effective control over the expected loss",
+          "Transferring the remaining burden to an insurance provider",
+          "Accepting residual risk, since absolute security is unattainable"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.E.5",
+        "rationale": "Residual risk is the risk that remains after avoidance, transference, and mitigation; accepting it acknowledges that absolute security is unattainable (EK 2.1.E.5). The other options describe avoidance (EK 2.1.E.2), cost-effectiveness (EK 2.1.E.6), and transference (EK 2.1.E.3)."
+      },
+      {
+        "id": "Q12",
+        "kind": "multi",
+        "stem": "Classify each control by TYPE: I. A bollard installed outside the lobby. II. Full-disk encryption on company laptops. III. A written password policy enforced with quarterly access reviews. Which classification is correct?",
+        "options": [
+          "I = physical, II = technical, III = managerial",
+          "I = technical, II = managerial, III = physical",
+          "I = managerial, II = physical, III = technical",
+          "I = physical, II = managerial, III = technical"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.F.2",
+        "rationale": "Physical controls secure the physical space (a bollard); technical controls secure the digital space (encryption); managerial controls are rules, policies, and procedures (a password policy and access reviews), per EK 2.1.F.2. Options B, C, and D each swap at least two of the categories."
+      },
+      {
+        "id": "Q13",
+        "kind": "applied",
+        "stem": "An intrusion detection system (IDS) and a SIEM both raise alerts when suspicious activity occurs, but neither one stops the activity. Classified by FUNCTION, these are BEST described as:",
+        "options": [
+          "Preventative controls — they stop adversaries before an attack",
+          "Detective controls — they identify attacks when they occur",
+          "Corrective controls — they restore systems after an attack",
+          "Managerial controls — they set the rules and procedures"
+        ],
+        "answer": "B",
+        "ek": "EK 2.1.F.3",
+        "rationale": "Detective controls help identify attacks when they occur and include IDSs, SIEM systems, and cameras (EK 2.1.F.3). Preventative controls stop an attack (locks, encryption); corrective controls restore systems (patching, IPSs); managerial is a control type, not a function."
+      },
+      {
+        "id": "Q14",
+        "kind": "scenario",
+        "stem": "A ransomware attack encrypts a company's files so staff can no longer open them, halting operations for two days. Which element of the confidentiality–integrity–availability triad has been MOST directly violated?",
+        "options": [
+          "Confidentiality — attackers were able to read private data",
+          "Integrity — the stored data values were secretly altered",
+          "Availability — authorized users can no longer access the data",
+          "Non-repudiation — the sender's identity is now in doubt"
+        ],
+        "answer": "C",
+        "ek": "EK 2.1.F.1",
+        "rationale": "Availability ensures that data and services are accessible to authorized individuals when needed; ransomware that locks files and causes downtime is an availability violation (EK 2.1.F.1). Confidentiality concerns unauthorized access, integrity concerns data accuracy, and non-repudiation is not one of the three listed principles."
+      },
+      {
+        "id": "Q15",
+        "kind": "scenario",
+        "stem": "An attacker slips past a company's firewall, but the compromised account still cannot reach the customer database because a separate access-control layer blocks it — and the data was encrypted as well. Which benefit of defense-in-depth does this BEST demonstrate?",
+        "options": [
+          "It lowers cost by relying on one single, very strong control",
+          "It removes the need for any human-layer security training",
+          "It guarantees that no adversary can ever breach the network",
+          "It provides resilience, so one bypassed control is backed by another"
+        ],
+        "answer": "D",
+        "ek": "EK 2.1.G.1 + EK 2.1.G.3",
+        "rationale": "Defense-in-depth layers multiple controls so that when one is bypassed, another may still prevent access or limit the damage — resilience (EK 2.1.G.1, EK 2.1.G.3). It does not rely on a single control, does not remove the human layer (EK 2.1.G.4), and never guarantees absolute prevention."
+      },
+      {
+        "id": "Q16",
+        "kind": "applied",
+        "stem": "A security architect maps protections across the human, physical, network, device, application, and data layers so each major threat is met by the control best suited to it. Which statement BEST explains why this layered approach is necessary?",
+        "options": [
+          "Different threats each need a suited control, and multiple layers add resilience",
+          "A single firewall is sufficient as long as it is configured correctly",
+          "Layering controls is required only for the data layer, not the others",
+          "Defense-in-depth replaces the need for any incident response plan"
+        ],
+        "answer": "A",
+        "ek": "EK 2.1.G.2 + EK 2.1.G.4",
+        "rationale": "A defense-in-depth strategy lets an organization address different threats, each with the control most suited to mitigate it (EK 2.1.G.2), across layers that include human, physical, network, device, application, and data (EK 2.1.G.4). A single firewall is not sufficient, layering is not limited to the data layer, and it does not replace incident response planning."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Lesson 2.1 — Cyber Foundations — Teacher Guide",
+    "subtitle": "Unit 2 · Topic 2.1 · 8 class periods · Anchor: Cyber Foundations",
+    "overview": [
+      "Lesson 2.1, Cyber Foundations, is the vocabulary spine of Unit 2: across eight class periods students learn to identify the human and technical building blocks of attack and defense. The seven learning objectives move from the attacker's side to the defender's: social engineering tactics (2.1.A), types of adversaries (2.1.B), the phases of a cyberattack (2.1.C), the risk assessment process (2.1.D), strategies for managing risk (2.1.E), types of security controls (2.1.F), and why a defense-in-depth strategy is necessary (2.1.G). There is no unit scenario for this topic; the anchor is simply Cyber Foundations, and each day's examples are built fresh to illustrate the EKs.",
+      "Days 1–4 cover the attacker and the assessment of risk: Day 1 (2.1.A) the seven social engineering tactics, Day 2 (2.1.B) the five adversary types and their motivations, Day 3 (2.1.C) the six phases of an attack in order, and Day 4 (2.1.D) the risk assessment process and its quantitative-or-qualitative output. Days 5–8 cover the defender's response: managing risk with the four options of avoid, transfer, mitigate, and accept (2.1.E); the types of security controls by principle, type, and function (2.1.F); and defense-in-depth as a layered strategy (2.1.G). The lesson-level quiz and this guide are carried on the Day 1 file and span all of 2.1.A–G."
+    ],
+    "los": [
+      "LO 2.1.A — Identify social engineering attacks.",
+      "LO 2.1.B — Identify types of adversaries.",
+      "LO 2.1.C — Describe the phases of a cyberattack.",
+      "LO 2.1.D — Describe the risk assessment process.",
+      "LO 2.1.E — Identify strategies for managing risk.",
+      "LO 2.1.F — Identify types of security controls.",
+      "LO 2.1.G — Explain why a defense-in-depth security strategy is necessary to optimally protect an organization."
+    ],
+    "eks": [
+      "EK 2.1.A.1 — Social engineers use psychological tactics to manipulate targets into taking a desired action.",
+      "EK 2.1.A.2 — Pretexting is when adversaries create a believable reason to contact a target.",
+      "EK 2.1.A.3 — Authority is when adversaries impersonate someone with power over a target or pretend to relay instructions from that person.",
+      "EK 2.1.A.4 — Intimidation is when adversaries state negative consequences if demands aren’t met.",
+      "EK 2.1.A.5 — Consensus is when adversaries create social pressure by making a target believe everyone else is doing a desired action.",
+      "EK 2.1.A.6 — Scarcity is when adversaries create a sense of limited availability.",
+      "EK 2.1.A.7 — Familiarity is when adversaries pretend to be or know someone close to a target to establish trust.",
+      "EK 2.1.A.8 — Urgency is when adversaries create a deadline that requires quick action by a target to avert negative consequences.",
+      "EK 2.1.B.1 — Script kiddies are low-skilled adversaries who use tools developed by others without understanding how the tools work. They are often motivated by greed or a desire for recognition.",
+      "EK 2.1.B.2 — Hacktivists are motivated by social, political, or personal causes. They compromise computers and networks to support their cause or stop perceived harm, believing their goals justify their illegal methods.",
+      "EK 2.1.B.3 — Insider adversaries are unique threats because they have legitimate credentials and access to systems and data. They can be recruited by malicious third parties and can be motivated by greed or revenge.",
+      "EK 2.1.B.4 — Cyberterrorists are motivated by politics or beliefs and seek to disrupt entire communities, regions, or nations through cyberattacks (e.g., attacking a power grid, water treatment plant, or other civil infrastructure). They can act independently or on behalf of governments or criminal organizations.",
+      "EK 2.1.B.5 — Transnational criminal organizations seek financial gain primarily by deploying ransomware and stealing corporate intellectual property (IP) to sell in illegal markets.",
+      "EK 2.1.C.1 — Cyberattacks aim to disrupt, harm, steal, or destroy devices, networks, or data. Adversaries work in phases, which may not all be used in every attack: reconnaissance, initial access, persistence, lateral movement, taking action, and evading detection.",
+      "EK 2.1.C.2 — In the reconnaissance phase of an attack, adversaries gather as much information as possible about their target, often using open source intelligence (OSINT), which is freely available information.",
+      "EK 2.1.C.3 — In the initial-access phase of an attack, adversaries establish a foothold on the target’s computer, often through social engineering or compromised or weak credentials.",
+      "EK 2.1.C.4 — After gaining access during an attack, adversaries establish persistence to maintain access without needing to regain it. They may use a command and control (C2) protocol to send commands to the device and receive output, often through malware like a remote access trojan (RAT) or rootkit.",
+      "EK 2.1.C.5 — In the lateral-movement phase of an attack, adversaries try to escalate their privileges by accessing computers and user accounts with elevated permissions to services and data.",
+      "EK 2.1.C.6 — In the taking-action phase of an attack, adversaries act on their objectives by collecting targeted data, exfiltrating it, and disrupting services or destroying data.",
+      "EK 2.1.C.7 — In the final phase of an attack, many adversaries try to evade detection by removing or editing log files and erasing other files they may have planted on devices (e.g., malware).",
+      "EK 2.1.D.1 — Risk occurs when a threat can exploit a vulnerability to compromise an asset.",
+      "EK 2.1.D.2 — An asset is anything valuable. Assets include financial resources, intellectual property, data, digital infrastructure, physical property, and reputation.",
+      "EK 2.1.D.3 — Risk assessment considers two factors: the likelihood of an attack against a specific vulnerability, and the severity of the projected damage from an attack against a specific vulnerability.",
+      "EK 2.1.D.4 — The likelihood of a vulnerability being exploited depends on many factors, including the value of the target, the level of skill required to exploit the vulnerability, and the motivation and capabilities of likely adversaries.",
+      "EK 2.1.D.5 — The severity of an attack is often measured by financial cost, which can also include reputational and operational impacts.",
+      "EK 2.1.D.6 — The result of a risk assessment can be quantitative or qualitative. Quantitative risk assessment assigns a numeric value to a vulnerability based on a numeric scale or quantifiable impact, which could be financial.",
+      "EK 2.1.D.7 — Risk assessment documentation should include vulnerable assets and their value, descriptions of likely threats, details of specific vulnerabilities and how they would be exploited, an explanation of the severity of damage and the likelihood of compromise, and a final rating, quantitative or qualitative, for each risk identified.",
+      "EK 2.1.E.1 — Once a risk has been identified and assessed, an organization has four options for managing that risk: avoid, transfer, mitigate, and accept.",
+      "EK 2.1.E.2 — Risk avoidance stops the activity that is generating the risk. If the activity is a critical part of an organization’s mission or purpose, then avoidance is not possible.",
+      "EK 2.1.E.3 — Risk transference places the burden of the risk on another entity, such as an insurance company, a government, or consumers.",
+      "EK 2.1.E.4 — Risk mitigation implements security controls to reduce the likelihood or impact of a risk.",
+      "EK 2.1.E.5 — Residual risk is the risk that remains after avoidance, transference, and mitigation; it is the level of risk an organization is willing to accept. Risk acceptance acknowledges that absolute security is unattainable.",
+      "EK 2.1.E.6 — To conserve financial resources and employee capacity, an organization will often favor solutions that are cost effective and easy to implement and maintain. Cost-effective solutions cost less to install and maintain than the expected loss from an attack.",
+      "EK 2.1.F.1 — Security controls address at least one of the following principles: confidentiality ensures only authorized parties can access data; integrity ensures data are accurate and trustworthy; availability ensures data and services are accessible to authorized individuals when needed.",
+      "EK 2.1.F.2 — Security controls can be classified by type: physical controls (locks, fences, cameras, bollards, security guards), technical controls (firewalls, anti-malware software, encryption), and managerial controls (password policies, regular access reviews, incident response plans).",
+      "EK 2.1.F.3 — Security controls can be classified by function: preventative controls stop an adversary from attacking (locks, encryption); detective controls help identify attacks when they occur (IDSs, cameras, SIEM systems); corrective controls fix problems and restore systems (vulnerability patching, repairing a card reader, IPSs).",
+      "EK 2.1.G.1 — A defense-in-depth strategy, or layered defense, uses multiple types of security controls to protect sensitive data and systems.",
+      "EK 2.1.G.2 — A defense-in-depth strategy allows an organization to address different types of threats, each with a security control most suited to mitigate it.",
+      "EK 2.1.G.3 — A defense-in-depth strategy allows for resilience in data protection: when one security control is bypassed by an adversary, another may still prevent access or limit the damage.",
+      "EK 2.1.G.4 — Layers in a defense-in-depth strategy can include human, physical, network, device, application, and data."
+    ],
+    "materials": [
+      "QOTD – students bookmark (apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day)",
+      "Projector / slide deck (teacher · deep-dive version) for each of the eight days.",
+      "Printed/Digital Day 1–8 Guided Notes (student copies). Workflow: students fill the notes in live during the slide presentation; anything missed can be completed — or checked — afterward against the lesson page (apcsexamprep.com/pages/ap-cybersecurity-unit-2-cyber-foundations), which carries all the content. The formal answer KEYs stay in this folder and are never posted to the site.",
+      "Printed Lesson 2.1 quiz (student copies) for the final day of the topic.",
+      "No unit scenario for this topic — each day's illustrative examples are built fresh to teach the EKs."
+    ],
+    "prereqs": [
+      "Unit 1 (Introduction to Security), especially the AI-based attack and defense lessons (1.4 and 1.5). Social engineering in 2.1.A connects to AI-augmented phishing, and the adversary types in 2.1.B give names to the actors behind those attacks."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Social engineering attacks and the seven psychological tactics (LO 2.1.A)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q1) + bell ringer (the help-desk password call)",
+            "min": 5,
+            "slides": "1-2"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "3-4"
+          },
+          {
+            "segment": "The big idea + pretexting (EK 2.1.A.1–A.2)",
+            "min": 5,
+            "slides": "5-6"
+          },
+          {
+            "segment": "The seven levers in two grids: pressure and trust tactics (EK 2.1.A.3–A.8)",
+            "min": 15,
+            "slides": "7-9"
+          },
+          {
+            "segment": "Enrichment: stacking the tactics + vocab",
+            "min": 9,
+            "slides": "10-11"
+          },
+          {
+            "segment": "Stop and Think",
+            "min": 6,
+            "slides": "12"
+          },
+          {
+            "segment": "Wrap and assign Your Turn",
+            "min": 3,
+            "slides": "13-14"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Types of adversaries and their motivations (LO 2.1.B)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q2) + bell ringer (who made the call?)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Script kiddies, hacktivists, insiders (EK 2.1.B.1–B.3)",
+            "min": 15,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Cyberterrorists and transnational criminal organizations (EK 2.1.B.4–B.5)",
+            "min": 12,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Motivation-to-method matching + vocab",
+            "min": 8,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10,
+            "slides": "11-13"
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "The six phases of a cyberattack, in order (LO 2.1.C)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q3) + bell ringer (reconstruct the breach)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Reconnaissance, initial access, persistence (EK 2.1.C.1–C.4)",
+            "min": 15,
+            "slides": "5-6"
+          },
+          {
+            "segment": "Lateral movement, taking action, evading detection (EK 2.1.C.5–C.7)",
+            "min": 12,
+            "slides": "7-8"
+          },
+          {
+            "segment": "Order-the-phases practice + vocab",
+            "min": 8,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10,
+            "slides": "11-13"
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "focus": "The risk assessment process (LO 2.1.D)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q4) + bell ringer (rate the checkout system)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Risk, assets, likelihood, and severity (EK 2.1.D.1–D.5)",
+            "min": 15,
+            "slides": "5-8"
+          },
+          {
+            "segment": "Quantitative vs. qualitative results + documentation (EK 2.1.D.6–D.7)",
+            "min": 12,
+            "slides": "9-10"
+          },
+          {
+            "segment": "Build a mini risk assessment + vocab",
+            "min": 8,
+            "slides": "11"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10,
+            "slides": "12-14"
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "focus": "Strategies for managing risk: avoid, transfer, mitigate, accept (LO 2.1.E)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q5) + bell ringer (four ways to handle a risk)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Avoid, transfer, mitigate, accept + residual risk (EK 2.1.E.1–E.5)",
+            "min": 18,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Cost-effective solutions + vocab (EK 2.1.E.6)",
+            "min": 9,
+            "slides": "8-9"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10,
+            "slides": "10-12"
+          }
+        ]
+      },
+      {
+        "day": 6,
+        "focus": "Types of security controls by principle, type, and function (LO 2.1.F)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q6) + bell ringer (classify the control)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "CIA principles + control types: physical, technical, managerial (EK 2.1.F.1–F.2)",
+            "min": 16,
+            "slides": "5-7"
+          },
+          {
+            "segment": "Control functions: preventative, detective, corrective (EK 2.1.F.3) + vocab",
+            "min": 11,
+            "slides": "8-10"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10,
+            "slides": "11-13"
+          }
+        ]
+      },
+      {
+        "day": 7,
+        "focus": "Defense-in-depth: why layered security is necessary (LO 2.1.G)",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q7) + bell ringer (one lock vs. many layers)",
+            "min": 5,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Defense-in-depth, threat coverage, and resilience (EK 2.1.G.1–G.3)",
+            "min": 16,
+            "slides": "5-7"
+          },
+          {
+            "segment": "The six layers: human, physical, network, device, application, data (EK 2.1.G.4) + vocab",
+            "min": 11,
+            "slides": "8-10"
+          },
+          {
+            "segment": "Stop and Think + wrap",
+            "min": 10,
+            "slides": "11-13"
+          }
+        ]
+      },
+      {
+        "day": 8,
+        "focus": "Topic 2.1 synthesis and the Lesson 2.1 quiz",
+        "segments": [
+          {
+            "segment": "QOTD (U2/L2.1/Q8) + topic review across 2.1.A–G",
+            "min": 10,
+            "slides": "1-4"
+          },
+          {
+            "segment": "Quiz strategy: scenario-to-tactic, phase order, risk factors",
+            "min": 8,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Lesson 2.1 quiz",
+            "min": 25,
+            "slides": "Handout"
+          },
+          {
+            "segment": "Quiz debrief + bridge to the next lesson",
+            "min": 7,
+            "slides": "10-11"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "Social engineering uses one tactic at a time",
+        "myth": "A phishing message or scam call uses exactly one social engineering tactic, so naming one is enough.",
+        "reality": "Real attacks stack tactics — a single call can layer pretexting (A.2), authority (A.3), urgency (A.8), and intimidation (A.4). Exam scenarios are written to blend several, so identify every named tactic, not just the first one."
+      },
+      {
+        "heading": "More skill means more dangerous",
+        "myth": "Low-skill adversaries like script kiddies aren't a real threat, and only highly skilled attackers cause harm.",
+        "reality": "EK 2.1.B.1 notes script kiddies use others' tools without understanding them, but well-documented exploits (EK 2.1.D.4) let low-skill adversaries do real damage. Insiders (EK 2.1.B.3) are dangerous not for skill but for legitimate access. Motivation and access matter as much as skill."
+      },
+      {
+        "heading": "Every attack uses every phase in a fixed order",
+        "myth": "A cyberattack always runs through all six phases, so if you can't find one phase the analysis is wrong.",
+        "reality": "EK 2.1.C.1 states the phases may not all be used in every attack. Reconnaissance, initial access, persistence, lateral movement, taking action, and evading detection describe a common arc, but an attack can skip phases — identify the phases that are present."
+      },
+      {
+        "heading": "Eliminating risk is the goal",
+        "myth": "A good security program drives risk to zero; any remaining risk means the organization failed.",
+        "reality": "EK 2.1.E.5 defines residual risk as what remains after avoidance, transference, and mitigation, and risk acceptance acknowledges that absolute security is unattainable. The goal is to manage risk to an acceptable level cost-effectively (EK 2.1.E.6), not to eliminate it."
+      },
+      {
+        "heading": "One strong control is enough",
+        "myth": "If you install one excellent security control — a great firewall, say — the system is protected.",
+        "reality": "EK 2.1.G.1–G.3 require defense-in-depth: multiple control types so different threats are each met by a suitable control, and so that when one control is bypassed another still limits the damage. A single layer has a single point of failure."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Post a two-column word bank before the Day 1 Stop and Think — ‘pressure tactics: authority (A.3), intimidation (A.4), urgency (A.8)’ and ‘trust tactics: consensus (A.5), scarcity (A.6), familiarity (A.7)’ — so students sort by feel rather than recall all seven cold.",
+        "Provide a sentence frame for tactic identification: ‘This is EK 2.1.A.____ because the adversary ____, which pressures the target to ____.’"
+      ],
+      "extension": [
+        "Have students write an original multi-tactic phishing message, then trade and label every tactic in a partner's message with its EK number.",
+        "Ask students to map each adversary type (EK 2.1.B.1–B.5) to the social engineering tactics and attack phases it is most likely to use, and defend the matches with reasons."
+      ]
+    },
+    "discussion": [
+      "Of the seven social engineering tactics, which do you think is hardest for a trained employee to resist, and why?",
+      "Why is an insider adversary (EK 2.1.B.3) often described as a unique threat compared to an external attacker of equal skill?",
+      "If absolute security is unattainable (EK 2.1.E.5), how should an organization decide how much residual risk to accept?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is pulled straight from the quiz on this page, so it always matches the questions students see."
+  }
+}

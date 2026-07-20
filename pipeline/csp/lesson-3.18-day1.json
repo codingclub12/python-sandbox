@@ -1,0 +1,581 @@
+{
+  "meta": {
+    "lessonId": "3.18",
+    "lessonTitle": "Undecidable Problems",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 1,
+    "los": "LO AAP-4.B",
+    "anchor": "Undecidable Problems",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.18 · Day 1 of 1",
+      "title": "The Questions No Algorithm Can Answer",
+      "subtitle": "The capstone of Big Idea 3: some decision problems can be solved correctly for every input, and some cannot be solved by any algorithm at all — the difference between decidable and undecidable problems",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "This is the final topic of Big Idea 3, and it closes the whole course's big question about the limits of computing. In Topic 3.17 we saw that some problems can be solved, but not in a reasonable amount of time. Today we go one step further: there are decision problems that no algorithm can ever solve correctly for all inputs — no matter how fast the computer, no matter how clever the programmer. We will draw a clean line between a decidable problem, where one algorithm answers correctly for every input, and an undecidable problem, where no such algorithm can exist. One important boundary for the exam: you are expected to explain that undecidable problems exist, not to prove which problems are undecidable."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Explain what a decidable problem is — a decision problem for which an algorithm produces a correct answer for ALL inputs, such as 'Is the number even?' (LO AAP-4.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain what an undecidable problem is — one for which no algorithm can be built that always gives a correct yes-or-no answer (LO AAP-4.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Explain that an undecidable problem may have SOME instances with an algorithmic solution, even though no single algorithm solves all instances (LO AAP-4.B)"
+        }
+      ],
+      "script": "Three targets, all from a single learning objective, AAP-4.B: explain the existence of undecidable problems. First, pin down what makes a problem decidable — one algorithm, correct for every input. Second, define undecidable precisely — no algorithm can always answer correctly. Third, hold onto the subtle part the exam loves: undecidable does not mean every case is hopeless; some individual instances can be solved, but no one algorithm handles them all. Notice these are all 'explain' objectives — this topic is conceptual, so the skill is precise reasoning with the definitions, not writing code."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "You are a 'Yes/No Machine.' Someone hands you a question, and you must publish a fixed, foolproof set of steps that ALWAYS returns the correct yes or no — for every possible input, with no guessing. Try to write such a rule for each: (A) 'Is a whole number even?'  (B) 'Here is ANY set of written instructions someone could hand you — if a person starts following them, will they eventually STOP, or keep going forever?'",
+      "subprompt": "Write 2–4 sentences: For which question could you write a rule guaranteed correct for EVERY possible input? For which one did every rule you tried break on some case? What is fundamentally different about the second question?",
+      "directions": "Be ready to share the rule you wrote for (A) and to describe exactly where the rule for (B) broke down.",
+      "script": "Five minutes with a partner, and this opener makes students invent today's whole idea before it is named. Question A is easy: they will quickly land on 'divide by two and check the remainder,' a rule that is provably correct for every integer — that is a decidable problem. Question B feels answerable, but every rule a group writes will fail on some devious set of instructions; they cannot build one procedure that always answers correctly. Do not push them to prove anything — the goal is only to FEEL the difference between a question a fixed rule always settles and one no fixed rule can. When the timer ends, name it: A is decidable, B is the famous undecidable Halting Problem, and telling those two apart is today's lesson."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 3 sections that match today's lesson. Green = CB required; blue = deep dive.",
+      "sections": [
+        {
+          "title": "Decidable Problems",
+          "description": "A decision problem is decidable when one algorithm gives a correct answer for every input — like 'Is the number even?' (EK AAP-4.B.1)."
+        },
+        {
+          "title": "Undecidable Problems",
+          "description": "No algorithm can always give a correct yes/no answer; some instances may still be solvable, but not all (EK AAP-4.B.2–B.3)."
+        },
+        {
+          "title": "The Two Limits of Computing",
+          "description": "How today's 'no algorithm exists' limit sits beside Topic 3.17's 'no reasonable-time algorithm' limit.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.18 Guided Notes page at apcsexamprep.com.",
+      "script": "Here is today's map — three sections. The first two are green and CB-required: decidable problems, then undecidable problems. The third is a blue deep-dive that ties this topic to Topic 3.17, placing today's 'no algorithm can exist' limit next to last topic's 'no reasonable-time algorithm exists' limit — a satisfying way to close Big Idea 3. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.18 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Decidable Problems",
+      "kicker": "One Algorithm, Correct for Every Input · Learning Objective AAP-4.B",
+      "script": "Section one. Before we can talk about the problems computers cannot solve, we need to be crisp about the ones they can. Your bell-ringer question A — is a number even — is the textbook example: a single, fixed rule that returns the right yes or no for absolutely any integer. The College Board has a name for that: a decidable problem."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-4.B)",
+      "terms": [
+        {
+          "term": "Problem",
+          "definition": "A general description of a task that can — or cannot — be solved algorithmically; for example, sorting is a problem (EK AAP-4.A.1)."
+        },
+        {
+          "term": "Instance",
+          "definition": "A specific version of a problem that includes particular input; sorting the list (2, 3, 1, 7) is one instance of the sorting problem (EK AAP-4.A.1)."
+        },
+        {
+          "term": "Decision problem",
+          "definition": "A problem whose answer is simply yes or no, such as 'Is there a path from A to B?' (EK AAP-4.A.2)."
+        },
+        {
+          "term": "Decidable problem",
+          "definition": "A decision problem for which an algorithm can be written that produces a correct output for all inputs — for example, 'Is the number even?' (EK AAP-4.B.1)."
+        },
+        {
+          "term": "Undecidable problem",
+          "definition": "A problem for which no algorithm can be constructed that is always capable of giving a correct yes-or-no answer (EK AAP-4.B.2)."
+        }
+      ],
+      "script": "Five words anchor this whole topic. A problem is the general task — 'sort a list,' 'decide if a number is even.' An instance is that same problem with specific input plugged in, like the actual list (2, 3, 1, 7). A decision problem is the narrower kind whose answer is only ever yes or no — and both of today's key terms are about decision problems. A decidable problem is a decision problem you can settle with one algorithm that is correct for every input. An undecidable problem is one where no such algorithm can be built. Get these five down precisely; the exam questions live entirely inside these definitions."
+    },
+    {
+      "type": "concept",
+      "heading": "Decidable: One Rule That's Right Every Time",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A decidable problem is a DECISION problem — its answer is always yes or no (EK AAP-4.B.1).",
+        "It is decidable because a single algorithm can be written that gives the CORRECT output for ALL inputs — not just some (EK AAP-4.B.1).",
+        "The CED's own example: 'Is the number even?' — test whether the number's remainder when divided by 2 is 0.",
+        "'For all inputs' is the whole point: a rule that works on the numbers you happen to test but fails on others does NOT make a problem decidable."
+      ],
+      "script": "Here is the definition to write down word for word. A decidable problem is a decision problem — yes or no — for which you can write one algorithm that returns the correct answer for every possible input. The College Board's example is 'Is the number even?' The algorithm is trivial: compute the number modulo two and check whether it is zero. Feed it 10, it says yes; feed it 7, it says no; feed it any integer at all, it is right. That phrase 'for all inputs' is doing the heavy lifting. A rule that happens to work on the three numbers you tried but breaks on a fourth is not an algorithm for the problem — decidability demands correctness on every input, with no exceptions.",
+      "capture": [
+        {
+          "q": "A problem is decidable when a single algorithm returns the ______.",
+          "a": "correct output for every possible input, not just for some cases"
+        },
+        {
+          "q": "The CED's standard example of a decidable problem is ______.",
+          "a": "'Is the number even?', checked by testing whether the remainder after dividing by 2 is 0"
+        },
+        {
+          "q": "A rule that works on the inputs you tested but fails on others ______.",
+          "a": "does not make the problem decidable — decidability requires correctness on all inputs"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Decidable",
+      "heading": "'Is the Number Even?' — An Algorithm for Every Input",
+      "caption": "isEven returns the correct yes/no for 10 — and for EVERY integer input. That total coverage is exactly what makes the problem decidable.",
+      "pseudocode": "PROCEDURE isEven(number)\n{\n  RETURN(number MOD 2 = 0)\n}\nDISPLAY(isEven(10))",
+      "python": "def is_even(number):\n    return number % 2 == 0\n\nprint(is_even(10))",
+      "output": "true",
+      "script": "The canonical decidable problem, in code. On the left is the exam's pseudocode; on the right is runnable Python. The procedure takes any number, computes number MOD 2, and returns whether that remainder equals zero — true for even, false for odd. Call it on 10 and it displays true. The key idea is not this one call: it is that the SAME fixed procedure is correct for 10, for 7, for negative numbers, for a billion — every integer input. One notation note between the columns: the pseudocode writes the Boolean as lowercase true, while Python capitalizes it as True. We always anchor to the reference-sheet spelling on the left. Because one algorithm covers all inputs, 'Is the number even?' is decidable."
+    },
+    {
+      "type": "worked_table",
+      "heading": "What Makes These Decidable?",
+      "context": "Each row is a yes/no decision problem that IS decidable. For each, name the single algorithm that answers it correctly for every input. The test for the last column is always the same: does one rule cover ALL inputs?",
+      "columns": [
+        "Decision problem",
+        "One algorithm that always answers it",
+        "Correct for all inputs?"
+      ],
+      "rows": [
+        [
+          "Is a whole number even?",
+          "Return whether number MOD 2 = 0",
+          "Yes"
+        ],
+        [
+          "Is a given value in this list?",
+          "Check each element in order (linear search) until found or the list ends",
+          "Yes"
+        ],
+        [
+          "Is this list already sorted?",
+          "Compare each element to the next; if any is out of order, answer no",
+          "Yes"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Three decision problems, all decidable, and the pattern is identical every time. Is a number even? One rule: check the remainder. Is a value in a list? One rule: linear search — check each element in order until you find it or run out. Is a list already sorted? One rule: walk the list comparing each element to its neighbor, and the moment one is out of order, answer no. In every row the last column is yes: a single algorithm is guaranteed correct for all inputs, so the problem is decidable. Fill in the blank cells with the algorithm and the yes — you are proving decidability by exhibiting the rule.",
+      "blanks": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Decidable Problems",
+      "subheading": "These map to LO AAP-4.B. Complete on your Guided Notes.",
+      "prompts": [
+        "In two sentences, explain what it means for a problem to be decidable. Use the phrase 'for all inputs' and give one example.",
+        "A classmate writes an algorithm for 'Is the number even?' that returns yes for 2, 4, and 6 by listing those exact numbers. Explain why this does NOT show the problem is decidable, and what a correct algorithm would do instead.",
+        "'Is there a path from town A to town B on this map?' is a decision problem. In one sentence, explain what you would need in order to call it decidable."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.18 page.",
+      "script": "Stop and think — six minutes, full sentences on your Guided Notes. One: define decidable in your own words, using 'for all inputs' and an example. Two: the classmate who hard-codes yes for 2, 4, and 6 has not shown decidability — that rule fails on 8 and on 3; a real algorithm computes the remainder and works for every integer. Three: a path-exists question is decidable exactly when you can write one algorithm that correctly answers yes or no for every possible map and pair of towns. These are precisely the 'explain' moves AAP-4.B asks for."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Undecidable Problems",
+      "kicker": "When No Algorithm Can Exist · Learning Objective AAP-4.B",
+      "script": "Section two, and the heart of the topic. Not every yes/no question can be settled by an algorithm. For some decision problems, it has been proven that no algorithm — none, ever, on any machine — can always give the correct answer. Your bell-ringer question B was one of them. The College Board calls these undecidable, and your job is to explain that they exist, not to hunt for new ones."
+    },
+    {
+      "type": "concept",
+      "heading": "Undecidable: No Algorithm Can Always Be Correct",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "An undecidable problem is one for which NO algorithm can be constructed that is always capable of providing a correct yes-or-no answer (EK AAP-4.B.2).",
+        "This is a statement about impossibility, not difficulty: it is not that the algorithm is slow or undiscovered — no correct-for-all-inputs algorithm can exist.",
+        "The famous example is the Halting Problem: decide, for ANY program and input, whether that program will eventually stop or run forever. It has been proven undecidable.",
+        "Exam boundary: you explain that undecidable problems EXIST and what that means — you are NOT asked to determine whether some given problem is undecidable (EK AAP-4.B.2 exclusion)."
+      ],
+      "script": "Here is the definition, verbatim in spirit from the CED: an undecidable problem is one for which no algorithm can be constructed that is always capable of giving a correct yes-or-no answer. Read that carefully — it is about impossibility, not inconvenience. It does not mean the algorithm would be slow, or that nobody has found it yet. It means a correct-for-every-input algorithm provably cannot exist. The classic example is the Halting Problem from your bell ringer: given any program and its input, will it eventually stop or loop forever? Computer scientists proved there is no algorithm that answers this correctly for all programs. And note the exam boundary clearly: your task is to explain that such problems exist and what undecidability means — you will never be asked to figure out, on your own, whether some given problem is undecidable.",
+      "capture": [
+        {
+          "q": "A problem is undecidable when ______.",
+          "a": "no algorithm can be built that is always capable of giving a correct yes-or-no answer"
+        },
+        {
+          "q": "Undecidable is a claim about impossibility, not difficulty, meaning ______.",
+          "a": "it is not that the algorithm is slow or undiscovered — a correct-for-all-inputs algorithm cannot exist"
+        },
+        {
+          "q": "The AP exam boundary is that you explain undecidable problems exist but are NOT asked to ______.",
+          "a": "determine on your own whether some given problem is undecidable"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Undecidable Doesn't Mean Every Case Is Hopeless",
+      "subheading": "An undecidable problem can have individual instances you CAN solve — what is impossible is one algorithm that solves them all (EK AAP-4.B.3).",
+      "left": {
+        "title": "Some instances ARE solvable",
+        "definition": "For particular inputs, you can often find the answer",
+        "ek": "EK AAP-4.B.3",
+        "examples": [
+          "'DISPLAY(1)' with no loop — obviously halts, answer yes",
+          "'REPEAT UNTIL(false)' — obviously loops forever, answer no",
+          "Many individual programs are easy to decide by hand"
+        ]
+      },
+      "right": {
+        "title": "But no ONE algorithm solves them ALL",
+        "definition": "No single procedure is correct for every possible input",
+        "ek": "EK AAP-4.B.3",
+        "examples": [
+          "Across ALL programs, no fixed rule always answers correctly",
+          "Some inputs defeat any algorithm you could write",
+          "That is what makes the whole PROBLEM undecidable"
+        ]
+      },
+      "footer": "AP TIP: 'Undecidable' describes the whole problem, not each instance. Some instances have algorithmic solutions; the problem as a whole has none (EK AAP-4.B.3).",
+      "script": "This is the subtlety the exam tests most, so get it exactly right. Undecidable does not mean 'a computer can never answer any version of this.' For lots of specific instances the answer is obvious — a program that just displays a one clearly halts; a program that repeats until false clearly loops forever. You can decide those by hand. What is impossible is a single algorithm that is correct for every program and every input at once. Some inputs will defeat any rule you could ever write. So the word undecidable describes the whole problem, not each instance: individual instances may have algorithmic solutions, but the problem as a whole has none. Keep the level straight — instance versus problem — and this stops being confusing.",
+      "capture": [
+        {
+          "q": "An undecidable problem may still have ______.",
+          "a": "some individual instances that have an algorithmic solution"
+        },
+        {
+          "q": "What is impossible for an undecidable problem is ______.",
+          "a": "a single algorithm that solves all instances correctly"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Undecidable Means the Computer Just Isn't Powerful Enough Yet”",
+      "misconception": "A problem is undecidable only because today's computers are too slow or too small; a faster, bigger machine (or a smarter future programmer) would eventually make it decidable.",
+      "whyItHappens": "Students blend Topic 3.17's 'unreasonable time' idea with today's 'no algorithm exists' idea. Slow feels like the same thing as impossible, and 'no one has solved it yet' feels like 'someone will.'",
+      "correction": "Undecidability is about the impossibility of any always-correct algorithm, not about hardware speed, memory, or the passage of time (EK AAP-4.B.2). It has been PROVEN that no algorithm can decide the Halting Problem for all inputs — a faster computer runs the same impossible task faster. Compare with 3.17: an unreasonable-time algorithm still EXISTS and is correct; an undecidable problem has no correct-for-all-inputs algorithm at all.",
+      "example": "A supercomputer a trillion times faster still cannot decide, for every program, whether it halts — because the barrier is the non-existence of the algorithm, not the speed of the machine. Contrast: brute-forcing every route for a traveling salesperson IS possible, just unreasonably slow — that problem is decidable but intractable.",
+      "script": "This is the number-one trap, and it comes from mixing up last topic with this one. Because 'runs forever' and 'no one has solved it' both feel like 'too hard for now,' students imagine that a powerful enough machine would crack an undecidable problem. It would not. Undecidability is a proven impossibility: no algorithm can always answer the Halting Problem correctly, and a computer a trillion times faster just performs that impossible task faster — it does not become possible. Contrast it cleanly with 3.17: an unreasonable-time algorithm still exists and is correct, it is only impractically slow; an undecidable problem has no correct-for-all-inputs algorithm to speed up in the first place. Speed is a 3.17 issue; existence is a 3.18 issue."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Undecidable Problems",
+      "subheading": "These map to LO AAP-4.B. Complete on your Guided Notes.",
+      "prompts": [
+        "In your own words, explain what it means for a problem to be undecidable. Make clear it is about impossibility, not slowness.",
+        "A classmate says, 'If a problem is undecidable, then a computer can never answer it for ANY input.' Correct this precisely, using the idea that some instances may have an algorithmic solution.",
+        "Explain the difference between an undecidable problem and a problem that simply runs in an unreasonable amount of time. Which one still has a correct algorithm?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.18 page.",
+      "script": "Stop and think — six minutes, full sentences. One: define undecidable so a reader can tell it is about impossibility, not a slow machine. Two: fix the classmate — undecidable does not mean no input can ever be answered; some instances have algorithmic solutions, but no single algorithm handles them all. Three: separate the two limits — an unreasonable-time problem still has a correct algorithm that is just too slow, while an undecidable problem has no correct-for-all-inputs algorithm at all. These are exactly the distinctions AAP-4.B questions reward."
+    },
+    {
+      "type": "concept",
+      "heading": "The Two Limits of Computing",
+      "tag": "DEEP DIVE",
+      "track": "enrichment",
+      "bullets": [
+        "Big Idea 3 ends by mapping TWO different walls a computer can hit.",
+        "Wall 1 (Topic 3.17): a correct algorithm EXISTS but runs in an unreasonable amount of time — the problem is decidable but intractable, so we use heuristics for good-enough answers.",
+        "Wall 2 (Topic 3.18): NO correct-for-all-inputs algorithm exists at all — the problem is undecidable, and no amount of speed can rescue it.",
+        "Most everyday problems hit neither wall: they are decidable AND run in reasonable time — which is why computing is so powerful despite these limits."
+      ],
+      "script": "Here is the deep-dive that ties the whole Big Idea together — beyond what the exam will ask, but the perfect way to close the unit. Think of two separate walls. The first wall, from Topic 3.17, is time: a correct algorithm exists, but it would take an unreasonable amount of time, so the problem is decidable yet intractable and we settle for heuristics. The second wall, today's, is existence: no correct-for-all-inputs algorithm exists at all, so the problem is undecidable and speed is irrelevant. They are genuinely different limits — one is 'too slow,' the other is 'impossible.' And the reassuring punch line: the vast majority of problems we actually program hit neither wall. They are decidable and run in reasonable time, which is exactly why computers are as useful as they are.",
+      "capture": [
+        {
+          "q": "The 'time' wall from Topic 3.17 describes a problem that is ______.",
+          "a": "decidable but intractable — a correct algorithm exists but runs in an unreasonable amount of time"
+        },
+        {
+          "q": "The 'existence' wall from Topic 3.18 describes a problem that is ______.",
+          "a": "undecidable — no correct-for-all-inputs algorithm exists at all, so speed cannot help"
+        }
+      ]
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.18 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Undecidable ≠ slow / undiscovered",
+          "text": "Undecidable means no always-correct algorithm CAN exist — a proven impossibility. It is not that the algorithm is slow (that is Topic 3.17's unreasonable time) or that no one has found it yet. A faster computer never makes an undecidable problem decidable."
+        },
+        {
+          "name": "Some instances can still be solved",
+          "text": "Undecidable describes the whole PROBLEM, not every instance. Individual instances may have algorithmic solutions; what is impossible is one algorithm correct for ALL instances. 'Can never solve any case' is wrong."
+        },
+        {
+          "name": "You explain existence, not proof",
+          "text": "The exam asks you to explain that undecidable problems exist and what that means. It does NOT ask you to determine whether some given problem is undecidable — that is explicitly excluded."
+        }
+      ],
+      "script": "One minute, three traps, real points in May. Trap one: undecidable is impossibility, not slowness or ignorance — a faster machine never converts an undecidable problem into a decidable one; that speed confusion belongs to Topic 3.17. Trap two: undecidable is a statement about the whole problem — some individual instances are perfectly solvable, but no single algorithm handles them all, so 'a computer can never answer any case' is false. Trap three: mind the exclusion — you explain that undecidable problems exist and what undecidability means, but you are never asked to prove a given problem is undecidable. Dodge these three and every undecidability question is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Undecidable Problems, in One Slide",
+      "points": [
+        "A decidable problem is a decision problem (yes/no) for which one algorithm gives a correct output for ALL inputs — e.g., 'Is the number even?' (EK AAP-4.B.1).",
+        "An undecidable problem is one for which NO algorithm can be constructed that is always capable of a correct yes-or-no answer — a proven impossibility, not a speed limit (EK AAP-4.B.2).",
+        "You explain that undecidable problems EXIST; you are not asked to determine whether a given problem is undecidable (EK AAP-4.B.2 exclusion).",
+        "An undecidable problem may have SOME instances with an algorithmic solution, but no single algorithm solves all instances (EK AAP-4.B.3)."
+      ],
+      "next": "That closes Big Idea 3: Algorithms and Programming. You now know both walls a computer can hit — problems too slow to solve in reasonable time (Topic 3.17) and problems no algorithm can solve at all (Topic 3.18). Next up, Big Idea 4 turns from what a single computer can compute to how computers connect and share data across the internet.",
+      "script": "The whole topic in one slide. A decidable problem is a yes/no problem that one algorithm answers correctly for every input, like 'Is the number even?' An undecidable problem is one where no such algorithm can exist — a proven impossibility, not merely a slow or undiscovered solution. On the exam you explain that these problems exist and what that means; you are never asked to determine that a given problem is undecidable. And the subtle point that earns points: an undecidable problem can still have individual instances you can solve — what is impossible is one algorithm that solves them all. That closes Big Idea 3. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.18 page tonight. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain what a decidable problem is — one algorithm correct for all inputs, like 'Is the number even?' (LO AAP-4.B)",
+        "explain what an undecidable problem is — no algorithm can always give a correct yes/no answer (LO AAP-4.B)",
+        "explain that undecidable problems exist without being asked to determine whether a given problem is undecidable (LO AAP-4.B)",
+        "explain that some instances of an undecidable problem are solvable even though no single algorithm solves them all (LO AAP-4.B)"
+      ]
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.18 — Undecidable Problems — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "Which of the following best defines a decidable problem?",
+        "options": [
+          "A decision problem that has a yes/no answer but for which no algorithm is known",
+          "Any problem a computer can solve for at least one specific input",
+          "A decision problem for which an algorithm can be written that gives a correct answer for all inputs",
+          "A problem that a computer can solve quickly, in a reasonable amount of time"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-4.B.1",
+        "rationale": "A decidable problem has an algorithm that is always correct on every input, so C is correct. A describes an undecidable problem. B is too weak, requiring only one input. D confuses decidability with speed."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "stem": "A student answers 'Is a whole number even?' by testing whether the number MOD 2 equals 0. Is this problem decidable, and why?",
+        "options": [
+          "Yes; a single algorithm, testing number MOD 2 = 0, gives the correct yes/no for every integer",
+          "No; for very large numbers the check would take an unreasonable amount of time",
+          "Yes, but only for the specific numbers the student happens to test",
+          "No; the correct answer changes depending on which number is used"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-4.B.1",
+        "rationale": "One algorithm decides evenness correctly for every integer, so the problem is decidable and A is correct. B confuses decidability with running time. C limits it to sample inputs. D denies that the algorithm is always correct."
+      },
+      {
+        "id": "Q3",
+        "kind": "scenario",
+        "stem": "Researchers describe a decision problem for which it is impossible to build any algorithm that always returns a correct yes-or-no answer for every possible input. What is this problem called?",
+        "options": [
+          "A decidable problem",
+          "An optimization problem",
+          "An inefficient problem",
+          "An undecidable problem"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-4.B.2",
+        "rationale": "A problem with no always-correct algorithm is undecidable, so D is correct. A is its opposite. B seeks a best value, not a yes/no. C is about speed, not the impossibility of a correct algorithm."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "stem": "In this course, which of the following are you NOT expected to do with undecidable problems?",
+        "options": [
+          "Explain what it means for a problem to be undecidable",
+          "Determine on your own whether a given problem is undecidable",
+          "Recognize that undecidable problems exist in computer science",
+          "Explain that some instances of an undecidable problem can still be solved"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-4.B.2",
+        "rationale": "You are expected to understand and recognize undecidability, not to prove a given problem undecidable yourself, so B is correct. A, C, and D are all within the course's expectations."
+      },
+      {
+        "id": "Q5",
+        "kind": "scenario",
+        "stem": "A classmate concludes, 'If a problem is undecidable, then a computer can never answer it correctly for ANY input.' What is the precise correction?",
+        "options": [
+          "Some individual instances may have an algorithmic solution; what is impossible is a single algorithm that solves all instances correctly",
+          "Every instance of the problem can actually be solved; it just cannot be done quickly",
+          "The problem can be solved for all inputs as long as a fast enough computer is used",
+          "The classmate is right; an undecidable problem has no solvable instances at all"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-4.B.3",
+        "rationale": "Undecidability rules out one always-correct algorithm, not every individual instance, so A is correct. B and C confuse it with speed. D repeats the classmate's overstatement."
+      },
+      {
+        "id": "Q6",
+        "kind": "recall",
+        "stem": "Which statement about an undecidable problem is true?",
+        "options": [
+          "It has one algorithm that works for all inputs, but that algorithm is simply too slow",
+          "It is just a problem for which no one has discovered the algorithm yet",
+          "No single algorithm can correctly answer it for all inputs, though some specific instances may still be solvable",
+          "It is another name for an optimization problem that seeks the best solution"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-4.B.3",
+        "rationale": "No always-correct algorithm exists, yet particular instances may still be solvable, so C is correct. A blames speed. B suggests the algorithm merely awaits discovery. D confuses undecidability with optimization."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "stem": "A student argues, 'A problem is undecidable only because today's computers are not powerful enough; a fast enough machine would make it decidable.' Why is this reasoning wrong?",
+        "options": [
+          "It is actually correct; faster hardware does turn undecidable problems into decidable ones",
+          "Undecidability is about the impossibility of any always-correct algorithm, not about hardware speed or power",
+          "The real fix is adding more memory rather than more processing speed",
+          "Undecidable problems are simply those that always run in an unreasonable amount of time"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-4.B.2",
+        "rationale": "Undecidability is a limit on algorithms themselves, not on hardware, so B is correct. A accepts the false premise. C swaps one hardware fix for another. D confuses undecidability with slow running time."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "stem": "Consider two decision problems: (P) 'Is a given whole number even?' and (Q) a problem for which no algorithm can always give a correct yes/no answer. Which classification is correct?",
+        "options": [
+          "Both P and Q are undecidable",
+          "Both P and Q are decidable",
+          "P is undecidable and Q is decidable",
+          "P is decidable and Q is undecidable"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-4.B.1",
+        "rationale": "P has an always-correct algorithm (decidable) while Q has none (undecidable), so D is correct. A and B misclassify one of them. C reverses the two classifications."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.18 — Undecidable Problems — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.18 · 1 class period + assessment block",
+    "overview": [
+      "Topic 3.18 is the CAPSTONE of Big Idea 3. It answers the course's deepest question about the limits of computing: some decision problems can be solved correctly for every input, and some cannot be solved by any algorithm at all. The single learning objective, LO AAP-4.B, is an 'explain' objective, so the whole day is conceptual — no new code to write. Students build a precise vocabulary (problem, instance, decision problem, decidable, undecidable) and use it to reason.",
+      "The arc is three moves. First, decidable problems (EK AAP-4.B.1): a decision problem is decidable when one algorithm gives a correct answer for ALL inputs — the CED's example is 'Is the number even?' Second, undecidable problems (EK AAP-4.B.2): a problem is undecidable when no algorithm can ever always answer it correctly — a proven impossibility, illustrated by the Halting Problem. Third, the nuance (EK AAP-4.B.3): an undecidable problem can still have individual solvable instances, even though no single algorithm solves them all.",
+      "Two boundaries must be enforced all day. (1) The exclusion on EK AAP-4.B.2: students explain that undecidable problems EXIST, but are never asked to determine whether a given problem is undecidable. (2) The clean separation from Topic 3.17: undecidability is about impossibility (no algorithm exists), not about unreasonable running time (a correct algorithm exists but is too slow). The bell ringer — the 'Yes/No Machine' with an easy question and the Halting Problem — makes students invent the decidable/undecidable line before it is named."
+    ],
+    "los": [
+      "LO AAP-4.B — Explain the existence of undecidable problems in computer science."
+    ],
+    "eks": [
+      "EK AAP-4.A.1 — A problem is a general description of a task that can (or cannot) be solved algorithmically. An instance of a problem also includes specific input. For example, sorting is a problem; sorting the list (2,3,1,7) is an instance of the problem. (Prerequisite from Topic 3.17, used for the problem/instance distinction.)",
+      "EK AAP-4.A.2 — A decision problem is a problem with a yes/no answer (e.g., is there a path from A to B?). An optimization problem is a problem with the goal of finding the \"best\" solution among many (e.g., what is the shortest path from A to B?). (Prerequisite from Topic 3.17, used for 'decision problem.')",
+      "EK AAP-4.B.1 — A decidable problem is a decision problem for which an algorithm can be written to produce a correct output for all inputs (e.g., \"Is the number even?\").",
+      "EK AAP-4.B.2 — An undecidable problem is one for which no algorithm can be constructed that is always capable of providing a correct yes-or-no answer. X EXCLUSION (EK AAP-4.B.2): Determining whether a given problem is undecidable is outside the scope of this course and the AP Exam.",
+      "EK AAP-4.B.3 — An undecidable problem may have some instances that have an algorithmic solution, but there is no algorithmic solution that could solve all instances of the problem."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1.",
+      "Printed Topic 3.18 quiz (student copies) for the assessment block.",
+      "Printed Exercise 1 (Decidable or Not?) and Exercise 2 (Explain Why) supplements, or devices with browser access to their auto-graded versions on the Topic 3.18 page.",
+      "Optional: a short 'program' written on the board (e.g., DISPLAY(1) versus REPEAT UNTIL(false)) to show obviously-halting versus obviously-looping instances."
+    ],
+    "prereqs": [
+      "Topic 3.17 (Algorithmic Efficiency) supplies the problem/instance vocabulary (EK AAP-4.A.1) and the decision/optimization distinction (EK AAP-4.A.2), and it establishes the 'reasonable vs unreasonable time' idea that this topic must be carefully separated from. Comfort reading short pseudocode from earlier in Big Idea 3 (MOD, PROCEDURE, RETURN, REPEAT UNTIL) helps students read the 'Is the number even?' example and the halting instances, but no new programming skill is required."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "Decidable vs undecidable problems; the exclusion; solvable instances vs no universal algorithm (LO AAP-4.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.18/Q1) + bell ringer (the 'Yes/No Machine': even number vs the Halting Problem)",
+            "min": 8,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Decidable problems: vocab, the 'for all inputs' definition, the isEven code_block, what-makes-it-decidable table (EK AAP-4.B.1)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on decidable problems",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Undecidable problems: definition + exclusion, solvable instances vs no universal algorithm, the speed misconception (EK AAP-4.B.2-B.3)",
+            "min": 14,
+            "slides": "11-14"
+          },
+          {
+            "segment": "Stop and Think on undecidable problems",
+            "min": 6,
+            "slides": "15"
+          },
+          {
+            "segment": "Deep dive (the two limits of computing) + Common AP Traps + exit check",
+            "min": 9,
+            "slides": "16-18"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.18 quiz as the opener of the next class (doubles as spaced retrieval and as a Big Idea 3 wrap-up). The quiz ships as its own document, so no new deck or notes are needed. The paper Exercises 1 and 2, or their auto-graded versions on the Topic 3.18 page, absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.18 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“Undecidable just means too slow, or not discovered yet”",
+        "myth": "A problem is undecidable because today's computers are too slow or small, or because no one has found the algorithm yet; a faster machine or future genius would make it decidable.",
+        "reality": "Undecidability is a PROVEN impossibility: no algorithm can ever be correct for all inputs (EK AAP-4.B.2). A faster computer runs the same impossible task faster. This is different from Topic 3.17's unreasonable time, where a correct algorithm exists but is impractically slow. Speed is a 3.17 issue; existence is a 3.18 issue."
+      },
+      {
+        "heading": "“Undecidable means no case can ever be solved”",
+        "myth": "If a problem is undecidable, a computer can never answer it correctly for any input.",
+        "reality": "An undecidable problem may have some instances with an algorithmic solution; what is impossible is one algorithm that solves ALL instances (EK AAP-4.B.3). A program that just displays a value obviously halts; a program that repeats until false obviously loops. Undecidable describes the whole PROBLEM, not each instance."
+      },
+      {
+        "heading": "“I have to figure out which problems are undecidable”",
+        "myth": "The exam will give me an unfamiliar problem and I must prove whether it is undecidable.",
+        "reality": "The exclusion on EK AAP-4.B.2 is explicit: determining whether a given problem is undecidable is outside the scope of the course and the AP Exam. Students explain that undecidable problems EXIST and what undecidability means, working from the definitions and the canonical example — never deriving undecidability themselves."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Anchor 'decidable' to a physical demo: hand a student any integer and have the class run the fixed remainder rule aloud, emphasizing that the SAME rule works for the next number, and the next — 'for all inputs' becomes concrete.",
+        "Give a two-column organizer with headers 'Decidable (one algorithm, all inputs)' and 'Undecidable (no algorithm, all inputs)', and sort the day's examples into it so the instance-versus-problem level stays visible."
+      ],
+      "extension": [
+        "Ask students to write the clearest one-paragraph explanation of why 'undecidable' is not the same as 'unreasonable time,' using one example of each, suitable for a peer who missed both 3.17 and 3.18.",
+        "Point deep-dive students at the two-limits framing: have them classify a handful of described problems as (a) decidable and reasonable, (b) decidable but intractable, or (c) undecidable, and defend each — without being asked to PROVE any undecidability, honoring the exclusion."
+      ]
+    },
+    "discussion": [
+      "Your 'Yes/No Machine' could always answer 'Is the number even?' but never reliably answer 'Will these instructions ever stop?' What does that gap suggest about the difference between a hard problem and an impossible one?",
+        "Topic 3.17 said some problems take an unreasonable amount of time; Topic 3.18 says some problems have no algorithm at all. Which limit feels more surprising, and why does it matter that a faster computer helps with one but not the other?",
+      "An undecidable problem can still have individual instances you can solve by hand. Why is it important to describe undecidability at the level of the whole PROBLEM rather than instance by instance?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "lessonId": "4.3",
+    "lessonTitle": "Protecting Devices",
+    "unit": "Unit 4: Securing Devices",
+    "days": 2,
+    "los": "LO 4.3.A, 4.3.B, 4.3.C, 4.3.D"
+  },
+  "map": {
+    "subtitle": "Unit 4: Securing Devices   •   2 days   •   LO 4.3.A, 4.3.B, 4.3.C, 4.3.D",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: Device Control Identifier and Exercise 2: Harden the Device Advisor (student + answer KEY)",
+      "Discussion — Four Locks on One Machine (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 12 questions, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-4-protecting-devices"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-3-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-3-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-3-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 managerial controls + anti-malware, Day 2 updates/patching + host-based firewalls).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Protecting Devices'; the unit hub lists this lesson as 'Securing a Single Device.' Both refer to this lesson — four device controls (managerial, anti-malware, patching, host-based firewall) that hold even when the network is compromised."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Device Control Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-3-exercise-1",
+    "intro": "You are an IT analyst auditing one company laptop. Five device-protection facts came back from the audit. For each one you will sort the control to its CED category — managerial control, anti-malware, updates/patching, or host-based firewall — and cite the exact. Part A works the audit table; Part B extends the same skills. Everything maps to CB Learning Objectives 4.3.A, 4.3.B, 4.3.C, and 4.3.D.",
+    "scenarioTitle": "Device Audit: Five Protection Facts",
+    "narrative": "An audit of one organization-owned laptop returned five facts about how the device is protected. Each fact maps to exactly one of the four CED device-protection controls. Read the table row by row, then answer Part A. Use the three-step method: anchor your first instinct, find the defining detail (a written rule people follow, a signature scan, a version update, or an ordered traffic rule), then name the control.",
+    "log": {
+      "columns": [
+        "#",
+        "Audit fact",
+        "Control category",
+        "Defining detail",
+        ""
+      ],
+      "rows": [
+        [
+          "1",
+          "A written rule blocks social media and gaming sites and requires users to keep software updated.",
+          "Managerial — acceptable use policy",
+          "Range of permissible / prohibited / required activities for users",
+          ""
+        ],
+        [
+          "2",
+          "Security software keeps a database of indicators, periodically scans files, and quarantines and removes any match.",
+          "Anti-malware software",
+          "Signature database + periodic scan + quarantine and remove",
+          ""
+        ],
+        [
+          "3",
+          "The vendor shipped a small update that fixes a disclosed flaw, and IT applied it to every device.",
+          "Updates and patching",
+          "A small update (a patch) that fixes a found vulnerability",
+          ""
+        ],
+        [
+          "4",
+          "Software on the laptop follows an ordered ACL and denies outbound FTP that the device never legitimately sends.",
+          "Host-based firewall",
+          "Ordered rule that blocks an unneeded outbound port/service",
+          ""
+        ],
+        [
+          "5",
+          "A written rule forbids users from installing programs themselves and routes requests through an approved-software list.",
+          "Managerial — software installation policy",
+          "What software users may install + a request process",
+          ""
+        ]
+      ]
+    },
+    "scenarioNote": "Audit facts adapted from the Day 1 worked walkthroughs and Stop-and-Think prompts; control names and EKs follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026).",
+    "predict": "Before you answer Part A, write one sentence: of the five facts, which one is the trickiest to categorize, and what is the single detail that decides it?",
+    "partALabel": "Part A - Control Classification",
+    "partA": [
+      {
+        "ek": "EK 4.3.A.1 / 4.3.A.3",
+        "pts": 6,
+        "q": "Facts 1 and 5 are BOTH managerial controls, yet they are two different policies. Name the policy each one is, quote the defining clause that proves it. Then explain the overlap trap: which fact mentions software but is NOT the software installation policy, and why.",
+        "answer": "Fact 1 is an acceptable use policy (EK 4.3.A.1): it describes the range of activities permissible, prohibited, or required for users — blocking social media/gaming and requiring software to be kept updated are acceptable-use clauses. Fact 5 is a software installation policy (EK 4.3.A.3): it describes what software users may install (here, none on their own) plus a request process and an approved-software list. The overlap trap is in Fact 1: 'requiring users to keep software updated' SOUNDS like the software installation policy, but the CED places the update-requirement clause in the ACCEPTABLE USE policy (EK 4.3.A.1). The software installation policy governs INSTALLING software, not keeping it updated."
+      },
+      {
+        "ek": "EK 4.3.B.1 / 4.3.B.2",
+        "pts": 4,
+        "q": "Fact 2 is anti-malware. Walk the full mechanism in order using the four CED terms — signature, signature database, scan, and quarantine — part. Then state the one thing the CED says MALWARE does that anti-malware does not.",
+        "answer": "Per EK 4.3.B.1, malware contains detectable indicators called signatures, and anti-malware software has tools to quarantine and remove malware. Per EK 4.3.B.2: the software keeps a database of those signatures (signature database), periodically scans the files on the device, checks each file against the database, and if a file matches a signature it quarantines and removes the malicious file. The thing malware does that anti-malware does not (EK 4.3.B.1): malware is what can CORRUPT, SPY ON, or DESTROY a system — anti-malware is the tool that detects it by signature and removes it."
+      },
+      {
+        "ek": "EK 4.3.C.1 / 4.3.C.2",
+        "pts": 4,
+        "q": "Fact 3 is updates/patching. Distinguish what defines (the WHAT) from what explains (the WHY), and explain why the word 'known' is the load-bearing word in this control.",
+        "answer": "EK 4.3.C.1 defines the WHAT: when a vulnerability in an OS or software is found, the vendor or maintainer fixes it and sends an update; a small update is called a patch. EK 4.3.C.2 explains the WHY: updating the OS and software to the most recent version prevents adversaries from taking advantage of a KNOWN vulnerability. 'Known' is load-bearing because once a flaw is publicly disclosed, every unpatched device is a documented, easy target — patching closes a hole adversaries already know about. The patch is the fix; updating to the latest version is the control that delivers it."
+      },
+      {
+        "ek": "EK 4.3.D.2 / 4.3.D.3",
+        "pts": 4,
+        "q": "Fact 4 is a host-based firewall denying outbound FTP. Explain how this rule stops exfiltration even AFTER the host is compromised, and state where this DENY rule must sit relative to any broad ALLOW rule and why.",
+        "answer": "Per the EK 4.3.D.3 illustrative example, blocking outbound FTP on a device that never sends FTP prevents an adversary who already has remote access to the host from using FTP to exfiltrate a file to the adversary's server — so it limits damage AFTER compromise, not just before. Per EK 4.3.D.2, rules are implemented in order and the first rule that matches wins; so the DENY-outbound-FTP rule must sit ABOVE any broad ALLOW rule. If a broad ALLOW sat first, it would match and short-circuit the list, and the specific DENY would never fire."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 4.3.A.1",
+        "pts": 3,
+        "q": "A student says 'a written policy isn't a real security control because no software enforces it.', explain why the CED still classifies these policies as controls.",
+        "answer": "The CED classifies acceptable use, password, and software installation policies as MANAGERIAL controls (EK 4.3.A.1–A.3): written rules describing what activities, passwords, and software installs are permissible, prohibited, or required for users on organization-owned devices. They are controls because they govern people's behavior, even though no single program 'is' the policy. Other controls (a firewall, anti-malware) can help enforce them, but the policy itself is the managerial control."
+      },
+      {
+        "ek": "EK 4.3.B.2",
+        "pts": 3,
+        "q": "A colleague claims anti-malware 'only protects you by blocking dangerous websites.', explain what anti-malware actually does and why it catches malware already saved on disk.",
+        "answer": "Blocking websites is web filtering, a different control. Per EK 4.3.B.2, anti-malware keeps a database of malware signatures, periodically scans the files on the device, and quarantines and removes any file that matches a signature. Because the scan checks files already on disk against the database, it catches malware regardless of how the file arrived — the signature match is what flags it, not where it came from."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Name one advantage a host-based firewall has over a network-based firewall, beyond the CED-required content.",
+        "answer": "A host-based firewall runs on the single device itself, so it keeps allowing/denying that device's traffic even on an untrusted or compromised network — and it travels with the laptop to home or coffee-shop Wi-Fi. A network-based firewall only guards the perimeter while the device stays on that network. The host-based firewall is the extra defense-in-depth layer that still protects one machine when the surrounding network is compromised (EK 4.3.D.1). (Any correct extra-layer or 'travels with the device' point earns credit.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Harden the Device Advisor",
+    "minutes": "25 minutes",
+    "subtitle": "3 devices - Four-Control Method",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-4-lesson-3-exercise-2",
+    "intro": "You are a device-hardening consultant. Three devices need a protection plan. For each, identify which CED device control most directly addresses the risk (managerial policy, anti-malware, patching, or host-based firewall)–D number, and explain WHY that control breaks this device's specific risk. Vague 'be more careful' advice scores zero.",
+    "standard": "CB Standard (required): name the control + cite the matching–D + tie it to the device's mechanism, for all 3 devices. Enrichment (optional): name the defense-in-depth sub-type or second layer.",
+    "methodHeading": "Four-Control Method - use for every device",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Before analyzing, write your gut read on which of the four controls is in play. Anchoring your own answer first keeps a convincing wrong option from swaying you."
+      ],
+      [
+        "Step 2 - Sign check (which control fits)",
+        "Decide whether the risk is governed by a written policy, caught by a signature scan, closed by a version update, or filtered by an ordered traffic rule. Only claim what the scenario shows."
+      ],
+      [
+        "Step 3 - Mechanism + defense",
+        "State exactly how the chosen control breaks the mechanism (e.g. The patch closes a KNOWN vulnerability; the DENY rule must precede a broad ALLOW because first match wins) and cite the precise."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (NOT required by the CED for Topic 4.3): defense in depth means layering more than one control so a single device stays protected even when one layer fails or the network is compromised. A host-based firewall plus patching plus anti-malware each hold independently — naming the SECOND layer that backs up the first is the enrichment skill.",
+    "fields": [
+      "Control (4.3.A / B / C / D):",
+      "Mechanism — how it breaks this device's risk:",
+      "Enrichment — second layer / defense-in-depth note:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Shared library kiosk. A public-library desktop lets any patron install programs, and staff keep finding sketchy 'free game' apps installed. There is no written rule about installing software, and the machine has security software but no policy governing what gets put on it. The librarian wants the single control that most directly stops patrons from installing whatever they want.",
+        "key": {
+          "signs": "The defining detail is INSTALLING software, not scanning or filtering traffic — patrons add programs at will and there is no written rule stopping them. This is a managerial-control gap, specifically the software installation policy.",
+          "mechanism": "Control: software installation policy (EK 4.3.A.3). It describes what (if any) software users may install — here, prohibiting patron self-installs — plus a request process and a list of approved software, so it governs the install behavior directly. Anti-malware (EK 4.3.B.2) is a useful SECOND layer that quarantines anything bad that slips through, but the policy is the control that addresses 'patrons installing whatever they want.'",
+          "subtype": "Defense in depth: software installation policy (EK 4.3.A.3) as the primary control, anti-malware signature scanning (EK 4.3.B.2) as the backup layer that catches anything installed before the policy is enforced."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Unpatched nurse workstation. A hospital workstation runs an operating system version with a publicly disclosed vulnerability that attackers are actively exploiting elsewhere. The vendor released a fix weeks ago, but this machine was never updated. Anti-malware is installed and a host-based firewall is running, yet IT is worried this specific machine is the easy target.",
+        "key": {
+          "signs": "The risk is a KNOWN, publicly disclosed vulnerability with a vendor fix already available but not applied — that is the patching/updates control, not a firewall or scan issue. Sign that it is 4.3.C: the flaw is public and a patch exists, but the version is out of date.",
+          "mechanism": "Control: updates and patching (EK 4.3.C.1–C.2). A patch is the small update that fixes the found vulnerability (EK 4.3.C.1); updating the OS to the most recent version prevents adversaries from taking advantage of the KNOWN vulnerability (EK 4.3.C.2). Anti-malware and the firewall help, but they do not close this specific public hole — only applying the patch does. Once a vulnerability is public, the unpatched machine is a documented, easy target.",
+          "subtype": "Defense in depth: patching (EK 4.3.C.2) is the primary fix; anti-malware (EK 4.3.B.2) and the host-based firewall (EK 4.3.D.1) are layers that reduce blast radius if exploitation is attempted, but they are not substitutes for the patch."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "Compromised laptop on hostile Wi-Fi. A field employee's laptop is on an untrusted coffee-shop network that turns out to be compromised, and the laptop may already have remote-access malware on it. The laptop never legitimately sends FTP. The company network-based firewall is back at HQ and cannot help here. Leadership asks which single device control most directly limits an adversary using FTP to steal a file off this laptop — and where the rule must go.",
+        "key": {
+          "signs": "Two telling details: the protective device is OFF the corporate network (so the network-based firewall is useless), and the concern is OUTBOUND FTP exfiltration after a possible compromise. That points to a host-based firewall with an outbound DENY rule, not a managerial policy or a scan.",
+          "mechanism": "Control: host-based firewall (EK 4.3.D.1–D.3). It allows or denies traffic into or out of the single device, adding a layer even on a compromised network (EK 4.3.D.1). Configure it to block outbound FTP, a service the device never needs (EK 4.3.D.3) — per the CED illustrative example this prevents an adversary with remote access from using FTP to exfiltrate a file to their server. Placement: because rules apply in order and first match wins (EK 4.3.D.2), the DENY-outbound-FTP rule must sit ABOVE any broad ALLOW rule, or the broad ALLOW would match first and the DENY would never fire.",
+          "subtype": "Defense in depth: host-based firewall (EK 4.3.D.1/D.3) is the primary control because it travels with the device and works on a compromised network; anti-malware (EK 4.3.B.2) is the second layer that tries to quarantine/remove the remote-access malware itself. Trap: 'the network firewall will catch it' is wrong — the laptop has left that perimeter."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Four Locks on One Machine",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "We protect a single device with four very different kinds of locks: written policies people are expected to follow, anti-malware that scans files by signature, patches that close known holes, and a host-based firewall that filters traffic at the machine itself. Across three short windows in this lesson, your group will debate whether a written policy can really be a security control, decide which control catches a threat the others miss, and reason about why a single device can stay protected even when the network around it is compromised.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. The CED calls acceptable use, password, and software installation policies 'managerial controls' — security controls — even though no software enforces them automatically. Does a written rule that people are merely expected to follow really count as security? Defend your side with one concrete example from your own school-issued device."
+          },
+          {
+            "text": "Question 2. Whose job is protecting a device, really — the user who follows (or ignores) the policy, or the IT department that configures the anti-malware, patches, and firewall? Defend your split with one concrete example."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~8 min, right after the anti-malware signature debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The control each one misses",
+            "text": "A laptop has a written acceptable use policy, anti-malware, patches applied, and a host-based firewall. For ONE threat your group picks (e.g., brand-new malware with no signature yet, or a user who ignores the policy), name which control would catch it and which would miss it, and why. Agree on the single best one-sentence answer your group can write.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Which control is hardest to sustain?",
+            "text": "Debate for about 3 minutes: of writing and enforcing policies (4.3.A), keeping anti-malware signatures current (4.3.B), and applying every patch promptly (4.3.C), which is hardest for a real organization to actually do every time, and what is the realistic cost of skipping it? Record your group's ranking and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~9 min, after the host-based firewall walkthrough",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'network already fell' case",
+            "text": "A field laptop is on a compromised coffee-shop network and may already have remote-access malware on it. Design the defense: which single device control most directly limits an adversary using outbound FTP to steal a file, where must that DENY rule sit relative to a broad ALLOW and why, and when a device is on a network you cannot trust, what should an analyst conclude — and NOT conclude — about whether the company's network-based firewall still helps?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (control + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

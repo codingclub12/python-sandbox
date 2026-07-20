@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "lessonId": "5.6",
+    "lessonTitle": "Safe Computing",
+    "unit": "Big Idea 5: Impact of Computing",
+    "days": 2,
+    "los": "LO IOC-2.A, IOC-2.B, IOC-2.C"
+  },
+  "map": {
+    "subtitle": "Big Idea 5: Impact of Computing   •   2 days   •   LO IOC-2.A, IOC-2.B, IOC-2.C",
+    "intro": "Everything for Topic 5.6 lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: The Dossier Reconstruction and Exercise 2: Attack Triage (student + answer KEY)",
+      "Discussion — The Human Firewall (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 9 questions across LO IOC-2.A, IOC-2.B, and IOC-2.C, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Topic page",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi5-safe-computing"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi5-safe-computing-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi5-safe-computing"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi5-safe-computing"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi5-safe-computing"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1: PII, the recorded life, aggregation, permanence; Day 2: the defense kit vs. the attacker's playbook, closing with Common AP Traps and the exit check).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Safe Computing'; the running example across both days is the stranger with your dossier (Day 1 assembles the dossier from public trails; Day 2 turns it into one phishing email — and the layered defense that beats it). All materials refer to this one topic."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "The Dossier Reconstruction",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-5-6-exercise-1",
+    "intro": "You are the privacy auditor for the school's security-awareness week. A volunteer, 'Jordan,' agreed to let the class reconstruct what a stranger could learn from Jordan's public data trails — none of which Jordan considered private. For each artifact you will name what was collected, what it reveals alone, and what it reveals only when AGGREGATED with the rest. Part A works the trail log; Part B extends the same skills. Everything maps to CB Learning Objective IOC-2.A.",
+    "scenarioTitle": "Trail Log: Five Public Artifacts About Jordan",
+    "narrative": "The audit team gathered five artifacts. Your job is to show how they combine. Read the log row by row, then answer Part A. Use the three-step method: name what each artifact collects, test what it reveals on its own, then test what it reveals combined with the other rows.",
+    "log": {
+      "columns": [
+        "ID",
+        "Artifact",
+        "What it contains",
+        "How it was produced",
+        "Detail worth noticing"
+      ],
+      "rows": [
+        [
+          "1",
+          "Running-app route map",
+          "Three months of jogging routes, shared publicly",
+          "The app posts finished runs by default",
+          "Every route begins and ends at the same house"
+        ],
+        [
+          "2",
+          "Ad profile screenshot",
+          "Ads for allergy medicine, SAT prep, and a summer camp",
+          "Built from recorded searches and page visits",
+          "Jordan never posted about allergies or the SAT anywhere"
+        ],
+        [
+          "3",
+          "Tagged photos",
+          "Friends' posts tagging Jordan in a school hoodie at a bus stop",
+          "Posted by OTHERS, not by Jordan",
+          "The same hoodie and bus stop appear across several photos"
+        ],
+        [
+          "4",
+          "Shopping account",
+          "A wish list plus saved card and home address for one-tap checkout",
+          "Jordan saved the details to speed up purchases",
+          "Convenient for Jordan — and a bundle of PII in one place"
+        ],
+        [
+          "5",
+          "'Deleted' forum post",
+          "A 2023 post Jordan removed, still readable in a web archive",
+          "An archive service copied the page before deletion",
+          "The delete button removed only the original copy"
+        ]
+      ]
+    },
+    "scenarioNote": "Artifacts adapted from the Day 1 bell-ringer dossier and the five-trails worked table; all terms and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which single row would you delete first to shrink the dossier the most, and what does that row reveal that the others cannot?",
+    "partALabel": "Part A - Rulings on the Trail Log",
+    "partA": [
+      {
+        "ek": "EK IOC-2.A.1",
+        "pts": 4,
+        "q": "Row 4: list the pieces of PII in the shopping account and explain, using the CED's definition of PII, why each one qualifies.",
+        "answer": "The saved card is financial information, the home address links Jordan to a physical place, and the account identity ties both to one person. Per EK IOC-2.A.1, PII is information about an individual that identifies, links, relates, or describes them — and the CED's own example list includes financial information alongside Social Security number, age, race, phone numbers, medical information, and biometric data. Full credit requires connecting each item to the definition's verbs (identifies / links / relates / describes), not just listing the fields."
+      },
+      {
+        "ek": "EK IOC-2.A.2 / EK IOC-2.A.6",
+        "pts": 4,
+        "q": "Row 2: Jordan never posted about allergies or the SAT, yet the ads know both. Name what was recorded to build this profile, and state the two uses EK IOC-2.A.6 says search history can be put to.",
+        "answer": "Search engines can record and maintain a history of searches made by users (EK IOC-2.A.2), and websites can record who viewed their pages (EK IOC-2.A.3) — the ad profile was assembled from those recorded trails, not from anything Jordan published. Per EK IOC-2.A.6, search history can be used to suggest websites or for targeted marketing; the allergy and SAT ads are targeted marketing. The point to land: recording happens as a byproduct of ordinary use, so the profile reveals interests Jordan never chose to share."
+      },
+      {
+        "ek": "EK IOC-2.A.4 / EK IOC-2.A.14",
+        "pts": 5,
+        "q": "Row 1: the route map contains no address field anywhere. Explain what a location-collecting program records beyond a current position (cite EK IOC-2.A.14), and what the repeated start/end point hands a stranger.",
+        "answer": "Devices, websites, and networks can collect a user's location (EK IOC-2.A.4), and per EK IOC-2.A.14 programs can record where you have been, how you got there, and how long you were at a given location — a trail, not a dot. Three months of routes that all begin and end at one house effectively publish Jordan's home address, plus the times Jordan is predictably out of it. No single run says 'home'; the PATTERN across runs does, which is why location trails reveal more than any one reading."
+      },
+      {
+        "ek": "EK IOC-2.A.7 / EK IOC-2.A.15",
+        "pts": 5,
+        "q": "Combine rows 1, 2, and 3: state one fact about Jordan that NO single row reveals, and name the CED mechanism that produced it. Row 3 was posted by friends — what does EK IOC-2.A.15 add about information you never posted yourself?",
+        "answer": "Combining the rows yields emergent facts such as 'Jordan attends the school on the hoodie, lives where the routes converge, and waits at that bus stop on school mornings' — knowledge created by AGGREGATION of disparate data (geolocation, browsing-derived ads, social photos), per EK IOC-2.A.7. EK IOC-2.A.15 adds that information posted to social media can be used by others, and combining it with other sources can deduce private information — Jordan's exposure came partly from FRIENDS' posts, so controlling only your own posting is not enough. Full credit: one genuinely emergent fact + the word aggregation + the others-post-about-you point."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK IOC-2.A.8 / EK IOC-2.A.9 / EK IOC-2.A.12",
+        "pts": 3,
+        "q": "Row 4 is convenience and danger in one artifact. State the benefits the CED names for stored PII, the harms it names, and the one-sentence advice you would give Jordan about keeping the account as-is.",
+        "answer": "Benefits: PII placed online can enhance a user's online experiences (EK IOC-2.A.8), and PII stored online can simplify making online purchases (EK IOC-2.A.9) — one-tap checkout is exactly A.9. Harms: the same PII can be used to stalk or steal the identity of a person or to aid in planning other criminal acts (EK IOC-2.A.12). Reasonable advice weighs both: e.g., 'Keep the account but remove the saved card, since re-typing a number is a small price for shrinking the stolen-identity bundle.' Any defensible sentence citing both sides earns credit."
+      },
+      {
+        "ek": "EK IOC-2.A.13 / EK IOC-2.A.11",
+        "pts": 3,
+        "q": "Row 5: Jordan pressed delete in 2023, yet the post is still readable. Explain why, and give one 'unintended use' of information like this that EK IOC-2.A.11 warns about.",
+        "answer": "Once information is placed online, it is difficult to delete (EK IOC-2.A.13): the delete button removed Jordan's copy, but the archive service had already copied the page — as screenshots, forwards, and backups do elsewhere. EK IOC-2.A.11 warns that information placed online can be used in ways that were not intended, with harmful impact: an email forwarded, a tweet retweeted, or — the CED's own example — a post viewed by potential employers. A scholarship committee or hiring manager reading the 2023 post years later is a full-credit unintended use."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: Data brokers do your audit at industrial scale, for sale. Name one plausible buyer of Jordan's assembled dossier, one decision that buyer might make with it, and why EK IOC-2.A.10's warning about curated information applies.",
+        "answer": "Plausible buyers: an advertiser, an insurer, a landlord, or a political campaign. Decisions: which offers, rates, or housing responses Jordan receives — made from a profile Jordan never saw. EK IOC-2.A.10 applies directly: commercial and governmental curation of information may be exploited if privacy and other protections are ignored — a broker's curated dossier is exactly such a collection, and its resale is the exploitation the EK anticipates. Strong answers note that no single 'secret' was ever stolen; the product is pure aggregation."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Attack Triage",
+    "minutes": "25 minutes",
+    "subtitle": "5 incidents - LO IOC-2.B, IOC-2.C",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-5-6-exercise-2",
+    "intro": "You are the on-call security analyst for the district help desk, and five incident reports land in one afternoon. For each: run the sign check, name the attack with CED vocabulary, explain its mechanism, and prescribe the defense that actually blocks it. Advanced students also name the specific sub-type at work. Vague 'be careful online' advice scores zero.",
+    "standard": "CB Standard (required): the tell-tale signs + the attack named with CED vocabulary + mechanism and blocking defense, for all 5 incidents. Enrichment (optional): also name the specific sub-type or variant at work.",
+    "methodHeading": "Three-Step Method - use for every incident",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your gut diagnosis before analyzing. Writing your own call first keeps a convincing wrong label from swaying you."
+      ],
+      [
+        "Step 2 - Sign check, then name it",
+        "Match the tells to the CED attack: phishing, keylogging, interception via a rogue access point, a disguised malicious link, a compromised known sender, or malware in a free download."
+      ],
+      [
+        "Step 3 - Prescribe the blocking defense",
+        "Pick the LO IOC-2.B layer that breaks THIS mechanism: multifactor authentication, encryption, scanning software, updates, or permission review. A defense that never touches the mechanism is a wrong answer."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (sub-typing): analysts get faster when they can name variants — credential-harvest vs. attachment phishing, an evil-twin hotspot vs. a rogue device plugged into the wired network, a trojan that keylogs vs. one that opens remote control. The sub-type never changes the CED name, but it sharpens which defense you reach for first.",
+    "fields": [
+      "Sign check (the tells in this report):",
+      "Mechanism + defense (CED attack name, how it works, what blocks it):",
+      "Enrichment sub-type (the specific variant at work):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "An email from 'IT-Support@schooI-district.com' (look closely at that capital I) warns that mailboxes over quota will be deleted tonight, and links to a login page that mirrors the district portal pixel for pixel. Three staff members entered their passwords before lunch.",
+        "key": {
+          "signs": "Urgency plus a same-day deadline, a look-alike sender domain with a swapped character, and a login link that resolves somewhere other than the real portal. The report even shows the payoff: staff typed credentials into a page the attacker controls.",
+          "mechanism": "Phishing (EK IOC-2.C.1) delivered through a malicious link disguised in an email (EK IOC-2.C.5) — the attacker tricks users into PROVIDING personal information, then uses it to access sensitive resources like email accounts. Blocking defenses: never authenticate from an emailed link (navigate to the portal directly), and multifactor authentication (EK IOC-2.B.3–B.4) so a harvested password alone cannot open the account. The three affected accounts need immediate password resets.",
+          "subtype": "Credential-harvest phishing — the prize is the login itself, not an attachment payload. The schooI-for-school swap is a spoofed look-alike domain, the classic disguise EK IOC-2.C.5 describes."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Foundational",
+        "text": "A student installed a free 'FPS booster' from a shareware site. Since then the gaming account, then the email, then a streaming account have each been hijacked — in exactly the order the student logged into them after the install.",
+        "key": {
+          "signs": "The giveaway is the ORDER: accounts fall in the precise sequence the student typed passwords after installing the download. Something local is recording keystrokes, and the free shareware install is the obvious delivery vehicle.",
+          "mechanism": "Malware from an untrustworthy freeware/shareware download (EK IOC-2.C.7) acting as a keylogger — a program recording every keystroke to gain fraudulent access to passwords and other confidential information (EK IOC-2.C.2). Blocking defenses: virus and malware scanning software to find and remove it (EK IOC-2.B.7), password changes made from a CLEAN device, multifactor authentication so recorded passwords stop being sufficient — and trusted-source downloads to prevent the sequel.",
+          "subtype": "A trojan keylogger — hostile code hiding inside a program the user wanted. Distinct from a virus (EK IOC-2.B.8): nothing copied itself in; the student carried it through the door."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "At an away debate tournament, students find two networks: 'GuestWiFi' and 'GuestWiFi_FAST.' The second has full bars and no password. A coach later reports that pages submitted over it — including a payment form — threw odd certificate warnings.",
+        "key": {
+          "signs": "Two near-identical network names, the tempting one open and unusually strong, and certificate warnings appearing on a payment page — the signature of a hostile hotspot sitting between users and the sites they think they're talking to.",
+          "mechanism": "A rogue access point (EK IOC-2.C.4): a wireless access point giving unauthorized access, through which data sent over the public network can be intercepted, analyzed, and modified (EK IOC-2.C.3). Blocking defenses: keep sensitive logins and payments off unverified public networks; treat certificate warnings as a stop sign — they signal the encrypted channel is being tampered with (EK IOC-2.B.5–B.6); and confirm the official network name with the host school before connecting.",
+          "subtype": "An 'evil twin' — a rogue AP cloning a legitimate network's name to harvest connections, as opposed to a rogue device physically plugged into the secure wired network."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Core",
+        "text": "The robotics captain's account emails the whole team 'our updated parts list' as an attachment named parts_list.pdf.exe. The captain is standing in the room and sent nothing. Two members already opened it.",
+        "key": {
+          "signs": "A known, trusted sender behaving out of character (the captain sent nothing), a double-extension attachment dressed as a document, and a blast to an entire list — the pattern of a hijacked account spreading a payload on borrowed trust.",
+          "mechanism": "An unsolicited attachment from a KNOWN sender whose security has been compromised (EK IOC-2.C.6) — the CED is explicit that compromise can arrive under a familiar name. The .exe payload is malware (EK IOC-2.B.9). Blocking defenses: verify unexpected attachments through another channel (the captain is standing right there), scanning software on the two opened machines (EK IOC-2.B.7), a password reset plus multifactor for the captain's account, and updates to close whatever flaw the payload exploits (EK IOC-2.B.10).",
+          "subtype": "Attachment-vector phishing from an account takeover — the compromised-known-sender variant EK IOC-2.C.6 names; the pdf.exe double extension is the disguise trick."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "Hunting for a free PDF converter, a teacher gets a pop-up: 'Your video player is 3 versions out of date — Update Now,' which downloads player_update.exe. The real player updates itself through the OS store. Meanwhile, the district has postponed all OS security updates for a month to 'avoid disruption.'",
+        "key": {
+          "signs": "An update prompt from a random webpage instead of from the software itself, an executable download, and a host site in the free-downloads business — a disguised link wearing a maintenance costume. The district's postponed updates are a second, quieter alarm in the same report.",
+          "mechanism": "A malicious link disguised on a web page (EK IOC-2.C.5) delivering malware from an untrustworthy freeware site (EK IOC-2.C.7). Real updates arrive through the software or OS itself — and they matter: all real-world systems have errors or design flaws that can be exploited, and regular updates fix errors that could compromise the system (EK IOC-2.B.10). Blocking defenses: update only through official channels, scanning software for the downloaded file, and reversing the district's postponement — a month of unpatched, publicly known flaws is a standing invitation.",
+          "subtype": "A fake-updater lure — social engineering impersonating maintenance. Its cousin 'scareware' claims infections instead of stale software; both monetize the reflex to click 'fix it.'"
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "The Human Firewall",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "Every convenience in your pocket was paid for with a data trail, and every attack in this topic works best on someone who believes they are too small to target. Across three short windows, your group will decide how much of your trail you would trade back, design a login an entire school could live with, and rule on whether technology or human judgment is the stronger last line of defense.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Build the stranger's dossier out loud: pick two KINDS of public trails (categories only — no one's actual details) and name one deduction a stranger could make by combining them. Which single trail, if it vanished, would collapse the most deductions?"
+          },
+          {
+            "text": "Question 2. Free apps are paid for with collected data. Name one app whose collection you accept as a fair trade and one where the trade feels wrong. What exactly separates the two — what is collected, who sees it, or what it is used for?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, after the authentication-factors section",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Design the login",
+            "text": "Design the login for a new school portal that holds grades and health records: choose TWO factor categories (knowledge / possession / inherence), name the concrete evidence for each, and defend the pair in one sentence your whole group agrees on. Then name one group of students your design locks out unfairly (no phone? no usable fingerprint?) and one accommodation.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - The biometric line",
+            "text": "Inherence can't be forgotten — or changed after a breach. Debate for about 3 minutes: should schools ever collect students' biometric data (which the CED lists as PII) just to speed up logins and lunch lines? Record your group's position and the strongest cost of the side you chose.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~9 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The last line of defense",
+            "text": "Your district gets a fixed security budget. Split 100 points across four lines: scanning software + updates, a multifactor rollout, encryption upgrades, and training people to spot phishing. Justify your biggest line using this topic's ideas: which attacks does it actually block — and which attacks does NOTHING you bought block unless a human notices in time?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the strongest single defense for the money + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

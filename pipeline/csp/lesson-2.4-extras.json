@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "lessonId": "2.4",
+    "lessonTitle": "Using Programs with Data",
+    "unit": "Big Idea 2: Data",
+    "days": 2,
+    "los": "LO DAT-2.D, DAT-2.E"
+  },
+  "map": {
+    "subtitle": "Big Idea 2: Data   •   2 days   •   LO DAT-2.D, DAT-2.E",
+    "intro": "Everything for this topic lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–2 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–2 (student fill-in + answer KEY)",
+      "Exercise 1: Extraction Process Identifier and Exercise 2: Insight Pipeline Designer (student + answer KEY)",
+      "Discussion — From Data to Insight (3-part: Opening Day 1, Mid-lesson Day 2, Closing Day 2)",
+      "Quiz (student + answer KEY — 8 questions across LO DAT-2.D and DAT-2.E, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Topic page",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-using-programs-with-data"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-using-programs-with-data-notes"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-using-programs-with-data"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-using-programs-with-data"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-course-bi2-using-programs-with-data"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 the tool families and the four extraction processes; Day 2 the iterative insight pipeline traced end to end on one dataset).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Sequencing: Topic 2.4 closes Big Idea 2's instruction and feeds directly into the BI2 Data Project (2 days) — students rerun the Day 2 pipeline on a real dataset of their own and present a claim plus its limits."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Extraction Process Identifier",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-4-exercise-1",
+    "intro": "You are the student data assistant for the school's activities office. A program ran five operations on office datasets this week. For each operation you will name the extraction process from the CED — transforming every element, filtering, combining/comparing, or visualizing — or identify the tool at work (search, filter, spreadsheet), and connect it to the question it answered. Part A works the operations log; Part B extends the same skills. Everything maps to CB Learning Objectives DAT-2.D and DAT-2.E.",
+    "scenarioTitle": "Operations Log: Five Program Runs on Office Data",
+    "narrative": "The activities office ran five operations this week. Your job is to classify each one. Read the log row by row, then answer Part A. Use the row-count check: did values change in place, did rows drop out, did many rows collapse to one answer, or did the data become a picture?",
+    "log": {
+      "columns": [
+        "ID",
+        "Operation the program ran",
+        "Data before",
+        "Data after",
+        "Question it was answering"
+      ],
+      "rows": [
+        [
+          "1",
+          "Add each student's homeroom-parent email to every activity signup record",
+          "1,204 signup rows, no contact column",
+          "1,204 rows — every row gained an email value",
+          "How do we notify families about schedule changes?"
+        ],
+        [
+          "2",
+          "Keep only the signups for fall sports",
+          "1,204 signup rows, all activities",
+          "312 rows, each row unchanged",
+          "Who still needs a fall physical form?"
+        ],
+        [
+          "3",
+          "Total ticket sales per event and report the top seller",
+          "890 individual sale rows",
+          "One ranked summary: 'Spring Musical — $2,140'",
+          "Which event should get the bigger venue?"
+        ],
+        [
+          "4",
+          "Chart signups per grade level as a bar graph",
+          "1,204 signup rows",
+          "One bar chart with four bars",
+          "Which grade is under-participating?"
+        ],
+        [
+          "5",
+          "Type 'Okafor' into the roster search box",
+          "2,300-row student roster",
+          "The 3 matching records, instantly",
+          "Is Okafor already signed up?"
+        ]
+      ]
+    },
+    "scenarioNote": "Operations adapted from the Day 1 four-process worked table and the Day 2 pipeline walkthrough; process names and EKs follow the College Board AP Computer Science Principles Course and Exam Description (Effective Fall 2023).",
+    "predict": "Before you answer Part A, write one sentence: which one operation is the trickiest to classify, and what single detail in its row decides which extraction process it is?",
+    "partALabel": "Part A - Process Classification",
+    "partA": [
+      {
+        "ek": "EK DAT-2.D.6",
+        "pts": 6,
+        "q": "Operations 1 and 2 both change the table. Classify each as an extraction process, then state the row-count rule that separates transforming from filtering.",
+        "answer": "Operation 1 is TRANSFORMING every element (EK DAT-2.D.6 — the CED's own example is adding a parent's email to every student record): the row count is unchanged (1,204 → 1,204) and every row was modified the same way. Operation 2 is FILTERING (the CED's example: keeping only students who signed up for band): rows dropped (1,204 → 312) by a condition, and every surviving value is untouched. The rule: transforming changes values in place and keeps every row; filtering removes rows and changes nothing inside the survivors. Full credit requires both process names plus the row-count rule stated in the student's own words."
+      },
+      {
+        "ek": "EK DAT-2.D.6 / DAT-2.D.2",
+        "pts": 4,
+        "q": "Operations 3 and 4 both end in something small enough to read at a glance. Classify each, and explain what visualizing communicates that the combined summary alone does not.",
+        "answer": "Operation 3 is COMBINING/COMPARING (EK DAT-2.D.6 — like adding up a list of numbers or finding the student with the highest GPA): 890 rows collapse to one ranked answer. Operation 4 is VISUALIZING — the dataset presented as a chart/graph. Per EK DAT-2.D.2, tables, diagrams, text, and other visual tools communicate insight and knowledge gained from data: the bar chart shows the relationship among ALL four grades at a glance (e.g., 9th grade's bar is half of 11th's), while the combined summary only names a single winner. The chart carries the comparison; the number carries one fact."
+      },
+      {
+        "ek": "EK DAT-2.D.3 / DAT-2.D.5",
+        "pts": 4,
+        "q": "Operation 5 used the roster search box. Explain what the word 'efficiently' is doing in the CED's description of search tools, then name the program category the CED credits with organizing and finding trends in information — and state which of operations 1–4 that one program could have performed.",
+        "answer": "Search tools are useful for EFFICIENTLY finding information (EK DAT-2.D.3): the program checked a 2,300-row roster and returned the 3 matches instantly — the efficiency is the point, because no human scans 2,300 rows at that speed. The program category is the SPREADSHEET (EK DAT-2.D.5 — programs such as spreadsheets help efficiently organize and find trends in information). A single spreadsheet could have performed all four other operations: a formula copied down a column (operation 1, transform), a filter (operation 2), a SUM/rank (operation 3, combine/compare), and an inserted chart (operation 4, visualize)."
+      },
+      {
+        "ek": "EK DAT-2.D.1",
+        "pts": 4,
+        "q": "The office secretary says all five answers were 'already in the computer.' Correct the claim using operations 1–5, distinguishing data from information.",
+        "answer": "What was already in the computer was DATA — raw signup rows, sale rows, roster rows. None of the five questions was answered until a program PROCESSED that data (EK DAT-2.D.1: programs can be used to process data to acquire information). For example, 'which event should get the bigger venue' appears nowhere in the 890 individual sale rows; the combining step produced it. Data is the stored recorded values; information is what processing extracts from them. Storage without processing answers nothing — a filing cabinet 'contains' the same answers equally well, which is to say not at all."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK DAT-2.E.1",
+        "pts": 3,
+        "q": "After the bar chart shows 9th grade under-participating, the principal asks: 'Is that true for after-school clubs specifically?' Name the property of insight-seeking this illustrates, and list the steps of the next pass.",
+        "answer": "This illustrates that programs are used in an ITERATIVE and INTERACTIVE way when processing information to gain insight (EK DAT-2.E.1) — the first chart produced an insight, and the insight produced a sharper question. The next pass: filter the signups to after-school clubs only, re-total per grade level, and re-chart. A strong answer also predicts the loop continuing: the club-only chart will raise the next question (transportation? scheduling conflicts?), sending the analyst back through the data again."
+      },
+      {
+        "ek": "EK DAT-2.E.2",
+        "pts": 3,
+        "q": "Signup forms list the same club as 'Robotics,' 'robotics club,' and 'FIRST Robotics.' Explain what filtering and cleaning contribute here, and what a per-club total computed WITHOUT cleaning would get wrong.",
+        "answer": "Cleaning standardizes the three names to one canonical value so the program counts them as a single club — and per EK DAT-2.E.2, this filtering and cleaning of digital data is itself a way of gaining insight and knowledge (discovering the inconsistency teaches you how the data was collected). Without cleaning, the combining step would split Robotics into three small 'clubs,' hiding that it may actually be the largest club in school — the insight is corrupted before it is ever extracted. Clean before you combine."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: The four extraction processes look like a menu, but real analyses chain them into a pipeline whose ORDER matters. Give one concrete example from this exercise where swapping two steps changes the answer.",
+        "answer": "Example 1: totaling per club (combine) BEFORE cleaning the three Robotics spellings yields three fragment totals instead of one true total — the 'biggest club' answer changes. Example 2: computing 'top event by sales' (combine) AFTER filtering to fall sports answers a different question than computing it on all events — the summary is only as broad as the rows that survived the filter. The general rule: clean and transform before you combine; filter first only when the question is explicitly about the subset. Any one concrete, correctly-reasoned example earns credit."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Insight Pipeline Designer",
+    "minutes": "25 minutes",
+    "subtitle": "3 datasets - design the passes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-2-4-exercise-2",
+    "intro": "You are the student data analyst for three clients. Each brings a messy dataset and a vague question. For each client, design pass 1 of the pipeline: name the moves IN ORDER using CED process names (clean, transform, combine sources, filter, classify/cluster, combine/compare, visualize), state the insight the pass yields, and write the follow-up question that triggers the next pass. Vague 'analyze the data' advice scores zero.",
+    "standard": "CB Standard (required): first-pass pipeline (named moves in order) + the insight it yields + the follow-up question it raises, for all 3 datasets. Enrichment (optional): also state the one move you would add or swap on pass 2, and why the order matters.",
+    "methodHeading": "Three-Step Method - use for every dataset",
+    "method": [
+      [
+        "Step 1 - Predict first",
+        "Anchor your gut read: what pattern do you EXPECT the data to show? Writing it down before designing the pipeline keeps the eventual chart from feeling inevitable — and shows you when the data surprises you."
+      ],
+      [
+        "Step 2 - Order the moves",
+        "Clean and transform before you combine; filter before you total when the question is about a subset; visualize last. Give every move its CED name — transform, filter, combine/compare, visualize, plus combine sources, cluster, and classify."
+      ],
+      [
+        "Step 3 - Ask the next question",
+        "Insight-seeking is iterative and interactive: state the follow-up question your first chart will provoke, and what the next pass needs (a new filter, a new grouping, another data source)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (pipeline order and second passes): strong answers treat the pipeline as re-runnable — the same cleaned, merged base table serves pass after pass with only the filter and the chart changing. When two orders both 'work,' prefer the one that cleans earliest: every later move inherits a clean table, while a late cleanup forces earlier results to be recomputed. And remember the Topic 2.3 handshake: the final chart shows a pattern, never a cause.",
+    "fields": [
+      "Pass 1 pipeline (moves in order, CED names):",
+      "Insight pass 1 yields + the follow-up question it raises:",
+      "Pass 2 change — the one move you add or swap, and why order matters (enrichment):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The student council has a clean spreadsheet of 1,850 spirit-wear orders (date, item, size, price). Their question: 'What actually sells?' Design pass 1.",
+        "key": {
+          "signs": "the data is already clean, so the first read is about shape: 1,850 individual order rows are meaningless one at a time — nothing is visible until rows are combined. Predict-first answers might expect hoodies to dominate; the pipeline will confirm or surprise.",
+          "mechanism": "pass 1 = COMBINE/COMPARE — total revenue (or units) per item — then VISUALIZE — a bar chart of totals per item (EK DAT-2.D.6). Insight: a small number of items produce most of the revenue. Follow-up question (EK DAT-2.E.1): 'Is that true in every size?' or 'Did sales spike before the pep rally?' — either one sends the analyst back to FILTER by size or date and re-total.",
+          "subtype": "pass 2 adds a FILTER in front of the combine (e.g., September rows only). The base table never changes — only the filter and the chart do — which is exactly why analysts keep pipelines re-runnable instead of producing one-shot reports."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "The library's checkout log lists genres as 'SciFi,' 'sci-fi,' and 'Science Fiction,' and some books were scanned twice at checkout. The librarian's question: 'Which genres should we expand?'",
+        "key": {
+          "signs": "the raw log cannot answer the question yet — per-genre totals computed on it would fragment Science Fiction into three fake genres and double-count the re-scanned books, so the ranking would be wrong before the analysis starts.",
+          "mechanism": "pass 1 = CLEAN — standardize the genre names to one canonical value and remove duplicate scans (EK DAT-2.E.2: filtering and cleaning digital data is itself how insight is gained) — then COMBINE — checkouts per genre — then VISUALIZE the ranking. Insight: the true genre demand ranking. Follow-up question: 'Is Science Fiction rising or falling?' — which needs checkout dates grouped by month.",
+          "subtype": "pass 2 = TRANSLATE/TRANSFORM each checkout date into a month, then re-combine per genre-month and chart the trend (EK DAT-2.E.4–E.5): the rising-or-falling pattern EMERGES only under that transformation — it was invisible in raw dates. Swapping the order (combining before cleaning) is the classic error: the totals fragment and every later pass inherits the damage."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "The athletics director has fall game attendance from the ticket scanners and a separate weather log from the district. The question: 'Does weather actually hurt our gate?'",
+        "key": {
+          "signs": "neither source can answer alone — attendance rows carry no weather, weather rows carry no attendance. The tempting shortcut is eyeballing two separate charts side by side; the pipeline answer is to make one table first.",
+          "mechanism": "pass 1 = COMBINE DATA SOURCES — merge the two datasets on the date field (EK DAT-2.E.3) — then CLASSIFY each game day ('rain' vs. 'dry'), or CLUSTER similar-weather days — then COMBINE — average attendance per class — then VISUALIZE the comparison. Insight: e.g., rain games average a markedly lower gate. Follow-up question (EK DAT-2.E.1): 'Is it the rain or the cold?' — reclassify by temperature bands and re-run.",
+          "subtype": "the final chart shows CORRELATION, not causation — rainy Fridays may also be exam weeks or rivalry byes. Claiming 'rain causes the drop' from this chart alone is the Topic 2.3 trap restated in Topic 2.4 clothes; the pipeline exposes the pattern, and a causal claim needs more evidence than one visualization."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "From Data to Insight",
+    "minutes": "~25 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "Every feed you scroll, every 'because you watched...' row, every price you're shown is the output of programs running the four extraction moves on data about you — transformed, filtered, combined, and visualized by someone else's pipeline. Across three short windows in this topic, your group will connect the CED's extraction processes to the apps you use daily, debate the judgment calls hiding inside 'cleaning' a dataset, and decide what a responsible analyst owes the audience when a persuasive chart lands in front of a decision-maker.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Every app you use — music, maps, shopping — quietly filters data FOR you before you see anything. Pick one app your group knows well and name one place it filters on your behalf. Who chose that filter's condition, and what never reaches your screen because of it?"
+          },
+          {
+            "text": "Question 2. A search box and a filter both 'find things.' When you shop online, which do you trust more to surface the best option — searching for what you already want, or filtering by ratings and price? What does each one hide from you?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~8 min, right after the pipeline worked table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - One more pass",
+            "text": "The CED says insight-seeking with programs is iterative and interactive. In one sentence your whole group agrees on, explain why a re-runnable pipeline is worth more than a one-shot report — even when their first charts look identical.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Cleaning is judgment",
+            "text": "Cleaning data sounds mechanical, but deciding that 'NYC' and 'New York City' are the same place — or that an extreme value is a typo — is a human judgment call. Debate for about 3 minutes: name one cleaning decision from today's playlist pipeline that could quietly change the conclusion, and record your group's rule for when a cleaner should FLAG a value instead of fixing it.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~9 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The chart that runs the school",
+            "text": "Your pipeline's weekend chart is headed to the principal, who will fund whatever it seems to say. Design the responsible handoff: what one sentence of limits belongs printed under the chart (think correlation vs. causation, what the filter removed, what a next pass would check), and which single pipeline step would you show your work for if someone challenged the chart?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the one-sentence limit statement your group would print under the chart):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "lessonId": "2.4",
+    "lessonTitle": "Detecting Attacks",
+    "course": "AP Cybersecurity",
+    "unit": "Unit 2: Securing Spaces",
+    "day": 3,
+    "los": "LO 2.4.C",
+    "anchor": "Securing Xtensr Labs",
+    "author": "AP CS Exam Prep",
+    "totalDays": 4
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Unit 2 · Lesson 2.4 · Day 3 of 4",
+      "title": "Detection in Action at Xtensr Labs",
+      "subtitle": "Detecting Attacks: applying camera + facial recognition, motion-detector-plus-camera verification, and badge-log analysis to catch a physical attack at Securing Xtensr Labs",
+      "footerLeft": "AP Cybersecurity · College Board CED (Effective Fall 2026)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Welcome to Lesson 2.4, Day 3 of 4. Days 1 and 2 built the toolkit: 2.4.A, the four detection methods, and 2.4.B, where to place them. Today is 2.4.C — applying detection techniques to actually identify physical attacks. And we apply them to Scenario 2A, Securing Xtensr Labs, the unit scenario. You work on the physical security team at Xtensr Research Labs, which is acquiring a smaller research company in the same town, and you're assessing the new lab — including recommending the placement of monitoring equipment to detect physical security breaches. Today's three techniques are the CED's applied EKs: cameras paired with facial recognition to alert on unauthorized people and to track an adversary's path; motion detectors paired with cameras to verify a breach; and badge entry logs that reveal tailgating by how long a door stays open. Just as Lesson 1.5 applied Scenario 1E, today we run Scenario 2A end to end."
+    },
+    {
+      "type": "scenario_intro",
+      "eyebrow": "Scenario 2A · Securing Xtensr Labs",
+      "heading": "The Assignment at Xtensr Labs",
+      "context": "You work on the physical security team at Xtensr Research Labs. Xtensr is buying a smaller research company in the same town to expand their operations, and you have been tasked with conducting a physical vulnerability assessment of the new lab. Among your tasks: recommend the placement of monitoring equipment to detect physical security breaches. Today you apply detection techniques to identify how an adversary would actually be caught in this building.",
+      "details": [
+        "The new lab has a front lobby, interior offices, a server room, and a badge-locked records vault holding sensitive research.",
+        "Your earlier assessment recommended controls; now you must show how those controls DETECT an attack in progress or after the fact.",
+        "An adversary's goal is to reach the research in the vault and the systems in the server room without being identified.",
+        "Your job today: apply EK 2.4.C.1, C.2, and C.3 to show exactly how each attack path gets detected."
+      ],
+      "footer": "This is the Topic 2.4 scenario connection: recommend the placement of monitoring equipment for detecting physical security breaches at Xtensr Labs.",
+      "script": "Here is the setup, straight from Scenario 2A. You're on the physical security team at Xtensr Research Labs. The company is buying a smaller research firm in the same town, and you've been tasked with a physical vulnerability assessment of the new lab. Of your four tasks in the scenario, the one Topic 2.4 owns is the last: recommend the placement of monitoring equipment to detect physical security breaches. So picture the building — a front lobby, interior offices, a server room, and a badge-locked vault holding sensitive research. An adversary wants the research and the systems without being identified. Your job today isn't to keep them out, it's to make sure that if they get in, your detection techniques catch them. We'll apply all three of the CED's applied EKs to this exact building."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Apply cameras with facial recognition to alert on unauthorized people and use footage to track an adversary's path at Xtensr Labs (LO 2.4.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply a motion detector paired with a camera to verify a real breach versus a false alarm in the Xtensr server room (LO 2.4.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply badge entry logs and door-open time to detect tailgating at the Xtensr vault that a badge-only check would miss (LO 2.4.C)"
+        }
+      ],
+      "script": "Three objectives today, all under learning objective 2.4.C — apply detection techniques to identify physical attacks. The verb is apply, the highest skill in this topic: yesterday you placed controls, today you use them to actually catch an attack at Xtensr Labs. First, apply cameras paired with facial recognition to alert when an unauthorized person enters a controlled area, then use live and recorded footage to track the adversary's path. Second, apply a motion detector paired with a camera to verify whether movement in the server room is a real breach or a false alarm. Third, apply badge entry logs and door-open time to detect tailgating at the vault — the attack a badge-only check would miss. By the end of today you can take a real space and explain, step by step, how each technique detects a specific attack."
+    },
+    {
+      "type": "section_divider",
+      "number": "04",
+      "label": "Three Applied Detection Techniques",
+      "kicker": "Securing Xtensr Labs · Learning Objective 2.4.C",
+      "script": "Section four of the lesson. Learning objective 2.4.C. Three applied techniques, each one a combination — cameras with facial recognition, motion detectors with cameras, badge logs with timing. Notice that applying detection is rarely one control alone; it's controls working together. Twelve minutes."
+    },
+    {
+      "type": "impacts_grid",
+      "heading": "Applied Detection: Three CB Techniques",
+      "subheading": "EK 2.4.C.1, C.2, and C.3 — each pairs controls to actually identify a physical attack.",
+      "items": [
+        {
+          "ek": "EK 2.4.C.1",
+          "title": "Cameras + Facial Recognition",
+          "summary": "Cameras provide visual monitoring and a visual record within a designated space. Paired with facial recognition software, they can alert when unauthorized individuals enter controlled areas, and once a breach is detected, live and recorded footage can track an adversary's path and actions.",
+          "ekRef": "EK 2.4.C.1"
+        },
+        {
+          "ek": "EK 2.4.C.2",
+          "title": "Motion Detectors + Cameras",
+          "summary": "Motion detectors work best when paired with cameras. When a security alert is raised because a motion detector has been activated, defenders can use cameras to check the space visually and verify a physical security breach.",
+          "ekRef": "EK 2.4.C.2"
+        },
+        {
+          "ek": "EK 2.4.C.3",
+          "title": "Badge Logs + Door-Open Time",
+          "summary": "When employees badge in to a restricted area, a sensor can record how long the door was open. Reviewing entry logs, potential piggybacking or tailgating can be detected by doors being open for longer than normal lengths of time.",
+          "ekRef": "EK 2.4.C.3"
+        }
+      ],
+      "script": "Three applied techniques, and notice every one is a pairing. EK 2.4.C.1: cameras give visual monitoring and a visual record, and paired with facial recognition software they can alert the moment an unauthorized person enters a controlled area — and once you know there's a breach, you use live and recorded footage to track the adversary's path and actions through the building. EK 2.4.C.2: motion detectors work best paired with cameras — the detector raises the alert that something moved, and the camera lets you look and verify whether it's actually a breach or a false alarm. Remember yesterday: a sensor only tells you there's movement; the camera tells you what. EK 2.4.C.3: badge logs — when someone badges into a restricted area, a sensor records how long the door stayed open, and a door open longer than normal is the signature of piggybacking or tailgating, someone slipping in behind the badge holder. Write all three with EK numbers, and note that each is two controls working together."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Applying the Three Techniques to Xtensr Labs",
+      "subheading": "Each row maps an Xtensr attack path to the EK 2.4.C technique that detects it.",
+      "columns": [
+        "Xtensr location & attack",
+        "Technique applied",
+        "EK",
+        "How the attack is detected"
+      ],
+      "highlightCol": 3,
+      "rows": [
+        [
+          "Adversary enters the controlled lab area posing as a visitor",
+          "Cameras + facial recognition",
+          "EK 2.4.C.1",
+          "Facial recognition alerts that an unauthorized individual has entered a controlled area; footage then tracks their path to the vault"
+        ],
+        [
+          "Movement detected in the empty server room at night",
+          "Motion detector + camera",
+          "EK 2.4.C.2",
+          "The motion alert is verified by pulling up the server-room camera to confirm a real breach versus a false alarm"
+        ],
+        [
+          "Someone slips into the records vault behind a badged employee",
+          "Badge entry logs + door-open time",
+          "EK 2.4.C.3",
+          "The vault door logged open longer than normal, flagging likely tailgating/piggybacking for review"
+        ],
+        [
+          "After the breach, the team needs the adversary's full route",
+          "Live + recorded camera footage",
+          "EK 2.4.C.1",
+          "Defenders use live and recorded footage to reconstruct the adversary's path and actions through the lab"
+        ]
+      ],
+      "footer": "AP TIP: For EK 2.4.C, name the PAIR and the OUTCOME — facial recognition alerts AND footage tracks (C.1); motion alerts AND camera verifies (C.2); badge logs flag a too-long door (C.3).",
+      "script": "Here's all three techniques applied to Xtensr Labs in one table — this is exactly the kind of applied reasoning the exam wants. Row one: an adversary walks into the controlled lab area posing as a visitor. Technique: cameras with facial recognition, EK 2.4.C.1. The software alerts that an unauthorized individual entered a controlled area, and then the footage tracks their path toward the vault. Row two: movement in the empty server room at night. Technique: motion detector paired with a camera, EK 2.4.C.2 — the sensor raises the alert, and you pull up the camera to verify it's a real breach and not a false alarm. Row three: someone slips into the records vault behind a badged employee. Technique: badge logs and door-open time, EK 2.4.C.3 — the door logged open longer than normal, the signature of tailgating. Row four, after the fact: the team needs the full route, so they use live and recorded footage to reconstruct the adversary's path and actions — that's the second half of EK 2.4.C.1. On the exam, always name both the pairing and the outcome."
+    },
+    {
+      "type": "two_column",
+      "heading": "Why Pairing Works: Motion Detector + Camera",
+      "subheading": "EK 2.4.C.2 in detail — the technique that fixes yesterday's 'a sensor doesn't tell you who' problem.",
+      "left": {
+        "title": "The Sensor's Job",
+        "definition": "Raises the alert",
+        "ek": "EK 2.4.C.2",
+        "examples": [
+          "A motion detector in the Xtensr server room activates at night",
+          "It signals that something is moving where nothing should be (recall EK 2.4.A.3)",
+          "But it cannot tell defenders WHO or WHAT triggered it",
+          "Alone, it could be an intruder — or a false alarm"
+        ]
+      },
+      "right": {
+        "title": "The Camera's Job",
+        "definition": "Verifies the breach",
+        "ek": "EK 2.4.C.2",
+        "examples": [
+          "Defenders pull up the camera covering the server room",
+          "They check the space visually to verify a real physical security breach",
+          "Confirmed intruder → response; nothing there → dismissed as a false alarm",
+          "The pairing is why motion detectors 'work best when paired with cameras'"
+        ]
+      },
+      "footer": "KEY SKILL: EK 2.4.C.2 closes the gap from Day 1 — a motion sensor only signals movement (2.4.A.3); pairing it with a camera (2.4.C.2) is what lets defenders VERIFY whether the movement is an actual breach.",
+      "script": "Let's slow down on EK 2.4.C.2, because it directly fixes a problem you identified on Day 1. Remember: a motion sensor alerts to movement but can't tell you who or what is moving — EK 2.4.A.3. That limitation is exactly why the CED says motion detectors work best when paired with cameras. Walk it through at Xtensr. On the left, the sensor's job: the server-room detector activates at night and signals that something is moving where nothing should be — but it can't say whether that's an intruder or a false alarm. On the right, the camera's job: defenders pull up the server-room camera and check the space visually to verify whether there's a real breach. Confirmed intruder, you respond; nothing there, you dismiss it. That verification step is the whole value of the pairing — the sensor catches the movement fast, the camera tells you what it actually is. Name both halves on the exam."
+    },
+    {
+      "type": "case_study",
+      "heading": "Tailgating at the Vault: Reading the Badge Log",
+      "script": "Here's EK 2.4.C.3 as a mini case study, because it's the subtlest technique. A researcher badges into the Xtensr vault at 4:58 p.m. A normal entry holds the door about three seconds; tonight the sensor logs it open for fourteen. The next morning, reviewing the entry log, the team flags that — a door open far longer than normal is the classic signature of piggybacking or tailgating, someone slipping in behind the badge holder before the door shuts. Notice what's clever here: no second badge was ever scanned, so checking 'whose badge was used' would show one authorized entry and miss the attack completely. It was the door-open TIME that gave it away. Then the team pairs it with EK 2.4.C.1 — pull the vault camera for 4:58 to confirm and identify the second person. So C.3 detects that something's wrong from the log, and C.1 tells you who. Three questions on your notes; work them in the next few minutes.",
+      "scenarioLabel": "The Incident",
+      "scenario": "An authorized researcher badges into the Xtensr records vault at 4:58 p.m. A normal entry holds the door open about 3 seconds. Tonight the door sensor logs the vault door open for 14 seconds. Reviewing the entry log the next morning, the security team flags that anomaly: a door open far longer than normal is the signature of piggybacking or tailgating — someone slipping in behind the badge holder before the door closes. No badge was scanned for the second person, but the door-open time gave them away. The team then pulls the vault camera footage for 4:58 p.m. (EK 2.4.C.1) to confirm a second individual and identify them.",
+      "analysisLabel": "Work Through It",
+      "analysis": [
+        "Which EK detection technique flagged the anomaly, and what specific data point raised the flag?",
+        "Why would simply checking 'whose badge was used' have missed this attack entirely?",
+        "How do EK 2.4.C.3 and EK 2.4.C.1 work together to both detect AND identify the tailgater?",
+        "Takeaway: EK 2.4.C.3 detects tailgating from door-open time in the entry log; EK 2.4.C.1 footage then confirms and identifies the second person. Detection and identification, paired."
+      ]
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO 2.4.C)",
+      "terms": [
+        {
+          "term": "Facial recognition software",
+          "definition": "Software paired with cameras that can alert when unauthorized individuals enter controlled areas (EK 2.4.C.1)."
+        },
+        {
+          "term": "Adversary path tracking",
+          "definition": "Using live and recorded camera footage, once a breach is detected, to track an adversary's path and actions (EK 2.4.C.1)."
+        },
+        {
+          "term": "Breach verification",
+          "definition": "Using a camera to visually check a space after a motion detector raises an alert, confirming whether a real physical security breach occurred (EK 2.4.C.2)."
+        },
+        {
+          "term": "Entry log review",
+          "definition": "Reviewing badge entry logs for a restricted-area door, where a door open longer than normal can reveal piggybacking or tailgating (EK 2.4.C.3)."
+        },
+        {
+          "term": "Piggybacking / tailgating",
+          "definition": "An unauthorized person entering a restricted area behind an authorized badge holder, detectable by abnormally long door-open times (EK 2.4.C.3)."
+        },
+        {
+          "term": "Door-open-time sensor",
+          "definition": "A sensor that records how long a badge-controlled door stays open, the data point that flags potential tailgating (EK 2.4.C.3)."
+        }
+      ],
+      "script": "Six terms for 2.4.C, and notice they cluster by technique. From EK 2.4.C.1: facial recognition software, which alerts on unauthorized people, and adversary path tracking, using footage to follow them. From EK 2.4.C.2: breach verification, using a camera to confirm a motion alert. And the EK 2.4.C.3 cluster: entry log review, piggybacking and tailgating, and the door-open-time sensor that catches it. The exam favorite here is the tailgating-by-door-time idea — make sure you can explain how a too-long door reveals an attack no badge scan would show. All six with EK numbers."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Independent Writing",
+      "subheading": "Both questions map to LO 2.4.C and apply to Securing Xtensr Labs. Complete on your Guided Notes packet.",
+      "prompts": [
+        "At Xtensr Labs, a motion detector activates in the empty server room at 1 a.m. Explain step by step how defenders use the paired camera to verify whether this is a real breach, and why the motion detector alone is not enough.",
+        "The Xtensr vault door logged open for 14 seconds when normal is 3. Together, explain how the team detects the likely tailgating AND identifies the second person — and why a badge-only check would have missed it."
+      ],
+      "directions": "Independent. 6 minutes. Full sentences.",
+      "script": "Two questions, six minutes, independent, full sentences, all on Xtensr Labs. Question one: a server-room motion detector fires at 1 a.m. — use EK 2.4.C.2 to walk through how the paired camera verifies a real breach, and say clearly why the sensor alone isn't enough: it signals movement but not who or what. Question two: the vault door logged fourteen seconds when normal is three — use EK 2.4.C.3 to explain how that flags tailgating, then EK 2.4.C.1 to explain how footage identifies the second person, and note why checking only whose badge was scanned would have missed it entirely. Be precise and cite the EKs."
+    },
+    {
+      "type": "your_turn",
+      "eyebrow": "Your Turn — It's All on the Site",
+      "heading": "Your Turn",
+      "items": [
+        {
+          "label": "Lesson 2.4 page",
+          "tail": "Review the lesson and run the self-check.",
+          "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-2-detecting-attacks"
+        },
+        {
+          "label": "Exercise 5",
+          "tail": "Match each Xtensr attack path to its EK 2.4.C technique.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-5"
+        },
+        {
+          "label": "Exercise 6",
+          "tail": "Read a badge log and flag the tailgating event.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-exercise-6"
+        },
+        {
+          "label": "Lesson 2.4 quiz",
+          "tail": "Five questions across the topic.",
+          "url": "apcsexamprep.com/pages/ap-cyber-unit-2-lesson-4-quiz"
+        }
+      ],
+      "note": "The lesson video covers this exact material, slide for slide.",
+      "script": "Everything is on the site. Re-run the Lesson 2.4 self-check, then Exercise 5, where you match each Xtensr attack path to the right EK 2.4.C technique, and Exercise 6, where you read an actual badge log and flag the tailgating event by its door-open time. The quiz at the bottom is the five-question check across the topic — you take it in class tomorrow. The lesson video walks today's Xtensr application slide for slide."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 3 · Day 3 of 4",
+      "heading": "End of Day 3",
+      "todayPoints": [
+        "Applied cameras + facial recognition to alert on unauthorized people and track an adversary's path through Xtensr Labs (EK 2.4.C.1)",
+        "Applied motion detectors paired with cameras to verify a real breach versus a false alarm (EK 2.4.C.2)",
+        "Applied badge entry logs and door-open time to detect piggybacking and tailgating at the vault (EK 2.4.C.3)",
+        "Ran Scenario 2A end to end — every Xtensr attack path mapped to the technique that detects it"
+      ],
+      "nextPoints": [
+        "Review and practice the entire topic — 2.4.A, 2.4.B, and 2.4.C together (LO 2.4.A, 2.4.B, 2.4.C)",
+        "Work a worked review table and a cumulative Xtensr detection plan",
+        "Take the Lesson 2.4 quiz"
+      ],
+      "teaser": "Tomorrow is the payoff: no new content, just putting all three objectives together into one complete detection plan for Xtensr Labs — and then the quiz that proves you own the topic.",
+      "script": "Day 3 done. You've now applied all three of the CED's detection techniques to a real building: facial recognition alerts and footage tracking, motion-plus-camera verification, and badge-log tailgating detection — Scenario 2A run end to end. Tomorrow, Day 4, there's no new content; it's review and practice. We'll build one worked review table covering every method, place, and technique, assemble a complete detection plan for Xtensr Labs that uses all three objectives at once, recap the vocabulary, and then you take the Lesson 2.4 quiz. Review your Guided Notes from all three days — be able to name each technique, its EK, and the attack it catches."
+    }
+  ]
+}

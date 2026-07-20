@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "lessonId": "1.4",
+    "lessonTitle": "Identifying and Correcting Errors",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 1: Creative Development",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO CRD-2.J",
+    "anchor": "Identifying and Correcting Errors",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 1 · Topic 1.4 · Day 2 of 2",
+      "title": "The Three Numbers That Break It",
+      "subtitle": "Testing with defined inputs, hunting at the extremes — how professionals prove a program wrong before their users do",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Identifying and Correcting Errors. Yesterday built the taxonomy — four error types, five hunting tools — and ended with a dare: a grade calculator passed tests at 85, 92, and 74, so should we ship it? Today answers that question with the College Board's testing discipline: testing uses DEFINED inputs with KNOWN expected outcomes, the strongest inputs live at and just beyond the extremes of the input range, and the program's requirements are what make any of it possible. By the end of the period, you'll pick test inputs the way a professional does — to break the program on purpose, before a user breaks it by accident."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Identify inputs and their corresponding expected outputs or behaviors that can be used to check the correctness of a program (LO CRD-2.J)"
+        },
+        {
+          "tag": "CB",
+          "text": "Choose test inputs at and just beyond the extremes — the minimum and maximum — that the program requirements define (LO CRD-2.J)"
+        }
+      ],
+      "script": "Two targets, both from LO CRD-2.J. First: building real test cases — a defined input paired with the output or behavior the program SHOULD produce, so a run can be judged right or wrong. Second: choosing which inputs are worth testing, and the CED's answer is precise — at and just beyond the extremes, the minimum and maximum of the input data, which the program's requirements define. Most of today is diagnosis practice, because on the exam this LO shows up as 'which set of test inputs is best?' — and the bait options are always full of comfortable middle values."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser: a grade calculator averages three scores and prints a letter grade. Its requirements say each score is a whole number from 0 to 100. It works perfectly for 85, 92, and 74.",
+      "subprompt": "Write the three test scores you would type to try to BREAK this program — and for each one, what a correctly built program should do with it. Why those three numbers, and not, say, 60?",
+      "directions": "Be ready to share your thinking.",
+      "script": "Five minutes, on your own — yesterday's dare is due. The requirements hand you the whole answer: whole numbers from 0 to 100. So where do programs break? At the edges: 0, the legal minimum that a sloppy comparison quietly rejects; 100, the legal maximum; and 101 — or negative 1 — one step beyond the range, where a correct program must refuse to average and a broken one cheerfully grades the impossible. Sixty proves nothing that 85 didn't already prove. Notice the second half of the task, and don't skip it: for each input you also wrote what SHOULD happen. An input without its expected outcome isn't a test — that pairing is today's entire lesson."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Testing with Defined Inputs",
+          "description": "Test cases, expected outcomes, and how results drive revision (EK CRD-2.J.1)."
+        },
+        {
+          "title": "Extremes and Requirements",
+          "description": "Choosing inputs at and just beyond the minimum and maximum — and why requirements decide (EK CRD-2.J.2–J.3)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 1.4 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two sections, both green and CB-required. Section one is testing with defined inputs — what a test case is and what happens when one fails. Section two is the exam's favorite: choosing inputs at and just beyond the extremes, and why none of it works without program requirements. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 1.4 Guided Notes page at apcsexamprep.com."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Testing with Defined Inputs",
+      "kicker": "Proving Programs Wrong · Learning Objective CRD-2.J",
+      "script": "Section one. Yesterday ended on the uncomfortable truth that logic errors run in silence — the language will never flag them. Testing is the answer: a human standard of correctness, applied on purpose. But 'testing' doesn't mean typing numbers and hoping. The College Board's definition has moving parts, and each part earns exam points."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO CRD-2.J)",
+      "terms": [
+        {
+          "term": "Test case",
+          "definition": "A defined input paired with the expected output or behavior it should produce, used to check the correctness of an algorithm or program (EK CRD-2.J.1). Appropriate test inputs come from the program requirements (EK CRD-2.F.4)."
+        },
+        {
+          "term": "Extremes",
+          "definition": "The minimum and maximum of a program's input data. Strong test inputs demonstrate the different expected outcomes at or just beyond the extremes (EK CRD-2.J.2), and the program's specification defines the requirements that set them (EK CRD-2.F.5)."
+        },
+        {
+          "term": "Program requirements",
+          "definition": "A description of how a program functions, which may include a description of user interactions the program must provide (EK CRD-2.F.4). Requirements are needed to identify appropriate defined inputs for testing (EK CRD-2.J.3)."
+        }
+      ],
+      "script": "Three terms, and notice how they chain together. A test case is a PAIR: the defined input plus the expected output or behavior — you must know the right answer before you run the program, or the run tells you nothing. The extremes are the minimum and maximum of the input data, and the CED is specific that great test inputs sit at or just beyond them. And program requirements — a Topic 1.3 word coming back to work — are what make both possible: requirements define the range, so requirements tell you where the extremes even are, and what 'expected' means for any input. No requirements, no test cases. That chain is EK CRD-2.J.3, and the exam tests it directly."
+    },
+    {
+      "type": "concept",
+      "heading": "Testing Is a Loop, Not a Victory Lap",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Testing uses DEFINED inputs — chosen on purpose, not typed at random — to ensure the program produces the expected outcomes (EK CRD-2.J.1).",
+        "Every test case is a prediction made in advance: input 0, 0, 0 → expect average 0 and grade F. The prediction comes first; the run confirms it or breaks it.",
+        "Failures are the payoff: programmers use the results from testing to REVISE their algorithms or programs, then test again (EK CRD-2.J.1).",
+        "A passing test proves the program works for THAT input only — the art is choosing the few inputs that speak for all the rest."
+      ],
+      "script": "Four ideas that define testing the CED's way. First, the word DEFINED is doing real work: test inputs are chosen deliberately, each with a job to do — not whatever numbers your fingers land on. Second, the expected outcome is a prediction made BEFORE the run; if you don't know what the right answer should be, running the program can't tell you whether it's correct. Third — and students resist this one — a failing test is a good day. The whole point of the loop is that test results drive revision: run, compare, revise, run again. That's the same iterative development process from Topic 1.3, now with teeth. Fourth, the honest limit: a passing test vouches for one input. Which raises the only question that matters: which few inputs say the most? That's section two.",
+      "capture": [
+        {
+          "q": "Testing uses defined inputs to ensure that a program is producing ______.",
+          "a": "the expected outcomes (EK CRD-2.J.1)"
+        },
+        {
+          "q": "Programmers use the results from testing to ______.",
+          "a": "revise their algorithms or programs — then test again"
+        },
+        {
+          "q": "Before running a test case, you must already know ______.",
+          "a": "the expected output or behavior for that defined input"
+        }
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "Test AT the Extremes — and JUST BEYOND",
+      "subheading": "Defined inputs should demonstrate the different expected outcomes at or just beyond the extremes (minimum and maximum) of the input data.",
+      "left": {
+        "title": "At the extremes",
+        "definition": "The minimum and maximum the requirements allow — legal inputs that must WORK",
+        "ek": "EK CRD-2.J.2",
+        "examples": [
+          "Scores 0 to 100 → test 0 and 100",
+          "Both must produce a correct average and letter grade",
+          "Off-by-one mistakes live here: a check written as 'score > 0' quietly rejects a perfectly legal 0"
+        ]
+      },
+      "right": {
+        "title": "Just beyond the extremes",
+        "definition": "One step outside the range — illegal inputs that must be HANDLED",
+        "ek": "EK CRD-2.J.2",
+        "examples": [
+          "Scores 0 to 100 → test -1 and 101",
+          "Expected behavior comes from the requirements: reject, warn, refuse to average",
+          "A program that grades 101 without complaint fails this test even though it never crashed"
+        ]
+      },
+      "footer": "AP TIP: 'At or just beyond the extremes' is CED wording. Middle-of-the-range inputs make weak tests — the exam expects boundary picks.",
+      "script": "Two families of boundary inputs, two different jobs. At the extremes: the minimum and the maximum are LEGAL values, so the program must handle them perfectly — and this is exactly where off-by-one mistakes hide, a greater-than that should have been greater-than-or-equal, invisible at 85 and fatal at 0. Just beyond the extremes: one step outside the range — negative 1, 101 — is ILLEGAL input, and the expected outcome flips from 'correct answer' to 'correct refusal.' The requirements say what refusal looks like: an error message, a re-prompt, anything but silently grading a 101. Notice both sides demonstrate DIFFERENT expected outcomes — that's the EK's exact phrasing, and it's why four boundary inputs beat forty middle ones.",
+      "capture": [
+        {
+          "q": "Boundary testing targets the edges of the allowed range — meaning ______.",
+          "a": "the smallest and largest legal values, plus one step past each"
+        },
+        {
+          "q": "Strong test inputs demonstrate expected outcomes at or ______.",
+          "a": "just beyond the extremes (EK CRD-2.J.2)"
+        },
+        {
+          "q": "For an input just beyond the range, the expected behavior comes from ______.",
+          "a": "the program requirements — reject or handle it, never process it silently (EK CRD-2.J.3)"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Normal Values Make Good Tests”",
+      "misconception": "Testing means running the program on a few typical, middle-of-the-range inputs — if 85, 92, and 74 all work, the program works.",
+      "whyItHappens": "Typical values are what users type most and what the programmer imagined while coding, so every typical test passes and the passing FEELS like proof. But failures cluster where the programmer stopped imagining — at the edges.",
+      "correction": "Per EK CRD-2.J.2, defined inputs should demonstrate the different expected outcomes at or JUST BEYOND the extremes — the minimum, the maximum, and one step outside each. Middle values re-prove what the programmer already believed; boundary values interrogate what nobody checked.",
+      "example": "The grade calculator that aced 85, 92, and 74: test 0 (legal minimum), 100 (legal maximum), and 101 (just beyond). If the code says 'score > 0' where it needs 'score ≥ 0', only the 0 test will ever catch it.",
+      "script": "Here's the trap that yesterday's teaser was built to spring. Three passing tests at 85, 92, and 74 feel like evidence — but all three inputs live in the same comfortable middle where the programmer's imagination already lived while writing the code. Programs don't break where the author was paying attention; they break at the boundaries nobody re-checked. That's why the CED's testing standard names the extremes explicitly: the minimum, the maximum, and one step beyond each. A greater-than that should be greater-than-or-equal passes every middle-value test forever and fails the very first student who scores a legitimate zero. Middle values flatter the program; boundary values interrogate it."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Reading Requirements, Choosing Inputs",
+      "context": "For each requirement, choose test inputs at the extremes and just beyond them — and say why. The requirements decide what 'expected' means (EK CRD-2.J.2–J.3).",
+      "columns": [
+        "Requirement",
+        "At the extremes",
+        "Just beyond",
+        "Why these inputs"
+      ],
+      "rows": [
+        [
+          "Quiz scores: whole numbers 0–100",
+          "0 and 100",
+          "-1 and 101",
+          "Legal boundaries must produce real grades; out-of-range must be rejected, not averaged"
+        ],
+        [
+          "Movie rating: 1–5 stars",
+          "1 and 5",
+          "0 and 6",
+          "One-step-outside inputs expose a form that accepts any number and corrupts the average"
+        ],
+        [
+          "Password length: 8–16 characters",
+          "8-character and 16-character passwords",
+          "7-character and 17-character passwords",
+          "The extreme is the LENGTH — the requirement defines what property gets measured"
+        ],
+        [
+          "ATM withdrawal: $20–$500",
+          "20 and 500",
+          "19 and 501",
+          "The requirements say what happens just beyond: refuse the transaction with a clear message"
+        ]
+      ],
+      "highlightCol": 3,
+      "script": "Four requirements, four boundary test sets — and the same recipe every time: find the minimum and maximum in the requirement, test both, then step one unit outside each and test again. Row one is the grade calculator, solved: 0 and 100 must grade correctly, negative 1 and 101 must be refused. Row two, the star ratings: 1 and 5 legal, 0 and 6 illegal — and a single accepted 0 silently drags every film's average down. Row three is the one students miss: the extremes aren't always the VALUE of the input — for a password rule, the boundary property is its LENGTH, so the test inputs are passwords of exactly 8, 16, 7, and 17 characters. Row four, the ATM: 20 and 500 succeed, 19 and 501 refuse. In every row, the requirement is what told us the range AND what told us the expected outcome — no requirements, no test plan.",
+      "blanks": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Break It Like a Grader",
+      "subheading": "These map to LO CRD-2.J. Complete on your Guided Notes.",
+      "prompts": [
+        "A ticket site's requirements: orders of 1 to 8 tickets. List the four boundary inputs you would test and the expected behavior for each one.",
+        "A program passed tests at 85, 92, and 74, then crashed on 0 the day it launched. Using yesterday's vocabulary, classify the crash; using today's, name the testing habit that would have caught it early.",
+        "A countdown app accepts a number of days from 1 to 365. A tester adds the input 366 and a teammate objects that 366 'isn't a real input, so testing it is a waste.' Settle the argument, citing what defined test inputs are supposed to demonstrate.",
+        "Why can't you write a single correct test case for a program whose requirements were never written down? Answer in one sentence that uses the word 'expected.'"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 1.4 page.",
+      "script": "Heavy practice block — eight minutes, full sentences, and these four prompts are the whole topic in miniature. One: for 1 to 8 tickets the boundary set is 0, 1, 8, and 9 — legal boundaries succeed, one-step-outside inputs are refused; the expected behavior must be stated for all four. Two connects the days: a crash during execution is a run-time error, and testing at the extremes — score 0 — is the habit that catches it before launch. Three: the teammate is wrong, and EK CRD-2.J.2 is the receipt — defined inputs should demonstrate expected outcomes just beyond the extremes precisely BECAUSE users type impossible things; 366 has an expected outcome, and it's rejection. Four is the J.3 chain: without requirements there is no way to know the expected output for any input, so no run can ever be judged. Answers are reviewed as a class before the traps."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 1.4 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Logic vs. run-time",
+          "text": "A run-time error interrupts execution; a logic error runs fine and produces the WRONG result (EK CRD-2.I.1, I.3). 'It crashed' vs 'it lied' — name which happened."
+        },
+        {
+          "name": "Overflow is an error type here",
+          "text": "On this LO, overflow is one of the four named error types — a number outside the defined range (EK CRD-2.I.4). Expect it as a classification option, not just a Big Idea 2 idea."
+        },
+        {
+          "name": "Test just beyond the extremes",
+          "text": "Test at the min/max AND one step past them (EK CRD-2.J.2). Middle-value-only testing is the distractor."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one is the classification swap: exam writers describe a crash and offer 'logic error' as a choice, or describe a silent wrong answer and offer 'run-time error.' One question sorts them every time — did the program stop, or did it lie? Trap two: overflow belongs to THIS topic's taxonomy. When an error question says a number went outside its defined range, the answer is overflow error, full stop — you don't need the binary mechanics, which arrive in Topic 2.1. Trap three is the boundary rule: when a question asks for the best set of test inputs, scan for the set that hits the minimum, the maximum, and one step beyond. The distractor sets are always plausible-looking middle values — that's the bait, not the answer."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Identifying and Correcting Errors, in One Slide",
+      "points": [
+        "Four error types: logic (runs, behaves incorrectly), syntax (language rules broken, never runs), run-time (fails during execution), overflow (number outside the defined range) (EK CRD-2.I.1–I.4).",
+        "Five ways to find and correct errors: test cases, hand tracing, visualizations, debuggers, adding extra output statements (EK CRD-2.I.5).",
+        "Testing runs defined inputs against expected outcomes — and the results drive revision (EK CRD-2.J.1).",
+        "The strongest test inputs sit at or just beyond the extremes: the minimum and the maximum (EK CRD-2.J.2).",
+        "Program requirements are needed to identify appropriate defined inputs — they decide what 'expected' even means (EK CRD-2.J.3)."
+      ],
+      "next": "Big Idea 2 begins with Topic 2.",
+      "script": "The whole topic in one slide. Four error types, sorted by fingerprint: never ran is syntax, died mid-run is run-time, a number left its range is overflow, ran-fine-but-lied is logic. Five tools hunt them, test cases chief among them — and a test case is always a pair, defined input plus expected outcome, with failures feeding revision. The strongest inputs live at and just beyond the extremes, and the requirements are what define the range and the right answers in the first place. Next class opens Big Idea 2 with Binary Numbers, where the overflow error you can now name becomes arithmetic you can actually do. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide. Any box you can't honestly check tells you exactly what to review on the Topic 1.4 page tonight. Guided Notes are collected at the end of class.",
+      "ican": [
+        "classify a failure as logic, syntax, run-time, or overflow (LO CRD-2.I)",
+        "name the five ways to find and correct an error (LO CRD-2.I)",
+        "choose test inputs at and just beyond the extremes (LO CRD-2.J)",
+        "use program requirements to decide what to test (LO CRD-2.J)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "meta": {
+    "lessonId": "2.1",
+    "lessonTitle": "Binary Numbers",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 2: Data",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO DAT-1.C",
+    "anchor": "Binary Numbers",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 2 · Topic 2.1 · Day 2 of 2",
+      "title": "Reading the Machine's Language",
+      "subtitle": "Binary ↔ decimal in both directions, comparing binary numbers at a glance — the hands-on skill the AP exam tests directly",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Binary Numbers. Yesterday was the why: bits, abstraction, and the cost of finite representation. Today is the how: you learn to read and write binary yourself — both conversion directions, plus comparing and ordering binary numbers — and then we drill it, because this is the most directly tested skill in Big Idea 2. By the end of the period the quiz tomorrow should feel like free points."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Convert a positive integer from decimal to binary AND from binary to decimal using place value (LO DAT-1.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Compare and order binary numbers — with and without full conversion (LO DAT-1.C)"
+        }
+      ],
+      "script": "Two targets today, both from DAT-1.C. First, converting in both directions using one rule — place value. Second, comparing and ordering binary numbers, including the shortcuts that let you do it without fully converting. Everything else today is practice, because this objective is pure skill: the more conversions your hand has done, the more automatic the exam items feel."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Yesterday's teaser: your locker code is 1101 in binary. Three classmates claim it's 13, 1,101, and 5.",
+      "subprompt": "Who's right? Write down how you decided — and what mistake each wrong classmate made.",
+      "directions": "Be ready to share your thinking.",
+      "script": "Pick up yesterday's teaser. The locker code is 1101 in binary, and three classmates say 13, 1,101, and 5. A few minutes on your own: who's right, how do you know, and — the interesting part — what exact mistake did each wrong classmate make? 1,101 is the decimal reflex, reading binary digits as if they were decimal. Five is a place-value slip, dropping the 8s place. Thirteen is right: 8 plus 4 plus 1. If that felt shaky, perfect — today is exactly the practice you need."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 3 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Place Value in Base 2",
+          "description": "The one rule behind every conversion (EK DAT-1.C.1–C.5)."
+        },
+        {
+          "title": "Converting & Ordering",
+          "description": "Both directions worked step by step, plus compare-and-order shortcuts (LO DAT-1.C)."
+        },
+        {
+          "title": "Deep Dive: Hexadecimal",
+          "description": "Why programmers write bits in base 16 — a compact shorthand for long binary strings.",
+          "track": "enrichment"
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 2.1 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: three sections. Two green, CB-required — place value in base 2, then converting and ordering. The third is the blue hexadecimal deep-dive: not required by the College Board, but it makes you faster at reading binary. Keep the packet open; every answer lives on the Topic 2.1 page if you fall behind."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Binary ↔ Decimal Conversion",
+      "kicker": "The Tested Skill · Learning Objective DAT-1.C",
+      "script": "Section three, the hands-on skill. The College Board tests conversion in both directions: given a binary number, find the decimal value; given a decimal number, write it in binary. It is pure mechanics once you see that binary works exactly like the number system you already know — just with a different base."
+    },
+    {
+      "type": "concept",
+      "heading": "Place Value: The Only Rule You Need",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A number base defines how numbers are written: decimal is base 10 (digits 0–9), binary is base 2 (digits 0–1) (EK DAT-1.C.1–C.3).",
+        "In ANY base, each position is worth the base raised to the power of that position, counting from 0 on the right. (EK DAT-1.C.5)",
+        "Decimal 234 = 2×100 + 3×10 + 4×1 — powers of ten. You've used place value your whole life.",
+        "Binary works identically with powers of two: the positions are worth 1, 2, 4, 8, 16, 32, 64, 128, ..."
+      ],
+      "script": "One rule powers everything: place value. In decimal, 234 means two hundreds plus three tens plus four ones — each position worth a power of ten. Binary is the identical system with base 2: each position is worth a power of two, so reading right to left the positions are worth 1, 2, 4, 8, 16, 32, 64, 128, and so on. Every conversion problem on the exam is just this rule applied in one direction or the other. If you can read 234 as hundreds-tens-ones, you already own the concept — we're only swapping the base.",
+      "capture": [
+        {
+          "q": "Binary is base 2 and uses only the digits ______.",
+          "a": "0 and 1"
+        },
+        {
+          "q": "Reading right to left, the binary place values are ______.",
+          "a": "1, 2, 4, 8, 16, 32, 64, 128, and so on (the base raised to the power of the position)"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Both Directions, Worked",
+      "context": "Direction 1: binary → decimal (add the place values under each 1). Direction 2: decimal → binary (subtract the largest power of 2 that fits, repeat).",
+      "columns": [
+        "Step",
+        "Binary → Decimal:  1 1 0 1",
+        "Decimal → Binary:  22"
+      ],
+      "rows": [
+        [
+          "1",
+          "Write place values under the bits:  8 4 2 1",
+          "Largest power of 2 ≤ 22 is 16 → write a 1 there"
+        ],
+        [
+          "2",
+          "Keep the values under each 1:  8, 4, and 1",
+          "22 − 16 = 6. Largest power ≤ 6 is 4 → another 1"
+        ],
+        [
+          "3",
+          "Skip the value under the 0 (the 2)",
+          "6 − 4 = 2. Largest power ≤ 2 is 2 → another 1"
+        ],
+        [
+          "4",
+          "Add them up:  8 + 4 + 1 = 13",
+          "2 − 2 = 0 → fill unused places (8s, 1s) with 0"
+        ],
+        [
+          "5",
+          "1101 (binary)  =  13 (decimal)",
+          "22 (decimal)  =  10110 (binary)"
+        ]
+      ],
+      "highlightCol": 0,
+      "script": "Both directions, side by side. Binary to decimal is the easy direction: write the place values 8-4-2-1 under the bits of 1101, keep the values sitting under each 1 — that's 8, 4, and 1 — skip the value under the 0, and add: thirteen. Decimal to binary runs the same logic backward as repeated subtraction: for 22, the largest power of two that fits is 16, take it and mark that place with a 1; 22 minus 16 leaves 6, the largest power that fits is 4, mark it; 6 minus 4 leaves 2, mark the 2s place; nothing remains, so every unused place — the 8s and the 1s — gets a 0. Read it off: 10110. Two directions, one rule.",
+      "blanks": [
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Binary 11 Is Eleven”",
+      "misconception": "You read a binary number by pronouncing its digits as if they were decimal — so 11 is 'eleven' and 101 is 'one hundred one.'",
+      "whyItHappens": "The digits LOOK identical to decimal digits, and a decade of reading base 10 makes the decimal reading automatic.",
+      "correction": "The digits only have meaning relative to their base. Binary 11 is 2+1 = 3, and binary 101 is 4+0+1 = 5. Always run the place values — never pronounce binary as decimal (EK DAT-1.C.4).",
+      "example": "Exam distractors are built from exactly this reflex: for binary 101, the wrong answers will include 101 ('one hundred one') and 6 (adjacent value) — the right answer, 5, requires the place-value habit.",
+      "script": "The classic trap, and exam writers know it. Binary digits look exactly like decimal digits, so ten years of reading base 10 makes you want to call binary 11 'eleven.' It's three: a 2 plus a 1. Binary 101 isn't one hundred one, it's five: a 4, no 2, and a 1. The fix is a habit, not a fact — every time you meet a binary number, physically write the place values underneath before you do anything else. Multiple-choice distractors are engineered for the students who skip that step."
+    },
+    {
+      "type": "two_column",
+      "heading": "Deep Dive: Why Programmers Love Base 16",
+      "subheading": "Hexadecimal isn't required by the CED — but it's everywhere in real computing, and it makes long binary readable.",
+      "track": "enrichment",
+      "left": {
+        "title": "The problem with raw binary",
+        "definition": "Real values need LOTS of bits, and humans lose their place",
+        "ek": "Deep Dive",
+        "examples": [
+          "A single color is 24 bits: 111111110000000010000000",
+          "Reading or copying that without error is nearly impossible",
+          "We need a compact, lossless shorthand"
+        ]
+      },
+      "right": {
+        "title": "The hexadecimal fix",
+        "definition": "Base 16: one hex digit (0–9, A–F) stands for exactly 4 bits",
+        "ek": "Deep Dive",
+        "examples": [
+          "That same color collapses to FF0080",
+          "You've seen this: #FF0080 is a web color code",
+          "It's still the same bits — just grouped 4 at a time for human eyes"
+        ]
+      },
+      "footer": "Every #RRGGBB color code you've ever seen in a web page is hexadecimal-wrapped binary.",
+      "script": "A deep dive for context — the College Board doesn't require hexadecimal, but you will meet it constantly in real computing. The problem: real values need lots of bits. A single screen color is 24 of them, and no human can read twenty-four 0s and 1s without losing their place. The fix: base 16, where one digit — 0 through 9, then A through F — stands for exactly four bits. That unreadable 24-bit color collapses to FF0080, and suddenly the web color codes you've seen in every style sheet make sense: a hash sign followed by hex-wrapped binary. Same bits, grouped for human eyes.",
+      "capture": [
+        {
+          "q": "One hexadecimal digit stands for exactly ______ bits.",
+          "a": "four"
+        },
+        {
+          "q": "Web color codes like #FF0080 are really ______.",
+          "a": "binary bits written in base 16 for human readability"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Convert Both Ways",
+      "subheading": "These map to LO DAT-1.C. Show your place values on your Guided Notes.",
+      "prompts": [
+        "Convert binary 10110 to decimal. Write the place values under the bits before you add.",
+        "Convert decimal 41 to binary using repeated subtraction of powers of 2. Show each subtraction.",
+        "A classmate says binary 1000 is 'one thousand.' Give the correct value and name the habit that prevents this mistake.",
+        "Without fully converting, order the binary numbers 1010, 111, and 1101 from least to greatest, and explain the place-value shortcut you used."
+      ],
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 2.1 page.",
+      "script": "Conversion practice, six minutes, and the steps matter more than the answers. One: binary 10110 to decimal — place values first, then add; you should land on 22, which you saw built in the worked table. Two: decimal 41 to binary by repeated subtraction — 32 fits, then 8, then 1, giving 101001. Three: the classmate calling binary 1000 'one thousand' — it's eight, and the habit that prevents the mistake is writing place values under every binary number before reading it. Four: order 1010, 111, and 1101 from least to greatest — the shortcut is that more binary digits means a bigger number, and for equal lengths you compare bit by bit from the left, which is LO DAT-1.C part b. Answers are reviewed as a class before the exit."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 2.1 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Overflow vs. round-off",
+          "text": "Overflow is a RANGE failure of fixed-width integers (value too big); round-off is a PRECISION failure of floating-point reals (value too exact to store). Diagnose by asking which limit was hit."
+        },
+        {
+          "name": "Reading binary as decimal",
+          "text": "Binary 11 is 3, never eleven. Physically write the place values under every binary number before you touch the answer choices — the distractors are built from the decimal reflex."
+        },
+        {
+          "name": "Same bits vs. same meaning",
+          "text": "A bit sequence has no built-in type. When a question shows identical bits in two contexts, the answer turns on interpretation, not on the bits changing."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: overflow versus round-off — they are different failures with different causes, and the exam expects you to name the right one. Ask which limit was hit: size or precision. Trap two: the decimal reflex — binary 11 is three. The habit that saves you is writing place values under the bits before reading the choices. Trap three: same bits versus same meaning — bits carry no type of their own, so identical bits in two contexts is a question about interpretation. If you dodge these three, this topic is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Binary Numbers, in One Slide",
+      "points": [
+        "Computers store exactly one thing: bits. Grouped bits represent numbers, text, colors, sound — abstraction (EK DAT-1.A.2–A.6).",
+        "The same bits mean different things in different contexts — the file format is the contract (EK DAT-1.A.7).",
+        "Analog signals enter the digital world by sampling: measurements at regular intervals (EK DAT-1.A.10).",
+        "Fixed bits ⇒ two failure modes: overflow (too big) and round-off (too precise) (EK DAT-1.B.1–B.3).",
+        "Conversion is place value: powers of 2 under the bits, add under the 1s; reverse with repeated subtraction (LO DAT-1.C)."
+      ],
+      "next": "Topic 2.2, Data Compression: now that everything is bits, how do we use FEWER of them? Lossless vs. lossy — and what you're willing to throw away.",
+      "script": "The whole topic in one slide. Computers store bits, and grouped bits represent everything — that's abstraction. The same bits mean different things in different contexts, so the format is the contract. Analog reality gets in by sampling. A fixed number of bits buys you two failure modes: overflow when a value is too big, round-off when it's too precise. And conversion is nothing but place value run in either direction. Next class is Topic 2.2, Data Compression — now that everything is bits, the question becomes how to use fewer of them, and what you're willing to throw away to get there. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide. Any box you can't honestly check tells you exactly what to review on the Topic 2.1 page tonight. Guided Notes are collected at the end of class.",
+      "ican": [
+        "explain how bits represent every kind of data (LO DAT-1.A)",
+        "tell overflow from round-off and name which limit was hit (LO DAT-1.B)",
+        "convert between binary and decimal in both directions (LO DAT-1.C)",
+        "compare and order binary numbers (LO DAT-1.C)"
+      ]
+    }
+  ]
+}

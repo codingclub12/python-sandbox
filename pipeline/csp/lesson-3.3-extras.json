@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "lessonId": "3.3",
+    "lessonTitle": "Mathematical Expressions",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-2.A, AAP-2.B, AAP-2.C"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-2.A, AAP-2.B, AAP-2.C",
+    "intro": "Everything for this topic lives in this folder. Topic 3.3 turns 'a variable holds a value' into 'a program computes values,' so it ships an interactive, auto-graded coding-practice page built on one shared scenario — the Pizza Party Planner. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (algorithms, sequencing, sequential statements and expressions) and Day 2 (arithmetic operators, exact division, MOD, order of operations). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Evaluate the Order Slip and Exercise 2: Fix the Pizza Math (student + answer KEY)",
+      "Discussion — Which Operator, and Why? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.A, AAP-2.B, and AAP-2.C, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the Pizza Party Planner problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-3-mathematical-expressions"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-3-mathematical-expressions-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-3-mathematical-expressions-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-3-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-3-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-3-mathematical-expressions"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: algorithms, sequencing, expressions; Day 2: arithmetic operators, exact division, MOD, order of operations). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice paper cannot do: the coding page runs the Pizza Party Planner problems and checks output against expected values, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.3 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.4 (Strings) begins after the quiz, extending expressions from numbers to text."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Evaluate the Order Slip",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-3-exercise-1",
+    "intro": "You are the planner for a class pizza party, working the numbers by hand before you touch a computer. The order slip below is a worked reference showing how each arithmetic expression evaluates. Your job is to TRACE the arithmetic — evaluate expressions to a single value, apply the order of operations, and tell the / operator (exact value) apart from MOD (remainder). This is the single most tested skill for LO AAP-2.C: read the operators, respect precedence, and never truncate a division on your own.",
+    "scenarioTitle": "Order Slip: 4 Pizzas, 8 Slices Each, 7 Friends",
+    "narrative": "Read the slip top to bottom. For each line, evaluate the expression to one value, applying the order of operations: parentheses first, then *, /, and MOD (which all share the same precedence, evaluated left to right), then + and -. Remember the two operators the party keeps confusing: 32 / 7 gives the exact share (a decimal), while 32 MOD 7 gives the whole-number leftover. Work your own trace on scratch paper before answering Part A.",
+    "log": {
+      "columns": [
+        "Line",
+        "Expression",
+        "Which operator first",
+        "Evaluates to",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "1",
+          "total ← 4 * 8",
+          "* (the only operator)",
+          "32",
+          "4 pizzas × 8 slices = 32 total slices"
+        ],
+        [
+          "2",
+          "share ← 32 / 7",
+          "/ (exact value)",
+          "about 4.57",
+          "the / operator keeps the decimal — this is the exact per-person share"
+        ],
+        [
+          "3",
+          "leftover ← 32 MOD 7",
+          "MOD (remainder)",
+          "4",
+          "32 = 7 × 4 + 4, so 4 slices are left over"
+        ],
+        [
+          "4",
+          "check ← 2 * 8 MOD 5",
+          "left to right: * then MOD",
+          "1",
+          "2 × 8 = 16, then 16 MOD 5 = 1 — MOD ties with * in precedence"
+        ],
+        [
+          "5",
+          "boxed ← (3 + 1) * 8",
+          "parentheses first",
+          "32",
+          "(3 + 1) = 4, then 4 × 8 = 32 — parentheses override the usual order"
+        ]
+      ]
+    },
+    "scenarioNote": "Values follow the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023): / gives the exact value (e.g., 17 / 5 = 3.4) and a MOD b gives the remainder (e.g., 17 MOD 5 = 2), with MOD sharing precedence with * and /.",
+    "predict": "Before you answer Part A, predict in one sentence: for '32 slices shared among 7 friends,' will 32 / 7 and 32 MOD 7 give the same number? Why or why not?",
+    "partALabel": "Part A - Evaluate the Arithmetic",
+    "partA": [
+      {
+        "ek": "EK AAP-2.C.1 / AAP-2.C.3",
+        "pts": 4,
+        "q": "The party is re-sized to 5 pizzas of 8 slices for 6 friends. Write and evaluate the expression for the total number of slices, then the expression for the leftover slices, naming the operator each one uses.",
+        "answer": "Total slices: total ← 5 * 8 evaluates to 40 (multiplication, EK AAP-2.C.1/C.3). Leftover slices: leftover ← 40 MOD 6 evaluates to 4, using the MOD (remainder) operator (EK AAP-2.C.2), because 6 × 6 = 36 with 4 left over. Full credit requires both correct expressions, both values (40 and 4), and naming * for the total and MOD for the leftover."
+      },
+      {
+        "ek": "EK AAP-2.C.2 / AAP-2.C.3",
+        "pts": 4,
+        "q": "Evaluate 17 / 5 and 17 MOD 5. In one sentence each, explain what the result means for '17 slices shared by 5 friends.'",
+        "answer": "17 / 5 = 3.4 (EK AAP-2.C.3): the exact per-person share the / operator gives, keeping the decimal — each friend's fair share is 3.4 slices. 17 MOD 5 = 2 (EK AAP-2.C.2): the remainder, so after everyone takes 3 whole slices, 2 slices are left over on the table. The two operators answer two different questions (exact share vs. amount left over) and give two different values."
+      },
+      {
+        "ek": "EK AAP-2.C.4",
+        "pts": 4,
+        "q": "Apply the order of operations to evaluate 2 * 8 MOD 5. Show the step order, and state why you do NOT compute 8 MOD 5 first.",
+        "answer": "2 * 8 MOD 5 = 1. Steps: * and MOD share the same precedence (EK AAP-2.C.4), so evaluate left to right. First 2 * 8 = 16, then 16 MOD 5 = 1. You do NOT compute 8 MOD 5 first, because MOD does not outrank *; they are equal precedence, and equal-precedence operators are applied left to right. (Computing 8 MOD 5 = 3 first would wrongly give 2 * 3 = 6.)"
+      },
+      {
+        "ek": "EK AAP-2.C.1 / AAP-2.C.4",
+        "pts": 3,
+        "q": "Evaluate 3 + 12 / 4 - 1. Show each step in order and give the single final value.",
+        "answer": "3 + 12 / 4 - 1 = 5. Steps: division outranks + and - (EK AAP-2.C.4), so 12 / 4 = 3 first. The expression becomes 3 + 3 - 1, and + and - are then evaluated left to right: 3 + 3 = 6, 6 - 1 = 5. The whole expression evaluates to the single value 5 (EK AAP-2.C.1)."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.C.3",
+        "pts": 3,
+        "q": "Explain why 17 / 5 does NOT give 3 on the AP reference sheet, and state the value it does give. Then name the operator that would give a whole number related to the split, and say what that number represents.",
+        "answer": "On the AP reference sheet the / operator gives the exact value, keeping the decimal, so 17 / 5 evaluates to 3.4, not 3 — it does not truncate or round on its own (EK AAP-2.C.3). The operator that gives a whole number for the split is MOD: 17 MOD 5 = 2, which represents the number of slices left over after each of the 5 friends takes 3 whole slices (EK AAP-2.C.2). / answers 'how much each,' MOD answers 'how many left over.'"
+      },
+      {
+        "ek": "EK AAP-2.C.2",
+        "pts": 3,
+        "q": "A word problem asks 'how many pizza slices are left over.' Which operator answers it, which operator does NOT, and why?",
+        "answer": "MOD answers it: a MOD b gives the remainder, exactly the amount left over after dividing as many whole times as possible (EK AAP-2.C.2) — e.g., 32 MOD 7 = 4 leftover slices. The / operator does NOT answer it: 32 / 7 gives the exact share (about 4.57), a per-person amount that keeps the decimal (EK AAP-2.C.3), not the count of slices remaining. 'Left over' is a remainder question, so it is a MOD question."
+      },
+      {
+        "ek": "EK AAP-2.C.2",
+        "pts": 2,
+        "q": "ENRICHMENT: EK AAP-2.C.2 requires b to be an integer greater than 0 in a MOD b. Explain what 'the amount left over' would even mean if b were 0, and why the exam rules that case out.",
+        "answer": "a MOD b is the remainder after dividing a into groups of size b (or into b equal groups). If b were 0 there is no group size to divide by — you cannot share slices among 0 friends or into groups of 0 — so 'the amount left over' is undefined, exactly as dividing by zero is undefined in math. That is why EK AAP-2.C.2 assumes a ≥ 0 and b > 0: the operator is only defined when there is a positive divisor to take a remainder against."
+      },
+      {
+        "ek": "LO AAP-2.C",
+        "pts": 0,
+        "q": "Next step: you evaluated these by hand. Now head to the Topic 3.3 page and type and run the harder versions of the Pizza Party Planner, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Fix the Pizza Math",
+    "minutes": "25 minutes",
+    "subtitle": "5 broken expressions - name the goal, pick the operator, fix it",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-3-exercise-2",
+    "intro": "You are reviewing a classmate's Pizza Party Planner, and every calculation below reaches for the wrong operator or breaks the order of operations. For each one, decide WHAT the goal is (a total? a leftover? an exact share?), pick the operator that matches, and write the corrected expression and its value. Vague fixes like 'just divide' score zero — name the operator and show the result.",
+    "standard": "CB Standard (required): the goal + the correct operator (+, -, *, /, or MOD) + the fixed expression and its value, for all 5 items. Enrichment (optional): note the order-of-operations or division-type subtlety at work (EK AAP-2.C.3, C.4).",
+    "methodHeading": "Three-Step Method - use for every item",
+    "method": [
+      [
+        "Step 1 - Name the goal",
+        "Is the answer a running total, an amount subtracted, an exact share, or the amount left over? The goal points straight at the operator."
+      ],
+      [
+        "Step 2 - Pick the operator",
+        "Total of equal groups -> * ; exact share (decimals ok) -> / ; amount left over -> MOD ; combine or reduce -> + and -. Remember / keeps the decimal; MOD gives the remainder."
+      ],
+      [
+        "Step 3 - Check the order of operations",
+        "Parentheses first; then *, /, and MOD (equal precedence, left to right); then + and -. Re-evaluate to make sure the fixed expression produces the value the goal needs."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (order-of-operations and division-type judgment): two ideas cause most arithmetic errors on the exam. First, the single / operator gives the exact value (17 / 5 = 3.4) — it never truncates on its own, so a 'whole number' answer to a division usually means MOD was the operator you actually wanted (EK AAP-2.C.3). Second, MOD shares precedence with * and /, so a chain like 2 * 6 MOD 4 is evaluated left to right, not MOD-first (EK AAP-2.C.4). When you finish, move to the Topic 3.3 coding page to run the corrected Pizza Party Planner and confirm each value.",
+    "fields": [
+      "What is the goal, and which operator matches it (+, -, *, /, MOD):",
+      "The corrected expression and its single value:",
+      "Enrichment — the order-of-operations or division-type subtlety:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Goal: the TOTAL number of slices from 4 pizzas cut into 8 slices each. The planner wrote: total ← 4 + 8, and got 12.",
+        "key": {
+          "signs": "The goal is a total made of equal groups — 4 groups of 8 slices. Equal groups combined is multiplication, not addition (EK AAP-2.C.1).",
+          "mechanism": "Fix the operator to *: total ← 4 * 8 evaluates to 32. Addition (4 + 8 = 12) just adds the two numbers once; it does not account for 8 slices in each of the 4 pizzas. The correct total is 32 slices.",
+          "subtype": "The tell is the phrase 'each' — '8 slices each' across 4 pizzas is repeated addition, which is exactly what * expresses. Any 'per group, how many groups' total is a multiplication."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "Goal: the LEFTOVER slices when 26 slices are shared equally among 5 friends. The planner wrote: leftover ← 26 / 5, and reported 5.2 slices left over.",
+        "key": {
+          "signs": "'Leftover' is a remainder question, and a remainder is a whole number of slices — 5.2 slices cannot be 'left over.' The / operator gives an exact share, not a remainder.",
+          "mechanism": "Fix the operator to MOD: leftover ← 26 MOD 5 evaluates to 1, because 5 × 5 = 25 with 1 to spare (EK AAP-2.C.2). The 26 / 5 = 5.2 the planner computed is the exact per-person share (EK AAP-2.C.3), which answers a different question.",
+          "subtype": "Any answer to 'how many are left over' must be a whole-number remainder; a decimal result is the signature of using / when MOD was needed."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "Goal: each friend's EXACT share when 26 slices are split among 5 friends, fractional slices allowed. The planner wrote: share ← 26 MOD 5, and reported a share of 1.",
+        "key": {
+          "signs": "An 'exact share' with fractional slices allowed is a division question, and MOD only ever returns the leftover, not the share. A share of 1 slice for 26 slices among 5 friends is obviously too small.",
+          "mechanism": "Fix the operator to /: share ← 26 / 5 evaluates to 5.2 (EK AAP-2.C.3), the exact per-person share with the decimal kept. The 26 MOD 5 = 1 the planner computed is the leftover after whole slices are handed out (EK AAP-2.C.2), not the share.",
+          "subtype": "This is the mirror image of item 2: exact share is always /, leftover is always MOD. Deciding which QUESTION is being asked is what selects the operator."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "Goal: evaluate 2 * 6 MOD 4 correctly. The planner insists the answer is 4, computing 6 MOD 4 = 2 first and then 2 * 2.",
+        "key": {
+          "signs": "The planner treated MOD as higher precedence than *, doing MOD first. But MOD and * share the same precedence (EK AAP-2.C.4), so they must be evaluated left to right.",
+          "mechanism": "Evaluate left to right: 2 * 6 = 12 first, then 12 MOD 4 = 0. The corrected value is 0, not 4. Doing 6 MOD 4 first violates the equal-precedence, left-to-right rule and produces the wrong value.",
+          "subtype": "When *, /, and MOD appear in a chain, precedence alone does not decide the order — position does. Scan left to right and apply each tied operator in turn."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "Goal: evaluate 17 / 5 on the AP reference sheet. The planner claims 17 / 5 = 3, reasoning that 'code always drops the decimal.'",
+        "key": {
+          "signs": "The claim assumes the / operator truncates, but on the AP reference sheet a single / gives the exact value (EK AAP-2.C.3). The reasoning ('code always drops the decimal') is the misconception, not a rule.",
+          "mechanism": "Correct value: 17 / 5 = 3.4. The single-slash operator keeps the fractional part; it does not round or chop on its own. If the planner actually wanted the whole-number leftover (2), that would be 17 MOD 5, a different operator (EK AAP-2.C.2).",
+          "subtype": "Some languages have a separate integer-division operator that does drop the decimal, but it is not the reference-sheet /. On the exam, a single / is always exact."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Which Operator, and Why?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 2) + Closing (Day 2)",
+    "overview": "A program computes exactly what its operators tell it to — and the two operators students confuse most, / and MOD, look almost identical on paper yet answer completely different questions. Across three short windows, your group will argue about why the order of steps is part of an algorithm, decide which operator a real word problem is really asking for, and settle the '17 / 5 is 3' misconception that costs points every May.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your shuffled tip steps only worked in one order. What exactly broke when a step ran too early, and what does that show about the difference between a set of facts (order-free) and an algorithm (order-critical)?"
+          },
+          {
+            "text": "Question 2. The AP exam writes code in pseudocode rather than Python or Java. Who benefits from a language-neutral notation, and what does that choice tell you about what the exam is actually testing — the logic or the punctuation?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 2, ~6 min, after the MOD worked table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-question test",
+            "text": "For a split like '17 slices among 5 friends,' there is one question that decides whether you reach for / or MOD. In one sentence your whole group agrees on, write that question, and state what each answer tells you to use.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Find a split that fights back",
+            "text": "Debate for about 3 minutes: invent a real-world 'sharing' situation where your group must decide between / (exact share) and MOD (leftover), and where a careless reader would pick wrong. Record the situation, both defensible readings, and the phrase in the problem that settles it.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The division that fools everyone",
+            "text": "Consider: on the AP reference sheet, 17 / 5 evaluates to 3.4, and 17 MOD 5 evaluates to 2. Many students say 17 / 5 = 3. As a group, write the clearest one-paragraph explanation you can of why 17 / 5 is 3.4 (not 3) and why MOD is a separate operator giving 2 — one a nervous classmate would actually understand, using the words 'exact value' and 'remainder.' Then invent one more expression that would fool the same person, and give its correct value.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the '17 / 5 = 3' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

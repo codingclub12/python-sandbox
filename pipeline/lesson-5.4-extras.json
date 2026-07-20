@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "lessonId": "5.4",
+    "lessonTitle": "Asymmetric Encryption",
+    "unit": "Unit 5: Securing Applications and Data",
+    "days": 5,
+    "los": "LO 5.4.A, 5.4.B, 5.4.C"
+  },
+  "map": {
+    "subtitle": "Unit 5: Securing Applications and Data   •   5 days   •   LO 5.4.A, 5.4.B, 5.4.C",
+    "intro": "Everything for this lesson lives in this folder. Here is how the three surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Days 1–5 (speaker notes on every slide: timing, cold-call prompts, misconception alerts)",
+      "Teacher Guide (pacing with QOTD warm-ups, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Days 1–5 (student fill-in + answer KEY)",
+      "Exercise 1: Which Key? Identifier and Exercise 2: Key Management Advisor (student + answer KEY)",
+      "Discussion — Two Keys, No Secret Handshake (2-part: Opening Day 1, Closing Day 4)",
+      "Quiz (student + answer KEY — key B-D-B-A-C-B-A-D-C, canonical in the Day-1 master JSON)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-cybersecurity-unit-5-asymmetric-encryption"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-4-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-4-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-4-quiz"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the daily instruction you project and teach from (Day 1 key pairs and which key to use, Day 2 protecting and replacing the private key, Day 3 keyspace math, Day 4 RSA/ECC and OpenSSL, Day 5 the encrypt-and-send lab).",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site.",
+      "Website = student practice that paper cannot do: instant grading, per-answer feedback, and mastery tracking. The student versions of the exercises and quiz live online; the answer keys stay with you and the site never displays them.",
+      "Naming: the CED topic is 'Asymmetric Encryption'; the slide deck title is 'Two Keys, No Secret Handshake'; the unit hub lists this lesson as 'Public-Key Cryptography.' All refer to this lesson."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Which Key? Identifier",
+    "minutes": "~20 min",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-4-exercise-1",
+    "intro": "You are a security analyst auditing how a team uses asymmetric encryption. For each scenario in the log, decide WHICH key (whose, public or private) does the encrypting, decrypting, signing, or verifying — and why. Part A works the log row by row; Part B extends the same skills. Everything maps to CB Learning Objectives 5.4.A, 5.4.B, and 5.4.C.",
+    "scenarioTitle": "Key-Use Log: Five Asymmetric Operations",
+    "narrative": "Devon is the receiver who generated a public/private key pair; Mara is a sender. Five operations crossed your desk this week. For each one, the log records the goal, whose key was used, whether that key is public or private, and the resulting action. Read the log row by row, then answer Part A. Use the one rule: to send a secret, encrypt with the RECEIVER'S PUBLIC key; only the matching private key decrypts.",
+    "log": {
+      "columns": [
+        "ID",
+        "Goal",
+        "Whose key",
+        "Public or private",
+        "Resulting action"
+      ],
+      "rows": [
+        [
+          "1",
+          "Mara sends Devon a confidential file",
+          "Devon's key",
+          "Public",
+          "Mara encrypts the file with Devon's published public key"
+        ],
+        [
+          "2",
+          "Devon reads Mara's file",
+          "Devon's key",
+          "Private",
+          "Only Devon, holding the matching private key, can decrypt it"
+        ],
+        [
+          "3",
+          "Devon proves a notice came from Devon",
+          "Devon's key",
+          "Private",
+          "Devon encrypts with the private key; anyone's copy of the public key unlocks it"
+        ],
+        [
+          "4",
+          "Mara verifies the notice is really Devon's",
+          "Devon's key",
+          "Public",
+          "Mara decrypts the signature with Devon's public key, proving authorship"
+        ],
+        [
+          "5",
+          "An intern's private key is stolen from a laptop",
+          "Intern's key",
+          "Private",
+          "Delete the whole pair and generate a new one"
+        ]
+      ]
+    },
+    "scenarioNote": "Operations follow the College Board AP Cybersecurity Course and Exam Description (Effective Fall 2026); the signing rows (3–4) use the enrichment 'either key can encrypt' property of that seeds digital signatures.",
+    "predict": "Before you answer Part A, write one sentence: of the five operations, which one is most often done with the WRONG key by mistake, and what is the single rule that fixes it?",
+    "partALabel": "Part A - Key-Use Identification",
+    "partA": [
+      {
+        "ek": "EK 5.4.A.4",
+        "pts": 6,
+        "q": "For operations 1 and 2 (Mara sends, Devon reads), state for EACH exactly whose key is used and whether it is public or private, and explain why the receiver's key pair — not the sender's — drives both choices.",
+        "answer": "Operation 1: Mara encrypts with DEVON'S PUBLIC key — the receiver's published key. Operation 2: Devon decrypts with DEVON'S PRIVATE key — the matching secret. Both choices use Devon's pair because Devon is the RECEIVER: EK 5.4.A.2 says whoever receives data generates the pair, and EK 5.4.A.4 says the sender uses the receiver's public key to encrypt so only the receiver's private key can decrypt. Mara's own keys never touch this message; using her own private key (a common error) would let anyone with her public key read it, defeating confidentiality."
+      },
+      {
+        "ek": "EK 5.4.A.2 / EK 5.4.A.3",
+        "pts": 4,
+        "q": "Operation 5 reports that an intern's private key was stolen. State the correct CED response and explain why re-encrypting the stolen key or simply 'changing the public key' is wrong.",
+        "answer": "Per EK 5.4.A.3 the only correct response is to DELETE the entire key pair and GENERATE a new pair, because the security of the whole algorithm rests on the private key staying secret. Re-encrypting the stolen private key does nothing — the attacker already has the plaintext key — and you cannot 'rotate' or swap the public key while keeping the compromised private key, because the two are mathematical inverses (EK 5.4.A.2): a public key only works with its own original private partner. Once the private half is exposed the pair is dead."
+      },
+      {
+        "ek": "EK 5.4.C.1",
+        "pts": 4,
+        "q": "Operations 3 and 4 are a digital signature, the reverse of the normal send-a-secret direction. Explain which key Devon uses to SIGN, which key Mara uses to VERIFY, and why this proves Devon — not someone else — authored the notice.",
+        "answer": "Devon SIGNS by encrypting with DEVON'S PRIVATE key (the reverse direction, valid because the keys are mathematical inverses, EK 5.4.A.2). Mara VERIFIES by decrypting with DEVON'S PUBLIC key. Because only Devon holds the private key, the fact that Devon's public key successfully unlocks the notice proves it could only have been locked by Devon's private key — that is authenticity, the core of digital signatures (EK 5.4.C.1). Note this gives authorship, not secrecy: everyone has the public key, so anyone can read it."
+      },
+      {
+        "ek": "EK 5.4.A.3",
+        "pts": 4,
+        "q": "Across the whole log, the public key appears in operations 1, 3, and 4 while the private key appears in 2, 3, and 5. State the one-sentence rule about which key must be published and which must be guarded, and why exposing the public key is harmless.",
+        "answer": "Per EK 5.4.A.3 the PUBLIC key is published for anyone to view and use, while the PRIVATE key must be stored securely because the algorithm's security rests entirely on it. Publishing the public key is harmless — that is its purpose: senders need it to encrypt to the owner (op 1) and verifiers need it to check signatures (op 4). What an adversary can do with a public key is exactly what a legitimate sender does, nothing more; only the matching private key can decrypt or sign, so guarding the private key (ops 2, 3, 5) is what keeps the system secure."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK 5.4.A.1",
+        "pts": 3,
+        "q": "Why can Mara and Devon exchange a confidential file even if they have NEVER met and share no password, when symmetric encryption could not even start?",
+        "answer": "Per EK 5.4.A.1 asymmetric encryption lets users communicate securely without prearranging a shared secret key. Devon simply publishes a public key the whole world can see; Mara grabs it and encrypts. Symmetric encryption cannot start because both parties would first need the same secret key, and they have no safe channel to agree on one — that key-exchange problem is exactly what the public/private pair removes."
+      },
+      {
+        "ek": "EK 5.4.C.1",
+        "pts": 3,
+        "q": "Your browser trusts a website's identity using a digital certificate. Connect that to the 'encrypt with the private key' idea and name the two CED asymmetric algorithms that make it possible.",
+        "answer": "A digital certificate works on the same reverse-direction idea as a signature: the site (or its certificate authority) signs with its private key, and anyone can verify with the matching public key, proving the certificate is authentic (EK 5.4.C.1). The two common asymmetric algorithms the CED names for this are RSA and elliptic curve cryptography (ECC); both power digital signatures and digital certificates."
+      },
+      {
+        "ek": "Enrichment",
+        "pts": 2,
+        "q": "ENRICHMENT: A team encrypts with the receiver's public key for confidentiality. Name one OTHER security goal the SAME key pair can serve and which key direction achieves it.",
+        "answer": "The same pair can provide authenticity (a digital signature): the sender encrypts with their OWN private key and anyone verifies with the sender's public key, proving who sent it. Public-key-to-lock gives confidentiality; private-key-to-lock gives authenticity — one pair, two goals (EK 5.4.A.2 inverse property, applied in EK 5.4.C.1). Integrity/non-repudiation also earns credit."
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Key Management Advisor",
+    "minutes": "~20 min",
+    "subtitle": "3 clients - Three-Step Method",
+    "online": "apcsexamprep.com/pages/ap-cyber-unit-5-lesson-4-exercise-2",
+    "intro": "You are a key-management consultant. Three clients need advice on storing private keys, responding to compromise, and choosing key length. For each client, decide what must be guarded versus published, give the CED-correct compromise response, and justify any key-length choice BY. Vague 'use strong encryption' advice scores zero.",
+    "standard": "CB Standard (required): correct key-storage/compromise response + key-length reasoning for all 3. Enrichment (optional): name the algorithm/tool sub-type (RSA, ECC, OpenSSL, etc.).",
+    "methodHeading": "Three-Step Method - use for every client",
+    "method": [
+      [
+        "Step 1 - What is guarded vs. published?",
+        "State which key must be stored securely (private) and which is published for anyone (public). The security of the whole algorithm rests on the private key."
+      ],
+      [
+        "Step 2 - Compromise response",
+        "If a private key is exposed, shared, stolen, corrupted, or compromised: delete the whole key pair and generate a new one. Never re-encrypt or reuse it."
+      ],
+      [
+        "Step 3 - Key-length choice + justify",
+        "Use keyspace 2^n and average guesses 2^(n−1); longer is more secure but slower; recommendations rise over time; compare lengths only within one algorithm."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment sub-types: RSA = the classic factoring-based asymmetric algorithm. ECC = elliptic curve cryptography, smaller keys for comparable strength. OpenSSL = command-line tool to generate pairs and encrypt/decrypt. Specialized software (e.g. The open-source RSA Encryption Tool) and web-based tools are the other two tool categories.",
+    "fields": [
+      "Guarded vs. Published (which key, why) []:",
+      "Compromise response (what to do) []:",
+      "Key-length choice + justification []:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "A small startup just generated its first RSA key pair to receive encrypted customer files. The intern emailed BOTH the public.pem and the rsa.pem files to the whole team 'so everyone has them.' The CTO asks you what went wrong and what to do now.",
+        "key": {
+          "signs": "Guarded vs. published: public.pem (the public key) is fine to share — that is its purpose (EK 5.4.A.3). rsa.pem contains the PRIVATE key and must be stored securely; emailing it to the whole team exposed it.",
+          "mechanism": "Compromise response (EK 5.4.A.3): the private key was exposed, so the pair must be DELETED and a NEW pair generated; you cannot 'unsend' it or keep using rsa.pem. Re-publish only the new public key. Key length: a current 2048-bit RSA key is the CED's example (EK 5.4.C.3); recommendations rise over time (EK 5.4.B.4), so document a plan to move to 4096-bit later — and never compare those RSA bits to an AES key (EK 5.4.B.5).",
+          "subtype": "RSA via OpenSSL — the rsa.pem / public.pem files come from 'openssl genrsa' and 'openssl rsa -pubout' (EK 5.4.C.3)."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A hospital stores patient records and is choosing an RSA key length. The security officer says 'just use a 1024-bit key — it was the standard when we built the old system, and a bigger key only slows us down for no reason.' Records must stay confidential for decades.",
+        "key": {
+          "signs": "Guarded vs. published: the hospital's RSA private key must be stored securely (HSM / access-controlled), public key published to senders (EK 5.4.A.3).",
+          "mechanism": "Key-length choice (EK 5.4.B): 1024 is too short today. Processing power keeps improving, so recommended lengths are periodically RAISED (EK 5.4.B.4) — a length safe years ago can be broken now. Each added bit DOUBLES the keyspace 2^n (EK 5.4.B.1) and the average 2^(n−1) guesses to brute-force (EK 5.4.B.2), so move to at least 2048-bit, ideally 4096-bit for decades of confidentiality. Yes, longer keys are slower to encrypt/decrypt (EK 5.4.B.3), but for at-rest records that trade-off is worth it. Compromise: if the private key is ever stolen, delete the pair and regenerate (EK 5.4.A.3).",
+          "subtype": "RSA (or ECC for smaller keys at comparable strength, EK 5.4.C.1). Trap: do NOT justify by comparing the RSA bit count to AES — comparison is valid only within one algorithm (EK 5.4.B.5)."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Challenge",
+        "text": "A consultant tells a client: 'Our RSA 2048-bit key is weaker than our AES 256-bit key, so let's bump RSA to 4096 to beat AES — and since the private key might leak someday, we pre-encrypted a backup copy of it with the public key for safety.' The client asks you to audit both claims.",
+        "key": {
+          "signs": "Guarded vs. published: the RSA private key must be stored securely; the public key is published (EK 5.4.A.3). A 'pre-encrypted backup of the private key' still IS the private key — it must be guarded, not casually stored.",
+          "mechanism": "Both claims are wrong. Claim 1 (key length): you CANNOT compare RSA 2048 to AES 256 by bit count — comparison is valid only within the same algorithm (EK 5.4.B.5). RSA 4096 is more secure than RSA 2048 (EK 5.4.B.1–B.2), but 'beating AES' by bits is meaningless. Claim 2 (compromise prep): encrypting the private key with the public key does NOT make leakage safe — if the private key is ever exposed/stolen, EK 5.4.A.3 requires deleting the pair and generating a new one, period; you never re-encrypt a compromised private key to keep using it.",
+          "subtype": "RSA vs. AES is the classic cross-algorithm trap (EK 5.4.B.5); ECC would let the client use a SHORTER key for comparable strength (EK 5.4.C.1). Tools: OpenSSL, specialized software, or web-based (EK 5.4.C.2)."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Two Keys, No Secret Handshake",
+    "minutes": "~17 min total - 2 parts - Opening (Day 1) + Closing (Day 4)",
+    "overview": "Asymmetric encryption solves a problem symmetric encryption cannot even start: how two strangers exchange a secret with nothing agreed in advance. But its power rests on one fragile thing — the private key. Across two short windows in this lesson, your group will reason about why publishing one key while guarding another is safe, debate how long a key should be when both security and speed matter, and decide what an analyst should conclude when a private key is compromised.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~8 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. You can hand your public key to the entire world — post it on a website, print it on a flyer — and your messages stay safe. Why does giving away one of your two keys NOT weaken the system, when giving away the other would destroy it completely?"
+          },
+          {
+            "text": "Question 2. Asymmetric encryption lets two strangers who share no secret communicate securely. Where in your own life does some version of this already happen — a 'public thing everyone sees' plus a 'private thing only you hold'? Defend one concrete example."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 3, ~8 min, right after the keyspace-math debrief",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The doubling that wins the race",
+            "text": "Each added bit DOUBLES the keyspace (2^n) and the average guesses to crack it (2^(n−1)). In one sentence your whole group agrees on, explain why adding even a handful of bits beats an attacker who just buys a faster computer.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Longer always better?",
+            "text": "Debate for about 3 minutes: longer keys are more secure but slower (B.3), and you cannot compare an RSA key to an AES key by bit count (B.5). When is a longer key clearly worth the speed cost, and when is reaching for 'the biggest number' actually a mistake? Record your group's rule of thumb and one reason.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 4, ~9 min, after the OpenSSL walkthrough",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The 'one stolen key' case",
+            "text": "A company kept its public key online and its private key on a guarded server — then an attacker copied the private key off that server. Design the response: which single CED action must they take, why does re-encrypting or 'rotating just the public key' NOT work, and when an analyst learns a PRIVATE key leaked, what should they conclude about every message ever sent to that pair?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (action + one-sentence justification):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}
