@@ -1,0 +1,605 @@
+{
+  "meta": {
+    "lessonId": "3.3",
+    "lessonTitle": "Mathematical Expressions",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 1,
+    "totalDays": 2,
+    "los": "LO AAP-2.A, LO AAP-2.B",
+    "anchor": "Mathematical Expressions",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.3 · Day 1 of 2",
+      "title": "From Idea to Ordered Steps",
+      "subtitle": "Before a program calculates anything, it is an algorithm — a finite set of steps in a deliberate order. Today: what an algorithm is, the three constructs every one is built from, and how sequential statements and expressions turn steps into code",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Topic 3.3, Mathematical Expressions, over two days. It is tempting to jump straight to the arithmetic, but the exam tests something more basic first: what an algorithm is and how it becomes ordered code. So Day 1 answers two questions. First, what is an algorithm, how can it be expressed, and what three building blocks is every algorithm made of. Second, how do we turn those steps into sequential code statements and expressions — pieces of code that each evaluate to a single value. Tomorrow, Day 2, we make the expressions calculate: the arithmetic operators, MOD, and the order of operations."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Describe what an algorithm is and express one using natural language, a diagram, or pseudocode, knowing every algorithm is built from sequencing, selection, and iteration (LO AAP-2.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Represent a step-by-step process as sequential code statements that execute in the order they are written (LO AAP-2.B)"
+        },
+        {
+          "tag": "CB",
+          "text": "Identify the parts of an expression and explain that every expression evaluates to a single value using a defined order of operations (LO AAP-2.B)"
+        }
+      ],
+      "script": "Three targets today, from two learning objectives. From AAP-2.A: describe what an algorithm is, express one without any programming language, and name the three constructs every algorithm combines. From AAP-2.B, two targets: represent a process as sequential statements that run in the order written, and identify the parts of an expression, knowing an expression always evaluates to one value. Everything here is the foundation the arithmetic sits on tomorrow."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Here are five instructions for figuring a 20% tip and total on a $40 meal, but they are SHUFFLED: (1) DISPLAY the total. (2) Set bill to 40. (3) Set total to bill plus tip. (4) Set tip to bill times 0.2. (5) (there is only one order that actually works.)",
+      "subprompt": "Write the four real steps in the ONLY order that produces the right answer. Then, in 2–3 sentences: what went wrong if you tried to compute 'total' before 'tip' existed? What does that tell you about whether the order of steps is part of the instructions or just decoration?",
+      "directions": "Be ready to defend your ordering line by line.",
+      "script": "Five minutes with a partner. The steps for a tip calculation are shuffled, and only one order works: you cannot set the total until the tip exists, and you cannot compute the tip until the bill exists. Have students write the correct order and then articulate what broke when a step ran too early — the value it needed had not been produced yet. That is the whole idea of sequencing, and they will have invented it: an algorithm is not just a bag of steps, it is steps in a specific order. Hold onto the ordered list; it is exactly what AAP-2.A and AAP-2.B formalize."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 1 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Algorithms and Sequencing",
+          "description": "What an algorithm is, the ways it can be expressed, and the three constructs every algorithm combines (EK AAP-2.A.1–A.4)."
+        },
+        {
+          "title": "Sequential Code and Expressions",
+          "description": "Statements that run in order, and expressions that evaluate to a single value (EK AAP-2.B.1–B.7)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Two sections in today's Guided Notes, both green and CB-required: algorithms and sequencing first, then sequential code and expressions. Keep the packet open and fill it in as we go; a digital copy lives on the Topic 3.3 Guided Notes page for anyone absent. Topic 3.3 also has interactive coding practice on the site, where these expressions can be typed and run once we reach the arithmetic tomorrow."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Algorithms and Sequencing",
+      "kicker": "What an Algorithm Is · Learning Objective AAP-2.A",
+      "script": "Section one. Your bell-ringer tip calculation only worked in one order — that was no accident. Before a program is code, it is an algorithm: a finite set of steps arranged in a deliberate sequence. The College Board is precise about what an algorithm is, how it can be written, and the small set of pieces every algorithm is built from."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.A)",
+      "terms": [
+        {
+          "term": "Algorithm",
+          "definition": "A finite set of instructions that accomplish a specific task; it can be written in natural language, as a diagram, or in pseudocode (EK AAP-2.A.1)."
+        },
+        {
+          "term": "Pseudocode",
+          "definition": "A structured, language-like way of writing an algorithm's steps that is not tied to any one programming language — the notation the AP exam reference sheet uses (EK AAP-2.A.2)."
+        },
+        {
+          "term": "Sequencing",
+          "definition": "Carrying out each step of an algorithm in the exact order the statements are given — one of the three constructs every algorithm uses (EK AAP-2.A.4)."
+        },
+        {
+          "term": "Selection",
+          "definition": "Choosing which steps to run based on whether a condition is true or false; the second of the three constructs (EK AAP-2.A.4)."
+        },
+        {
+          "term": "Iteration",
+          "definition": "Repeating a portion of an algorithm; the third construct, alongside sequencing and selection (EK AAP-2.A.4)."
+        }
+      ],
+      "script": "Five words. An algorithm is a finite set of instructions for a specific task — finite matters, it has to stop. Pseudocode is a structured, language-neutral way to write those steps, and it is exactly what the AP reference sheet uses, which is why the exam can test code without picking a language. The last three — sequencing, selection, and iteration — are the constructs from which every algorithm is built: doing steps in order, choosing among steps, and repeating steps. We live in sequencing today; selection and iteration get their own topics later, but the College Board names all three here."
+    },
+    {
+      "type": "concept",
+      "heading": "What an Algorithm Is",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "An algorithm is a FINITE set of instructions that together accomplish one specific task (EK AAP-2.A.1).",
+        "The same algorithm can be expressed in several forms with no programming language at all — natural language, diagrams, and pseudocode (EK AAP-2.A.2).",
+        "To be executed by a computer, an algorithm is implemented using a programming language (EK AAP-2.A.3).",
+        "Every algorithm, however complex, is put together by combining sequencing, selection, and iteration (EK AAP-2.A.4)."
+      ],
+      "script": "Four ideas the exam builds on. One: an algorithm is finite — a limited set of instructions for one specific task, and being finite means it eventually stops rather than running forever. Two: the same algorithm can be written several ways with no programming language at all — plain English, a flowchart, or pseudocode. Three: to actually run on a computer, it has to be implemented in some programming language. Four, and this is the one the exam loves as a true-or-false trap: every algorithm, no matter how large, is built by combining just three constructs — sequencing, selection, and iteration. Nothing else is needed.",
+      "capture": [
+        {
+          "q": "Describing an algorithm as 'finite' guarantees that it ______.",
+          "a": "eventually stops after a limited number of steps rather than running forever"
+        },
+        {
+          "q": "The difference between EXPRESSING an algorithm and IMPLEMENTING it is that implementing requires ______.",
+          "a": "a specific programming language the computer can execute"
+        },
+        {
+          "q": "Sequencing, selection, and iteration matter because every possible algorithm can be built by ______.",
+          "a": "combining just those three constructs, no matter how complex the task"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Sequencing",
+      "heading": "One Algorithm, Written as Code",
+      "caption": "The 'cost of 2 adult and 3 child tickets' algorithm, as exam pseudocode and as runnable Python.",
+      "pseudocode": "adultPrice ← 12\nchildPrice ← 8\ntotal ← adultPrice * 2 + childPrice * 3\nDISPLAY(total)",
+      "python": "adultPrice = 12\nchildPrice = 8\ntotal = adultPrice * 2 + childPrice * 3\nprint(total)",
+      "output": "48",
+      "script": "Here is a natural-language algorithm — buy two adult tickets at twelve and three child tickets at eight, then show the total — written as code in two columns. Left is exam pseudocode with the left-arrow for assignment; right is runnable Python. Read it top to bottom: set the two prices, then compute the total, then display it. Notice the third line already sneaks in order of operations — the multiplications happen before the addition, giving twenty-four plus twenty-four, forty-eight. That evaluation order is exactly what we make precise in section two and again tomorrow."
+    },
+    {
+      "type": "two_column",
+      "heading": "Express It vs Implement It",
+      "subheading": "An algorithm can be described with no programming language; it becomes a runnable program only when implemented in one (EK AAP-2.A.2–A.3).",
+      "left": {
+        "title": "Expressing an algorithm",
+        "definition": "Describing the steps in a form humans can plan and reason about",
+        "ek": "EK AAP-2.A.2",
+        "examples": [
+          "Natural language: 'add the two prices, then double the result'",
+          "A diagram or flowchart of the steps",
+          "Pseudocode — structured, but tied to no language"
+        ]
+      },
+      "right": {
+        "title": "Implementing an algorithm",
+        "definition": "Writing the steps in a real language so a computer can run them",
+        "ek": "EK AAP-2.A.3",
+        "examples": [
+          "Python, JavaScript, Java — an actual programming language",
+          "Now it can be executed and produce output",
+          "The same algorithm can be implemented in many languages"
+        ]
+      },
+      "footer": "AP TIP: On the exam you read and write PSEUDOCODE, never a specific language's syntax — that is exactly why the reference sheet exists.",
+      "script": "An important distinction. Expressing an algorithm means describing its steps in a form people can plan with — plain language, a diagram, or pseudocode — and none of those require a programming language. Implementing it means writing it in a real language, like Python, so a computer can execute it and produce output. The same algorithm can be implemented in many different languages and it is still the same algorithm. This is why the AP exam uses pseudocode: it tests the algorithm, not whether you memorized one language's punctuation.",
+      "capture": [
+        {
+          "q": "The reason the AP exam uses pseudocode instead of one real language is that pseudocode is ______.",
+          "a": "not bound to any single programming language, so it stays language-neutral"
+        },
+        {
+          "q": "An algorithm has to be IMPLEMENTED in a programming language whenever the goal is to ______.",
+          "a": "have a computer actually run the steps"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Algorithms",
+      "subheading": "These map to LO AAP-2.A. Complete on your Guided Notes.",
+      "prompts": [
+        "In your own words, define 'algorithm' and give one everyday (non-computing) example that fits the definition. Explain why it qualifies.",
+        "Name the three constructs from which every algorithm can be built, and give a one-line description of each.",
+        "A classmate says pseudocode is 'just Python with the semicolons removed.' Correct this: what is pseudocode really for, and why does the AP exam use it instead of a specific language?"
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.3 page.",
+      "script": "Stop and think, six minutes, full sentences on the Guided Notes. One: define algorithm and give an everyday example — a recipe, driving directions — and say why it fits: finite steps, specific task. Two: name and briefly describe the three constructs, sequencing, selection, iteration. Three: correct the pseudocode misconception — pseudocode is a language-neutral way to express an algorithm so the exam can test the logic without any one language's syntax. These are the exact AAP-2.A moves the exam makes."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Sequential Code and Expressions",
+      "kicker": "Statements That Run in Order · Learning Objective AAP-2.B",
+      "script": "Section two. Now we turn ordered steps into code. Two ideas do the work: a statement is one action, and statements execute in the order they appear; and an expression is a piece of code that gets evaluated down to a single value. Get these two right and every trace question becomes mechanical."
+    },
+    {
+      "type": "concept",
+      "heading": "Statements Run in Order; Expressions Make One Value",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "A code statement is part of a program's code that expresses an action to be carried out (EK AAP-2.B.2).",
+        "Sequencing means each statement runs in the order it is written, and sequential statements execute in that same order (EK AAP-2.B.1 / B.6).",
+        "An expression can be a value, a variable, an operator applied to values, or a procedure call that returns a value (EK AAP-2.B.3).",
+        "Every expression is EVALUATED — following the language's order of operations — until only one result remains (EK AAP-2.B.4 / B.5).",
+        "Clarity and readability matter: thoughtful names and ordering keep an algorithm understandable to the humans who read and fix it (EK AAP-2.B.7)."
+      ],
+      "script": "Five points. A statement is a piece of code that expresses an action. Sequencing means statements run in the order they appear — top to bottom — and that order is part of the meaning, as your bell ringer proved. An expression is one of four things: a bare value, a variable, an operator applied to values, or a procedure call that returns a value. However many parts an expression has, it is evaluated — using the language's order of operations — down to exactly one value. And clarity counts: like the naming lesson from Topic 3.1, well-ordered, well-named statements keep the algorithm readable, which the College Board flags directly.",
+      "capture": [
+        {
+          "q": "Because sequential statements run in the order written, reordering two dependent steps can ______.",
+          "a": "change the result or break the algorithm entirely"
+        },
+        {
+          "q": "However many operators and parts it contains, an expression is always evaluated down to ______.",
+          "a": "a single value"
+        },
+        {
+          "q": "Clarity and readability are worth the effort because thoughtful naming and ordering let a reader ______.",
+          "a": "understand and safely change the algorithm"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Expressions",
+      "heading": "Each Statement Feeds the Next",
+      "caption": "Three statements, top to bottom; the expression price * quantity evaluates to one value stored in subtotal.",
+      "pseudocode": "price ← 12\nquantity ← 3\nsubtotal ← price * quantity\nDISPLAY(subtotal)",
+      "python": "price = 12\nquantity = 3\nsubtotal = price * quantity\nprint(subtotal)",
+      "output": "36",
+      "script": "Watch sequencing and expressions together. Line one sets price to twelve, line two sets quantity to three. Line three contains the expression price times quantity — an operator applied to two variables — which is evaluated to a single value, thirty-six, and that value is stored in subtotal. Line four displays it. If you moved line three above lines one and two, price and quantity would have no values yet and the expression could not be evaluated. Order is not decoration; it is part of the algorithm."
+    },
+    {
+      "type": "worked_table",
+      "heading": "What Does Each Expression Evaluate To?",
+      "context": "An expression is evaluated to ONE value. For each, name what kind of expression it is and the single value it produces. (Assume price = 12, quantity = 3.)",
+      "columns": [
+        "Expression",
+        "What it is",
+        "Evaluates to (one value)"
+      ],
+      "rows": [
+        [
+          "7",
+          "a literal value",
+          "7"
+        ],
+        [
+          "price",
+          "a variable",
+          "12"
+        ],
+        [
+          "price * quantity",
+          "an operator applied to two values",
+          "36"
+        ],
+        [
+          "5 + 2 * 4",
+          "operators, with order of operations",
+          "13"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Four expressions, each collapsing to one value. A bare seven is already a single value: seven. The variable price evaluates to whatever it holds, twelve. Price times quantity is an operator on two values: thirty-six. And five plus two times four is thirteen, not twenty-eight — the multiplication happens before the addition, which is the order of operations we make precise tomorrow. Every one of these, however it is built, ends as exactly one value, which is the whole point of EK AAP-2.B.4.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“The Order of Statements Doesn't Matter”",
+      "misconception": "As long as all the right statements are present, the order you write them in doesn't matter — the program will sort it out.",
+      "whyItHappens": "In a shopping list or a pile of facts the order really is irrelevant, so it is tempting to treat lines of code the same way.",
+      "correction": "Sequencing means each statement executes in the exact order it appears (EK AAP-2.B.1, B.6). If a statement uses a value an earlier statement was supposed to produce, running it too early uses a missing or wrong value. The order is part of the algorithm's meaning, not a formatting choice.",
+      "example": "total ← price * quantity placed BEFORE price ← 12 fails: when total is computed, price has no value yet. Swap the two lines and it works — same statements, opposite order, different outcome.",
+      "script": "The trap that the bell ringer set up. Because a shopping list can be scrambled without harm, students assume code can too. It cannot. Sequential statements run top to bottom, and if a line depends on a value produced earlier, running it first means that value does not exist yet. The example is concrete: compute total before price is set and it breaks; set price first and it works. Same statements, different order, different result. Order is meaning."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Statements and Expressions",
+      "subheading": "These map to LO AAP-2.B. Complete on your Guided Notes.",
+      "prompts": [
+        "Explain what 'sequencing' means, then give a two-line example where swapping the order of the statements changes or breaks the result.",
+        "For each, state whether it is an expression and, if so, the single value it evaluates to: (a) 9, (b) score (score holds 20), (c) 4 + 3 * 2.",
+        "In one or two sentences, explain why clarity and readability are worth the effort even though the computer runs messy, poorly named code just fine."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.3 page.",
+      "script": "Stop and think, six minutes. One: define sequencing and show a two-line swap that changes the outcome — for instance computing a total before its inputs exist. Two: evaluate each expression to its single value — nine is nine, score is twenty, four plus three times two is ten because multiplication goes first. Three: argue for readability even though the machine does not care — future readers, testers, and debuggers do. These are exactly the AAP-2.B moves the exam tests."
+    },
+    {
+      "type": "day_close",
+      "eyebrow": "End of Day 1 · Day 1 of 2",
+      "heading": "End of Day 1",
+      "todayPoints": [
+        "An algorithm is a finite set of steps for a specific task; it can be expressed in natural language, diagrams, or pseudocode (EK AAP-2.A.1–A.3)",
+        "Every algorithm is built by combining sequencing, selection, and iteration (EK AAP-2.A.4)",
+        "Statements execute in the order they are written; reordering dependent steps changes the result (EK AAP-2.B.1, B.6)",
+        "An expression — a value, variable, operator, or returning procedure call — is evaluated to a single value using a set order of operations (EK AAP-2.B.2–B.5, B.7)"
+      ],
+      "nextPoints": [
+        "Day 2: the arithmetic operators +, -, *, / and the MOD operator (LO AAP-2.C)",
+        "Why 17 / 5 evaluates to 3.4 — the exact value, decimals and all",
+        "MOD as the remainder (17 MOD 5 = 2), and how MOD shares precedence with * and /"
+      ],
+      "teaser": "Before tomorrow, predict it: you and 4 friends order a pizza cut into 17 slices and split them equally. How many WHOLE slices does each person get, and how many are LEFT OVER? Write both numbers — tomorrow you meet the two operators that compute them.",
+      "script": "That is Day 1. An algorithm is a finite set of steps that can be expressed several ways and is built from sequencing, selection, and iteration; statements run in order; and every expression evaluates to a single value using a defined order of operations. Tomorrow those expressions start calculating — the arithmetic operators and MOD. Here is the teaser, and it is the exact pizza we open with tomorrow: seventeen slices, five people, split equally — how many whole slices each, and how many left over. Write both numbers and your reasoning. Guided Notes are collected at the end of class."
+    }
+  ],
+  "quiz": {
+    "title": "Topic 3.3 — Mathematical Expressions — Quiz",
+    "instructions": "Choose the single best answer. 8 questions, 15 minutes, no notes.",
+    "questions": [
+      {
+        "id": "Q1",
+        "kind": "recall",
+        "stem": "Per EK AAP-2.A.1 and AAP-2.A.4, which statement about algorithms is correct?",
+        "options": [
+          "An algorithm may run forever, as long as it eventually produces some output",
+          "An algorithm is a finite set of instructions for a specific task, and any algorithm can be built from sequencing, selection, and iteration",
+          "An algorithm only counts as an algorithm once it is written in a specific programming language",
+          "An algorithm can use sequencing and selection but never iteration"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.A.1 / AAP-2.A.4",
+        "rationale": "EK AAP-2.A.1 defines an algorithm as a finite set of instructions for a specific task, and AAP-2.A.4 says any algorithm can be built from sequencing, selection, and iteration — B states both. A contradicts 'finite.' C is false; A.2 allows natural language and diagrams, and implementing in a language (A.3) is about running it, not about being an algorithm. D denies iteration, one of the three constructs."
+      },
+      {
+        "id": "Q2",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A student sketches a flowchart to sort books, a friend writes the same steps in plain English, and a third writes them in pseudocode. Per EK AAP-2.A.2–A.3, which statement is true?",
+        "options": [
+          "Only the pseudocode version is a real algorithm; the others are just notes",
+          "They are three different algorithms, since each one looks different on the page",
+          "The flowchart is invalid, since algorithms may only be expressed in pseudocode",
+          "All three express the same algorithm; to run it on a computer it must be implemented in a programming language"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.A.2 / AAP-2.A.3",
+        "rationale": "EK AAP-2.A.2 says algorithms can be expressed as natural language, diagrams, or pseudocode, and A.3 says algorithms are executed once implemented in a programming language — D captures both. A and C wrongly deny that natural language or diagrams can express an algorithm. B confuses the representation (how it looks) with the algorithm itself (the logic)."
+      },
+      {
+        "id": "Q3",
+        "kind": "applied",
+        "stem": "In exam pseudocode a program runs: total ← price * quantity, then price ← 5, then quantity ← 2, then DISPLAY(total). It fails to display 10. Per EK AAP-2.B.1 and B.6, why?",
+        "options": [
+          "The first line runs before price and quantity are set, so it cannot use their values",
+          "DISPLAY can only show text on screen, never a numeric variable's stored value",
+          "Multiplication with the * operator is not allowed anywhere in exam pseudocode",
+          "The program is correct as written and does display the value 10"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.B.1 / AAP-2.B.6",
+        "rationale": "Sequential statements execute in the order written (EK AAP-2.B.1, B.6). total ← price * quantity runs FIRST, before price and quantity are assigned, so it cannot use 5 and 2. B and C invent false rules. D ignores order: the values are set only after total is computed, so total never sees them."
+      },
+      {
+        "id": "Q4",
+        "kind": "applied",
+        "predictFirst": true,
+        "stem": "A programmer writes score + 10, where score holds 25. Per EK AAP-2.B.3–B.4, what is true about score + 10?",
+        "options": [
+          "It is a statement that stores the value 10 into the variable score",
+          "It is two separate values that cannot be combined into one",
+          "It is an expression that evaluates to the single value 35",
+          "It is an expression, but expressions can produce several values at once"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.B.3 / AAP-2.B.4",
+        "rationale": "EK AAP-2.B.3 says an operator applied to a variable and a value is an expression, and B.4 says expressions evaluate to a single value: 25 + 10 = 35, so C is correct. A confuses an expression with an assignment statement. B is false; the operator combines them. D contradicts B.4 — an expression yields exactly one value."
+      },
+      {
+        "id": "Q5",
+        "kind": "applied",
+        "stem": "In exam pseudocode, what does the expression 17 / 5 evaluate to (EK AAP-2.C.3)?",
+        "options": [
+          "3.4",
+          "3",
+          "2",
+          "3 remainder 2"
+        ],
+        "answer": "A",
+        "ek": "EK AAP-2.C.3",
+        "rationale": "EK AAP-2.C.3 states 17 / 5 evaluates to 3.4 — the division operator gives the exact value. B truncates the decimal, which / does not do. C is 17 MOD 5, the remainder — a different operator. D is a phrase from long division, not the single value / returns."
+      },
+      {
+        "id": "Q6",
+        "kind": "applied",
+        "stem": "Per EK AAP-2.C.2, what does 17 MOD 5 evaluate to?",
+        "options": [
+          "3.4",
+          "5",
+          "2",
+          "12"
+        ],
+        "answer": "C",
+        "ek": "EK AAP-2.C.2",
+        "rationale": "MOD gives the remainder when 17 is divided by 5: 5 × 3 = 15, remainder 2 (EK AAP-2.C.2). A is the quotient 17 / 5 (the / operator). B just repeats the divisor. D is 17 − 5, unrelated to remainder."
+      },
+      {
+        "id": "Q7",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "MOD has the same precedence as * and /, so among them you evaluate left to right (EK AAP-2.C.4). What does 2 * 6 MOD 4 evaluate to?",
+        "options": [
+          "4",
+          "20",
+          "2",
+          "0"
+        ],
+        "answer": "D",
+        "ek": "EK AAP-2.C.4",
+        "rationale": "* and MOD share precedence, so evaluate left to right: 2 * 6 = 12, then 12 MOD 4 = 0 (EK AAP-2.C.4). A does the MOD first (2 × (6 MOD 4) = 4), violating left-to-right. B stops after the multiplication. C evaluates only the 6 MOD 4 sub-part."
+      },
+      {
+        "id": "Q8",
+        "kind": "scenario",
+        "predictFirst": true,
+        "stem": "A snack program must split 23 crackers equally among 4 kids and set aside the leftovers. Per EK AAP-2.C.2–C.3, which expressions give the exact per-kid share and the number left over?",
+        "options": [
+          "23 MOD 4 gives the share (5.75) and 23 / 4 gives the leftover (3)",
+          "23 / 4 gives the share (5.75) and 23 MOD 4 gives the leftover (3)",
+          "23 / 4 gives both, since division does everything",
+          "23 MOD 4 gives both, since MOD answers any division question"
+        ],
+        "answer": "B",
+        "ek": "EK AAP-2.C.2 / AAP-2.C.3",
+        "rationale": "The / operator gives the exact quotient 23 / 4 = 5.75 (EK AAP-2.C.3); MOD gives the remainder 23 MOD 4 = 3 (EK AAP-2.C.2), so B is correct. A swaps the two operators. C ignores that / cannot report a whole-number leftover. D ignores that MOD returns only the remainder, not the share."
+      }
+    ]
+  },
+  "guide": {
+    "title": "Topic 3.3 — Mathematical Expressions — Teacher Guide",
+    "subtitle": "Big Idea 3: Algorithms and Programming · Topic 3.3 · 2 class periods + assessment block",
+    "overview": [
+      "Topic 3.3 moves from 'a variable holds a value' to 'a program computes new values.' Day 1 (LO AAP-2.A and AAP-2.B) builds the frame: an algorithm is a finite set of steps that can be expressed without any programming language, every algorithm is built from sequencing, selection, and iteration, and turning steps into code means sequential statements plus expressions that each evaluate to a single value. Day 2 (LO AAP-2.C) makes the expressions calculate: the arithmetic operators +, -, *, /, and MOD, the fact that / gives the exact value (17 / 5 = 3.4), MOD as the remainder (17 MOD 5 = 2), and the order of operations in which MOD shares the precedence of * and /.",
+      "All code on slides uses the AP Exam Reference Sheet pseudocode (← for assignment, DISPLAY, MOD) shown beside runnable Python. The interactive, auto-graded coding practice lives on the Topic 3.3 page: students type and run progressively harder versions of the shared pizza-party scenario, so the mechanical evaluation skill is rehearsed online rather than on paper.",
+      "The through-line is the Day 1 bell ringer and Day 1 teaser: a shuffled tip calculation shows that order is part of an algorithm, and the 17-slice pizza split (17 / 5 = 3.4, 17 MOD 5 = 2) previews the two operators students meet on Day 2 and use in every exercise and coding problem."
+    ],
+    "los": [
+      "LO AAP-2.A — Express an algorithm that uses sequencing without using a programming language.",
+      "LO AAP-2.B — Represent a step-by-step algorithmic process using sequential code statements.",
+      "LO AAP-2.C — Evaluate expressions that use arithmetic operators."
+    ],
+    "eks": [
+      "EK AAP-2.A.1 — An algorithm is a finite set of instructions that accomplish a specific task.",
+      "EK AAP-2.A.2 — Beyond visual and textual programming languages, algorithms can be expressed in a variety of ways, such as natural language, diagrams, and pseudocode.",
+      "EK AAP-2.A.3 — Algorithms executed by programs are implemented using programming languages.",
+      "EK AAP-2.A.4 — Every algorithm can be constructed using combinations of sequencing, selection, and iteration.",
+      "EK AAP-2.B.1 — Sequencing is the application of each step of an algorithm in the order in which the code statements are given.",
+      "EK AAP-2.B.2 — A code statement is a part of program code that expresses an action to be carried out.",
+      "EK AAP-2.B.3 — An expression can consist of a value, a variable, an operator, or a procedure call that returns a value.",
+      "EK AAP-2.B.4 — Expressions are evaluated to produce a single value.",
+      "EK AAP-2.B.5 — The evaluation of expressions follows a set order of operations defined by the programming language.",
+      "EK AAP-2.B.6 — Sequential statements execute in the order they appear in the code segment.",
+      "EK AAP-2.B.7 — Clarity and readability are important considerations when expressing an algorithm in a programming language.",
+      "EK AAP-2.C.1 — Arithmetic operators are part of most programming languages and include addition, subtraction, multiplication, division, and modulus operators.",
+      "EK AAP-2.C.2 — The exam reference sheet provides a MOD b, which evaluates to the remainder when a is divided by b. Assume that a is an integer greater than or equal to 0 and b is an integer greater than 0. For example, 17 MOD 5 evaluates to 2.",
+      "EK AAP-2.C.3 — The exam reference sheet provides the arithmetic operators +, -, *, /, and MOD, used to perform arithmetic on a and b. For example, 17 / 5 evaluates to 3.4.",
+      "EK AAP-2.C.4 — The order of operations used in mathematics applies when evaluating expressions. The MOD operator has the same precedence as the * and / operators."
+    ],
+    "materials": [
+      "Projector / slide deck (teacher · deep-dive version).",
+      "Printed Guided Notes (student copies) for Day 1 and Day 2.",
+      "Printed Topic 3.3 quiz (student copies) for the assessment block.",
+      "Devices with browser access to the Topic 3.3 page for the interactive coding practice (the pizza-party problems).",
+      "Optional: a small whiteboard or scratch paper for hand-evaluating expressions in the Stop-and-Think segments."
+    ],
+    "prereqs": [
+      "Topic 3.1 (variables and assignment) and Topic 3.2 (data abstraction / lists) are assumed: students can read ← assignment and know a variable holds one value. Comfort with grade-school arithmetic and order of operations (PEMDAS) transfers directly; the new ideas are that / keeps the decimal and that MOD reports the remainder and shares precedence with * and /."
+    ],
+    "pacing": [
+      {
+        "day": 1,
+        "focus": "What an algorithm is; the three constructs; sequential statements and expressions (LO AAP-2.A, AAP-2.B)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.3/Q1) + bell ringer (the shuffled tip calculation)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "Algorithms and sequencing: vocab, what an algorithm is, code_block, express vs implement (EK AAP-2.A.1–A.4)",
+            "min": 14,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on algorithms",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "Sequential code and expressions: concept, code_block, evaluate-the-expression table, order-matters misconception (EK AAP-2.B.1–B.7)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Stop and Think on statements and expressions",
+            "min": 6,
+            "slides": "16"
+          },
+          {
+            "segment": "Day close + pizza-split teaser for Day 2",
+            "min": 3,
+            "slides": "17"
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Arithmetic operators; exact division (17 / 5 = 3.4); MOD (17 MOD 5 = 2); order of operations (LO AAP-2.C)",
+        "segments": [
+          {
+            "segment": "QOTD (BI3/T3.3/Q2) + bell ringer (17 slices split among 5 friends)",
+            "min": 6,
+            "slides": "1-3"
+          },
+          {
+            "segment": "Guided-notes preview + objectives",
+            "min": 3,
+            "slides": "2, 4"
+          },
+          {
+            "segment": "The arithmetic operators: five operators, exact division, code_block, exact vs integer division (EK AAP-2.C.1, C.3)",
+            "min": 13,
+            "slides": "5-9"
+          },
+          {
+            "segment": "Stop and Think on arithmetic operators",
+            "min": 6,
+            "slides": "10"
+          },
+          {
+            "segment": "MOD and order of operations: concept, code_block, order-of-operations table, division-vs-remainder misconception (EK AAP-2.C.2, C.4)",
+            "min": 13,
+            "slides": "11-15"
+          },
+          {
+            "segment": "Common AP Traps + exit check",
+            "min": 5,
+            "slides": "16-17"
+          }
+        ]
+      },
+      {
+        "flex": true,
+        "label": "Flex / Assessment block — no new deck (uses the Topic Quiz)",
+        "focus": "Not a numbered prep day. Run the Topic 3.3 quiz as the opener of the next class (doubles as spaced retrieval). The quiz ships as its own document, so no new deck or notes are needed. The interactive pizza-party coding practice on the Topic 3.3 page can absorb any extra flex time.",
+        "segments": [
+          {
+            "segment": "Topic 3.3 quiz",
+            "min": 15,
+            "slides": "Handout"
+          }
+        ]
+      }
+    ],
+    "misconceptions": [
+      {
+        "heading": "“The order of statements doesn't matter”",
+        "myth": "If all the right statements are present, they can be written in any order and the program will still work.",
+        "reality": "Sequencing means each statement executes in the order it appears (EK AAP-2.B.1, B.6). A statement that uses a value an earlier statement should have produced fails if it runs too early. Order is part of the algorithm's meaning — computing total before its inputs exist breaks it."
+      },
+      {
+        "heading": "“17 / 5 is 3 — you drop the decimal”",
+        "myth": "Division in code chops off the fractional part, so 17 / 5 is 3.",
+        "reality": "On the AP reference sheet the / operator gives the EXACT value: 17 / 5 evaluates to 3.4 (EK AAP-2.C.3). Some languages have a separate integer-division operator, but a single / on the exam keeps the decimals. If you want the whole-number remainder, that is MOD, not a rounded /."
+      },
+      {
+        "heading": "“MOD and / do the same thing”",
+        "myth": "MOD is just another way to divide, so 17 MOD 5 and 17 / 5 give the same answer.",
+        "reality": "They return different single values. 17 / 5 = 3.4 is the exact quotient (EK AAP-2.C.3); 17 MOD 5 = 2 is the remainder (EK AAP-2.C.2). And MOD shares precedence with * and / (EK AAP-2.C.4), so in 2 * 6 MOD 4 you evaluate left to right: 12 MOD 4 = 0."
+      }
+    ],
+    "differentiation": {
+      "support": [
+        "Give students a printed three-column trace sheet (Expression | operator applied first | value) so they hand-evaluate one operator at a time instead of rushing an answer.",
+        "Anchor MOD physically: hand out 17 counters and ask groups to make equal piles for 5 people — the piles show 17 / 5 (about 3 each) and the leftovers show 17 MOD 5 = 2."
+      ],
+      "extension": [
+        "Ask students to write two different expressions that produce the same value (e.g., 20 MOD 6 and 2), then explain why 'same result' does not make them the same operation.",
+        "Point deep-dive students at the Topic 3.3 coding practice to confirm that 17 / 5 prints 3.4 while 17 MOD 5 prints 2, then explain how the printed output proves the two operators are distinct."
+      ]
+    },
+    "discussion": [
+      "Your shuffled tip steps only worked in one order. What does that reveal about the difference between a set of facts (order-free) and an algorithm (order-critical)?",
+      "The AP exam writes code in pseudocode instead of Python or Java. Who benefits from a language-neutral notation, and what does that choice say about what the exam is really testing?",
+      "A price and a leftover count both come from '17 and 5,' yet one uses / (3.4) and one uses MOD (2). What single question about the goal tells you which operator to reach for?"
+    ],
+    "answerKeyNote": "Each question's full rationale is on the KEY copy of the quiz (print it with the answer-key option). The short answer key below is auto-derived from the live quiz block, so it can never drift from the student questions."
+  }
+}

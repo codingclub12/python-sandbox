@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.3",
+    "title": "Mathematical Expressions",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in the Evaluate the Order Slip and Fix the Pizza Math exercises. Now build and run the same pizza-party calculations — the problems get harder as you go, hardest last, ending with one you write from scratch. Predict the output first, then check yourself. Remember: the / operator gives the exact value (17 / 5 is 3.4), and MOD gives the remainder (17 MOD 5 is 2)."
+  },
+  "problems": [
+    {
+      "prompt": "A party orders 3 pizzas, each cut into 8 slices. Store the two numbers in variables, then print the total number of slices. Print exactly: 24",
+      "promptHtml": "A party orders <code>3</code> pizzas, each cut into <code>8</code> slices. Store the two numbers in variables, then print the total number of slices. Print exactly: <code>24</code>",
+      "expected": "24",
+      "starter": {
+        "python": "# make a variable pizzas that holds 3\n# make a variable slicesPerPizza that holds 8\n# print the total number of slices (pizzas times slicesPerPizza)\n",
+        "javascript": "// make a variable pizzas that holds 3\n// make a variable slicesPerPizza that holds 8\n// print the total number of slices (pizzas times slicesPerPizza)\n"
+      },
+      "reference": {
+        "pseudocode": "pizzas ← 3\nslicesPerPizza ← 8\ntotal ← pizzas * slicesPerPizza\nDISPLAY(total)",
+        "python": "pizzas = 3\nslicesPerPizza = 8\ntotal = pizzas * slicesPerPizza\nprint(total)",
+        "javascript": "let pizzas = 3;\nlet slicesPerPizza = 8;\nlet total = pizzas * slicesPerPizza;\nconsole.log(total);"
+      },
+      "hint": "Total slices is a multiplication: pizzas * slicesPerPizza. Store it, then print it — 3 * 8 is 24."
+    },
+    {
+      "prompt": "17 slices are shared as equally as possible among 5 friends. Print how many slices are LEFT OVER after everyone gets an equal whole number of slices. Print exactly: 2",
+      "promptHtml": "<code>17</code> slices are shared as equally as possible among <code>5</code> friends. Print how many slices are <strong>LEFT OVER</strong> after everyone gets an equal whole number of slices. Print exactly: <code>2</code>",
+      "expected": "2",
+      "starter": {
+        "python": "slices = 17\nfriends = 5\n# the leftover slices is the REMAINDER of slices divided by friends\n# use MOD (in Python the operator is %) and print the result\n",
+        "javascript": "let slices = 17;\nlet friends = 5;\n// the leftover slices is the REMAINDER of slices divided by friends\n// use MOD (in JavaScript the operator is %) and print the result\n"
+      },
+      "reference": {
+        "pseudocode": "slices ← 17\nfriends ← 5\nleftover ← slices MOD friends\nDISPLAY(leftover)",
+        "python": "slices = 17\nfriends = 5\nleftover = slices % friends\nprint(leftover)",
+        "javascript": "let slices = 17;\nlet friends = 5;\nlet leftover = slices % friends;\nconsole.log(leftover);"
+      },
+      "hint": "Leftover means remainder, which is MOD (written % in Python and JavaScript). 17 MOD 5 is 2, because 5 goes into 17 three times with 2 to spare."
+    },
+    {
+      "prompt": "Show the exact share the / operator gives: 17 slices divided equally among 5 friends, allowing fractional slices. Print the exact value of 17 / 5. Print exactly: 3.4",
+      "promptHtml": "Show the exact share the <code>/</code> operator gives: <code>17</code> slices divided equally among <code>5</code> friends, allowing fractional slices. Print the exact value of <code>17 / 5</code>. Print exactly: <code>3.4</code>",
+      "expected": "3.4",
+      "starter": {
+        "python": "slices = 17\nfriends = 5\n# print the EXACT share using / (not the remainder)\n# predict the output before you run it\n",
+        "javascript": "let slices = 17;\nlet friends = 5;\n// print the EXACT share using / (not the remainder)\n// predict the output before you run it\n"
+      },
+      "reference": {
+        "pseudocode": "slices ← 17\nfriends ← 5\nshare ← slices / friends\nDISPLAY(share)",
+        "python": "slices = 17\nfriends = 5\nshare = slices / friends\nprint(share)",
+        "javascript": "let slices = 17;\nlet friends = 5;\nlet share = slices / friends;\nconsole.log(share);"
+      },
+      "hint": "The / operator keeps the decimal, so 17 / 5 is 3.4, not 3. This is the exact per-person share; MOD (from the previous problem) gave the leftover instead."
+    },
+    {
+      "prompt": "Write the Pizza Party Planner from scratch. There are 3 pizzas of 8 slices each, shared among 5 friends. Print the total number of slices on the first line, then the leftover slices on the second line. Print exactly:\n24\n4",
+      "promptHtml": "Write the Pizza Party Planner from scratch. There are <code>3</code> pizzas of <code>8</code> slices each, shared among <code>5</code> friends. Print the total number of slices on the first line, then the leftover slices on the second line. Print exactly:<br><code>24</code><br><code>4</code>",
+      "expected": "24\n4",
+      "starter": {
+        "python": "pizzas = 3\nslicesPerPizza = 8\nfriends = 5\n# line 1: print the total number of slices\n# line 2: print the leftover slices after sharing them equally among friends\n# remember: * and MOD share precedence, so a MOD is evaluated left to right\n",
+        "javascript": "let pizzas = 3;\nlet slicesPerPizza = 8;\nlet friends = 5;\n// line 1: print the total number of slices\n// line 2: print the leftover slices after sharing them equally among friends\n// remember: * and MOD share precedence, so a MOD is evaluated left to right\n"
+      },
+      "reference": {
+        "pseudocode": "pizzas ← 3\nslicesPerPizza ← 8\nfriends ← 5\ntotal ← pizzas * slicesPerPizza\nDISPLAY(total)\nleftover ← total MOD friends\nDISPLAY(leftover)",
+        "python": "pizzas = 3\nslicesPerPizza = 8\nfriends = 5\ntotal = pizzas * slicesPerPizza\nprint(total)\nleftover = total % friends\nprint(leftover)",
+        "javascript": "let pizzas = 3;\nlet slicesPerPizza = 8;\nlet friends = 5;\nlet total = pizzas * slicesPerPizza;\nconsole.log(total);\nlet leftover = total % friends;\nconsole.log(leftover);"
+      },
+      "hint": "Combine the earlier problems: total = pizzas * slicesPerPizza gives 24, then leftover = total MOD friends gives 24 MOD 5 = 4. Print each on its own line. If you write it as one expression, pizzas * slicesPerPizza MOD friends works because * and MOD are evaluated left to right."
+    }
+  ]
+}

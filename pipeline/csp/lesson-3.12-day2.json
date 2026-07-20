@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "lessonId": "3.12",
+    "lessonTitle": "Calling Procedures",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-3.A",
+    "anchor": "Calling Procedures",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.12 · Day 2 of 2",
+      "title": "Getting Something Back",
+      "subtitle": "Yesterday a call was a detour. Today the procedure hands you a value — RETURN — and you capture it with result ← procName(...), even feeding it a value the user typed with INPUT()",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Calling Procedures. Yesterday a call was a round trip that might DISPLAY something on the way — an effect. Today the procedure hands a value BACK to the caller: the RETURN statement. Once a call returns a value, you can capture it in a variable with result-gets-procName, then reuse it, combine it, or display it. We finish with INPUT, which lets the user hand a value into your program, so you can read what they type and feed it straight to a procedure. By the end you should be able to tell, for any call, whether it produces an EFFECT or a VALUE — and trace exactly what comes back."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Determine the value a procedure returns via RETURN(expression), and capture it with result ← procName(arg1, ...) so it can be reused (LO AAP-3.A)"
+        },
+        {
+          "tag": "CB",
+          "text": "Write a call that reads a value from the user with INPUT() and passes it to a procedure, then determine the resulting effect (LO AAP-3.A)"
+        }
+      ],
+      "script": "Two targets today, both still AAP-3.A. First: determine the value a procedure hands back with RETURN, and capture that value using result-gets-procName so the program can reuse it — the difference between showing an answer and keeping one. Second: write a call that reads a value from the user with INPUT and passes it into a procedure, and determine what happens. This is the return-value half of the same procedure-calls objective you started yesterday; together the two days cover writing calls and determining their result or effect."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "A procedure costFor(count) does one thing: RETURN(count * 3) — three dollars per snack. Consider two programs. Program A: DISPLAY(costFor(2)). Program B: total ← costFor(2), and nothing else.",
+      "subprompt": "Write 2–4 sentences: What does Program A put on the screen? What does Program B put on the screen? After each program runs, which one still 'has' the number 6 available to use again later, and why does that matter?",
+      "directions": "Be ready to defend which program can REUSE the returned value.",
+      "script": "Yesterday's teaser, now settle it. costFor(count) returns count times three. Program A displays costFor(2), so it prints 6 and moves on. Program B stores costFor(2) in total, and displays nothing — the screen is blank, but the number 6 is now sitting in total, ready to be used again. A few minutes: which program still HAS the 6? Program B. That is the whole point of RETURN versus DISPLAY. Displaying a value shows it and lets it go; returning a value and capturing it keeps it. The moment you need to reuse an answer — add tax, compare it, put it in a list — you must capture it, not just display it. That distinction is today's lesson."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Getting a Value Back: RETURN & Capturing It",
+          "description": "How RETURN(expression) hands a value back and returns control, and how result ← procName(...) captures it for reuse (EK AAP-3.A.7–A.8)."
+        },
+        {
+          "title": "Input From the User: INPUT()",
+          "description": "How INPUT() accepts a value from the user and returns it, then feeds a procedure call (EK AAP-3.A.9)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.12 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two sections, both green and CB-required. First, getting a value back: the RETURN statement, what it hands to the caller, and how you capture that value with result-gets-procName so it survives past the call. Second, input from the user: INPUT, which returns whatever the user types, and how you feed that straight into a procedure. Keep the packet open; every answer also lives on the Topic 3.12 page, along with the coding practice where you call procedures and use their return values for real."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Getting a Value Back: RETURN & Capturing It",
+      "kicker": "RETURN and result ← procName(...) · Learning Objective AAP-3.A",
+      "script": "Section one. Yesterday's procedures DID things — they displayed. Today's procedures GIVE things — they return a value to whoever called them. Two reference-sheet pieces make this work: RETURN inside the procedure, and result-gets-procName at the call site to catch what comes back."
+    },
+    {
+      "type": "concept",
+      "heading": "RETURN Hands a Value Back to the Caller",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "RETURN(expression) does two things at once: it sends the value of expression back to the caller AND returns flow of control to the calling point (EK AAP-3.A.7).",
+        "The value a call 'becomes' is whatever its RETURN handed back — a call to costFor(2) evaluates to 6.",
+        "A RETURN ends the procedure immediately: statements written after it do not run.",
+        "DISPLAY shows a value on screen; RETURN gives a value to the program — these are different jobs (EK AAP-3.A.6 vs A.7)."
+      ],
+      "script": "Here is the precise definition. RETURN of an expression does two jobs at the same moment: it sends the value of that expression back to whoever called the procedure, and it returns flow of control to the calling point. So after RETURN, the call itself EVALUATES to that value — a call to costFor(2), whose body is RETURN of count times three, becomes 6 right where you called it. Two consequences to write down. First, RETURN ends the procedure immediately; any statement after it never runs. Second — and this is the exam's favorite contrast — DISPLAY and RETURN are not the same. DISPLAY shows a value on the screen and hands nothing back; RETURN hands a value to the program and shows nothing. One is an effect, the other is a value.",
+      "capture": [
+        {
+          "q": "RETURN(expression) sends the value back to the caller and also ______.",
+          "a": "returns flow of control to the point where the procedure was called"
+        },
+        {
+          "q": "After a procedure returns, the call itself ______ that returned value.",
+          "a": "evaluates to (becomes) the returned value at the calling point"
+        },
+        {
+          "q": "Writing more code after a RETURN is pointless because RETURN ______.",
+          "a": "exits the procedure at once, leaving any later lines unreached"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "RETURN + Capture",
+      "heading": "Return a Value, Then Store It",
+      "caption": "costFor returns count × 3; total ← costFor(4) captures the returned 12 so DISPLAY can show it.",
+      "pseudocode": "PROCEDURE costFor(count)\n{\n  RETURN(count * 3)\n}\ntotal ← costFor(4)\nDISPLAY(total)",
+      "python": "def costFor(count):\n  return count * 3\n\ntotal = costFor(4)\nprint(total, end=\" \")",
+      "output": "12",
+      "script": "The return-and-capture pattern, which you will use constantly. costFor takes count and RETURNS count times three. The call, total gets costFor(4), does the full round trip: 4 goes into count, the body computes 4 times 3 equals 12, RETURN hands 12 back, and the assignment stores that 12 in total. Now total holds 12, independent of the procedure, so DISPLAY(total) shows 12. The key line is total gets costFor(4): result-gets-procName is how you CATCH what a procedure returns. Without that capture, the 12 would come back and immediately vanish. On the exam this is the single most common way return values appear."
+    },
+    {
+      "type": "two_column",
+      "heading": "DISPLAY vs. RETURN — Effect vs. Value",
+      "subheading": "One puts a value on the screen and lets it go; the other hands a value to the program to keep (EK AAP-3.A.6 vs. A.7).",
+      "left": {
+        "title": "DISPLAY — an EFFECT",
+        "definition": "Puts the value of an expression on the screen (followed by a space) and hands nothing back to the program",
+        "ek": "EK AAP-3.A.6",
+        "examples": [
+          "DISPLAY(costFor(2)) shows 6, then it is gone",
+          "You cannot store or reuse what was only displayed",
+          "Use it to SHOW a result to a person"
+        ]
+      },
+      "right": {
+        "title": "RETURN — a VALUE",
+        "definition": "Sends the value of an expression back to the caller so the program can capture and reuse it",
+        "ek": "EK AAP-3.A.7",
+        "examples": [
+          "total ← costFor(2) captures 6 in total for later",
+          "The returned value can be added, compared, or displayed",
+          "Use it to GIVE a result back to the code"
+        ]
+      },
+      "footer": "AP TIP: Ask 'does the program still HAVE the value afterward?' DISPLAY: no, it only showed it. RETURN + capture: yes, it is stored. Only captured values can be reused.",
+      "script": "This is the distinction the exam builds return-value questions on. DISPLAY is an EFFECT: it puts a value on the screen, followed by a space, and hands nothing back — DISPLAY of costFor(2) shows 6 and then that 6 is gone, unrecoverable. RETURN is a VALUE: it sends the result back to the caller, and with a capture like total gets costFor(2), the program keeps 6 in total to add, compare, or display later. The one-question test lives in the footer: after the line runs, does the program still HAVE the value? If you only displayed it, no. If you captured a returned value, yes. Reusable answers must be returned and captured, not merely displayed.",
+      "capture": [
+        {
+          "q": "DISPLAY produces an effect: it shows a value and then the program ______.",
+          "a": "no longer has that value to reuse — it was only shown"
+        },
+        {
+          "q": "RETURN produces a value the caller can ______.",
+          "a": "capture and reuse — store it, add it, compare it, or display it"
+        },
+        {
+          "q": "To decide if a value survives a line, ask whether the program ______ afterward.",
+          "a": "still holds the value — captured returns yes, plain DISPLAY no"
+        }
+      ]
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace the Captured Return Values",
+      "context": "costFor(count) returns count × 3. Fill in the missing cells as each call returns and each variable is assigned.",
+      "columns": [
+        "Line",
+        "Statement",
+        "Value the call returns",
+        "Variable now holds"
+      ],
+      "rows": [
+        [
+          "1",
+          "popcorn ← costFor(2)",
+          "6",
+          "popcorn = 6"
+        ],
+        [
+          "2",
+          "drinks ← costFor(3)",
+          "9",
+          "drinks = 9"
+        ],
+        [
+          "3",
+          "order ← popcorn + drinks",
+          "no call — plain arithmetic",
+          "order = 15"
+        ],
+        [
+          "4",
+          "DISPLAY(order)",
+          "no call returns a value",
+          "prints 15 (order unchanged)"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Trace captured returns the way the exam expects. Line one, popcorn gets costFor(2): the call returns 6, so popcorn holds 6. Line two, drinks gets costFor(3): the call returns 9, so drinks holds 9. Line three has NO procedure call — it is plain arithmetic on two captured values, 6 plus 9, so order holds 15. Line four DISPLAYS order, printing 15; it does not change any variable. The pattern to internalize: each result-gets-procName line runs a full call, catches the returned value, and stores it — and once stored, those values behave like any other variable. Fill in the blank cells and confirm each returned value before it lands in its variable.",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — RETURN and Capturing Values",
+      "subheading": "These map to LO AAP-3.A. Complete on your Guided Notes.",
+      "prompts": [
+        "costFor(count) returns count × 3. Give the exact screen output of DISPLAY(costFor(5)), and separately explain what x ← costFor(5) puts on the screen and what it stores.",
+        "In one sentence, name the two things RETURN(expression) does at the same time.",
+        "A classmate writes DISPLAY(costFor(2)) and then tries to use that displayed 6 on the next line. Explain why the 6 is not available, and rewrite the first line so it is."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.12 page.",
+      "script": "Stop and think, six minutes, full sentences. One: DISPLAY of costFor(5) shows 15 on screen and keeps nothing; x gets costFor(5) shows NOTHING on screen but stores 15 in x. Two: RETURN of an expression sends the value back to the caller and returns flow of control to the calling point — both at once. Three: the displayed 6 is not available because DISPLAY only shows it and hands nothing back; to keep it, rewrite the line as something like snack gets costFor(2), which captures the 6 for reuse. These are exactly the return-value moves AAP-3.A tests."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Input From the User: INPUT()",
+      "kicker": "Reading a Value and Feeding a Call · Learning Objective AAP-3.A",
+      "script": "Section two. So far every argument was a value you typed into the code. But real programs ask the USER. INPUT reads a value the user provides and returns it — and because it returns a value, you capture it and hand it straight to a procedure, exactly like any other return value."
+    },
+    {
+      "type": "concept",
+      "heading": "INPUT() Returns Whatever the User Provides",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "INPUT() accepts a value from the user and RETURNS that value (EK AAP-3.A.9).",
+        "Because it returns a value, you capture it just like any return: count ← INPUT().",
+        "That captured value becomes an argument you can pass to a procedure: total ← costFor(count).",
+        "The result varies with what the user types — different input in, different result out."
+      ],
+      "script": "Here is the last reference-sheet piece for this topic. INPUT accepts a value from the user — whatever they type — and RETURNS it. That word return is the connection to section one: INPUT is a procedure that hands a value back, so you capture it exactly the way you captured costFor's result. Count gets INPUT stores the user's value in count. Then that captured value is just a variable, so you can pass it as an argument: total gets costFor(count). Chain the whole thing and you have a real program — read a value, feed it to a procedure, use what comes back. One honest caveat: because the value depends on the user, the result varies run to run; the same code gives different answers for different input.",
+      "capture": [
+        {
+          "q": "Unlike a literal such as 3, the value INPUT() supplies is not known until ______.",
+          "a": "the program runs and the user types it in"
+        },
+        {
+          "q": "Because INPUT() hands a value back, you handle it by ______.",
+          "a": "capturing it in a variable, just like any other returned value"
+        },
+        {
+          "q": "A value captured from INPUT() can then be ______.",
+          "a": "passed as an argument to a procedure call"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "INPUT + Call",
+      "heading": "Read, Call, Display",
+      "caption": "The user types a count; INPUT() returns it, costFor uses it, and DISPLAY shows the total. Shown: the user enters 5.",
+      "pseudocode": "count ← INPUT()\ntotal ← costFor(count)\nDISPLAY(total)",
+      "python": "count = int(input())\ntotal = costFor(count)\nprint(total, end=\" \")",
+      "output": "15",
+      "script": "The full chain, and it is only three lines. Line one, count gets INPUT: the program waits for the user, and whatever they type is returned and stored in count. Line two, total gets costFor(count): count is passed as the argument, so if the user typed 5, count is 5, costFor returns 5 times 3 equals 15, and total holds 15. Line three DISPLAYS total, showing 15. Change the input and the output changes with it — that is the point of reading from the user. Notice every step reuses today's ideas: INPUT returns a value you capture, and that captured value becomes an argument to a procedure whose returned value you also capture."
+    },
+    {
+      "type": "misconception",
+      "heading": "“If a Procedure DISPLAYs a Value, I Can Store It”",
+      "misconception": "A procedure that ends with DISPLAY(answer) is handing that answer back, so I can write x ← theProcedure() and x will hold the displayed value.",
+      "whyItHappens": "Both DISPLAY and RETURN 'produce' the answer from the student's point of view, so it feels like whatever appears on screen must also be what the call gives back.",
+      "correction": "DISPLAY only puts a value on the SCREEN; it returns nothing to the program (EK AAP-3.A.6). Only RETURN sends a value back to the caller (EK AAP-3.A.7). If a procedure DISPLAYs but never RETURNs, then x ← theProcedure() captures nothing usable — the number was shown, not handed back. To store a value, the procedure must RETURN it.",
+      "example": "A procedure whose body is DISPLAY(count * 3) prints 6 when called with 2, but a call like x ← thatProcedure(2) does not put 6 in x — nothing was returned. Change the body to RETURN(count * 3) and now x ← thatProcedure(2) stores 6.",
+      "script": "This is the deepest trap of the topic, and it sits right on the LO's result-versus-effect line. Because DISPLAY and RETURN both seem to 'produce' the answer, students assume anything shown on screen can also be captured. It cannot. DISPLAY produces an effect — pixels on a screen — and hands the program nothing. Only RETURN hands a value back. So a procedure that merely DISPLAYs count times three will print 6, but capturing its call in x gives you nothing usable, because nothing was returned. When students explain WHY this is wrong, they should name the difference precisely: displayed is shown to a person, returned is handed to the program — and only returned values can be stored."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Input and the Full Chain",
+      "subheading": "These map to LO AAP-3.A. Show your reasoning on your Guided Notes.",
+      "prompts": [
+        "For count ← INPUT(); total ← costFor(count); DISPLAY(total), where costFor returns count × 3: if the user types 4, what is displayed? If the user types 10?",
+        "In one sentence, explain why the output of an INPUT()-driven program can differ from one run to the next even though the code never changes.",
+        "A procedure's whole body is DISPLAY(count * 3). A student writes answer ← thatProcedure(2) and expects answer to hold 6. Explain what answer actually holds and why, then state the one change that would make the capture work."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.12 page.",
+      "script": "Stop and think, six minutes, full sentences. One: with costFor returning count times three, input 4 displays 12 and input 10 displays 30. Two: the output can differ run to run because INPUT returns whatever the USER types, and different input produces a different result even though the code is identical. Three: answer holds nothing usable, because the procedure only DISPLAYs and never RETURNs — the 6 was shown, not handed back; the fix is to change the body to RETURN of count times three so the call actually returns a value to capture. These are the exact effect-versus-value distinctions AAP-3.A puts on the exam."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.12 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Arguments bind by POSITION, not name",
+          "text": "The first argument goes to the first parameter, the second to the second, no matter what the argument is named. showItem(2, \"Cola\") puts 2 in the first parameter — a different, wrong result from showItem(\"Cola\", 2)."
+        },
+        {
+          "name": "DISPLAY ≠ RETURN",
+          "text": "DISPLAY shows a value on screen and hands nothing back; RETURN hands a value to the program. You can only capture and reuse a RETURNed value — a displayed one is gone. Ask 'does the program still HAVE it afterward?'"
+        },
+        {
+          "name": "A call is a detour, and DISPLAY adds a space",
+          "text": "A call interrupts the main program, runs the procedure, then returns to the line right after the call — trace it as a round trip. And every DISPLAY adds a trailing space, so watch spacing when you predict exact output."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: arguments match parameters by position, never by name — swapping argument order changes which value each parameter gets, so showItem(2, 'Cola') is not the same as showItem('Cola', 2). Trap two: DISPLAY is not RETURN — DISPLAY shows and discards, RETURN hands back; only a returned, captured value can be reused, so always ask whether the program still HAS the value afterward. Trap three: trace a call as a detour that returns to the line right after it, and remember DISPLAY tacks a space after every value, which decides exact-output questions. Dodge these three and every procedure-call question is points in the bank."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Calling Procedures, in One Slide",
+      "points": [
+        "A procedure is a named group of instructions (a method/function elsewhere); you call it with procName(arg1, arg2, ...), arguments matched to parameters by position (EK AAP-3.A.1–A.3, A.5).",
+        "A call interrupts the main program, runs the procedure, and returns control to the point right after the call; DISPLAY(expression) shows a value followed by a space (EK AAP-3.A.4, A.6).",
+        "RETURN(expression) returns flow of control AND a value; result ← procName(...) captures that value so it can be reused (EK AAP-3.A.7–A.8).",
+        "INPUT() accepts a value from the user and returns it, so it can be captured and passed to a procedure (EK AAP-3.A.9)."
+      ],
+      "next": "Topic 3.13, Developing Procedures: now that you can CALL a procedure and use what it returns, you will WRITE your own — defining parameters and RETURN — and see how procedural abstraction tames complexity.",
+      "script": "The whole topic in one slide. A procedure is a named, reusable process — method or function in other languages — and you call it by name, sending arguments that match parameters by position. A call is a detour that runs the procedure and returns control to the line right after it, and DISPLAY shows a value with a trailing space. RETURN hands both control and a value back to the caller, and result-gets-procName captures that value so the program can reuse it. INPUT returns whatever the user types, ready to capture and pass to a procedure. Next class is Topic 3.13, Developing Procedures, where you stop calling other people's procedures and start writing your own. Before you pack up, run the exit check — four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.12 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "write a statement that calls a procedure, matching each argument to its parameter by position (LO AAP-3.A)",
+        "trace how a call interrupts the main program, runs the procedure, and returns control, and read DISPLAY output (LO AAP-3.A)",
+        "determine the value a procedure returns with RETURN and capture it with result ← procName(...) for reuse (LO AAP-3.A)",
+        "read a value with INPUT() and pass it to a procedure, and explain why DISPLAY is not the same as RETURN (LO AAP-3.A)"
+      ]
+    }
+  ]
+}

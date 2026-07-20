@@ -81,17 +81,23 @@ function callout(title,bodyChildren,kind='info'){
         right:{style:BorderStyle.SINGLE,size:1,color:bg}},children:kids})]})]});}
 
 function dataTable(headers,rows,widths){
-  const total=widths.reduce((a,b)=>a+b,0);
+  // Normalize widths to the ACTUAL column count so a mismatch between the
+  // caller's hardcoded width array and the data's column count can't crash the
+  // docx layer (widths[i] === undefined). Missing widths get an even split.
+  const ncol=Math.max(headers.length,...rows.map(r=>r.length),1);
+  let w=Array.isArray(widths)?widths.slice(0,ncol):[];
+  if(w.length<ncol){const def=Math.round(9360/ncol);for(let i=w.length;i<ncol;i++)w.push(def);}
+  const total=w.reduce((a,b)=>a+b,0);
   const headerRow=new TableRow({tableHeader:true,children:headers.map((htxt,i)=>
-    new TableCell({width:{size:widths[i],type:WidthType.DXA},shading:{fill:C.NAVY,type:ShadingType.CLEAR},
+    new TableCell({width:{size:w[i],type:WidthType.DXA},shading:{fill:C.NAVY,type:ShadingType.CLEAR},
       borders:solidBorders('FFFFFF'),margins:{top:70,bottom:70,left:110,right:110},verticalAlign:VerticalAlign.CENTER,
       children:[new Paragraph({spacing:{after:0},children:[new TextRun({text:htxt,bold:true,color:'FFFFFF',size:21})]})]}))});
   const bodyRows=rows.map((r,ri)=>new TableRow({children:r.map((cell,i)=>
-    new TableCell({width:{size:widths[i],type:WidthType.DXA},
+    new TableCell({width:{size:w[i],type:WidthType.DXA},
       shading:{fill:ri%2?'FFFFFF':C.LAVBG,type:ShadingType.CLEAR},borders:solidBorders('D6CEEC'),
       margins:{top:60,bottom:60,left:110,right:110},verticalAlign:VerticalAlign.CENTER,
       children:(Array.isArray(cell)?cell:[new Paragraph({spacing:{after:0},children:[new TextRun({text:String(cell),size:20})]})])}))}));
-  return new Table({width:{size:total,type:WidthType.DXA},columnWidths:widths,rows:[headerRow,...bodyRows]});}
+  return new Table({width:{size:total,type:WidthType.DXA},columnWidths:w,rows:[headerRow,...bodyRows]});}
 
 function spacer(h=80){return new Paragraph({spacing:{after:h},children:[run('')]});}
 function rule(){return new Paragraph({spacing:{before:60,after:120},

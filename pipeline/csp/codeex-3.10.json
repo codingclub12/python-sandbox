@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.10",
+    "title": "Lists",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in Trace the Step Log and Traverse and Search, using the same list steps = [8000, 12000, 9000, 15000, 11000]. Now type and run them for real — the problems get harder as you go, ending with a linear search you build from scratch. Remember: the AP pseudocode is 1-indexed, but Python and JavaScript count from 0, so translate carefully. Predict the output first, then check yourself."
+  },
+  "problems": [
+    {
+      "prompt": "The list steps holds a week of daily step counts. Print the FIRST day's step count on one line, then the number of days logged on the next line. Expected output is 8000 then 5.",
+      "promptHtml": "The list <code>steps</code> holds a week of daily step counts. Print the <strong>first</strong> day's step count on one line, then the <strong>number of days</strong> logged on the next line. Expected output is <code>8000</code> then <code>5</code>.",
+      "expected": "8000\n5",
+      "starter": {
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\n# print the FIRST day's steps (remember: Python index 0 is the first element)\n# then print how many days are in the list\n",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\n// print the FIRST day's steps (remember: index 0 is the first element)\n// then print how many days are in the list\n"
+      },
+      "reference": {
+        "pseudocode": "steps ← [8000, 12000, 9000, 15000, 11000]\nDISPLAY(steps[1])\nDISPLAY(LENGTH(steps))",
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\nprint(steps[0])\nprint(len(steps))",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\nconsole.log(steps[0]);\nconsole.log(steps.length);"
+      },
+      "hint": "On the AP reference sheet the first element is steps[1], but in Python and JavaScript the first element is steps[0]. Use len(steps) in Python (steps.length in JavaScript) for the number of days."
+    },
+    {
+      "prompt": "Traverse the whole list and print the TOTAL of all the step counts. Use a loop that adds each element into a running total. Expected output is 55000.",
+      "promptHtml": "Traverse the whole list and print the <strong>total</strong> of all the step counts. Use a loop that adds each element into a running total. Expected output is <code>55000</code>.",
+      "expected": "55000",
+      "starter": {
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\ntotal = 0\n# add each day's steps into total using a loop\n# then print total\n",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\nlet total = 0;\n// add each day's steps into total using a loop\n// then print total\n"
+      },
+      "reference": {
+        "pseudocode": "total ← 0\nFOR EACH day IN steps\n{\n  total ← total + day\n}\nDISPLAY(total)",
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\ntotal = 0\nfor day in steps:\n    total = total + day\nprint(total)",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\nlet total = 0;\nfor (let day of steps) {\n  total = total + day;\n}\nconsole.log(total);"
+      },
+      "hint": "Start total at 0, then for each value in the list add it to total. In a FOR EACH loop the loop variable is the element's VALUE, not its index, so you add day directly."
+    },
+    {
+      "prompt": "Find and print the BEST (highest) single-day step count in the list. Seed a 'best so far' with the first element, then keep the larger value as you traverse. Expected output is 15000.",
+      "promptHtml": "Find and print the <strong>best</strong> (highest) single-day step count in the list. Seed a 'best so far' with the first element, then keep the larger value as you traverse. Expected output is <code>15000</code>.",
+      "expected": "15000",
+      "starter": {
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\n# start best at the first element\n# for each day, if it is bigger than best, make it the new best\n# then print best\n",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\n// start best at the first element\n// for each day, if it is bigger than best, make it the new best\n// then print best\n"
+      },
+      "reference": {
+        "pseudocode": "best ← steps[1]\nFOR EACH day IN steps\n{\n  IF(day > best)\n  {\n    best ← day\n  }\n}\nDISPLAY(best)",
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\nbest = steps[0]\nfor day in steps:\n    if day > best:\n        best = day\nprint(best)",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\nlet best = steps[0];\nfor (let day of steps) {\n  if (day > best) {\n    best = day;\n  }\n}\nconsole.log(best);"
+      },
+      "hint": "Seed best with the first element (steps[0] in Python/JavaScript, steps[1] on the reference sheet). Then compare every element to best and replace best whenever you find a larger value."
+    },
+    {
+      "prompt": "Write a linear search from scratch: scan the list in order and print the 1-indexed DAY NUMBER of the FIRST day that reached the goal of 10000 steps. Stop as soon as you find it. Expected output is 2.",
+      "promptHtml": "Write a linear search from scratch: scan the list in order and print the <strong>1-indexed day number</strong> of the <strong>first</strong> day that reached the goal of 10000 steps. Stop as soon as you find it. Expected output is <code>2</code>.",
+      "expected": "2",
+      "starter": {
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\ngoal = 10000\n# walk the list in order; find the FIRST day whose steps are >= goal\n# print its 1-indexed day number (day 1 is the first day), then stop\n",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\nlet goal = 10000;\n// walk the list in order; find the FIRST day whose steps are >= goal\n// print its 1-indexed day number (day 1 is the first day), then stop\n"
+      },
+      "reference": {
+        "pseudocode": "goal ← 10000\ni ← 1\nREPEAT UNTIL(steps[i] ≥ goal)\n{\n  i ← i + 1\n}\nDISPLAY(i)",
+        "python": "steps = [8000, 12000, 9000, 15000, 11000]\ngoal = 10000\ni = 0\nwhile steps[i] < goal:\n    i = i + 1\nprint(i + 1)",
+        "javascript": "let steps = [8000, 12000, 9000, 15000, 11000];\nlet goal = 10000;\nlet i = 0;\nwhile (steps[i] < goal) {\n  i = i + 1;\n}\nconsole.log(i + 1);"
+      },
+      "hint": "This is a linear search: check each element in order until one meets the goal, then stop. Because Python/JavaScript are 0-indexed, when you find the match at index i, its 1-indexed day number is i + 1. Day 1 is 8000 (below goal); day 2 is 12000 (first to reach 10000)."
+    }
+  ]
+}

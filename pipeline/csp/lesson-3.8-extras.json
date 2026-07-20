@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "lessonId": "3.8",
+    "lessonTitle": "Iteration",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-2.J, AAP-2.K"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-2.J, AAP-2.K",
+    "intro": "Everything for this topic lives in this folder. Topic 3.8 introduces iteration — the third building block of algorithms — and ships an interactive, auto-graded coding-practice page. The paper exercises and the coding page share ONE scenario, Maya's savings jar, so the hand-tracing you do on paper feeds directly into the code you type and run online. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (what iteration is; writing REPEAT n TIMES and REPEAT UNTIL) and Day 2 (tracing loops; the infinite and zero-times cases). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Savings Loop and Exercise 2: How Many Passes? (student + answer KEY)",
+      "Discussion — When Does a Loop Stop? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.J and AAP-2.K, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-8-iteration"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-8-iteration-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-8-iteration-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-8-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-8-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-8-iteration"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: what iteration is and writing the two loops; Day 2: tracing loops and the infinite and zero-times cases). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real loops and checks their output against expected values, and the exercises and quiz grade instantly with per-answer feedback. Paper (Exercise 1 and 2) is the low rung — hand-trace and predict; the coding page is the high rung — the same savings-jar loops, typed and run, hardest last.",
+      "Scheduling: Topic 3.8 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.9 (Developing Algorithms) begins after the quiz and uses these loops to build the classic algorithms."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Savings Loop",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-8-exercise-1",
+    "intro": "You are Maya's coding partner, checking her savings loops by hand before she runs them. Each program below is written in exam pseudocode and uses her savings jar. Your job is to TRACE each loop pass by pass — determine the value of every variable after each pass, and how many passes run — then answer what the program finally displays. This is the single most tested skill for LO AAP-2.K part b: check the condition first, run the body, repeat, and read off the result. No typing yet — trace it on paper.",
+    "scenarioTitle": "Execution Trace: Maya's Savings Loops",
+    "narrative": "Work each loop top to bottom, one pass at a time. For a REPEAT UNTIL loop, check the condition BEFORE each pass: if it is false, run the body; if it is already true, stop without running the body. A dash means the variable has no value yet. Trace on scratch paper before answering — the questions ask exactly how many passes run and what specific variables hold when the loop stops.",
+    "log": {
+      "columns": [
+        "Loop",
+        "Statement",
+        "How the loop is controlled",
+        "Passes the body runs",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "A",
+          "savings ← 0; REPEAT 4 TIMES { savings ← savings + 5 }",
+          "Count-controlled (a fixed 4)",
+          "exactly 4",
+          "The count 4 is fixed; savings ends at 20"
+        ],
+        [
+          "B",
+          "savings ← 0; weeks ← 0; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5; weeks ← weeks + 1 }",
+          "Condition-controlled (until savings ≥ 20)",
+          "4 (discovered by tracing)",
+          "The condition, not a number, decides; weeks ends at 4"
+        ],
+        [
+          "C",
+          "savings ← 25; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 }",
+          "Condition-controlled, already true",
+          "0",
+          "25 ≥ 20 is true before pass 1, so the body is skipped"
+        ],
+        [
+          "D",
+          "savings ← 0; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 0 }",
+          "Condition-controlled, never met",
+          "never stops",
+          "savings never grows, so the condition is never true"
+        ]
+      ]
+    },
+    "scenarioNote": "Loops adapted from the Day 1 and Day 2 worked traces; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023). REPEAT UNTIL(condition) checks the condition before each pass.",
+    "predict": "Before you answer Part A, predict in one sentence: which of loops A–D runs its body the SAME number of times, and which one never runs its body at all? Why?",
+    "partALabel": "Part A - Trace the Loops",
+    "partA": [
+      {
+        "ek": "EK AAP-2.K.2",
+        "pts": 3,
+        "q": "Loop A is savings ← 0; REPEAT 4 TIMES { savings ← savings + 5 }. Show the value of savings after each of the 4 passes, and give the final value. How do you KNOW it runs exactly 4 times?",
+        "answer": "After pass 1: savings = 5. Pass 2: 10. Pass 3: 15. Pass 4: 20. Final savings = 20. It runs exactly 4 times because REPEAT n TIMES is count-controlled — the block is executed n times, and here n is the literal 4 (EK AAP-2.K.2). No condition is checked; the count is fixed in the loop itself, so the number of passes is known before the loop even runs."
+      },
+      {
+        "ek": "EK AAP-2.K.3",
+        "pts": 4,
+        "q": "Loop B is savings ← 0; weeks ← 0; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5; weeks ← weeks + 1 }. Trace it and give the final values of savings and weeks. Explain why weeks equals the number of passes.",
+        "answer": "Trace, checking savings ≥ 20 before each pass: check 1, 0 ≥ 20 false → savings 5, weeks 1; check 2, 5 ≥ 20 false → savings 10, weeks 2; check 3, 10 ≥ 20 false → savings 15, weeks 3; check 4, 15 ≥ 20 false → savings 20, weeks 4; check 5, 20 ≥ 20 TRUE → stop. Final savings = 20, weeks = 4. weeks equals the number of passes because weeks ← weeks + 1 runs exactly once per pass (EK AAP-2.K.3), so its final value is a count of how many times the body executed — the number the REPEAT UNTIL never states directly."
+      },
+      {
+        "ek": "EK AAP-2.K.5",
+        "pts": 4,
+        "q": "Loop C is savings ← 25; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 }; DISPLAY(savings). How many times does the body run, what is displayed, and why? Name the rule from the CED.",
+        "answer": "The body runs 0 times, and 25 is displayed. The condition savings ≥ 20 is checked BEFORE the first pass; 25 ≥ 20 is already true, so the loop stops immediately without running the body (EK AAP-2.K.5: if the condition evaluates to true initially, the loop body is not executed at all, due to the condition being checked before the loop). savings is never changed, so it keeps its starting value of 25. Full credit requires stating that the condition is checked before the loop, which is why the body runs zero times."
+      },
+      {
+        "ek": "EK AAP-2.K.4",
+        "pts": 4,
+        "q": "Loop D is savings ← 0; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 0 }. Explain what happens and why. What one change to the body would make it stop, and after how many passes?",
+        "answer": "Loop D is an infinite loop: it never stops. The body adds 0, so savings stays 0 forever, and savings ≥ 20 can never become true (EK AAP-2.K.4: an infinite loop occurs when the ending condition will never evaluate to true). DISPLAY is never reached. Changing the body to savings ← savings + 5 fixes it: savings would climb 5, 10, 15, 20 and the condition would be true after 4 passes, so the loop would stop. The key idea: every pass must move the tracked value toward making the stopping condition true."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.K.4 / AAP-2.K.5",
+        "pts": 3,
+        "q": "Loops C and D are BOTH REPEAT UNTIL(savings ≥ 20) loops, yet one runs zero times and one runs forever. Using their starting values and bodies, explain what makes the difference.",
+        "answer": "The difference is the starting value and whether the body makes progress toward the condition. In Loop C, savings starts at 25, so the condition savings ≥ 20 is already true at the first check and the body runs zero times (EK AAP-2.K.5). In Loop D, savings starts at 0 and the body adds 0, so savings never grows and the condition can never become true — an infinite loop (EK AAP-2.K.4). Same loop text, opposite outcomes: one condition is true too early, the other is true never. Both show that a REPEAT UNTIL's behavior depends entirely on its starting state and whether each pass moves toward the condition."
+      },
+      {
+        "ek": "EK AAP-2.K.2 / AAP-2.K.3",
+        "pts": 3,
+        "q": "Loop A (REPEAT 4 TIMES) and Loop B (REPEAT UNTIL) both end with savings = 20. Are they interchangeable? Give one situation where you could use REPEAT n TIMES and one where you would be forced to use REPEAT UNTIL.",
+        "answer": "They give the same result here but are not interchangeable in general. REPEAT n TIMES works when you know the count in advance — e.g., 'add 5 exactly 4 times' (EK AAP-2.K.2). REPEAT UNTIL is required when the number of passes is not known ahead of time and a condition decides it — e.g., 'keep adding deposits of an unknown size until savings reach a goal,' where you cannot compute the count without tracing (EK AAP-2.K.3). If the step size or goal could change at runtime, only REPEAT UNTIL adapts; the fixed 4 in REPEAT 4 TIMES would then be wrong."
+      },
+      {
+        "ek": "EK AAP-2.J.1 / AAP-2.K.1",
+        "pts": 2,
+        "q": "ENRICHMENT: A REPEAT UNTIL loop can run many times, exactly once, or zero times. Explain how all three are consistent with the CED statement that iteration repeats 'a set of statements zero or more times.'",
+        "answer": "The CED says iteration repeats a set of statements zero or more times, until a stopping condition is met (EK AAP-2.K.1), and iteration repeats a specified number of times or until a condition is met (EK AAP-2.J.1). 'Zero or more' is exactly what the three cases show: Loop C runs the body zero times because its condition is already true; a normal loop like B runs it several times; and a loop whose condition becomes true after one pass would run it once. Because a REPEAT UNTIL checks its condition before each pass, the count can be anything from zero upward — the phrase 'zero or more' is the CED building that possibility in on purpose."
+      },
+      {
+        "ek": "LO AAP-2.K",
+        "pts": 0,
+        "q": "Next step: you traced these by hand. Now head to the Topic 3.8 page and type and run the harder versions, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "How Many Passes?",
+    "minutes": "25 minutes",
+    "subtitle": "5 loops - decide how many times the body runs",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-8-exercise-2",
+    "intro": "For each loop below, decide HOW MANY TIMES the body runs and what the program finally displays. The loops that trip people up are the two edge cases: a REPEAT UNTIL whose condition is already true (it runs zero times) and one whose condition can never become true (it runs forever). Apply the same check every time — test the condition BEFORE each pass. Vague answers like 'a few times' score zero; give an exact count (or 'never stops') and the final value.",
+    "standard": "CB Standard (required): the exact number of passes the body runs + the final displayed value, for all 5 loops, with the condition checked before each pass. Enrichment (optional): note which CED case each edge loop illustrates (EK AAP-2.K.4 infinite / AAP-2.K.5 zero-times).",
+    "methodHeading": "Three-Step Method - use for every loop",
+    "method": [
+      [
+        "Step 1 - Identify the loop type",
+        "Is it REPEAT n TIMES (count-controlled — the count is written in) or REPEAT UNTIL (condition-controlled — a Boolean decides)? That tells you where to look for the number of passes."
+      ],
+      [
+        "Step 2 - Check the condition BEFORE the first pass",
+        "For REPEAT UNTIL, test the condition against the starting values. If it is already true, the body runs zero times (EK AAP-2.K.5). If it is false, run a pass and check again."
+      ],
+      [
+        "Step 3 - Trace until it stops (or prove it can't)",
+        "Run passes, updating variables, until the condition becomes true. If no pass ever moves the state toward the condition, it is an infinite loop (EK AAP-2.K.4). Then read off the final value."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (name the case): The exam builds trap questions from two REPEAT UNTIL edge cases. A loop runs ZERO times when its condition is true before the first pass (EK AAP-2.K.5) — the condition is checked at the top. A loop runs FOREVER when the body never moves the tracked value toward the condition, or steps over an exact-equality target (EK AAP-2.K.4). When you finish, move to the Topic 3.8 coding page to type and run these loops and confirm your counts.",
+    "fields": [
+      "Loop type (REPEAT n TIMES / REPEAT UNTIL):",
+      "How many times the body runs + final displayed value:",
+      "Enrichment — which CED case, if any (infinite / zero-times / normal):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "count ← 0; REPEAT 3 TIMES { count ← count + 1 }; DISPLAY(count)",
+        "key": {
+          "signs": "This is REPEAT n TIMES, a count-controlled loop with the count 3 written directly into it (EK AAP-2.K.2). No condition is involved, so the number of passes is fixed and known before it runs.",
+          "mechanism": "The body runs exactly 3 times: count goes 1, 2, 3. DISPLAY(count) shows 3. Because the count is a literal 3, you do not trace to find the number of passes — REPEAT n TIMES executes the block n times, full stop.",
+          "subtype": "Normal case. A count-controlled loop cannot be infinite or zero-times (for a positive count); the count is guaranteed, which is exactly why you reach for REPEAT n TIMES when you know how many repeats you need."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "x ← 0; REPEAT UNTIL(x ≥ 3) { x ← x + 1 }; DISPLAY(x)",
+        "key": {
+          "signs": "This is REPEAT UNTIL, condition-controlled. Check x ≥ 3 before each pass: at the start x is 0, so 0 ≥ 3 is false and the body runs (EK AAP-2.K.3).",
+          "mechanism": "Trace: pass 1 → x = 1 (1 ≥ 3 false); pass 2 → x = 2 (false); pass 3 → x = 3, now 3 ≥ 3 is true, so the loop stops. The body ran 3 times, and DISPLAY(x) shows 3. The final pass is the one that makes the condition true.",
+          "subtype": "Normal case. The condition starts false and each pass moves x toward it, so the loop runs a finite, positive number of times — here 3."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "temp ← 50; REPEAT UNTIL(temp ≥ 40) { temp ← temp + 5 }; DISPLAY(temp)",
+        "key": {
+          "signs": "REPEAT UNTIL, condition-controlled. The critical move is Step 2: check temp ≥ 40 against the starting value. temp is 50, and 50 ≥ 40 is ALREADY true before the first pass.",
+          "mechanism": "Because the condition is true at the first check, the body runs 0 times — the +5 never happens (EK AAP-2.K.5, the condition is checked before the loop). temp keeps its starting value, so DISPLAY(temp) shows 50, not 55. This is the zero-times trap: a body that looks like it must run, but does not.",
+          "subtype": "Zero-times case (EK AAP-2.K.5). The tell is a starting value that already satisfies the condition. Anyone who answers 55 assumed the body always runs at least once — the exact misconception the CED warns against."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "y ← 1; REPEAT UNTIL(y = 10) { y ← y + 2 }; DISPLAY(y)",
+        "key": {
+          "signs": "REPEAT UNTIL with an equality condition, y = 10. Check the starting value: y is 1, so y = 10 is false and the body runs — but watch the step size against an exact-equality target.",
+          "mechanism": "Trace: y becomes 3, 5, 7, 9, 11, 13, … — it jumps from 9 straight to 11 and never lands on 10. Since y = 10 is never true, the loop never stops: it is an infinite loop, so there is no final displayed value (EK AAP-2.K.4). DISPLAY is never reached.",
+          "subtype": "Infinite case (EK AAP-2.K.4). The danger sign is an equality stopping condition combined with a step that steps over the target. Using y ≥ 10 instead would stop the loop at y = 11 after 5 passes — a common exam fix."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "n ← 10; count ← 0; REPEAT UNTIL(n ≤ 0) { n ← n − 3; count ← count + 1 }; DISPLAY(count)",
+        "key": {
+          "signs": "REPEAT UNTIL, condition-controlled, counting down. Check n ≤ 0 at the start: n is 10, so 10 ≤ 0 is false and the body runs. A counter tracks the passes.",
+          "mechanism": "Trace: pass 1 → n = 7, count = 1 (7 ≤ 0 false); pass 2 → n = 4, count = 2; pass 3 → n = 1, count = 3; pass 4 → n = −2, count = 4, now −2 ≤ 0 is true → stop. The body ran 4 times, and DISPLAY(count) shows 4. Note the condition became true when n OVERSHOT 0 to −2, which a ≤ test catches but an = 0 test would not.",
+          "subtype": "Normal case, but a good contrast with Scenario 4: because the condition is n ≤ 0 (not n = 0), overshooting to −2 still satisfies it, so the loop stops. Choosing ≤ instead of = is exactly what prevents the infinite loop."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "When Does a Loop Stop?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "The same REPEAT UNTIL loop can run four times, zero times, or forever — and the difference is nothing but its starting values and how each pass changes them. Across three short windows in this topic, your group will argue about when a fixed count beats a condition, decide what a programmer must guarantee so a loop actually ends, and settle the two trap loops the exam loves: the one that never starts and the one that never stops.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Maya's plan broke the instant the price changed. What did expressing it as iteration — 'add $5 until she reaches the price' — give her that copying 'Add $5' four times did not?"
+          },
+          {
+            "text": "Question 2. Some repeats you can count in advance ('do 20 push-ups') and some you cannot ('shuffle until the deck is random'). Brainstorm real tasks of each kind. What makes a repeat's count knowable versus unknowable ahead of time?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the count-vs-condition trap",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-question test",
+            "text": "When you see a loop, there is one question that decides whether to write REPEAT n TIMES or REPEAT UNTIL. In one sentence your whole group agrees on, write that question, and state what each answer tells you to choose.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Make a loop that never ends",
+            "text": "Debate for about 3 minutes: write a REPEAT UNTIL loop that looks reasonable but never stops, WITHOUT using 'add 0.' Record your loop and explain, in one sentence, exactly why its condition can never become true.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The loop that never starts",
+            "text": "Consider: savings ← 25; REPEAT UNTIL(savings ≥ 20) { savings ← savings + 5 }; DISPLAY(savings). Most people's gut says 30; the answer is 25. As a group, write the clearest one-paragraph explanation you can of WHY it prints 25 — one a nervous classmate would actually understand — using the phrase 'checked before the loop.' Then invent one more short loop that would fool the same person, and give its correct behavior.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'a REPEAT UNTIL always runs at least once' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "meta": {
+    "lessonId": "3.10",
+    "lessonTitle": "Lists",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-2.O",
+    "anchor": "Lists",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.10 · Day 2 of 2",
+      "title": "Sweeping the Whole List",
+      "subtitle": "The FOR EACH loop visits every element in order, and on top of it ride the algorithms the exam tests most: sum, average, minimum, maximum, and the linear (sequential) search",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Lists. Yesterday you poked at single positions — read a slot, overwrite a slot, insert, remove. Today you sweep the ENTIRE list. First the tool: FOR EACH item IN aList, which walks the list from the first element to the last. Then the four or five algorithms every AP list question is built from — summing, averaging, finding the minimum and maximum, and searching for a value with a linear search. Master the traversal and these algorithms stop being memorized code and become obvious."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write iteration that traverses a list with FOR EACH item IN aList, and tell a complete traversal apart from a partial one (LO AAP-2.O)"
+        },
+        {
+          "tag": "CB",
+          "text": "Determine the result of list-traversal algorithms — sum, average, minimum, maximum, and linear/sequential search (LO AAP-2.O)"
+        }
+      ],
+      "script": "Two targets today, both from AAP-2.O, algorithms involving list elements — and like yesterday, it has two graded halves. Part a is WRITING a traversal: use FOR EACH to walk a list, and know the difference between a complete traversal that touches every element and a partial one that stops short. Part b is DETERMINING the result: given a traversal that sums, averages, finds a max or min, or searches, trace it and state exactly what it produces. Reading traversal code and writing it are both on the exam, and today drills both."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "Here is yesterday's step log again: steps = [8000, 12000, 9000, 15000, 11000]. With a partner, and WITHOUT skipping around, find three things by going through the list one value at a time, left to right: the total of all five days, the single best (highest) day, and whether any day was exactly 9000.",
+      "subprompt": "Write 2–4 sentences: For each of the three tasks, what were you 'keeping track of' as you moved down the list? For the 'best day,' what did you compare each new value against? For 'exactly 9000,' when could you stop?",
+      "directions": "Be ready to describe the running value you kept for each task.",
+      "script": "Five minutes with a partner. Go through the step log one value at a time, left to right — no skipping — and find three things: the total, the best day, and whether any day hit exactly nine thousand. Pay attention to what you carry in your head. For the total, you keep a running sum. For the best day, you keep the biggest value seen so far and compare each new day to it. For the exactly-nine-thousand check, you scan until you hit it — at day three — and then you can stop. You just hand-executed the three algorithms of today's lesson: sum, maximum, and linear search. Every one of them is the same move: walk the list once, keeping track of one running value."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "Traversing a List",
+          "description": "FOR EACH item IN aList, complete vs. partial traversals, and why parallel traversals are out of scope (EK AAP-2.O.1–O.3)."
+        },
+        {
+          "title": "Algorithms Over a List",
+          "description": "Sum, average, minimum, maximum, and the linear (sequential) search (EK AAP-2.O.4–O.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.10 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's Guided Notes map: two sections, both green and CB-required. First, traversing a list — the FOR EACH loop, the difference between a complete and a partial traversal, and one thing the College Board explicitly puts out of scope. Second, the algorithms that ride on traversal — sum, average, minimum, maximum, and linear search. Keep the packet open; every answer also lives on the Topic 3.10 page, along with the coding practice where you type and run these same algorithms on the step log."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "Traversing a List",
+      "kicker": "FOR EACH item IN aList · Learning Objective AAP-2.O",
+      "script": "Section one. A traversal is just visiting the elements of a list one at a time. The exam reference sheet gives you a clean tool for it — FOR EACH — that hands you each element's value in order, first to last. Get precise about what the loop variable holds and you will trace any traversal correctly."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.O)",
+      "terms": [
+        {
+          "term": "Traversal",
+          "definition": "Accessing the elements of a list one at a time using an iteration statement (EK AAP-2.O.2)."
+        },
+        {
+          "term": "Complete traversal",
+          "definition": "A traversal in which ALL elements of the list are accessed (EK AAP-2.O.1)."
+        },
+        {
+          "term": "Partial traversal",
+          "definition": "A traversal in which only a PORTION of the elements are accessed (EK AAP-2.O.1)."
+        },
+        {
+          "term": "FOR EACH loop",
+          "definition": "FOR EACH item IN aList { … }; item is assigned each element's value in order, first to last, and the body runs once per element (EK AAP-2.O.3)."
+        },
+        {
+          "term": "Linear (sequential) search",
+          "definition": "An algorithm that checks each element in order until the desired value is found or all elements have been checked (EK AAP-2.O.5)."
+        }
+      ],
+      "script": "Five terms. A traversal is accessing a list's elements one at a time with a loop. A complete traversal touches every element; a partial traversal stops after only some — a distinction the exam tests. The FOR EACH loop is the reference sheet's traversal tool: item is assigned each element's VALUE, in order, first to last, and the body runs once for each element. And a linear or sequential search checks each element in order until it finds the value it wants or runs out of elements. Write all five — they anchor everything in this lesson."
+    },
+    {
+      "type": "concept",
+      "heading": "FOR EACH Walks the List for You",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "Iteration statements can be used to traverse a list — visiting its elements one after another (EK AAP-2.O.2).",
+        "FOR EACH item IN aList assigns item the VALUE of each element, in order, first to last; the body runs once per element (EK AAP-2.O.3).",
+        "A traversal can be COMPLETE — every element accessed — or PARTIAL, where only some elements are accessed (EK AAP-2.O.1).",
+        "Out of scope: traversing two lists at once with the same index for both (a parallel traversal) is outside this course and the AP Exam (exclusion, EK AAP-2.O.1)."
+      ],
+      "script": "Here is the traversal tool and its rules. An iteration statement can walk a list, visiting elements one after another. The reference sheet's FOR EACH does exactly that: item IN aList assigns item the VALUE of each element — not its index — in order from first to last, and the body runs once per element. Write down the key subtlety: item holds a value, so a FOR EACH is perfect when you need each value, but it does not hand you the position. A traversal can be complete, touching every element, or partial, stopping after only some — the exam expects you to name which. And one boundary the College Board draws explicitly: stepping through two lists at the same time using one shared index — a parallel traversal — is outside the scope of this course and the exam. You will never be required to do it.",
+      "capture": [
+        {
+          "q": "In FOR EACH item IN aList, the variable item is assigned each element's ______.",
+          "a": "value, in order from the first element to the last (not its index)"
+        },
+        {
+          "q": "A traversal that accesses every element is called ______.",
+          "a": "a complete traversal; one that accesses only a portion is a partial traversal"
+        },
+        {
+          "q": "The College Board puts one traversal technique out of scope: ______.",
+          "a": "a parallel traversal — stepping through multiple lists at once using the same index for both"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Traversal",
+      "heading": "Total Every Element",
+      "caption": "day takes each step count in turn; total accumulates the running sum across a complete traversal.",
+      "pseudocode": "total ← 0\nFOR EACH day IN steps\n{\n  total ← total + day\n}\nDISPLAY(total)",
+      "python": "total = 0\nfor day in steps:\n    total = total + day\nprint(total)",
+      "output": "55000",
+      "script": "The summing traversal, in two columns. Start total at zero — that is the running value the bell ringer had you keep in your head. FOR EACH day IN steps hands you eight thousand, then twelve thousand, then nine thousand, then fifteen thousand, then eleven thousand, one at a time, and each pass adds that value into total. After the complete traversal, total is fifty-five thousand. Notice day is a VALUE, not a position — you never wrote steps of i anywhere. Python's for-day-in-steps reads almost identically, which is why FOR EACH is the traversal you reach for first."
+    },
+    {
+      "type": "two_column",
+      "heading": "FOR EACH (Values) vs. Indexed Traversal (Positions)",
+      "subheading": "Both visit every element, but one hands you each value and the other hands you each position number (EK AAP-2.O.2–O.3).",
+      "left": {
+        "title": "FOR EACH — values",
+        "definition": "item is each element's value, first to last",
+        "ek": "EK AAP-2.O.3",
+        "examples": [
+          "FOR EACH day IN steps { total ← total + day }",
+          "Use it when you only need each VALUE",
+          "Cleanest for sum, average, max, min, search"
+        ]
+      },
+      "right": {
+        "title": "Indexed — positions",
+        "definition": "A counter i walks 1 → LENGTH(aList); aList[i] reads each element",
+        "ek": "EK AAP-2.O.2",
+        "examples": [
+          "i ← 1",
+          "REPEAT LENGTH(steps) TIMES { … steps[i] …; i ← i + 1 }",
+          "Use it when you need the POSITION of an element"
+        ]
+      },
+      "footer": "AP TIP: If a question asks only about element values, FOR EACH is simplest. If it asks WHERE something is (its index), use an indexed loop — FOR EACH does not give you the position.",
+      "script": "Two ways to traverse, and the exam uses both. On the left, FOR EACH hands you each element's value in order — perfect when the algorithm only cares about the values, like summing or searching for a match. On the right, an indexed traversal keeps a counter i that walks from one up to LENGTH, and reads steps of i each pass; you reach for this when you need to know the POSITION of an element, not just its value — for example, reporting which DAY was the best, not just the best count. Same elements visited either way; the difference is whether you get values or positions. Choosing the right one is part of AAP-2.O.",
+      "capture": [
+        {
+          "q": "Choose FOR EACH over an indexed loop when the algorithm needs ______.",
+          "a": "only each element's value, not its position — FOR EACH does not give you the index"
+        },
+        {
+          "q": "An indexed traversal keeps a counter i that runs from 1 to ______.",
+          "a": "LENGTH(aList), reading aList[i] on each pass so the position is available"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Traversal",
+      "subheading": "These map to LO AAP-2.O. Complete on your Guided Notes.",
+      "prompts": [
+        "Write a FOR EACH loop that displays every element of a list prices. State whether it is a complete or a partial traversal and why.",
+        "In FOR EACH n IN nums, a classmate writes nums[n] inside the loop to get 'the current element.' Explain what n actually holds and why nums[n] is wrong here.",
+        "A program needs the POSITION (index) of a value, not just the value. Explain why FOR EACH cannot give that directly, and what kind of loop you would use instead."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.10 page.",
+      "script": "Stop and think, six minutes, full sentences. One: FOR EACH price IN prices, then DISPLAY of price — that touches every element, so it is a complete traversal. Two: the classmate is confusing value and index — in FOR EACH n IN nums, n is already the element's VALUE, so nums of n indexes the list with a data value, which is wrong and probably out of range; you just use n itself. Three: FOR EACH only hands you values, never positions, so to report WHERE a value is you use an indexed loop with a counter i and read aList of i. These are the exact traversal judgments AAP-2.O tests."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "Algorithms Over a List",
+      "kicker": "Sum · Average · Min · Max · Linear Search · Learning Objective AAP-2.O",
+      "script": "Section two. Now the payoff. Almost every list algorithm on the exam is one complete traversal that carries a single running value — a sum, a best-so-far, or a found flag. Learn the pattern once and sum, average, minimum, maximum, and linear search all fall out of it."
+    },
+    {
+      "type": "concept",
+      "heading": "The Standard List Algorithms",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "SUM & AVERAGE: start an accumulator at 0, add each element during the traversal; the average is that sum divided by LENGTH(aList) (EK AAP-2.O.4).",
+        "MAX & MIN: start the 'best so far' at the first element, then compare each element and keep the larger (max) or smaller (min) (EK AAP-2.O.4).",
+        "LINEAR / SEQUENTIAL SEARCH: check each element in order until the desired value is found or all elements have been checked (EK AAP-2.O.5).",
+        "A linear search may STOP EARLY the instant it finds the target, but must examine EVERY element when the target is absent (EK AAP-2.O.5)."
+      ],
+      "script": "Four algorithms, one pattern. Sum: start an accumulator at zero and add each element as you traverse; the average is that sum divided by LENGTH of the list — always the length, never a hard-coded number. Max and min: seed a 'best so far' with the first element, then compare every element and keep the larger for a max or the smaller for a min; at the end, best so far is the answer. Linear search, also called sequential search: check each element in order until you find the value you want or you run out of elements. And note the effort: a linear search can stop the moment it finds the target — that is the lucky case — but if the target is not in the list, it has to look at every single element before it can say 'not found.' That best-versus-worst effort is a favorite exam point.",
+      "capture": [
+        {
+          "q": "To find the maximum of a list you seed 'best so far' with ______.",
+          "a": "the first element, then compare each remaining element and keep the larger"
+        },
+        {
+          "q": "The average of a list is the sum divided by ______.",
+          "a": "LENGTH(aList) — the current number of elements, not a hard-coded count"
+        },
+        {
+          "q": "A linear search must examine every element only when ______.",
+          "a": "the desired value is not in the list; if it is found, the search can stop early"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Max",
+      "heading": "Find the Best Day",
+      "caption": "best starts at the first element, then keeps the larger value on every pass — a complete traversal.",
+      "pseudocode": "best ← steps[1]\nFOR EACH day IN steps\n{\n  IF(day > best)\n  {\n    best ← day\n  }\n}\nDISPLAY(best)",
+      "python": "best = steps[0]\nfor day in steps:\n    if day > best:\n        best = day\nprint(best)",
+      "output": "15000",
+      "script": "The maximum algorithm. Seed best with steps of one — the first element, eight thousand — so best always starts as a real value from the list. Then traverse: each day, if it is bigger than the current best, best becomes that day. Eight thousand stays, twelve thousand replaces it, nine thousand does not, fifteen thousand replaces it, eleven thousand does not — best ends at fifteen thousand, the best day. Swap the greater-than for a less-than and the exact same shape finds the MINIMUM. One reference-sheet detail on the left, Python difference on the right: steps of one seeds best on the reference sheet, but Python's zero-indexed steps of zero is the same first element."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Trace a Linear Search",
+      "context": "Search steps ← [8000, 12000, 9000, 15000, 11000] for the value 9000, checking each element in order. Fill in the blanks and stop as soon as it is found.",
+      "columns": [
+        "Index i",
+        "steps[i]",
+        "steps[i] = 9000 ?",
+        "Action"
+      ],
+      "rows": [
+        [
+          "1",
+          "8000",
+          "false",
+          "not a match — keep searching"
+        ],
+        [
+          "2",
+          "12000",
+          "false",
+          "not a match — keep searching"
+        ],
+        [
+          "3",
+          "9000",
+          "true",
+          "found at index 3 — stop the search"
+        ]
+      ],
+      "highlightCol": 3,
+      "script": "Trace the linear search the way the exam wants — element by element, in order. Index one, eight thousand, is it nine thousand? False, keep going. Index two, twelve thousand? False, keep going. Index three, nine thousand? True — found, at position three, and we STOP; we never look at fifteen thousand or eleven thousand. That early stop is the whole point of the found case. Fill the blanks yourself. And ask the follow-up the exam loves: if we had searched for a value that is not in the list, how many elements would we have checked? All five — because only after checking every element can a linear search report 'not found.'",
+      "blanks": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“Average = Sum ÷ the Number I Typed”",
+      "misconception": "To average a list, divide the sum by the count you wrote when you first coded it — for the five-day log, divide by 5.",
+      "whyItHappens": "When you write the code the list has a known size, so hard-coding that number (÷ 5) gives the right answer at that moment and feels safe.",
+      "correction": "Divide the sum by LENGTH(aList), not by a fixed number (EK AAP-2.O.4). The moment the list grows or shrinks — an APPEND, INSERT, or REMOVE from yesterday — a hard-coded divisor is wrong. LENGTH always reports the current size, so the average stays correct for any list.",
+      "example": "steps totals 55000 over 5 days → average 11000. Now APPEND a 6th day of 5000: the sum is 60000. Dividing by the hard-coded 5 gives 12000 (wrong); dividing by LENGTH(steps) = 6 gives 10000 (right).",
+      "script": "Here is the algorithm trap on the exam. To average, students divide the sum by the number they happened to type — divide by five for the five-day log. It works until the list changes size. The correct divisor is LENGTH of the list, never a fixed number, because LENGTH always reports how many elements are actually there right now. Watch it break: the log sums to fifty-five thousand over five days, average eleven thousand. APPEND a sixth day of five thousand and the sum is sixty thousand — divide by the hard-coded five and you get twelve thousand, which is wrong; divide by LENGTH, now six, and you get ten thousand, which is right. Yesterday's procedures and today's algorithms meet exactly here: any resize makes a hard-coded count a bug."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Algorithms & Search",
+      "subheading": "These map to LO AAP-2.O. Show your trace on your Guided Notes.",
+      "prompts": [
+        "For vals ← [3, 9, 4, 9, 1], trace the maximum algorithm (best ← vals[1], then keep the larger). Give best after each element and the final result.",
+        "For the same vals, a linear search looks for the value 9. In order, which index does it find first, and how many elements did it examine before stopping?",
+        "Write the average of vals as an expression using LENGTH. Then explain why dividing by 5 would break if someone did APPEND(vals, 6) first."
+      ],
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 3.10 page.",
+      "script": "Trace it, six minutes, show every step. One: best starts at three, then nine replaces it, four does not, the second nine does not — it must be strictly greater — and one does not, so the max is nine. Two: the linear search for nine checks three, then nine at index two — found after examining two elements, and it stops there. Three: the average is the sum, twenty-six, divided by LENGTH of vals, which is five, giving five point two; if someone APPENDs a sixth value first, LENGTH becomes six and dividing by a hard-coded five would be wrong. Answers are reviewed together before the exit check."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.10 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "Count from 1, not 0",
+          "text": "On the exam reference sheet the first element is aList[1] and the last is aList[LENGTH(aList)]. An index of 0 or of LENGTH+1 is out of range and errors. Python's 0-indexing in the coding practice is a language difference you translate, not the exam's rule."
+        },
+        {
+          "name": "Overwrite vs. resize",
+          "text": "aList[i] ← x overwrites one existing slot and keeps the SAME length. INSERT, APPEND, and REMOVE change the length and SHIFT the neighbors (right for INSERT, left for REMOVE). If a question's LENGTH changed, a procedure did it."
+        },
+        {
+          "name": "FOR EACH gives values, and divide by LENGTH",
+          "text": "In FOR EACH item IN aList, item is each element's VALUE, not its index — use an indexed loop when you need the position. Average always divides the sum by LENGTH(aList), never a hard-coded count. Parallel traversals (two lists, one shared index) are out of scope."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: count from one — the reference sheet is one-indexed, first element aList of one, last at LENGTH, and index zero or past the end is an error; Python's zero is a language difference you translate. Trap two: overwrite versus resize — aList of i arrow x keeps the length the same, while INSERT, APPEND, and REMOVE change the length and shift the neighbors; if LENGTH moved, a procedure moved it. Trap three: FOR EACH hands you values, not indices, so reach for an indexed loop when you need a position; average always divides by LENGTH, never a typed-in number; and parallel traversals are out of scope. Dodge these three and lists are free points in May."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Lists, in One Slide",
+      "points": [
+        "Lists are 1-indexed on the reference sheet: aList[1] is first, aList[LENGTH(aList)] is last; x ← aList[i] reads and aList[i] ← x overwrites in place (EK AAP-2.N.1).",
+        "APPEND (+1, end), INSERT (+1, shift right at i), and REMOVE (−1, shift left) resize the list and move neighbors; LENGTH reports the current size (EK AAP-2.N.1–N.2).",
+        "FOR EACH item IN aList visits every element by VALUE, first to last; traversals are complete or partial, and parallel traversals are out of scope (EK AAP-2.O.1–O.3).",
+        "One traversal carries one running value: sum, average (÷ LENGTH), minimum, maximum, and linear/sequential search that may stop early (EK AAP-2.O.4–O.5)."
+      ],
+      "next": "Topic 3.11, Binary Search: when a list is SORTED, a smarter search jumps to the middle and eliminates half the list each step — often far faster than the linear search you built today.",
+      "script": "The whole topic in one slide. Lists are one-indexed on the reference sheet — first element aList of one, last at LENGTH — and you either read a slot or overwrite it in place. The three procedures resize the list and shift the neighbors, while LENGTH reports the current size. FOR EACH walks the list by value from first to last; traversals are complete or partial, and parallel traversals are out of scope. And every standard algorithm is one traversal carrying one running value: sum, average dividing by LENGTH, minimum, maximum, and a linear search that can stop early when it finds its target. Next class is Topic 3.11, Binary Search, where a SORTED list lets us do far better than checking every element. Before you pack up, run the exit check — four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.10 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "write and evaluate list-indexing expressions and the procedures INSERT, APPEND, REMOVE, and LENGTH (LO AAP-2.N)",
+        "trace a sequence of list operations and give the list's contents and length after each (LO AAP-2.N)",
+        "write a FOR EACH traversal and tell a complete traversal apart from a partial one (LO AAP-2.O)",
+        "determine the result of sum, average, minimum, maximum, and linear-search algorithms over a list (LO AAP-2.O)"
+      ]
+    }
+  ]
+}

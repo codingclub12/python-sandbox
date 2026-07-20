@@ -189,7 +189,7 @@
         "In a REPEAT UNTIL loop, an infinite loop occurs when the ending condition will never evaluate to true (EK AAP-2.K.4).",
         "It happens when the body never moves the state toward the condition — or steps right over it.",
         "Example: total ← 1; REPEAT UNTIL(total = 10) { total ← total + 2 } — total is 1, 3, 5, 7, 9, 11 and skips 10 forever.",
-        "The fix: make sure every pass moves the tracked value toward making the condition true."
+        "The fix: make sure each pass brings the tracked value closer to satisfying the condition."
       ],
       "script": "Case one, the infinite loop. The College Board's definition is precise: in a REPEAT UNTIL, an infinite loop occurs when the ending condition can never become true. The usual cause is a body that never pushes the state toward the condition, or one that overshoots it. The example is the classic exam trap: start total at 1 and add 2 each pass while waiting for total to equal exactly 10. But 1 plus 2s only ever gives odd numbers — 1, 3, 5, 7, 9, 11 — so total equals 10 is never true, and the loop runs forever. The lesson: when you check a REPEAT UNTIL, verify each pass actually moves toward the stopping condition, and beware equality tests that a step size can jump over.",
       "capture": [

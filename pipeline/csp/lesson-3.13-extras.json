@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "lessonId": "3.13",
+    "lessonTitle": "Developing Procedures",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-3.B, AAP-3.C"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-3.B, AAP-3.C",
+    "intro": "Everything for this topic lives in this folder. Topic 3.13 moves students from CALLING procedures (3.12) to reasoning about and WRITING them, so it ships an interactive, auto-graded coding-practice page. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (how procedural abstraction manages complexity) and Day 2 (writing a PROCEDURE, with and without RETURN). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Procedures and Exercise 2: Design the Procedure (student + answer KEY)",
+      "Discussion — Who Needs to Know How? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-3.B and AAP-3.C, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-13-developing-procedures"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-13-developing-procedures-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-13-developing-procedures-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-13-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-13-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-13-developing-procedures"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: why procedures manage complexity; Day 2: the two reference-sheet forms and RETURN). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real code and checks it against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.13 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.14 (Libraries) begins immediately after the quiz, and it builds directly on procedural abstraction defined here."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Procedures",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-13-exercise-1",
+    "intro": "You are a code reviewer for the school store's label program. The program DEFINES a small procedure and then calls it several times; some calls hit an early RETURN. Your job is to TRACE it by hand — determine what each call returns or displays, and which RETURN fires — then answer questions about how procedural abstraction is working. This is the core reasoning behind LO AAP-3.B and AAP-3.C: a procedure is used by knowing WHAT it does, and RETURN hands a value back and exits immediately.",
+    "scenarioTitle": "The Store's labelTotal / charge Procedures",
+    "narrative": "Read the definitions first, then work each call top to bottom. For a call, substitute the arguments for the parameters, run the body in order, and stop the instant a RETURN executes. A procedure that only DISPLAYs returns no value. Work your own trace on scratch paper before answering Part A — the definitions are your reference, and the questions ask what specific calls return or display.",
+    "log": {
+      "columns": [
+        "Line",
+        "Code",
+        "What it does",
+        "Result / Value",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "1-3",
+          "PROCEDURE labelTotal(unitPrice, quantity) { RETURN(unitPrice * quantity) }",
+          "Defines a procedure that returns a total",
+          "(no output yet — just a definition)",
+          "The formula lives in ONE place now"
+        ],
+        [
+          "4",
+          "DISPLAY(labelTotal(3, 12))",
+          "Calls labelTotal, displays the returned value",
+          "36",
+          "unitPrice←3, quantity←12, returns 36"
+        ],
+        [
+          "5",
+          "DISPLAY(labelTotal(2, 30))",
+          "Same procedure, different arguments",
+          "60",
+          "Parameters generalize it — one definition, new inputs"
+        ],
+        [
+          "6-9",
+          "PROCEDURE charge(price, quantity) { IF(quantity = 0) { RETURN(0) } RETURN(price * quantity) }",
+          "Defines a procedure with an early RETURN guard",
+          "(definition)",
+          "RETURN may appear anywhere inside the procedure"
+        ],
+        [
+          "10",
+          "DISPLAY(charge(5, 0))",
+          "quantity is 0, so the first RETURN fires",
+          "0",
+          "Immediate return — the multiply line never runs"
+        ],
+        [
+          "11",
+          "DISPLAY(charge(5, 3))",
+          "quantity is not 0, so the guard is skipped",
+          "15",
+          "The second RETURN fires: 5 * 3 = 15"
+        ]
+      ]
+    },
+    "scenarioNote": "Procedures adapted from the Day 1 labelTotal example and the Day 2 early-RETURN trace; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023).",
+    "predict": "Before you answer Part A, predict in one sentence: for charge(5, 0), does the line RETURN(price * quantity) ever run? Why or why not?",
+    "partALabel": "Part A - Trace the Values",
+    "partA": [
+      {
+        "ek": "EK AAP-3.C.1 / AAP-3.B.5",
+        "pts": 4,
+        "q": "For the calls labelTotal(3, 12) and labelTotal(2, 30), give the value each one returns and show how the arguments fill the parameters. Explain what makes ONE definition able to handle both calls.",
+        "answer": "labelTotal(3, 12) returns 36 and labelTotal(2, 30) returns 60. For the first call, the argument 3 fills the parameter unitPrice and 12 fills quantity, so the body RETURNs unitPrice * quantity = 3 * 12 = 36. For the second, 2 fills unitPrice and 30 fills quantity, so it RETURNs 2 * 30 = 60. One definition handles both because the parameters generalize the procedure: supplying different arguments reuses the same code across a range of inputs (EK AAP-3.B.5). Full credit requires showing the argument-to-parameter matching by position."
+      },
+      {
+        "ek": "EK AAP-3.C.2",
+        "pts": 4,
+        "q": "For charge(5, 0), state which RETURN fires, the value returned, and whether RETURN(price * quantity) runs. Then do the same for charge(5, 3). Explain the rule that decides the difference.",
+        "answer": "charge(5, 0): quantity = 0 is true, so the FIRST RETURN fires, the procedure returns 0, and RETURN(price * quantity) never runs. charge(5, 3): quantity = 0 is false, so the guard is skipped and the SECOND RETURN fires, returning 5 * 3 = 15. The rule is that a RETURN may appear at any point and causes an IMMEDIATE return to the caller (EK AAP-3.C.2): once the first RETURN executes for charge(5, 0), the procedure stops and nothing after it runs. The condition quantity = 0 decides which RETURN is reached first."
+      },
+      {
+        "ek": "EK AAP-3.B.1",
+        "pts": 4,
+        "q": "The main program never rewrites 'unitPrice * quantity' — it just calls labelTotal. Using the CED definition of procedural abstraction, explain what the main program needs to know about labelTotal, and what it does NOT need to know.",
+        "answer": "Per EK AAP-3.B.1, procedural abstraction provides a name for a process and lets a procedure be used knowing only WHAT it does, not HOW. The main program needs to know only what labelTotal does — takes a unit price and a quantity and returns the total — and how to call it (its name and parameters). It does NOT need to know how the total is computed inside: whether it multiplies, adds in a loop, or rounds. That hidden 'how' is exactly what lets the formula live in one place and be trusted by name everywhere it is called."
+      },
+      {
+        "ek": "EK AAP-3.B.4 / AAP-3.B.7",
+        "pts": 3,
+        "q": "Suppose you rewrite the inside of labelTotal to add unitPrice to itself quantity times (a loop) instead of multiplying, but every returned value stays the same. Do lines 4 and 5 need to change? Explain using the idea of hidden internals.",
+        "answer": "No — lines 4 and 5 do not change. labelTotal(3, 12) still returns 36 and labelTotal(2, 30) still returns 60, because the loop produces the same totals as the multiplication. Since callers depend only on WHAT the procedure does, not how, the internals can be rewritten without notifying users as long as the behavior is preserved (EK AAP-3.B.7). This is also why extracting the shared formula into one procedure manages complexity: a change to the 'how' happens in one place and touches no call site (EK AAP-3.B.4)."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-3.C.2",
+        "pts": 3,
+        "q": "Write your own short procedure (in exam pseudocode) that uses an early RETURN as a guard — for example, returns a fixed value for a special input before doing the main calculation. Show two calls: one that hits the guard and one that does not, and give each returned value.",
+        "answer": "Example: PROCEDURE shipping(weight) { IF(weight = 0) { RETURN(0) } RETURN(weight * 2) }. Call shipping(0) hits the guard: weight = 0 is true, so the first RETURN fires and it returns 0, exiting immediately. Call shipping(4) skips the guard and RETURNs 4 * 2 = 8. Any equivalent procedure earns full credit as long as (a) an early RETURN handles a special input, (b) one call reaches it and one does not, and (c) the student notes that the early RETURN exits before the main calculation runs (EK AAP-3.C.2)."
+      },
+      {
+        "ek": "EK AAP-3.C.1 / AAP-3.C.2",
+        "pts": 3,
+        "q": "Explain the difference between a procedure that ends with DISPLAY(total) and one that ends with RETURN(total). Give one situation where only the RETURN version works, and say why.",
+        "answer": "DISPLAY(total) prints the value to the screen but hands nothing back to the caller; RETURN(total) sends the value back so the caller can store or reuse it (EK AAP-3.C.2). Only the RETURN version works when a caller needs the value, for example receipt ← finalPrice(3, 12): this stores 36 only because finalPrice RETURNs. If finalPrice merely DISPLAYed total, 36 would print but receipt would hold nothing — there is no returned value to assign. The no-return form (EK AAP-3.C.1) is fine only when the job is the effect (displaying), not producing a value to use."
+      },
+      {
+        "ek": "EK AAP-3.B.3 / AAP-3.B.6",
+        "pts": 2,
+        "q": "ENRICHMENT: The store program is being split so that validating input, computing totals, and formatting labels each become their own procedure. Name the CED term for this subdivision and explain one way it makes the program easier for a human to read.",
+        "answer": "The subdivision of a program into separate subprograms is called modularity (EK AAP-3.B.3). It improves readability (EK AAP-3.B.6) because each procedure has a clear, single job and a descriptive name, so the main program reads like a short list of tasks — validate, compute, format — instead of one long block of mixed logic. A reader can understand the overall flow from the names alone and only open a specific procedure when they need its details."
+      },
+      {
+        "ek": "LO AAP-3.C",
+        "pts": 0,
+        "q": "Next step: you traced these procedures by hand. Now head to the Topic 3.13 page and type and run the harder versions, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Design the Procedure",
+    "minutes": "25 minutes",
+    "subtitle": "5 tasks - decide the header, the body, and whether it RETURNs",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-13-exercise-2",
+    "intro": "You are designing procedures for the school store's program. For each task, decide the procedure's NAME, its PARAMETERS (the header), what the BODY does, and — the decision that trips people up — whether it should DISPLAY (no return) or RETURN a value. Vague answers like 'just make a procedure' score zero; name the header and say whether a value comes back.",
+    "standard": "CB Standard (required): a meaningful name + the parameter list + what the body does + whether it RETURNs a value or only DISPLAYs, for all 5 tasks. Enrichment (optional): note a subtler design choice such as an early-RETURN guard or a hidden-internals change (EK AAP-3.C.2).",
+    "methodHeading": "Three-Step Method - use for every task",
+    "method": [
+      [
+        "Step 1 - Write the header",
+        "Choose a meaningful name and list the parameters the procedure needs as inputs: PROCEDURE name(p1, p2). The parameters are what the caller will fill with arguments."
+      ],
+      [
+        "Step 2 - Decide RETURN or DISPLAY",
+        "Does the caller need a VALUE back to store or reuse? Then RETURN it. Is the whole job just an effect on screen? Then DISPLAY, no return. This single choice defines which reference-sheet form you use."
+      ],
+      [
+        "Step 3 - Write the body (and place any RETURN)",
+        "Fill in the statements that do the work. If a special input should short-circuit the procedure, put an early RETURN there — it exits immediately, before the rest runs (EK AAP-3.C.2)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler design judgment): The best procedures do ONE clear job and are named for it, so the main program reads like a list of tasks (EK AAP-3.B.6). An early RETURN can make a procedure cleaner by handling a special case up front instead of nesting everything in an IF. And remember hidden internals: once the header and behavior are fixed, you can rewrite the body freely (EK AAP-3.B.7). When you finish, move to the Topic 3.13 coding page to write and run these procedures for real.",
+    "fields": [
+      "Header (name + parameters):",
+      "RETURN a value or DISPLAY only? Why:",
+      "Enrichment — a subtler design choice (guard, single job, hidden internals):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "The store needs a procedure that takes a unit price and a quantity and gives back the total so the caller can add it to a running cart total.",
+        "key": {
+          "signs": "The caller needs the total as a VALUE to add into a cart, so a value must come back. That is the signal for the RETURN form (EK AAP-3.C.2).",
+          "mechanism": "Header: PROCEDURE lineTotal(unitPrice, quantity). Body: RETURN(unitPrice * quantity). It RETURNs a value rather than displaying because the caller uses the result in more arithmetic — cartTotal ← cartTotal + lineTotal(...). A DISPLAY here would print the number but leave the caller nothing to add.",
+          "subtype": "Two parameters generalize the one procedure to every product (EK AAP-3.B.5); the caller reuses it by name without re-deriving the formula."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "The store needs a procedure that prints a product's name and price on a label. Nothing else in the program uses the result — the whole point is what appears on screen.",
+        "key": {
+          "signs": "The job is an EFFECT on screen; no caller needs a value back. That is the signal for the no-return form (EK AAP-3.C.1).",
+          "mechanism": "Header: PROCEDURE printLabel(name, price). Body: DISPLAY(name) then DISPLAY(price). It DISPLAYs and does NOT RETURN, because the purpose is the printed label, not a value to store. Using the reference-sheet form PROCEDURE procName(...) { block } is correct here — no RETURN belongs in it.",
+          "subtype": "This contrasts directly with Task 1: same store, but one hands a value back (RETURN) and one only produces an effect (DISPLAY). Deciding which is the core skill of AAP-3.C."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "The store gives free samples: a procedure takes a price and a quantity, but if the quantity is 0 it should immediately give back 0 without doing any multiplication.",
+        "key": {
+          "signs": "A special input (quantity 0) should short-circuit the procedure before the main calculation. That calls for an EARLY RETURN guard (EK AAP-3.C.2).",
+          "mechanism": "Header: PROCEDURE charge(price, quantity). Body: IF(quantity = 0) { RETURN(0) } then RETURN(price * quantity). When quantity is 0 the first RETURN fires and the procedure exits immediately, so the multiplication never runs. It RETURNs because the caller needs the charge amount as a value.",
+          "subtype": "This shows RETURN may appear anywhere, not just at the end (EK AAP-3.C.2). The guard reads more clearly than wrapping the whole body in an IF/ELSE."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "The store needs a procedure that gives back a discounted price: it takes a price and a discount, and returns price minus discount — but a discount can never make the price go below 0.",
+        "key": {
+          "signs": "The caller needs the discounted VALUE, and there is a special case (discount too large) to handle first. This combines the RETURN form with an early-RETURN guard.",
+          "mechanism": "Header: PROCEDURE discountedPrice(price, discount). Body: IF(discount ≥ price) { RETURN(0) } then RETURN(price - discount). If the discount is at least the price, the guard RETURNs 0 immediately; otherwise it RETURNs price - discount. It must RETURN because the caller stores the final price.",
+          "subtype": "The guard prevents a negative result and demonstrates immediate return: discountedPrice(20, 25) returns 0 via the guard; discountedPrice(20, 5) returns 15 via the second RETURN (EK AAP-3.C.2)."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "A teammate wants to speed up lineTotal from Task 1 by rewriting HOW it computes the total, but every call in the program must keep working unchanged. Describe what they may change and what they must keep.",
+        "key": {
+          "signs": "This is a hidden-internals question, not a new procedure: what can change without breaking callers? The answer is governed by EK AAP-3.B.7.",
+          "mechanism": "They may change the BODY however they like — a different algorithm, fewer steps, less storage — as long as lineTotal returns the same value for the same arguments. They must keep the header (name and parameters) and the behavior identical, because callers depend only on WHAT it does, not how. No call site changes as long as what the procedure does is preserved.",
+          "subtype": "This is EK AAP-3.B.7 in action and ties back to Day 1: only a change to what the procedure DOES (its header or its returned results) would force callers to update."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Who Needs to Know How?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "A program runs the same whether one formula is copied ten times or wrapped in a single well-named procedure — until something has to change. Across three short windows in this topic, your group will argue about what a procedure's name really buys you, decide what a caller does and does not need to know, and settle the RETURN-versus-DISPLAY confusion that fools almost everyone the first time.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your store copy-pasted one pricing formula for every product. What actually broke as the store grew — and what does giving that formula a single name provide that 'just copy it again' does not?"
+          },
+          {
+            "text": "Question 2. You call DISPLAY and RANDOM constantly without ever seeing their code. So how much of programming is trusting procedures someone else wrote, and what has to be true about a procedure for that trust to be safe?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the benefits table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-sentence benefit",
+            "text": "A procedure hides HOW it works so callers only know WHAT it does. In one sentence your whole group agrees on, explain why that lets a programmer improve a procedure's internals without telling anyone who uses it.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Find the change that DOES break callers",
+            "text": "Debate for about 3 minutes: name one change to a procedure that WOULD force every caller to be updated, and one change that would not. Record both and state the single difference between them (hint: what it DOES vs. how it does it).",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The trap that fools everyone",
+            "text": "A procedure ends with DISPLAY(total); a classmate writes cost ← thatProcedure(5, 4) and is surprised cost is empty. As a group, write the clearest one-paragraph explanation you can of WHY it is empty — one a nervous classmate would actually understand — using the words 'RETURN' and 'hands back.' Then write the one-line fix.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'DISPLAY is the same as RETURN' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

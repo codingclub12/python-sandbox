@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "lessonId": "3.3",
+    "lessonTitle": "Mathematical Expressions",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-2.C",
+    "anchor": "Mathematical Expressions",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.3 · Day 2 of 2",
+      "title": "Arithmetic and the MOD Operator",
+      "subtitle": "The five arithmetic operators the AP reference sheet defines, why 17 / 5 evaluates to 3.4, what the remainder operator MOD does (17 MOD 5 = 2), and the order of operations in which MOD ties with * and /",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Mathematical Expressions. Yesterday an expression was any piece of code that evaluates to a single value. Today those expressions do arithmetic. We meet the five operators the AP reference sheet provides, and we get precise about two things students routinely miss: the single slash gives the exact value, so seventeen divided by five is three point four, not three; and MOD gives the remainder, so seventeen MOD five is two. We finish with the order of operations, where MOD sits with times and divide. By the end you can evaluate any arithmetic expression the exam throws at you."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Evaluate expressions using +, -, *, and /, knowing that / gives the exact value, so 17 / 5 evaluates to 3.4 (LO AAP-2.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Evaluate a MOD b as the remainder when a is divided by b, so 17 MOD 5 evaluates to 2 (LO AAP-2.C)"
+        },
+        {
+          "tag": "CB",
+          "text": "Apply the order of operations to mixed expressions, remembering MOD shares the precedence of * and / (LO AAP-2.C)"
+        }
+      ],
+      "script": "Three targets, all from AAP-2.C, evaluating arithmetic expressions. First: use plus, minus, times, and the single-slash divide, knowing division gives the exact value including decimals. Second: evaluate MOD as the remainder, the operator the reference sheet defines for the amount left over. Third: apply the order of operations to expressions that mix operators, remembering that MOD shares the precedence of times and divide, so among them you go left to right."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "You and 4 friends (5 people total) order a pizza cut into 17 slices and split them as equally as possible. Answer with a partner: How many WHOLE slices does each person get? How many slices are LEFT OVER on the table?",
+      "subprompt": "Now write the two arithmetic facts you just used: 17 shared among 5 is 'about ___ each,' and the number left over is ___. Which of those two numbers is a remainder? Keep both — they name today's two key operators.",
+      "directions": "Be ready to say which everyday question each number answers.",
+      "script": "Three minutes with a partner, and it is the teaser from yesterday. Seventeen slices, five people, split equally: each person gets three whole slices, and two slices are left over. Students just computed both numbers by hand — and they have unknowingly evaluated seventeen divided by five and seventeen MOD five. Draw the two out: the 'about three each' is what division gives (the computer will actually say three point four), and the 'two left over' is the remainder, which is MOD. Those two operators are the whole lesson, and this pizza is the scenario the exercises and coding practice reuse all the way through."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "The Arithmetic Operators",
+          "description": "The five operators, and why the / operator gives the exact value such as 17 / 5 = 3.4 (EK AAP-2.C.1, C.3)."
+        },
+        {
+          "title": "MOD and Order of Operations",
+          "description": "MOD as the remainder (17 MOD 5 = 2) and how it shares precedence with * and / (EK AAP-2.C.2, C.4)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.3 Guided Notes page at apcsexamprep.com.",
+      "script": "Two sections in today's Guided Notes, both green and CB-required: the arithmetic operators first, then MOD and the order of operations. Keep the packet open. The pizza-party coding practice on the Topic 3.3 page lets you type and run these very expressions and watch the output — seventeen divided by five really does print three point four."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "The Arithmetic Operators",
+      "kicker": "Five Operators, Exact Division · Learning Objective AAP-2.C",
+      "script": "Section one. The AP reference sheet gives you exactly five arithmetic operators. Four are the familiar ones. The surprise is in division: the single slash does not chop off the decimal — it gives the exact value. Getting that right is worth easy points, because the exam deliberately baits the 'just drop the decimal' habit."
+    },
+    {
+      "type": "concept",
+      "heading": "Five Operators, and Division Keeps the Decimal",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The reference sheet provides five arithmetic operators; four are the familiar +, -, *, and / (EK AAP-2.C.1, C.3).",
+        "The fifth is MOD, the remainder operator — it gets its own section next (EK AAP-2.C.1).",
+        "The / operator produces the exact quotient, decimal digits and all (EK AAP-2.C.3).",
+        "Reading a division as a whole number is the classic mistake; the single slash keeps the fractional part."
+      ],
+      "script": "The five arithmetic operators on the reference sheet: plus, minus, times, the single-slash divide, and MOD. Four are exactly what you expect. Divide is the one to watch. Unlike the grade-school habit of writing 'three remainder two,' the single-slash operator produces the exact quotient — decimal and all. That is EK AAP-2.C.3, and the canonical example is coming on the next slide. The fifth operator, MOD, is the remainder, and it gets the full treatment in section two. For now, lock in that a single slash never rounds or truncates on its own.",
+      "capture": [
+        {
+          "q": "Besides add, subtract, and multiply, the fourth familiar AP arithmetic operator is ______.",
+          "a": "division"
+        },
+        {
+          "q": "The surprising behavior of the / operator is that a division like 17 / 5 evaluates to ______, not a rounded whole number.",
+          "a": "3.4"
+        },
+        {
+          "q": "The / operator keeps the fractional part, so on its own it never ______ the result.",
+          "a": "rounds or truncates"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "Arithmetic",
+      "heading": "The Four Familiar Operators",
+      "caption": "Add, subtract, multiply, and divide in exam pseudocode and Python — note 17 / 5 gives 3.4.",
+      "pseudocode": "DISPLAY(8 + 3)\nDISPLAY(8 - 3)\nDISPLAY(4 * 5)\nDISPLAY(17 / 5)",
+      "python": "print(8 + 3)\nprint(8 - 3)\nprint(4 * 5)\nprint(17 / 5)",
+      "output": "11 5 20 3.4",
+      "script": "Four operators, four results. Eight plus three is eleven, eight minus three is five, four times five is twenty — no surprises. The last line is the one the exam tests: seventeen divided by five is three point four, the exact value. Run this in the Topic 3.3 coding practice and the last line really does print three point four, not three. That single output line is the fact that turns a whole family of exam questions into free points."
+    },
+    {
+      "type": "two_column",
+      "heading": "Exact Division vs the 'Integer Division' You Might Expect",
+      "subheading": "On the AP reference sheet a single / always gives the exact value; that is not the same as the whole-number division some languages provide (EK AAP-2.C.3).",
+      "left": {
+        "title": "AP reference sheet: /",
+        "definition": "One slash gives the exact quotient, decimals kept",
+        "ek": "EK AAP-2.C.3",
+        "examples": [
+          "17 / 5 evaluates to 3.4",
+          "20 / 8 evaluates to 2.5",
+          "The fractional part is never dropped on its own"
+        ]
+      },
+      "right": {
+        "title": "What some languages also offer",
+        "definition": "A separate operator that removes the decimals",
+        "ek": "Contrast",
+        "examples": [
+          "Integer division that removes the decimals (e.g., Python's // gives 3)",
+          "That operator is NOT the AP reference-sheet /",
+          "For a whole-number remainder, the exam uses MOD"
+        ]
+      },
+      "footer": "AP TIP: A single / on the exam always gives the exact value. If a question wants the amount left over, that is MOD — never a rounded division.",
+      "script": "Here is the confusion the exam exploits. On the AP reference sheet a single slash gives the exact value: seventeen over five is three point four, twenty over eight is two point five. Some real languages ALSO have a separate whole-number division operator — Python's double-slash, for instance, gives three — but that is not the reference-sheet slash and it is not what the exam means by division. So two rules: a single slash always keeps the decimals, and when a problem asks for the amount left over, reach for MOD, never a rounded division.",
+      "capture": [
+        {
+          "q": "The single-slash / operator on the AP reference sheet reports a division as ______.",
+          "a": "its exact value, including any decimal part"
+        },
+        {
+          "q": "Getting 3 from 17 / 5 is wrong on the AP exam because the reference sheet's division does not ______.",
+          "a": "cut a result down to a whole number"
+        }
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — The Arithmetic Operators",
+      "subheading": "These map to LO AAP-2.C. Complete on your Guided Notes.",
+      "prompts": [
+        "Evaluate each to a single value: (a) 9 + 4, (b) 6 * 7, (c) 20 / 8. For (c), explain in one sentence why the answer is not 2.",
+        "A student writes that 17 / 5 = 3. Explain what the / operator actually produces and give the correct value.",
+        "Name all five arithmetic operators on the AP reference sheet and, in a short phrase, say what each one does."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.3 page.",
+      "script": "Stop and think, six minutes, full sentences. One: nine plus four is thirteen, six times seven is forty-two, twenty over eight is two point five — and it is not two because the slash keeps the decimal. Two: correct the student — the single slash gives the exact value, so seventeen over five is three point four, not three. Three: list all five operators, plus, minus, times, divide, MOD, with a phrase for each. These are the exact AAP-2.C moves the exam makes."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "MOD and Order of Operations",
+      "kicker": "The Remainder Operator · Learning Objective AAP-2.C",
+      "script": "Section two. MOD is the operator that answers 'how much is left over.' The College Board defines it precisely, prints the exact example seventeen MOD five is two, and then tells you where it sits in the order of operations — the same rank as times and divide. Trust the definition and evaluate left to right, and MOD questions become automatic."
+    },
+    {
+      "type": "concept",
+      "heading": "The MOD Operator and Where It Ranks",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "a MOD b gives what is LEFT OVER after dividing a by b as many whole times as possible (EK AAP-2.C.2).",
+        "The reference sheet's example: 17 MOD 5 is 2, because 5 goes into 17 three times with 2 to spare (EK AAP-2.C.2).",
+        "MOD assumes a is an integer ≥ 0 and b is an integer greater than 0 (EK AAP-2.C.2).",
+        "In the order of operations, MOD has the SAME precedence as * and / (EK AAP-2.C.4)."
+      ],
+      "script": "Four points. One: a MOD b is the remainder — what is left after b divides into a as many whole times as possible. Two: the reference sheet's own example, seventeen MOD five is two, because five goes into seventeen three times with two to spare. Three: the operands are assumed to be integers, with a at least zero and b greater than zero — no negatives, no dividing by zero. Four: precedence. MOD ranks with times and divide, above plus and minus. So when times, divide, and MOD appear together, you evaluate them left to right, which is the trap on the next table.",
+      "capture": [
+        {
+          "q": "The value of a MOD b is ______.",
+          "a": "the remainder when a is divided by b"
+        },
+        {
+          "q": "For a MOD b to be defined on the exam, a must be an integer that is ______ and b must be greater than 0.",
+          "a": "at least 0 (greater than or equal to zero)"
+        },
+        {
+          "q": "When *, /, and MOD appear together with equal precedence, they are evaluated ______.",
+          "a": "left to right, in the order they appear"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "MOD",
+      "heading": "The Remainder Operator",
+      "caption": "MOD returns the remainder; 17 MOD 5 leaves 2. In Python the operator is written %.",
+      "pseudocode": "DISPLAY(17 MOD 5)\nDISPLAY(20 MOD 4)\nDISPLAY(9 MOD 2)",
+      "python": "print(17 % 5)\nprint(20 % 4)\nprint(9 % 2)",
+      "output": "2 0 1",
+      "script": "Three remainders. Seventeen MOD five is two, the reference-sheet example. Twenty MOD four is zero — four divides twenty evenly, nothing left over, and a zero remainder is a perfectly valid result. Nine MOD two is one — an odd number leaves one when divided by two, which is exactly the even-or-odd test you will use in later topics. One notation note between the columns: the exam writes MOD, but Python writes the percent sign for the same operation. Same remainder, two spellings."
+    },
+    {
+      "type": "worked_table",
+      "heading": "Evaluate with the Order of Operations",
+      "context": "Apply the order of operations. Remember MOD ties with * and /, so among those you go left to right. Fill in the single value each expression produces.",
+      "columns": [
+        "Expression",
+        "Which operator goes first",
+        "Evaluates to"
+      ],
+      "rows": [
+        [
+          "3 + 4 * 5",
+          "* before +",
+          "23"
+        ],
+        [
+          "17 MOD 5 + 1",
+          "MOD before +",
+          "3"
+        ],
+        [
+          "2 * 6 MOD 4",
+          "left to right: * then MOD",
+          "0"
+        ],
+        [
+          "17 / 5",
+          "single operator",
+          "3.4"
+        ],
+        [
+          "(3 + 1) * 2",
+          "parentheses first",
+          "8"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "Five expressions, order of operations enforced. Three plus four times five is twenty-three — multiply first. Seventeen MOD five plus one: MOD outranks plus, so it is two plus one, three. Two times six MOD four is the trap: times and MOD tie, so go left to right — two times six is twelve, twelve MOD four is zero, not two times the remainder. Seventeen over five is three point four, one operator, exact value. And parentheses always win: three plus one is four, times two is eight. Fill the blanks yourself; the left-to-right rule for the tied operators is the one the exam checks.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“/ Gives 3 and MOD Gives the Same 3”",
+      "misconception": "Dividing 17 by 5 gives 3 (you just drop the .4), and MOD gives that same 3 — they both 'do the division.'",
+      "whyItHappens": "Grade-school division reports '3 remainder 2,' so it feels like / should hand back the 3 and MOD is just another name for the same step.",
+      "correction": "On the AP reference sheet the two operators return DIFFERENT single values. 17 / 5 evaluates to 3.4 — the exact quotient, decimals kept (EK AAP-2.C.3). 17 MOD 5 evaluates to 2 — only the remainder (EK AAP-2.C.2). Neither operator returns 3.",
+      "example": "17 / 5 → 3.4 (the exact share) and 17 MOD 5 → 2 (the amount left over). If you picture '3 remainder 2,' the slash gives you the 3.4 part and MOD gives you the 2 — two separate operators, two separate results.",
+      "script": "The headline trap of the topic. Because long division says 'three remainder two,' students expect the slash to give three and MOD to give the same three. Both wrong. The slash gives three point four, the exact quotient. MOD gives two, the remainder. Neither one gives three. They are two different operators answering two different questions — how much each, versus how much left over. On any word problem, decide which question is being asked before you pick the operator, and you will never swap them."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — MOD and Order of Operations",
+      "subheading": "These map to LO AAP-2.C. Show your evaluation steps on your Guided Notes.",
+      "prompts": [
+        "Evaluate: (a) 23 MOD 4, (b) 4 + 10 MOD 3, (c) 2 * 9 MOD 5. For (b) and (c), show which operator you apply first.",
+        "A pizza is cut into 20 slices and shared equally among 6 friends. Write the expression that gives the LEFTOVER slices, and evaluate it.",
+        "In one sentence, explain the difference between what 20 / 6 gives and what 20 MOD 6 gives."
+      ],
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 3.3 page.",
+      "script": "Stop and think, six minutes, show your steps. One: twenty-three MOD four is three; four plus ten MOD three is four plus one, five, because MOD goes first; two times nine MOD five goes left to right, eighteen MOD five, three. Two: twenty slices among six is twenty MOD six for the leftover, which is two. Three: twenty over six gives about three point three three, the exact share, while twenty MOD six gives two, the amount left over — same numbers, different questions. These are the exact AAP-2.C moves the exam demands."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.3 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "The slash is EXACT division",
+          "text": "A single / gives the full value, decimals and all: 17 / 5 is 3.4, never 3. Do not truncate on your own. If a question truly wants a whole-number leftover, that is MOD, not a rounded division."
+        },
+        {
+          "name": "MOD is the remainder, and it ties with * and /",
+          "text": "a MOD b is what's left over (17 MOD 5 = 2). In precedence MOD ranks with * and /, so evaluate equal-precedence operators left to right: 2 * 6 MOD 4 is (2 * 6) MOD 4 = 0, not 2 * (6 MOD 4)."
+        },
+        {
+          "name": "Quotient vs remainder are different values",
+          "text": "/ answers 'how much each' (3.4); MOD answers 'how many left over' (2). Reaching for the wrong operator on a word problem is the classic miss — decide which question is asked first."
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: the single slash is exact division — seventeen over five is three point four, never three; do not truncate, and use MOD if you actually want the leftover. Trap two: MOD is the remainder and ties with times and divide in precedence, so two times six MOD four goes left to right to zero, not two. Trap three: quotient and remainder are different values answering different questions — how much each versus how much left over. Sort those three out and every arithmetic question on the exam is free points."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Mathematical Expressions, in One Slide",
+      "points": [
+        "An algorithm is a finite set of steps for a specific task, expressible in natural language, diagrams, or pseudocode, and built from sequencing, selection, and iteration (EK AAP-2.A.1–A.4).",
+        "Sequential statements run in the order written; an expression — a value, variable, operator, or returning procedure call — evaluates to a single value using a set order of operations (EK AAP-2.B.1–B.7).",
+        "The AP arithmetic operators are +, -, *, /, and MOD; the / operator gives the exact value, so 17 / 5 = 3.4 (EK AAP-2.C.1, C.3).",
+        "a MOD b is the remainder (17 MOD 5 = 2) with a ≥ 0 and b > 0; MOD shares the precedence of * and /, evaluated left to right (EK AAP-2.C.2, C.4)."
+      ],
+      "next": "Topic 3.4, Strings: now that expressions combine numbers, how do we build expressions out of TEXT — joining strings with concatenation and pulling out substrings?",
+      "script": "The whole topic in one slide. An algorithm is a finite set of steps, expressible without any language and built from sequencing, selection, and iteration. Sequential statements run in order, and every expression evaluates to a single value. The five arithmetic operators are plus, minus, times, the exact-value slash, and MOD; seventeen over five is three point four. And MOD is the remainder — seventeen MOD five is two — sharing precedence with times and divide, evaluated left to right. Next is Topic 3.4, Strings, where expressions are built from text instead of numbers. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.3 page tonight, including the pizza-party coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "express an algorithm in natural language or pseudocode and identify its sequencing, selection, and iteration (LO AAP-2.A)",
+        "represent a process as sequential statements and state what each expression evaluates to (LO AAP-2.B)",
+        "evaluate arithmetic expressions with +, -, *, and /, knowing 17 / 5 = 3.4 (LO AAP-2.C)",
+        "evaluate MOD as the remainder (17 MOD 5 = 2) and apply the order of operations with MOD's precedence (LO AAP-2.C)"
+      ]
+    }
+  ]
+}

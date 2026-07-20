@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.5",
+    "title": "Boolean Expressions",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in Trace the Gate and Write the Rule — evaluating comparisons and combining them with NOT, AND, and OR at The Gauntlet's entry gate. Now type and run them for real, hardest last: the first prints a single height comparison, and the last builds the full boarding rule from scratch. Predict each True/False result first, then check it. Python prints Booleans as True and False."
+  },
+  "problems": [
+    {
+      "prompt": "The Gauntlet requires riders to be at least 48 inches tall. With height set to 50, print the Boolean value of the comparison height ≥ 48 (should be True).",
+      "promptHtml": "The Gauntlet requires riders to be <strong>at least 48 inches</strong> tall. With <code>height = 50</code>, print the Boolean value of <code>height ≥ 48</code> (should be <code>True</code>).",
+      "expected": "True",
+      "starter": {
+        "python": "height = 50\n# 'at least 48' includes 48 itself — use >= (not >)\n# print the Boolean value of the comparison\n",
+        "javascript": "let height = 50;\n// 'at least 48' includes 48 itself — use >= (not >)\n// print the Boolean value of the comparison\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 50\nDISPLAY(height ≥ 48)",
+        "python": "height = 50\nprint(height >= 48)",
+        "javascript": "let height = 50;\nlet tallEnough = height >= 48;\nconsole.log(tallEnough ? \"True\" : \"False\");"
+      },
+      "hint": "'At least 48' means 48 counts, so use >= , not > . The comparison height >= 48 evaluates to a Boolean; print it directly."
+    },
+    {
+      "prompt": "A rider may board only if they are tall enough AND they hold a ticket. With height = 50 and hasTicket = False, print the Boolean value of (height ≥ 48) AND hasTicket (should be False).",
+      "promptHtml": "A rider may board only if they are tall enough <strong>AND</strong> they hold a ticket. With <code>height = 50</code> and <code>hasTicket = False</code>, print the Boolean value of <code>(height ≥ 48) AND hasTicket</code> (should be <code>False</code>).",
+      "expected": "False",
+      "starter": {
+        "python": "height = 50\nhas_ticket = False\n# AND is true only when BOTH operands are true\n# print the Boolean value of (height >= 48) and has_ticket\n",
+        "javascript": "let height = 50;\nlet hasTicket = false;\n// AND is true only when BOTH operands are true\n// print the Boolean value of (height >= 48) && hasTicket\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 50\nhasTicket ← false\nDISPLAY((height ≥ 48) AND hasTicket)",
+        "python": "height = 50\nhas_ticket = False\nprint(height >= 48 and has_ticket)",
+        "javascript": "let height = 50;\nlet hasTicket = false;\nlet board = (height >= 48) && hasTicket;\nconsole.log(board ? \"True\" : \"False\");"
+      },
+      "hint": "height >= 48 is True, but has_ticket is False. AND needs BOTH true, so True AND False is False. Use 'and' in Python."
+    },
+    {
+      "prompt": "The express lane opens to a VIP OR a fast-pass holder, as long as the ride is NOT closed. With isVIP = False, hasFastPass = True, rideClosed = False, print the value of (isVIP OR hasFastPass) AND (NOT rideClosed) (should be True).",
+      "promptHtml": "The express lane opens to a VIP <strong>OR</strong> a fast-pass holder, as long as the ride is <strong>NOT</strong> closed. With <code>isVIP = False</code>, <code>hasFastPass = True</code>, <code>rideClosed = False</code>, print the value of <code>(isVIP OR hasFastPass) AND (NOT rideClosed)</code> (should be <code>True</code>).",
+      "expected": "True",
+      "starter": {
+        "python": "is_vip = False\nhas_fast_pass = True\nride_closed = False\n# work inside-out: OR is inclusive, NOT flips its operand\n# print the Boolean value of the whole expression\n",
+        "javascript": "let isVIP = false;\nlet hasFastPass = true;\nlet rideClosed = false;\n// work inside-out: OR is inclusive, NOT flips its operand\n// print the Boolean value of the whole expression\n"
+      },
+      "reference": {
+        "pseudocode": "isVIP ← false\nhasFastPass ← true\nrideClosed ← false\nDISPLAY((isVIP OR hasFastPass) AND (NOT rideClosed))",
+        "python": "is_vip = False\nhas_fast_pass = True\nride_closed = False\nprint((is_vip or has_fast_pass) and (not ride_closed))",
+        "javascript": "let isVIP = false;\nlet hasFastPass = true;\nlet rideClosed = false;\nlet expressLane = (isVIP || hasFastPass) && (!rideClosed);\nconsole.log(expressLane ? \"True\" : \"False\");"
+      },
+      "hint": "Inside-out: (False OR True) is True because OR needs just one; (NOT False) is True; True AND True is True. Use or, and, not in Python."
+    },
+    {
+      "prompt": "Write the full boarding rule from scratch. A guest boards when they are at least 48 inches tall, they hold a ticket, and the ride is open. Using the given values (height = 46, hasTicket = True, rideOpen = True), print the Boolean value of the complete rule (should be False).",
+      "promptHtml": "Write the full boarding rule from scratch. A guest boards when they are <strong>at least 48 inches</strong> tall, they hold a ticket, <strong>and</strong> the ride is open. Using the given values (<code>height = 46</code>, <code>hasTicket = True</code>, <code>rideOpen = True</code>), print the Boolean value of the complete rule (should be <code>False</code>).",
+      "expected": "False",
+      "starter": {
+        "python": "height = 46\nhas_ticket = True\nride_open = True\n# board when: tall enough (>= 48) AND has a ticket AND the ride is open\n# build that whole Boolean expression and print it\n",
+        "javascript": "let height = 46;\nlet hasTicket = true;\nlet rideOpen = true;\n// board when: tall enough (>= 48) AND has a ticket AND the ride is open\n// build that whole Boolean expression and print it\n"
+      },
+      "reference": {
+        "pseudocode": "height ← 46\nhasTicket ← true\nrideOpen ← true\nDISPLAY(height ≥ 48 AND hasTicket AND rideOpen)",
+        "python": "height = 46\nhas_ticket = True\nride_open = True\nprint(height >= 48 and has_ticket and ride_open)",
+        "javascript": "let height = 46;\nlet hasTicket = true;\nlet rideOpen = true;\nlet board = height >= 48 && hasTicket && rideOpen;\nconsole.log(board ? \"True\" : \"False\");"
+      },
+      "hint": "Chain the three conditions with AND: height >= 48, has_ticket, ride_open. Height is 46, which is below 48, so the first operand is False — and one False makes the whole AND False."
+    }
+  ]
+}

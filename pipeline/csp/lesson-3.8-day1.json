@@ -102,7 +102,7 @@
         "Iteration is a repeating portion of an algorithm — the same block of steps carried out again and again (EK AAP-2.J.1).",
         "It repeats in one of two ways: a SPECIFIED NUMBER of times, or UNTIL a given condition is met (EK AAP-2.J.1).",
         "You can express iteration with no programming language at all: 'do this 4 times,' or 'keep going until the jar is full.'",
-        "It is the third of the three building blocks of every algorithm, alongside sequencing and selection."
+        "Every algorithm is built from just three ideas — sequencing, selection, and iteration — and this is the third."
       ],
       "script": "Here is the whole idea in one slide. Iteration is a repeating portion of an algorithm — a block of steps done over and over instead of just once. The College Board says it repeats one of exactly two ways: a specified number of times, or until a given condition is met. And crucially for AAP-2.J, you can express iteration with no code at all — 'do this four times' and 'keep going until the jar is full' are both iteration described in English. This is the third building block; every algorithm you ever write is some mix of sequencing, selection, and iteration.",
       "capture": [
@@ -354,10 +354,10 @@
         "predictFirst": true,
         "stem": "Trace this exam-pseudocode loop: savings ← 0; REPEAT 4 TIMES { savings ← savings + 5 }; DISPLAY(savings). What is displayed?",
         "options": [
-          "5, the amount added on a single pass",
-          "0, because the block never actually runs",
-          "20, five added on each of four passes",
-          "9, the count of passes plus the amount added"
+          "5 (one pass only)",
+          "0 (block skipped)",
+          "20 (four passes of +5)",
+          "9 (4 plus 5)"
         ],
         "answer": "C",
         "ek": "EK AAP-2.K.2",
@@ -369,10 +369,10 @@
         "predictFirst": true,
         "stem": "A loop starts with count ← 0 and runs REPEAT UNTIL(count ≥ 3) { count ← count + 1 }. Per EK AAP-2.K.3, how many times does the block run before the loop stops?",
         "options": [
-          "0 times, since the condition is checked first",
-          "2 times, stopping one short of the target",
-          "Infinitely, because the condition is never true",
-          "3 times, until count reaches 3 and the condition is true"
+          "0 times",
+          "2 times",
+          "It loops forever",
+          "3 times"
         ],
         "answer": "D",
         "ek": "EK AAP-2.K.3",
@@ -384,10 +384,10 @@
         "predictFirst": true,
         "stem": "A student writes: total ← 1; REPEAT UNTIL(total = 10) { total ← total + 2 }. Per EK AAP-2.K.4, what happens?",
         "options": [
-          "The loop runs exactly five times and then stops",
-          "It never stops, because total is 1, 3, 5, 7, 9, 11 and never equals 10",
-          "The body runs zero times because total begins below ten",
-          "It stops right away with an error before the first pass"
+          "It runs exactly five times and then stops",
+          "It never stops; total skips over 10 forever",
+          "The body runs zero times and total stays 1",
+          "It stops with an error before the first pass"
         ],
         "answer": "B",
         "ek": "EK AAP-2.K.4",
@@ -399,10 +399,10 @@
         "predictFirst": true,
         "stem": "Consider: bottles ← 12; REPEAT UNTIL(bottles ≥ 10) { bottles ← bottles + 1 }; DISPLAY(bottles). Per EK AAP-2.K.5, what is displayed?",
         "options": [
-          "12, because the condition is already true, so the body never runs",
-          "13, because the loop body always runs at least one time",
-          "10, because the loop stops exactly at the threshold value",
-          "It never ends, because it keeps adding 1 to bottles forever"
+          "12; the condition is already true and the body is skipped",
+          "13; a REPEAT UNTIL body always runs at least once",
+          "10; the loop stops exactly at the threshold value",
+          "It never ends, adding 1 to bottles forever"
         ],
         "answer": "A",
         "ek": "EK AAP-2.K.5",
@@ -414,10 +414,10 @@
         "predictFirst": true,
         "stem": "Trace: n ← 0; sum ← 0; REPEAT 3 TIMES { n ← n + 1; sum ← sum + n }; DISPLAY(sum). What is displayed?",
         "options": [
-          "3, the final value of n after the loop",
-          "9, three passes times three statements",
-          "0, because sum is never changed inside the block",
-          "6, the running total of 1 then 2 then 3"
+          "3 (the final value of n)",
+          "9 (three passes times three)",
+          "0 (sum never changes)",
+          "6 (running total 1, 2, 3)"
         ],
         "answer": "D",
         "ek": "EK AAP-2.K.1",

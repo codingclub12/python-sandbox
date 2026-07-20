@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "lessonId": "3.9",
+    "lessonTitle": "Developing Algorithms",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-2.L, AAP-2.M"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-2.L, AAP-2.M",
+    "intro": "Everything for this topic lives in this folder. Topic 3.9 turns the constructs from 3.5–3.8 into whole algorithms you compare, build, combine, and modify — all set in the 'Level Up' game. It ships an interactive, auto-graded coding-practice page. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (comparing algorithms: result vs side effect; conditional ⟷ Boolean equivalence) and Day 2 (the building blocks; create, combine, modify). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace and Compare the Algorithms and Exercise 2: Build It from Blocks (student + answer KEY)",
+      "Discussion — Same, or Just Similar? (3-part: Opening + Mid-lesson on Day 1, Closing on Day 2)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.L and AAP-2.M, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-9-developing-algorithms"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-9-developing-algorithms-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-9-developing-algorithms-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-9-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-9-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-9-developing-algorithms"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: comparing algorithms and equivalence; Day 2: the building blocks and create/combine/modify). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real code and checks it against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.9 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.10 (Lists) begins immediately after, applying these same building blocks across a list traversal."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace and Compare the Algorithms",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-9-exercise-1",
+    "intro": "You are QA-testing two versions of the 'report the top score' routine for the Level Up game. Both are supposed to display the higher of two scores, and at a glance they look almost the same. Your job is to TRACE both on the same inputs — including the boundary cases — and decide whether they yield the same result and the same side effect. This is the single most tested skill for LO AAP-2.L: never trust that similar-looking algorithms behave the same; trace them.",
+    "scenarioTitle": "Two 'Report the Top Score' Algorithms",
+    "narrative": "Algorithm A: IF(a > b) { DISPLAY(a) }  then a separate  IF(b > a) { DISPLAY(b) }. Algorithm B: IF(a ≥ b) { DISPLAY(a) } ELSE { DISPLAY(b) }. For each input pair, evaluate each IF using the current values and write down exactly what each algorithm DISPLAYs (a dash means it displays nothing). Work your own trace on scratch paper before answering Part A — pay special attention to the tie.",
+    "log": {
+      "columns": [
+        "Input (a, b)",
+        "Algorithm A displays",
+        "Algorithm B displays",
+        "What to notice"
+      ],
+      "rows": [
+        [
+          "(88, 95)",
+          "95",
+          "95",
+          "Both print 95 — they agree here"
+        ],
+        [
+          "(95, 88)",
+          "95",
+          "95",
+          "Both print 95 — order does not matter yet"
+        ],
+        [
+          "(70, 70)",
+          "(nothing)",
+          "70",
+          "A's two strict > tests are both false; B's ≥ is true"
+        ],
+        [
+          "(0, 5)",
+          "5",
+          "5",
+          "Both print 5 — a zero input is not the problem case"
+        ]
+      ]
+    },
+    "scenarioNote": "Program adapted from the Day 1 comparison table; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023).",
+    "predict": "Before you answer Part A, predict in one sentence: on which single input do Algorithm A and Algorithm B produce different side effects, and why?",
+    "partALabel": "Part A - Trace and Compare",
+    "partA": [
+      {
+        "ek": "EK AAP-2.L.1 / AAP-2.L.2",
+        "pts": 4,
+        "q": "For the inputs (88, 95) and (70, 70), state exactly what each algorithm DISPLAYs. Then say whether A and B have the same RESULT and the same SIDE EFFECT on each input.",
+        "answer": "For (88, 95): A displays 95 (a > b is false, b > a is true) and B displays 95 (a ≥ b is false, so the ELSE runs). Same side effect, and the reported top score (result) is the same — 95. For (70, 70): A displays nothing — a > b is false and b > a is false, so neither IF runs — while B displays 70 because a ≥ b is true. On the tie the side effects DIFFER (nothing vs 70), so the algorithms are not equivalent. Full credit requires naming the tie as the divergence and stating that A displays nothing there."
+      },
+      {
+        "ek": "EK AAP-2.L.2",
+        "pts": 4,
+        "q": "The two algorithms look almost identical, yet they are not equivalent. Identify the exact structural difference that causes them to diverge, and name the category of input where the difference shows up.",
+        "answer": "Algorithm A uses two separate strict-greater-than IFs with no ELSE; Algorithm B uses a single greater-than-or-equal IF with an ELSE. The difference is (1) > vs ≥ and (2) two independent IFs vs one IF/ELSE. It shows up on the boundary case where the two values are EQUAL (a tie): A's strict > tests are both false so it displays nothing, while B's ≥ test is true so it always displays a value. This is EK AAP-2.L.2 — algorithms that appear similar can yield different side effects — and it is only found by tracing the boundary."
+      },
+      {
+        "ek": "EK AAP-2.L.3 / AAP-2.L.4",
+        "pts": 4,
+        "q": "Elsewhere the game sets a badge with: IF(a ≥ b) { topReached ← true } ELSE { topReached ← false }. Rewrite this as an equivalent single Boolean expression, and explain why the two forms are equivalent (name the result and side effect they share).",
+        "answer": "Equivalent Boolean expression: topReached ← a ≥ b. The IF/ELSE does nothing but store the truth value of a ≥ b into topReached, so it is identical to assigning that condition directly (EK AAP-2.L.3). For every pair of inputs the two forms assign the SAME value to topReached (same result) and, if that value is later displayed, print the SAME thing (same side effect). Collapsing a conditional whose only job is to set true/false is always valid; expanding a Boolean back into the IF-true-ELSE-false template is the reverse direction (EK AAP-2.L.4)."
+      },
+      {
+        "ek": "EK AAP-2.M.2",
+        "pts": 3,
+        "q": "The game's hero starts at (row 1, col 1) facing East and runs: MOVE_FORWARD(), ROTATE_RIGHT(), MOVE_FORWARD(). On this grid East increases the column and a right turn from East faces South (which increases the row when moving). Give the hero's facing and (row, col) after each command.",
+        "answer": "After MOVE_FORWARD(): facing East, position (1, 2) — moving East increases the column. After ROTATE_RIGHT(): facing South, position (1, 2) — a rotate changes only the facing, not the position. After MOVE_FORWARD(): facing South, position (2, 2) — moving South increases the row. Final: facing South at (2, 2). Full credit requires that ROTATE changed only facing and each MOVE_FORWARD changed only position in the direction currently faced (EK AAP-2.M.2, robot-path building block)."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.L.1 / AAP-2.L.2",
+        "pts": 3,
+        "q": "Write your own two short algorithms that compute the SAME result but produce DIFFERENT side effects. Describe the shared result and the differing side effects precisely.",
+        "answer": "Example: Algorithm 1 computes avg ← (80 + 90 + 100) / 3 and DISPLAY(avg). Algorithm 2 computes the same avg but first DISPLAYs each of 80, 90, 100 and then DISPLAYs avg. Shared result: both compute the value 90 (the average). Differing side effect: Algorithm 1 prints only '90'; Algorithm 2 prints '80 90 100 90'. Same result, different observable output. Any equivalent pair earns full credit as long as the computed value matches and the displayed behavior differs (EK AAP-2.L.2)."
+      },
+      {
+        "ek": "EK AAP-2.L.3 / AAP-2.L.4",
+        "pts": 3,
+        "q": "Expand this Boolean expression into an equivalent conditional statement, then explain when you might prefer the longer conditional form even though it is equivalent: eligible ← score ≥ 100.",
+        "answer": "Expanded conditional: IF(score ≥ 100) { eligible ← true } ELSE { eligible ← false }. It is equivalent because it stores exactly the truth value of score ≥ 100 into eligible for every input (EK AAP-2.L.4). You might prefer the longer form for readability — a beginner reading the code, or a place where you want to add more statements inside a branch later, may find the explicit IF/ELSE clearer, even though the one-line Boolean is shorter and provably the same. Readability is a legitimate reason to choose one equivalent form over another."
+      },
+      {
+        "ek": "EK AAP-2.M.1 / AAP-2.M.3",
+        "pts": 2,
+        "q": "ENRICHMENT: Algorithm B (the ≥ with ELSE) is correct. Using it as a building block, describe the smallest MODIFICATION that turns 'report the higher score' into 'report the LOWER score,' and state why modifying beats rewriting.",
+        "answer": "Change the single comparison from a ≥ b to a ≤ b (or a < b): IF(a ≤ b) { DISPLAY(a) } ELSE { DISPLAY(b) } now reports the lower score. Everything else — the structure, the ELSE, the DISPLAY — stays the same. Modifying beats rewriting because you keep a correct, already-tested shape and only have to re-check the one operator you touched, which reduces development time, testing, and the chance of new errors (EK AAP-2.M.1, M.3). Rewriting from scratch risks introducing bugs in lines that were already correct."
+      },
+      {
+        "ek": "LO AAP-2.M",
+        "pts": 0,
+        "q": "Next step: you traced and compared these by hand. Now head to the Topic 3.9 page and type and run the harder versions — build the average, combine it with a pass/fail check, and modify find-max into find-min — where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Build It from Blocks",
+    "minutes": "25 minutes",
+    "subtitle": "5 tasks - choose, combine, or modify the building blocks",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-9-exercise-2",
+    "intro": "You are the lead builder on the Level Up game. For each new feature, you do NOT start from scratch — you reach for the standard building blocks (max/min, sum/average, divisibility via MOD, robot maze path) and decide whether to use one as-is, COMBINE several, or MODIFY one. For each task, name the block(s), say whether you are using, combining, or modifying, and sketch the algorithm in words or pseudocode. Vague answers like 'just loop through it' score zero.",
+    "standard": "CB Standard (required): name the building block(s) + whether you use / combine / modify + a short algorithm sketch, for all 5 tasks. Enrichment (optional): note a boundary case to test or a subtler design choice (EK AAP-2.M.3).",
+    "methodHeading": "Three-Step Method - use for every task",
+    "method": [
+      [
+        "Step 1 - Name the building block(s)",
+        "Which known algorithm is this really about — max/min, sum/average, divisibility via MOD, or a robot path? Most tasks are one or two of these in disguise (EK AAP-2.M.2)."
+      ],
+      [
+        "Step 2 - Use, combine, or modify",
+        "Decide the cheapest correct move: use a block unchanged, COMBINE two blocks (feed one's output into the next), or MODIFY a block (change an operator or add a branch) (EK AAP-2.M.1)."
+      ],
+      [
+        "Step 3 - Sketch it and name what to test",
+        "Write the algorithm in words or pseudocode, then say what you must re-check. Reuse cuts testing, but the new seam is always worth a trace (EK AAP-2.M.3)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler design judgment): the benefits of reuse — less development time, less testing, easier debugging — only hold if each block is correct AND used correctly in the new context (EK AAP-2.M.3). Correct blocks combined the wrong way still fail (divide by the wrong count, pass the wrong variable, use a block outside its designed range). When you finish, move to the Topic 3.9 coding page to build and run these for real.",
+    "fields": [
+      "Building block(s) this task uses:",
+      "Use / combine / modify — and the algorithm sketch:",
+      "Enrichment — a boundary case to test or a subtler choice:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "Show the higher of the current player's score and the stored high score, so the leaderboard always displays the best of the two.",
+        "key": {
+          "signs": "This is the MAX-of-two-numbers building block, plain and simple — compare two values and report the larger (EK AAP-2.M.2).",
+          "mechanism": "USE the block unchanged: IF(current > high) { top ← current } ELSE { top ← high }, then DISPLAY(top). No combining or modifying is needed — this is exactly what the max block does, so development and testing are minimal (EK AAP-2.M.3).",
+          "subtype": "Boundary to test: a tie (current = high). With ELSE on ≤ or > you still report a correct value; decide whether a tie should show 'current' or 'high' and confirm your operator matches that intent."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "A coin should appear on every 5th tile. Given a tile number, decide whether that tile has a coin.",
+        "key": {
+          "signs": "This is the DIVISIBILITY building block: is the tile number evenly divisible by 5? Test it with MOD (EK AAP-2.M.2).",
+          "mechanism": "MODIFY the every-3rd-tile block by changing the divisor: IF(tile MOD 5 = 0) { DISPLAY(\"coin\") } ELSE { DISPLAY(\"no coin\") }. The only change from the taught version is 3 → 5; the structure is identical, so only the divisor needs re-checking (EK AAP-2.M.1).",
+          "subtype": "Boundary to test: tile 0 (0 MOD 5 = 0 would say 'coin') and tile 5 (the first real coin). Confirm your intended starting tile matches what MOD produces at 0 and 5."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "Report the average of a playtester's three level scores, and then state whether that average earns a passing grade of at least 60.",
+        "key": {
+          "signs": "Two blocks: the SUM/AVERAGE block (add three scores, divide by 3) and a comparison against a threshold (EK AAP-2.M.2).",
+          "mechanism": "COMBINE them in order: first avg ← (s1 + s2 + s3) / 3 (the average block), then IF(avg ≥ 60) { DISPLAY(\"pass\") } ELSE { DISPLAY(\"fail\") }. The average's output feeds the comparison. Each block is already trusted; the new work is the seam that passes avg along (EK AAP-2.M.1, M.3).",
+          "subtype": "Boundary to test: an average exactly at 60 (should pass, since ≥ includes 60) and dividing by the correct count of 3. Divide by the wrong count and both blocks are fine but the combination is wrong."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "Find the LOWEST of a playtester's three level scores so you can flag their weakest level.",
+        "key": {
+          "signs": "This is the MIN building block, extended from two numbers to three (EK AAP-2.M.2).",
+          "mechanism": "MODIFY and extend the max block: assume the first is smallest, then compare against the others with <. smallest ← s1; IF(s2 < smallest) { smallest ← s2 }; IF(s3 < smallest) { smallest ← s3 }; DISPLAY(smallest). This modifies find-max (> became <) and extends it with one more comparison (EK AAP-2.M.1).",
+          "subtype": "Boundary to test: all three equal, and the smallest appearing last (s3). A running-minimum that starts at s1 and only updates on a strictly smaller value handles both correctly."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "The hero must get from the start of a straight corridor to a wall two squares ahead, then turn and step once into the room on its right. Describe the algorithm as robot commands.",
+        "key": {
+          "signs": "This is the ROBOT-PATH-through-a-maze building block: sequence MOVE_FORWARD / ROTATE commands to reach a goal (EK AAP-2.M.2).",
+          "mechanism": "CREATE from the idea using the robot procedures, optionally COMBINING with iteration: REPEAT 2 TIMES { MOVE_FORWARD() } to reach the wall, then ROTATE_RIGHT() to face the room, then MOVE_FORWARD() to step in. Each MOVE changes position in the faced direction; the ROTATE changes only facing (EK AAP-2.M.1).",
+          "subtype": "Boundary/robustness: moving into a non-open square or off the grid terminates the program, so a safer version guards each step with IF(CAN_MOVE(forward)) { MOVE_FORWARD() } before moving. Note how the guarded version reuses the same path but adds a check at each seam."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Same, or Just Similar?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "Two algorithms can look nearly identical and behave differently; two that look nothing alike can be provably equivalent. And most new algorithms are not invented from nothing — they are old, trusted blocks combined or modified. Across three short windows, your group will argue about what 'the same algorithm' really means, when a longer conditional beats an equivalent one-liner, and whether reuse can ever let you skip testing.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your two badge snippets looked almost identical but disagreed on one input. What does that experience tell you about the difference between reading code and tracing code, and why does the exam insist you trace boundary cases like ties and zeros?"
+          },
+          {
+            "text": "Question 2. 'Same result' and 'same side effect' are two different tests. Describe a real situation (in a game, an app, anything) where two programs would give the same answer but you would still care that they behave differently on the way there."
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the equivalence table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The one-line test",
+            "text": "For any IF/ELSE, there is one question that tells you whether it can collapse to a single Boolean expression. In one sentence your whole group agrees on, write that question, and give one IF/ELSE that CANNOT collapse (because it does more than store true/false).",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Longer on purpose",
+            "text": "A one-line Boolean expression and its expanded IF/ELSE are equivalent. Debate for about 3 minutes: name one real reason a programmer might deliberately choose the longer conditional form, and one reason to prefer the one-liner. Record both.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "Does reuse let you skip testing?",
+            "text": "You build a new feature by combining two already-tested blocks — a correct 'compute the average' and a correct 'divide by a count.' A teammate says 'both parts are tested, so we're done.' As a group, write the clearest one-paragraph rebuttal using the words 'combination' and 'seam,' and invent one concrete way two correct blocks could combine into a wrong result.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best captures why reuse reduces testing but never removes it):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

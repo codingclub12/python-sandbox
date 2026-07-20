@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.9",
+    "title": "Developing Algorithms",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in Trace and Compare and Build It from Blocks, using the Level Up game. Now type and run them for real — same building blocks, harder each time. The first is a straight building block; the last you assemble and modify yourself. Predict the output first, then check it."
+  },
+  "problems": [
+    {
+      "prompt": "Building block — MAX. Two players scored 88 and 95. Print the higher score.",
+      "promptHtml": "Building block — <strong>MAX</strong>. Two players scored <code>88</code> and <code>95</code>. Print the higher score.",
+      "expected": "95",
+      "starter": {
+        "python": "a = 88\nb = 95\n# print the larger of a and b\n",
+        "javascript": "let a = 88;\nlet b = 95;\n// print the larger of a and b\n"
+      },
+      "reference": {
+        "pseudocode": "a ← 88\nb ← 95\nIF(a > b) { higher ← a } ELSE { higher ← b }\nDISPLAY(higher)",
+        "python": "a = 88\nb = 95\nif a > b:\n    higher = a\nelse:\n    higher = b\nprint(higher)",
+        "javascript": "let a = 88;\nlet b = 95;\nlet higher = (a > b) ? a : b;\nconsole.log(higher);"
+      },
+      "hint": "Compare a and b with an IF/ELSE: if a > b the higher is a, otherwise it is b. Print that value."
+    },
+    {
+      "prompt": "Building block — DIVISIBILITY. A coin appears on every 3rd tile. For tile 12, print coin if 3 divides it evenly, otherwise print no coin.",
+      "promptHtml": "Building block — <strong>DIVISIBILITY</strong>. A coin appears on every 3rd tile. For <code>tile = 12</code>, print <code>coin</code> if 3 divides it evenly, otherwise print <code>no coin</code>.",
+      "expected": "coin",
+      "starter": {
+        "python": "tile = 12\n# print \"coin\" if tile is evenly divisible by 3, else \"no coin\"\n# hint: use the remainder operator %\n",
+        "javascript": "let tile = 12;\n// print \"coin\" if tile is evenly divisible by 3, else \"no coin\"\n// hint: use the remainder operator %\n"
+      },
+      "reference": {
+        "pseudocode": "tile ← 12\nIF(tile MOD 3 = 0) { DISPLAY(\"coin\") }\nELSE { DISPLAY(\"no coin\") }",
+        "python": "tile = 12\nif tile % 3 == 0:\n    print(\"coin\")\nelse:\n    print(\"no coin\")",
+        "javascript": "let tile = 12;\nif (tile % 3 === 0) { console.log(\"coin\"); }\nelse { console.log(\"no coin\"); }"
+      },
+      "hint": "MOD (written % in Python and JavaScript) gives the remainder. A remainder of 0 means the division is exact, so 3 divides the tile evenly."
+    },
+    {
+      "prompt": "Combine blocks — AVERAGE, then PASS/FAIL. Three playtesters scored 80, 90, and 100. Compute their average, then print pass if the average is at least 60, otherwise fail.",
+      "promptHtml": "Combine blocks — <strong>AVERAGE</strong>, then <strong>PASS/FAIL</strong>. Three playtesters scored <code>80</code>, <code>90</code>, and <code>100</code>. Compute their average, then print <code>pass</code> if the average is at least 60, otherwise <code>fail</code>.",
+      "expected": "pass",
+      "starter": {
+        "python": "s1 = 80\ns2 = 90\ns3 = 100\n# step 1: compute the average (sum divided by 3)\n# step 2: print \"pass\" if the average is >= 60, else \"fail\"\n",
+        "javascript": "let s1 = 80;\nlet s2 = 90;\nlet s3 = 100;\n// step 1: compute the average (sum divided by 3)\n// step 2: print \"pass\" if the average is >= 60, else \"fail\"\n"
+      },
+      "reference": {
+        "pseudocode": "s1 ← 80\ns2 ← 90\ns3 ← 100\navg ← (s1 + s2 + s3) / 3\nIF(avg ≥ 60) { DISPLAY(\"pass\") } ELSE { DISPLAY(\"fail\") }",
+        "python": "s1 = 80\ns2 = 90\ns3 = 100\navg = (s1 + s2 + s3) / 3\nif avg >= 60:\n    print(\"pass\")\nelse:\n    print(\"fail\")",
+        "javascript": "let s1 = 80, s2 = 90, s3 = 100;\nlet avg = (s1 + s2 + s3) / 3;\nif (avg >= 60) { console.log(\"pass\"); }\nelse { console.log(\"fail\"); }"
+      },
+      "hint": "This combines two building blocks: first the average (add the three scores, divide by 3), then a comparison (is the average >= 60?). Compute the average into its own variable, then test it."
+    },
+    {
+      "prompt": "Modify + build — MIN of three. Starting from the find-max idea, write an algorithm that prints the SMALLEST of three scores: 88, 72, 95.",
+      "promptHtml": "Modify + build — <strong>MIN of three</strong>. Starting from the find-max idea, write an algorithm that prints the <strong>smallest</strong> of three scores: <code>88</code>, <code>72</code>, <code>95</code>.",
+      "expected": "72",
+      "starter": {
+        "python": "a = 88\nb = 72\nc = 95\n# find and print the SMALLEST of a, b, c\n# idea: start by assuming a is smallest, then compare against b and c\n",
+        "javascript": "let a = 88;\nlet b = 72;\nlet c = 95;\n// find and print the SMALLEST of a, b, c\n// idea: start by assuming a is smallest, then compare against b and c\n"
+      },
+      "reference": {
+        "pseudocode": "a ← 88\nb ← 72\nc ← 95\nsmallest ← a\nIF(b < smallest) { smallest ← b }\nIF(c < smallest) { smallest ← c }\nDISPLAY(smallest)",
+        "python": "a = 88\nb = 72\nc = 95\nsmallest = a\nif b < smallest:\n    smallest = b\nif c < smallest:\n    smallest = c\nprint(smallest)",
+        "javascript": "let a = 88, b = 72, c = 95;\nlet smallest = a;\nif (b < smallest) { smallest = b; }\nif (c < smallest) { smallest = c; }\nconsole.log(smallest);"
+      },
+      "hint": "Take the two-number min and extend it: assume the first is smallest, then compare it against each other value with <, updating smallest whenever you find a lower one. This is the max building block modified (> became <) and extended to three."
+    }
+  ]
+}

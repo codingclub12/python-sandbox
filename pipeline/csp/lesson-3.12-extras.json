@@ -1,0 +1,307 @@
+{
+  "meta": {
+    "lessonId": "3.12",
+    "lessonTitle": "Calling Procedures",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-3.A"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-3.A",
+    "intro": "Everything for this topic lives in this folder. Topic 3.12 is the first topic where students CALL procedures — using processes that are already written — so it ships an interactive, auto-graded coding-practice page where students call procedures and use their return values. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (what a procedure is; parameters vs. arguments; flow of control; DISPLAY) and Day 2 (RETURN; capturing values with result ← procName(...); INPUT). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Call and Exercise 2: Effect or Value? (student + answer KEY)",
+      "Discussion — Show It or Hand It Back? (3-part: Opening, Mid-lesson, Closing across the two days)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-3.A, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-12-calling-procedures"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-12-calling-procedures-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-12-calling-procedures-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-12-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-12-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-12-calling-procedures"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: what a procedure is, parameters vs. arguments, flow of control, DISPLAY; Day 2: RETURN, capturing return values, INPUT). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page calls procedures and runs real code, checking output against expected output, while the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.12 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.13 (Developing Procedures) begins immediately after the quiz, and it builds directly on the calling skills learned here — students who can call a procedure are ready to write one."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Call",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-12-exercise-1",
+    "intro": "You are a debugging partner reading a snack-bar program that CALLS procedures. Two procedures are already written for you (a black box each). Your job is to TRACE the calls by hand — follow the flow of control as it interrupts the main program, matches arguments to parameters by position, runs the procedure, and returns — and determine exactly what is displayed and what each variable holds. This is the single most tested skill for LO AAP-3.A: read the call, send the arguments to the parameters, run the detour, and catch any RETURNed value.",
+    "scenarioTitle": "The Snack-Bar Program (two prewritten procedures)",
+    "narrative": "Two procedures are provided. PROCEDURE showItem(item, price) runs DISPLAY(item) then DISPLAY(price). PROCEDURE costFor(count) runs RETURN(count * 3). Remember: arguments bind to parameters by POSITION, DISPLAY shows a value followed by a space, RETURN both hands a value back and returns control, and result ← procName(...) captures a returned value. Work your own trace on scratch paper before answering Part A.",
+    "log": {
+      "columns": [
+        "Line",
+        "Statement",
+        "What happens",
+        "Output so far / value"
+      ],
+      "rows": [
+        [
+          "1",
+          "DISPLAY(\"Menu\")",
+          "Main program displays a value",
+          "Menu "
+        ],
+        [
+          "2",
+          "showItem(\"Nachos\", 4)",
+          "Call: \"Nachos\"→item, 4→price; control leaves main",
+          "Menu "
+        ],
+        [
+          "3",
+          "(inside showItem)",
+          "DISPLAY(item) then DISPLAY(price) run",
+          "Menu Nachos 4 "
+        ],
+        [
+          "4",
+          "total ← costFor(2)",
+          "Call returns 2 * 3 = 6; capture it",
+          "total = 6"
+        ],
+        [
+          "5",
+          "DISPLAY(total)",
+          "Main program displays the captured value",
+          "Menu Nachos 4 6 "
+        ]
+      ]
+    },
+    "scenarioNote": "Procedures and program adapted from the Day 1 showItem trace and the Day 2 costFor(count) return-value example; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023).",
+    "predict": "Before you answer Part A, predict in one sentence: at line 2, does the call to showItem itself display anything, or do only the statements INSIDE showItem display? Why?",
+    "partALabel": "Part A - Trace the Calls",
+    "partA": [
+      {
+        "ek": "EK AAP-3.A.4 / AAP-3.A.6",
+        "pts": 4,
+        "q": "Give the complete screen output after all five lines run, in order, and mark the exact point where control LEAVES the main program and where it RETURNS. Remember DISPLAY adds a space after each value.",
+        "answer": "Output: Menu Nachos 4 6 (each value followed by a space). Trace: line 1 displays Menu. Line 2 is the call showItem(\"Nachos\", 4) — control LEAVES the main program here and the call itself displays nothing (EK AAP-3.A.4). Inside showItem, DISPLAY(item) shows Nachos and DISPLAY(price) shows 4, then control RETURNS to the point right after line 2. Line 4 calls costFor(2), which returns 6, captured into total (no screen output). Line 5 displays total, showing 6. Full credit requires the correct order Menu Nachos 4 6 and identifying that control left at the call on line 2 and returned before line 4."
+      },
+      {
+        "ek": "EK AAP-3.A.5",
+        "pts": 4,
+        "q": "In line 2, showItem(\"Nachos\", 4), state which value is assigned to item and which to price, and explain the rule that decides the pairing. Then predict the output if the call were changed to showItem(4, \"Nachos\").",
+        "answer": "\"Nachos\" is assigned to item and 4 is assigned to price, because arguments bind to parameters by POSITION: the first argument goes to the first parameter, the second to the second (EK AAP-3.A.5). If the call were showItem(4, \"Nachos\"), then item would be 4 and price would be \"Nachos\", so the output would be '4 Nachos ' instead of 'Nachos 4 '. Same procedure, swapped arguments, different (wrong) result — position, not name, decides the pairing."
+      },
+      {
+        "ek": "EK AAP-3.A.7 / AAP-3.A.8",
+        "pts": 4,
+        "q": "Line 4 is total ← costFor(2). Explain step by step what this one line does — the call, the RETURN, and the capture — and state what total holds afterward.",
+        "answer": "Step 1: the call costFor(2) sends the argument 2 into the parameter count and control jumps into costFor. Step 2: the body runs RETURN(count * 3) = RETURN(6), which hands the value 6 back to the caller and returns flow of control to line 4 (EK AAP-3.A.7). Step 3: the assignment result ← procName captures that returned 6 and stores it, so total holds 6 (EK AAP-3.A.8). Afterward total = 6, and nothing was displayed — the value was returned and captured, not shown."
+      },
+      {
+        "ek": "EK AAP-3.A.6 / AAP-3.A.7",
+        "pts": 3,
+        "q": "Compare line 4 (total ← costFor(2)) with a hypothetical line DISPLAY(costFor(2)). Both involve costFor(2) returning 6. What is different about what ends up on the screen and what the program can still use afterward?",
+        "answer": "Line 4 captures the returned 6 into total but displays NOTHING on screen; afterward the program still HAS 6 (in total) and can reuse it (EK AAP-3.A.8). DISPLAY(costFor(2)) shows 6 on the screen followed by a space (EK AAP-3.A.6) but hands nothing back — after that line the 6 is gone and cannot be reused (EK AAP-3.A.7 contrast). The one-question test: 'does the program still have the value afterward?' Captured return = yes; plain DISPLAY = no."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-3.A.4",
+        "pts": 3,
+        "q": "In your own words, explain what 'flow of control is returned to the point immediately following where the procedure was called' means, using the idea of a detour or round trip. Why is it useful that control comes back to exactly that spot?",
+        "answer": "It means that when a procedure finishes, the program does not stop or jump somewhere new — it resumes at the very next thing after the call, the spot it left from (EK AAP-3.A.4). A call is a detour: the main program pauses, control travels into the procedure and runs its statements, then travels back to the line right after the call and continues. This is useful because you can drop a call anywhere in a program and trust that the surrounding code keeps running in order — the procedure does its job and hands control back without disrupting the sequence around it."
+      },
+      {
+        "ek": "EK AAP-3.A.3 / AAP-3.A.5",
+        "pts": 3,
+        "q": "A classmate says, 'To call showItem I have to name my arguments item and price, or the computer won't know where they go.' Correct this precisely, and give an example call using arguments that are NOT named item or price.",
+        "answer": "The classmate is wrong: arguments are matched to parameters by POSITION, not by name (EK AAP-3.A.5). The parameters item and price live in the definition; at the call you supply values in order, and whatever those values are called does not matter. For example, showItem(\"Chips\", 2) works — the literal \"Chips\" becomes item and 2 becomes price. So does showItem(snackName, snackCost) using variables with completely different names: snackName lands in item and snackCost lands in price purely because of their positions (EK AAP-3.A.3)."
+      },
+      {
+        "ek": "EK AAP-3.A.7 / AAP-3.A.9",
+        "pts": 2,
+        "q": "ENRICHMENT: Suppose line 4 read count ← INPUT() instead, and then total ← costFor(count). Explain how INPUT() and costFor are ALIKE in one important way, and predict how the output could differ from one run to the next.",
+        "answer": "They are alike in that BOTH are procedures that RETURN a value you capture: INPUT() returns whatever the user types (EK AAP-3.A.9) and costFor(count) returns count * 3 (EK AAP-3.A.7), and each is caught with a result ← procName-style assignment. So count ← INPUT() stores the user's value, and total ← costFor(count) stores the returned total. The output could differ run to run because INPUT() returns different values depending on what the user types: enter 2 and total is 6; enter 5 and total is 15. Same code, different input, different result."
+      },
+      {
+        "ek": "LO AAP-3.A",
+        "pts": 0,
+        "q": "Next step: you traced these calls by hand. Now head to the Topic 3.12 page and type and run the harder versions, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Effect or Value?",
+    "minutes": "25 minutes",
+    "subtitle": "5 calls - decide what each produces and what the program can reuse",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-12-exercise-2",
+    "intro": "You are reviewing a snack-bar program that uses procedures. For each call, decide whether it produces an EFFECT (it DISPLAYs something on screen and hands nothing back) or a VALUE (it RETURNs something the program can capture and reuse), state exactly what ends up on screen, and say whether the program still has a value to use afterward. The calls that trip people up are the ones that LOOK like they produce a usable answer but only display it. Vague answers like 'it just prints the number' score zero.",
+    "standard": "CB Standard (required): effect or value + what appears on screen + whether a value is available to reuse afterward, for all 5 calls. Enrichment (optional): note a subtler flow-of-control or return-value consideration (EK AAP-3.A.4, A.6–A.8).",
+    "methodHeading": "Three-Step Method - use for every call",
+    "method": [
+      [
+        "Step 1 - Effect or value?",
+        "Does the procedure DISPLAY (an effect on screen) or RETURN (a value handed back)? A call captured with result ← procName(...) is being used for its returned value; a bare call is being used for its effect."
+      ],
+      [
+        "Step 2 - What appears on screen?",
+        "Trace the flow of control into the procedure and back. Write the exact output, remembering DISPLAY adds a space after every value, and that a RETURN with no DISPLAY shows nothing."
+      ],
+      [
+        "Step 3 - Can the program still use it?",
+        "Ask the one-question test: after this line, does the program still HAVE the value? A captured RETURN: yes. A plain DISPLAY: no — it was shown, not stored (EK AAP-3.A.6 vs. A.7)."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (subtler flow/return judgment): The result-versus-effect line (LO AAP-3.A part b) is where most points are won or lost. A procedure can DISPLAY and RETURN, DISPLAY only, or RETURN only — and each behaves differently at the call site. Watch for RETURN ending a procedure early (statements after it never run), and for INPUT() as a procedure whose returned value you must capture just like any other. When you finish, move to the Topic 3.12 coding page to call procedures and use their return values for real.",
+    "fields": [
+      "Effect or value (does it DISPLAY or RETURN):",
+      "Exactly what appears on screen:",
+      "Enrichment — a subtler flow-of-control or return consideration:"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "PROCEDURE showItem(item, price) runs DISPLAY(item) then DISPLAY(price). The program runs the bare call showItem(\"Soda\", 2).",
+        "key": {
+          "signs": "showItem contains only DISPLAY statements and no RETURN, and the call is bare (not captured). This is an EFFECT: it puts values on the screen and hands nothing back (EK AAP-3.A.6).",
+          "mechanism": "By position, \"Soda\" → item and 2 → price. DISPLAY(item) shows Soda, DISPLAY(price) shows 2, each followed by a space, so the screen shows 'Soda 2 '. Afterward the program has no value to reuse — the two values were shown, not stored.",
+          "subtype": "Because there is no RETURN, there is nothing to capture; writing x ← showItem(\"Soda\", 2) would store nothing usable. showItem is a display-only (effect) procedure."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "PROCEDURE costFor(count) runs RETURN(count * 3). The program runs total ← costFor(4).",
+        "key": {
+          "signs": "costFor ends in RETURN and the call is captured with result ← procName(...). This is a VALUE: the call hands 4 * 3 = 12 back to the caller (EK AAP-3.A.7).",
+          "mechanism": "4 → count, the body returns 12 and control returns to the call, and the assignment stores 12 in total (EK AAP-3.A.8). Nothing appears on screen — this line displays nothing. Afterward the program still HAS 12 in total, available to add, compare, or display.",
+          "subtype": "This is the reusable case: a returned value that has been captured survives the call. Contrast with Scenario 3, where the same 12 is only displayed."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "Using the same costFor(count) that runs RETURN(count * 3), the program runs the bare line DISPLAY(costFor(4)).",
+        "key": {
+          "signs": "costFor still RETURNs a value, but here the returned value is fed straight into DISPLAY rather than captured. The net result on screen is an EFFECT, and nothing is stored.",
+          "mechanism": "costFor(4) returns 12, then DISPLAY shows 12 followed by a space, so the screen shows '12 '. But because the 12 was displayed and never assigned to a variable, the program does NOT still have it — the next line cannot reuse that 12 (EK AAP-3.A.6 vs. A.7).",
+          "subtype": "The headline trap: a procedure that RETURNs a value can still leave you with nothing reusable if you only DISPLAY the result instead of capturing it. To reuse 12, write total ← costFor(4)."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "The program runs count ← INPUT(), and the user types 5. Then it runs total ← costFor(count), where costFor(count) runs RETURN(count * 3).",
+        "key": {
+          "signs": "INPUT() is a procedure that RETURNS the user's value, and costFor RETURNS a value; both calls are captured. These are VALUES, chained together (EK AAP-3.A.9, A.7).",
+          "mechanism": "count ← INPUT() captures the typed 5 into count (nothing meaningful on screen from this alone). Then total ← costFor(count) passes 5 as the argument, costFor returns 5 * 3 = 15, and 15 is stored in total. Neither line DISPLAYs, so nothing is shown yet; the program HAS 15 ready to use.",
+          "subtype": "Because INPUT() returns whatever the user types, a different entry changes the result: type 2 and total is 6; type 10 and total is 30. INPUT()'s return value is captured exactly like costFor's."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "PROCEDURE mystery(count) runs RETURN(count * 3) and then, on the line after the RETURN, DISPLAY(\"done\"). The program runs x ← mystery(2).",
+        "key": {
+          "signs": "The call is captured, so it is used for its VALUE — but there is a twist in the procedure body: a statement written AFTER the RETURN. RETURN ends the procedure immediately (EK AAP-3.A.7).",
+          "mechanism": "2 → count, RETURN(count * 3) hands back 6 and returns control at once, so DISPLAY(\"done\") never runs. x holds 6, and NOTHING appears on screen — 'done' is unreachable because it sits after the RETURN.",
+          "subtype": "The subtlety: a RETURN causes an immediate return from the procedure, so any statement after it is dead code. Students who expect 'done' to print have missed that RETURN ends the procedure on the spot."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Show It or Hand It Back?",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "Calling a procedure looks simple — write a name and some values in parentheses — but two ideas fool almost everyone at first: that arguments match parameters by POSITION rather than name, and that DISPLAYing a value is not the same as RETURNing it. Across three short windows in this topic, your group will argue about what naming a process buys you, nail down the parameter-versus-argument line, and settle the effect-versus-value distinction that decides most procedure-call questions on the exam.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. Your makeCombo card let you stop re-explaining the combo every time — you just said its name. What exactly did naming the process let you STOP doing, and where else in life do people 'name a process once and just call it by name'?"
+          },
+          {
+            "text": "Question 2. On the card, the two blanks (snack, drink) stayed the same, but the words you said each time (Nachos, Cola) changed. Which of those is like a PARAMETER and which is like an ARGUMENT, and how would you explain the difference to someone who mixes them up?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the trace-the-output table",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - The position rule",
+            "text": "A classmate insists that to call showItem(item, price) you must pass arguments literally named item and price. In one sentence your whole group agrees on, state the actual rule that decides which argument goes to which parameter, and give one example call that proves the name does not matter.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - What the call itself does",
+            "text": "When a call like showItem(\"Cola\", 2) executes, the call line itself displays nothing — the DISPLAY output comes from inside the procedure. Debate for about 3 minutes: what, precisely, does the call statement DO at the moment it runs, before any of the procedure's own lines execute? Record your group's best one-sentence answer.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "The distinction that decides the points",
+            "text": "costFor(count) returns count * 3. Compare DISPLAY(costFor(2)) with total ← costFor(2). Both involve the number 6. As a group, write the clearest one-paragraph explanation you can of why only ONE of them leaves the program able to reuse the 6 — one a nervous classmate would actually understand — using the words 'effect' and 'value.' Then invent one more pair of calls that would fool the same person, and give the correct outcome of each.",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best kills the 'DISPLAY and RETURN are the same' misconception):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

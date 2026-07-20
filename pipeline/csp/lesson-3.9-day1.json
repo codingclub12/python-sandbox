@@ -395,10 +395,10 @@
         "predictFirst": true,
         "stem": "Algorithm P computes the average of three scores and DISPLAYs only the average. Algorithm Q computes the same average but DISPLAYs each score first, then the average. Per EK AAP-2.L.1–L.2, how do P and Q compare?",
         "options": [
-          "They have the same result but different side effects, because both compute the same average yet Q also displays the individual scores",
-          "They have different results, because displaying extra values changes the average that is computed",
-          "They are fully equivalent, because the final number displayed is the same",
-          "They have the same side effect but different results, because printing more lines is a different result"
+          "Same result, different side effects: both compute the same average, but only Q also displays each score",
+          "Different results: displaying extra values changes the average that is computed",
+          "Fully equivalent: the final number displayed is identical, so nothing differs",
+          "Same side effect, different results: printing more lines counts as a different result"
         ],
         "answer": "A",
         "ek": "EK AAP-2.L.2",
@@ -410,13 +410,13 @@
         "stem": "Two snippets should report the larger of a and b. Snippet 1: IF(a > b){DISPLAY(a)} IF(b > a){DISPLAY(b)}. Snippet 2: IF(a ≥ b){DISPLAY(a)} ELSE {DISPLAY(b)}. For which input do their side effects DIFFER?",
         "options": [
           "When a is much larger than b",
-          "When a and b are equal, such as (70, 70)",
           "When b is much larger than a",
+          "When a and b are equal, such as (70, 70)",
           "They never differ; the snippets are equivalent"
         ],
-        "answer": "B",
+        "answer": "C",
         "ek": "EK AAP-2.L.2",
-        "rationale": "On a tie, Snippet 1 finds a > b false and b > a false, so it displays nothing; Snippet 2's a ≥ b is true, so it displays a. They differ on equal inputs (EK AAP-2.L.2). A and C are inputs where both correctly display the larger value, so they match. D is false — the tie case shows the snippets are not equivalent, which is exactly why similar-looking code must be traced."
+        "rationale": "On a tie, Snippet 1 finds a > b false and b > a false, so it displays nothing; Snippet 2's a ≥ b is true, so it displays a. They differ on equal inputs (EK AAP-2.L.2). A and B are inputs where both correctly display the larger value, so they match. D is false — the tie case shows the snippets are not equivalent, which is exactly why similar-looking code must be traced."
       },
       {
         "id": "Q3",
@@ -424,27 +424,27 @@
         "stem": "Which single Boolean expression is equivalent to: IF(coins ≥ 100) { win ← true } ELSE { win ← false } (EK AAP-2.L.3)?",
         "options": [
           "win ← coins",
-          "win ← 100",
           "win ← coins ≥ 100",
+          "win ← 100",
           "win ← coins = 100"
         ],
-        "answer": "C",
+        "answer": "B",
         "ek": "EK AAP-2.L.3",
-        "rationale": "A conditional whose only job is to store true/false based on a condition equals that condition (EK AAP-2.L.3), so win ← coins ≥ 100. A assigns the number of coins, not a Boolean. B assigns the number 100. D uses = , which is only true at exactly 100, changing the behavior for coins above 100."
+        "rationale": "A conditional whose only job is to store true/false based on a condition equals that condition (EK AAP-2.L.3), so win ← coins ≥ 100. A assigns the number of coins, not a Boolean. C assigns the number 100. D uses = , which is only true at exactly 100, changing the behavior for coins above 100."
       },
       {
         "id": "Q4",
         "kind": "applied",
         "stem": "Per EK AAP-2.L.4, which IF/ELSE statement is equivalent to the Boolean expression: gameOver ← lives = 0 ?",
         "options": [
-          "IF(lives = 0) { gameOver ← true } ELSE { gameOver ← false }",
           "IF(lives = 0) { gameOver ← false } ELSE { gameOver ← true }",
           "IF(gameOver) { lives ← 0 } ELSE { lives ← 1 }",
-          "IF(lives > 0) { gameOver ← true } ELSE { gameOver ← false }"
+          "IF(lives > 0) { gameOver ← true } ELSE { gameOver ← false }",
+          "IF(lives = 0) { gameOver ← true } ELSE { gameOver ← false }"
         ],
-        "answer": "A",
+        "answer": "D",
         "ek": "EK AAP-2.L.4",
-        "rationale": "Expanding a Boolean into a conditional wraps the same condition in the if-true-else-false template (EK AAP-2.L.4), giving option A. B inverts the branches, so it is the opposite. C assigns to lives instead of gameOver, reversing cause and effect. D tests lives > 0, the negation of the original condition."
+        "rationale": "Expanding a Boolean into a conditional wraps the same condition in the if-true-else-false template (EK AAP-2.L.4), giving option D. A inverts the branches, so it is the opposite. B assigns to lives instead of gameOver, reversing cause and effect. C tests lives > 0, the negation of the original condition."
       },
       {
         "id": "Q5",
@@ -453,13 +453,13 @@
         "stem": "A student claims two algorithms are 'the same' because they are written almost identically. Per EK AAP-2.L.2, what is the most reliable way to decide whether they truly behave the same?",
         "options": [
           "Compare the number of lines in each; equal length means equal behavior",
+          "Run only the first algorithm, since the second one looks the same",
           "Trace both algorithms on the same inputs, including boundary cases like ties and zeros",
-          "Assume they behave the same, since similar code always produces the same output",
-          "Run only the first algorithm, because the second one looks the same"
+          "Assume they behave the same, since similar code always produces the same output"
         ],
-        "answer": "B",
+        "answer": "C",
         "ek": "EK AAP-2.L.2",
-        "rationale": "Algorithms that appear similar can yield different results or side effects (EK AAP-2.L.2), so the only reliable check is tracing both on the same inputs, especially boundaries. B says this. A uses line count, which has no bearing on behavior. C is the exact misconception the EK warns against. D never tests the second algorithm at all."
+        "rationale": "Algorithms that appear similar can yield different results or side effects (EK AAP-2.L.2), so the only reliable check is tracing both on the same inputs, especially boundaries. C says this. A uses line count, which has no bearing on behavior. B never tests the second algorithm at all. D is the exact misconception the EK warns against."
       },
       {
         "id": "Q6",
@@ -482,13 +482,13 @@
         "stem": "You have a correct algorithm that finds the MAXIMUM of two numbers using IF(a > b){max ← a} ELSE {max ← b}. Per EK AAP-2.M.1, what is the simplest way to obtain an algorithm that finds the MINIMUM?",
         "options": [
           "Rewrite the entire algorithm from scratch with a completely new approach",
-          "Modify the existing algorithm by changing the comparison from a > b to a < b",
           "Add a second unrelated algorithm and run both",
-          "Change DISPLAY so it prints the value twice"
+          "Change DISPLAY so it prints the value twice",
+          "Modify the existing algorithm by changing the comparison from a > b to a < b"
         ],
-        "answer": "B",
+        "answer": "D",
         "ek": "EK AAP-2.M.1",
-        "rationale": "Algorithms can be created by modifying existing ones (EK AAP-2.M.1); flipping a > b to a < b turns find-max into find-min with a one-operator change. A discards a correct, tested building block unnecessarily. C adds unrelated code that does not find the minimum. D changes only the side effect, not which value is chosen."
+        "rationale": "Algorithms can be created by modifying existing ones (EK AAP-2.M.1); flipping a > b to a < b turns find-max into find-min with a one-operator change — option D. A discards a correct, tested building block unnecessarily. B adds unrelated code that does not find the minimum. C changes only the side effect, not which value is chosen."
       },
       {
         "id": "Q8",

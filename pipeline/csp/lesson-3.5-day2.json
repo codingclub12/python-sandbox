@@ -1,0 +1,373 @@
+{
+  "meta": {
+    "lessonId": "3.5",
+    "lessonTitle": "Boolean Expressions",
+    "course": "AP Computer Science Principles",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "day": 2,
+    "totalDays": 2,
+    "los": "LO AAP-2.F",
+    "anchor": "Boolean Expressions",
+    "author": "AP CS Exam Prep"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "eyebrow": "Big Idea 3 · Topic 3.5 · Day 2 of 2",
+      "title": "Combining Yes-or-No Answers",
+      "subtitle": "The logical operators NOT, AND, and OR — how a program flips one Boolean and joins several into a single true-or-false decision, with the inclusive-OR rule the exam tests directly",
+      "footerLeft": "AP Computer Science Principles · College Board CED (Effective Fall 2023)",
+      "footerRight": "APCSExamPrep.com",
+      "script": "Day 2 of Boolean Expressions. Yesterday one comparison gave us one Boolean. Real decisions need more: a rider must be tall enough AND hold a ticket; the express lane opens to a VIP OR a fast-pass holder; the gate stays shut when the ride is NOT open. Today we meet the three logical operators — NOT, AND, and OR — and we get precise about exactly when each is true. We finish with the trap the College Board loves: OR is inclusive, so both-true still counts as true. By the end you should evaluate any combination of Booleans in your head."
+    },
+    {
+      "type": "objectives",
+      "heading": "By the End of Today You Will...",
+      "items": [
+        {
+          "tag": "CB",
+          "text": "Write expressions using the logical operators NOT, AND, and OR to combine or flip Boolean values (LO AAP-2.F)"
+        },
+        {
+          "tag": "CB",
+          "text": "Evaluate NOT, AND, and OR expressions to a single Boolean value, treating OR as inclusive (LO AAP-2.F)"
+        }
+      ],
+      "script": "Two targets today, and they are the two halves of AAP-2.F. Part a is to WRITE expressions with logical operators — joining 'tall enough' and 'has ticket' with AND, offering two ways in with OR, flipping a state with NOT. Part b is to EVALUATE them — running a combination down to a single Boolean. Both halves are on today's list because the exam tests writing and evaluating separately. The key precision point, and the one we drill, is that OR is inclusive: both conditions true still makes OR true."
+    },
+    {
+      "type": "bell_ringer",
+      "eyebrow": "Bell Ringer",
+      "prompt": "The Gauntlet now has two rules to board: you must be tall enough AND you must hold a ticket. For each guest, both facts are already known. Guest A: tallEnough = true, hasTicket = true. Guest B: tallEnough = true, hasTicket = false. Guest C: tallEnough = false, hasTicket = false. Decide who boards.",
+      "subprompt": "Write 2–4 sentences: For 'tall enough AND has ticket,' exactly how many of the two must be true for a guest to board? Then a new express lane opens to anyone who is a VIP OR holds a fast pass — how is that 'OR' different from the 'AND' about how many must be true?",
+      "directions": "Be ready to say how many conditions AND needs and how many OR needs.",
+      "script": "Five minutes with a partner. Decide who boards under 'tall enough AND has ticket': only Guest A, because AND demands that BOTH facts be true — Guest B is missing a ticket, Guest C is missing both. Then push on the express lane: 'VIP OR fast pass' opens to anyone with at least ONE of the two. Students feel the difference immediately — AND is the strict gate that needs everything true, OR is the generous gate that needs just one. That contrast is the heart of today. Hold onto how many must be true for each."
+    },
+    {
+      "type": "guided_notes_preview",
+      "heading": "What You'll Be Filling In",
+      "subheading": "Your Day 2 Guided Notes have 2 sections that match today's lesson. Green = CB required.",
+      "sections": [
+        {
+          "title": "NOT — Flipping a Boolean",
+          "description": "NOT reverses a Boolean, and every operand of a logical operator is itself Boolean (EK AAP-2.F.1–F.2, F.5)."
+        },
+        {
+          "title": "AND and OR — Combining Conditions",
+          "description": "AND needs both true, OR needs at least one, and OR is inclusive (EK AAP-2.F.3–F.5)."
+        }
+      ],
+      "note": "Fill in your Guided Notes as we go. Absent or lost your packet? A digital copy lives on the Topic 3.5 Guided Notes page at apcsexamprep.com.",
+      "script": "Today's notes map: two sections, both green and CB-required. First, NOT — how it flips a Boolean and the rule that a logical operator's operand is always itself a Boolean. Second, AND and OR — when each is true, and the inclusive-OR rule. Keep the packet open; every answer also lives on the Topic 3.5 page, along with the coding practice where you type and run the full boarding rule yourself."
+    },
+    {
+      "type": "section_divider",
+      "number": "01",
+      "label": "NOT — Flipping a Boolean",
+      "kicker": "Reverse the Answer · Learning Objective AAP-2.F",
+      "script": "Section one. The simplest logical operator takes one Boolean and flips it. NOT true is false; NOT false is true. It sounds trivial, but the exam sneaks it into combinations where a quick flip decides the whole answer, so we make the rule airtight."
+    },
+    {
+      "type": "vocab",
+      "heading": "Key Vocabulary (LO AAP-2.F)",
+      "terms": [
+        {
+          "term": "Logical operator",
+          "definition": "One of NOT, AND, or OR — an operator that flips or combines Boolean values and itself evaluates to a Boolean value (EK AAP-2.F.1)."
+        },
+        {
+          "term": "NOT",
+          "definition": "A logical operator that reverses a Boolean: NOT condition is true if condition is false, and false if condition is true (EK AAP-2.F.2)."
+        },
+        {
+          "term": "AND",
+          "definition": "A logical operator that is true only when both of its conditions are true (EK AAP-2.F.3)."
+        },
+        {
+          "term": "OR",
+          "definition": "A logical operator that is true when at least one of its conditions is true, including when both are (EK AAP-2.F.4)."
+        },
+        {
+          "term": "Operand",
+          "definition": "The input a logical operator acts on, which is either a Boolean expression or a single Boolean value (EK AAP-2.F.5)."
+        }
+      ],
+      "script": "Five words for today. A logical operator is NOT, AND, or OR, and — importantly — each one itself evaluates to a Boolean. NOT reverses a single Boolean. AND is true only when both conditions are true. OR is true when at least one is true, both included. And the operand of a logical operator is always itself a Boolean — either a comparison like the ones we wrote yesterday or a single true/false value. That last rule ties the two days together: yesterday's comparisons become today's operands."
+    },
+    {
+      "type": "concept",
+      "heading": "NOT Reverses One Boolean",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "The logical operators NOT, AND, and OR each evaluate to a Boolean value (EK AAP-2.F.1).",
+        "NOT condition evaluates to true if condition is false; otherwise it evaluates to false (EK AAP-2.F.2).",
+        "Every operand of a logical operator is a single Boolean value or a whole Boolean expression (EK AAP-2.F.5).",
+        "So NOT takes one true-or-false input and hands back the opposite."
+      ],
+      "script": "Here is the precise rule. All three logical operators produce a Boolean — that is EK AAP-2.F.1. NOT is the one-input operator, defined word for word: NOT condition is true if condition is false, and false otherwise. In other words, it reverses whatever it is given. And EK AAP-2.F.5 tells you what NOT is allowed to act on — always a Boolean, either a single true/false value or a whole comparison like height greater-than-or-equal 48. So 'NOT rideOpen' flips the ride's open state, and 'NOT (height ≥ 48)' flips the result of a comparison. One input, opposite output.",
+      "capture": [
+        {
+          "q": "NOT condition evaluates to true exactly when ______.",
+          "a": "the condition it is given is false"
+        },
+        {
+          "q": "The operand handed to any logical operator must be ______.",
+          "a": "a Boolean expression or a single Boolean value"
+        },
+        {
+          "q": "Applying NOT to a Boolean always ______.",
+          "a": "reverses it — true becomes false, and false becomes true"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "NOT",
+      "heading": "Flip the Ride's State",
+      "caption": "rideOpen is false, so NOT rideOpen evaluates to true — the gate should stay shut.",
+      "pseudocode": "rideOpen ← false\ngateShut ← NOT rideOpen\nDISPLAY(gateShut)",
+      "python": "ride_open = False\ngate_shut = not ride_open\nprint(gate_shut)",
+      "output": "true",
+      "script": "NOT in action, two columns. On the exam sheet the operator is the word NOT; in Python it is lowercase not. rideOpen holds false. 'NOT rideOpen' reverses that false into true, and we store it in gateShut — the gate should be shut precisely because the ride is not open. DISPLAY shows true. Notice NOT read rideOpen but did not change it; rideOpen is still false. NOT evaluates to a fresh Boolean, the opposite of its operand, without altering the variable it was handed."
+    },
+    {
+      "type": "worked_table",
+      "heading": "The NOT Truth Outcomes",
+      "context": "NOT reverses whatever Boolean it is given. There are only two possible inputs — complete the result for each.",
+      "columns": [
+        "condition",
+        "NOT condition"
+      ],
+      "rows": [
+        [
+          "true",
+          "false"
+        ],
+        [
+          "false",
+          "true"
+        ]
+      ],
+      "highlightCol": 1,
+      "script": "The entire behavior of NOT fits in two rows because it has only two possible inputs. When condition is true, NOT condition is false. When condition is false, NOT condition is true. Fill in the right column yourself and say it out loud — NOT is a mirror: it always hands back the opposite of what it received. Every use of NOT anywhere in the course reduces to these two lines.",
+      "blanks": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — NOT",
+      "subheading": "These map to LO AAP-2.F. Complete on your Guided Notes.",
+      "prompts": [
+        "isRaining holds false. What does NOT isRaining evaluate to, and why?",
+        "A classmate says 'NOT changes rideOpen from true to false permanently.' Correct the wording — what does NOT actually do to the variable it is given?",
+        "Yesterday you wrote height ≥ 48. Write an expression that is true exactly when a rider is NOT tall enough, and evaluate it for height = 45."
+      ],
+      "directions": "Answer in complete sentences. Then check yourself with the matching CFUs on the Topic 3.5 page.",
+      "script": "Stop and think, five minutes, full sentences. One: NOT isRaining is true, because NOT reverses the false it was given. Two: fix the classmate — NOT does not change the variable at all; it reads rideOpen and evaluates to the opposite Boolean, leaving rideOpen untouched. Three: 'not tall enough' is NOT (height ≥ 48); for height 45 that is NOT (45 ≥ 48), which is NOT false, which is true — the rider really is not tall enough. That combining of a comparison inside NOT is exactly the AAP-2.F move."
+    },
+    {
+      "type": "section_divider",
+      "number": "02",
+      "label": "AND and OR — Combining Conditions",
+      "kicker": "Both, or Just One · Learning Objective AAP-2.F",
+      "script": "Section two. Now the two operators that join Booleans. AND is the strict gate — it needs BOTH operands true. OR is the generous gate — it needs at least ONE. Master the exact true-conditions for each, especially the inclusive rule for OR, and you can evaluate any decision the exam throws at you."
+    },
+    {
+      "type": "concept",
+      "heading": "AND Needs Both; OR Needs at Least One",
+      "tag": "CB REQUIRED",
+      "bullets": [
+        "condition1 AND condition2 evaluates to true if both condition1 and condition2 are true; otherwise it evaluates to false (EK AAP-2.F.3).",
+        "condition1 OR condition2 evaluates to true if condition1 is true or if condition2 is true or if both condition1 and condition2 are true; otherwise it evaluates to false (EK AAP-2.F.4).",
+        "OR is INCLUSIVE: both operands true still makes OR true — it is not 'one or the other but not both.'",
+        "Each operand of AND and OR is still itself a Boolean (EK AAP-2.F.5)."
+      ],
+      "script": "The two combining operators, stated exactly as the College Board does. AND — condition1 AND condition2 is true if BOTH are true, and false otherwise. So a single false operand collapses the whole thing to false. OR — condition1 OR condition2 is true if condition1 is true, or condition2 is true, or both are true, and false otherwise. Read that carefully: 'or both' is in the definition. OR is inclusive. The only way AND is true is both true; the only way OR is false is both false. And both operands are always themselves Booleans, which is how yesterday's comparisons plug straight in.",
+      "capture": [
+        {
+          "q": "condition1 AND condition2 is true only when ______.",
+          "a": "both conditions are true at the same time"
+        },
+        {
+          "q": "condition1 OR condition2 is false only when ______.",
+          "a": "both conditions are false"
+        },
+        {
+          "q": "Because OR is inclusive, it still evaluates to true even when ______.",
+          "a": "both operands happen to be true together"
+        }
+      ]
+    },
+    {
+      "type": "code_block",
+      "eyebrow": "AND / OR",
+      "heading": "The Boarding Rule and the Express Lane",
+      "caption": "board needs BOTH; skipLine needs EITHER. One line evaluates each to a Boolean.",
+      "pseudocode": "board ← tallEnough AND hasTicket\nskipLine ← isVIP OR hasFastPass\nDISPLAY(board)",
+      "python": "board = tall_enough and has_ticket\nskip_line = is_vip or has_fast_pass\nprint(board)",
+      "output": "true",
+      "script": "AND and OR side by side. On the exam sheet the operators are the words AND and OR; in Python they are lowercase and and or. The first line builds the boarding rule: board is tallEnough AND hasTicket, true only when both are true. The second builds the express-lane rule: skipLine is isVIP OR hasFastPass, true when either is true. With tallEnough and hasTicket both true, DISPLAY shows true. Each operand here is itself a Boolean, exactly as the reference sheet requires — the comparisons and flags from earlier become the inputs to AND and OR."
+    },
+    {
+      "type": "worked_table",
+      "heading": "The AND and OR Truth Table",
+      "context": "Two operands, A and B, give four possible combinations. Fill in the missing results — remember AND needs both true and OR needs at least one.",
+      "columns": [
+        "A",
+        "B",
+        "A AND B",
+        "A OR B"
+      ],
+      "rows": [
+        [
+          "true",
+          "true",
+          "true",
+          "true"
+        ],
+        [
+          "true",
+          "false",
+          "false",
+          "true"
+        ],
+        [
+          "false",
+          "true",
+          "false",
+          "true"
+        ],
+        [
+          "false",
+          "false",
+          "false",
+          "false"
+        ]
+      ],
+      "highlightCol": 2,
+      "script": "The complete behavior of AND and OR in four rows. When both A and B are true, AND is true and OR is true. When exactly one is true, AND is false but OR is true — this middle band is where the two operators differ. When both are false, AND is false and OR is false. Read the AND column: only one true, at the top, because AND demands both. Read the OR column: only one false, at the bottom, because OR needs just one. The top row is the inclusive case — both true, and OR is still true.",
+      "blanks": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    {
+      "type": "two_column",
+      "heading": "AND vs OR",
+      "subheading": "One flips to false the moment any operand is false; the other flips to true the moment any operand is true (EK AAP-2.F.3–F.4).",
+      "left": {
+        "title": "AND — the strict gate",
+        "definition": "True only when BOTH operands are true; one false sinks it",
+        "ek": "EK AAP-2.F.3",
+        "examples": [
+          "tallEnough AND hasTicket: board only if both hold",
+          "Any single false makes the whole thing false",
+          "Hardest to satisfy — every condition must pass"
+        ]
+      },
+      "right": {
+        "title": "OR — the generous gate",
+        "definition": "True when AT LEAST ONE operand is true; both true still counts",
+        "ek": "EK AAP-2.F.4",
+        "examples": [
+          "isVIP OR hasFastPass: express lane if either holds",
+          "Any single true makes the whole thing true",
+          "Inclusive — both true is still true, not false"
+        ]
+      },
+      "footer": "AP TIP: AND is hardest to satisfy (needs every operand true); OR is easiest (needs one). Only both-false makes OR false; only all-true makes AND true.",
+      "script": "Side by side, the two combining operators. AND is the strict gate: it is true only when every operand is true, so one false anywhere sinks it — it is the hardest to satisfy. OR is the generous gate: it is true the moment any operand is true, so it is the easiest to satisfy, and crucially both-true still counts as true. Flip the logic to find the shortcut: AND is false unless all are true; OR is true unless all are false. Knowing which operator is 'hard' and which is 'easy' lets you evaluate long chains fast — one false kills an AND, one true saves an OR.",
+      "capture": [
+        {
+          "q": "An AND expression collapses to false the moment ______.",
+          "a": "any one of its operands is false"
+        },
+        {
+          "q": "An OR expression jumps to true the moment ______.",
+          "a": "any one of its operands is true"
+        }
+      ]
+    },
+    {
+      "type": "misconception",
+      "heading": "“OR Is False When Both Are True”",
+      "misconception": "condition1 OR condition2 means exactly one of them is true; if BOTH are true, OR evaluates to false.",
+      "whyItHappens": "Everyday English 'or' usually means 'one or the other, but not both' — soup OR salad, not both — so students import that exclusive meaning into code.",
+      "correction": "On the exam reference sheet OR is INCLUSIVE: it is true if condition1 is true, or condition2 is true, or both are true (EK AAP-2.F.4). Both operands true makes OR true, not false. The only way OR evaluates to false is when BOTH operands are false.",
+      "example": "isVIP = true and hasFastPass = true: isVIP OR hasFastPass → true, so the guest uses the express lane. The only combination that makes that OR false is a guest who is neither a VIP nor a fast-pass holder — both false.",
+      "script": "This is the Day 2 trap the exam counts on. Because everyday 'or' means one or the other but not both — you pick soup or salad, not both — students decide that when both conditions are true, OR must be false. It is the reverse. Code's OR is inclusive: true if the first is true, or the second is true, or both are true. Both-true is still true. The only way to make OR false is to make BOTH operands false. Read the definition on the reference sheet literally — 'or if both' is right there — and the inclusive rule is unmistakable."
+    },
+    {
+      "type": "stop_and_think",
+      "heading": "Stop and Think — Combine and Evaluate",
+      "subheading": "These map to LO AAP-2.F. Show your work on your Guided Notes.",
+      "prompts": [
+        "Evaluate with tallEnough = true, hasTicket = true: tallEnough AND hasTicket. Then change hasTicket to false and evaluate again. What changed and why?",
+        "Evaluate isVIP OR hasFastPass when isVIP = true and hasFastPass = true. State the result and explain why 'both true' does not make OR false.",
+        "Write one expression that is true only when a rider is tall enough AND holds a ticket AND the ride is open. Then evaluate it for tallEnough = true, hasTicket = true, rideOpen = false."
+      ],
+      "directions": "Show every step. Then check yourself with the matching CFUs on the Topic 3.5 page.",
+      "script": "Combine and evaluate, six minutes, show every step. One: both true makes AND true; drop hasTicket to false and AND becomes false, because AND needs both — one false sinks it. Two: VIP OR fast pass with both true is true; OR is inclusive, so both-true is still true, never false. Three: the full rule is tallEnough AND hasTicket AND rideOpen; with rideOpen false the whole AND is false even though the first two are true — one false operand ends it. That is precisely the write-and-evaluate skill AAP-2.F tests, and it is what you will type on the coding page."
+    },
+    {
+      "type": "ap_strategy",
+      "heading": "Common AP Traps",
+      "subheading": "Three ways Topic 3.5 loses points on the exam — one minute now, real points in May.",
+      "strategies": [
+        {
+          "name": "≥ and ≤ include the boundary",
+          "text": "'At least 48' is height ≥ 48, not height > 48; 'at most 30' is wait ≤ 30, not wait < 30. The equal case — exactly 48, exactly 30 — is what ≥ and ≤ add and > and < drop. That boundary is where comparison questions are decided."
+        },
+        {
+          "name": "OR is inclusive",
+          "text": "condition1 OR condition2 is TRUE when both are true — code's OR is not the exclusive 'one or the other' of everyday speech. OR is false only when BOTH operands are false; AND is true only when both are true."
+        },
+        {
+          "name": "= compares, ← assigns",
+          "text": "On the reference sheet a single = tests whether two operands are equal and evaluates to a Boolean; the arrow ← stores a value. Don't read the equality test as assignment. (Python sidesteps this with == for equality.)"
+        }
+      ],
+      "script": "One minute, three traps, real points. Trap one: the 'or-equal' operators include the boundary — 'at least 48' is greater-than-or-equal, and the exactly-48 case is the whole difference from plain greater-than. Trap two: OR is inclusive — both conditions true still makes OR true; it is false only when both are false, while AND is true only when both are true. Trap three: on the reference sheet a single equals sign is the equality comparison that yields a Boolean, not the assignment arrow. Dodge these three and every Boolean-expression question on the exam is points in the bank."
+    },
+    {
+      "type": "final_summary",
+      "heading": "Boolean Expressions, in One Slide",
+      "points": [
+        "A Boolean value is true or false; a comparison with =, ≠, >, <, ≥, or ≤ evaluates to one, and ≥/≤ include the boundary that >/< exclude (EK AAP-2.E.1–E.2).",
+        "NOT reverses a single Boolean: NOT condition is true exactly when condition is false (EK AAP-2.F.1–F.2).",
+        "AND is true only when both operands are true; OR is true when at least one is true (EK AAP-2.F.3–F.4).",
+        "OR is INCLUSIVE — both true still makes OR true; a logical operator's operands are themselves Booleans (EK AAP-2.F.4–F.5)."
+      ],
+      "next": "Topic 3.6, Conditionals: now that an expression can evaluate to true or false, how does an IF statement use that Boolean to choose which block of code actually runs?",
+      "script": "The whole topic in one slide. A Boolean value is true or false, and a comparison produces one — with the 'or-equal' operators including the boundary the strict ones drop. NOT reverses a single Boolean. AND is true only when both operands are true; OR is true when at least one is. And OR is inclusive — both-true is still true — while every operand of a logical operator is itself a Boolean, which is how comparisons plug into NOT, AND, and OR. Next class is Topic 3.6, Conditionals, where the IF statement finally acts on these true-or-false values to decide which code runs. Before you pack up, run the exit check: four 'I can' statements at the bottom of the slide, and any box you cannot honestly check tells you what to review on the Topic 3.5 page tonight, including the coding practice. Guided Notes are collected at the end of class.",
+      "ican": [
+        "write an expression using a relational operator for a stated relationship, choosing ≥/≤ versus >/< correctly (LO AAP-2.E)",
+        "evaluate a comparison to a single Boolean value, true or false (LO AAP-2.E)",
+        "write expressions using NOT, AND, and OR to flip or combine Boolean values (LO AAP-2.F)",
+        "evaluate NOT, AND, and OR expressions, treating OR as inclusive (LO AAP-2.F)"
+      ]
+    }
+  ]
+}

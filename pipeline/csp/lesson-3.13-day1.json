@@ -158,16 +158,16 @@
       "script": "Both columns print the same totals, so why does the right one win? Modularity and reuse. On the left the pricing formula is copy-pasted once per product; the day the manager changes the rule, you must find and fix every copy, and one missed copy is a silent bug where totals quietly disagree. On the right the shared feature lives in one module, labelTotal, called many times. Change the rule once, inside the procedure, and every call updates automatically. As a bonus the program now reads as a clean list of tasks instead of a wall of repeated arithmetic. That is EK AAP-3.B.3 and B.4 — modularity is the subdivision into subprograms; reuse is calling one procedure instead of duplicating code.",
       "capture": [
         {
-          "q": "Splitting a program into separate subprograms is called ______.",
-          "a": "modularity"
+          "q": "The design on the right survives a rule change because the shared logic lives ______.",
+          "a": "in exactly one procedure, changed once instead of in many scattered copies"
         },
         {
-          "q": "Extracting a shared feature into one procedure instead of copying it gives you ______.",
-          "a": "code reuse, so a rule change is made in exactly one place"
+          "q": "With the duplicated design, changing the pricing rule forces you to ______.",
+          "a": "find and edit every copy, and a missed one becomes a silent bug"
         },
         {
-          "q": "The danger of duplicated code when a rule changes is that ______.",
-          "a": "you must edit every copy and a missed copy becomes a silent bug"
+          "q": "Two designs can print identical output today yet behave very differently when ______.",
+          "a": "the shared rule must change — one edit versus many"
         }
       ]
     },

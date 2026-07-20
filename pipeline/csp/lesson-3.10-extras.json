@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "lessonId": "3.10",
+    "lessonTitle": "Lists",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "days": 2,
+    "los": "LO AAP-2.N, AAP-2.O"
+  },
+  "map": {
+    "subtitle": "Big Idea 3: Algorithms and Programming   •   2 days   •   LO AAP-2.N, AAP-2.O",
+    "intro": "Everything for this topic lives in this folder. Topic 3.10 turns 'a variable can hold a list' into a working toolkit — indexing and the list procedures on Day 1, traversal and the standard algorithms on Day 2 — and it ships an interactive, auto-graded coding-practice page built on the same step-log scenario. Here is how the surfaces fit together.",
+    "folderHeading": "In this folder (teacher)",
+    "folderItems": [
+      "Slides — Teacher Edition, Day 1 (indexing; INSERT/APPEND/REMOVE/LENGTH) and Day 2 (FOR EACH traversal; sum/average/min/max; linear search). Speaker notes on every slide.",
+      "Teacher Guide (two-day pacing with the QOTD warm-up, misconceptions, differentiation, CED alignment, auto-derived quiz key)",
+      "Guided Notes — Day 1 and Day 2 (student fill-in + answer KEY)",
+      "Exercise 1: Trace the Step Log and Exercise 2: Traverse and Search (student + answer KEY)",
+      "Discussion — Counting from One (3-part: Opening + Mid-lesson on Day 1, Closing on Day 2)",
+      "Quiz (student + answer KEY — 8 questions on LO AAP-2.N and AAP-2.O, canonical in the Day-1 master JSON)",
+      "Coding Practice answer KEY (reference solutions for the interactive problems; students only ever see stub starters online)"
+    ],
+    "websiteHeading": "On the website (students)",
+    "websiteLinks": [
+      {
+        "label": "Question of the Day",
+        "url": "apcsexamprep.com/pages/ap-csp-question-of-the-day"
+      },
+      {
+        "label": "Lesson page",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-10-lists"
+      },
+      {
+        "label": "Guided Notes (digital copy)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-10-lists-notes"
+      },
+      {
+        "label": "Coding Practice (write, run & auto-check)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-10-lists-code"
+      },
+      {
+        "label": "Exercise 1 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-10-exercise-1"
+      },
+      {
+        "label": "Exercise 2 (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-10-exercise-2"
+      },
+      {
+        "label": "Quiz (auto-graded)",
+        "url": "apcsexamprep.com/pages/ap-csp-topic-3-10-lists"
+      }
+    ],
+    "surfacesHeading": "How the three surfaces fit together",
+    "surfaces": [
+      "Slides = the instruction you project and teach from (Day 1: indexing and the list procedures; Day 2: traversal and the sum/max/search algorithms). All code is shown in exam pseudocode next to runnable Python.",
+      "This folder = your private scaffolding — keys, pacing, and facilitation that are deliberately NOT posted to the site, including the coding-practice reference solutions.",
+      "Website = student practice that paper cannot do: the coding page runs real code against expected output, and the exercises and quiz grade instantly with per-answer feedback. Student versions live online; the answer keys stay with you.",
+      "Scheduling: Topic 3.10 is a 2-day topic. The quiz runs as the opener of the NEXT class (spaced retrieval), so the topic never silently consumes a third day. Topic 3.11 (Binary Search) begins after the quiz and contrasts directly with the linear search built here."
+    ]
+  },
+  "exercise1": {
+    "number": 1,
+    "title": "Trace the Step Log",
+    "minutes": "25 minutes",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-10-exercise-1",
+    "intro": "You are a debugging partner watching a program reshape a list of daily step counts. The program below is a sequence of list operations in exam pseudocode. Your job is to TRACE it — write the full list and its LENGTH after each operation — and then answer questions about indexing and how the neighbors shift. This is the single most tested skill for LO AAP-2.N: track how INSERT, APPEND, and REMOVE move the other elements and change the length, and remember the reference sheet is 1-indexed.",
+    "scenarioTitle": "Operation Log: Reshaping the Step List",
+    "narrative": "The list starts as steps ← [8000, 12000, 9000, 15000, 11000]. Read the log top to bottom, one operation at a time. After each line, rewrite the ENTIRE list and its LENGTH — do not track it only in your head. Remember: aList[i] ← x overwrites one slot (same length), while INSERT/APPEND/REMOVE resize the list and shift the neighbors. On the reference sheet the first element is at index 1.",
+    "log": {
+      "columns": [
+        "Line",
+        "Operation",
+        "What it does",
+        "List after the line",
+        "LENGTH"
+      ],
+      "rows": [
+        [
+          "1",
+          "APPEND(steps, 10000)",
+          "adds 10000 to the END; length +1",
+          "[8000, 12000, 9000, 15000, 11000, 10000]",
+          "6"
+        ],
+        [
+          "2",
+          "INSERT(steps, 2, 5000)",
+          "shifts indices ≥ 2 RIGHT, puts 5000 at index 2; length +1",
+          "[8000, 5000, 12000, 9000, 15000, 11000, 10000]",
+          "7"
+        ],
+        [
+          "3",
+          "steps[1] ← 3000",
+          "overwrites index 1 in place; length unchanged",
+          "[3000, 5000, 12000, 9000, 15000, 11000, 10000]",
+          "7"
+        ],
+        [
+          "4",
+          "REMOVE(steps, 3)",
+          "deletes index 3, shifts later values LEFT; length −1",
+          "[3000, 5000, 9000, 15000, 11000, 10000]",
+          "6"
+        ]
+      ]
+    },
+    "scenarioNote": "Scenario is the Day 1 worked trace extended by one in-place assignment; notation follows the AP Computer Science Principles Exam Reference Sheet (Effective Fall 2023), where the first element is at index 1.",
+    "predict": "Before you answer Part A, predict in one sentence: after all four operations, will LENGTH(steps) be larger or smaller than the original 5, and why?",
+    "partALabel": "Part A - Trace the Values",
+    "partA": [
+      {
+        "ek": "EK AAP-2.N.1",
+        "pts": 4,
+        "q": "Give the full list and LENGTH(steps) AFTER line 2 (the INSERT). Show which values shifted and in which direction.",
+        "answer": "After line 2: steps = [8000, 5000, 12000, 9000, 15000, 11000, 10000], LENGTH = 7. Line 1 APPEND(steps, 10000) puts 10000 on the end → [8000, 12000, 9000, 15000, 11000, 10000], length 6. Line 2 INSERT(steps, 2, 5000) shifts every value at index ≥ 2 one place to the RIGHT (12000, 9000, 15000, 11000, 10000 all move over) and drops 5000 into index 2, increasing the length to 7 (EK AAP-2.N.1). Full credit requires showing the right-shift and that nothing was overwritten."
+      },
+      {
+        "ek": "EK AAP-2.N.1",
+        "pts": 4,
+        "q": "Line 3 is steps[1] ← 3000 and line 4 is REMOVE(steps, 3). Explain how these two lines differ in their effect on LENGTH(steps), and give the value at steps[3] after line 4.",
+        "answer": "They differ fundamentally: steps[1] ← 3000 OVERWRITES the element at index 1 in place, so the length stays 7 — only the first value changes (from 8000 to 3000). REMOVE(steps, 3) DELETES the element at index 3 (which was 12000) and shifts the later values left, decreasing the length to 6 (EK AAP-2.N.1). After line 4 the list is [3000, 5000, 9000, 15000, 11000, 10000], so steps[3] is 9000. In-place assignment resizes nothing; REMOVE resizes and shifts."
+      },
+      {
+        "ek": "EK AAP-2.N.1",
+        "pts": 4,
+        "q": "A classmate says line 2, INSERT(steps, 2, 5000), 'replaces whatever was at index 2 with 5000.' Using the exact reference-sheet meaning of INSERT, explain what is wrong and what actually happens to the old value at index 2.",
+        "answer": "The classmate is wrong: INSERT does not replace, it makes room. Per EK AAP-2.N.1, INSERT(aList, i, value) shifts right any values at indices ≥ i, increases the length by 1, and places value at index i. So the old value at index 2 (12000) is not destroyed — it slides to index 3, and everything after it slides right too. Nothing is overwritten; the list simply grows by one. Replacing a value in place is aList[i] ← x, a completely different operation that keeps the same length."
+      },
+      {
+        "ek": "EK AAP-2.N.1",
+        "pts": 3,
+        "q": "On the exam reference sheet, after all four lines, what is steps[1] and what is steps[LENGTH(steps)]? Name which element each one is.",
+        "answer": "The final list is [3000, 5000, 9000, 15000, 11000, 10000] with LENGTH 6. steps[1] is 3000 — the FIRST element (line 3 overwrote it). steps[LENGTH(steps)] is steps[6], which is 10000 — the LAST element (the value APPENDed in line 1). Full credit requires using 1-indexing: index 1 is the first element and index LENGTH is the last, not index 0 and LENGTH − 1."
+      }
+    ],
+    "partBLabel": "Part B - Reflect (AP Exam Application)",
+    "partBIntro": "Answer in complete sentences using the CED vocabulary. These are the same items available on the site exercise.",
+    "partB": [
+      {
+        "ek": "EK AAP-2.N.1",
+        "pts": 3,
+        "q": "Write your own two-operation sequence on a list scores ← [50, 60, 70] where the FIRST operation changes the length and the SECOND does not. State the list and LENGTH after each, and label which operation resized the list.",
+        "answer": "Example: APPEND(scores, 80) then scores[2] ← 65. After op 1: scores = [50, 60, 70, 80], LENGTH 4 — APPEND resized the list (+1). After op 2: scores = [50, 65, 70, 80], LENGTH 4 — the in-place assignment overwrote index 2 and left the length unchanged. Any answer earns full credit as long as one operation is INSERT/APPEND/REMOVE (length changes) and the other is aList[i] ← x (length unchanged), with correct lists shown (EK AAP-2.N.1)."
+      },
+      {
+        "ek": "EK AAP-2.N.1",
+        "pts": 3,
+        "q": "A program tries to read aList[0] to get the first element of a list. On the exam reference sheet, what actually happens, and what is the correct expression for the first and last elements?",
+        "answer": "On the exam reference sheet lists are 1-indexed, so index 0 is below the valid range (1 through LENGTH) and is out of range — reading aList[0] produces an error that terminates the program, it does NOT return the first element (EK AAP-2.N.1). The first element is aList[1] and the last element is aList[LENGTH(aList)]. This is the classic trap for students used to Python/Java/JavaScript, which are 0-indexed; the language difference must be translated when working in reference-sheet pseudocode."
+      },
+      {
+        "ek": "EK AAP-2.N.2",
+        "pts": 2,
+        "q": "ENRICHMENT: The reference sheet writes APPEND(aList, value), but Python writes aList.append(value) and JavaScript writes aList.push(value). Explain, using EK AAP-2.N.2, why these are all correct even though the syntax differs.",
+        "answer": "Per EK AAP-2.N.2, list procedures are implemented in accordance with the syntax rules of the programming language. The exam reference sheet's APPEND(aList, value) is a language-neutral description of the OPERATION — add a value to the end and increase the length by 1. Each real language provides that same operation under its own syntax (Python's .append, JavaScript's .push), so they are all correct implementations of the one idea. The exam grades the operation and its effect, not any single language's spelling of it."
+      },
+      {
+        "ek": "LO AAP-2.N",
+        "pts": 0,
+        "q": "Next step: you traced these operations by hand. Now head to the Topic 3.10 page and type and run the harder versions, where the computer checks your output for you.",
+        "answer": "(Hand-off to the online coding practice — no written answer needed.)"
+      }
+    ]
+  },
+  "exercise2": {
+    "number": 2,
+    "title": "Traverse and Search",
+    "minutes": "25 minutes",
+    "subtitle": "Predict the output of 5 traversal and search algorithms",
+    "online": "apcsexamprep.com/pages/ap-csp-topic-3-10-exercise-2",
+    "intro": "You are testing five short algorithms that all traverse the same step log, steps ← [8000, 12000, 9000, 15000, 11000]. For each one, PREDICT what it displays by tracing the loop one element at a time — no computer yet. The algorithms that trip people up are the ones where the loop variable is a VALUE (not an index), where a linear search stops early, and where an average must divide by LENGTH. Vague answers score zero; show the running value after each pass.",
+    "standard": "CB Standard (required): for each algorithm, the running value after each pass + the final displayed output, traced by hand. Enrichment (optional): note a complete-vs-partial traversal or best-vs-worst-case observation (EK AAP-2.O.1, O.5).",
+    "methodHeading": "Three-Step Method - use for every algorithm",
+    "method": [
+      [
+        "Step 1 - Name the running value",
+        "What single thing does the loop carry — a running sum, a best-so-far, or a found flag? Write its starting value before the loop begins."
+      ],
+      [
+        "Step 2 - Traverse one element at a time",
+        "For FOR EACH, the loop variable is each element's VALUE, first to last. Update the running value on every pass and write it down; for a search, stop the instant the target is found."
+      ],
+      [
+        "Step 3 - State the final output",
+        "Report exactly what DISPLAY prints. For an average, divide the sum by LENGTH(aList), not a hard-coded number."
+      ]
+    ],
+    "enrichmentHeading": "Enrichment — beyond CB-required content",
+    "enrichmentNote": "Enrichment (deeper traversal judgment): Note whether each algorithm is a COMPLETE traversal (sum, max, min always visit every element) or can end as a PARTIAL one (a linear search stops early when it finds the target) (EK AAP-2.O.1, O.5). For search, state the best case (target is first) and the worst case (target is absent, so every element is checked). When you finish, move to the Topic 3.10 coding page to type and run these same algorithms and confirm your traces.",
+    "fields": [
+      "The running value and its starting value:",
+      "The running value after each pass (trace it):",
+      "Final displayed output (+ enrichment note):"
+    ],
+    "scenarios": [
+      {
+        "n": 1,
+        "difficulty": "Foundational",
+        "text": "total ← 0; FOR EACH day IN steps { total ← total + day }; DISPLAY(total). What is displayed?",
+        "key": {
+          "signs": "The running value is total, a sum, starting at 0. FOR EACH hands you each step count's VALUE in order: 8000, 12000, 9000, 15000, 11000 (EK AAP-2.O.3).",
+          "mechanism": "Add each value in turn: 0 → 8000 → 20000 → 29000 → 44000 → 55000. After the complete traversal, DISPLAY(total) prints 55000 (EK AAP-2.O.4). This is the accumulator pattern: seed at 0, add every element.",
+          "subtype": "This is a COMPLETE traversal — every element is visited, so it always does LENGTH(steps) = 5 passes. A sum can never stop early the way a search can."
+        }
+      },
+      {
+        "n": 2,
+        "difficulty": "Core",
+        "text": "count ← 0; FOR EACH day IN steps { IF(day ≥ 10000) { count ← count + 1 } }; DISPLAY(count). What is displayed?",
+        "key": {
+          "signs": "The running value is count, starting at 0 — it tallies how many days met the goal of 10000. FOR EACH gives each value; the IF decides whether to count it.",
+          "mechanism": "Check each day against ≥ 10000: 8000 no, 12000 yes (count 1), 9000 no, 15000 yes (count 2), 11000 yes (count 3). DISPLAY(count) prints 3 (EK AAP-2.O.4). Only the values that pass the condition increment the counter — this is a conditional count during a complete traversal.",
+          "subtype": "Still a COMPLETE traversal: every element is tested even though only some are counted. Do not confuse 'counted 3' with 'stopped after 3' — the loop visited all 5."
+        }
+      },
+      {
+        "n": 3,
+        "difficulty": "Core",
+        "text": "best ← steps[1]; FOR EACH day IN steps { IF(day > best) { best ← day } }; DISPLAY(best). What is displayed?",
+        "key": {
+          "signs": "The running value is best, seeded with the FIRST element steps[1] = 8000 so it always starts as a real value from the list (EK AAP-2.O.4).",
+          "mechanism": "Compare each day to best and keep the larger: 8000 (start) → 12000 → 12000 (9000 not bigger) → 15000 → 15000 (11000 not bigger). DISPLAY(best) prints 15000 — the maximum, the best day (EK AAP-2.O.4). Swap > for < and the same shape finds the minimum instead.",
+          "subtype": "Seeding best with steps[1] matters: starting best at 0 would work for these positive numbers but fails for lists of negatives. Seed with an actual element, not a guessed number."
+        }
+      },
+      {
+        "n": 4,
+        "difficulty": "Challenge",
+        "text": "A linear search scans steps in order for the value 9000, stopping as soon as it is found, and displays the 1-indexed position. What is displayed, and how many elements were examined?",
+        "key": {
+          "signs": "The running value is the position index as the search walks the list in order; a linear search checks each element until the desired value is found or all are checked (EK AAP-2.O.5).",
+          "mechanism": "Check index 1 (8000, no), index 2 (12000, no), index 3 (9000, YES) — found, stop. DISPLAY prints 3, and 3 elements were examined. The search STOPS early at the match; it never looks at index 4 or 5 (EK AAP-2.O.5).",
+          "subtype": "Best vs. worst case: here the target was found after 3 checks (a PARTIAL traversal). If the value were absent (say searching for 6000), the search would examine all 5 elements before reporting not found — the worst case is a full, complete traversal."
+        }
+      },
+      {
+        "n": 5,
+        "difficulty": "Challenge",
+        "text": "total ← 0; FOR EACH day IN steps { total ← total + day }; DISPLAY(total / LENGTH(steps)). What is displayed, and why is dividing by LENGTH better than dividing by 5?",
+        "key": {
+          "signs": "The running value is total (the sum), and the final step divides it by LENGTH(steps) to get the average (EK AAP-2.O.4). The sum is 55000 and LENGTH(steps) is 5.",
+          "mechanism": "55000 / 5 = 11000, so DISPLAY prints 11000. Dividing by LENGTH(steps) rather than the literal 5 keeps the average correct if the list is ever resized: after APPEND(steps, 5000) the sum is 60000 and LENGTH is 6, giving 10000 — dividing by a hard-coded 5 would wrongly give 12000 (EK AAP-2.O.4).",
+          "subtype": "This is where Day 1 and Day 2 meet: any APPEND/INSERT/REMOVE changes LENGTH, so an average must always divide by LENGTH(aList), never a number you typed once."
+        }
+      }
+    ]
+  },
+  "discussion": {
+    "title": "Counting from One",
+    "minutes": "~20 min total - 3 parts - Opening (Day 1) + Mid-lesson (Day 1) + Closing (Day 2)",
+    "overview": "A list gives many values one name and one address apiece, and almost every list bug comes from the same few places: counting from the wrong number, forgetting that a procedure moved the neighbors, or asking a linear search to do more work than it needs. Across three short windows in this topic, your group will argue about why the exam counts from 1 while your code counts from 0, what it really means to 'change' a list, and how much work a search actually does.",
+    "parts": [
+      {
+        "name": "Part 1: Opening Discussion",
+        "when": "Day 1, ~6 min, after the bell ringer",
+        "intro": "In your group of 3-4, discuss both questions (about 3 minutes each), then share your most interesting answer with the class. No written answers required - just discuss and listen.",
+        "items": [
+          {
+            "text": "Question 1. To edit the step-count row aloud, you had to number the slots and name the edits. What does a list give you that a pile of separate variables (day1, day2, day3, …) does not — and what becomes possible once every element has an address?"
+          },
+          {
+            "text": "Question 2. When you deleted the first number, everything slid over. Why can't a list just leave an empty hole where a removed element was? What would break if it did?"
+          },
+          {
+            "text": "Our group's most interesting finding from Part 1 (write 1-2 sentences to share):",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 2: Mid-lesson Discussion",
+        "when": "Day 1, ~6 min, after the operation-by-operation trace",
+        "intro": "In your group, complete both tasks below.",
+        "items": [
+          {
+            "label": "Task A - Overwrite or resize?",
+            "text": "In one sentence your whole group agrees on, state the single question you can ask about any list operation to decide whether it changed the LENGTH. Then classify each of these by that question: aList[i] ← x, APPEND, INSERT, REMOVE.",
+            "lines": 2
+          },
+          {
+            "label": "Task B - Count from 0 or 1?",
+            "text": "The exam reference sheet says the first element is aList[1]; the Python on your screen says it is aList[0]. Debate for about 3 minutes: is either one 'more correct'? Record your group's position and the one sentence you would tell a classmate so they never mix up the two on the exam.",
+            "lines": 2
+          }
+        ]
+      },
+      {
+        "name": "Part 3: Closing Debrief",
+        "when": "Day 2, ~8 min, after Common AP Traps",
+        "intro": "As a group, work the prompt below, then one member shares your verdict with the class.",
+        "items": [
+          {
+            "label": "How hard does a search work?",
+            "text": "A linear search for a value in [8000, 12000, 9000, 15000, 11000] sometimes checks 1 element, sometimes all 5. As a group, write the clearest one-paragraph explanation of WHEN it does the least work and WHEN it does the most, using the words 'stop early' and 'not found.' Then predict: for a list of 100 elements, what is the largest number of checks a linear search could ever need, and why?",
+            "lines": 4
+          },
+          {
+            "text": "Our group's verdict (the single sentence we think best explains why a linear search's worst case checks every element):",
+            "lines": 2
+          }
+        ]
+      }
+    ]
+  }
+}

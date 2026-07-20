@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "topic": "3.13",
+    "title": "Developing Procedures",
+    "unit": "Big Idea 3: Algorithms and Programming",
+    "intro": "You warmed these up on paper in the Trace the Procedures and Design the Procedure exercises — the school store's labelTotal and charge. Now build and run them for real, hardest last. The first problem is the procedure you just traced; the last one you write from scratch. Predict each output first, then check yourself."
+  },
+  "problems": [
+    {
+      "prompt": "Write a procedure labelTotal(unitPrice, quantity) that RETURNS unitPrice times quantity. Then print the total for a product priced at 3 with quantity 12, which should be exactly: 36",
+      "promptHtml": "Write a procedure <code>labelTotal(unitPrice, quantity)</code> that RETURNS <code>unitPrice</code> times <code>quantity</code>. Then print the total for a product priced at <code>3</code> with quantity <code>12</code>, which should be exactly: <code>36</code>",
+      "expected": "36",
+      "starter": {
+        "python": "# define a procedure labelTotal(unitPrice, quantity)\n# it should RETURN unitPrice * quantity (do not print inside it)\n# then print the result of calling it with 3 and 12\n",
+        "javascript": "// define a procedure labelTotal(unitPrice, quantity)\n// it should return unitPrice * quantity (do not print inside it)\n// then print the result of calling it with 3 and 12\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE labelTotal(unitPrice, quantity)\n{\n    RETURN(unitPrice * quantity)\n}\nDISPLAY(labelTotal(3, 12))",
+        "python": "def labelTotal(unitPrice, quantity):\n    return unitPrice * quantity\n\nprint(labelTotal(3, 12))",
+        "javascript": "function labelTotal(unitPrice, quantity) {\n  return unitPrice * quantity;\n}\nconsole.log(labelTotal(3, 12));"
+      },
+      "hint": "The procedure should RETURN the product, not print it — the caller does the printing. RETURN hands the value back so print(labelTotal(3, 12)) can display it."
+    },
+    {
+      "prompt": "Reuse ONE procedure for many products. Using labelTotal(unitPrice, quantity) from before, print the combined total of two products: pencils at price 3 quantity 12, and erasers at price 2 quantity 30. The combined total should be exactly: 96",
+      "promptHtml": "Reuse ONE procedure for many products. Using <code>labelTotal(unitPrice, quantity)</code> from before, print the combined total of two products: pencils at price <code>3</code> quantity <code>12</code>, and erasers at price <code>2</code> quantity <code>30</code>. The combined total should be exactly: <code>96</code>",
+      "expected": "96",
+      "starter": {
+        "python": "# define labelTotal(unitPrice, quantity) once (RETURN unitPrice * quantity)\n# call it TWICE with different arguments and add the two totals\n# print the combined total\n",
+        "javascript": "// define labelTotal(unitPrice, quantity) once (return unitPrice * quantity)\n// call it TWICE with different arguments and add the two totals\n// print the combined total\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE labelTotal(unitPrice, quantity)\n{\n    RETURN(unitPrice * quantity)\n}\nDISPLAY(labelTotal(3, 12) + labelTotal(2, 30))",
+        "python": "def labelTotal(unitPrice, quantity):\n    return unitPrice * quantity\n\nprint(labelTotal(3, 12) + labelTotal(2, 30))",
+        "javascript": "function labelTotal(unitPrice, quantity) {\n  return unitPrice * quantity;\n}\nconsole.log(labelTotal(3, 12) + labelTotal(2, 30));"
+      },
+      "hint": "Define the procedure only once, then call it twice with different arguments: labelTotal(3, 12) gives 36 and labelTotal(2, 30) gives 60. The parameters let one definition serve both products; add the two returned values."
+    },
+    {
+      "prompt": "Add an early RETURN guard. Write charge(price, quantity) that RETURNS 0 immediately when quantity is 0 (a free sample), and otherwise RETURNS price times quantity. Print charge(5, 0) and charge(5, 3) on one line, separated by a space, so it reads exactly: 0 15",
+      "promptHtml": "Add an early RETURN guard. Write <code>charge(price, quantity)</code> that RETURNS <code>0</code> immediately when <code>quantity</code> is <code>0</code> (a free sample), and otherwise RETURNS <code>price</code> times <code>quantity</code>. Print <code>charge(5, 0)</code> and <code>charge(5, 3)</code> on one line, separated by a space, so it reads exactly: <code>0 15</code>",
+      "expected": "0 15",
+      "starter": {
+        "python": "# define charge(price, quantity):\n#   if quantity == 0: RETURN 0   (this exits immediately)\n#   otherwise RETURN price * quantity\n# print charge(5, 0) and charge(5, 3) on one line, e.g. print(a, b)\n",
+        "javascript": "// define charge(price, quantity):\n//   if quantity === 0: return 0   (this exits immediately)\n//   otherwise return price * quantity\n// print charge(5, 0) and charge(5, 3) on one line separated by a space\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE charge(price, quantity)\n{\n    IF(quantity = 0)\n    {\n        RETURN(0)\n    }\n    RETURN(price * quantity)\n}\nDISPLAY(charge(5, 0))\nDISPLAY(charge(5, 3))",
+        "python": "def charge(price, quantity):\n    if quantity == 0:\n        return 0\n    return price * quantity\n\nprint(charge(5, 0), charge(5, 3))",
+        "javascript": "function charge(price, quantity) {\n  if (quantity === 0) {\n    return 0;\n  }\n  return price * quantity;\n}\nconsole.log(charge(5, 0) + \" \" + charge(5, 3));"
+      },
+      "hint": "The guard RETURN runs first: when quantity is 0, return 0 and the procedure stops — the multiply line never runs. Otherwise the second RETURN gives price * quantity, so charge(5, 3) is 15."
+    },
+    {
+      "prompt": "Write from scratch: discountedPrice(price, discount) returns price minus discount, but a discount can never push the price below 0. If discount is greater than or equal to price, RETURN 0 immediately; otherwise RETURN price minus discount. Print discountedPrice(20, 5) and discountedPrice(20, 25) on one line so it reads exactly: 15 0",
+      "promptHtml": "Write from scratch: <code>discountedPrice(price, discount)</code> returns <code>price</code> minus <code>discount</code>, but a discount can never push the price below <code>0</code>. If <code>discount</code> is greater than or equal to <code>price</code>, RETURN <code>0</code> immediately; otherwise RETURN <code>price - discount</code>. Print <code>discountedPrice(20, 5)</code> and <code>discountedPrice(20, 25)</code> on one line so it reads exactly: <code>15 0</code>",
+      "expected": "15 0",
+      "starter": {
+        "python": "# define discountedPrice(price, discount):\n#   if discount >= price: RETURN 0   (early guard, never go negative)\n#   otherwise RETURN price - discount\n# print discountedPrice(20, 5) and discountedPrice(20, 25) on one line\n",
+        "javascript": "// define discountedPrice(price, discount):\n//   if discount >= price: return 0   (early guard, never go negative)\n//   otherwise return price - discount\n// print discountedPrice(20, 5) and discountedPrice(20, 25) on one line\n"
+      },
+      "reference": {
+        "pseudocode": "PROCEDURE discountedPrice(price, discount)\n{\n    IF(discount ≥ price)\n    {\n        RETURN(0)\n    }\n    RETURN(price - discount)\n}\nDISPLAY(discountedPrice(20, 5))\nDISPLAY(discountedPrice(20, 25))",
+        "python": "def discountedPrice(price, discount):\n    if discount >= price:\n        return 0\n    return price - discount\n\nprint(discountedPrice(20, 5), discountedPrice(20, 25))",
+        "javascript": "function discountedPrice(price, discount) {\n  if (discount >= price) {\n    return 0;\n  }\n  return price - discount;\n}\nconsole.log(discountedPrice(20, 5) + \" \" + discountedPrice(20, 25));"
+      },
+      "hint": "Use an early RETURN for the special case: if discount >= price, return 0 and stop. Otherwise return price - discount. discountedPrice(20, 5) is 15; discountedPrice(20, 25) hits the guard and is 0."
+    }
+  ]
+}

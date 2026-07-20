@@ -325,25 +325,25 @@
         "predictFirst": true,
         "stem": "In exam pseudocode, height holds 48. What does height ≥ 48 evaluate to, and what type of value is the result?",
         "options": [
-          "true — and the result is a Boolean value",
-          "48 — the operator hands back the larger operand",
-          "false, because 48 is not greater than 48",
-          "true — and the result is a number"
+          "true — a Boolean value",
+          "48 — a number value",
+          "false — a Boolean value",
+          "true — a number value"
         ],
         "answer": "A",
         "ek": "EK AAP-2.E.2",
-        "rationale": "Greater-than-or-equal includes the equal case, so 48 ≥ 48 is true, and every relational comparison evaluates to a Boolean value (EK AAP-2.E.1–E.2), making A correct. B treats the operator as if it returns one of the operands rather than a Boolean. C applies the rule for strict > instead of ≥, dropping the boundary case. D gets the truth value right but names the wrong type — comparisons yield Booleans, not numbers."
+        "rationale": "Greater-than-or-equal includes the equal case, so 48 ≥ 48 is true, and every relational comparison evaluates to a Boolean value (EK AAP-2.E.1–E.2), making A correct. B treats the operator as if it hands back one of the operands (a number) rather than a Boolean. C applies the rule for strict > instead of ≥, dropping the boundary case. D gets the truth value right but names the wrong type — comparisons yield Booleans, not numbers."
       },
       {
         "id": "Q2",
         "kind": "scenario",
         "predictFirst": true,
-        "stem": "A sign reads 'Riders must be at least 48 inches tall.' Which expression captures exactly who is allowed, and why?",
+        "stem": "A sign reads 'Riders must be at least 48 inches tall.' Which expression captures exactly who is allowed?",
         "options": [
-          "height > 48, because 'at least' means strictly taller than the minimum",
-          "height ≠ 48, because a rider cannot be exactly at the minimum",
-          "height ≥ 48, because 'at least 48' includes a rider who is exactly 48",
-          "height < 48, because the sign is stating a maximum height"
+          "height > 48",
+          "height ≠ 48",
+          "height ≥ 48",
+          "height < 48"
         ],
         "answer": "C",
         "ek": "EK AAP-2.E.2",
@@ -354,14 +354,14 @@
         "kind": "applied",
         "stem": "A program runs isMatch ← (code = 4207). Before this line, code holds 4207. What is stored in isMatch?",
         "options": [
-          "4207, a copy of the value in code",
-          "true, because code equals 4207 and a comparison evaluates to a Boolean",
+          "the number 4207",
+          "the Boolean true",
           "the text \"code = 4207\"",
-          "false, because the single = stores a value instead of comparing"
+          "the Boolean false"
         ],
         "answer": "B",
         "ek": "EK AAP-2.E.2",
-        "rationale": "Inside the parentheses the single = is the equality comparison; code is 4207, so the comparison is true, a Boolean, which the arrow then stores in isMatch (EK AAP-2.E.2). B is correct. A confuses the comparison's result with code's value. C treats the expression as literal text. D mislabels the single = as assignment — the arrow ← does the storing, while = compares."
+        "rationale": "Inside the parentheses the single = is the equality comparison; code is 4207, so the comparison is true — a Boolean — which the arrow then stores in isMatch (EK AAP-2.E.2). B is correct. A confuses the comparison's result with code's value. C treats the expression as literal text. D mislabels the single = as assignment; here = compares (code does equal 4207), so the result is true, not false."
       },
       {
         "id": "Q4",
@@ -369,10 +369,10 @@
         "predictFirst": true,
         "stem": "On the exam reference sheet, how do the statements a ← b and a = b differ?",
         "options": [
-          "They are identical; both store the value of b into a",
-          "a ← b tests whether a and b are equal; a = b stores b into a",
-          "Both evaluate to a Boolean value and store nothing",
-          "a ← b stores a copy of b into a; a = b tests whether a and b are equal and evaluates to a Boolean"
+          "They are identical; both store b into a",
+          "a ← b tests equality; a = b stores b into a",
+          "Both compare a and b and evaluate to a Boolean",
+          "a ← b stores b into a; a = b tests whether a and b are equal"
         ],
         "answer": "D",
         "ek": "EK AAP-2.E.2",
@@ -381,59 +381,59 @@
       {
         "id": "Q5",
         "kind": "applied",
-        "stem": "waitTime holds 30. Evaluate the comparison waitTime ≤ 30.",
+        "stem": "rideOpen holds false. What does NOT rideOpen evaluate to?",
         "options": [
-          "false, because 30 is not less than 30",
-          "30, the value of waitTime",
-          "true, because ≤ includes the equal case and 30 equals 30",
-          "true, because ≤ always evaluates to true"
+          "false — NOT leaves the value unchanged",
+          "an error — NOT requires two operands",
+          "true — the opposite of false",
+          "false — NOT hands back the operand"
         ],
         "answer": "C",
-        "ek": "EK AAP-2.E.2",
-        "rationale": "Less-than-or-equal includes the boundary, so 30 ≤ 30 is true (EK AAP-2.E.2); C is correct. A applies the strict-< rule and drops the equal case. B returns the operand instead of a Boolean. D is right about the answer here but for a false reason — ≤ is not always true; 31 ≤ 30 would be false."
+        "ek": "EK AAP-2.F.2",
+        "rationale": "NOT reverses the Boolean it is given, so NOT false is true (EK AAP-2.F.2); C is correct. A forgets that NOT flips its operand. B confuses NOT (one operand) with AND/OR, which take two. D thinks NOT returns its operand's value rather than the opposite Boolean."
       },
       {
         "id": "Q6",
         "kind": "scenario",
         "predictFirst": true,
-        "stem": "A gate rule needs a comparison that is true only when a guest's height is anything OTHER than exactly 60 inches. Which operator writes that rule?",
+        "stem": "isVIP = true and hasFastPass = true. A guest uses the express lane when isVIP OR hasFastPass. Does the guest qualify?",
         "options": [
-          "height ≠ 60, the not-equal operator",
-          "height = 60, the equality operator",
-          "height > 60, the greater-than operator",
-          "height ≥ 60, the at-least operator"
+          "Yes — OR is true when at least one operand is true",
+          "No — when both operands are true, OR becomes false",
+          "No — OR requires exactly one operand to be true",
+          "Only if isVIP is evaluated before hasFastPass"
         ],
         "answer": "A",
-        "ek": "EK AAP-2.E.2",
-        "rationale": "'Anything other than exactly 60' is the not-equal relationship, written with ≠ (EK AAP-2.E.2); A is correct. B is the exact opposite — true only AT 60. C is true only for heights above 60 and misses everything below it. D includes 60 itself and every height above, the reverse of what is wanted."
+        "ek": "EK AAP-2.F.4",
+        "rationale": "OR is inclusive: it is true when at least one operand is true, and both-true still makes it true (EK AAP-2.F.4), so A is correct. B and C import the everyday exclusive 'or,' which OR does not use — OR is false only when both operands are false. D invents an ordering effect; operand order does not change an OR result."
       },
       {
         "id": "Q7",
         "kind": "applied",
-        "stem": "A student writes seats < 5 to mean 'there are fewer than 5 seats left.' seats holds 5. What does the comparison evaluate to, and is the wording matched correctly?",
+        "stem": "tallEnough = true and hasTicket = false. What does tallEnough AND hasTicket evaluate to?",
         "options": [
-          "true, and 5 does count as 'fewer than 5'",
-          "true, because < includes the boundary value 5",
-          "false, because seats also equals 5 so both sides cancel",
-          "false, because < is strict, so 5 < 5 is false — matching 'fewer than 5'"
+          "true — one operand is true",
+          "true — AND needs at least one true",
+          "false — AND needs the first operand to be false",
+          "false — AND needs both operands true"
         ],
         "answer": "D",
-        "ek": "EK AAP-2.E.2",
-        "rationale": "Strict less-than excludes the boundary, so 5 < 5 is false, which correctly matches 'fewer than 5' (EK AAP-2.E.2); D is correct. A misreads 5 as being fewer than 5. B wrongly claims < includes its boundary — that is ≤. C invents a 'cancel' rule that does not exist; the comparison simply evaluates to false."
+        "ek": "EK AAP-2.F.3",
+        "rationale": "AND is true only when both operands are true; here hasTicket is false, so true AND false is false (EK AAP-2.F.3), making D correct. A and B apply OR's rule (at least one true) to AND. C misstates AND — it does not require the first operand to be false; it requires every operand to be true."
       },
       {
         "id": "Q8",
         "kind": "multi",
-        "stem": "Using height = 52 and age = 11, which of these comparisons evaluate to true? I. height ≥ 48   II. age > 12   III. height ≠ 52",
+        "stem": "Using tallEnough = true, hasTicket = true, and rideClosed = true, which expressions evaluate to true? I. tallEnough AND hasTicket   II. NOT rideClosed   III. tallEnough AND (NOT rideClosed)",
         "options": [
-          "I and III only",
+          "I and II only",
           "I only",
           "I, II, and III",
           "II and III only"
         ],
         "answer": "B",
-        "ek": "EK AAP-2.E.2",
-        "rationale": "Evaluate each: I is 52 ≥ 48 → true; II is 11 > 12 → false; III is 52 ≠ 52 → false because 52 does equal 52. Only I is true (EK AAP-2.E.2), so B is correct. A wrongly counts III, forgetting that ≠ is false when the values match. C counts II, missing that 11 is not greater than 12. D drops the one true comparison and keeps two false ones."
+        "ek": "EK AAP-2.F.2",
+        "rationale": "Evaluate each: I is true AND true → true; II is NOT true → false; III is true AND (NOT true) = true AND false → false. Only I is true (EK AAP-2.F.2–F.3), so B is correct. A and D wrongly count II, forgetting NOT reverses true to false. C counts all three, missing that II and III both collapse once NOT rideClosed is false."
       }
     ]
   },
