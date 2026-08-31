@@ -28,9 +28,11 @@ const WEB = path.join(DIR, 'web_out');
 const OUTD = path.join(DIR, 'out');
 const LIVE = JSON.parse(fs.readFileSync(path.join(DIR, 'live_handles.json'), 'utf8'));
 
+// judge0.config.json (gitignored) is OPTIONAL now — pages default to the
+// server-side code-runner proxy, so no key is needed to emit them. A config is
+// only needed to override the proxy URL or opt into direct mode ("direct": true).
 const cfgPath = path.join(DIR, 'judge0.config.json');
-if (!fs.existsSync(cfgPath)) { console.error('missing judge0.config.json (gitignored) — create it with endpoint + key'); process.exit(1); }
-const CFG = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+const CFG = fs.existsSync(cfgPath) ? JSON.parse(fs.readFileSync(cfgPath, 'utf8')) : {};
 
 const inFile = process.argv[2];
 if (!inFile) { console.error('usage: node emit_code_exercises.js codeex-<topic>.json'); process.exit(1); }
@@ -44,6 +46,12 @@ const NAMED = { 0x26:'&amp;',0x3c:'&lt;',0x3e:'&gt;',0x22:'&quot;',0x2018:'&lsqu
   0x201c:'&ldquo;',0x201d:'&rdquo;',0x2013:'&ndash;',0x2014:'&mdash;',0x2026:'&hellip;',0x00b7:'&middot;',0x2022:'&bull;' };
 function esc(s){ let o=''; for (const ch of String(s??'')){ const c=ch.codePointAt(0);
   o += NAMED[c]!==undefined?NAMED[c]:(c<128?ch:'&#'+c+';'); } return o; }
+// Armor RAW html (e.g. promptHtml, which is inserted un-escaped): entity-encode
+// only codepoints > 127 so no raw non-ASCII byte reaches Shopify, while leaving
+// HTML tags and all other ASCII untouched. Safe to run over the whole page —
+// the embedded <script> is ASCII (jsonForScript escapes non-ASCII to \uXXXX).
+function armor(s){ let o=''; for (const ch of String(s??'')){ const c=ch.codePointAt(0);
+  o += c<128 ? ch : (NAMED[c]!==undefined?NAMED[c]:'&#'+c+';'); } return o; }
 // JSON embedded in a <script> must be safe: escape non-ASCII + </ sequences.
 function jsonForScript(obj){
   return JSON.stringify(obj).replace(/[-￿]/g, c => '\\u'+c.charCodeAt(0).toString(16).padStart(4,'0'))
@@ -105,10 +113,15 @@ function problemHTML(pr, i){
 }
 
 const runtimeCfg = {
-  proxyUrl: CFG.proxyUrl || '',
+  // Secure by default: pages call the APCSExamPrep code-runner proxy, which
+  // holds the RapidAPI key server-side (routes/judge0.js in the progress-api).
+  // Set a config proxyUrl to point at another environment (e.g. a local API).
+  // Only "direct": true falls back to calling Judge0 straight from the browser,
+  // which embeds the key — not for production.
+  proxyUrl: CFG.direct ? '' : (CFG.proxyUrl || 'https://progress.apcsexamprep.com/api/judge0/run'),
   endpoint: CFG.endpoint || 'https://judge0-ce.p.rapidapi.com',
   host: CFG.rapidApiHost || 'judge0-ce.p.rapidapi.com',
-  key: CFG.proxyUrl ? '' : (CFG.rapidApiKey || ''),   // key omitted when a proxy is used
+  key: CFG.direct ? (CFG.rapidApiKey || '') : '',   // key ships ONLY in explicit direct mode
   langIds: { python: 71, javascript: 63 },
 };
 const starters = EX.problems.map(pr => pr.starter || {});
@@ -123,11 +136,17 @@ const widgetScript = `<script>
   if(!root) return;
   function norm(s){ return String(s==null?'':s).replace(/\\r/g,'').replace(/[ \\t]+$/gm,'').replace(/\\n+$/,''); }
   function submit(lang, code, cb){
-    var body = JSON.stringify({ source_code: code, language_id: CFG.langIds[lang] });
-    var url, headers = {'Content-Type':'application/json'};
-    if (CFG.proxyUrl){ url = CFG.proxyUrl; }
-    else { url = CFG.endpoint + '/submissions?base64_encoded=false&wait=true';
-           headers['X-RapidAPI-Key'] = CFG.key; headers['X-RapidAPI-Host'] = CFG.host; }
+    var url, headers = {'Content-Type':'application/json'}, body;
+    if (CFG.proxyUrl){
+      // APCSExamPrep code-runner proxy: expects { code, language_id, stdin }; key is server-side.
+      url = CFG.proxyUrl;
+      body = JSON.stringify({ code: code, language_id: CFG.langIds[lang], stdin: '' });
+    } else {
+      // direct Judge0 (explicit "direct" mode only): embeds the key
+      url = CFG.endpoint + '/submissions?base64_encoded=false&wait=true';
+      headers['X-RapidAPI-Key'] = CFG.key; headers['X-RapidAPI-Host'] = CFG.host;
+      body = JSON.stringify({ source_code: code, language_id: CFG.langIds[lang] });
+    }
     fetch(url, { method:'POST', headers: headers, body: body })
       .then(function(r){ return r.json(); })
       .then(function(d){ cb(null, d); })
@@ -149,6 +168,7 @@ const widgetScript = `<script>
         var out = (d.stdout!=null)? d.stdout : '';
         var errText = d.stderr || d.compile_output || '';
         var exp = EXPECTED[i];
+        if(d && d.error && !out){ res.className='result fail'; res.textContent=(d.message||'The code runner is busy right now. Take a short break and try again.'); return; }
         if(errText && !out){ res.className='result fail'; res.textContent='Your code hit an error:\\n'+errText; return; }
         if(exp==null){ res.className='result pass'; res.textContent='Output:\\n'+out; return; }
         if(norm(out)===norm(exp)){ res.className='result pass'; res.textContent='Correct! Output:\\n'+out; }
@@ -169,6 +189,7 @@ body += `<p class="muted">Your code runs on a secure external service. Answers a
 body += `\n</div>\n` + widgetScript;
 
 fs.mkdirSync(WEB, { recursive: true });
+body = armor(body);   // guarantee no raw byte > ASCII 127 reaches Shopify
 fs.writeFileSync(path.join(WEB, handle + '.html'), body, 'utf8');
 
 // ---------- pages.csv row (gated, Published=false) ----------
